@@ -1,0 +1,102 @@
+# Archidekt — Lathril, Blade of the Elves
+# source: archidekt:2222696
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lathril, Blade of the Elves
+
+Deck:
+1 Overgrown Tomb
+1 Quirion Ranger
+1 Chord of Calling
+1 Elvish Archdruid
+1 Shizo, Death's Storehouse
+1 Nurturing Peatland
+1 Leaf-Crowned Visionary
+1 Tribute to the World Tree
+1 Undergrowth Stadium
+1 Elvish Warmaster
+1 Elvish Clancaller
+1 Circle of Dreams Druid
+1 Elvish Champion
+1 Elves of Deep Shadow
+1 Beastmaster Ascension
+1 Kindred Summons
+1 Eldrazi Monument
+1 Birchlore Rangers
+1 Fyndhorn Elves
+1 Joraga Warcaller
+1 Elvish Visionary
+1 Priest of Titania
+1 Elvish Spirit Guide
+1 Glissa Sunslayer
+1 Marwyn, the Nurturer
+1 Shaman of the Pack
+1 Beast Whisperer
+1 Dwynen, Gilt-Leaf Daen
+1 Oakhame Adversary
+1 Haldir, Lórien Lieutenant
+1 Beast Within
+1 Harald, King of Skemfar
+1 Boreal Druid
+1 Underrealm Lich
+1 Heroic Intervention
+1 Wirewood Symbiote
+1 Deathcap Glade
+1 Galadhrim Brigade
+1 Legolas Greenleaf
+1 Woodland Cemetery
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Verdant Catacombs
+1 Ezuri, Renegade Leader
+2 Swamp
+6 Forest
+1 Roaming Throne
+1 Wirewood Lodge
+1 Hall of the Bandit Lord
+1 Yavimaya, Cradle of Growth
+1 Assassin's Trophy
+1 Green Sun's Zenith
+1 Imperious Perfect
+1 Heritage Druid
+1 For the Ancestors
+1 Deathrite Shaman
+1 Command Tower
+1 Arwen, Weaver of Hope
+1 Nature's Lore
+1 Three Visits
+1 Marsh Flats
+1 Misty Rainforest
+1 Patriarch's Bidding
+1 Eladamri, Korvecdal
+1 Disciple of Freyalise // Garden of Freyalise
+1 Windswept Heath
+1 Wooded Foothills
+1 Polluted Delta
+1 Boseiju, Who Endures
+1 Bloodstained Mire
+1 Emerald Medallion
+1 Living Death
+1 Elvish Mystic
+1 Three Tree City
+1 Skemfar Avenger
+1 Underground Mortuary
+1 Skemfar Shadowsage
+1 Tyvar, the Pummeler
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Staff of Domination
+1 Nature's Rhythm
+1 Elven Passage
+1 Wastewood Verge
+1 Rampant Growth
+1 High Perfect Morcant
+1 Champions of the Perfect
+1 Morcant's Loyalist
+1 Formidable Speaker
+1 Llanowar Elves
+1 Dark Ritual
+1 Finale of Devastation
+1 Sol Ring
+1 Pride of the Perfect
+1 Mutavault

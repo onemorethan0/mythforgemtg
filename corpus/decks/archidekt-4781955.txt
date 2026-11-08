@@ -1,0 +1,108 @@
+# Archidekt — korvold combo king
+# source: archidekt:4781955
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Korvold, Fae-Cursed King
+
+Deck:
+1 Stomping Ground
+1 Blood Crypt
+1 Bloodstained Mire
+1 Dark Ritual
+1 Unearth
+1 Chrome Mox
+1 Lion's Eye Diamond
+1 Witherbloom Apprentice
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Taiga
+1 Mana Vault
+1 Polluted Delta
+1 Reanimate
+1 Worldly Tutor
+1 Ignoble Hierarch
+1 Emergence Zone
+1 Badlands
+1 Necropotence
+1 Mox Opal
+1 Deflecting Swat
+1 Ad Nauseam
+1 Bayou
+1 City of Brass
+1 Cabal Ritual
+1 Phyrexian Tower
+1 Rite of Flame
+1 Grinding Station
+1 Birds of Paradise
+1 Chain of Smog
+1 Demonic Tutor
+1 Marsh Flats
+1 Scalding Tarn
+1 Crop Rotation
+1 Imperial Seal
+1 Ragavan, Nimble Pilferer
+1 Entomb
+1 Ancient Tomb
+1 Misty Rainforest
+1 Underworld Breach
+1 Arid Mesa
+1 Gemstone Caverns
+1 Culling Ritual
+1 Orcish Bowmasters
+1 Finale of Devastation
+1 Noxious Revival
+1 Lotus Petal
+1 Eldritch Evolution
+1 Pyroblast
+1 Arcane Signet
+1 The One Ring
+1 Overgrown Tomb
+1 Boseiju, Who Endures
+1 Mox Diamond
+1 Windswept Heath
+1 Wooded Foothills
+1 Tinder Wall
+1 Final Fortune
+1 Mayhem Devil
+1 Orcish Lumberjack
+1 The Cabbage Merchant
+1 Tireless Provisioner
+1 Ruthless Technomancer
+1 Swamp
+1 Krosan Wayfarer
+1 Animate Dead
+1 Hexing Squelcher
+1 Mana Confluence
+1 Command Tower
+1 Nissa, Resurgent Animist
+1 Icetill Explorer
+1 Aftermath Analyst
+1 Exploration Broodship
+1 Talon Gates of Madara
+1 Gaea's Cradle
+1 Yavimaya, Cradle of Growth
+1 Shifting Woodland
+1 Squandered Resources
+1 Exploration
+1 Culling the Weak
+1 Allosaurus Shepherd
+1 Forest
+1 Sol Ring
+1 Sylvan Safekeeper
+1 Lumra, Bellow of the Woods
+1 Urborg, Tomb of Yawgmoth
+1 Dryad Arbor
+1 Lotus Cobra
+1 Grim Monolith
+1 Vexing Bauble
+1 Legolas's Quick Reflexes
+1 Wishclaw Talisman
+1 Summoner's Pact
+1 Rain of Filth
+1 Lively Dirge
+1 Defense Grid
+1 Red Elemental Blast
+1 Elvish Spirit Guide
+1 Tainted Pact

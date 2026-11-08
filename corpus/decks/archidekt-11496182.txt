@@ -1,0 +1,100 @@
+# Archidekt — Machinist Y'shtola (Artifacts)
+# source: archidekt:11496182
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Simulacrum Synthesizer
+1 Emry, Lurker of the Loch
+1 The Mightstone and Weakstone
+1 Cloud Key
+5 Island
+1 Master Transmuter
+1 Mana Vault
+1 Cyclonic Rift
+1 Generous Gift
+1 Stroke of Midnight
+1 Vedalken Orrery
+1 Grafted Exoskeleton
+1 Arcane Sanctum
+1 Polluted Delta
+1 Muraganda Raceway
+1 Vampiric Tutor
+1 Semblance Anvil
+1 Sunken Hollow
+1 Curiosity
+1 The Reality Chip
+1 Prairie Stream
+1 Counterspell
+1 Spire of Industry
+1 Glimmervoid
+1 Mana Drain
+1 Trading Post
+1 Tameshi, Reality Architect
+1 Chromatic Lantern
+1 Urza's Cave
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Talisman of Dominance
+1 Thought Vessel
+1 Aetherflux Reservoir
+1 Shorikai, Genesis Engine
+1 Etherium Sculptor
+1 Swiftfoot Boots
+1 Sai, Master Thopterist
+1 The Mycosynth Gardens
+1 The Celestus
+1 Midnight Clock
+1 Memory Jar
+1 Mendicant Core, Guidelight
+1 Ratchet Bomb
+1 Shadowspear
+1 Three Steps Ahead
+1 Agatha's Soul Cauldron
+1 Lux Cannon
+1 Demonic Junker
+1 Foundry Inspector
+1 Farewell
+3 Plains
+3 Swamp
+1 Ancient Tomb
+1 The One Ring
+1 Ugin, Eye of the Storms
+1 Marsh Flats
+1 Sol Ring
+1 Lithoform Engine
+1 Solemn Simulacrum
+1 Chromatic Orrery
+1 Coveted Jewel
+1 The Aetherspark
+1 Urborg, Tomb of Yawgmoth
+1 Command Tower
+1 Unwinding Clock
+1 Demonic Tutor
+1 Urza, Lord Protector
+1 Urza's Saga
+1 Esper Sentinel
+1 Sensei's Divining Top
+1 Inventors' Fair
+1 Chimil, the Inner Sun
+1 Raffine's Tower
+1 Seat of the Synod
+1 Hallowed Fountain
+1 Urza, Lord High Artificer
+1 Otawara, Soaring City
+1 Fomori Vault
+1 Academy Ruins
+1 Displacer Kitten
+1 Rhystic Study
+1 Tezzeret, Cruel Captain
+1 Fierce Guardianship
+1 Watery Grave
+1 Enlightened Tutor
+1 Godless Shrine
+1 Alhammarret's Archive
+1 Teferi's Protection
+1 Flooded Strand
+1 Uthros, Titanic Godcore
+1 Bolas's Citadel

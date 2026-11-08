@@ -1,0 +1,93 @@
+# Archidekt — Power Level 0
+# source: archidekt:5096281
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Estrid, the Masked
+
+Deck:
+1 Sunken Field
+1 Unbridled Growth
+1 Greater Auramancy
+1 Overgrowth
+1 Aura of Silence
+1 Deification
+1 Karmic Justice
+1 Decree of Silence
+1 Oath of Teferi
+1 Omniscience
+1 Wall of Stolen Identity
+1 Wall of Denial
+1 Enchanted Evening
+1 Dawn's Reflection
+1 Storm of Saruman
+1 Grasp of Fate
+1 Solemnity
+1 Estrid's Invocation
+1 Enchantress's Presence
+1 Ground Seal
+1 Energy Flux
+1 Ossification
+1 Privileged Position
+1 Song of the Dryads
+1 Sphere of Safety
+1 Myth Unbound
+1 Wall of Omens
+1 Wall of Blossoms
+1 Fog Bank
+1 Wall of Roots
+1 Overgrown Battlement
+1 Sunscape Familiar
+1 Vine Trellis
+1 Wall of Reverence
+1 Suspicious Bookcase
+1 Jungle Barrier
+1 Wall of Tears
+1 Argothian Enchantress
+1 Mesa Enchantress
+1 Caribou Range
+1 Consecrate Land
+1 Equinox
+1 Debtor's Pulpit
+1 Fertile Ground
+1 Gift of Paradise
+1 Market Festival
+1 Verduran Enchantress
+1 Abundant Growth
+1 Animal Boneyard
+1 Urban Utopia
+1 Urban Burgeoning
+1 Weirding Wood
+1 Wild Growth
+1 Breeding Pool
+1 Hallowed Fountain
+1 Command Tower
+1 Seaside Citadel
+1 Windswept Heath
+1 Canopy Vista
+1 Alabaster Wall
+1 Swords to Plowshares
+1 Bountiful Promenade
+1 Jeskai Barricade
+1 Pact of Negation
+1 Rewind
+1 Mystic Confluence
+1 Disallow
+6 Forest
+1 Glacial Fortress
+1 Counterspell
+1 Spell Swindle
+1 Reliquary Tower
+1 Temple Garden
+1 Sunpetal Grove
+1 Hinterland Harbor
+1 Flooded Strand
+1 Prairie Stream
+1 Sea of Clouds
+5 Island
+7 Plains
+1 Rejuvenating Springs
+1 Krosan Verge
+1 Plea for Guidance
+1 Idyllic Tutor

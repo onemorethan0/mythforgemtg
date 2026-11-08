@@ -1,0 +1,95 @@
+# Archidekt — Tea with Dina
+# source: archidekt:14131470
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Dina, Soul Steeper
+
+Deck:
+1 Casualties of War
+1 Fountain of Renewal
+1 Golgari Charm
+1 Polluted Bonds
+1 Revitalizing Repast // Old-Growth Grove
+1 Well of Lost Dreams
+1 Exsanguinate
+1 Disciple of Griselbrand
+1 Twilight Prophet
+1 Breathe Your Last
+1 Umezawa's Jitte
+1 Prism Ring
+1 Moldervine Reclamation
+1 Sun Droplet
+1 Blood Reckoning
+1 Pristine Talisman
+1 Aetherflux Reservoir
+1 Deathreap Ritual
+1 Putrefy
+1 Status // Statue
+1 Bitter Triumph
+1 Deathsprout
+1 Sanguine Bond
+1 Gollum, Obsessed Stalker
+1 Marchesa's Decree
+1 Ophiomancer
+1 Witch of the Moors
+1 Beast Within
+8 Swamp
+1 Enduring Tenacity
+1 Tireless Provisioner
+1 Tragic Slip
+1 Prosperous Innkeeper
+1 Scavenging Ooze
+1 Prize Pig
+1 Erebos, God of the Dead
+1 Night's Whisper
+1 Gilt-Leaf Palace
+1 Temple of Malady
+1 Foul Orchard
+1 Golgari Guildgate
+1 Jungle Hollow
+1 Blighted Woodland
+1 Tainted Wood
+1 Woodland Cemetery
+1 Barren Moor
+1 Grim Backwoods
+1 Gohn, Town of Ruin
+1 Ash Barrens
+1 Adventurer's Inn
+1 Access Tunnel
+1 Tranquil Thicket
+1 Blighted Fen
+1 Rogue's Passage
+1 Necroblossom Snarl
+7 Forest
+1 Llanowar Wastes
+1 Vito, Thorn of the Dusk Rose
+1 Vampiric Rites
+1 Blood Artist
+1 Gray Merchant of Asphodel
+1 Starscape Cleric
+1 Marauding Blight-Priest
+1 Cosmos Elixir
+1 Deathrite Shaman
+1 Veinwitch Coven
+1 Druid Class
+1 Mortality Spear
+1 Trudge Garden
+1 Retreat to Kazandu
+1 Demon's Horn
+1 Essence Warden
+1 Sinister Monolith
+1 Haywire Mite
+1 Paradise Plume
+1 Gala Greeters
+1 Deathgreeter
+1 Vindictive Vampire
+1 Blunt the Assault
+1 Exotic Orchard
+1 Command Tower
+1 Darkstar Augur
+1 Phyrexian Arena
+1 Pest Infestation
+1 Read the Bones
+1 Sign in Blood

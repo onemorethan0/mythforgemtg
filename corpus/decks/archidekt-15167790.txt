@@ -1,0 +1,90 @@
+# Archidekt — Scarab God 2.0
+# source: archidekt:15167790
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 The Scarab God
+
+Deck:
+1 Altar of Dementia
+1 Arcane Signet
+1 Black Market
+1 Bladestitched Skaab
+1 Bloodthirsty Conqueror
+1 Dakmor Salvage
+1 Dismal Backwater
+1 Feed the Swarm
+1 Fellwar Stone
+1 Geralf, Visionary Stitcher
+1 Get Out
+1 Geth, Lord of the Vault
+1 Ghoulish Procession
+1 Gisa and Geralf
+1 Grave Betrayal
+1 Grave Titan
+1 Gray Merchant of Asphodel
+1 Infernal Grasp
+1 Kindred Discovery
+1 Living Death
+1 Mirkwood Bats
+1 Mistrise Village
+1 Necroduality
+1 Negate
+1 Noxious Gearhulk
+1 Plaza of Heroes
+1 Polluted Delta
+1 Reflecting Pool
+1 Rogue's Passage
+1 Seat of the Synod
+1 Shepherd of Rot
+1 Sol Ring
+1 Sunken Hollow
+1 Training Grounds
+1 Undead Warchief
+1 Unstoppable Slasher
+1 Commander's Sphere
+1 Liliana, Death's Majesty
+1 Gisa, the Hellraiser
+1 Charcoal Diamond
+1 Dimir Signet
+1 Talisman of Dominance
+1 Counterspell
+1 Zombie Master
+1 Arcane Denial
+1 Undead Augur
+1 Liliana, Dreadhorde General
+11 Swamp
+1 Chromatic Lantern
+1 Cleaver Skaab
+1 Crowded Crypt
+1 Ghoulcaller Gisa
+1 Hordewing Skaab
+1 Graveborn Muse
+1 Command Tower
+1 Contaminated Aquifer
+1 Bojuka Bog
+1 Choked Estuary
+1 Drowned Catacomb
+9 Island
+1 Dimir Aqueduct
+1 Nephalia Drownyard
+1 Terramorphic Expanse
+1 Diregraf Colossus
+1 Tainted Isle
+1 Wilhelt, the Rotcleaver
+1 Endless Ranks of the Dead
+1 Eternal Skylord
+1 Lord of the Accursed
+1 Hero's Downfall
+1 Cemetery Reaper
+1 Grimoire of the Dead
+1 Singularity Rupture
+1 Midnight Reaper
+1 Necromantic Selection
+1 Ancient Brass Dragon
+1 Blasphemous Edict
+1 Josu Vess, Lich Knight
+1 Reflections of Littjara
+1 Gravecrawler
+1 Plague Belcher

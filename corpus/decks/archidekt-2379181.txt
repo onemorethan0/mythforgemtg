@@ -1,0 +1,108 @@
+# Archidekt — Enchanted Frog Control
+# source: archidekt:2379181
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tatsunari, Toad Rider
+
+Deck:
+1 Utter Insignificance
+1 Witherbloom Apprentice
+1 Sanctum Weaver
+1 Wild Growth
+1 Dark Ritual
+1 Arcane Denial
+1 Regrowth
+1 Forest
+1 Otawara, Soaring City
+1 Rejuvenating Springs
+1 Dreamroot Cascade
+1 Witness Protection
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Boseiju, Who Endures
+1 Force of Will
+1 Sylvan Library
+1 Dockside Chef
+1 Birds of Paradise
+1 Assassin's Trophy
+1 Sol Ring
+1 Forbidden Orchard
+1 Seal of Primordium
+1 Rhystic Study
+1 Noxious Revival
+1 Eaten by Piranhas
+1 Watery Grave
+1 Overgrown Tomb
+1 Breeding Pool
+1 Elvish Spirit Guide
+1 Freed from the Real
+1 Lotus Petal
+1 Pact of Negation
+1 Vampiric Tutor
+1 An Offer You Can't Refuse
+1 Amphibian Downpour
+1 Sink into Stupor // Soporific Springs
+1 Shipwreck Marsh
+1 Mystic Remora
+1 The One Ring
+1 Worldly Tutor
+1 Seal of Removal
+1 Mana Drain
+1 Shimmering Wings
+1 Swamp
+1 Muddle the Mixture
+1 Phyrexian Metamorph
+1 Colossal Skyturtle
+1 Yavimaya Coast
+1 Arcane Laboratory
+1 Zagoth Triome
+1 Chain of Smog
+1 Orcish Bowmasters
+1 Ripples of Undeath
+1 Cephalid Coliseum
+1 Into the Flood Maw
+1 Flusterstorm
+1 Unable to Scream
+1 Mistrise Village
+1 Mirrormade
+1 Nature's Claim
+1 Diabolic Intent
+1 Toxic Deluge
+1 Emergence Zone
+1 Tainted Pact
+1 Swan Song
+1 Ashiok, Dream Render
+1 Mystical Tutor
+1 Demonic Consultation
+1 City of Brass
+1 Thassa's Oracle
+1 Necropotence
+1 Rapid Hybridization
+1 Song of the Dryads
+1 Bojuka Bog
+1 Island
+1 Gifts Ungiven
+1 Dress Down
+1 Deathrite Shaman
+1 Scalding Tarn
+1 Cabal Ritual
+1 Talion, the Kindly Lord
+1 Honest Work
+1 Destiny Spinner
+1 Morphic Pool
+1 Crop Rotation
+1 Necrodominance
+1 Undergrowth Stadium
+1 Command Tower
+1 Collector Ouphe
+1 Ponder
+1 Pongify
+1 Underground River
+1 Deathcap Glade
+1 Mindbreak Trap
+1 Demonic Tutor
+1 Pia, Aether Ascetic
+1 Veil of Summer
+1 Hinterland Harbor

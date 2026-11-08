@@ -1,0 +1,108 @@
+# Archidekt — Yuriko cEDH Tempo
+# source: archidekt:7588213
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Flare of Denial
+1 Orcish Bowmasters
+1 Shizo, Death's Storehouse
+1 Sakashima's Student
+1 Lim-Dûl's Vault
+1 Brainstorm
+1 Shadow of Mortality
+1 Ingenious Infiltrator
+1 Moon-Circuit Hacker
+1 Prosperous Thief
+1 Skullsnatcher
+1 Mistblade Shinobi
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Island
+1 Otawara, Soaring City
+1 Watery Grave
+1 Swamp
+1 Flusterstorm
+1 Gemstone Caverns
+1 Universal Automaton
+1 Verdant Catacombs
+1 Flare of Malice
+1 Imperial Seal
+1 Sink into Stupor // Soporific Springs
+1 Fell the Profane // Fell Mire
+1 Satoru, the Infiltrator
+1 City of Brass
+1 Chrome Mox
+1 Subtlety
+1 Lotus Petal
+1 Mystic Remora
+1 Underground Sea
+1 Mox Diamond
+1 Fourth Bridge Prowler
+1 Street Wraith
+1 Force of Despair
+1 Mental Misstep
+1 Underground River
+1 Scalding Tarn
+1 Misdirection
+1 Wingcrafter
+1 Boggart Trawler // Boggart Bog
+1 Temporal Trespass
+1 Commandeer
+1 Faerie Seer
+1 Mothdust Changeling
+1 Mockingbird
+1 Snow-Covered Swamp
+1 Snow-Covered Island
+1 Prismatic Vista
+1 Dismember
+1 Ornithopter
+1 Mindbreak Trap
+1 Kaito, Bane of Nightmares
+1 Thassa's Oracle
+1 Tainted Pact
+1 Demonic Consultation
+1 Flooded Strand
+1 Contagion
+1 Mox Amber
+1 Force of Will
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Roaming Throne
+1 Command Tower
+1 Nashi, Moon Sage's Scion
+1 Submerge
+1 Sol Ring
+1 Vampiric Tutor
+1 Snuff Out
+1 Rhystic Study
+1 Thousand-Faced Shadow
+1 Deadly Rollick
+1 Enter the Infinite
+1 Dark Ritual
+1 Spectral Sailor
+1 An Offer You Can't Refuse
+1 Entomb
+1 Personal Tutor
+1 Wonder
+1 Signal Pest
+1 Force of Negation
+1 Fierce Guardianship
+1 Morphic Pool
+1 Polluted Delta
+1 Bloodstained Mire
+1 Marsh Flats
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Illvoi Galeblade
+1 Misty Rainforest
+1 Mausoleum Wanderer
+1 Demonic Tutor
+1 Sickening Shoal
+1 Windcaller Aven
+1 Ninja of the Deep Hours
+1 Mystical Tutor
+1 Silver-Fur Master
+1 Multiversal Passage
+1 Disrupting Shoal
+1 Changeling Outcast

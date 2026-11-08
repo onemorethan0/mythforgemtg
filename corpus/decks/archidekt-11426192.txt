@@ -1,0 +1,106 @@
+# Archidekt — Redshift Food chain is stupid. We're hitting face.  cEDH
+# source: archidekt:11426192
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Redshift, Rocketeer Chief
+
+Deck:
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Disciple of Freyalise // Garden of Freyalise
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Taiga
+1 Emergence Zone
+1 Noxious Revival
+1 Untimely Malfunction
+1 Orochi Leafcaller
+1 Dryad Arbor
+1 Ancient Tomb
+1 Simian Spirit Guide
+1 Carpet of Flowers
+1 Deflecting Swat
+1 Faithless Looting
+1 Wheel of Fortune
+1 Gaea's Cradle
+2 Mountain
+1 Winter Orb
+1 Gemstone Caverns
+1 Stomping Ground
+1 Walking Ballista
+1 Defense Grid
+1 Finale of Devastation
+1 Goblin Engineer
+1 Lightning Bolt
+1 Magda, Brazen Outlaw
+1 Misty Rainforest
+1 Staff of Domination
+1 Wooded Foothills
+1 Worldly Tutor
+1 Yavimaya, Cradle of Growth
+1 Agatha's Soul Cauldron
+1 Tibalt's Trickery
+1 Chandra's Ignition
+1 Lotus Petal
+1 Seedborn Muse
+1 Beastrider Vanguard
+1 Spikeshot Elder
+1 Chrome Mox
+1 Concordant Crossroads
+1 Gamble
+1 Heroic Intervention
+1 Forbidden Orchard
+1 Sylvan Library
+1 Umbral Mantle
+1 Underworld Breach
+1 Toski, Bearer of Secrets
+1 City of Traitors
+1 Aggravated Assault
+1 Inventors' Fair
+1 Veil of Summer
+1 Professional Face-Breaker
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Archdruid's Charm
+2 Forest
+1 Hexing Squelcher
+1 Mox Amber
+1 Mana Vault
+1 Invigorate
+1 Agatha of the Vile Cauldron
+1 Six
+1 Elvish Spirit Guide
+1 Tamiyo's Safekeeping
+1 Crop Rotation
+1 Birds of Paradise
+1 Endurance
+1 Eternal Witness
+1 Survival of the Fittest
+1 Magus of the Candelabra
+1 Delighted Halfling
+1 Three Visits
+1 Green Sun's Zenith
+1 Force of Vigor
+1 Legolas's Quick Reflexes
+1 Vexing Shusher
+1 Svella, Ice Shaper
+1 Red Elemental Blast
+1 Valakut Awakening // Valakut Stoneforge
+1 Final Fortune
+1 Redirect Lightning
+1 The One Ring
+1 Imperial Recruiter
+1 Jeska's Will
+1 Emblem of the Warmind
+1 Mox Diamond
+1 Reckless Handling
+1 Ragavan, Nimble Pilferer
+1 Trinisphere
+1 Torch Courier
+1 Command Tower
+1 Sol Ring
+1 Conqueror's Flail
+1 Sword of the Paruns
+1 Urza's Saga
+1 Arena of Glory
+1 Cavern of Souls
+1 Boseiju, Who Endures

@@ -1,0 +1,108 @@
+# Archidekt — [5] Derevi - Birb
+# source: archidekt:12144017
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Derevi, Empyrial Tactician
+
+Deck:
+1 Eladamri's Call
+1 Flusterstorm
+1 Noble Hierarch
+1 Birds of Paradise
+1 Flesh Duplicate
+1 Faerie Mastermind
+1 Silence
+1 Veil of Summer
+1 Bloom Tender
+1 Mystic Remora
+1 Mana Confluence
+1 Otawara, Soaring City
+1 Voice of Victory
+1 Chord of Calling
+1 Teferi, Time Raveler
+1 Neoform
+1 Nature's Rhythm
+1 Wargate
+1 Eldritch Evolution
+1 Utopia Sprawl
+1 Brightglass Gearhulk
+1 Delighted Halfling
+1 Displacer Kitten
+1 Sol Ring
+1 Windswept Heath
+1 Lotus Petal
+1 Boseiju, Who Endures
+1 Mockingbird
+1 Gemstone Caverns
+1 Shifting Woodland
+1 Temple Garden
+1 Flooded Strand
+1 Breeding Pool
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Scalding Tarn
+1 Fierce Guardianship
+1 Flare of Denial
+1 Hallowed Fountain
+1 Green Sun's Zenith
+1 Force of Will
+1 Polluted Delta
+1 Wild Growth
+1 Enlightened Tutor
+1 Birthing Pod
+1 Spellseeker
+1 Arid Mesa
+1 Delney, Streetwise Lookout
+1 Emerald Charm
+1 Mental Misstep
+1 Chromatic Orrery
+1 Nurturing Pixie
+1 Misdirection
+1 Avacyn's Pilgrim
+1 Esper Sentinel
+1 Sink into Stupor // Soporific Springs
+1 Cloud of Faeries
+1 Ethersworn Canonist
+1 Eternal Witness
+1 Exotic Orchard
+1 Walking Ballista
+1 Finale of Devastation
+1 Chrome Mox
+1 Emergence Zone
+1 The Queen of Dale
+1 Gilded Drake
+1 Carpet of Flowers
+1 Rhystic Study
+1 Crop Rotation
+1 Tropical Island
+1 City of Brass
+1 Ranger-Captain of Eos
+1 Pact of Negation
+1 Misty Rainforest
+1 Ancient Tomb
+1 Mana Vault
+1 Command Tower
+1 Tundra
+1 Mox Opal
+1 Savannah
+1 Gaea's Cradle
+1 Mindbreak Trap
+1 Mox Diamond
+1 Mox Amber
+1 Elvish Spirit Guide
+1 Gleaming Splendor
+1 Wan Shi Tong, Librarian
+1 Clever Impersonator
+1 Stifle
+1 Phyrexian Metamorph
+1 Marsh Flats
+1 Emiel the Blessed
+1 Steal Enchantment
+1 Retraction Helix
+1 Valley Floodcaller
+1 Grand Abolisher
+1 Force of Negation
+1 Force of Vigor
+1 Commandeer

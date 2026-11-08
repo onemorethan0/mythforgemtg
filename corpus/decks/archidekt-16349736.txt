@@ -1,0 +1,108 @@
+# Archidekt — The Snapstone Wielder - Blame Gavin Verhey
+# source: archidekt:16349736
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Snapstone Wielder
+
+Deck:
+1 Sharp Eraser
+1 The Magic Bandit
+1 The Covert Blue Mage
+1 Mana Max, Afterburner
+1 Generated Horizons
+1 Questing Cosplayer
+1 The Octopus Official
+1 Shadowmoor Draw Spell
+1 That Which Was Compleated
+1 Seer of the Bright Side
+1 Seventh Stage of Magic Design
+1 Just a Li'l Guy
+1 Everlasting Lich
+1 Fast // Furious
+1 Recycla-bird
+1 Common Black Removal
+1 Kozilek, Compleated
+1 TL;DR
+1 Color Pie
+1 Emrakul and Chatterfang
+1 The Dilu Horse
+1 Math is for Blockers
+1 Ring Out
+1 Stika, Playtestress
+1 Ensoul Ring
+1 The Rebellious Intelligence
+1 Kevin, Questing Dragon
+1 Magic Designer
+1 Ate-o'-Clock
+1 Impressive Rat
+1 Investi-Gate
+1 First Stage of Magic Design
+1 Guild Pact
+1 The Caffeinated Runner
+1 Clear, Fair Magic
+1 Hosting Season
+1 The Cosplayzer
+1 Oozeavite
+1 The Fearsome Flock
+1 At Least It's a Dry Heat
+1 The Actualizer
+1 MagicConsecrated Sphinx
+1 The Tokenator
+1 The Wiley Speedster
+1 The Paradise Bird
+1 Where We're Going...
+1 The Zabulous Cosplayer
+1 Rinta, Cousin of Sitka
+1 You, Magic Playtester
+1 Moth Herb Elixir
+1 Item Crate
+1 The Misty Stepper
+1 The Mox Painter
+1 Save Point
+1 Impatient Iguana
+1 The Playful Winners
+1 The River Warlock
+1 White Rhystic Study
+1 Rafi, Retro Racer
+1 Oracle of the Alpha
+1 You're Toast!
+1 Mirrored Lotus
+1 Out of Town
+1 Welcome to Australia
+1 May the Mana Be with You
+1 The Game-Changing Host
+1 Quest Compleated Beast
+1 The Bearded Teakeeper
+1 You, Iterative Playtester
+1 Cheer
+1 Higher Level Zone Monster
+1 Celestine Cave Witch
+1 Phyrexian Seedling
+1 Yet Another Night in Vegas
+1 The Value Knight
+1 Fear of Fear Itself
+1 Blu, Mansion Prince
+1 The Mysterious Sphere
+1 Naturalize 2
+1 Fear (split card) // Loathing
+1 Lord of Atlanta
+1 The Knight of Land Drops
+1 The Ice Dancer
+1 Arcane Signet
+1 Occupation of Kulrath
+1 Avacyn and Griselbrand
+1 Boulder Jockey
+1 Reconnaissance
+1 The Knight of Weeks
+1 Twenty Lessons
+1 Fear of Forgetting Names
+1 The Wizardly Barge
+1 Sol Ring
+1 Welcome to Mini-apolis
+1 Guildmark
+1 Personal Decoy
+1 The Meld Hound
+1 Bobby, Another Dwarf
+1 Robby, Another Dwarf

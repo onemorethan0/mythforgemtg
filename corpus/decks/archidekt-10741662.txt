@@ -1,0 +1,93 @@
+# Archidekt — Three Wolf Moon
+# source: archidekt:10741662
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Voja, Jaws of the Conclave
+
+Deck:
+1 Krosan Verge
+1 Primeval Herald
+1 Ulrich's Kindred
+1 Young Wolf
+1 Arctic Treeline
+1 Radiant Grove
+1 Scattered Groves
+1 Elvish Hunter
+1 Starfall Invocation
+1 Witchstalker Frenzy
+1 Pack's Betrayal
+1 Paraselene
+1 Wildfire Howl
+1 In Search of Greatness
+1 Crumb and Get It
+1 Summon: Fenrir
+1 Leaping Ambush
+1 Elvish Bard
+5 Mountain
+1 Canopy Vista
+5 Plains
+1 Reliquary Tower
+1 Highland Forest
+1 Sheltered Thicket
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Repel Calamity
+1 Sheltering Landscape
+1 Overgrown Farmland
+1 Cinder Glade
+1 Alpine Meadow
+1 Command Tower
+1 Sarulf's Packmate
+1 Skalla Wolf
+1 Wooded Ridgeline
+1 Pyreheart Wolf
+1 Hunter's Insight
+1 Wings of the Cosmos
+1 Feral Encounter
+1 Track Down
+1 Ascendant Packleader
+1 Unnatural Growth
+1 Ruby, Daring Tracker
+1 Neyith of the Dire Hunt
+1 Faldorn, Dread Wolf Herald
+1 Veteran Beastrider
+1 Fearless Pup
+1 Thunderwolf Cavalry
+1 Quirion Explorer
+1 Tolsimir, Midnight's Light
+1 Wastes
+8 Forest
+1 Nightpack Ambusher
+1 End the Festivities
+1 Timeless Witness
+1 Wolfwillow Haven
+1 Nature's Rhythm
+1 Torgal, A Fine Hound
+1 Warg Tactics
+1 Wilderland Scrounger
+1 Gift of the Woods
+1 Burn, Burn, Tree and Fern
+1 Bejeweled Warg
+1 Rhythm of the Wild
+1 Hollowhenge Overlord
+1 Primal Adversary
+1 Assembled Alphas
+1 Wyluli Wolf
+1 Somberwald Alpha
+1 Beast-Kin Ranger
+1 Lone Wolf
+1 Elturgard Ranger
+1 Wargling
+1 Bounding Wolf
+1 Howling Moon
+1 Packsong Pup
+1 Runebound Wolf
+1 Lambholt Harrier
+1 Collective Resistance
+1 Tundra Wolves
+1 Arlinn, Voice of the Pack
+1 Master of the Wild Hunt
+1 Selvala, Explorer Returned
+1 Selvala, Heart of the Wilds

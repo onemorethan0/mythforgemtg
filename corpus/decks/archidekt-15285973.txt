@@ -1,0 +1,72 @@
+# Archidekt — Sleepy Time
+# source: archidekt:15285973
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Alpharael, Dreaming Acolyte
+
+Deck:
+1 Dream Halls
+1 Dreamshackle Geist
+1 Alandra, Sky Dreamer
+1 Breath of Dreams
+1 Consign to Dream
+1 Defiler of Dreams
+1 Drawn from Dreams
+1 Dismiss into Dream
+1 Ashiok, Dream Render
+1 Dreamcatcher
+1 Dreamcaller Siren
+1 Dreamborn Muse
+1 Dream Cache
+1 Dream Fighter
+1 Dream Fracture
+1 Dream Devourer
+1 Dreamdrinker Vampire
+1 Dream Eater
+1 Dream Prowler
+1 Dream Salvage
+1 Dreamscape Artist
+1 Dream Leash
+1 Dream's Grip
+1 Dreams of the Dead
+1 Dreams of Laguna
+1 Dreams of Steel and Oil
+1 Dreamstealer
+1 Dream Spoilers
+1 Dream Stalker
+1 Dreamspoiler Witches
+1 Dream Strix
+1 Dreamtail Heron
+1 Dreamstone Hedron
+1 Dream Thief
+1 Dream-Thief's Bandana
+1 Dream Thrush
+1 Dream Tides
+1 Dreamtide Whale
+1 Everdream
+1 Dreamwinder
+1 Drown in Dreams
+1 Faerie Dreamthief
+1 Floating-Dream Zubera
+1 Insidious Dreams
+1 Myojin of Cryptic Dreams
+1 Lucid Dreams
+1 Mistform Dreamer
+1 Restless Dreams
+1 Orb of Dreams
+1 Reduce to Dreams
+1 Soramaro, First to Dream
+1 Thalakos Dreamsower
+1 Sickening Dreams
+1 Underworld Dreams
+1 Theft of Dreams
+1 Walking Dream
+1 Obyra, Dreaming Duelist
+24 Island
+14 Swamp
+1 Lofty Dreams
+1 Dream Seizer
+1 Dream Harvest
+1 Diary of Dreams

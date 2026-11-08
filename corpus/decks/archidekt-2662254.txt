@@ -1,0 +1,98 @@
+# Archidekt — Lathril Does a Thing
+# source: archidekt:2662254
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Lathril, Blade of the Elves
+
+Deck:
+1 Allosaurus Shepherd
+1 Overgrown Tomb
+1 Verdant Catacombs
+1 Windswept Heath
+1 Badgermole Cub
+1 Yavimaya, Cradle of Growth
+1 Craterhoof Behemoth
+1 Priest of Titania
+1 Realmwalker
+1 Circle of Dreams Druid
+1 Beast Whisperer
+1 Deathrite Shaman
+1 Elves of Deep Shadow
+1 Null Rod
+1 Gemstone Caverns
+1 Bayou
+1 Finale of Devastation
+1 The One Ring
+1 Umbral Mantle
+1 Wild Growth
+1 Chord of Calling
+1 Heroic Intervention
+1 Vines of Vastwood
+1 Pact of the Serpent
+1 Natural Order
+1 Shizo, Death's Storehouse
+1 Undergrowth Stadium
+1 Polluted Delta
+1 Formidable Speaker
+1 Wirewood Symbiote
+1 Leaf-Crowned Visionary
+1 Enduring Vitality
+1 Fyndhorn Elves
+1 Diabolic Intent
+1 Ancient Tomb
+1 Might of the Masses
+1 Summoner's Pact
+1 Toski, Bearer of Secrets
+1 Vexing Bauble
+1 Vampiric Tutor
+1 Boseiju, Who Endures
+1 Chalice of the Void
+1 Nature's Rhythm
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Command Tower
+1 Bloodstained Mire
+1 Llanowar Wastes
+1 Gaea's Cradle
+1 Wirewood Lodge
+1 Elvish Mystic
+1 Worldly Tutor
+1 Arbor Elf
+1 Marwyn, the Nurturer
+1 Elvish Archdruid
+1 Force of Vigor
+1 Might of Old Krosa
+1 Tyvar's Stand
+1 Eldritch Evolution
+1 Harald, King of Skemfar
+1 Assassin's Trophy
+3 Swamp
+5 Forest
+1 Sol Ring
+1 Deadly Rollick
+1 Demonic Tutor
+1 Llanowar Elves
+1 Abrupt Decay
+1 Dismember
+1 Alpha Status
+1 Autumn's Veil
+1 Collector Ouphe
+1 Crop Rotation
+1 Gnarlroot Trapper
+1 Green Sun's Zenith
+1 Imperial Seal
+1 Marsh Flats
+1 Misty Rainforest
+1 Okina, Temple to the Grandfathers
+1 Quest for Renewal
+1 Root Maze
+1 Seedborn Muse
+1 Sylvan Library
+1 Ulcerate
+1 Veil of Summer
+1 Wooded Foothills
+1 Staff of Domination
+1 Elven Chorus
+1 Wirewood Channeler
+1 Revitalizing Repast // Old-Growth Grove

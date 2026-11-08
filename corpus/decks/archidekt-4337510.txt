@@ -1,0 +1,99 @@
+# Archidekt — Winging It - Mom's Deck
+# source: archidekt:4337510
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Errant and Giada
+
+Deck:
+1 Swords to Plowshares
+1 Sol Ring
+1 Mind Stone
+1 Arcane Signet
+1 Prairie Stream
+1 Path to Exile
+1 Warden of Evos Isle
+1 Winged Words
+1 Command Tower
+1 Counterspell
+1 Serra's Emissary
+1 Pongify
+1 Akroma's Will
+1 Thought Vessel
+1 Faerie Conclave
+1 Hallowed Fountain
+1 Sea of Clouds
+1 Talisman of Progress
+1 Kira, Great Glass-Spinner
+1 Sephara, Sky's Blade
+1 Linvala, Shield of Sea Gate
+1 Kangee, Sky Warden
+1 Windborn Muse
+1 Battle Angels of Tyr
+1 Ponder
+1 Ash Barrens
+1 New Benalia
+1 Faerie Slumber Party
+1 Ornithopter of Paradise
+1 Watcher of the Spheres
+1 Midnight Clock
+1 Consecrated Sphinx
+1 Teferi's Protection
+1 Jackdaw Savior
+5 Island
+1 Ethereal Investigator
+1 Sunscorch Regent
+1 Favorable Winds
+1 Thunderclap Wyvern
+1 Selfless Spirit
+1 Kangee's Lieutenant
+1 Azorius Chancery
+1 Reliquary Tower
+1 Jubilant Skybonder
+1 Temple of Enlightenment
+1 Empyrean Eagle
+1 Loyal Drake
+1 Azorius Signet
+1 Glacial Fortress
+1 Gravitational Shift
+1 Path of Ancestry
+1 Access Denied
+1 Rapid Hybridization
+1 Skyhunter Strike Force
+1 Deserted Beach
+1 Adarkar Wastes
+1 Zhalfirin Void
+1 Halimar Depths
+1 Fabled Passage
+6 Plains
+1 Enduring Curiosity
+1 Vega, the Watcher
+1 Augury Owl
+1 Luminarch Ascension
+1 Grasp of Fate
+1 Static Prison
+1 Amphibian Downpour
+1 Thraben Watcher
+1 Brainstorm
+1 Ishai, Ojutai Dragonspeaker
+1 Shire Terrace
+1 Meticulous Archive
+1 Scavenger Grounds
+1 Aboleth Spawn
+1 Cut a Deal
+1 Windshaper Planetar
+1 Blinkmoth Nexus
+1 Rousing of Souls
+1 Windbrisk Heights
+1 Skycloud Expanse
+1 Guardian of Faith
+1 Faerie Artisans
+1 Faerie Seer
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Flooded Strand
+1 Austere Command
+1 Glasspool Mimic // Glasspool Shore
+1 Faerie Mastermind
+1 Liquimetal Torque
+1 March of Swirling Mist

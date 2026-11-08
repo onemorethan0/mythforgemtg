@@ -1,0 +1,102 @@
+# Archidekt — Tawnos, Old Border Survivor
+# source: archidekt:5793656
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Sharuum the Hegemon + Sculpting Steel; Bracket 1 allows none
+
+Commander:
+1 Tawnos, Solemn Survivor
+
+Deck:
+1 Angel of the Ruins
+1 Arcane Sanctum
+1 Azorius Signet
+1 Darksteel Citadel
+1 Digsite Engineer
+1 Dimir Signet
+1 Orzhov Signet
+1 Phyrexian Rebirth
+1 Sai, Master Thopterist
+1 Sunken Hollow
+2 Swamp
+1 Temple of Enlightenment
+1 Temple of Silence
+1 Wayfarer's Bauble
+1 Windfall
+1 Sculpting Steel
+1 Fact or Fiction
+1 Losheel, Clockwork Scholar
+1 Thopter Spy Network
+1 Thoughtcast
+1 Ancient Den
+1 Dimir Aqueduct
+1 Bojuka Bog
+1 Damn
+1 Austere Command
+1 Despark
+1 Noxious Gearhulk
+1 Steel Hellkite
+1 Chromatic Lantern
+1 Mind Stone
+1 Goldmire Bridge
+1 Path of Ancestry
+1 Urza, Chief Artificer
+1 Mistvault Bridge
+1 Myr Battlesphere
+1 Orzhov Basilica
+1 Padeem, Consul of Innovation
+3 Plains
+1 Prairie Stream
+1 Razortide Bridge
+1 River of Tears
+1 Rout
+1 Seat of the Synod
+1 Sharuum the Hegemon
+1 Shimmer Dragon
+1 Wurmcoil Engine
+1 Solemn Simulacrum
+1 Spire of Industry
+1 Swords to Plowshares
+1 Temple of Deceit
+1 Terisiare's Devastation
+1 Thirst for Knowledge
+1 Thought Monitor
+1 Thopter Shop
+1 Vault of Whispers
+1 Vindicate
+1 Whirler Rogue
+5 Island
+1 Azorius Chancery
+1 Buried Ruin
+1 Command Tower
+1 Ethersworn Adjudicator
+1 Fellwar Stone
+1 Hedron Archive
+1 Liquimetal Torque
+1 Copy Artifact
+1 Fabled Passage
+1 Deadly Dispute
+1 Lavinia, Foil to Conspiracy
+1 Arcane Signet
+1 Marionette Master
+1 Diabolic Servitude
+1 The Underworld Cookbook
+1 Thraben Inspector
+1 Dance of Many
+1 Helm of the Host
+1 Marionette Apprentice
+1 Hard Evidence
+1 Urza, Lord High Artificer
+1 Machine God's Effigy
+1 Animate Dead
+1 Cackling Counterpart
+1 Soul Separator
+1 Dread Return
+1 Urza, Prince of Kroog
+1 Retrofitter Foundry
+1 Persist
+1 Millikin
+1 Sharding Sphinx
+1 Arch of Orazca
+1 Exotic Orchard
+1 March of Progress

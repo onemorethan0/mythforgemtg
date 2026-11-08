@@ -1,0 +1,108 @@
+# Archidekt — The Crimes of Bumbleflower [cEDH]
+# source: archidekt:8398429
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ms. Bumbleflower
+
+Deck:
+1 Hullbreaker Horror
+1 Kutzil, Malamet Exemplar
+1 Devoted Druid
+1 Sol Ring
+1 City of Brass
+1 Delighted Halfling
+1 Chrome Mox
+1 Avacyn's Pilgrim
+1 Birds of Paradise
+1 Boseiju, Who Endures
+1 Breeding Pool
+1 An Offer You Can't Refuse
+1 Cyclonic Rift
+1 Command Tower
+1 Ancient Tomb
+1 Crop Rotation
+1 Noxious Revival
+1 Ecological Appreciation
+1 Esper Sentinel
+1 Exotic Orchard
+1 Flusterstorm
+1 Gaea's Cradle
+1 Misty Rainforest
+1 Savannah
+1 Noble Hierarch
+1 Neoform
+1 Rhystic Study
+1 Mystic Remora
+1 Fierce Guardianship
+1 Force of Negation
+1 Force of Will
+1 Mental Misstep
+1 Mystical Tutor
+1 Ranger-Captain of Eos
+1 Grand Abolisher
+1 Shifting Woodland
+1 Polluted Delta
+1 Hallowed Fountain
+1 Flooded Strand
+1 Scalding Tarn
+1 Temple Garden
+1 Tropical Island
+1 Tundra
+1 Survival of the Fittest
+1 Smothering Tithe
+1 Swan Song
+1 Worldly Tutor
+1 Volatile Stormdrake
+1 Windswept Heath
+1 Lotus Petal
+1 Sink into Stupor // Soporific Springs
+1 Lion's Eye Diamond
+1 Mox Diamond
+1 Urza's Saga
+1 Wooded Foothills
+1 Colossal Skyturtle
+1 Arcane Signet
+1 Pact of Negation
+1 Evolution Witness
+1 Enlightened Tutor
+1 Skyclave Apparition
+1 Talon Gates of Madara
+1 Gemstone Caverns
+1 Mindbreak Trap
+1 Crystalline Crawler
+1 Trailtracker Scout
+1 Eldritch Evolution
+1 Faerie Mastermind
+1 Agatha's Soul Cauldron
+1 Tataru Taru
+1 Mistrise Village
+1 Rejuvenating Springs
+1 Mana Confluence
+1 Badgermole Cub
+1 Kami of Whispered Hopes
+1 Trinket Mage
+1 Marsh Flats
+1 Permission Denied
+1 Silence
+1 Carpet of Flowers
+1 Verdant Catacombs
+1 Pensive Professor
+1 The Cabbage Merchant
+1 Clever Impersonator
+1 Otawara, Soaring City
+1 Retraction Helix
+1 Valley Floodcaller
+1 Banishing Knack
+1 Sewer-veillance Cam
+1 Auriok Salvagers
+1 Chord of Calling
+1 Jennifer Walters // The Sensational She-Hulk
+1 King T'Challa // Black Panther, Hope Enduring
+1 Fellwar Stone
+1 Gleaming Splendor
+1 Incubation Druid
+1 Walking Ballista
+1 Pollywog Prodigy
+1 Legolas's Quick Reflexes

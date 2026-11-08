@@ -1,0 +1,78 @@
+# Archidekt — Tibor and Lumia Know How To Win In Blue
+# source: archidekt:23290855
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tibor and Lumia
+
+Deck:
+27 Island
+1 Neutralize
+1 Calculated Dismissal
+1 Dismiss
+1 Library Larcenist
+1 Dirgur Island Dragon // Skimming Strike
+1 Frantic Search
+1 Ribbon Snake
+1 Mystic Sanctuary
+1 Storm Elemental
+1 Skyblinder Staff
+1 Air Servant
+1 Mind Bend
+1 Frostboil Snarl
+1 Predator, Flagship
+1 Negate
+1 Command Tower
+1 Ferrous Lake
+5 Mountain
+1 Counterspell
+1 One-Eyed Scarecrow
+1 Archmage Emeritus
+1 Windreader Sphinx
+1 Alter Reality
+1 Trait Doctoring
+1 Crystal Spray
+1 Glamerdye
+1 Spectral Shift
+1 Sleight of Mind
+1 Polymorphist's Jest
+1 Opt
+1 Mind Stone
+1 Archetype of Imagination
+1 Mass Diminish
+1 Fellwar Stone
+1 Charisma
+1 Homarid Shaman
+1 King Crab
+1 Faerie Vandal
+1 Final-Word Phantom
+1 Douse
+1 Tidebinder Mage
+1 Diamond Knight
+1 Runechanter's Pike
+1 Refocus
+1 Blade of the Bloodchief
+1 Disperse
+1 Dramatic Reversal
+1 Twisted Image
+1 Chilling Trap
+1 Words of Wisdom
+1 Curate
+1 Hithlain Knots
+1 Cerulean Wisps
+1 Peek
+1 Consider
+1 Talrand, Sky Summoner
+1 Stuffy Doll
+1 Illvoi Light Jammer
+1 Coast Watcher
+1 Sky Diamond
+1 Arcane Signet
+1 Ring of Evos Isle
+1 Sea Sprite
+1 Whirlwind Adept
+1 Jhessian Thief
+1 Sulfur Falls
+1 Murmuring Mystic
+1 Swiftfoot Boots

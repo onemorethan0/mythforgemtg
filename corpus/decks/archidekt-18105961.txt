@@ -1,0 +1,108 @@
+# Archidekt — The Armory Wars
+# source: archidekt:18105961
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Breya, Etherium Shaper
+
+Deck:
+1 Gleaming Splendor
+1 Necropotence
+1 Borne Upon a Wind
+1 Drannith Magistrate
+1 Ashnod's Altar
+1 Basalt Monolith
+1 Command Tower
+1 Counterspell
+1 Eldrazi Displacer
+1 Esper Sentinel
+1 Fabricate
+1 Krark-Clan Ironworks
+1 Mana Drain
+1 Walking Ballista
+1 Mystical Tutor
+1 Thought Vessel
+1 Nim Deathmantle
+1 Rhystic Study
+1 Sol Ring
+1 The One Ring
+1 Mystic Remora
+1 Mox Amber
+1 Morphic Pool
+1 Shipwreck Marsh
+1 Adarkar Wastes
+1 Shattered Sanctum
+1 Watery Grave
+1 Demonic Tutor
+1 Talisman of Progress
+1 Lotus Petal
+1 Vandalblast
+1 Thassa's Oracle
+1 Voltaic Key
+1 Voice of Victory
+1 Enlightened Tutor
+1 Demonic Consultation
+1 Swamp
+1 Training Center
+1 Grand Abolisher
+1 Hallowed Fountain
+1 Deflecting Swat
+1 Hexing Squelcher
+1 Rings of Brighthearth
+1 Mana Vault
+1 Talisman of Dominance
+1 Talisman of Creativity
+1 Talisman of Hierarchy
+1 Plains
+1 Orcish Bowmasters
+1 Marsh Flats
+1 Spectator Seating
+1 Sacred Foundry
+1 Vault of Champions
+1 Sea of Clouds
+1 Steam Vents
+1 Mountain
+1 Polluted Delta
+1 Talisman of Conviction
+1 Scalding Tarn
+1 Island
+1 Turbulent Moor
+1 Disenchant
+1 Staff of Domination
+1 Fierce Guardianship
+1 Underworld Breach
+1 Brain Freeze
+1 Swords to Plowshares
+1 Flusterstorm
+1 Erode
+1 Silence
+1 Lion's Eye Diamond
+1 Mox Opal
+1 Swan Song
+1 Tainted Pact
+1 Flooded Strand
+1 Wheel of Fortune
+1 Grim Monolith
+1 Blood Crypt
+1 Pact of Negation
+1 Vampiric Tutor
+1 Sevinne's Reclamation
+1 Mental Misstep
+1 Fellwar Stone
+1 Arcane Signet
+1 Smothering Tithe
+1 Wishclaw Talisman
+1 The Queen of Dale
+1 Samut, Tyrant of Naktamun
+1 Dark Ritual
+1 Pyroblast
+1 Red Elemental Blast
+1 Power Artifact
+1 Defense Grid
+1 Arid Mesa
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Godless Shrine
+1 Wooded Foothills
+1 Phyrexian Metamorph

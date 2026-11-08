@@ -1,0 +1,108 @@
+# Archidekt — [Primer] “Reborn as Pot of Arcades – How I Accidentally Got Banned in Yu-Gi-Oh!” - Arcades, the Strategist
+# source: archidekt:396799
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Arcades, the Strategist
+
+Deck:
+1 Dreamroot Cascade
+1 Misty Rainforest
+1 Mana Confluence
+1 Sea of Clouds
+1 Flooded Strand
+1 Adarkar Wastes
+1 Yavimaya Coast
+1 Hallowed Fountain
+1 Orator of Ojutai
+1 Sunscape Familiar
+1 Shield Sphere
+1 Wall of Kelp
+1 Wall of Runes
+1 Sylvan Caryatid
+1 Deserted Beach
+1 Overgrown Farmland
+1 Forest
+1 Plains
+1 Island
+1 Otawara, Soaring City
+1 Errant, Street Artist
+1 Brushland
+1 Cavern of Souls
+1 Rejuvenating Springs
+1 Bountiful Promenade
+1 Fierce Guardianship
+1 Shifting Wall
+1 Windswept Heath
+1 Spara's Headquarters
+1 Chrome Mox
+1 Mockingbird
+1 Force of Negation
+1 Overgrown Battlement
+1 Reflecting Pool
+1 Temple Garden
+1 Breeding Pool
+1 Wall of Blossoms
+1 Crashing Drawbridge
+1 High Alert
+1 Cloudstone Curio
+1 Aluren
+1 Sol Ring
+1 Words of Wind
+1 Chain of Vapor
+1 Cosmic Rebirth
+1 Cyclonic Rift
+1 Enlightened Tutor
+1 Mystical Tutor
+1 Swords to Plowshares
+1 Force of Will
+1 Galadriel's Dismissal
+1 Gemstone Caverns
+1 Ancient Tomb
+1 Finale of Devastation
+1 Urza's Saga
+1 Boseiju, Who Endures
+1 Counterspell
+1 Axebane Guardian
+1 Riptide Turtle
+1 Secret Door
+1 Larder Zombie
+1 Plagon, Lord of the Beach
+1 Walking Bulwark
+1 Wall of Omens
+1 Wall of Roots
+1 Wall of Wood
+1 Vine Trellis
+1 Gatecreeper Vine
+1 Crystal Barricade
+1 Wargate
+1 Mana Drain
+1 Command Tower
+1 Jeskai Barricade
+1 Hydraulic Helper
+1 Beastrider Vanguard
+1 Freed from the Real
+1 Pemmin's Aura
+1 Noble Hierarch
+1 Saruli Caretaker
+1 Bloom Tender
+1 Drift of Phantasms
+1 Intruder Alarm
+1 Talon Gates of Madara
+1 Birds of Paradise
+1 Mindbreak Trap
+1 Chord of Calling
+1 Kinnan, Bonder Prodigy
+1 Swan Song
+1 Emiel the Blessed
+1 Elvish Spirit Guide
+1 Rhystic Study
+1 Mystic Remora
+1 Worldly Tutor
+1 Spellseeker
+1 Enduring Vitality
+1 Chulane, Teller of Tales
+1 Wall Off
+1 Wall of Lost Thoughts
+1 City of Brass

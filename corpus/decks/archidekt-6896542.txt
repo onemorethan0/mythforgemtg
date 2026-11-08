@@ -1,0 +1,86 @@
+# Archidekt — Chorus of the Conclave
+# source: archidekt:6896542
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Chorus of the Conclave
+
+Deck:
+1 Blighted Woodland
+1 Savannah
+1 Gaea's Herald
+1 Qasali Ambusher
+1 Wall of Glare
+1 Samurai of the Pale Curtain
+1 Last March of the Ents
+1 Rishkar's Expertise
+1 Emergence Zone
+1 Winding Canyons
+1 Creosote Heath
+1 Grasslands
+1 Krosan Verge
+12 Forest
+1 Champion of Lambholt
+1 Duskshell Crawler
+1 Myriad Landscape
+1 Reliquary Tower
+1 Gorilla Berserkers
+1 Acidic Slime
+1 False Prophet
+1 Skyshroud Ranger
+1 Ulvenwald Tracker
+1 Temple Garden
+1 Hunter's Insight
+12 Plains
+1 Mana Reflection
+1 Abzan Falconer
+1 Mirari's Wake
+1 Greater Good
+1 Spearbreaker Behemoth
+1 Windswept Heath
+1 Ivory Giant
+1 Hamza, Guardian of Arashin
+1 Regal Behemoth
+1 Bane of Progress
+1 Solitude
+1 Molder Slug
+1 Hundred-Handed One
+1 Bloodspore Thrinax
+1 Beast Whisperer
+1 Angel of Finality
+1 Reclamation Sage
+1 Aven Mindcensor
+1 Soltari Monk
+1 Mistmeadow Skulk
+1 Sakura-Tribe Scout
+1 Yavimaya Dryad
+1 Wood Elves
+1 Yeva, Nature's Herald
+1 Scavenger Grounds
+1 Cactus Preserve
+1 Mirage Mesa
+1 Scattered Groves
+1 Lush Portico
+1 Bushi Tenderfoot // Kenzo the Hardhearted
+1 Slash the Ranks
+1 Divine Reckoning
+1 Return of the Wildspeaker
+1 Nyxbloom Ancient
+1 Palazzo Archers
+1 Sand Scout
+1 Skarrgan Pit-Skulk
+1 Kataki, War's Wage
+1 Ruin-Lurker Bat
+1 Cathedral Acolyte
+1 Grand Abolisher
+1 Hopeful Initiate
+1 Farhaven Elf
+1 Sutina, Speaker of the Tajuru
+1 Topiary Stomper
+1 Holy Cow
+1 Soul's Majesty
+1 Sanctuary Warden
+1 Scholar of New Horizons
+1 Elvish Pioneer
+1 Vivien, Champion of the Wilds

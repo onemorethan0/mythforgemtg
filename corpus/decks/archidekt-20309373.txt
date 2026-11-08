@@ -1,0 +1,108 @@
+# Archidekt — Talion turbo control
+# source: archidekt:20309373
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Talion, the Kindly Lord
+
+Deck:
+1 Amphibian Downpour
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Beseech the Mirror
+1 Bloodstained Mire
+1 Cephalid Coliseum
+1 Chain of Vapor
+1 Chrome Mox
+1 City of Brass
+1 Command Tower
+1 Commandeer
+1 Cursed Totem
+1 Cyclonic Rift
+1 Damping Sphere
+1 Dauthi Voidwalker
+1 Deadly Rollick
+1 Demonic Consultation
+1 Demonic Tutor
+1 Dress Down
+1 Emergence Zone
+1 Gemstone Caverns
+1 Exotic Orchard
+1 Fierce Guardianship
+1 Flooded Strand
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Grafdigger's Cage
+1 Grim Monolith
+1 Imperial Seal
+1 Island
+1 Karn, the Great Creator
+1 Laboratory Maniac
+1 Lim-Dûl's Vault
+1 Lotus Petal
+1 Mana Confluence
+1 Mana Drain
+1 Mana Vault
+1 March of Swirling Mist
+1 Marsh Flats
+1 Mental Misstep
+1 Mindbreak Trap
+1 Misdirection
+1 Misty Rainforest
+1 Mnemonic Betrayal
+1 Morphic Pool
+1 Mox Amber
+1 Mox Diamond
+1 Mox Opal
+1 Mystic Remora
+1 Mystical Tutor
+1 Narset, Parter of Veils
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Phyrexian Metamorph
+1 Polluted Delta
+1 Reanimate
+1 Rhystic Study
+1 Sakashima of a Thousand Faces
+1 Scalding Tarn
+1 Sink into Stupor // Soporific Springs
+1 Snow-Covered Island
+1 Snow-Covered Swamp
+1 Sol Ring
+1 Strix Serenade
+1 Swamp
+1 Swan Song
+1 Tainted Pact
+1 Takenuma, Abandoned Mire
+1 Talisman of Dominance
+1 Thassa's Oracle
+1 The One Ring
+1 Toxic Deluge
+1 Undercity Sewers
+1 Underground Sea
+1 Urza's Saga
+1 Valley Floodcaller
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Wan Shi Tong, Librarian
+1 Watery Grave
+1 Weathered Runestone
+1 Windfall
+1 Yawgmoth's Will
+1 Minamo, School at Water's Edge
+1 Urborg, Tomb of Yawgmoth
+1 Bloodchief Ascension
+1 Dark Ritual
+1 Faerie Mastermind
+1 Phantasmal Image
+1 Hullbreaker Horror
+1 Gilded Drake
+1 Fellwar Stone
+1 Imposter Mech
+1 Copy Artifact
+1 Mirrormade
+1 Borne Upon a Wind

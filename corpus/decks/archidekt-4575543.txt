@@ -1,0 +1,99 @@
+# Archidekt — Gandalf, Westward Voyager with Keruga, the Macrosage Companion
+# source: archidekt:4575543
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Gandalf, Westward Voyager
+
+Deck:
+1 Lórien Revealed
+1 Gwenna, Eyes of Gaea
+1 Rift Sower
+1 Soul of New Phyrexia
+1 Platinum Angel
+1 Triplicate Titan
+1 Roil Elemental
+1 Jaheira's Respite
+1 Radagast, Wizard of Wilds
+1 Thryx, the Sudden Storm
+1 Kozilek's Unsealing
+1 Snapping Voidcraw
+1 Mulldrifter
+1 Reliquary Tower
+1 Mosswort Bridge
+1 Alchemist's Refuge
+1 Yavimaya, Cradle of Growth
+1 Scavenger Grounds
+1 Temple of the False God
+1 Cultivate
+1 Adrix and Nev, Twincasters
+1 Kodama's Reach
+1 Command Tower
+1 Yavimaya Coast
+1 Hinterland Harbor
+1 Temple of Mystery
+1 Acidic Slime
+1 Rejuvenating Springs
+1 Cemetery Prowler
+1 Peregrine Drake
+1 Aetherize
+1 Exotic Orchard
+1 Twinning Staff
+1 Keruga, the Macrosage
+1 Wurmcoil Engine
+1 Beanstalk Giant // Fertile Footsteps
+1 Beast Within
+1 Flooded Grove
+1 Rishkar's Expertise
+1 Search for Tomorrow
+1 End-Raze Forerunners
+1 Shared Summons
+1 Decanter of Endless Water
+1 Colossal Skyturtle
+1 Selesnya Eulogist
+1 Troyan, Gutsy Explorer
+1 Entish Restoration
+1 Khalni Ambush // Khalni Territory
+1 Mirrorshell Crab
+1 Waterlogged Grove
+1 Junk Winder
+1 Imoti, Celebrant of Bounty
+1 Cityscape Leveler
+1 Breeding Pool
+6 Island
+1 Mystic Sanctuary
+1 Overwhelming Stampede
+5 Forest
+1 Guildless Commons
+1 Simic Growth Chamber
+1 Worn Powerstone
+1 Spell Swindle
+1 Gilanra, Caller of Wirewood
+1 Kozilek, the Great Distortion
+1 Flayer of Loyalties
+1 Duplicant
+1 War Room
+1 Mirrorpool
+1 It That Betrays
+1 Shrine of the Forsaken Gods
+1 Primal Vigor
+1 Volo, Guide to Monsters
+1 Runadi, Behemoth Caller
+1 Tidespout Tyrant
+1 Drowner of Truth // Drowned Jungle
+1 Bramble Sovereign
+1 Nulldrifter
+1 Thief of Existence
+1 Sink into Stupor // Soporific Springs
+1 Hedge Maze
+1 Ugin's Binding
+1 Wistfulness
+1 Sanctum of Ugin
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Valgavoth's Lair
+1 Phyrexian Metamorph
+1 Embrace the Paradox
+1 Summon: Valefor
+1 Sodden Verdure
+1 Rain-Slicked Copse

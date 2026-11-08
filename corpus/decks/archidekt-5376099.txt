@@ -1,0 +1,77 @@
+# Archidekt — Stop, Don't Touch Me There!
+# source: archidekt:5376099
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Enlightened Tutor, Teferi's Protection); Bracket 1 allows 0; two-card infinite combo Heliod, Sun-Crowned + Walking Ballista; Bracket 1 allows none
+
+Commander:
+1 Cho-Manno, Revolutionary
+
+Deck:
+1 Solemn Simulacrum
+1 Stuffy Doll
+1 Condemn
+1 Ethereal Haze
+1 Return to Dust
+1 Battletide Alchemist
+1 Master Apothecary
+1 Mother of Runes
+1 Shaman en-Kor
+1 Hallowed Healer
+1 Marble Diamond
+1 Blighted Steppe
+1 Rune-Tail, Kitsune Ascendant // Rune-Tail's Essence
+1 Holy Day
+1 Blind Obedience
+1 Inviolability
+1 Worship
+1 Peacekeeper
+1 Wall of Reverence
+1 Silent Arbiter
+1 Felidar Sovereign
+1 Guardian Seraph
+1 Purity
+1 Acolyte's Reward
+1 Dawn Charm
+1 Comeuppance
+1 Swords to Plowshares
+1 Ghosts of the Innocent
+1 Approach of the Second Sun
+1 Pariah
+1 Pariah's Shield
+1 Disenchant
+33 Plains
+1 Emeria, the Sky Ruin
+1 Sol Ring
+1 Aurification
+1 Divine Presence
+1 Ghostly Prison
+1 Mass Calcify
+1 Lashknife Barrier
+1 Oblivion Ring
+1 Orim's Prayer
+1 Pearl Medallion
+1 Mind's Eye
+1 Path to Exile
+1 Archivist of Oghma
+1 Dawn Elemental
+1 Secret Rendezvous
+1 Aegis of the Gods
+1 Skrelv, Defector Mite
+1 Surge of Salvation
+1 Swiftfoot Boots
+1 Teferi's Protection
+1 Lightning Greaves
+1 Orim, Samite Healer
+1 Darksteel Mutation
+1 Abu Ja'far
+1 Sun Titan
+1 Alms Collector
+1 Angelic Renewal
+1 Altar of Dementia
+1 Walking Ballista
+1 Kami of False Hope
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Heliod, Sun-Crowned
+1 Idyllic Tutor

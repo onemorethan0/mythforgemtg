@@ -1,0 +1,99 @@
+# Archidekt — St. Fun police
+# source: archidekt:13417557
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Celestine, the Living Saint
+
+Deck:
+1 Blasting Station
+1 Emeria, the Sky Ruin
+1 Eiganjo, Seat of the Empire
+1 City of Traitors
+1 Serra's Sanctum
+1 Scavenger Grounds
+1 Sigarda's Aid
+1 Blind Obedience
+1 Grafdigger's Cage
+1 Aetherflux Reservoir
+1 Basalt Monolith
+1 Roaming Throne
+1 Spirit of the Labyrinth
+1 Urza's Saga
+1 Sevinne's Reclamation
+1 Hall of Heliod's Generosity
+1 Aura of Silence
+1 Swords to Plowshares
+1 Grim Monolith
+1 Sol Ring
+1 Weathered Wayfarer
+1 Boromir, Warden of the Tower
+1 Stroke of Midnight
+1 Farewell
+1 Archivist of Oghma
+1 Generous Gift
+1 Teferi's Protection
+1 Delney, Streetwise Lookout
+1 The One Ring
+1 Elesh Norn, Mother of Machines
+1 Elesh Norn, Grand Cenobite
+1 Ranger-Captain of Eos
+1 Silence
+1 Altar of Dementia
+1 Academy Rector
+1 Mox Amber
+1 Lion's Eye Diamond
+1 Deafening Silence
+1 Rule of Law
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Akroma's Will
+1 Lotus Petal
+1 Path to Exile
+1 Ancient Tomb
+1 Puresteel Paladin
+1 Chrome Mox
+1 Commander's Plate
+1 Mox Diamond
+1 Land Tax
+1 Winter Orb
+1 Enlightened Tutor
+1 Karmic Guide
+1 Smothering Tithe
+1 Esper Sentinel
+1 Vesuva
+1 Walking Ballista
+1 Arcane Signet
+1 Cavern of Souls
+1 Thalia, Guardian of Thraben
+1 Torpor Orb
+1 Sun Titan
+1 Strip Mine
+1 Trinisphere
+1 Idyllic Tutor
+1 Sanctum Prelate
+1 Recruiter of the Guard
+1 Linvala, Keeper of Silence
+1 Stoneforge Mystic
+1 Scroll Rack
+1 Reveillark
+1 Loran of the Third Path
+1 Nykthos, Shrine to Nyx
+1 Castle Ardenvale
+10 Plains
+1 Mox Opal
+1 Grand Abolisher
+1 Mana Vault
+1 Defense Grid
+1 Heliod, Sun-Crowned
+1 Aven Interrupter
+1 Crackdown
+1 Ghost Quarter
+1 Flawless Maneuver
+1 Drannith Magistrate
+1 Aven Mindcensor
+1 Archon of Emeria
+1 Brought Back
+1 Ashnod's Altar
+1 Armageddon
+1 Approach of the Second Sun

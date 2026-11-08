@@ -1,0 +1,93 @@
+# Archidekt — Tony Baloney
+# source: archidekt:8510157
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Tinybones, Bauble Burglar
+
+Deck:
+1 Quest for the Necropolis
+1 Dark Deal
+1 Feed the Swarm
+1 Grim Tutor
+1 Tainted Remedy
+1 Imp's Mischief
+1 Fell the Profane // Fell Mire
+1 Pelakka Predation // Pelakka Caverns
+1 Liliana, Waker of the Dead
+1 Crypt Ghast
+1 Arcane Signet
+1 Sol Ring
+1 Prismatic Lens
+1 Megrim
+1 Boggart Trawler // Boggart Bog
+1 Raiders' Wake
+1 Fell Specter
+1 Rottenmouth Viper
+1 Fellwar Stone
+1 Syphon Mind
+1 Reiver Demon
+1 Lightning Greaves
+1 Awaken the Erstwhile
+1 Ill-Gotten Gains
+1 Liliana's Caress
+1 Painful Quandary
+1 Expedition Map
+1 Court of Ambition
+1 Insatiable Avarice
+1 Oppression
+1 Final Act
+1 Phyrexian Arena
+1 Unearth
+1 Dark Ritual
+1 Binding Negotiation
+1 Inquisition of Kozilek
+1 Thoughtseize
+1 Duress
+1 Dread Fugue
+1 Pilfer
+1 Dream-Thief's Bandana
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Orcish Bowmasters
+1 Black Market Connections
+1 Scrawling Crawler
+1 Cloak and Dagger
+1 In Garruk's Wake
+2 Snow-Covered Swamp
+1 Snow-Covered Swamp
+3 Snow-Covered Swamp
+1 Slaughter Pact
+2 Snow-Covered Swamp
+1 Thieving Varmint
+1 Brainstealer Dragon
+1 Flare of Malice
+1 Waste Not
+1 Withering Torment
+1 Bojuka Bog
+1 Withering Boon
+1 Noxious Vapors
+1 Reanimate
+1 Animate Dead
+12 Swamp
+1 The Darkness Crystal
+1 Gonti, Night Minister
+1 Scavenger Grounds
+1 Snuff Out
+1 Field of Ruin
+1 Dust Bowl
+1 Urza's Cave
+1 Monument to Endurance
+1 Ghost Quarter
+1 Accursed Duneyard
+1 Myriad Landscape
+1 Geier Reach Sanitarium
+1 Underdark Rift
+1 Tectonic Edge
+1 Black Market
+1 Oubliette
+1 Entropic Battlecruiser
+1 Emergence Zone
+1 Homeward Path
+1 Darkness
+1 Bandit's Talent

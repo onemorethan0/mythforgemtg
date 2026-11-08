@@ -1,0 +1,108 @@
+# Archidekt — Ms. Confille
+# source: archidekt:4729655
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Jhoira, Weatherlight Captain
+
+Deck:
+1 Exotic Orchard
+1 Shivan Reef
+1 Arcane Signet
+1 Enthusiastic Mechanaut
+1 Retract
+1 Foundry Inspector
+1 Wooded Foothills
+1 Polluted Delta
+1 Bloodstained Mire
+1 Misty Rainforest
+1 Scalding Tarn
+1 Flooded Strand
+1 Sensei's Divining Top
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Command Tower
+1 Sol Ring
+1 Urza's Saga
+1 Paradoxical Outcome
+1 Manifold Key
+1 Spirebluff Canal
+1 Steam Vents
+1 An Offer You Can't Refuse
+1 Phyrexian Metamorph
+1 Mystic Remora
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Paradise Mantle
+1 Training Center
+1 Everflowing Chalice
+1 Helm of Awakening
+1 Lotus Petal
+1 Jeweled Amulet
+1 Candy Trail
+1 Riddlesmith
+1 City of Traitors
+1 Conjurer's Bauble
+1 Spellskite
+1 Chromatic Star
+1 Chromatic Sphere
+1 Soul-Guide Lantern
+1 Lightning Greaves
+1 Krark-Clan Ironworks
+1 Chrome Mox
+1 Mana Vault
+1 Fierce Guardianship
+1 Fellwar Stone
+1 Voltaic Key
+1 Talisman of Creativity
+1 Island
+1 Gemstone Caverns
+1 Mountain
+1 Disruptor Flute
+1 Words of Wind
+1 Underworld Breach
+1 Aether Spellbomb
+1 Grinding Station
+1 Seat of the Synod
+1 Mindbreak Trap
+1 Rhystic Study
+1 Retraction Helix
+1 Etherium Sculptor
+1 Mox Amber
+1 Force of Will
+1 Mox Opal
+1 Glaring Fleshraker
+1 Emry, Lurker of the Loch
+1 Flusterstorm
+1 Mox Diamond
+1 Gamble
+1 Fiery Islet
+1 Artificer's Assistant
+1 Filter Out
+1 Displacement Wave
+1 Valley Floodcaller
+1 Banishing Knack
+1 Pyroblast
+1 Mental Misstep
+1 Grim Monolith
+1 Uthros Research Craft
+1 Chain of Vapor
+1 Pact of Negation
+1 Moonsilver Key
+1 Cloud Key
+1 Moonsnare Prototype
+1 Codex Shredder
+1 Dragon's Rage Channeler
+1 Pyrite Spellbomb
+1 Pithing Needle
+1 Otawara, Soaring City
+1 Deflecting Swat
+1 Brain Freeze
+1 City of Brass
+1 Ancient Tomb
+1 Volcanic Island
+1 The Reality Chip
+1 Shuri, Wakandan Inventor
+1 Crystal Skull, Isu Spyglass
+1 Springleaf Drum
+1 Geist of Saint Thalia
+1 Artist's Talent

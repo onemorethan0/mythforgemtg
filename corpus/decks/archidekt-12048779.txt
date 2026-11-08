@@ -1,0 +1,108 @@
+# Archidekt — Dragons
+# source: archidekt:12048779
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Ancient Tomb
+1 Arid Mesa
+1 Arcane Signet
+1 Ancient Copper Dragon
+1 Ancient Brass Dragon
+1 Ancient Silver Dragon
+1 Dragonlord Dromoka
+1 Eladamri's Call
+1 Forbidden Orchard
+1 Gemstone Caverns
+1 Haven of the Spirit Dragon
+1 Mana Confluence
+1 Mox Diamond
+1 Badlands
+1 Bayou
+1 Blood Crypt
+1 Bloodstained Mire
+1 Breeding Pool
+1 Cavern of Souls
+1 City of Brass
+1 Commander's Sphere
+1 Demonic Tutor
+1 Defense of the Heart
+1 Enlightened Tutor
+1 Flooded Strand
+1 Gamble
+1 Garruk's Uprising
+1 Imperial Seal
+1 Lotus Bloom
+1 Marsh Flats
+1 Misty Rainforest
+1 Overgrown Tomb
+1 Scion of the Ur-Dragon
+1 Pernicious Deed
+1 Polluted Delta
+1 Reflecting Pool
+1 Savannah
+1 Scalding Tarn
+1 Steam Vents
+1 Dragonspeaker Shaman
+1 Sarkhan, Soul Aflame
+1 Dragonlord's Servant
+1 Herald's Horn
+1 Karrthus, Tyrant of Jund
+1 Cavern-Hoard Dragon
+1 Goldspan Dragon
+1 Klauth, Unrivaled Ancient
+1 Hellkite Courser
+1 Old Gnawbone
+1 Savage Ventmaw
+1 Sneak Attack
+1 Pattern of Rebirth
+1 Goryo's Vengeance
+1 Descendants' Path
+1 Mana Drain
+1 Temur Ascendancy
+1 Waves of Aggression
+1 Taiga
+1 Temple Garden
+1 Vampiric Tutor
+1 Tropical Island
+1 Verdant Catacombs
+1 Volcanic Island
+1 Windswept Heath
+1 Wooded Foothills
+1 Worldly Tutor
+1 Urza's Incubator
+1 Dragon's Hoard
+1 Stomping Ground
+1 Twinflame Tyrant
+1 Ureni of the Unwritten
+1 Nogi, Draco-Zealot
+1 Atarka, World Render
+1 Mirari's Wake
+1 Temur Battlecrier
+1 Beledros Witherbloom
+1 Sol Ring
+1 Aggravated Assault
+1 Horizon of Progress
+1 Plateau
+1 Black Market Connections
+1 Call the Spirit Dragons
+1 Sylvan Tutor
+1 Sacred Foundry
+1 Rivaz of the Claw
+1 Tiamat
+1 Maelstrom of the Spirit Dragon
+1 Dragon Tempest
+1 Smothering Tithe
+1 Rhystic Study
+1 Culling Ritual
+1 Sarkhan Unbroken
+1 Terror of the Peaks
+1 Ancient Bronze Dragon
+1 Ancient Gold Dragon
+1 Doubling Season
+1 Rith, Liberated Primeval
+1 Command Tower
+1 Miirym, Sentinel Wyrm

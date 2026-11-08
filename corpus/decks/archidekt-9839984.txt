@@ -1,0 +1,106 @@
+# Archidekt — Get 'em Boys!
+# source: archidekt:9839984
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Marchesa, the Black Rose
+
+Deck:
+1 Plaza of Heroes
+1 Satoru, the Infiltrator
+1 Exotic Orchard
+1 Raucous Theater
+1 Inti, Seneschal of the Sun
+1 Drowned Catacomb
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Kalain, Reclusive Painter
+1 Sulfurous Springs
+1 Bloodstained Mire
+1 Ragavan, Nimble Pilferer
+1 Fain, the Broker
+1 Haunted Ridge
+1 Takenuma, Abandoned Mire
+1 Basim Ibn Ishaq
+1 Fiery Islet
+1 Dragonskull Summit
+1 Mount Doom
+1 Scalding Tarn
+1 K-9, Mark I
+1 Underground River
+1 Valgavoth's Lair
+1 Juri, Master of the Revue
+1 Forbidden Orchard
+1 Xander's Lounge
+1 Fabled Passage
+1 Stormcarved Coast
+1 Yahenni, Undying Partisan
+1 Blazemire Verge
+1 Polluted Delta
+1 Ryan Sinclair
+1 Gev, Scaled Scorch
+1 Command Tower
+1 Mahadi, Emporium Master
+1 Nesting Grounds
+1 Otawara, Soaring City
+1 Nashi, Searcher in the Dark
+1 Thundering Falls
+1 Drana, Liberator of Malakir
+1 Gloomlake Verge
+1 Blood Crypt
+1 Ancient Ziggurat
+1 Alesha, Who Laughs at Fate
+1 Reflecting Pool
+1 Watery Grave
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Locke, Treasure Hunter
+1 Shadow, Mysterious Assassin
+1 Vincent, Vengeful Atoner
+1 Kalakscion, Hunger Tyrant
+1 Tersa Lightshatter
+1 Riverpyre Verge
+1 Evereth, Viceroy of Plunder
+1 Gadrak, the Crown-Scourge
+1 Mastermind Plum
+1 Golbez, Crystal Collector
+1 Kellogg, Dangerous Mind
+1 Clive's Hideaway
+1 Ayara, Widow of the Realm // Ayara, Furnace Queen
+1 Ayara, First of Locthwain
+1 Bontu the Glorified
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+1 Fang, Fearless l'Cie
+1 Judith, the Scourge Diva
+1 Gix, Yawgmoth Praetor
+1 Gríma Wormtongue
+1 Lyzolda, the Blood Witch
+1 Piper Wright, Publick Reporter
+1 Jason Bright, Glowing Prophet
+1 Malcolm, Keen-Eyed Navigator
+1 Lightning, Security Sergeant
+1 Malcolm, the Eyes
+1 Olivia, Mobilized for War
+1 Sygg, River Cutthroat
+1 Nikara, Lair Scavenger
+1 Sidisi, Regent of the Mire
+1 Breeches, Eager Pillager
+3 Swamp
+1 Mm'menon, Uthros Exile
+1 Xu-Ifit, Osteoharmonist
+1 Rikku, Resourceful Guardian
+1 Syr Ginger, the Meal Ender
+1 Hope of Ghirapur
+1 Kiora, the Rising Tide
+1 Goldberry, River-Daughter
+1 Ashnod, Flesh Mechanist
+1 Nardole, Resourceful Cyborg
+1 Glóin, Dwarf Emissary
+1 The Warring Triad
+1 Vnwxt, Verbose Host
+1 Gimli of the Glittering Caves
+1 Grenzo, Havoc Raiser
+1 General Kreat, the Boltbringer
+1 Tinybones, the Pickpocket
+1 Mari, the Killing Quill
+1 Ukkima, Stalking Shadow
+1 Guildmages' Forum

@@ -1,0 +1,99 @@
+# Archidekt — Witherbloom, The Balancer (B4)
+# source: archidekt:23060293
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Witherbloom, the Balancer
+
+Deck:
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Weaponcraft Enthusiast
+1 Lab Rats
+1 Tooth and Nail
+1 Sprout Swarm
+1 Sylvan Offering
+1 Saproling Migration
+1 Elvish Mystic
+1 Khalni Garden
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Pile On
+1 Lethal Scheme
+1 Stinging Study
+1 Return of the Wildspeaker
+1 Elves of Deep Shadow
+1 Gilded Goose
+1 Llanowar Elves
+1 Fyndhorn Elves
+1 Boreal Druid
+1 Delighted Halfling
+1 Birds of Paradise
+1 Bloodstained Mire
+1 Ad Nauseam
+1 Dryad Arbor
+1 Verdant Command
+1 Chord of Calling
+1 Green Sun's Zenith
+1 Nurturing Peatland
+1 Finale of Devastation
+1 Witherbloom Apprentice
+1 Corpse Dance
+1 Natural Order
+1 Grim Servant
+1 Bitterbloom Bearer
+1 Zulaport Cutthroat
+1 Beseech the Queen
+1 Viscera Seer
+1 Protean Hulk
+1 Arbor Elf
+1 Llanowar Wastes
+1 Twilight Mire
+1 Tainted Wood
+1 Command Tower
+1 Woodland Cemetery
+1 Verdant Catacombs
+1 Overgrown Tomb
+1 Wastewood Verge
+1 Yavimaya, Cradle of Growth
+1 Underground Mortuary
+1 Undergrowth Stadium
+1 Urborg, Tomb of Yawgmoth
+8 Forest
+3 Swamp
+1 Fanatic of Rhonas
+1 Phyrexian Tower
+1 Blood Pet
+1 Lifestream's Blessing
+1 Increasing Ambition
+1 Springheart Nantuko
+1 Wooded Foothills
+1 Windswept Heath
+1 Clattering Augur
+1 Marsh Flats
+1 Polluted Delta
+1 Misty Rainforest
+1 Last March of the Ents
+1 Badgermole Cub
+1 Gemstone Caverns
+1 Marionette Apprentice
+1 Wall of Blossoms
+1 Elvish Visionary
+1 Alpha Deathclaw
+1 Dauthi Voidwalker
+1 Lazotep Quarry
+1 Rishkar's Expertise
+1 Deadly Rollick
+1 Beast Within
+1 Assassin's Trophy
+1 Dosan the Falling Leaf
+1 Blood Artist
+1 Bitterblossom
+1 Warren Soultrader
+1 Phyrexian Altar
+1 Nature's Rhythm
+1 Veil of Summer
+1 Mirkwood Bats
+1 Sylvan Safekeeper
+1 Stargaze

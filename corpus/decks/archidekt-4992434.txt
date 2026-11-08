@@ -1,0 +1,95 @@
+# Archidekt — Karlach, Fury of Avernus // Raised By Giants - 'Til You See Stars
+# source: archidekt:4992434
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Karlach, Fury of Avernus
+1 Raised by Giants
+
+Deck:
+1 Eternal Witness
+1 Wulfgar of Icewind Dale
+1 Three Visits
+1 Return of the Wildspeaker
+1 Spire Garden
+1 Rootbound Crag
+1 Rogue's Passage
+1 Unnatural Growth
+1 Moraug, Fury of Akoum
+1 Primeval Herald
+1 Rising of the Day
+1 Rishkar's Expertise
+1 Hunter's Insight
+1 Gruul Turf
+1 Command Tower
+7 Mountain
+1 Tamiyo's Safekeeping
+1 Reclamation Sage
+1 Xenagos, God of Revels
+1 Combat Celebrant
+1 Kessig Wolf Run
+1 Anzrag, the Quake-Mole
+1 Mass Hysteria
+1 Rhythm of the Wild
+1 Fanatic of Rhonas
+1 Yavimaya, Cradle of Growth
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Mossfire Valley
+1 Lightning Greaves
+1 Sword of Feast and Famine
+1 Delighted Halfling
+1 Beast Within
+1 Swiftfoot Boots
+1 Goreclaw, Terror of Qal Sisma
+1 Bear Umbra
+1 Sword of the Animist
+1 Halana and Alena, Partners
+1 Jeska's Will
+1 Chaos Warp
+1 Professional Face-Breaker
+1 Karplusan Forest
+1 Kenrith's Transformation
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Sakura-Tribe Elder
+1 Tyvar's Stand
+1 Delina, Wild Mage
+1 Etali, Primal Storm
+1 Nature's Lore
+8 Forest
+1 Hanweir Battlements
+1 Heroic Intervention
+1 Gwenna, Eyes of Gaea
+1 Blasphemous Act
+1 Farseek
+1 Cultivate
+1 Goblin Anarchomancer
+1 Boseiju, Who Endures
+1 Cinder Glade
+1 Zopandrel, Hunger Dominus
+1 Garruk's Uprising
+1 Kodama's Reach
+1 Stomping Ground
+1 Commercial District
+1 Rockfall Vale
+1 Dragonborn Champion
+1 Embercleave
+1 Hanweir Garrison
+1 Arcane Signet
+1 Doors of Durin
+1 Scavenger Grounds
+1 Exotic Orchard
+1 Surrak and Goreclaw
+1 Aggravated Assault
+1 Demolition Field
+1 Thickest in the Thicket
+1 Mosswort Bridge
+1 Toski, Bearer of Secrets
+1 Kediss, Emberclaw Familiar
+1 Port Razer
+1 Balor
+1 Savage Ventmaw
+1 Mithril Coat
+1 Ancient Copper Dragon
+1 Vandalblast

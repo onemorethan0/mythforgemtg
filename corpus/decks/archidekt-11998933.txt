@@ -1,0 +1,102 @@
+# Archidekt — Celes - Hope Beyond Ruin
+# source: archidekt:11998933
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Celes, Rune Knight
+
+Deck:
+1 Diabolic Intent
+1 Sun Titan
+1 Priest of Fell Rites
+1 Necromancy
+1 Cloud, Midgar Mercenary
+1 Command Tower
+1 Clifftop Retreat
+1 Dragonskull Summit
+1 Isolated Chapel
+1 Reanimate
+1 Mog, Moogle Warrior
+1 Terra, Herald of Hope
+1 Chainer, Nightmare Adept
+1 Elas il-Kor, Sadistic Pilgrim
+1 Adeline, Resplendent Cathar
+1 Murderous Redcap
+1 Battlefield Forge
+1 Sulfurous Springs
+1 Caves of Koilos
+1 Faithless Looting
+1 Embercleave
+1 Fetid Heath
+1 Graven Cairns
+1 Rugged Prairie
+1 Currency Converter
+1 Umezawa's Jitte
+1 Fabled Passage
+1 Swords to Plowshares
+1 Timeline Culler
+1 Blood Crypt
+1 Sacred Foundry
+1 Godless Shrine
+1 Alesha, Who Smiles at Death
+1 Umbral Collar Zealot
+1 Savai Triome
+1 Goblin Bombardment
+3 Plains
+1 Phyrexian Tower
+1 Anguished Unmaking
+1 Aurelia, the Warleader
+1 Liliana, Heretical Healer // Liliana, Defiant Necromancer
+1 Entomb
+1 Twilight Diviner
+1 Mardu Siegebreaker
+1 Summon: Knights of Round
+1 Lightning, Army of One
+1 Bloodstained Mire
+1 Arid Mesa
+1 Marsh Flats
+1 Bartolomé del Presidio
+1 Gwenom, Remorseless
+1 Lorehold, the Historian
+1 Tannuk, Steadfast Second
+1 The Meathook Massacre
+3 Mountain
+1 Arena of Glory
+1 Dalkovan Encampment
+3 Swamp
+1 Zurgo Stormrender
+1 Guardian Scalelord
+1 Living Death
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Terror of the Peaks
+1 Sevinne's Reclamation
+1 Akroma's Will
+1 Sundown Pass
+1 Haunted Ridge
+1 Shattered Sanctum
+1 Bolt Bend
+1 Mjölnir, Hammer of Thor
+1 Gemstone Caverns
+1 Forth Eorlingas!
+1 Deflecting Swat
+1 Smellerbee, Rebel Fighter
+1 Recruiter of the Guard
+1 Lizard Blades
+1 Silverquill, the Disputant
+1 Avacyn, Angel of Horror
+1 Liliana the Repentant
+1 Reflecting Pool
+1 Liliana the Faultless
+1 Ingris Stingerquill
+1 Improvisation Capstone
+1 Stingcaster Mage
+1 Cauldron Haze
+1 Flawless Maneuver
+1 Takenuma, Abandoned Mire
+1 Muraganda Raceway
+1 Hexing Squelcher
+1 Andúril, Flame of the West
+1 The Queen of Dale
+1 Flare of Duplication
+1 Samut, Hazoret's Champion

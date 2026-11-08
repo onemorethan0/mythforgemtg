@@ -1,0 +1,90 @@
+# Archidekt — Ms. Bumbleflower
+# source: archidekt:11196881
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ms. Bumbleflower
+
+Deck:
+1 Sokrates, Athenian Teacher
+1 Intellectual Offering
+1 Contraband Livestock
+1 Forced Fruition
+1 Temple Bell
+1 Pir's Whim
+1 Master of Ceremonies
+1 Words of Wisdom
+1 View from Above
+1 Wilderness Reclamation
+1 Folio of Fancies
+1 Teyo, Geometric Tactician
+1 Font of Mythos
+1 Loran of the Third Path
+1 Otherworld Atlas
+1 Tenuous Truce
+1 Gluntch, the Bestower
+1 The Council of Four
+1 Command Tower
+1 Long River's Pull
+1 Peerless Recycling
+1 Swords to Plowshares
+1 Minds Aglow
+1 Terramorphic Expanse
+1 Sylvan Offering
+1 Tempt with Bunnies
+1 Archmage's Charm
+1 Howling Mine
+1 Kami of the Crescent Moon
+1 Ghostly Prison
+1 Snap
+5 Plains
+1 Dictate of Kruphix
+1 Tempt with Discovery
+1 Maze of Ith
+1 Sunpetal Grove
+1 Prosperity
+1 Heartwood Storyteller
+1 Jace Beleren
+1 Sol Ring
+1 Council's Judgment
+1 Evolving Wilds
+1 Witch's Clinic
+1 Frantic Search
+1 Well of Ideas
+1 Arcane Signet
+1 Counterspell
+1 Fog
+1 Kwain, Itinerant Meddler
+1 Vision Skeins
+1 Crumb and Get It
+1 Arcane Denial
+1 Dawn's Truce
+1 Secret Rendezvous
+1 Temple of the False God
+1 Glacial Fortress
+1 Prairie Stream
+1 Deserted Beach
+1 Commander's Sphere
+1 Mikokoro, Center of the Sea
+1 Hinterland Harbor
+1 Geier Reach Sanitarium
+3 Forest
+1 Wedding Ring
+1 Sonic Screwdriver
+1 Everybody Lives!
+1 Skycloud Expanse
+1 Fractured Identity
+1 Reliquary Tower
+1 Wizard Class
+1 Thought Vessel
+1 Azorius Signet
+1 Simic Signet
+1 Negate
+1 Unsummon
+1 Brainstorm
+13 Island
+1 Propaganda
+1 Baird, Steward of Argive
+1 Teferi's Ageless Insight
+1 Path to Exile

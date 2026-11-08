@@ -1,0 +1,108 @@
+# Archidekt — 70 kinds of counter
+# source: archidekt:2644174
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Perrie, the Pulverizer
+
+Deck:
+1 Sejiri Shelter // Sejiri Glacier
+1 Noble's Purse
+1 Evolution Sage
+1 Avenging Huntbonder
+1 Damning Verdict
+1 Resourceful Defense
+1 Together Forever
+1 Hoofprints of the Stag
+1 Midnight Clock
+1 Storm of Forms
+1 Wall of Roots
+1 Slippery Bogbonder
+1 Rishkar, Peema Renegade
+1 Devoted Druid
+1 Beastmaster Ascension
+1 Aven Mimeomancer
+1 Agent's Toolkit
+1 Tome of Legends
+1 Tyrite Sanctum
+1 Urza's Saga
+1 Littjara Mirrorlake
+1 Temple Garden
+1 Hallowed Fountain
+1 Breeding Pool
+1 Forest
+1 Island
+1 Plains
+1 Flooded Strand
+1 Windswept Heath
+1 Misty Rainforest
+1 Myth Realized
+1 Serrated Arrows
+1 Quarantine Field
+1 Hickory Woodlot
+1 Remote Farm
+1 Blast Zone
+1 Mirrodin's Core
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Crawling Barrens
+1 Vastwood Fortification // Vastwood Thicket
+1 Gemstone Mine
+1 Calciform Pools
+1 Saltcrusted Steppe
+1 Mage-Ring Network
+1 Faithbound Judge // Sinner's Judgment
+1 Tendo Ice Bridge
+1 Vivid Meadow
+1 Vivid Creek
+1 Nesting Grounds
+1 Karn's Bastion
+1 Gavony Township
+1 Crystalline Giant
+1 Saprazzan Skerry
+1 Vivid Grove
+1 Llanowar Reborn
+1 Pyramid of the Pantheon
+1 Arbiter of the Ideal
+1 Jar of Eyeballs
+1 Hibernation's End
+1 Saproling Burst
+1 Sporogenesis
+1 Magnetic Web
+1 Fungus Elemental
+1 Living Artifact
+1 Jabari's Influence
+1 Trade Caravan
+1 Coral Reef
+1 Chromatic Armor
+1 Rasputin Dreamweaver
+1 Bounty of the Luxa
+1 Heliod's Punishment
+1 Clockwork Avian
+1 Vivien, Monsters' Advocate
+1 Arixmethes, Slumbering Isle
+1 Liege of the Tangle
+1 Replicating Ring
+1 Utopia Mycon
+1 Strixhaven Stadium
+1 Promise of Loyalty
+1 Instrument of the Bards
+1 Component Pouch
+1 Yisan, the Wanderer Bard
+1 Foreboding Statue // Forsaken Thresher
+1 Investigator's Journal
+1 Joraga Treespeaker
+1 Spara's Headquarters
+1 Elspeth Resplendent
+1 Torture Chamber
+1 Out of Time
+1 Life Matrix
+1 Ursine Fylgja
+1 Ominous Seas
+1 Armageddon Clock
+1 Djinn of Wishes
+1 Glasspool Mimic // Glasspool Shore
+1 Intrepid Adversary
+1 The Monumental Facade
+1 The Ozolith
+1 Weatherlight Compleated

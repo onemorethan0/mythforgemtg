@@ -1,0 +1,97 @@
+# Archidekt — Elven Legacy
+# source: archidekt:25039073
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Alphinaud Leveilleur
+1 Bloodline Bidding
+1 Cantankerous Keepers
+1 Cemetery Tampering
+1 Culling Ritual
+1 Dreamroot Cascade
+1 Drowned Catacomb
+1 Eclipsed Elf
+1 Elven Passage
+1 Elvish Aberration
+1 Elvish Guidance
+1 Elvish Warmaster
+1 Exotic Orchard
+1 Fabled Passage
+1 Festering Thicket
+1 Glowspore Shaman
+1 Grapple with the Past
+1 Heritage Druid
+1 High Perfect Morcant
+1 Immaculate Magistrate
+1 Incubation Druid
+1 Iron-Shield Elf
+1 Izoni, Thousand-Eyed
+1 Kindred Dominance
+1 Lathril, Blade of the Elves
+1 Maralen, Fae Ascendant
+1 Morcant's Eyes
+1 Mothdust Changeling
+1 Nyx Weaver
+1 Path of Ancestry
+1 Prime Speaker Vannifar
+1 Rain-Slicked Copse
+1 Rhys the Exiled
+1 Ripples of Undeath
+1 Ruthless Winnower
+1 Selfless Safewright
+1 Sodden Verdure
+1 Thranduil, Sindarin Liege // Silvan Rally
+1 Thranduil's Company
+1 Toxic Deluge
+1 Trystan, Callous Cultivator // Trystan, Penitent Culler
+1 Turbulent Fen
+1 Turbulent Wilderness
+1 Twilight Mire
+1 Tyvar, the Pummeler
+1 Urborg Elf
+1 Waterlogged Grove
+1 Woodland Weavemaster
+1 Abomination of Llanowar
+1 Aftermath Analyst
+1 Arbor Elf
+1 Arcane Signet
+1 Assassin's Trophy
+1 Command Tower
+1 Eladamri, Korvecdal
+1 Elrond, Moon-Reader
+1 Elves of Deep Shadow
+1 Elvish Archdruid
+1 Elvish Mystic
+1 End-Raze Forerunners
+1 Fauna Shaman
+1 Flooded Grove
+7 Forest
+1 Glissa Sunslayer
+1 Golgari Grave-Troll
+1 Hinterland Harbor
+3 Island
+1 Kagha, Shadow Archdruid
+1 Llanowar Mentor
+1 Llanowar Wastes
+1 Lluwen, Imperfect Naturalist
+1 Marwyn, the Nurturer
+1 Miara, Thorn of the Glade
+1 Priest of Titania
+1 Quirion Ranger
+1 Realmwalker
+1 Reclamation Sage
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Sol Ring
+1 Sunken Hollow
+4 Swamp
+1 Tainted Wood
+1 Teferi's Ageless Insight
+1 Underrealm Lich
+1 Vernal Fen
+1 Wellwisher
+1 Woodland Cemetery
+1 Yavimaya Coast

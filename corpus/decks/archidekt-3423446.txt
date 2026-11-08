@@ -1,0 +1,98 @@
+# Archidekt — Henzie's Big Blitz
+# source: archidekt:3423446
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Henzie "Toolbox" Torre
+
+Deck:
+1 Overgrown Tomb
+1 Cinder Glade
+3 Swamp
+1 Spinerock Knoll
+1 Luxury Suite
+1 Chainer, Nightmare Adept
+1 Magus of the Order
+1 Chaos Warp
+1 Underground Mortuary
+1 Eldritch Evolution
+1 Mikaeus, the Unhallowed
+1 Lurking Predators
+1 Emrakul, the Promised End
+1 Journey to Eternity // Atzal, Cave of Eternity
+1 Jeska's Will
+1 Karlach, Fury of Avernus
+1 Ghalta, Stampede Tyrant
+1 Command Tower
+1 Homeward Path
+4 Mountain
+1 Obscuring Haze
+1 Ancient Brass Dragon
+1 Deflecting Swat
+1 Wooded Foothills
+1 Toxic Deluge
+1 Seedguide Ash
+1 The One Ring
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Smoldering Marsh
+1 Triumph of the Hordes
+1 Rakdos, Patron of Chaos
+1 Blasphemous Act
+4 Forest
+1 Rune-Scarred Demon
+1 Homura, Human Ascendant // Homura's Essence
+1 Verdant Catacombs
+1 Industrial Advancement
+1 Sheoldred, Whispering One
+1 Solemn Simulacrum
+1 Apex Devastator
+1 Stomping Ground
+1 Blood Crypt
+1 Assassin's Trophy
+1 Vampiric Tutor
+1 Badlands
+1 Bayou
+1 Taiga
+1 Kessig Wolf Run
+1 Mosswort Bridge
+1 Twilight Mire
+1 Ziatora's Proving Ground
+1 Beast Within
+1 Necromancy
+1 Summoner's Egg
+1 Kogla, the Titan Ape
+1 Culling Ritual
+1 Berserk
+1 Urborg, Tomb of Yawgmoth
+1 Shadowblood Ridge
+1 Victimize
+1 Sheoldred, the Apocalypse
+1 Flare of Malice
+1 Ignoble Hierarch
+1 Six
+1 Balthor the Defiled
+1 Sheoldred // The True Scriptures
+1 Warrior's Oath
+1 Dismember
+1 Demonlord Belzenlok
+1 Kona, Rescue Beastie
+1 Demonic Tutor
+1 Valgavoth, Terror Eater
+1 Blasphemous Edict
+1 Path of Ancestry
+1 Ziatora, the Incinerator
+1 Aurora Awakener
+1 Smuggler's Surprise
+1 Druid of Purification
+1 Alexios, Deimos of Kosmos
+1 Yavimaya, Cradle of Growth
+1 Sol Ring
+1 Terror of the Peaks
+1 Rampant Rejuvenator
+1 Primeval Herald
+1 Saw in Half
+1 Deadpool, Trading Card
+1 Arcane Signet
+1 Deadly Rollick
+1 Jaxis, the Troublemaker

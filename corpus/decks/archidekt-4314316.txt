@@ -1,0 +1,108 @@
+# Archidekt — Queza, Augur of Agonies
+# source: archidekt:4314316
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Queza, Augur of Agonies
+
+Deck:
+1 Dark Ritual
+1 Demonic Tutor
+1 City of Brass
+1 Silence
+1 Godless Shrine
+1 Hengegate Pathway // Mistgate Pathway
+1 Maze of Ith
+1 Bojuka Bog
+1 Tainted Pact
+1 Mystical Tutor
+1 Plains
+1 Otawara, Soaring City
+1 Adarkar Wastes
+1 Path to Exile
+1 Diabolic Tutor
+1 Clearwater Pathway // Murkwater Pathway
+1 Underground River
+1 Snow-Covered Swamp
+1 Snow-Covered Plains
+1 Praetor's Grasp
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 An Offer You Can't Refuse
+1 Ponder
+1 Baleful Strix
+1 Archmage Emeritus
+1 Dauthi Voidwalker
+1 Vampiric Tutor
+1 Mental Misstep
+1 Raffine's Tower
+1 Angel's Grace
+1 Mortify
+1 Thought Scour
+1 Brainstorm
+1 Unsummon
+1 Tolarian Winds
+1 Muddle the Mixture
+1 Ad Nauseam
+1 Counterspell
+1 Swords to Plowshares
+1 Chain of Vapor
+1 Preordain
+1 Command Tower
+1 Teferi's Protection
+1 Thassa's Oracle
+1 Lim-Dûl's Vault
+1 Laboratory Maniac
+1 Hallowed Fountain
+1 Esper Sentinel
+1 Demonic Consultation
+1 Gitaxian Probe
+1 Darkslick Shores
+1 Shipwreck Marsh
+1 Reliquary Tower
+1 Isolated Chapel
+1 Seachrome Coast
+1 Deserted Beach
+1 Commander's Sphere
+1 Arcane Sanctum
+1 Exotic Orchard
+1 Sol Ring
+1 Rhystic Study
+1 Temple of the False God
+1 Caves of Koilos
+1 Swamp
+1 Phyrexian Arena
+1 Island
+1 Vault of Champions
+1 Marsh Flats
+1 Mystic Remora
+1 Urza's Saga
+1 Gemstone Caverns
+1 Well of Lost Dreams
+1 Mana Drain
+1 Sea of Clouds
+1 Windfall
+1 Tishana's Tidebinder
+1 Arcane Signet
+1 The Reality Chip
+1 Lightning Greaves
+1 Watery Grave
+1 Ancient Tomb
+1 Flooded Strand
+1 Lotus Petal
+1 Scrubland
+1 Polluted Delta
+1 The One Ring
+1 Cyclonic Rift
+1 Tundra
+1 Fierce Guardianship
+1 Underground Sea
+1 Lotho, Corrupt Shirriff
+1 Swan Song
+1 Smothering Tithe
+1 Flusterstorm
+1 Force of Negation
+1 Orcish Bowmasters
+1 Chrome Mox

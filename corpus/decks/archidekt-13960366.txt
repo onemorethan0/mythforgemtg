@@ -1,0 +1,86 @@
+# Archidekt — Shadow Wizard Money Gang 2.0
+# source: archidekt:13960366
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+
+Deck:
+1 Sudden Death
+1 Black Waltz No. 3
+1 Blood Scrivener
+1 Gleeful Arsonist
+1 Harmonic Prodigy
+1 Roaming Throne
+1 Solphim, Mayhem Dominus
+1 Black Mage's Rod
+1 Fellwar Stone
+1 Hylda's Crown of Winter
+1 Mind Stone
+1 Primal Amulet // Primal Wellspring
+1 Rakdos Signet
+1 Relic of Progenitus
+1 Talisman of Indulgence
+1 The One Ring
+1 Whip of Erebos
+1 Battle-Rage Blessing
+1 Cabal Ritual
+1 Deadly Rollick
+1 Zodiark, Umbral God
+1 Dark Ritual
+1 Fake Your Own Death
+1 Feign Death
+1 Imp's Mischief
+1 Not Dead After All
+1 Offer Immortality
+1 Price of Progress
+1 Rakdos Charm
+1 Sheoldred's Edict
+1 Slaughter Pact
+1 Snuff Out
+1 Soul Shatter
+1 Terror
+1 Transpose
+1 Undying Malice
+1 Circle of Power
+1 Cornered by Black Mages
+1 Diresight
+1 Insult // Injury
+1 Night's Whisper
+1 Suplex
+1 Will of the Jeskai
+1 Curse of Opulence
+1 Ash Barrens
+1 Badlands
+1 Evolving Wilds
+1 Lindblum, Industrial Regency // Mage Siege
+11 Mountain
+1 Spymaster's Vault
+15 Swamp
+1 Terramorphic Expanse
+1 Three Tree City
+1 Urborg, Tomb of Yawgmoth
+1 Demonic Tutor
+1 Vandalblast
+1 Tibalt's Trickery
+1 Command Tower
+1 Doom Blade
+1 Slice from the Shadows
+1 Dismember
+1 Sensei's Divining Top
+1 Arcane Signet
+1 Sol Ring
+1 Howling Mine
+1 Temple Bell
+1 Screaming Nemesis
+1 Dictate of the Twin Gods
+1 Jeska's Will
+1 Wheel of Fortune
+1 Yawgmoth's Will
+1 Lotus Petal
+1 Artist's Talent
+1 Queen Brahne
+1 Vivi's Persistence
+1 Mysidian Elder
+1 The Destined Black Mage

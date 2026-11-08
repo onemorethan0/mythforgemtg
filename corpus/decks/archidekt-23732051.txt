@@ -1,0 +1,108 @@
+# Archidekt — Curious Crystal
+# source: archidekt:23732051
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Crystal, Inhuman Princess
+
+Deck:
+1 Starting Town
+1 City of Brass
+1 Mana Confluence
+1 Shifting Woodland
+1 Arid Mesa
+1 Flooded Strand
+1 Misty Rainforest
+1 Scalding Tarn
+1 Wooded Foothills
+1 Windswept Heath
+1 Verdant Catacombs
+1 Plateau
+1 Savannah
+1 Taiga
+1 Tundra
+1 Tropical Island
+1 Breeding Pool
+1 Spara's Headquarters
+1 Steam Vents
+1 Jennifer Walters // The Sensational She-Hulk
+1 Open the Armory
+1 Mental Misstep
+1 Faerie Mastermind
+1 Esper Sentinel
+1 Force of Will
+1 Borne Upon a Wind
+1 Mindbreak Trap
+1 Misdirection
+1 Tinder Wall
+1 Volcanic Island
+1 Hexing Squelcher
+1 Force of Negation
+1 Vivi Ornitier
+1 Noxious Revival
+1 Manamorphose
+1 Tandem Lookout
+1 Gitaxian Probe
+1 Enlightened Tutor
+1 Strike It Rich
+1 Keen Sense
+1 Snake Umbra
+1 Storm-Kiln Artist
+1 Ophidian Eye
+1 Sol Ring
+1 Birds of Paradise
+1 Deflecting Swat
+1 Lotus Petal
+1 Delighted Halfling
+1 Mystic Remora
+1 Rhystic Study
+1 Redirect Lightning
+1 Noble Hierarch
+1 Silence
+1 An Offer You Can't Refuse
+1 Veil of Summer
+1 Ragavan, Nimble Pilferer
+1 Rite of Flame
+1 Simian Spirit Guide
+1 Elvish Spirit Guide
+1 Pact of Negation
+1 Jeskai Ascendancy
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Sevinne's Reclamation
+1 Mystical Tutor
+1 Fierce Guardianship
+1 Chain of Vapor
+1 Brain Freeze
+1 Arcane Signet
+1 Intuition
+1 Mox Diamond
+1 Chrome Mox
+1 Underworld Breach
+1 Lion's Eye Diamond
+1 Gamble
+1 Commandeer
+1 Snapback
+1 Banishing Knack
+1 Sewer-veillance Cam
+1 Red Elemental Blast
+1 Pyroblast
+1 Valley Floodcaller
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Emerald Charm
+1 Gifts Ungiven
+1 Mana Vault
+1 Smothering Tithe
+1 Ranger-Captain of Eos
+1 Ancient Tomb
+1 Legolas's Quick Reflexes
+1 Flusterstorm
+1 Flash Photography
+1 Command Tower
+1 Cyclonic Rift
+1 Gemstone Caverns
+1 Exotic Orchard
+1 Jeska's Will
+1 Forbidden Orchard
+1 Curiosity

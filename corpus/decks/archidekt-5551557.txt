@@ -1,0 +1,96 @@
+# Archidekt — Maralen, Fae Ascendant
+# source: archidekt:5551557
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Maralen, Fae Ascendant
+
+Deck:
+1 Reliquary Tower
+1 Arcane Signet
+1 Command Tower
+1 Sunken Hollow
+1 Spellstutter Sprite
+1 Rapid Hybridization
+1 Crop Rotation
+1 Deadly Rollick
+1 Bitterblossom
+1 Abrupt Decay
+1 Assassin's Trophy
+1 Cloud of Faeries
+1 Deadeye Navigator
+1 Elves of Deep Shadow
+1 High Fae Trickster
+1 Llanowar Elves
+1 Exotic Orchard
+1 Yavimaya Coast
+1 Hinterland Harbor
+1 Twilight Mire
+1 Flooded Grove
+1 Emergence Zone
+1 Delay
+1 Paradise Druid
+4 Swamp
+1 Dark Ritual
+1 Leyline of Anticipation
+1 Birds of Paradise
+1 Vampiric Tutor
+1 Wishclaw Talisman
+1 Stubborn Denial
+1 Cryptolith Rite
+1 Sol Ring
+1 Bitterbloom Bearer
+1 Intruder Alarm
+1 Spell Pierce
+1 Ringsight
+1 Nature's Rhythm
+1 Shrieking Drake
+7 Island
+1 Elvish Mystic
+1 Displacer Kitten
+1 Wild Growth
+1 Incubation Druid
+1 Maraleaf Pixie
+1 Scryb Ranger
+1 Quirion Ranger
+1 Ashaya, Soul of the Wild
+1 Peregrine Drake
+1 Arbor Elf
+1 Fertile Ground
+1 Kinnan, Bonder Prodigy
+1 Neoform
+1 Springleaf Parade
+1 Pemmin's Aura
+1 Freed from the Real
+1 Cloudstone Curio
+1 Vedalken Orrery
+1 Eternal Witness
+1 Urborg Elf
+1 Deathcap Glade
+1 Resculpt
+1 Ancient Tomb
+1 Thrasios, Triton Hero
+1 Notion Thief
+1 Spell Snare
+1 Hydroblast
+1 Nature's Claim
+1 An Offer You Can't Refuse
+1 Farseek
+1 Nature's Lore
+1 Culling Ritual
+1 Defense of the Heart
+1 Deathrite Shaman
+1 Bloom Tender
+1 Snap
+1 Worldly Tutor
+1 Force of Will
+1 Cyclonic Rift
+1 Demonic Tutor
+1 Eclipsed Realms
+4 Forest
+1 Path of Ancestry
+1 Misthollow Griffin
+1 Badgermole Cub
+1 Eternal Scourge
+1 Food Chain

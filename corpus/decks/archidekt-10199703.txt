@@ -1,0 +1,79 @@
+# Archidekt — 'Til Death Do Us Part
+# source: archidekt:10199703
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Edgar, Charmed Groom // Edgar Markov's Coffin
+1 Olivia, Crimson Bride
+
+Deck:
+1 Strefan, Maurer Progenitor
+1 Olivia's Wrath
+1 Hero's Downfall
+17 Swamp
+1 Feast of Blood
+1 Bride's Gown
+1 Welcoming Vampire
+1 Fateful Absence
+1 Markov Baron
+1 Crossway Troublemakers
+1 Stensia Banquet
+1 Markov Enforcer
+1 Vengeful Bloodwitch
+1 Haunted Ridge
+1 Blood Crypt
+1 Path of Peril
+1 Alluring Suitor // Deadly Dancer
+1 Belligerent Guest
+1 Bleed Dry
+1 Blood Petal Celebrant
+1 Arterial Alchemy
+1 Ceremonial Knife
+1 Bloodcrazed Socialite
+1 Bloodtithe Harvester
+1 Bloodvial Purveyor
+1 Edgar's Awakening
+1 Gluttonous Guest
+1 Falkenrath Celebrants
+1 Falkenrath Forebear
+1 Henrika Domnathi // Henrika, Infernal Seer
+1 Imposing Grandeur
+1 Restless Bloodseeker // Bloodsoaked Reveler
+1 Pointed Discussion
+1 Markov Waltzer
+1 Sorin the Mirthless
+1 Sinister Waltz
+1 Olivia's Attendants
+1 Timothar, Baron of Bats
+1 Vampires' Vengeance
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Wedding Announcement // Wedding Festivity
+1 Wedding Security
+1 Voldaren Epicure
+1 By Invitation Only
+1 Dying to Serve
+1 Honeymoon Hearse
+1 Abrade
+1 Blood Fountain
+1 Glass-Cast Heart
+1 Scion of Opulence
+1 Wedding Invitation
+1 Unholy Officiant
+1 Wedding Ring
+1 Falkenrath Gorger
+1 Groom's Finery
+9 Mountain
+1 Anje, Maid of Dishonor
+1 Voldaren Estate
+1 Ivora, Insatiable Heir
+1 Sanguine Indulgence
+1 Blood Hypnotist
+1 Indulgent Aristocrat
+1 Cordial Vampire
+1 Stromkirk Captain
+1 Thirsting Bloodlord
+6 Plains
+1 Foreboding Ruins
+1 Isolated Chapel
+1 Shattered Sanctum

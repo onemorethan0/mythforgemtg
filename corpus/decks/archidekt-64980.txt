@@ -1,0 +1,92 @@
+# Archidekt — Hapatra, Negative Ghost Rider
+# source: archidekt:64980
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Hapatra, Vizier of Poisons
+
+Deck:
+1 Doubling Season
+1 Loyal Guardian
+1 Darkbore Pathway // Slitherbore Pathway
+1 Verdant Catacombs
+1 Twilight Mire
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Obelisk Spider
+1 Nest of Scarabs
+1 Abrupt Decay
+1 Blooming Marsh
+1 Forgotten Ancient
+1 Nissa, Voice of Zendikar
+1 Hissing Quagmire
+1 Beastmaster Ascension
+1 Necroskitter
+1 Deathreap Ritual
+1 Nykthos, Shrine to Nyx
+1 Grim Backwoods
+1 Parallel Lives
+1 Skullclamp
+1 Hex Parasite
+1 Black Sun's Zenith
+1 Carnifex Demon
+1 Asceticism
+1 Contagion Engine
+1 Oran-Rief, the Vastwood
+1 Whispersilk Cloak
+1 Crumbling Ashes
+1 Wickerbough Elder
+1 Quillspike
+1 Blowfly Infestation
+1 Flourishing Defenses
+1 Sudden Spoiling
+1 Seshiro the Anointed
+1 Eternal Witness
+1 Skyshroud Claim
+9 Swamp
+1 Crypt Ghast
+9 Forest
+1 Attrition
+1 Phyrexian Reclamation
+1 Poison-Tip Archer
+1 Generous Patron
+1 Deadly Rollick
+1 Command Tower
+1 Undergrowth Stadium
+1 Creakwood Liege
+1 Devoted Druid
+1 Assassin's Trophy
+1 Blood Artist
+1 Defiler of Vigor
+1 Vigor
+1 Renata, Called to the Hunt
+1 Hardened Scales
+1 Fain, the Broker
+1 Silkguard
+1 Yawgmoth, Thran Physician
+1 Ohran Frostfang
+1 Deathcap Glade
+1 Spitting Dilophosaurus
+1 Woodland Cemetery
+1 Mikaeus, the Unhallowed
+1 The Ozolith
+1 Overgrown Tomb
+1 Urborg, Tomb of Yawgmoth
+1 Cabal Coffers
+1 Andúril, Narsil Reforged
+1 Tower Winder
+1 The Meathook Massacre
+1 Maha, Its Feathers Night
+1 Rottenmouth Viper
+1 Persistent Constrictor
+1 Stalwart Successor
+1 Cauldron of Essence
+1 Witherbloom, the Balancer
+1 Massacre Girl, Known Killer
+1 Aberrant Return
+1 Atomize
+1 Cryptolith Rite
+1 Gardenize
+1 Swamp
+1 Turbulent Fen
+1 Silver Shroud Costume

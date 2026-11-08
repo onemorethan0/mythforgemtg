@@ -1,0 +1,100 @@
+# Archidekt — Building Miirym from Temur Roar
+# source: archidekt:13388731
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Miirym, Sentinel Wyrm
+
+Deck:
+1 Dragon Tempest
+1 Earthquake
+1 Earthquake Dragon
+1 Elemental Bond
+1 Llanowar Elves
+1 Maelstrom of the Spirit Dragon
+1 Mistrise Village
+1 Panharmonicon
+1 Rapid Hybridization
+1 Rattleclaw Mystic
+1 Reflections of Littjara
+1 Rejuvenating Springs
+1 Rhythm of the Wild
+1 Rockfall Vale
+1 Sarkhan, Soul Aflame
+1 Scourge of the Throne
+1 Scourge of Valkas
+1 Sheltered Thicket
+1 Simic Growth Chamber
+1 Smuggler's Surprise
+4 Forest
+1 Firkraag, Cunning Instigator
+1 Frontier Bivouac
+1 Ganax, Astral Hunter
+1 Garruk's Uprising
+1 Glasspool Mimic // Glasspool Shore
+1 Goldspan Dragon
+1 Gruul Turf
+1 Haven of the Spirit Dragon
+1 Herd Heirloom
+1 Ketria Triome
+1 Lathliss, Dragon Queen
+1 Dragonhawk, Fate's Tempest
+1 Dragonlord's Servant
+1 Dragonspeaker Shaman
+1 Sulfur Falls
+1 Temur Ascendancy
+1 Temur Battlecrier
+1 Terramorphic Expanse
+1 Terror of the Peaks
+1 Thornspire Verge
+1 Thrakkus the Butcher
+1 Training Center
+1 Unclaimed Territory
+1 Up the Beanstalk
+1 Ureni of the Unwritten
+1 Ureni, the Song Unending
+1 Urza's Incubator
+1 Willowrush Verge
+1 Wooded Foothills
+1 Wrathful Red Dragon
+1 Ancient Bronze Dragon
+1 Ancient Silver Dragon
+1 Arcane Signet
+1 Astral Dragon
+1 Breeding Pool
+1 Chaos Warp
+1 Cinder Glade
+1 Command Tower
+1 Cultivate
+1 Evolving Wilds
+1 Farseek
+1 Hellkite Tyrant
+1 Hinterland Harbor
+1 Lightning Greaves
+1 Misty Rainforest
+1 Nature's Lore
+1 Rootbound Crag
+1 Sol Ring
+1 Spire Garden
+1 Swiftfoot Boots
+1 Atarka, World Render
+1 Scaled Nurturer
+1 Adrix and Nev, Twincasters
+1 Asceticism
+1 Beast Within
+1 Blasphemous Act
+1 Bountiful Landscape
+1 Chromatic Lantern
+1 Counterspell
+1 Deceptive Frostkite
+1 Dracogenesis
+3 Island
+4 Mountain
+1 Kindred Discovery
+1 Herald's Horn
+1 Negate
+1 Moonlit Meditation
+1 Starfield Vocalist
+1 Tannuk, Steadfast Second
+1 Impostor Syndrome

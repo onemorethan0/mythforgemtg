@@ -1,0 +1,78 @@
+# Archidekt — Jorn, God of Winter: Pinnacle of Success
+# source: archidekt:6741287
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Jorn, God of Winter // Kaldring, the Rimestaff
+
+Deck:
+1 Assassin's Trophy
+1 Night's Whisper
+1 Sign in Blood
+1 Diresight
+1 Read the Bones
+1 Bear Umbra
+1 Beledros Witherbloom
+1 Woodland Chasm
+1 Three Visits
+1 Nature's Lore
+1 Wild Growth
+1 Into the North
+16 Snow-Covered Forest
+1 Wolfwillow Haven
+1 Mana Reflection
+1 Heartbeat of Spring
+1 Virtue of Strength // Garenbrig Growth
+1 Dictate of Karametra
+1 Vernal Bloom
+1 Nirkana Revenant
+1 Regal Behemoth
+1 Nyxbloom Ancient
+1 Sylvan Library
+1 Doubling Season
+1 Urborg, Tomb of Yawgmoth
+1 Gauntlet of Power
+1 Yavimaya, Cradle of Growth
+1 Nissa, Who Shakes the World
+1 Shriekwood Devourer
+1 Beast Within
+1 Crypt Ghast
+1 Vorinclex, Monstrous Raider
+1 Nykthos, Shrine to Nyx
+16 Snow-Covered Swamp
+1 Harmonize
+1 Moment's Peace
+1 Shared Roots
+1 Tear Asunder
+1 Galadhrim Ambush
+1 Bubbling Muck
+1 Dark Petition
+1 Farseek
+1 Grim Tutor
+1 Arachnogenesis
+1 Insatiable Avarice
+1 Sword of Feast and Famine
+1 Mastermind's Acquisition
+1 Glimpse the Core
+1 Heroic Intervention
+1 Doubling Cube
+1 Caged Sun
+1 Rampant Growth
+1 Rude Awakening
+1 Nature's Will
+1 Utopia Sprawl
+1 Zendikar Resurgent
+1 Wilderness Reclamation
+1 Overgrowth
+1 Awakening
+1 Fertile Ground
+1 Nissa, Worldwaker
+1 Diabolic Tutor
+1 Shimmerwilds Growth
+1 Sol Ring
+1 Early Harvest
+1 Decorum Dissertation
+1 Curse of Bounty
+1 Helix Pinnacle
+1 Glittering Frost

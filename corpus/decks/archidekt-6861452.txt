@@ -1,0 +1,81 @@
+# Archidekt — Light-Paws /// $30 High Power + (funny combos explained)
+# source: archidekt:6861452
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Light-Paws, Emperor's Voice
+
+Deck:
+1 Sol Ring
+1 Shardmage's Rescue
+1 Benevolent Blessing
+1 Sentinel's Eyes
+1 Cho-Manno's Blessing
+1 Benevolent Bodyguard
+1 Hyena Umbra
+1 Mantle of the Ancients
+1 Blacksmith's Skill
+1 Light of Promise
+1 Selfless Savior
+1 Triclopean Sight
+1 Mask of Law and Grace
+1 Shield of Duty and Reason
+1 Lashknife
+1 Open the Vaults
+1 Solid Footing
+1 Stoneskin
+1 Zealot's Conviction
+1 Military Discipline
+1 Reprobation
+1 Curse of Exhaustion
+1 Demotion
+1 Feather of Flight
+1 Illuminator Virtuoso
+1 Dog Umbra
+1 Indestructibility
+1 Pearl-Ear, Imperial Advisor
+1 Swiftfoot Boots
+1 Sage's Reverie
+1 Idolized
+1 Single Combat
+1 Twinblade Blessing
+1 Spirit Mantle
+28 Plains
+1 Mesa Enchantress
+1 Danitha Capashen, Paragon
+1 Cartouche of Solidarity
+1 Hero of Iroas
+1 Conviction
+1 Oppressive Rays
+1 Cryptic Caves
+1 Minimus Containment
+1 Mana Tithe
+1 Saving Grace
+1 Battle Mastery
+1 Springleaf Drum
+1 Kor Spiritdancer
+1 Open the Armory
+1 Heliod's Pilgrim
+1 Karametra's Blessing
+1 Path to Exile
+1 Ethereal Armor
+1 Unquestioned Authority
+1 Winds of Rath
+1 Roadside Reliquary
+1 Secluded Steppe
+1 Daybreak Coronet
+1 Pentarch Ward
+1 Spirit Link
+1 Darksteel Mutation
+1 Starfield Mystic
+1 All That Glitters
+1 Curse of Silence
+1 Sram, Senior Edificer
+1 Resurgent Belief
+1 Temporal Isolation
+1 Swords to Plowshares
+1 Transcendent Envoy
+1 On Serra's Wings
+1 Gods Willing
+1 Chains of Custody

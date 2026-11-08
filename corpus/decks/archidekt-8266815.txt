@@ -1,0 +1,104 @@
+# Archidekt — Ezio and The Brotherhood
+# source: archidekt:8266815
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Crop Rotation, Teferi's Protection); Bracket 1 allows 0
+
+Commander:
+1 Ezio Auditore da Firenze
+
+Deck:
+1 Assassin's Trophy
+1 Tainted Strike
+1 Viewpoint Synchronization
+1 Altaïr Ibn-La'Ahad
+1 Layla Hassan
+1 Reliquary Tower
+1 Command Tower
+1 Desmond Miles
+1 Aya of Alexandria
+1 Restart Sequence
+1 Lydia Frye
+1 Arbaaz Mir
+1 Edward Kenway
+1 Whispersilk Cloak
+1 Jacob Frye
+1 Eagle Vision
+1 Kodama's Reach
+1 Achilles Davenport
+1 Bayek of Siwa
+1 Brotherhood Headquarters
+1 Path to Exile
+1 Haystack
+1 Rogue's Passage
+1 Chain Assassination
+1 Assassin Gauntlet
+1 Smoke Bomb
+1 The Animus
+1 Sol Ring
+1 Kassandra, Eagle Bearer
+1 The Spear of Leonidas
+1 Black Market Connections
+1 Ezio, Brash Novice
+1 Eivor, Wolf-Kissed
+1 Loyal Inventor
+1 Exotic Orchard
+1 Secluded Courtyard
+1 The World Tree
+1 Evolving Wilds
+1 Roshan, Hidden Magister
+1 Adéwalé, Breaker of Chains
+1 Crystal Skull, Isu Spyglass
+2 Plains
+1 Shao Jun
+1 Shaun & Rebecca, Agents
+1 Kelsien, the Plague
+1 Mary Read and Anne Bonny
+1 Adrestia
+1 Myriad Landscape
+1 Arcane Signet
+1 Abstergo Entertainment
+1 Back in Town
+1 Hidden Blade
+1 Ramses, Assassin Lord
+1 Evie Frye
+1 Ratonhnhaké꞉ton
+1 Chromatic Lantern
+1 Path of Ancestry
+1 Arno Dorian
+1 Ezio, Blade of Vengeance
+1 Brotherhood Regalia
+1 Basim Ibn Ishaq
+1 Excalibur, Sword of Eden
+1 Auditore Ambush
+1 Aveline de Grandpré
+1 Senu, Keen-Eyed Protector
+1 Coastal Piracy
+1 Herald's Horn
+1 Sorin Markov
+1 Kindred Dominance
+1 Rhythm of the Wild
+1 Rising of the Day
+1 Queen Marchesa
+1 Raise the Palisade
+1 Tempt with Discovery
+1 Heroes' Podium
+1 Terramorphic Expanse
+1 Thriving Grove
+1 Thriving Bluff
+1 Thriving Isle
+1 Plaza of Heroes
+1 Thriving Heath
+1 Thriving Moor
+2 Island
+2 Forest
+2 Swamp
+2 Mountain
+1 The Grey Havens
+1 Massacre Girl, Known Killer
+1 Great Hall of the Citadel
+1 Cover of Darkness
+1 Command Bridge
+1 Teferi's Protection
+1 Crop Rotation
+1 Cavern of Souls

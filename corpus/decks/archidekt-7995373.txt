@@ -1,0 +1,108 @@
+# Archidekt — Jodah, the Unifier
+# source: archidekt:7995373
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Polluted Delta
+1 Teferi's Protection
+1 Inga and Esika
+1 Halana and Alena, Partners
+1 Fierce Guardianship
+1 K-9, Mark I
+1 Rhystic Study
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Demonic Tutor
+1 Shanid, Sleepers' Scourge
+1 Vega, the Watcher
+1 Yavimaya, Cradle of Growth
+1 Cyclonic Rift
+1 Mox Amber
+1 Arcane Signet
+1 Lightning Greaves
+1 Vampiric Tutor
+1 Bloom Tender
+1 Faeburrow Elder
+1 Selvala, Heart of the Wilds
+1 Kutzil, Malamet Exemplar
+1 Sol Ring
+1 Jetmir's Garden
+1 Three Visits
+1 Sigarda, Font of Blessings
+1 Boromir, Warden of the Tower
+1 Nature's Lore
+1 Swiftfoot Boots
+1 Fellwar Stone
+1 Maelstrom Wanderer
+1 Chimil, the Inner Sun
+1 Command Tower
+1 Skrelv, Defector Mite
+1 Ratadrabik of Urborg
+1 Kethis, the Hidden Hand
+1 Raffine's Tower
+1 Ziatora's Proving Ground
+1 Pippin, Guard of the Citadel
+1 The Great Henge
+1 Ertai Resurrected
+1 Exotic Orchard
+1 Jirina, Dauntless General
+1 Jegantha, the Wellspring
+1 Avacyn, Angel of Hope
+1 The World Tree
+1 Relic of Legends
+1 Windswept Heath
+1 Wooded Foothills
+1 Swamp
+1 Mountain
+1 Island
+1 Forest
+1 Kellan, the Kid
+1 Jori En, Ruin Diver
+1 Flooded Strand
+1 The One Ring
+1 Bloodstained Mire
+1 Urborg, Tomb of Yawgmoth
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Shalai, Voice of Plenty
+1 Spara's Headquarters
+1 Verdant Catacombs
+1 Breeding Pool
+1 Watery Grave
+1 Blood Crypt
+1 Godless Shrine
+1 Steam Vents
+1 Sacred Foundry
+1 Temple Garden
+1 Overgrown Tomb
+1 Arid Mesa
+1 Marsh Flats
+1 Skithiryx, the Blight Dragon
+1 Plaza of Heroes
+1 Dihada, Binder of Wills
+1 Sisay, Weatherlight Captain
+1 Betor, Kin to All
+1 Loran of the Third Path
+1 Elesh Norn, Grand Cenobite
+1 Stomping Ground
+1 Annie Joins Up
+1 Hallowed Fountain
+1 Delighted Halfling
+1 Xander's Lounge
+1 Desynchronization
+1 Jhoira, Weatherlight Captain
+1 Reki, the History of Kamigawa
+1 Hajar, Loyal Bodyguard
+1 Plains
+1 Birds of Paradise
+1 Deflecting Swat
+1 Serah Farron // Crystallized Serah
+1 Tam, Mindful First-Year
+1 Misty Rainforest
+1 Scalding Tarn
+1 Samut, Hazoret's Champion
+1 Urza's Ruinous Blast
+1 Worldly Tutor
+1 Samut, Voice of Dissent

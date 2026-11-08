@@ -1,0 +1,108 @@
+# Archidekt — BBL Najeela dominatrix
+# source: archidekt:3826896
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Najeela, the Blade-Blossom
+
+Deck:
+1 Diabolic Intent
+1 Eladamri's Call
+1 Cyclonic Rift
+1 Toski, Bearer of Secrets
+1 Esper Sentinel
+1 Drannith Magistrate
+1 Force of Vigor
+1 Pact of Negation
+1 Deadly Rollick
+1 Mana Vault
+1 Vampiric Tutor
+1 Grand Abolisher
+1 Veil of Summer
+1 Karplusan Forest
+1 Elves of Deep Shadow
+1 Grim Hireling
+1 Rhystic Study
+1 Temple Garden
+1 Worldly Tutor
+1 Overgrown Tomb
+1 Undergrowth Stadium
+1 Sacred Foundry
+1 Mystical Tutor
+1 Mana Confluence
+1 Swords to Plowshares
+1 Command Tower
+1 Watery Grave
+1 Derevi, Empyrial Tactician
+1 Avacyn's Pilgrim
+1 Eldritch Evolution
+1 Professional Face-Breaker
+1 Forbidden Orchard
+1 Neoform
+1 An Offer You Can't Refuse
+1 Fire Covenant
+1 Green Sun's Zenith
+1 Birds of Paradise
+1 Fierce Guardianship
+1 City of Brass
+1 Chrome Mox
+1 Silence
+1 Flusterstorm
+1 Tarnished Citadel
+1 Tainted Pact
+1 Underground River
+1 Ragavan, Nimble Pilferer
+1 Finale of Devastation
+1 Thassa's Oracle
+1 Simian Spirit Guide
+1 Mindbreak Trap
+1 Lotus Petal
+1 Boseiju, Who Endures
+1 Cavern of Souls
+1 The One Ring
+1 Orcish Bowmasters
+1 Deflecting Swat
+1 Force of Negation
+1 Force of Will
+1 Demonic Tutor
+1 Samut, Vizier of Naktamun
+1 Blood Crypt
+1 Breeding Pool
+1 Druids' Repository
+1 Sol Ring
+1 Godless Shrine
+1 Steam Vents
+1 Windswept Heath
+1 Marsh Flats
+1 Misty Rainforest
+1 Hallowed Fountain
+1 Arid Mesa
+1 Stomping Ground
+1 Lim-Dûl's Vault
+1 Ignoble Hierarch
+1 Tinder Wall
+1 Training Center
+1 Red Elemental Blast
+1 Enlightened Tutor
+1 Chatterfang, Squirrel General
+1 Brainstorm
+1 Mystic Remora
+1 Dovin's Veto
+1 Kutzil, Malamet Exemplar
+1 Noble Hierarch
+1 Summoner's Pact
+1 Llanowar Elves
+1 Devilish Valet
+1 Exotic Orchard
+1 Mental Misstep
+1 Sea of Clouds
+1 Spire Garden
+1 Reflecting Pool
+1 Elvish Spirit Guide
+1 Plaza of Heroes
+1 Swan Song
+1 Opposition Agent
+1 Dark Ritual
+1 Lotho, Corrupt Shirriff
+1 Rite of Flame

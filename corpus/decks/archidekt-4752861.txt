@@ -1,0 +1,90 @@
+# Archidekt — Sauron, the Dark Lord
+# source: archidekt:4752861
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sauron, the Dark Lord
+
+Deck:
+1 Call of the Ring
+1 Archfiend of Ifnir
+1 Lazotep Plating
+1 Barad-dûr
+1 Saruman, the White Hand
+1 Relic of Sauron
+1 Mordor Trebuchet
+1 Shadowspear
+1 Mithril Coat
+1 Bone Miser
+1 Rogue's Passage
+1 Sunken Ruins
+1 The Black Gate
+1 Shizo, Death's Storehouse
+1 Bojuka Bog
+1 Reliquary Tower
+1 Minamo, School at Water's Edge
+1 Command Tower
+1 Morphic Pool
+1 Scavenger Grounds
+1 Luxury Suite
+1 Shinka, the Bloodsoaked Keep
+1 Training Center
+4 Island
+1 Homeward Path
+1 Graven Cairns
+1 Cascade Bluffs
+1 Swiftfoot Boots
+1 Darksteel Plate
+1 Toxic Deluge
+1 Deadly Rollick
+1 Command Beacon
+1 Temple of the False God
+1 Mount Doom
+1 Basilisk Collar
+1 Tyrite Sanctum
+1 Black Market Connections
+1 Orcish Medicine
+1 Dreadhorde Twins
+1 Eternal Skylord
+1 Gothmog, Morgul Lieutenant
+1 Bilbo, Retired Burglar
+1 Gleaming Overseer
+1 Warg Rider
+1 Pitiless Plunderer
+1 Sauron, the Necromancer
+1 The Speed Demon
+1 Soothing of Sméagol
+1 Mana Drain
+1 Kozilek's Unsealing
+1 Counterspell
+1 Blasphemous Edict
+1 Final Act
+1 Amonkhet Raceway
+1 Muraganda Raceway
+9 Nazgûl
+1 Neheb, the Eternal
+1 Skyclave Relic
+1 Danny Pink
+1 Havengul Lich
+1 Withering Torment
+1 Curiosity Crafter
+4 Mountain
+1 Sauron, Lord of the Rings
+1 Vandalblast
+1 The Balrog of Moria
+1 Monument to Endurance
+1 Pawn of Ulamog
+1 Sifter of Skulls
+1 Herald of Secret Streams
+1 Nightscape Familiar
+1 Shredder's Technique
+1 Deflecting Swat
+1 Orcish Siegemaster
+1 Dreadhorde Invasion
+1 Enduring Curiosity
+1 Explorer's Scope
+1 Reanimate
+1 Goldvein Pick
+1 Diamond Pick-Axe
+5 Swamp

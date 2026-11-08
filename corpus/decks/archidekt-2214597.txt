@@ -1,0 +1,96 @@
+# Archidekt — Eloise, Nephalia Sleuth - EDH Sherlock Holmes Theme
+# source: archidekt:2214597
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Eloise, Nephalia Sleuth
+
+Deck:
+1 Dreadhound
+1 Hero's Downfall
+1 Floodhound
+1 The Antiquities War
+1 Liquimetal Torque
+1 Crowded Crypt
+1 Sanguine Spy
+1 Thoughtcast
+1 Thought Vessel
+1 Trading Post
+1 Devious Cover-Up
+1 Foul Play
+1 Vault of Whispers
+1 Seat of the Synod
+1 Darksteel Citadel
+1 Treasure Vault
+1 Scavenger Grounds
+1 Field of Ruin
+1 Watery Grave
+1 Ghost Quarter
+1 Enhanced Surveillance
+1 Trail of Evidence
+1 Tamiyo's Journal
+1 Arcane Signet
+1 Sol Ring
+1 Tempting Contract
+1 Command Tower
+1 Fact or Fiction
+1 Sign in Blood
+1 Marionette Master
+1 High Market
+1 Master of Death
+1 Eliminate the Impossible
+1 Senator Peacock
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Marionette Apprentice
+1 Geth, Lord of the Vault
+1 Jacob Hauken, Inspector // Hauken's Insight
+1 Nick Valentine, Private Eye
+1 Dogged Detective
+1 Lazav, Dimir Mastermind
+1 Persuasive Interrogators
+1 Ioreth of the Healing House
+1 Fleeting Memories
+1 Curious Inquiry
+1 Proft's Eidetic Memory
+1 Scene of the Crime
+1 Extract a Confession
+1 Forensic Gadgeteer
+1 Disciple of the Vault
+1 Tormod's Crypt
+1 Blood Artist
+1 Nadier's Nightblade
+1 Snooping Newsie
+6 Island
+1 Tainted Isle
+6 Swamp
+1 Esper Panorama
+1 Grixis Panorama
+1 Ash Barrens
+1 Darkwater Catacombs
+1 Temple of Deceit
+1 Sunken Hollow
+1 Choked Estuary
+1 Turbulent Wetlands
+1 Sunken Ruins
+1 Bojuka Bog
+1 Mistvault Bridge
+1 Underground River
+1 Drowned Catacomb
+1 Thousand-Year Elixir
+1 Confirm Suspicions
+1 Dramatic Accusation
+1 Deduce
+1 Tome of Legends
+1 Unfortunate Accident
+1 Investigator's Journal
+1 Mysterious Tome // Chilling Chronicle
+1 Deadly Cover-Up
+1 Curious Cadaver
+1 Vhal, Candlekeep Researcher
+1 Everflowing Chalice
+1 Magnifying Glass
+1 Vivisection
+1 Terror
+1 Hard Evidence
+1 Disinformation Campaign

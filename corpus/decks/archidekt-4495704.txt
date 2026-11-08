@@ -1,0 +1,97 @@
+# Archidekt — Super Ultra MaxiTRON
+# source: archidekt:4495704
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Megatron, Tyrant // Megatron, Destructive Force
+
+Deck:
+1 Strionic Resonator
+1 Pulsemage Advocate
+1 Pia's Revolution
+1 Triumphant Reckoning
+1 Font of Return
+5 Mountain
+5 Swamp
+1 Tower Worker
+1 Urborg Panther
+1 Spirit of the Night
+1 Drossforge Bridge
+1 Goldmire Bridge
+1 Rustvale Bridge
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Festering Newt
+1 Feral Shadow
+1 Karn, Living Legacy
+1 Coveted Jewel
+1 Bubbling Cauldron
+1 Nomad Outpost
+1 Buried Ruin
+1 Temple of Triumph
+1 Feldon of the Third Path
+1 Mine Worker
+1 Shivan Gorge
+1 Eye of Vecna
+1 Command Tower
+1 Self-Assembler
+1 Crown of Empires
+1 Helm of Kaldra
+1 Shield of Kaldra
+1 Hand of Vecna
+1 Kaldra Compleat
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Throne of Empires
+1 The Book of Vile Darkness
+1 Sword of Kaldra
+1 Blightsteel Colossus
+1 Jaya's Immolating Inferno
+1 Bogbrew Witch
+1 Phyrexian Triniform
+1 Temple of Silence
+1 Breathstealer
+1 Urza's Workshop
+1 Jeska, Thrice Reborn
+1 Temple of Malice
+1 Scepter of Empires
+1 Expedition Map
+1 Power Plant Worker
+1 Forbidden Orchard
+1 Urza's Tower
+1 Triplicate Titan
+1 Savai Triome
+1 Urza's Power Plant
+1 Urza's Mine
+1 The Capitoline Triad
+1 Threefold Thunderhulk
+1 Assaultron Dominator
+1 Securitron Squadron
+1 Three Tree Mascot
+1 Walking Ballista
+1 Alpine Watchdog
+1 Alpine Houndmaster
+1 Astral Cornucopia
+1 Dreamstone Hedron
+1 Dispatch
+1 Igneous Cur
+1 Loyal Subordinate
+1 Mech Hangar
+1 The War in Heaven
+1 Trigon of Rage
+1 Triangle of War
+1 Trigon of Corruption
+1 Abrade
+1 Frontline Medic
+1 Skyclave Relic
+1 Precursor Golem
+1 Fall of the First Civilization
+1 Secret Rendezvous
+1 Access Tunnel
+1 Pit of Offerings
+1 Weathered Wayfarer
+4 Plains
+1 Brotherhood's End
+1 Vesuva
+1 Fiery Emancipation
+1 Daretti, Ingenious Iconoclast

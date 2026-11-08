@@ -1,0 +1,94 @@
+# Archidekt — Ichihara Wishworks - Eriette of the Charmed Apple
+# source: archidekt:5498543
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Eriette of the Charmed Apple
+
+Deck:
+1 Eland Umbra
+1 Killian, Ink Duelist
+1 Kaya's Ghostform
+1 Feather of Flight
+1 Shattered Sanctum
+1 Vault of Champions
+1 Darksteel Mutation
+1 Godless Shrine
+1 Hall of Heliod's Generosity
+1 Arcane Lighthouse
+1 Pearl-Ear, Imperial Advisor
+1 Benevolent Blessing
+1 Felidar Umbra
+1 Lotho, Corrupt Shirriff
+1 Tenuous Truce
+1 Pacifism
+1 Planar Disruption
+1 All That Glitters
+1 Spirit Link
+1 Shielded by Faith
+1 Black Market Connections
+1 Timely Ward
+1 Lord Skitter's Blessing
+1 Starnheim Courser
+1 Horizon of Progress
+1 Desolate Mire
+1 Spiral into Solitude
+1 Solitary Confinement
+1 Swift Reconfiguration
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Concealed Courtyard
+1 Shineshadow Snarl
+1 Silent Clearing
+1 Killian, Decisive Mentor
+1 Hyena Umbra
+1 Command Tower
+1 Pentarch Ward
+1 Retether
+1 Dark Confidant
+1 Exotic Orchard
+1 Petrify
+1 Transcendent Envoy
+1 Rune of Sustenance
+1 Cooped Up
+1 Nykthos, Shrine to Nyx
+1 Ethereal Armor
+1 Mesa Enchantress
+1 Unquestioned Authority
+1 Lithoform Blight
+1 Fetid Heath
+1 Light-Paws, Emperor's Voice
+1 Shardmage's Rescue
+1 Pearl Medallion
+1 Dog Umbra
+1 Kor Spiritdancer
+1 Sram, Senior Edificer
+1 City of Brass
+1 Isolated Chapel
+1 Starfield Mystic
+1 Sage's Reverie
+1 Angelic Gift
+1 Caves of Koilos
+1 Rune of Mortality
+1 Realmbreaker's Grasp
+1 Trapped in the Tower
+1 Chosen by Heliod
+1 Scourgemark
+1 Bonds of Faith
+1 Reliquary Tower
+1 Darkstar Augur
+1 Greater Auramancy
+1 Replenish
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Pariah
+1 Tymna the Weaver
+1 Brilliant Wings
+1 Bleachbone Verge
+1 Scrubland
+1 Island Sanctuary
+12 Plains
+1 Shred Memory
+1 Slumbering Keepguard
+1 Flickering Ward
+1 Weathered Wayfarer
+1 Sheltered by Ghosts

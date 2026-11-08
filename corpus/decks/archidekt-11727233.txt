@@ -1,0 +1,103 @@
+# Archidekt — Jimmy's Choco | Extra Turns #60
+# source: archidekt:11727233
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Choco, Seeker of Paradise
+
+Deck:
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Jackdaw Savior
+1 Watcher of the Spheres
+1 Aven Mindcensor
+1 Yavimaya, Cradle of Growth
+1 Three Tree City
+1 Alchemist's Refuge
+1 Animal Sanctuary
+1 Windbrisk Heights
+1 Bountiful Promenade
+1 Rejuvenating Springs
+1 Flooded Strand
+1 Windswept Heath
+1 Command Tower
+1 Misty Rainforest
+1 Azorius Chancery
+1 Selesnya Sanctuary
+1 Simic Growth Chamber
+1 Meticulous Archive
+1 Hedge Maze
+1 Sea of Clouds
+1 Austere Command
+1 Maze of Ith
+3 Island
+2 Plains
+1 Sazh Katzroy
+1 Traveling Chocobo
+1 Bartz and Boko
+1 Amphin Mutineer
+1 Analyze the Pollen
+1 Torrential Gearhulk
+1 Timeless Witness
+1 Canoptek Scarab Swarm
+1 Airborne Aid
+1 Return of the Wildspeaker
+1 Esior, Wardwing Familiar
+1 Kastral, the Windcrested
+1 Plumecreed Escort
+1 Birds of Paradise
+1 Teferi's Protection
+1 Heroic Intervention
+1 Keeper of the Nine Gales
+1 Path to Exile
+1 Swords to Plowshares
+1 Mockingbird
+1 Winged Portent
+1 Aven Interrupter
+1 Ledger Shredder
+1 Emeria Angel
+1 Nimble Obstructionist
+1 Farseek
+1 Sink into Stupor // Soporific Springs
+1 Swan Song
+1 Alrund's Epiphany
+1 Dawn's Truce
+1 Akroma's Will
+1 Perch Protection
+1 Three Visits
+1 Requisition Raid
+1 Raise the Palisade
+1 Seaside Haven
+1 Kindred Discovery
+1 Noxious Revival
+1 Temple of the False God
+1 Sol Ring
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Breeding Pool
+1 Spara's Headquarters
+1 Hallowed Fountain
+1 Temple Garden
+1 Thrasios, Triton Hero
+1 Tatyova, Benthic Druid
+1 Tireless Provisioner
+1 Springheart Nantuko
+1 Sylvan Awakening
+1 Sevinne's Reclamation
+1 Ellie and Alan, Paleontologists
+1 Amulet of Vigor
+1 Frantic Search
+1 Deep Analysis
+1 Uro, Titan of Nature's Wrath
+1 Dig Through Time
+1 Hunting Grounds
+1 Shifting Woodland
+1 Path of Ancestry
+1 Field of the Dead
+1 The Great Henge
+1 Gilded Goose
+1 Aerial Extortionist
+1 The Goose Mother
+1 Urza's Saga
+1 Sword of Feast and Famine
+3 Forest

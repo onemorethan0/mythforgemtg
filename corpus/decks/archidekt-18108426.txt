@@ -1,0 +1,104 @@
+# Archidekt — BDD's Bracket 4 Azula Combo List
+# source: archidekt:18108426
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Talisman of Indulgence
+1 Sol Ring
+1 Training Center
+1 Xander's Lounge
+1 Waterlogged Teachings // Inundated Archive
+1 Exotic Orchard
+1 Abandon Attachments
+1 Invoke Calamity
+1 Desperate Ritual
+1 Mystical Teachings
+1 Reiterate
+1 Sazacap's Brew
+1 Lotus Petal
+1 Wan Shi Tong, Librarian
+1 Faerie Mastermind
+1 Nightscape Familiar
+1 Gifts Ungiven
+1 Borne Upon a Wind
+1 Chrome Mox
+1 Mox Diamond
+1 Gemstone Caverns
+1 Morphic Pool
+1 An Offer You Can't Refuse
+1 Highway Robbery
+1 Mistrise Village
+1 Sink into Stupor // Soporific Springs
+1 Fierce Guardianship
+1 Stubborn Denial
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Pinnacle Monk // Mystic Peak
+1 Vampiric Tutor
+1 Intuition
+1 Deflecting Swat
+1 Force of Will
+1 Izzet Signet
+1 Serum Visions
+1 Wishclaw Talisman
+1 Underground Sea
+1 Volcanic Island
+1 Watery Grave
+1 Badlands
+1 Blood Crypt
+1 Bloodstained Mire
+1 City of Brass
+1 Command Beacon
+1 Command Tower
+1 Luxury Suite
+1 Mana Confluence
+1 Polluted Delta
+1 Prismatic Vista
+1 Reflecting Pool
+1 Scalding Tarn
+1 Steam Vents
+1 Swan Song
+1 Thrill of Possibility
+1 Frantic Search
+1 Dark Ritual
+1 Talisman of Dominance
+1 Talisman of Creativity
+1 Arcane Signet
+1 Mystical Tutor
+1 Unexpected Windfall
+1 Big Score
+1 Force of Negation
+1 Pyretic Ritual
+1 Turnabout
+1 Underworld Breach
+1 Mystic Remora
+1 Fellwar Stone
+1 Demand Answers
+1 Rhystic Study
+1 Ancient Tomb
+1 Cavern of Souls
+1 Arcane Denial
+1 Narset's Reversal
+1 Muddle the Mixture
+1 Spellskite
+1 Final Fortune
+1 Comet Storm
+1 Seething Song
+1 Faithless Looting
+1 Ponder
+1 Brainstorm
+1 Preordain
+1 Valakut Awakening // Valakut Stoneforge
+1 Arid Mesa
+1 Imperial Seal
+1 Snapcaster Mage
+1 Pact of Negation
+1 Mana Vault
+3 Mountain
+3 Island
+1 Demonic Tutor
+1 Lightning Bolt
+1 Dimir Signet

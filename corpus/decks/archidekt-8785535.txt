@@ -1,0 +1,103 @@
+# Archidekt — Sisay And Hers Historic Friends(cEHD?)
+# source: archidekt:8785535
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Abrupt Decay
+1 Shang-Chi, Master of Kung Fu
+1 Arcane Signet
+1 Exotic Orchard
+1 Godless Shrine
+1 Hallowed Fountain
+1 Kutzil, Malamet Exemplar
+1 Overgrown Tomb
+1 Ruby, Daring Tracker
+1 Seedborn Muse
+1 Stomping Ground
+1 Temple Garden
+1 Watery Grave
+1 Oko, Thief of Crowns
+1 Steam Vents
+1 Nicol Bolas, Dragon-God
+1 Smothering Tithe
+1 Teferi, Time Raveler
+1 Faeburrow Elder
+1 Reflecting Pool
+1 Misty Rainforest
+1 Touch the Spirit Realm
+1 Mox Amber
+1 Chrome Mox
+1 Ioreth of the Healing House
+1 Intruder Alarm
+1 Lotho, Corrupt Shirriff
+1 Sol Ring
+1 Narset, Parter of Veils
+1 Forbidden Orchard
+1 Aminatou, the Fateshifter
+1 Redshift, Rocketeer Chief
+1 Breeding Pool
+1 Esper Sentinel
+1 Drannith Magistrate
+1 Enduring Vitality
+1 Saheeli Rai
+1 Oath of Teferi
+1 Agatha's Soul Cauldron
+1 Kinnan, Bonder Prodigy
+1 Derevi, Empyrial Tactician
+1 Ancient Tomb
+1 Arid Mesa
+1 Boseiju, Who Endures
+1 Gemstone Caverns
+1 Marsh Flats
+1 Windswept Heath
+1 Endurance
+1 Into the Flood Maw
+1 Rhystic Study
+1 Mystic Remora
+1 Silence
+1 Lotus Petal
+1 Grand Abolisher
+1 Swan Song
+1 Mana Drain
+1 Worldly Tutor
+1 Abigale, Eloquent First-Year
+1 Relic of Legends
+1 Umbral Mantle
+1 Emiel the Blessed
+1 Galadriel's Dismissal
+1 Enlightened Tutor
+1 Elvish Spirit Guide
+1 Simian Spirit Guide
+1 Marvin, Murderous Mimic
+1 Bloodstained Mire
+1 Delighted Halfling
+1 K-9, Mark I
+1 Tataru Taru
+1 Birds of Paradise
+1 Vampiric Tutor
+1 Tam, Mindful First-Year
+1 Orim's Chant
+1 Starting Town
+1 Green Sun's Zenith
+1 Mental Misstep
+1 Pollywog Prodigy
+1 Rising of the Day
+1 Command Tower
+1 Ragavan, Nimble Pilferer
+1 Fierce Guardianship
+1 Selvala, Heart of the Wilds
+1 Jegantha, the Wellspring
+1 City of Brass
+1 Polluted Delta
+1 Blood Crypt
+1 Flooded Strand
+1 Mana Vault
+1 Cyclonic Rift
+1 Flowering of the White Tree
+1 Swords to Plowshares
+1 Tarnished Citadel
+1 Mount Doom

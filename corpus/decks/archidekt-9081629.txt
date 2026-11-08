@@ -1,0 +1,97 @@
+# Archidekt — Dormammu I've Come to Bargain
+# source: archidekt:9081629
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lavinia, Azorius Renegade
+
+Deck:
+1 Arena Rector
+1 Karn Liberated
+1 Ranger-Captain of Eos
+1 Mystic Remora
+1 Omen Machine
+1 Knowledge Pool
+1 Dovin's Veto
+1 Aven Mindcensor
+1 Call the Gatewatch
+1 Dawn's Truce
+1 Urza's Sylex
+1 Treasure Mage
+1 Djeru, With Eyes Open
+1 Grafdigger's Cage
+1 Teferi's Protection
+1 Drannith Magistrate
+1 Pollywog Prodigy
+1 Esper Sentinel
+1 Narset, Parter of Veils
+1 Arcane Signet
+1 Teferi, Time Raveler
+1 Swords to Plowshares
+1 Archon of Emeria
+1 Ledger Shredder
+1 Sink into Stupor // Soporific Springs
+1 Eiganjo, Seat of the Empire
+1 Ethersworn Canonist
+1 Cathar Commando
+1 Grand Abolisher
+1 Containment Priest
+1 Winds of Abandon
+1 Blind Obedience
+1 Archivist of Oghma
+1 Sunder
+1 An Offer You Can't Refuse
+1 Flusterstorm
+1 Recruiter of the Guard
+1 Calamity's Wake
+1 Silence
+1 Delay
+1 Fellwar Stone
+1 Suspend
+1 Pongify
+1 Rhystic Study
+1 Swan Song
+1 Armageddon
+1 Memory Lapse
+1 Smothering Tithe
+1 Propaganda
+1 Ghostly Prison
+1 Counterspell
+1 Negate
+1 Volatile Stormdrake
+1 Lotus Petal
+1 Mind Stone
+1 Mindbreak Trap
+1 Tocatli Honor Guard
+1 Adarkar Wastes
+1 Azorius Signet
+1 Mystical Tutor
+1 Serra Ascendant
+1 Soulless Jailer
+1 Phyrexian Revoker
+1 Hallowed Fountain
+1 Windswept Heath
+1 Sol Ring
+1 Hengegate Pathway // Mistgate Pathway
+1 Urza's Saga
+1 Command Tower
+1 Exotic Orchard
+1 Azorius Chancery
+7 Plains
+1 Sea of Clouds
+1 Prismatic Vista
+1 Meticulous Archive
+6 Island
+1 Lonely Arroyo
+1 Marsh Flats
+1 Deserted Beach
+1 Otawara, Soaring City
+1 Recall
+1 Flooded Strand
+1 Mystic Gate
+1 Deafening Silence
+1 Strip Mine
+1 Ravages of War
+1 Arid Mesa
+1 Crucible of Worlds

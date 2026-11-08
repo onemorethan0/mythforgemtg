@@ -1,0 +1,108 @@
+# Archidekt — Belakor Demon Tribal
+# source: archidekt:3414749
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Be'lakor, the Dark Master
+
+Deck:
+1 Balor
+1 Demonlord Belzenlok
+1 Master of Cruelties
+1 Nykthos, Shrine to Nyx
+1 Dimir Aqueduct
+1 Izzet Boilerworks
+1 Rakdos Carnarium
+1 Fetid Pools
+1 Canyon Slough
+1 Blood Crypt
+1 Watery Grave
+1 Steam Vents
+1 Graven Cairns
+1 Sunken Ruins
+1 Herald's Horn
+1 Demonic Tutor
+1 Reaper from the Abyss
+1 Panharmonicon
+1 Dream Devourer
+1 Archfiend of Depravity
+1 Liliana's Contract
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Deathrender
+1 Conjurer's Closet
+1 Kardur, Doomscourge
+1 Sower of Discord
+1 Varragoth, Bloodsky Sire
+1 Call to the Kindred
+1 Cavern of Souls
+1 Embodiment of Agonies
+1 Xander's Lounge
+1 Luxury Suite
+1 Morphic Pool
+1 Training Center
+1 Swamp
+1 Sunken Hollow
+1 Exotic Orchard
+1 Crumbling Necropolis
+1 Command Tower
+1 Sol Ring
+1 Great Unclean One
+1 Herald of Slaanesh
+1 Lord of Change
+1 Rakdos, Lord of Riots
+1 Warstorm Surge
+1 Path of Ancestry
+1 Bloodthirster
+1 Bloodcrusher of Khorne
+1 Chaos Defiler
+1 Blasphemous Act
+1 Thran Dynamo
+1 Raphael, Fiendish Savior
+1 Cyclonic Rift
+1 Haunting Voyage
+1 Deflecting Swat
+1 Archfiend of Despair
+1 Harvester of Souls
+1 Secluded Courtyard
+1 Urza's Incubator
+1 Volrath's Stronghold
+1 Rite of Replication
+1 Reliquary Tower
+1 Rhystic Study
+1 Unclaimed Territory
+1 Damnation
+1 Thassa, Deep-Dwelling
+1 Rune-Scarred Demon
+1 Cabal Coffers
+1 Urborg, Tomb of Yawgmoth
+1 Mountain
+1 Underground Sea
+1 Whip of Erebos
+1 Volcanic Island
+1 Badlands
+1 Deadeye Navigator
+1 Malakir Rebirth // Malakir Mire
+1 Lord Xander, the Collector
+1 Reflections of Littjara
+1 Lightning Greaves
+1 Blade of Selves
+1 Blood Speaker
+1 Rakdos, the Showstopper
+1 Chromatic Lantern
+1 Glasspool Mimic // Glasspool Shore
+1 Island
+1 Sheoldred, Whispering One
+1 Relic of Sauron
+1 Thought Vessel
+1 Heartless Summoning
+1 Virtue of Knowledge // Vantress Visions
+1 Virtue of Persistence // Locthwain Scorn
+1 Decanter of Endless Water
+1 Temple of the False God
+1 Bloodletter of Aclazotz
+1 Roaming Throne
+1 Rakdos, Patron of Chaos
+1 Ob Nixilis, the Adversary
+1 Ob Nixilis, Unshackled
+1 Ancient Cellarspawn

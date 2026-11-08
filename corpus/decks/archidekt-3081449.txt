@@ -1,0 +1,100 @@
+# Archidekt — Wizard Kindred with Grixis Marchesa, the Black Rose
+# source: archidekt:3081449
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Marchesa, the Black Rose
+
+Deck:
+1 Unspeakable Symbol
+1 Azami, Lady of Scrolls
+1 Naban, Dean of Iteration
+1 Bloodline Necromancer
+1 Harmonic Prodigy
+1 Stonybrook Banneret
+1 Vedalken Aethermage
+1 Galecaster Colossus
+1 Vindictive Lich
+1 Urza's Incubator
+1 Molten Echoes
+1 Riptide Laboratory
+1 Mystic Sanctuary
+1 Metallic Mimic
+1 Sage of Fables
+1 Dire Fleet Ravager
+1 Basalt Ravager
+1 Talisman of Creativity
+1 Sol Ring
+1 Anathemancer
+1 Forbidden Orchard
+1 Flame of Anor
+1 Descendants' Fury
+1 Gleeful Arsonist
+1 Feywild Caretaker
+1 Andúril, Narsil Reforged
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+1 Verity Circle
+1 Morphic Pool
+1 Docent of Perfection // Final Iteration
+1 Sower of Temptation
+1 Patron Wizard
+1 Tersa Lightshatter
+1 High Fae Trickster
+1 Pensive Professor
+1 Robe of the Archmagi
+1 Tishana's Tidebinder
+1 Dimir Signet
+1 Ripples of Potential
+1 Ensnare
+1 Raise the Palisade
+1 Feed the Swarm
+1 Wave Goodbye
+1 Archmage of Echoes
+1 Geothermal Bog
+1 Command Tower
+1 Dragonskull Summit
+1 Sunken Hollow
+1 Path of Ancestry
+2 Mountain
+8 Island
+1 Roaming Throne
+1 Exotic Orchard
+1 Inalla, Archmage Ritualist
+1 Contaminated Aquifer
+1 Secluded Courtyard
+1 Underground River
+1 Arcane Signet
+1 Shivan Reef
+1 Swamp
+1 Ingenious Prodigy
+1 Sulfur Falls
+1 Crumbling Necropolis
+1 Gisa, Glorious Resurrector
+1 Bojuka Bog
+1 Aether Channeler
+1 Shared Animosity
+1 Opal Palace
+1 Temple of Deceit
+1 Glen Elendra Archmage
+1 Unclaimed Territory
+1 Midnight Clock
+1 Smoldering Marsh
+1 Pollywog Prodigy
+1 Rakdos Signet
+1 Undercity Sewers
+1 Aegar, the Freezing Flame
+1 Keen Duelist
+1 Mana Sculpt
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+1 Rakdos Charm
+1 Izzet Signet
+1 Circle of Power
+1 Naktamun Lorespinner // Wheel of Fortune
+1 Wizard's Staff
+1 Glen Elendra Guardian
+1 Tarnished Citadel
+1 Drowned Catacomb
+1 Molten Tributary
+1 Seasoned Cryomancer
+1 Stingcaster Mage

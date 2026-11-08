@@ -1,0 +1,108 @@
+# Archidekt — Kneel for Monarchs
+# source: archidekt:2659039
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Rhoda, Geist Avenger
+1 Timin, Youthful Geist
+
+Deck:
+1 Mystic Sanctuary
+1 Snow-Covered Island
+1 Snow-Covered Plains
+1 Hallowed Fountain
+1 Marsh Flats
+1 Flooded Strand
+1 You See a Guard Approach
+1 Restoration Magic
+1 Savor the Moment
+1 Otawara, Soaring City
+1 Misty Rainforest
+1 Reliquary Tower
+1 Swan Song
+1 Charismatic Conqueror
+1 Aboshan, Cephalid Emperor
+1 Snap
+1 Misdirection
+1 Snow-Covered Island
+1 Snow-Covered Island
+1 Sunstrike Legionnaire
+1 Command Tower
+1 Arid Mesa
+1 Forbidden Orchard
+1 Prismatic Vista
+1 Fabled Passage
+1 Sea of Clouds
+1 Plaza of Heroes
+1 Tundra
+1 Polluted Delta
+1 Scalding Tarn
+1 Windswept Heath
+1 Monstrosity of the Lake
+1 Talon Gates of Madara
+1 Dowsing Dagger // Lost Vale
+1 Mystic Remora
+1 Meticulous Archive
+1 Ledger Shredder
+1 Faerie Mastermind
+1 Mind Over Matter
+1 Turnabout
+1 Ultimecia, Temporal Threat
+1 Urza's Saga
+1 Siren Stormtamer
+1 Cryptic Command
+1 Multiversal Passage
+1 Loki, God of Mischief
+1 Blustersquall
+1 Topplegeist
+1 Spectacular Spider-Man
+1 Sol Ring
+1 The One Ring
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Loran of the Third Path
+1 Galadriel's Dismissal
+1 Adarkar Wastes
+1 March of Swirling Mist
+1 Snow-Covered Island
+1 Lórien Revealed
+1 Esper Sentinel
+1 Assassin Gauntlet
+1 Spider-Sense
+1 Force of Negation
+1 Dovin's Veto
+1 Mana Drain
+1 Sejiri Shelter // Sejiri Glacier
+1 Azure Beastbinder
+1 Sink into Stupor // Soporific Springs
+1 Sword of Feast and Famine
+1 Suppression Ray // Orderly Plaza
+1 Lotus Petal
+1 High Tide
+1 Ensnare
+1 Jwari Disruption // Jwari Ruins
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Duelist of the Mind
+1 Shorikai, Genesis Engine
+1 Clever Concealment
+1 Reset
+1 Verity Circle
+1 Smothering Tithe
+1 Hidden Strings
+1 Teferi, Master of Time
+1 The Queen of Dale
+1 Force of Will
+1 Nykthos, Shrine to Nyx
+1 King T'Challa // Black Panther, Hope Enduring
+1 The Theorist, Jace Beleren
+1 Flare of Denial
+1 Mistrise Village
+1 Turbulent Shore
+1 Trouble in Pairs
+1 Dismantling Wave
+1 Muraganda Raceway
+1 Vnwxt, Verbose Host
+1 Into the Flood Maw
+1 Betrayal
+1 An Offer You Can't Refuse

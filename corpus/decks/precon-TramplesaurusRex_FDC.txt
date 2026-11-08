@@ -1,0 +1,78 @@
+# WotC precon — Tramplesaurus Rex (FDC, 2026-10-02)
+# source: mtgjson:TramplesaurusRex_FDC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Ghalta, Primal Hunger
+
+Deck:
+1 Arachnogenesis
+1 Arasta of the Endless Web
+1 Beast Whisperer
+1 Beast Within
+1 Birds of Paradise
+1 Bite Down
+1 Bonders' Enclave
+1 Carnage Tyrant
+1 Challenger Troll
+1 Clifftop Lookout
+1 Collective Resistance
+1 Colossal Majesty
+1 Commander's Sphere
+1 Curious Altisaur
+1 Dungrove Elder
+1 Elder Gargaroth
+1 Elemental Bond
+1 Elvish Mystic
+1 Ezuri's Predation
+32 Forest
+1 Fyndhorn Elves
+1 Garruk's Packleader
+1 Garruk's Uprising
+1 Gigantosaurus
+1 Goreclaw, Terror of Qal Sisma
+1 Harmonize
+1 Hulking Raptor
+1 Ilysian Caryatid
+1 Kenrith's Transformation
+1 Llanowar Elves
+1 Llanowar Tribe
+1 Loot, Exuberant Explorer
+1 Managorger Hydra
+1 Monstrous Onslaught
+1 Mosswort Bridge
+1 Overwhelming Stampede
+1 Paradise Druid
+1 Pugnacious Hammerskull
+1 Ram Through
+1 Regal Imperiosaur
+1 Rhonas the Indomitable
+1 Rhonas's Monument
+1 Ripjaw Raptor
+1 Rishkar's Expertise
+1 Rishkar, Peema Renegade
+1 Rogue's Passage
+1 Scavenger Grounds
+1 Scavenging Ooze
+1 Scrapshooter
+1 Shamanic Revelation
+1 Sol Ring
+1 Steel Leaf Champion
+1 Surrak and Goreclaw
+1 Surrak, the Hunt Caller
+1 Swiftfoot Boots
+1 Tamiyo's Safekeeping
+1 Tangleweave Armor
+1 Terrian, World Tyrant
+1 Thickest in the Thicket
+1 Thrashing Brontodon
+1 Tranquil Thicket
+1 Unnatural Growth
+1 Verdant Sun's Avatar
+1 War Room
+1 Whiptongue Hydra
+1 Whisperer of the Wilds
+1 Witch's Clinic
+1 Yeva, Nature's Herald

@@ -1,0 +1,92 @@
+# Archidekt — Kotori - Fun With Vehicles ($150)
+# source: archidekt:4567808
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Kotori, Pilot Prodigy
+
+Deck:
+1 Command Tower
+1 Prairie Stream
+1 Skycloud Expanse
+1 Imposter Mech
+1 Parhelion II
+1 Temple of Enlightenment
+1 Weatherlight
+1 Colossal Plow
+1 Rivendell
+1 Slaughter the Strong
+1 Path of Ancestry
+1 Razortide Bridge
+1 Deserted Beach
+1 Mystic Gate
+1 Glacial Fortress
+1 Nimbus Maze
+1 Forensic Gadgeteer
+1 Ghostly Pilferer
+1 Rolling Hamsphere
+1 Dazzling Theater // Prop Room
+1 Foundry Inspector
+1 Deadeye Quartermaster
+1 Fallowsage
+1 The Prydwen, Steel Flagship
+1 Attentive Sunscribe
+1 Dispatch
+1 Anchor to Reality
+1 Surgehacker Mech
+1 Cybership
+1 Skysovereign, Consul Flagship
+1 Mighty Servant of Leuk-o
+1 The Indomitable
+1 Mysterious Limousine
+1 Cultivator's Caravan
+1 Prodigy's Prototype
+1 Aerial Surveyor
+1 Shorikai, Genesis Engine
+1 Consulate Dreadnought
+1 Cosima, God of the Voyage // The Omenkeel
+1 Salvation Engine
+1 Transit Mage
+1 Mu Yanling, Wind Rider
+1 Guidelight Optimizer
+1 Iron Spider, Stark Upgrade
+1 Sram, Senior Edificer
+1 Deluxe Dragster
+1 Skyclave Apparition
+1 Unstable Glyphbridge // Sandswirl Wanderglyph
+1 Necron Monolith
+1 Voyager Quickwelder
+1 Midnight Crusader Shuttle
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Mangara, the Diplomat
+1 Arcum Dagsson
+1 Uthros Psionicist
+1 Adarkar Wastes
+1 Alisaie Leveilleur
+1 Split Up
+1 Haliya, Guided by Light
+1 Abandoned Air Temple
+1 Mole Module
+1 Sting, the Glinting Dagger
+1 The Thanos-Copter
+1 Vibranium Mining Mech
+1 Dependable Quinjet
+1 N'Yami-Class Mother Ship
+1 Shuri, Wakandan Inventor
+1 Gleaming Bastion
+1 Floodfarm Verge
+8 Island
+1 Drumbellower
+10 Plains
+1 Turbulent Shore
+1 Thunderhawk Gunship
+1 Lita, Mechanical Engineer
+1 Loran of the Third Path
+1 Faerie Mastermind
+1 King T'Challa // Black Panther, Hope Enduring
+1 Reaver Titan
+1 Nautiloid Ship
+1 Sea of Clouds
+1 Hallowed Fountain
+1 Delney, Streetwise Lookout

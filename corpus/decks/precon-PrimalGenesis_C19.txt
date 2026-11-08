@@ -1,0 +1,93 @@
+# WotC precon — Primal Genesis (C19, 2019-08-23)
+# source: mtgjson:PrimalGenesis_C19
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Ghired, Conclave Exile
+
+Deck:
+1 Angel of Sanctions
+1 Ash Barrens
+1 Atla Palani, Nest Tender
+1 Beast Within
+1 Blossoming Sands
+1 Boros Garrison
+1 Cinder Glade
+1 Cliffside Rescuer
+1 Colossal Majesty
+1 Command Tower
+1 Commander's Insignia
+1 Cultivate
+1 Desolation Twin
+1 Doomed Artisan
+1 Dragonmaster Outcast
+1 Druid's Deliverance
+1 Elemental Bond
+1 Emmara Tandris
+1 Evolving Wilds
+1 Exotic Orchard
+1 Explore
+1 Farseek
+1 Feldon of the Third Path
+1 Flamerush Rider
+8 Forest
+1 Fresh Meat
+1 Full Flowering
+1 Gargoyle Castle
+1 Garruk's Packleader
+1 Garruk, Primal Hunter
+1 Ghired's Belligerence
+1 Giant Adephage
+1 Graypelt Refuge
+1 Growing Ranks
+1 Gruul Turf
+1 Harmonize
+1 Hate Mirage
+1 Heart-Piercer Manticore
+1 Hour of Reckoning
+1 Idol of Oblivion
+1 Intangible Virtue
+1 Jungle Shrine
+1 Kazandu Refuge
+1 Krosan Verge
+1 Lightning Greaves
+1 Marisi, Breaker of the Coil
+1 Mimic Vat
+1 Momentous Fall
+4 Mountain
+1 Myriad Landscape
+1 Naya Charm
+1 Naya Panorama
+1 Ohran Frostfang
+1 Phyrexian Rebirth
+7 Plains
+1 Rampaging Baloths
+1 Roc Egg
+1 Rogue's Passage
+1 Rootborn Defenses
+1 Rugged Highlands
+1 Sakura-Tribe Elder
+1 Scaretiller
+1 Second Harvest
+1 Selesnya Eulogist
+1 Selesnya Sanctuary
+1 Shamanic Revelation
+1 Slice in Twain
+1 Sol Ring
+1 Song of the Worldsoul
+1 Soul Foundry
+1 Soul of Zendikar
+1 Sundering Growth
+1 Sungrass Prairie
+1 Tahngarth, First Mate
+1 Tectonic Hellion
+1 Terramorphic Expanse
+1 Thragtusk
+1 Trostani's Judgment
+1 Trostani, Selesnya's Voice
+1 Vitu-Ghazi Guildmage
+1 Voice of Many
+1 Wayfaring Temple
+1 Wingmate Roc

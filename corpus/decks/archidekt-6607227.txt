@@ -1,0 +1,107 @@
+# Archidekt — The Engine's Awakening
+# source: archidekt:6607227
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Shorikai, Genesis Engine
+
+Deck:
+1 Into the Flood Maw
+1 Imposter Mech
+3 Island
+1 Mystic Sanctuary
+1 Supreme Verdict
+1 Spire of Industry
+1 Dramatic Reversal
+1 Fellwar Stone
+1 Talisman of Progress
+1 Hullbreaker Horror
+1 Blind Obedience
+1 Manifold Key
+1 Unwinding Clock
+1 Sol Ring
+1 Cyclonic Rift
+1 Swords to Plowshares
+1 Chrome Mox
+1 Rest in Peace
+1 Voltaic Key
+1 Enlightened Tutor
+1 Mystical Tutor
+1 Fabricate
+1 Emergence Zone
+1 An Offer You Can't Refuse
+1 Inventors' Fair
+1 Eiganjo, Seat of the Empire
+1 Flusterstorm
+1 Urza's Saga
+1 Mana Vault
+1 Humility
+1 Mindbreak Trap
+1 Force of Negation
+1 Mental Misstep
+1 Cursed Totem
+1 Narset, Parter of Veils
+1 Academy Ruins
+1 Out of Time
+1 Silence
+1 Meticulous Archive
+1 Trickbind
+1 Mox Diamond
+1 Grim Monolith
+1 Isochron Scepter
+1 Proteus Staff
+1 Otawara, Soaring City
+1 Lotus Petal
+1 Plains
+1 Mistrise Village
+1 Capsize
+1 The One Ring
+1 Codex Shredder
+1 Vexing Bauble
+1 Mystic Remora
+1 Dress Down
+1 Skullclamp
+1 Torpor Orb
+1 Grafdigger's Cage
+1 Consign to Memory
+1 Azorius Signet
+1 Arcane Signet
+1 Orim's Chant
+1 Rhystic Study
+1 Brain Freeze
+1 Strix Serenade
+1 Sink into Stupor // Soporific Springs
+1 Borne Upon a Wind
+1 Snap
+1 Stock Up
+1 Teferi, Time Raveler
+1 Chain of Vapor
+1 Scalding Tarn
+1 Polluted Delta
+1 Prismatic Vista
+1 Mox Opal
+1 Marsh Flats
+1 Arid Mesa
+1 Pithing Needle
+1 Hengegate Pathway // Mistgate Pathway
+1 Swan Song
+1 Pact of Negation
+1 Muddle the Mixture
+1 Command Tower
+1 Glacial Fortress
+1 Spell Pierce
+1 Darksteel Citadel
+1 Mana Drain
+1 Force of Will
+1 Fierce Guardianship
+1 Hallowed Fountain
+1 Adarkar Wastes
+1 Ancient Tomb
+1 Windswept Heath
+1 Ancient Den
+1 Seat of the Synod
+1 Flooded Strand
+1 Merchant Scroll
+1 Sevinne's Reclamation
+1 Polymorph

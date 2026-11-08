@@ -1,0 +1,101 @@
+# Archidekt — Secret Slivers
+# source: archidekt:5841678
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The First Sliver
+
+Deck:
+1 Sliver Hivelord
+1 Ketria Triome
+1 City of Brass
+1 Descendants' Path
+1 Cloudshredder Sliver
+1 Crypt Sliver
+1 Crystalline Sliver
+1 Raffine's Tower
+1 Inevitable Betrayal
+1 Mana Echoes
+1 Zagoth Triome
+1 Savai Triome
+1 Sliver Queen
+1 Sylvan Library
+1 Regal Sliver
+2 Island
+1 Indatha Triome
+2 Plains
+1 Sliver Gravemother
+2 Swamp
+1 Firewake Sliver
+1 Heart Sliver
+1 Wooded Foothills
+1 Flooded Strand
+1 Magma Sliver
+1 Sliver Legion
+1 Essence Sliver
+1 Syphon Sliver
+1 Hibernation Sliver
+1 Quick Sliver
+1 Taunting Sliver
+1 Ward Sliver
+1 Hatchery Sliver
+1 Intruder Alarm
+1 Profane Tutor
+1 Manaweft Sliver
+1 Gemhide Sliver
+1 Swords to Plowshares
+1 Cavern of Souls
+1 Elven Chorus
+1 Stomping Ground
+1 Survival of the Fittest
+1 Sol Ring
+1 The One Ring
+1 Blasphemous Act
+1 Amulet of Vigor
+1 Herald's Horn
+1 Root Sliver
+1 Arcane Signet
+1 Command Tower
+1 Blood Crypt
+1 Marsh Flats
+1 Windswept Heath
+1 Chrome Mox
+1 Misty Rainforest
+1 Sliver Hive
+1 Mana Confluence
+1 Teferi's Protection
+1 Spiteful Sliver
+1 Diffusion Sliver
+1 Dregscape Sliver
+1 Farseek
+1 Chromatic Lantern
+1 Morophon, the Boundless
+1 Cyclonic Rift
+2 Mountain
+2 Forest
+1 Shifting Sliver
+1 Venom Sliver
+1 Galerider Sliver
+1 Synapse Sliver
+1 Path of Ancestry
+1 Lavabelly Sliver
+1 Secluded Courtyard
+1 Harmonic Sliver
+1 Temple Garden
+1 Raugrin Triome
+1 Hallowed Fountain
+1 Sliver Overlord
+1 Bloodstained Mire
+1 Bloom Tender
+1 Rhystic Study
+1 Defense of the Heart
+1 Reflecting Pool
+1 Virulent Sliver
+1 The Soul Stone
+1 Akroma's Memorial
+1 Gifts Ungiven
+1 Roaming Throne
+1 Constricting Sliver
+1 Basal Sliver
+1 Harmonized Crescendo

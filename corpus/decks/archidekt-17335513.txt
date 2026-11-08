@@ -1,0 +1,97 @@
+# Archidekt — Sephiroth//Endless Whispers
+# source: archidekt:17335513
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Atraxa, Grand Unifier
+
+Deck:
+1 Endless Whispers
+1 Homeward Path
+1 Go for the Throat
+1 Midgar, City of Mako // Reactor Raid
+1 Exotic Orchard
+1 Forest
+1 Command Tower
+1 Perplexing Chimera
+1 Tetzimoc, Primal Death
+1 Mirror of Fate
+1 Urborg, Tomb of Yawgmoth
+1 Xiahou Dun, the One-Eyed
+1 Grave Pact
+1 Platinum Angel
+1 Doomsday Excruciator
+1 Doomsday
+1 Hellcarver Demon
+1 Shrouded Lore
+1 Kain, Traitorous Dragoon
+1 Noxious Revival
+1 Woodland Cemetery
+1 Yavimaya, Cradle of Growth
+1 Necropotence
+1 Drowned Catacomb
+1 Isolated Chapel
+1 Mox Tantalite
+1 Swords to Plowshares
+1 An Offer You Can't Refuse
+1 Phyrexian Metamorph
+1 Reflecting Pool
+1 Forbidden Orchard
+1 Sol Ring
+1 Gwenom, Remorseless
+1 Assassin's Trophy
+1 Ghost Vacuum
+1 Phage the Untouchable
+1 Sheoldred, the Apocalypse
+1 Expedition Map
+1 Lotus Bloom
+1 Hex Parasite
+1 Plaguecrafter
+1 Living Death
+1 Bleachbone Verge
+1 Gloomlake Verge
+1 Wastewood Verge
+1 Imperial Seal
+1 Overkill
+1 Birds of Paradise
+1 Dark Ritual
+1 Liliana Vess
+1 Abyssal Persecutor
+1 Chain of Vapor
+1 Mirri's Guile
+1 Wishclaw Talisman
+1 Planar Incision
+1 Rebuff the Wicked
+1 Tainted Wood
+1 Phyrexian Tower
+1 Archfiend of the Dross
+1 Peer into the Abyss
+1 Teferi's Puzzle Box
+1 Lightning Greaves
+13 Swamp
+1 Nature's Claim
+1 Ulamog's Crusher
+1 Demonic Tutor
+1 Jumbo Cactuar
+1 Arcane Signet
+1 Pia, Aether Ascetic
+1 Horobi, Death's Wail
+1 Shattered Sanctum
+1 Zodiark, Umbral God
+1 Dauthi Voidwalker
+1 Invasion of Zendikar // Awakened Skyclave
+1 Fellwar Stone
+1 Shipwreck Marsh
+1 Island
+1 Deathcap Glade
+1 Plains
+1 Mirage Mirror
+1 Anticausal Vestige
+1 What Must Be Done
+1 Boseiju, Who Endures
+1 Bender's Waterskin
+1 Darksteel Mutation
+1 Equipoise
+1 Rule of Law
+1 Summon: Primal Odin

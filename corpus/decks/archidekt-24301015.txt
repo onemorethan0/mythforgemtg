@@ -1,0 +1,87 @@
+# Archidekt — wordle
+# source: archidekt:24301015
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Missy
+
+Deck:
+6 Swamp
+1 Anger
+1 Balor
+1 Joven
+6 Island
+1 Command Tower
+12 Snow-Covered Mountain
+1 Guile
+1 Dread
+1 Filth
+1 Clone
+1 Vrock
+1 Grief
+1 Shyft
+1 Wight
+1 Draco
+1 Marut
+1 Shuko
+1 Mimic
+1 Knife
+1 Lunge
+1 Crash
+1 Crush
+1 Rouse
+1 Fling
+1 Eject
+1 Brand
+1 Annul
+1 Parch
+1 Delay
+1 Brawl
+1 Glint
+1 Scrap
+1 Shock
+1 Feint
+1 Flare
+1 Flunk
+1 Fugue
+1 Melee
+1 Repel
+1 Reset
+1 Shunt
+1 Sleep
+1 Addle
+1 Smash
+1 Joust
+1 Panic
+1 Skred
+1 Savor
+1 Singe
+1 Smelt
+1 Douse
+1 Index
+1 Whack
+1 Blaze
+1 Flood
+1 Gloom
+1 Snort
+1 Roast
+1 Havoc
+1 Probe
+1 Taunt
+1 Annex
+1 Greed
+1 Blink
+1 Smoke
+1 Cactus Preserve
+1 Crumbling Necropolis
+1 Canyon Slough
+1 Dismal Backwater
+1 Graven Cairns
+1 Drossforge Bridge
+1 Izzet Boilerworks
+1 Molten Tributary
+1 Izzet Guildgate
+1 Submerged Boneyard
+1 Silverbluff Bridge
+1 Sunken Ruins

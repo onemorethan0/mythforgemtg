@@ -1,0 +1,89 @@
+# Archidekt — Dina, Soul Steeper - Pauper Commander
+# source: archidekt:5732407
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Dina, Soul Steeper
+
+Deck:
+1 Reckoner's Bargain
+1 Tamiyo's Safekeeping
+1 Weather the Storm
+1 Trespasser's Curse
+1 Dreg Recycler
+1 Kazandu Nectarpot
+1 Jaddi Offshoot
+1 Infuse with Vitality
+1 Sakura-Tribe Elder
+1 Grazing Gladehart
+1 Natural End
+1 Moldering Karok
+1 Witherbloom Pledgemage
+1 Creeping Bloodsucker
+1 Marauding Blight-Priest
+1 Deathgreeter
+1 Dogged Pursuit
+1 Social Climber
+1 Urborg Repossession
+1 Serrated Scorpion
+1 Many Partings
+1 Vampire Neonate
+1 Village Rites
+1 Tragic Slip
+1 Professor of Zoomancy
+1 Fog of War
+1 Respite
+1 Sign in Blood
+1 Read the Bones
+1 Revive the Shire
+1 Severed Strands
+1 Scale the Heights
+1 Pest Summoning
+1 Hunt for Specimens
+1 Unearth
+1 Syphon Mind
+1 Ill-Gotten Inheritance
+1 Radiant Fountain
+1 Golgari Rot Farm
+1 Obscura Storefront
+1 Seraph Sanctuary
+11 Swamp
+1 Bojuka Bog
+1 Cabaretti Courtyard
+1 Riveteers Overlook
+1 Command Tower
+1 Brokers Hideout
+1 Maestros Theater
+1 Jungle Hollow
+1 Luxa River Shrine
+1 Essence Warden
+1 Blisterpod
+1 Nested Shambler
+1 Viridian Emissary
+1 Mortuary Mire
+1 Khalni Garden
+1 Dark Ritual
+1 Mintstrosity
+1 Macabre Waltz
+1 Novice Occultist
+1 Gibbering Barricade
+1 Kaya's Ghostform
+1 Sam's Desperate Rescue
+1 Deadly Dispute
+1 Acolyte of Aclazotz
+1 Agate-Blade Assassin
+1 Sunshower Druid
+1 Adventurer's Inn
+1 Fear of Lost Teeth
+10 Forest
+1 Carrier Thrall
+1 Lembas
+1 Sephiroth's Intervention
+1 Sami's Curiosity
+1 Germinating Wurm
+1 Arcane Signet
+1 Shopkeeper's Bane
+1 Studious First-Year // Rampant Growth
+1 Send in the Pest
+1 Grapple with Death

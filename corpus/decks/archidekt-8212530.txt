@@ -1,0 +1,108 @@
+# Archidekt — Song of Time and Theory
+# source: archidekt:8212530
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 River Song
+
+Deck:
+1 Solve the Equation
+1 Mox Diamond
+1 Mana Drain
+1 Tomb Trawler
+1 Radiant Performer
+1 Tolaria West
+1 Lightning Bolt
+1 Abrade
+1 Mox Opal
+1 Lightning Greaves
+1 Mindbreak Trap
+1 Faerie Mastermind
+1 Mental Misstep
+1 Talisman of Creativity
+1 Pyroblast
+1 Muddle the Mixture
+1 Rapid Hybridization
+1 Chaos Warp
+1 Clout of the Dominus
+1 Lotus Petal
+1 Sol Ring
+1 Deflecting Swat
+1 Izzet Signet
+1 Timestream Navigator
+1 Swan Song
+1 An Offer You Can't Refuse
+1 The Reality Chip
+1 Conjurer's Bauble
+1 Command Tower
+1 Training Center
+1 Cascade Bluffs
+1 Gamble
+1 Blasphemous Act
+1 Scalding Tarn
+1 Imperial Recruiter
+1 Fiery Islet
+1 Polluted Delta
+1 Shivan Reef
+1 Steam Vents
+1 Sulfur Falls
+1 Mystic Remora
+1 Pongify
+1 Time Warp
+1 Arcane Signet
+1 Cyclonic Rift
+1 Flusterstorm
+1 Fierce Guardianship
+1 Chrome Mox
+1 Pollywog Prodigy
+1 Force of Negation
+1 Simian Spirit Guide
+1 Rhystic Study
+1 Borne Upon a Wind
+1 Ancient Tomb
+1 The One Ring
+1 Strix Serenade
+1 Step Through
+1 Mana Vault
+1 Emergence Zone
+1 Archmage Emeritus
+1 Ragavan, Nimble Pilferer
+1 Gemstone Caverns
+1 Rite of Flame
+1 Spellseeker
+1 Jeska's Will
+1 Cloak and Dagger
+1 Phantasmal Image
+1 Flesh Duplicate
+1 Glasspool Mimic // Glasspool Shore
+1 Mockingbird
+1 Phyrexian Metamorph
+1 Imposter Mech
+1 Field of Ruin
+1 Pinnacle Monk // Mystic Peak
+1 Sundering Eruption // Volcanic Fissure
+1 Inventors' Fair
+1 Professional Face-Breaker
+1 Force of Will
+1 Veronica, Dissident Scribe
+1 Captain Lannery Storm
+1 Magda, Brazen Outlaw
+1 Sink into Stupor // Soporific Springs
+1 Island
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Flooded Strand
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Wooded Foothills
+1 Seat of the Synod
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Arid Mesa
+1 Thundering Falls
+1 Great Furnace
+1 Volcanic Island
+1 Niv-Mizzet, Parun
+1 Fellwar Stone
+1 Dualcaster Mage
+1 Molten Duplication
+1 Curiosity

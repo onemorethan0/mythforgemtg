@@ -1,0 +1,83 @@
+# Archidekt — Krenkoooooooooo
+# source: archidekt:5953530
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Krenko, Mob Boss
+
+Deck:
+1 Faithless Looting
+1 Goro-Goro, Disciple of Ryusei
+1 Lightning Crafter
+1 Sting, the Glinting Dagger
+1 War Room
+1 Goblin Ringleader
+1 Muxus, Goblin Grandee
+1 Swiftfoot Boots
+1 Hammer of Purphoros
+1 Goblin Lookout
+1 Goblin Instigator
+1 Conspicuous Snoop
+1 Brightstone Ritual
+1 Ruby Medallion
+1 Siege-Gang Commander
+1 Thousand-Year Elixir
+1 Pashalik Mons
+1 Goblin Chirurgeon
+1 Goblin Trashmaster
+1 Thornbite Staff
+1 Magewright's Stone
+1 Imperial Recruiter
+1 Goblin Warchief
+1 Gamble
+1 Jeska's Will
+1 Mana Echoes
+1 Nykthos, Shrine to Nyx
+1 Red Elemental Blast
+1 Great Furnace
+1 Rundvelt Hordemaster
+1 Lightning Greaves
+1 Goblin Recruiter
+1 Krenko's Command
+1 Goblin Matron
+1 Goblin Sharpshooter
+1 Pyroblast
+1 Goblin Welder
+1 Goblin Sledder
+1 Skirk Prospector
+1 Moria Marauder
+1 Ashnod's Altar
+1 Staff of Domination
+1 Ancient Tomb
+1 Krenko, Tin Street Kingpin
+1 Gemstone Caverns
+1 Hall of the Bandit Lord
+1 Last-Ditch Effort
+1 Altar of the Brood
+1 Den of the Bugbear
+1 Cavern of Souls
+1 Goblin King
+1 Sol Ring
+1 Ruination
+1 Winds of Change
+1 Banner of Kinship
+1 Phyrexian Altar
+1 General Kreat, the Boltbringer
+1 Eldrazi Monument
+1 Goblin Chieftain
+1 Goblin Bombardment
+1 Purphoros, God of the Forge
+1 Fabled Passage
+1 Umbral Mantle
+1 Blood Moon
+1 Arena of Glory
+1 Grenzo, Havoc Raiser
+23 Mountain
+1 Impact Tremors
+1 Skullclamp
+1 Arcane Signet
+1 Kiki-Jiki, Mirror Breaker
+1 The Fire Crystal
+1 Mass Hysteria
+1 Untimely Malfunction

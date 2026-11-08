@@ -1,0 +1,98 @@
+# Archidekt — There's Always More Heads
+# source: archidekt:7576349
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Progenitus
+
+Deck:
+3 Island
+1 Grakmaw, Skyclave Ravager
+1 Genesis Hydra
+1 Ironscale Hydra
+1 Ulvenwald Hydra
+1 Stumpsquall Hydra
+1 Bristling Hydra
+1 Briar Hydra
+1 Path of Ancestry
+1 Rampant Growth
+1 Neverwinter Hydra
+1 Shineshadow Snarl
+1 Khalni Hydra
+1 Hooded Hydra
+1 Clockwork Hydra
+1 Temple of Mystery
+1 Nessian Wilds Ravager
+1 Capricopian
+1 Feral Hydra
+1 Primordial Hydra
+1 Rampant Rejuvenator
+1 Kodama's Reach
+1 Thunderous Snapper
+1 Savageborn Hydra
+1 Hinterland Harbor
+1 Prairie Stream
+1 Urza's Incubator
+1 Hungering Hydra
+1 Sheltered Thicket
+1 Sol Ring
+1 Mistcutter Hydra
+1 Unclaimed Territory
+1 Morophon, the Boundless
+1 The Goose Mother
+1 Command Tower
+1 Lifeblood Hydra
+1 Zaxara, the Exemplary
+1 Polukranos, World Eater
+1 Cultivate
+1 Secluded Courtyard
+1 Arcane Signet
+1 Steelbane Hydra
+1 Honored Hydra
+1 Farseek
+1 Sprouting Phytohydra
+1 Oran-Rief Hydra
+1 Gyrus, Waker of Corpses
+1 Vastwood Hydra
+1 Whiptongue Hydra
+1 Canopy Vista
+1 Jetmir's Garden
+1 Gargos, Vicious Watcher
+1 Goldvein Hydra
+1 Scourge of Skola Vale
+1 Domesticated Hydra
+1 Benevolent Hydra
+1 Ulasht, the Hate Seed
+1 Heroes' Bane
+1 Hydra Omnivore
+1 Lair of the Hydra
+1 Apocalypse Hydra
+1 Cinder Glade
+1 Hydra Broodmaster
+3 Forest
+1 Phytohydra
+1 Kalonian Hydra
+1 Unbound Flourishing
+1 Managorger Hydra
+1 Hydroid Krasis
+1 Temple Garden
+1 Clifftop Retreat
+1 Polukranos, Unchained
+1 Hardened Scales
+1 Ramunap Hydra
+1 Apex Devastator
+1 Scattered Groves
+1 Shivan Devastator
+1 Polukranos Reborn // Polukranos, Engine of Ruin
+3 Mountain
+3 Plains
+3 Swamp
+1 Voracious Hydra
+1 Riverpyre Verge
+1 Sunpetal Grove
+1 Nyxborn Hydra
+1 Yavimaya, Cradle of Growth
+1 Skyshroud Claim
+1 Xander's Lounge
+1 Rampaging Aetherhood

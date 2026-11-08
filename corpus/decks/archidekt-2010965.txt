@@ -1,0 +1,91 @@
+# Archidekt — 1 - Farideh
+# source: archidekt:2010965
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Farideh, Devil's Chosen
+
+Deck:
+1 Wild Magic Surge
+1 Expressive Iteration
+1 Blasphemous Act
+1 Pixie Guide
+1 Reckless Endeavor
+1 Arcane Endeavor
+1 Chaos Dragon
+1 Gale's Redirection
+1 Strength-Testing Hammer
+1 Blade of Shared Souls
+1 Molten Tributary
+1 Mathise, Surge Channeler
+1 The Surgical Bay
+1 Niv-Mizzet, Parun
+1 Niv-Mizzet, the Firemind
+1 Thought Vessel
+1 Pongify
+1 Archmage Emeritus
+1 Talisman of Creativity
+1 Izzet Signet
+1 Rapid Hybridization
+1 Counterspell
+1 Chaos Channeler
+1 Wizard's Spellbook
+1 Power of Persuasion
+1 Hoarding Ogre
+1 Brazen Dwarf
+1 Delina, Wild Mage
+1 Feywild Trickster
+1 Contact Other Plane
+1 Scion of Stygia
+1 Djinni Windseer
+1 The Deck of Many Things
+1 Wizard Class
+1 Barbarian Class
+1 Farideh's Fireball
+1 Bucknard's Everfull Purse
+1 Ebony Fly
+1 Diviner's Portent
+1 Netherese Puzzle-Ward
+1 Sword of Hours
+1 Component Pouch
+1 Berserker's Frenzy
+1 Maddening Hex
+1 Mind Stone
+1 Brainstorm
+1 Sol Ring
+1 Arcane Signet
+1 Sulfur Falls
+1 Mystic Sanctuary
+1 Frostboil Snarl
+1 Temple of Epiphany
+1 Reliquary Tower
+1 Underdark Rift
+1 Evolving Wilds
+10 Island
+9 Mountain
+1 Halimar Depths
+1 Resculpt
+1 Swiftwater Cliffs
+1 Stormcarved Coast
+1 Ravenform
+1 Wayfarer's Bauble
+1 Ancient Copper Dragon
+1 Ancient Silver Dragon
+1 Robe of the Archmagi
+1 Thunderwave
+1 Vexing Puzzlebox
+1 Wand of Wonder
+1 Wyll's Reversal
+1 Wyll, Blade of Frontiers
+1 Cone of Cold
+1 Izzet Charm
+1 Mask of the Schemer
+1 Monitor Monitor
+1 Hand of Vecna
+1 Reality Shift
+1 Training Center
+1 Command Tower
+1 Restless Spire
+1 The Locust God
+1 Fireball

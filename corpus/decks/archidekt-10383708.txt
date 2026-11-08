@@ -1,0 +1,81 @@
+# Archidekt — Kefnet, God of the Greedy Pot
+# source: archidekt:10383708
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 God-Eternal Kefnet
+
+Deck:
+1 Propaganda
+1 Sapphire Medallion
+1 Psychosis Crawler
+1 Divination
+1 Emrakul's Messenger
+1 Mystic Sanctuary
+1 Quick Study
+1 Aetherize
+1 Baral, Chief of Compliance
+1 Reliquary Tower
+1 Curious Homunculus // Voracious Reader
+1 Body of Knowledge
+1 Thought Vessel
+1 Sol Ring
+1 Scavenger Grounds
+1 Secrets of the Golden City
+1 Counsel of the Soratami
+1 Ghost Quarter
+1 Terrain Generator
+1 Myriad Landscape
+1 Wayfarer's Bauble
+1 Haughty Djinn
+1 Wizard Class
+1 Proft's Eidetic Memory
+1 Thunderclap Drake
+1 Arcane Signet
+1 Chasm Skulker
+1 Nadir Kraken
+1 Dissipation Field
+1 Foresee
+1 Mathise, Surge Channeler
+28 Island
+1 Temple of the False God
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Field Research
+1 Pearl of Wisdom
+1 Winged Words
+1 Tamiyo's Epiphany
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Lulu, Stern Guardian
+1 Chemister's Insight
+1 Tragic Lesson
+1 Weave Fate
+1 Alandra, Sky Dreamer
+1 Of One Mind
+1 Syr Elenora, the Discerning
+1 Combat Tutorial
+1 Coastal Discovery
+1 Touch of Brilliance
+1 Words of Wisdom
+1 Stock Up
+1 Teachings of the Archaics
+1 Tezzeret's Gambit
+1 Kiora, the Rising Tide
+1 Spirit Water Revival
+1 Jace's Triumph
+1 Chart a Course
+1 Distorted Curiosity
+1 Frantic Search
+1 Artificer's Epiphany
+1 Graceful Adept
+1 Thran Dynamo
+1 Spellbook
+1 Commence the Endgame
+1 Meeting of Minds
+1 Gush
+1 Seize the Secrets
+1 Catalog
+1 Lyra, Tolarian Archangel
+1 Geist of Saint Thalia
+1 Donatello's Technique
+1 Ominous Seas

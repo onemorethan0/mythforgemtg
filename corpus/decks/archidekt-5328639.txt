@@ -1,0 +1,87 @@
+# Archidekt — Lord Skitter, Sewer King
+# source: archidekt:5328639
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Lord Skitter, Sewer King
+
+Deck:
+1 Sheoldred's Edict
+1 Darksteel Ingot
+1 Fellwar Stone
+1 Chittering Witch
+1 Experimental Confectioner
+1 Reckoner's Bargain
+1 Oversold Cemetery
+1 Drown in Ichor
+1 Patriarch's Bidding
+1 Burglar Rat
+1 Nashi, Moon Sage's Scion
+1 Gnawing Vermin
+1 Ogre Slumlord
+1 Twisted Sewer-Witch
+1 Rat Out
+1 Lord Skitter's Blessing
+1 Piper of the Swarm
+1 Rats' Feast
+1 Warehouse Tabby
+1 Nezumi Bladeblesser
+1 Nasty End
+1 Skullsnatcher
+1 Old Flitterfang
+1 Tangled Colony
+1 Nowhere to Run
+1 Sigil of Myrkul
+1 Kindred Dominance
+1 Bladebrand
+1 Skullclamp
+1 You Are Already Dead
+1 Arcane Signet
+1 Sol Ring
+1 Patchwork Banner
+1 Okiba-Gang Shinobi
+1 Hall of Triumph
+1 Blightbelly Rat
+1 Charcoal Diamond
+1 Shelob's Ambush
+1 Pact of the Serpent
+1 Eaten Alive
+1 Orcish Medicine
+1 Gothmog, Morgul Lieutenant
+1 Bone Splinters
+1 Hero's Downfall
+1 Extract the Truth
+1 Polluted Mire
+1 Barren Moor
+1 Revenge of Ravens
+1 Vanquisher's Banner
+1 Revenge of the Rats
+1 Escape Tunnel
+1 The Dross Pits
+1 Engine Rat
+1 Bojuka Bog
+1 Mortuary Mire
+1 Rogue's Passage
+1 Undercity Dire Rat
+1 Carrion Rats
+1 Chittering Rats
+1 Chittering Skitterling
+1 Disease Carriers
+1 Mukotai Ambusher
+1 Innocuous Rat
+1 Lord Skitter's Butcher
+1 Nezumi Cutthroat
+1 Nezumi Prowler
+1 Nezumi Informant
+1 Nezumi Linkbreaker
+1 Plague Rats
+1 Ravenous Rats
+1 Okiba Reckoner Raid // Nezumi Road Captain
+1 Ossuary Rats
+1 Refurbished Familiar
+1 Swarm of Rats
+1 Typhoid Rats
+1 Voracious Vermin
+24 Swamp
+1 Mirkwood Bats

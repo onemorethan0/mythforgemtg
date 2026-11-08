@@ -1,0 +1,101 @@
+# Archidekt — Saheeli - Copy Combo (B4)
+# source: archidekt:5768819
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Saheeli, the Sun's Brilliance
+
+Deck:
+1 Soul-Guide Lantern
+1 Etherium Sculptor
+1 Enthusiastic Mechanaut
+1 Imperial Recruiter
+1 Scalding Tarn
+1 Steam Vents
+1 Training Center
+1 Talisman of Creativity
+1 Shivan Reef
+1 Command Tower
+1 Sulfur Falls
+1 Cyclonic Rift
+1 Whir of Invention
+1 Trinket Mage
+1 Jhoira, Weatherlight Captain
+1 Paradoxical Outcome
+1 Mana Vault
+1 Pongify
+1 Lightning Greaves
+1 Arcum's Astrolabe
+1 Panharmonicon
+1 An Offer You Can't Refuse
+1 Spirebluff Canal
+1 Polluted Delta
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Fabled Passage
+1 Mox Amber
+1 Prophetic Prism
+1 Spellseeker
+1 Goblin Engineer
+1 Inventors' Fair
+1 Timestream Navigator
+1 Fierce Guardianship
+1 Lavaspur Boots
+1 Cascade Bluffs
+1 Fiery Islet
+1 Volatile Fjord
+1 Sol Ring
+1 Arcane Signet
+1 Izzet Signet
+1 Fellwar Stone
+1 Thought Vessel
+1 Vandalblast
+1 Swan Song
+1 Rings of Brighthearth
+1 Isochron Scepter
+1 Dramatic Reversal
+1 Mystical Tutor
+1 Coveted Jewel
+1 Ichor Wellspring
+1 Lembas
+1 The Mightstone and Weakstone
+1 Guild Globe
+1 Displacer Kitten
+1 Flooded Strand
+1 Arid Mesa
+1 Emry, Lurker of the Loch
+1 Energy Refractor
+1 Thundering Falls
+1 Deflecting Swat
+1 Basalt Monolith
+1 Forensic Gadgeteer
+1 Pinnacle Monk // Mystic Peak
+1 Urza's Saga
+1 Archway of Innovation
+1 Stormcarved Coast
+1 Mana Drain
+1 Prismatic Vista
+1 Volcanic Island
+1 Mox Opal
+1 Capture of Jingzhou
+1 Worldwalker Helm
+1 Ancient Tomb
+1 Grim Monolith
+1 Instant Ramen
+1 Force of Will
+1 Snow-Covered Mountain
+1 Archaeomancer
+1 Chrome Mox
+6 Snow-Covered Island
+1 Rhystic Study
+1 Urza, Lord High Artificer
+1 Force of Negation
+1 Riverpyre Verge
+1 Mishra's Workshop
+1 Cryogen Relic
+1 Reshape
+1 Golden Egg
+1 Pact of Negation
+1 Hurkyl's Recall

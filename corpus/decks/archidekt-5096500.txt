@@ -1,0 +1,108 @@
+# Archidekt — 5. Commander Esika
+# source: archidekt:5096500
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Lotho, Corrupt Shirriff
+1 Sterling Grove
+1 Marsh Flats
+1 Kona, Rescue Beastie
+1 Zagoth Triome
+1 Pippin, Guard of the Citadel
+1 Idyllic Beachfront
+1 Heroes' Podium
+1 Wooded Ridgeline
+1 Haunted Mire
+1 Geothermal Bog
+1 Frontier Bivouac
+1 Primevals' Glorious Rebirth
+1 Jhoira, Weatherlight Captain
+1 Arvad the Cursed
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Mystic Monastery
+1 Jodah, the Unifier
+1 Razorverge Thicket
+1 Opulent Palace
+1 The World Tree
+1 Nomad Outpost
+1 Sisay, Weatherlight Captain
+1 Arcane Sanctum
+1 Emmara, Soul of the Accord
+1 Saryth, the Viper's Fang
+1 Sol Ring
+1 Kinnan, Bonder Prodigy
+1 Oviya Pashiri, Sage Lifecrafter
+1 Path of Ancestry
+1 Seaside Citadel
+1 Jolrael, Mwonvuli Recluse
+1 Sandsteppe Citadel
+1 Eerie Ultimatum
+1 Boseiju, Who Endures
+1 Command Tower
+1 Raggadragga, Goreguts Boss
+1 Intruder Alarm
+1 Reki, the History of Kamigawa
+1 Teshar, Ancestor's Apostle
+1 Worldly Tutor
+1 Vampiric Tutor
+1 Grim Tutor
+1 Delighted Halfling
+1 Chulane, Teller of Tales
+1 Arcane Signet
+1 Cloudstone Curio
+1 Zur the Enchanter
+1 Jetmir's Garden
+1 Xander's Lounge
+1 Raffine's Tower
+1 Farseek
+1 Inga and Esika
+1 Beseech the Mirror
+1 Relic of Legends
+1 Shanid, Sleepers' Scourge
+1 Hajar, Loyal Bodyguard
+1 Faeburrow Elder
+1 Ringsight
+1 Saint Traft and Rem Karolus
+1 Aggravated Assault
+1 Muldrotha, the Gravetide
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Profane Tutor
+1 Magda, Brazen Outlaw
+1 Nature's Will
+1 Enlightened Tutor
+1 Birds of Paradise
+1 Legolas's Quick Reflexes
+1 Sakashima of a Thousand Faces
+1 City of Brass
+1 Kodama of the East Tree
+1 Akroma's Will
+1 Windswept Heath
+1 Flooded Strand
+1 Basim Ibn Ishaq
+1 Urabrask the Hidden
+1 Boromir, Warden of the Tower
+1 Underworld Breach
+1 Smothering Tithe
+1 Selesnya Sanctuary
+1 Exotic Orchard
+1 Lush Portico
+1 Elegant Parlor
+1 Deathcap Glade
+1 Morphic Pool
+1 Wooded Foothills
+1 Raucous Theater
+1 Spectator Seating
+1 Haunted Ridge
+1 Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar
+1 Mirri, Weatherlight Duelist
+1 Crumbling Necropolis
+1 Captain Sisay
+1 Cruel Tutor
+1 Gamble
+1 Berta, Wise Extrapolator
+1 The One Ring
+1 Ratadrabik of Urborg

@@ -1,0 +1,108 @@
+# Archidekt — Francisco, Fowl Marauder & Ishai, Ojutai Dragonspeaker
+# source: archidekt:9663211
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Francisco, Fowl Marauder
+1 Ishai, Ojutai Dragonspeaker
+
+Deck:
+1 Tivit, Seller of Secrets
+1 Swan Song
+1 Pact of Negation
+1 Praetor's Grasp
+1 Marsh Flats
+1 Polluted Delta
+1 Notion Thief
+1 Archon of Emeria
+1 Ledger Shredder
+1 Cyclonic Rift
+1 Dauthi Voidwalker
+1 Path to Exile
+1 Demonic Consultation
+1 An Offer You Can't Refuse
+1 Lotho, Corrupt Shirriff
+1 Dark Ritual
+1 Mockingbird
+1 Reanimate
+1 Walking Ballista
+1 Lavinia, Azorius Renegade
+1 Morphic Pool
+1 Grand Abolisher
+1 Grand Arbiter Augustin IV
+1 Borne Upon a Wind
+1 Entomb
+1 Smothering Tithe
+1 Profane Tutor
+1 Flare of Fortitude
+1 Sevinne's Reclamation
+1 Blind Obedience
+1 Fellwar Stone
+1 Underground River
+1 Caves of Koilos
+1 Time Sieve
+1 Ghost Quarter
+1 Flooded Strand
+1 Talisman of Progress
+1 Exotic Orchard
+1 Arcane Signet
+1 Defense Grid
+1 Talisman of Hierarchy
+1 Agatha's Soul Cauldron
+1 Cephalid Coliseum
+1 Spire of Industry
+1 Tyrite Sanctum
+1 Shadowy Backstreet
+1 Flusterstorm
+1 Teferi, Time Raveler
+1 Aven Mindcensor
+1 Valley Floodcaller
+1 Malcolm, Keen-Eyed Navigator
+1 Mystic Remora
+1 Lotus Petal
+1 Thassa's Oracle
+1 Ad Nauseam
+1 Bolas's Citadel
+1 Grafdigger's Cage
+1 Lim-Dûl's Vault
+1 Talion, the Kindly Lord
+1 Necropotence
+1 Combat Research
+1 Undercity Sewers
+1 City of Brass
+1 Eiganjo, Seat of the Empire
+1 Shipwreck Marsh
+1 Windfall
+1 Gemstone Mine
+1 Wishclaw Talisman
+1 Fierce Guardianship
+1 Into the Flood Maw
+1 Command Tower
+1 Adarkar Wastes
+1 Bleachbone Verge
+1 Sol Ring
+1 Watery Grave
+1 Godless Shrine
+1 Final Parting
+1 Voice of Victory
+1 Mystical Tutor
+1 Mental Misstep
+1 Leonardo, Cutting Edge
+1 Teferi's Protection
+1 Swords to Plowshares
+1 Island
+1 Swamp
+1 Scrubland
+1 Tundra
+1 Underground Sea
+1 Plains
+1 Displacer Kitten
+1 Lightning Greaves
+1 Baleful Strix
+1 Silence
+1 Toxic Deluge
+1 Stormscape Familiar
+1 Force of Will
+1 Floodfarm Verge
+1 Talisman of Dominance

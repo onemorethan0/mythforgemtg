@@ -1,7 +1,8 @@
 # Archidekt — Seb McKinnon ESPER
 # source: archidekt:15440527
 # fetched: 2026-08-26
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Farewell); Bracket 1 allows 0
 
 Commander:
 1 Aminatou, the Fateshifter

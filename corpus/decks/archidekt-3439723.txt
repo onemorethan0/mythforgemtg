@@ -1,0 +1,92 @@
+# Archidekt — Heartless Hidetsugu - 2HG
+# source: archidekt:3439723
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Heartless Hidetsugu
+
+Deck:
+1 Lightning Mauler
+1 Tarnished Citadel
+1 Jeska's Will
+1 Open the Omenpaths
+1 Crashing Drawbridge
+1 Bitter Reunion
+1 Mana Confluence
+1 Fever Charm
+1 Mox Diamond
+1 Deflecting Swat
+1 Wooded Foothills
+1 Jeweled Amulet
+1 Ancient Tomb
+1 Reckless Impulse
+1 Prismatic Vista
+1 Lion's Eye Diamond
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Pyroblast
+1 Chrome Mox
+1 Goblin Motivator
+1 Mogg Fanatic
+1 Desperate Ritual
+1 Lotus Petal
+1 Expedite
+1 Skirk Prospector
+1 Pyretic Ritual
+1 Arid Mesa
+1 Seething Song
+1 Simian Spirit Guide
+1 Fervent Strike
+1 Cavern of Souls
+1 Crystal Vein
+1 Sunscorched Desert
+1 Rite of Flame
+1 Scalding Tarn
+1 Arena of Glory
+1 Vessel of Volatility
+1 Untimely Malfunction
+1 Hexing Squelcher
+1 Arcane Signet
+1 Reckless Barbarian
+1 Fanatical Firebrand
+1 Lightning Greaves
+1 Mana Vault
+1 Lava Dart
+1 Torch Courier
+1 Sol Ring
+1 Generator Servant
+1 Grim Monolith
+1 Bloodlust Inciter
+1 Shinen of Fury's Fire
+1 Treasonous Ogre
+1 Trailblazing Historian
+1 Need for Speed
+1 Mass Hysteria
+1 Ashling's Prerogative
+1 Crash
+1 Gut Shot
+1 Crimson Wisps
+1 Mogg Salvage
+1 Chaos Charm
+1 Lightning Bolt
+1 Samut's Sprint
+1 Surge of Zeal
+1 Smelt
+1 Red Elemental Blast
+1 Unnatural Speed
+1 Barbarian Ring
+1 City of Brass
+1 City of Traitors
+1 Ramunap Ruins
+1 Gemstone Caverns
+17 Mountain
+1 Faithless Looting
+1 Wrenn's Resolve
+1 Strike It Rich
+1 Maximize Velocity
+1 Mishra's Command
+1 Marvin, Murderous Mimic
+1 Skateboard
+1 Bloodstained Mire
+1 Sundering Eruption // Volcanic Fissure
+1 Boots of Speed

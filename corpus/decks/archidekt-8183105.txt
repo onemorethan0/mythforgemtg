@@ -1,0 +1,108 @@
+# Archidekt — Proliferation Station
+# source: archidekt:8183105
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Helga, Skittish Seer
+
+Deck:
+1 Innkeeper's Talent
+1 Forest
+1 Giggling Skitterspike
+1 Vorinclex, Monstrous Raider
+1 Danny Pink
+1 Pollywog Prodigy
+1 Concordant Crossroads
+1 Mutational Advantage
+1 Legolas's Quick Reflexes
+1 Defiler of Vigor
+1 Herd Heirloom
+1 Goldvein Hydra
+1 Seedborn Muse
+1 Spara's Headquarters
+1 Minas Tirith
+1 Rogue's Passage
+1 Adagia, Windswept Bastion
+1 Ulamog, the Defiler
+1 Windswept Heath
+1 Avacyn, Angel of Hope
+1 Exotic Orchard
+1 Sol Ring
+1 Dreamtide Whale
+1 Command Tower
+1 Dreamroot Cascade
+1 Forest
+1 Railway Brawler
+1 Ancient Tomb
+1 Misty Rainforest
+1 Floodfarm Verge
+1 Hushwood Verge
+1 Hedge Maze
+1 Lush Portico
+1 Bountiful Promenade
+1 Meticulous Archive
+1 Island
+1 Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar
+1 An Offer You Can't Refuse
+1 Lightning Greaves
+1 Temple Garden
+1 Fierce Guardianship
+1 Ozolith, the Shattered Spire
+1 High Fae Trickster
+1 Willowrush Verge
+1 Pathbreaker Ibex
+1 Solitude
+1 Enduring Curiosity
+1 Intruder Alarm
+1 Craterhoof Behemoth
+1 Forest
+1 Forest
+1 Island
+1 Island
+1 Three Visits
+1 Sink into Stupor // Soporific Springs
+1 Hallowed Fountain
+1 Burgeoning
+1 Path to Exile
+1 Swords to Plowshares
+1 Heroic Intervention
+1 Brightglass Gearhulk
+1 Grand Abolisher
+1 Wan Shi Tong, Librarian
+1 Sakashima's Student
+1 Eladamri's Call
+1 Castle Garenbrig
+1 Breeding Pool
+1 The Earth Crystal
+1 Chulane, Teller of Tales
+1 Beast Whisperer
+1 Surrak and Goreclaw
+1 Hinterland Harbor
+1 Arcane Denial
+1 Ouroboroid
+1 Overgrown Farmland
+1 Metastatic Evangel
+1 Supreme Verdict
+1 Rampaging Yao Guai
+1 Birds of Paradise
+1 Cyclonic Rift
+1 Mockingbird
+1 Power Fist
+1 Island
+1 Walking Ballista
+1 Reliquary Tower
+1 Hullbreaker Horror
+1 Selvala, Heart of the Wilds
+1 Vigor
+1 Hardened Scales
+1 Vorinclex, Voice of Hunger
+1 Twenty-Toed Toad
+1 Flooded Strand
+1 Gleaming Bastion
+1 Noble Hierarch
+1 Gathering Place
+1 Kiora, Behemoth Beckoner
+1 Bloom Tender
+1 Brokers Ascendancy
+1 Evolution Witness

@@ -1,0 +1,106 @@
+# Archidekt — Vorthos Urza
+# source: archidekt:4162098
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Vorthos, Steward of Myth
+
+Deck:
+1 Phyrexian Arena
+1 Evolving Wilds
+1 Brainstorm
+1 Dismantling Blow
+1 Opportunity
+1 Command Tower
+1 Stroke of Genius
+1 Stern Lesson
+1 Plaza of Heroes
+1 The Antiquities War
+1 Tocasia's Welcome
+1 The Brothers' War
+1 Spire of Industry
+1 Urza's Saga
+1 Urza, Chief Artificer
+1 Urza, Lord Protector
+1 Urza, Powerstone Prodigy
+1 Urza, Prince of Kroog
+1 Urza's Command
+1 Urza's Rebuff
+1 Urza's Ruinous Blast
+1 Mishra, Eminent One
+1 Mishra, Claimed by Gix
+1 Mishra, Tamer of Mak Fawa
+1 Mistvault Bridge
+1 Drossforge Bridge
+1 Goldmire Bridge
+1 Power Depot
+1 Razortide Bridge
+1 The Mightstone and Weakstone
+1 Rustvale Bridge
+1 Go for the Throat
+1 Silverbluff Bridge
+1 Ill-Gotten Gains
+1 Adarkar Wastes
+1 Caves of Koilos
+1 Shivan Reef
+1 Sulfur Falls
+1 Mishra, Excavation Prodigy
+1 Thran Portal
+1 Ash Barrens
+1 Sulfurous Springs
+1 Plains
+1 Cascade Bluffs
+1 Swamp
+1 Great Furnace
+1 Path of Ancestry
+1 Ashnod's Intervention
+1 Seat of the Synod
+1 Tawnos, Urza's Apprentice
+1 Vault of Whispers
+2 Island
+2 Mountain
+1 Legions to Ashes
+1 Loran of the Third Path
+1 Liberator, Urza's Battlethopter
+1 Phyrexian Dragon Engine
+1 Platoon Dispenser
+1 Weatherlight
+1 Memory Jar
+1 Mishra's Bauble
+1 Urza's Bauble
+1 Gerrard, Weatherlight Hero
+1 Karn, Scion of Urza
+1 Wondrous Crucible
+1 Hostile Negotiations
+1 Darkwater Catacombs
+1 Urza's Cave
+1 Mishra's Research Desk
+1 Bitter Reunion
+1 Ancient Den
+1 Crumbling Necropolis
+1 Graaz, Unstoppable Juggernaut
+1 Wake the Past
+1 Visions of Phyrexia
+1 Chromatic Sphere
+1 Loran, Disciple of History
+1 Darksteel Citadel
+1 Battlefield Forge
+1 Shadowblood Ridge
+1 Tawnos, Solemn Survivor
+1 Repair and Recharge
+1 Chromatic Star
+1 Ponder
+1 Attunement
+1 Skycloud Expanse
+1 Trading Post
+1 Cityscape Leveler
+1 Phyrexian Triniform
+1 Portal to Phyrexia
+1 Argivian Restoration
+1 Campus Renovation
+1 Refurbish
+1 Tune Up
+1 Soul-Guide Lantern
+1 Thran Dynamo
+1 Yawgmoth's Vile Offering

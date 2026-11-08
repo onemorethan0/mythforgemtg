@@ -1,0 +1,96 @@
+# Archidekt — Zurgo, the Problem
+# source: archidekt:7194090
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zurgo Helmsmasher
+
+Deck:
+1 Base Camp
+1 Buried Ruin
+1 Concealed Courtyard
+1 Barbed Servitor
+1 Swords to Plowshares
+1 Legion Leadership // Legion Stronghold
+1 Sejiri Steppe
+1 Myriad Landscape
+1 Path to Exile
+1 Path of Ancestry
+1 Nomad Outpost
+1 Arcane Signet
+1 Sol Ring
+1 Talisman of Hierarchy
+1 Bonders' Enclave
+1 Blacksmith's Skill
+1 Talisman of Indulgence
+1 Showstopping Surprise
+1 Ethereal Haze
+1 Untimely Malfunction
+1 Too Greedily, Too Deep
+1 Sunhome, Fortress of the Legion
+1 Command Tower
+1 Resolute Strike
+1 Overpowering Attack
+1 Saving Grace
+1 Gideon's Sacrifice
+1 Brash Taunter
+1 Pariah
+1 Shattered Landscape
+1 Exorcise
+1 Relentless Assault
+1 Inventory Management
+1 Stuffy Doll
+1 Cleansing Wildfire
+1 Chandra's Ignition
+1 Bolt Bend
+1 Dawn Charm
+1 Duelist's Heritage
+1 Flaming Fist
+1 Waltz of Rage
+5 Plains
+5 Mountain
+1 Skyclave Relic
+1 Worldslayer
+1 Drossforge Bridge
+1 Goldmire Bridge
+1 Rustvale Bridge
+1 Darksteel Ingot
+1 Darksteel Citadel
+1 Not of This World
+1 Greed
+1 Blazing Sunsteel
+1 Gornog, the Red Reaper
+1 Deflecting Palm
+1 Talisman of Conviction
+5 Swamp
+1 Full Throttle
+1 The Sibsig Ceremony
+1 Temple of Malice
+1 Sheltered by Ghosts
+1 Loxodon Warhammer
+1 Pain for All
+1 Darksteel Myr
+1 Ghost Quarter
+1 Giggling Skitterspike
+1 Pit of Offerings
+1 Urza's Cave
+1 Axgard Armory
+1 With Great Power . . .
+1 Hazoret, Godseeker
+1 Ragged Veins
+1 Magnetic Theft
+1 Norn's Decree
+1 Scythe of the Wretched
+1 Shifting Shadow
+1 Raiyuu, Storm's Edge
+1 Requiem Monolith
+1 The Sound of Drums
+1 Creepy Doll
+1 Erode
+1 Dawnsire, Sunstar Dreadnought
+1 Vanquish the Horde
+1 Blasphemous Act
+1 Nova Flame
+1 The Sentry, Golden Guardian
+1 Genji Glove

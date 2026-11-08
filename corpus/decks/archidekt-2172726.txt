@@ -1,0 +1,108 @@
+# Archidekt — Obeka: Cheat and Copy (With Primer)
+# source: archidekt:2172726
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Obeka, Brute Chronologist
+
+Deck:
+1 Anger
+1 Jaxis, the Troublemaker
+1 Lotus Field
+1 Luxury Suite
+1 Morphic Pool
+1 Steam Vents
+1 Sundial of the Infinite
+1 Kiki-Jiki, Mirror Breaker
+1 Takenuma, Abandoned Mire
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Training Center
+1 Arcane Signet
+1 Bloodstained Mire
+1 Twinflame
+1 Underworld Breach
+1 Warrior's Oath
+1 Watery Grave
+1 Blood Crypt
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Faithless Looting
+1 Reanimate
+1 Frantic Search
+1 Ideas Unbound
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Reflecting Pool
+1 Rionya, Fire Dancer
+1 Scalding Tarn
+1 Determined Iteration
+1 Last Chance
+1 Quantum Riddler
+1 Fellwar Stone
+1 Cyclonic Rift
+1 Nightscape Familiar
+1 Sol Ring
+1 Final Fortune
+1 Professional Face-Breaker
+1 Molten Duplication
+1 Mountain
+1 Wooded Foothills
+1 Arena of Glory
+1 Stock Up
+1 Demonic Tutor
+1 Emperor of Bones
+1 Enduring Curiosity
+1 Thundering Falls
+1 Animate Dead
+1 Arid Mesa
+1 Raucous Theater
+1 Jeska's Will
+1 Pyrogoyf
+1 Gloomlake Verge
+1 Multiversal Passage
+1 Horizon of Progress
+1 Molten Collapse
+1 Ledger Shredder
+1 Riverpyre Verge
+1 Sulfur Falls
+1 Blazemire Verge
+1 Redoubled Stormsinger
+1 Generous Plunderer
+1 Wheel of Fortune
+1 Devastating Onslaught
+1 Starwinder
+1 Psychic Frog
+1 Fury
+1 Spellseeker
+1 Consult the Star Charts
+1 Gifts Ungiven
+1 Fierce Guardianship
+1 Pinnacle Monk // Mystic Peak
+1 Swan Song
+1 Boggart Trawler // Boggart Bog
+1 Possibility Technician
+1 Deflecting Swat
+1 Ardent Elementalist
+1 Elegy Acolyte
+1 Toxic Deluge
+1 Consign to Memory
+1 Misty Rainforest
+1 Flooded Strand
+1 Expressive Iteration
+1 Grim Servant
+1 Saheeli Rai
+1 Turbulent Springs
+1 Snapcaster Mage
+1 Flashback
+1 Into the Flood Maw
+1 Command Tower
+1 Fiery Islet
+1 Force of Will
+1 Grim Hireling
+1 Faerie Mastermind
+1 Flow State
+1 Minamo, School at Water's Edge

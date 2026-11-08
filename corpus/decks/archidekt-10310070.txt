@@ -1,7 +1,8 @@
 # Archidekt — OG Ghired
 # source: archidekt:10310070
 # fetched: 2026-07-28
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Devastating Onslaught + Exalted Sunborn; Bracket 2 allows none
 
 Commander:
 1 Ghired, Conclave Exile

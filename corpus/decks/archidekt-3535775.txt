@@ -1,0 +1,99 @@
+# Archidekt — Wilhelt, the Rotcleaver - Zombo Combo
+# source: archidekt:3535775
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Darkwater Catacombs
+1 Carrion Feeder
+1 Cryptbreaker
+1 Undead Augur
+1 Headless Rider
+1 Cleaver Skaab
+1 Counterspell
+3 Island
+1 Reanimate
+1 Gravecrawler
+1 Diregraf Captain
+1 Diregraf Colossus
+1 Necroduality
+1 Vengeful Dead
+1 Feed the Swarm
+1 Relentless Dead
+1 Rooftop Storm
+1 Dreadhorde Invasion
+1 Death Baron
+1 Gray Merchant of Asphodel
+1 Noxious Ghoul
+1 Lord of the Undead
+1 Plague Belcher
+1 Path of Ancestry
+1 Exotic Orchard
+1 Command Tower
+1 Bojuka Bog
+1 Shipwreck Marsh
+1 Dimir Signet
+1 Zombie Master
+1 Ashnod's Altar
+1 Drowned Catacomb
+1 Morphic Pool
+1 An Offer You Can't Refuse
+1 Unholy Grotto
+1 Clearwater Pathway // Murkwater Pathway
+1 Feral Ghoul
+1 Zul Ashur, Lich Lord
+1 Living Death
+1 Arcane Denial
+1 Champion of the Perished
+1 Dark Ritual
+1 Kindred Discovery
+1 Geralf, the Fleshwright
+1 Bitter Triumph
+1 Cyclonic Rift
+1 Cavern of Souls
+1 Jet Medallion
+1 Demolition Field
+1 Undercity Sewers
+8 Swamp
+1 Bolas's Citadel
+1 Three Tree City
+1 Fell the Profane // Fell Mire
+1 Susur Secundi, Void Altar
+1 Skullclamp
+1 Warren Soultrader
+1 Will of the Abzan
+1 Cabal Coffers
+1 Malakir Rebirth // Malakir Mire
+1 Sink into Stupor // Soporific Springs
+1 Liliana, Dreadhorde General
+1 Hordewing Skaab
+1 Graveborn Muse
+1 Poppet Stitcher // Poppet Factory
+1 The Scarab God
+1 Undead Warchief
+1 Black Market Connections
+1 Watery Grave
+1 Grimgrin, Corpse-Born
+1 Field of the Dead
+1 Urborg, Tomb of Yawgmoth
+1 Ripples of Undeath
+1 Otawara, Soaring City
+1 The Meathook Massacre
+1 Phyrexian Tower
+1 Phyrexian Altar
+1 Takenuma, Abandoned Mire
+1 Urza's Incubator
+1 Archghoul of Thraben
+1 Midnight Reaper
+1 Talisman of Dominance
+1 Polluted Delta
+1 Roaming Throne
+1 Victimize
+1 Zombie Apocalypse
+1 Arcane Signet
+1 Funeral Room // Awakening Hall
+1 Chthonian Nightmare
+1 Mikaeus, the Unhallowed

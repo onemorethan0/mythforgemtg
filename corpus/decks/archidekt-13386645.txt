@@ -1,0 +1,103 @@
+# Archidekt — Fully Fledged Froggos [Bracket 3]
+# source: archidekt:13386645
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Glarb, Calamity's Augur
+
+Deck:
+1 Yavimaya Coast
+1 Three Tree Scribe
+1 Psychic Frog
+1 Underground River
+1 The Gitrog, Ravenous Ride
+1 Rampant Frogantua
+1 Octomancer
+1 Mistbreath Elder
+1 Vineglimmer Snarl
+1 Viridescent Bog
+1 Woodland Cemetery
+1 Long River Lurker
+1 Dour Port-Mage
+1 Pond Prophet
+1 Clement, the Worrywort
+1 Clifftop Lookout
+1 Lilysplash Mentor
+1 Grolnok, the Omnivore
+1 Froghemoth
+1 The Gitrog Monster
+1 Twenty-Toed Toad
+1 Spore Frog
+1 Foreboding Landscape
+3 Forest
+1 Hinterland Harbor
+3 Island
+1 Llanowar Wastes
+1 Necroblossom Snarl
+1 Pollywog Prodigy
+1 Bellowing Crier
+1 Muldrotha, the Gravetide
+1 Tatyova, Benthic Druid
+1 Aesi, Tyrant of Gyre Strait
+1 Realmwalker
+1 Elves of Deep Shadow
+1 Ramunap Excavator
+1 Sab-Sunen, Luxa Embodied
+1 Eternal Witness
+1 Reflections of Littjara
+1 Eye of Duskmantle
+1 Case of the Locked Hothouse
+1 Brainstorm
+1 Living Death
+1 Putrefy
+1 Crippling Fear
+1 Treasure Cruise
+1 Banner of Kinship
+1 Door of Destinies
+1 Enhanced Surveillance
+1 Fisher's Talent
+1 Choked Estuary
+1 Command Tower
+1 Darkwater Catacombs
+1 Dreamroot Cascade
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Fabled Passage
+1 Flooded Grove
+1 Overflowing Basin
+1 Path of Ancestry
+1 Sunken Hollow
+2 Swamp
+1 Tainted Isle
+1 Tainted Wood
+1 Temple of Deceit
+1 Temple of Malady
+1 Temple of Mystery
+1 Raise the Palisade
+1 Kindred Dominance
+1 Worldly Tutor
+1 Azusa, Lost but Seeking
+1 Vampiric Tutor
+1 Bolas's Citadel
+1 Birds of Paradise
+1 Exploration
+1 Delighted Halfling
+1 Utopia Sprawl
+1 Lotus Petal
+1 Dryad of the Ilysian Grove
+1 Heroic Intervention
+1 Displacer Kitten
+1 Breeding Pool
+1 Watery Grave
+1 Overgrown Tomb
+1 Polluted Delta
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Analyze the Pollen
+1 Nature's Rhythm
+1 Traverse the Ulvenwald
+1 Dark Ritual
+1 Assassin's Trophy
+1 Rapid Hybridization
+1 Fortune Teller's Talent

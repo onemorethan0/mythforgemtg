@@ -1,0 +1,99 @@
+# Archidekt — Gorgon-tuan Problem
+# source: archidekt:10498451
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Aphelia, Viper Whisperer
+
+Deck:
+7 Swamp
+1 Scourge of the Undercity
+1 Vraska, Golgari Queen
+5 Forest
+1 Pharika's Spawn
+1 Pharika, God of Affliction
+1 Llanowar Wastes
+1 Undergrowth Stadium
+1 Vraska, Betrayal's Sting
+1 Treasured Find
+1 Hythonia the Cruel
+1 Visara the Dreadful
+1 Pharika's Mender
+1 Xathrid Gorgon
+1 Reaper of the Wilds
+1 Archetype of Finality
+1 Loathsome Curator
+1 Gorgon Recluse
+1 Gaze of Granite
+1 Venomous Hierophant
+1 Sisters of Stone Death
+1 Woodland Cemetery
+1 Tainted Wood
+1 Command Tower
+1 Twilight Mire
+1 Pitiless Gorgon
+1 Killing Glare
+1 Assassin's Trophy
+1 Vraska's Contempt
+1 Temple of Malady
+1 Rattleback Apothecary
+1 Vraska, the Silencer
+1 Undercity Eliminator
+1 Vraska the Unseen
+1 Vraska's Fall
+1 Bojuka Bog
+1 Nature's Lore
+1 Arcane Signet
+1 Pharika's Chosen
+1 Night's Whisper
+1 Jungle Hollow
+1 Necroblossom Snarl
+1 Evolving Wilds
+1 Deathcap Glade
+1 Rogue's Passage
+1 Reliquary Tower
+1 Darkmoss Bridge
+1 Talisman of Resilience
+1 Triumph of the Hordes
+1 Tower Winder
+1 Terramorphic Expanse
+1 Viridian Longbow
+1 Costly Plunder
+1 Phyrexian Arena
+1 Wastewood Verge
+1 Annihilating Glare
+1 Case of the Gorgon's Kiss
+1 Evolutionary Leap
+1 Path of Ancestry
+1 Changeling Outcast
+1 Infernal Medusa
+1 Snakeskin Veil
+1 Hooded Blightfang
+1 Whispersilk Cloak
+1 Gaze of the Gorgon
+1 Korozda Gorgon
+1 Vraska, Relic Seeker
+1 Vraska, Swarm's Eminence
+1 Vraska's Finisher
+1 Woodland Chasm
+1 Hissing Quagmire
+1 Lounge
+1 Vernal Fen
+1 Keepsake Gorgon
+1 Farseek
+1 Turbulent Fen
+1 Brotherhood Regalia
+1 Vraska, the Cutting Glare
+1 Deathreap Ritual
+1 Heroic Intervention
+1 Three Visits
+1 Toxic Deluge
+1 Putrefy
+1 Nature's Claim
+1 Overwhelming Encounter
+1 Overrun
+1 Idol of Oblivion
+1 Medusa, Inhuman Queen
+1 The Serpent Society
+1 Black Widow, Deadly Hunter

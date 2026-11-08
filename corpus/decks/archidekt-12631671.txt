@@ -1,0 +1,70 @@
+# Archidekt — Joey Smoll
+# source: archidekt:12631671
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Cadira, Caller of the Small
+
+Deck:
+1 Lifespring Druid
+1 Destiny Spinner
+1 Panharmonicon
+1 Myriad Landscape
+1 Reliquary Tower
+1 Dryad of the Ilysian Grove
+1 Rhys the Redeemed
+1 Deathbloom Gardener
+1 Parallel Lives
+1 Anointed Procession
+1 Mana Reflection
+21 Hare Apparent
+1 Cryptolith Rite
+1 Sylvan Caryatid
+1 Greenweaver Druid
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Mondrak, Glory Dominus
+1 Doubling Season
+1 Land Tax
+1 Mirror Entity
+1 Leafkin Druid
+1 Elvish Mystic
+1 Beastmaster Ascension
+1 Raking Canopy
+1 Ghostly Prison
+1 Eidolon of Blossoms
+1 Ajani's Chosen
+1 Mana Confluence
+1 Sphere of Safety
+1 Bountiful Promenade
+1 Dryad Arbor
+1 Command Tower
+1 Setessan Champion
+1 Radiant Grove
+11 Forest
+9 Plains
+1 Sungrass Prairie
+1 Valkyrie's Call
+1 Second Harvest
+1 Renewed Solidarity
+1 Caretaker's Talent
+1 Parallel Evolution
+1 Archon of Sun's Grace
+1 Prized Unicorn
+1 Noble Quarry
+1 Ruxa, Patient Professor
+1 Shield of the Oversoul
+1 Luminous Broodmoth
+1 Burrowguard Mentor
+1 Season of the Burrow
+1 Toski, Bearer of Secrets
+1 Carrot Cake
+1 Hop to It
+1 Helix Pinnacle
+1 Golden Argosy
+1 Ellyn Harbreeze, Busybody
+1 Loyal Unicorn
+1 Rogue's Passage
+1 Loporrit Scout
+1 Mentor of the Meek
+1 Whispersilk Cloak

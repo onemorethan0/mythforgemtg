@@ -1,0 +1,109 @@
+# Archidekt — Persistocrats (Celes, Rune Knight)
+# source: archidekt:11896477
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Celes, Rune Knight
+
+Deck:
+1 Cloudshift
+1 Sacred Foundry
+1 Silent Clearing
+1 Plains
+1 Vexing Bauble
+1 Flicker
+1 Blasting Station
+1 Mountain
+1 Snow-Covered Plains
+1 Luxury Suite
+1 Caves of Koilos
+1 Snow-Covered Swamp
+1 Swamp
+1 Blood Crypt
+1 Snow-Covered Mountain
+1 Ranger-Captain of Eos
+1 Command Tower
+1 Concealed Courtyard
+1 Arid Mesa
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Vault of Champions
+1 Wooded Foothills
+1 Snuff Out
+1 Exotic Orchard
+1 Godless Shrine
+1 Urborg, Tomb of Yawgmoth
+1 Spectator Seating
+1 Marsh Flats
+1 Ad Nauseam
+1 Flooded Strand
+1 Cavern of Souls
+1 Polluted Delta
+1 Mana Confluence
+1 Flawless Maneuver
+1 Demonic Tutor
+1 Scalding Tarn
+1 Diabolic Intent
+1 Talisman of Indulgence
+1 Talisman of Hierarchy
+1 Lotho, Corrupt Shirriff
+1 Ephemerate
+1 Esper Sentinel
+1 Simian Spirit Guide
+1 Dark Ritual
+1 Putrid Goblin
+1 Altar of Dementia
+1 Lesser Masticore
+1 Skirk Prospector
+1 Stitcher's Supplier
+1 Vampiric Tutor
+1 Phelia, Exuberant Shepherd
+1 City of Brass
+1 Grand Abolisher
+1 Recruiter of the Guard
+1 Deadly Rollick
+1 Solitude
+1 Deflecting Swat
+1 Anguished Unmaking
+1 Arcane Signet
+1 Chrome Mox
+1 Sol Ring
+1 Goblin Bombardment
+1 Obstinate Gargoyle
+1 Persist
+1 Murderous Redcap
+1 Phyrexian Altar
+1 Cauldron Haze
+1 Talisman of Conviction
+1 Viscera Seer
+1 Carrion Feeder
+1 Urza's Saga
+1 Prismatic Vista
+1 Imperial Seal
+1 Restless Apparition
+1 Enlightened Tutor
+1 Goblin Engineer
+1 Deep Gnome Terramancer
+1 Altar of the Brood
+1 Cruel Celebrant
+1 Elas il-Kor, Sadistic Pilgrim
+1 Zulaport Cutthroat
+1 Archivist of Oghma
+1 Clever Concealment
+1 Harmonic Prodigy
+1 Yawgmoth, Thran Physician
+1 The Meathook Massacre
+1 Loran of the Third Path
+1 Tithe
+1 Pyroblast
+1 Red Elemental Blast
+1 Teferi's Protection
+1 Silence
+1 Underworld Breach
+1 Baleful Mastery
+1 Gev, Scaled Scorch
+1 Swords to Plowshares
+1 Impact Tremors
+1 Agate Instigator
+1 Wingrattle Scarecrow

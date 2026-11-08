@@ -1,0 +1,82 @@
+# Archidekt — CZ 699 | Venom
+# source: archidekt:15114536
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Venom, Eddie Brock
+
+Deck:
+1 Common Crook
+1 Venomized Cat
+1 Chthonian Nightmare
+1 Merciless Enforcers
+1 Whip of Erebos
+1 Massacre Girl
+1 Phyrexian Delver
+1 Bojuka Bog
+1 Toxic Deluge
+1 Kindred Dominance
+1 Archfiend of Depravity
+1 Conspiracy
+1 Mandate of Abaddon
+1 Make an Example
+1 Umbral Collar Zealot
+1 Requiem Monolith
+1 Unearth
+1 Symbiote Spawn
+1 Golgari Thug
+1 Cemetery Tampering
+1 Ripples of Undeath
+1 Ruthless Technomancer
+1 Sign in Blood
+1 Victimize
+1 Phyrexian Reclamation
+1 Syr Konrad, the Grim
+1 Night's Whisper
+1 Phyrexian Arena
+1 Metamorphosis Fanatic
+1 Undead Butler
+1 Morbid Opportunist
+1 Accursed Marauder
+1 Massacre Wurm
+1 The Haunt of Hightower
+1 Noxious Gearhulk
+1 Qarsi Revenant
+1 Witch's Cottage
+1 War Room
+1 Junji, the Midnight Sky
+1 Gray Merchant of Asphodel
+1 Troll of Khazad-dûm
+1 Pitiless Plunderer
+1 Thought Vessel
+1 Dogged Detective
+1 Charcoal Diamond
+1 Sol Ring
+1 Mind Stone
+1 Arcane Signet
+1 Soul Shatter
+1 Lethal Scheme
+1 Breach the Multiverse
+1 Wayfarer's Bauble
+1 Burnished Hart
+1 Everflowing Chalice
+1 Crowded Crypt
+1 Doomed Necromancer
+1 Ophiomancer
+1 Stitcher's Supplier
+1 Twilight Prophet
+1 Yahenni, Undying Partisan
+1 Thran Dynamo
+1 Solemn Simulacrum
+1 Apprentice Necromancer
+1 Dread Return
+1 Mortuary Mire
+1 Boggart Trawler // Boggart Bog
+1 Rogue's Passage
+1 Crypt of Agadeem
+1 Spymaster's Vault
+1 Drownyard Temple
+1 Myriad Landscape
+27 Swamp
+1 Demolition Field

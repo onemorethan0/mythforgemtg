@@ -1,0 +1,107 @@
+# Archidekt — Tayam, Luminous Enigma
+# source: archidekt:1458219
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Scurry Oak
+1 Overgrown Tomb
+1 Birds of Paradise
+1 Ashnod's Altar
+1 Bayou
+1 Boseiju, Who Endures
+1 Centaur Garden
+1 City of Brass
+1 Delighted Halfling
+1 Devoted Druid
+1 Eternal Witness
+1 Gemstone Caverns
+1 Godless Shrine
+1 Mana Vault
+1 Marsh Flats
+1 Savannah
+1 Scrubland
+1 Vault of Champions
+1 Sol Ring
+1 Rosie Cotton of South Lane
+1 Promise of Bunrei
+1 Windswept Heath
+1 Phyrexian Altar
+1 Strip Mine
+1 Verdant Catacombs
+1 Temple Garden
+1 Basking Broodscale
+1 Wooded Foothills
+1 Flooded Strand
+1 Orcish Bowmasters
+1 Grand Abolisher
+1 Chrome Mox
+1 Underground Mortuary
+1 Heliod, Sun-Crowned
+1 Drannith Magistrate
+1 Gravecrawler
+1 Felothar, Dawn of the Abzan
+1 Charismatic Conqueror
+1 Bountiful Promenade
+1 Urza's Saga
+1 Elves of Deep Shadow
+1 Lotho, Corrupt Shirriff
+1 Mox Amber
+1 Swamp
+1 Command Tower
+1 Plains
+1 Swift Reconfiguration
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Wall of Roots
+1 Kitchen Finks
+1 Endurance
+1 Tyvar, Jubilant Brawler
+1 Gorma, the Gullet
+1 Collector Ouphe
+1 Formidable Speaker
+1 Lion's Eye Diamond
+1 Mana Confluence
+1 Mox Diamond
+1 Haywire Mite
+1 Super Shredder
+1 Voice of Victory
+1 Ancient Tomb
+1 Emergence Zone
+1 Hashep Oasis
+1 Blade of the Bloodchief
+1 Sylvan Library
+1 Aura Shards
+1 Allosaurus Shepherd
+1 Walking Ballista
+1 Umbral Collar Zealot
+1 Forest
+1 Archdruid's Charm
+1 Archon of Emeria
+1 Badgermole Cub
+1 Shang-Chi, Master of Kung Fu
+1 Recruiter of the Guard
+1 Night Nurse, Healer of Heroes
+1 Cryptolith Rite
+1 Strangleroot Geist
+1 Enduring Vitality
+1 Carrion Feeder
+1 Bartolomé del Presidio
+1 White Plume Adventurer
+1 Young Wolf
+1 Deafening Silence
+1 Undergrowth Stadium
+1 Ethersworn Canonist
+1 Matt Murdock, Justice Seeker
+1 Belladonna Took
+1 The Queen of Dale
+1 Gleaming Splendor
+1 Llanowar Elves
+1 Finale of Devastation
+1 Vampiric Tutor
+1 Lethal Scheme
+1 Thousand-Year Elixir
+1 Rishkar, Peema Renegade
+1 Gaea's Cradle

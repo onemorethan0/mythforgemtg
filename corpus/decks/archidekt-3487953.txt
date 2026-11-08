@@ -1,0 +1,83 @@
+# Archidekt — Gluntch Time - Bro's Deck
+# source: archidekt:3487953
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Gluntch, the Bestower
+
+Deck:
+1 Raised by Giants
+1 Release to Memory
+1 Pendant of Prosperity
+1 Aeon Engine
+1 Crown of Doom
+1 Sphere of Safety
+1 Combat Calligrapher
+1 Druid of Purification
+1 Noble Heritage
+1 Rites of Flourishing
+1 Master of Ceremonies
+1 Nils, Discipline Enforcer
+1 Orzhov Advokist
+1 Selvala, Explorer Returned
+1 Skullwinder
+1 Wandering Archaic // Explore the Vastlands
+1 Windborn Muse
+1 Beast Within
+1 Generous Gift
+1 Oblation
+1 Path to Exile
+1 Swords to Plowshares
+1 Your Temple Is Under Attack
+1 Approach of the Second Sun
+1 Collective Voyage
+1 Cut a Deal
+1 Promise of Loyalty
+1 Smuggler's Share
+1 Tenuous Truce
+1 Viridian Revel
+1 Bountiful Promenade
+1 Canopy Vista
+1 Mikokoro, Center of the Sea
+1 Overgrown Farmland
+1 Radiant Grove
+1 Cultivate
+1 Reliquary Tower
+1 Command Tower
+1 Secret Rendezvous
+1 Sylvan Offering
+1 Tempt with Discovery
+1 Duelist's Heritage
+1 Ghostly Prison
+1 Selesnya Sanctuary
+1 Sunpetal Grove
+1 Temple Garden
+1 Temple of Plenty
+1 Rampant Growth
+1 Arcane Signet
+1 Sol Ring
+12 Forest
+1 Pir's Whim
+1 Aura Mutation
+1 Treefolk Umbra
+1 Assault Formation
+1 Grafted Exoskeleton
+1 Triumph of the Hordes
+1 Riot Control
+1 Blackblade Reforged
+1 Selfless Squire
+1 Sejiri Shelter // Sejiri Glacier
+1 Blessed Respite
+1 Kodama's Reach
+1 Farseek
+1 Nature's Lore
+1 Sakura-Tribe Elder
+1 Three Visits
+1 Harmonize
+1 Bloodthirsty Blade
+1 Martial Impetus
+1 Predatory Impetus
+1 Victory Chimes
+1 Council's Judgment
+15 Plains

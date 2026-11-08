@@ -1,0 +1,93 @@
+# Archidekt — CZ 757 | The Great Goblin
+# source: archidekt:24659968
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 The Great Goblin
+
+Deck:
+1 Muxus, Goblin Grandee
+1 Pashalik Mons
+1 Skullclamp
+1 Warren Soultrader
+1 Everlasting Torment
+1 Azog, Moria's Ruin
+1 Beetleback Chief
+1 Aberrant Return
+1 Boggart Trawler // Boggart Bog
+1 Broadside Bombardiers
+1 Canyon Slough
+1 Blasphemous Act
+1 Collective Inferno
+1 Dawn-Blessed Pennant
+1 Eclipsed Realms
+1 General Kreat, the Boltbringer
+1 Goblin Cratermaker
+1 Gorbag of Minas Morgul
+1 Graven Cairns
+1 Goblin Chirurgeon
+1 Gristle Glutton
+1 Grub, Storied Matriarch // Grub, Notorious Auntie
+1 Howlsquad Heavy
+1 Knucklebone Witch
+1 Legion Warboss
+1 Lethal Scheme
+1 Command Tower
+1 Demolition Field
+1 Foreboding Ruins
+1 Krenko, Tin Street Kingpin
+1 Merciless Executioner
+1 Krenko's Command
+1 Mogg Raider
+1 Mogg War Marshal
+1 Moria Marauder
+1 Persist
+1 Secluded Courtyard
+1 Sinister Gnarlbark
+1 Path of Ancestry
+1 Redcap Gutter-Dweller
+1 Rundvelt Hordemaster
+1 Scuzzback Scrounger
+1 Siege-Gang Lieutenant
+1 Skirk Prospector
+1 Sol Ring
+1 Spymaster's Vault
+1 Sundering Eruption // Volcanic Fissure
+1 Unclaimed Territory
+1 Zoyowa Lava-Tongue
+1 Sulfurous Springs
+1 Battle Hymn
+1 Boggart Shenanigans
+1 Brightstone Ritual
+1 Champion of the Weird
+1 Gempalm Incinerator
+1 Boggart Cursecrafter
+1 Den of the Bugbear
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Goblin Rabblemaster
+1 High Market
+1 Goblin Sledder
+1 Grub's Command
+1 Haunted One
+1 Impulsive Pilferer
+1 Metallic Mimic
+1 Munitions Expert
+11 Mountain
+1 Bojuka Bog
+1 Sling-Gang Lieutenant
+1 Smoldering Marsh
+6 Swamp
+1 Taurean Mauler
+1 Village Pillagers
+1 Bolg's Company
+1 Sourbread Auntie
+1 Frogtosser Banneret
+1 Dragon Fodder
+1 Krenko, Mob Boss
+1 Barad-dûr
+1 Goblin Bombardment
+1 Black Sun's Zenith
+1 Yawgmoth, Thran Physician
+1 Boggart Mischief

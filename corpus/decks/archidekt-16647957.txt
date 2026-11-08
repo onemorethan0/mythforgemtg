@@ -1,0 +1,98 @@
+# Archidekt — A Storm is Coming
+# source: archidekt:16647957
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Veyran, Voice of Duality
+
+Deck:
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Gitaxian Probe
+1 Harmonic Prodigy
+1 Pyretic Ritual
+1 Kitsa, Otterball Elite
+1 Cascade Bluffs
+1 Riverglide Pathway // Lavaglide Pathway
+1 Steam Vents
+1 Archmage Emeritus
+1 Isochron Scepter
+1 Snap
+1 Preordain
+1 Riverpyre Verge
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Stormcarved Coast
+1 Sink into Stupor // Soporific Springs
+1 Sol Ring
+1 Riptide Laboratory
+1 Mystic Sanctuary
+1 Stubborn Denial
+1 Sulfur Falls
+1 Deflecting Swat
+1 Training Center
+1 Arcane Signet
+1 Seething Song
+1 Exotic Orchard
+1 Swan Song
+1 Storm-Kiln Artist
+1 An Offer You Can't Refuse
+1 Sorcerer Class
+1 Past in Flames
+1 Windfall
+1 Mystical Tutor
+1 Brainstorm
+1 Flusterstorm
+1 Opt
+1 Lotus Petal
+1 Muddle the Mixture
+1 Soul Immolation
+1 Krark, the Thumbless
+1 Faithless Looting
+1 Springleaf Drum
+1 Electro, Assaulting Battery
+1 Mystic Remora
+1 Rapid Hybridization
+1 Haze of Rage
+1 Ponder
+1 Command Tower
+1 Scalding Tarn
+1 Mizzix's Mastery
+1 Fierce Guardianship
+1 Vivi Ornitier
+1 Cyclonic Rift
+1 Stormsplitter
+1 Ral, Crackling Wit
+1 Expressive Iteration
+1 Scavenger Grounds
+1 Shivan Reef
+1 Consider
+1 Reliquary Tower
+1 Fellwar Stone
+1 Jeska's Will
+1 Frantic Search
+1 Thundering Falls
+1 Aetherflux Reservoir
+1 Talisman of Creativity
+1 Underworld Breach
+1 Dramatic Reversal
+1 Pongify
+1 Vandalblast
+1 Scorched Geyser
+1 _____ Goblin
+1 Rhystic Study
+1 Exhibition Tidecaller
+1 Brain Freeze
+1 Mindbreak Trap
+1 Valley Floodcaller
+1 Force of Will
+1 Strike It Rich
+1 Grapeshot
+1 Narset's Reversal
+1 Ral, Storm Conduit
+1 Wooded Foothills
+5 Mountain
+7 Island
+1 Fiery Islet
+1 Fiery Inscription
+1 Guttersnipe
+1 Desperate Ritual

@@ -1,0 +1,100 @@
+# Archidekt — Captain Sisay: Ich bin ein Bearliner.
+# source: archidekt:13199733
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Captain Sisay
+
+Deck:
+1 Luminous Broodmoth
+1 Path of Discovery
+1 Unnatural Growth
+1 Juniper Order Ranger
+1 Tangle
+1 Plaza of Heroes
+1 Owlbear Cub
+1 Mother Bear
+1 Champion of Lambholt
+1 Esper Sentinel
+1 Grand Abolisher
+1 Shalai, Voice of Plenty
+1 Command Tower
+1 Three Tree City
+1 Felidar Retreat
+1 Branching Evolution
+1 Swiftfoot Boots
+1 Heroic Intervention
+1 Roaming Throne
+1 Kutzil, Malamet Exemplar
+1 Mirari's Wake
+1 Akroma's Will
+1 Kalonian Hydra
+1 Maja, Bretagard Protector
+1 Jaheira's Respite
+1 Ozolith, the Shattered Spire
+1 Mondrak, Glory Dominus
+1 Metallic Mimic
+1 March of the World Ooze
+1 The Earth Crystal
+1 The Great Henge
+1 Gaea's Cradle
+1 Serra's Sanctum
+1 Nykthos, Shrine to Nyx
+1 Grizzly Fate
+1 Fangs of Kalonia
+1 Herald's Horn
+1 Kenrith's Transformation
+1 Demolition Field
+1 Selesnya Sanctuary
+1 Mistveil Plains
+1 Sevinne's Reclamation
+1 Arwen, Weaver of Hope
+1 Venser's Journal
+1 Evercoat Ursine
+1 Surrak and Goreclaw
+1 Casal, Lurkwood Pathfinder // Casal, Pathbreaker Owlbear
+1 Lumra, Bellow of the Woods
+1 Wilson, Refined Grizzly
+1 Druid's Familiar
+1 The Ozolith
+1 Gavony Township
+1 Minas Tirith
+1 Boseiju, Who Endures
+1 Sungrass Prairie
+1 Boseiju, Who Shelters All
+1 Wooded Bastion
+1 Temple of the False God
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Door of Destinies
+1 Cathars' Crusade
+1 Yavimaya Hollow
+1 Andúril, Narsil Reforged
+1 Scute Swarm
+1 Field of the Dead
+1 Anointed Procession
+1 Dawn Charm
+1 Beast Within
+1 Chronicle of Victory
+1 Elspeth, Storm Slayer
+1 Far Wanderings
+1 Sol Ring
+1 Vanquisher's Banner
+1 Maskwood Nexus
+1 Green Sun's Zenith
+1 Doubling Season
+1 Reliquary Tower
+1 Smothering Tithe
+1 Sphere Grid
+5 Forest
+1 Cavern of Souls
+1 Rampaging Yao Guai
+1 Toski, Bearer of Secrets
+1 Basking Broodscale
+1 Goreclaw, Terror of Qal Sisma
+1 Elesh Norn, Grand Cenobite
+1 Beast Whisperer
+1 Ayula, Queen Among Bears
+1 Kudo, King Among Bears
+1 Teferi's Protection
+5 Plains

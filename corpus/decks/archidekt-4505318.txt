@@ -1,0 +1,92 @@
+# Archidekt — Atraxa, Praetors’ Voice
+# source: archidekt:4505318
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Atraxa, Praetors' Voice
+
+Deck:
+1 Phyresis Outbreak
+1 Black Sun's Twilight
+1 Vraska's Fall
+1 White Sun's Twilight
+1 Skrelv's Hive
+1 Cultivate
+1 Evolution Sage
+1 Pestilent Syphoner
+1 Watery Grave
+1 Darkslick Shores
+1 Elesh Norn, Mother of Machines
+1 Dreamroot Cascade
+1 Tekuthal, Inquiry Dominus
+2 Island
+1 Glistening Sphere
+1 Swiftfoot Boots
+1 Sol Ring
+1 Arcane Signet
+1 Noxious Revival
+1 Infectious Inquiry
+1 Norn's Decree
+1 Bloated Contaminator
+1 Tyrranax Rex
+1 Metastatic Evangel
+1 Wastewood Verge
+1 Slaughter Singer
+1 Swords to Plowshares
+1 Offer Immortality
+1 Canopy Vista
+1 Command Tower
+1 Evolving Wilds
+5 Forest
+1 Karn's Bastion
+1 Plague Stinger
+1 Geth's Summons
+8 Swamp
+1 Chromatic Lantern
+1 Painful Truths
+1 Blightbelly Rat
+1 Blight Mamba
+1 Flensing Raptor
+1 Venomous Brutalizer
+1 Karumonix, the Rat King
+1 Whisper of the Dross
+1 Drown in Ichor
+1 Unnatural Restoration
+1 Infectious Bite
+1 Ghostly Prison
+1 Norn's Choirmaster
+1 Phyrexian Arena
+1 Skrelv, Defector Mite
+1 Withering Torment
+1 Vishgraz, the Doomhive
+1 Gulping Scraptrap
+1 Plague Myr
+1 Godless Shrine
+1 Unclaimed Territory
+1 Overgrown Farmland
+5 Plains
+1 Overgrown Tomb
+1 Temple Garden
+1 Norn's Annex
+1 Cavern of Souls
+1 Path of Ancestry
+1 Vat of Rebirth
+1 Gloomlake Verge
+1 Floodfarm Verge
+1 Necrogen Rotpriest
+1 Viridian Corrupter
+1 Glissa's Retriever
+1 Contaminant Grafter
+1 Bilious Skulldweller
+1 Ichor Rats
+1 Triumph of the Hordes
+1 Prologue to Phyresis
+1 Thrummingbird
+1 Tezzeret's Gambit
+1 Ixhel, Scion of Atraxa
+1 Blighted Agent
+1 Everflowing Chalice
+1 Dreamtide Whale
+1 Brimaz, Blight of Oreskos
+1 Phyrexian Censor

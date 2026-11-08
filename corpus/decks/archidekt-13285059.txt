@@ -1,0 +1,91 @@
+# Archidekt — Yuna, Hope of Spira
+# source: archidekt:13285059
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Yuna, Hope of Spira
+
+Deck:
+1 Secret Arcade // Dusty Parlor
+1 Boseiju Reaches Skyward // Branch of Boseiju
+1 Eidolon of Blossoms
+1 Nykthos Paragon
+1 Nylea's Colossus
+1 Sanctum Weaver
+1 Sythis, Harvest's Hand
+1 Overlord of the Hauntwoods
+1 Setessan Champion
+1 Satyr Enchanter
+1 Mesa Enchantress
+1 Ondu Spiritdancer
+1 Crawling Infestation
+1 The Binding of the Titans
+1 The Mending of Dominaria
+1 Cache Grab
+1 Commune with the Gods
+1 Malevolent Rumble
+1 Enchantress's Presence
+1 Kenrith's Transformation
+1 Mirari's Wake
+1 Darksteel Mutation
+1 Unnatural Growth
+1 Greater Good
+1 Boon of the Spirit Realm
+1 Reliquary Tower
+1 Hall of Heliod's Generosity
+1 Nesting Grounds
+1 Ishgard, the Holy See // Faith & Grief
+1 Canopy Vista
+1 Command Tower
+1 Sunpetal Grove
+1 Overgrown Farmland
+1 Brushland
+1 Fortified Village
+1 Branchloft Pathway // Boulderloft Pathway
+1 Horizon Canopy
+1 Valgavoth's Lair
+1 Krosan Verge
+1 Razorverge Thicket
+1 Exotic Orchard
+1 Verduran Enchantress
+1 Enduring Vitality
+1 Alseid of Life's Bounty
+1 Jukai Naturalist
+1 Bear Umbra
+1 Sigil of the Empty Throne
+1 Blessed Sanctuary
+1 Arcane Signet
+1 Beast Within
+1 Generous Gift
+1 Brilliant Restoration
+1 Sol Ring
+1 Reprieve
+1 Swords to Plowshares
+1 Karametra, God of Harvests
+1 Cultivate
+1 Weaver of Harmony
+1 Eternal Witness
+1 Ethereal Armor
+1 Protection Magic
+1 Nyxborn Behemoth
+1 Archon of Sun's Grace
+1 Destiny Spinner
+1 Moon-Blessed Cleric
+1 Courser of Kruphix
+1 Vessel of Nascency
+1 Strength of the Harvest // Haven of the Harvest
+1 Seal of Primordium
+1 Starfield of Nyx
+1 Sterling Grove
+1 Satyr Wayfinder
+1 Fertile Ground
+1 Wild Growth
+1 Summon: Titan
+1 Nature's Lore
+1 Shielded by Faith
+1 Heliod, God of the Sun
+1 Farewell
+1 Summoner's Grimoire
+10 Forest
+9 Plains

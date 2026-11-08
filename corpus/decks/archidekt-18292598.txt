@@ -1,7 +1,8 @@
 # Archidekt — Splice into Avatar Aang
 # source: archidekt:18292598
 # fetched: 2026-10-02
-# bracket: 3
+# bracket_claimed: 3
+# label_audit: fails the official Bracket 3 gates: 4 Game Changers (Demonic Tutor, Farewell, Mystical Tutor, Vampiric Tutor); Bracket 3 allows 3
 
 Commander:
 1 Avatar Aang // Aang, Master of Elements

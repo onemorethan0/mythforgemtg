@@ -1,0 +1,95 @@
+# Archidekt — Isshin, but it's just Samurai x Evangelion
+# source: archidekt:7112107
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Farewell); Bracket 1 allows 0
+
+Commander:
+1 Isshin, Two Heavens as One
+
+Deck:
+1 Peerless Samurai
+1 Sunblade Samurai
+1 Soul Transfer
+1 Sokenzan, Crucible of Defiance
+1 Eiganjo, Seat of the Empire
+1 Rakdos Guildgate
+1 Imperial Oath
+1 Bloodfell Caves
+1 Blood Crypt
+1 Sacred Foundry
+1 Network Terminal
+1 High-Speed Hoverbike
+1 Bronze Cudgels
+4 Swamp
+1 Arcane Signet
+1 Sol Ring
+4 Mountain
+1 Raiyuu, Storm's Edge
+1 Seven-Tail Mentor
+1 Brute Suit
+1 Farewell
+1 Debt to the Kami
+1 Sky-Blessed Samurai
+1 Akki Battle Squad
+1 Goro-Goro, Disciple of Ryusei
+1 Upriser Renegade
+1 Life of Toshiro Umezawa // Memory of Toshiro
+1 Eiganjo Exemplar
+1 Akki Ronin
+1 Heiko Yamazaki, the General
+1 Asari Captain
+9 Plains
+1 Norika Yamazaki, the Poet
+1 Ancestral Katana
+1 Imperial Recovery Unit
+1 Thundersteel Colossus
+1 Banishing Slash
+1 Explosive Entry
+1 Orzhov Guildgate
+1 Command Tower
+1 Godless Shrine
+1 Dragonfly Suit
+1 Secluded Courtyard
+1 Wind-Scarred Crag
+1 Boros Guildgate
+1 Takenuma, Abandoned Mire
+1 Scoured Barrens
+1 Malicious Malfunction
+1 Oathkeeper, Takeno's Daisho
+1 Akki War Paint
+1 Exotic Orchard
+1 Uncharted Haven
+1 The Eternal Wanderer
+1 Eiganjo Uprising
+1 Touch the Spirit Realm
+1 Light the Way
+1 Intercessor's Arrest
+1 Assassin's Ink
+1 Regent's Authority
+1 Return to Action
+1 Clawing Torment
+1 Lucky Offering
+1 Quick-Draw Katana
+1 Twisted Embrace
+1 Reinforced Ronin
+1 Repel the Vile
+1 Risona, Asari Commander
+1 Umezawa's Jitte
+1 You Are Already Dead
+1 The Wandering Emperor
+1 Wanderer's Intervention
+1 Selfless Samurai
+1 The Shattered States Era // Nameless Conqueror
+1 Imperial Subduer
+1 Towashi Guide-Bot
+1 Nezumi Bladeblesser
+1 The Wanderer
+1 Okiba Salvage
+1 Lizard Blades
+1 Rabbit Battery
+1 Lion Sash
+1 Leech Gauntlet
+1 Cloudsteel Kirin
+1 Ogre-Head Helm
+1 Bronzeplate Boar

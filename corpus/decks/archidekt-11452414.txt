@@ -1,0 +1,108 @@
+# Archidekt — Y’shtola | Optimized
+# source: archidekt:11452414
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Arcane Signet
+1 Archivist of Oghma
+1 Arid Mesa
+1 Blind Obedience
+1 Bloodstained Mire
+1 Bloodthirsty Conqueror
+1 Borne Upon a Wind
+1 City of Brass
+1 Command Tower
+1 Curiosity
+1 Cyclonic Rift
+1 Deadly Rollick
+1 Delney, Streetwise Lookout
+1 Demonic Tutor
+1 Dig Through Time
+1 Dismember
+1 Emergence Zone
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Exotic Orchard
+1 Fell the Profane // Fell Mire
+1 Fierce Guardianship
+1 Flawless Maneuver
+1 Flooded Strand
+1 Flusterstorm
+1 Forbidden Orchard
+1 Force of Negation
+1 Force of Will
+1 Gemstone Caverns
+1 Generous Gift
+1 Godless Shrine
+1 Grand Arbiter Augustin IV
+1 Grievous Wound
+1 Hallowed Fountain
+1 Helm of the Ghastlord
+1 Imperial Seal
+1 Island
+1 Kambal, Consul of Allocation
+1 Lier, Disciple of the Drowned
+1 Lotho, Corrupt Shirriff
+1 Mana Confluence
+1 Mana Vault
+1 Marsh Flats
+1 Mental Misstep
+1 Meticulous Archive
+1 Mindbreak Trap
+1 Mirrormade
+1 Misty Rainforest
+1 Mnemonic Betrayal
+1 Mockingbird
+1 Morphic Pool
+1 Mystical Tutor
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Otawara, Soaring City
+1 Path to Exile
+1 Phyresis
+1 Phyrexian Arena
+1 Polluted Delta
+1 Prismatic Vista
+1 Propaganda
+1 Raffine's Tower
+1 Reanimate
+1 Rhystic Study
+1 Sanguine Bond
+1 Scrawling Crawler
+1 Sea of Clouds
+1 Sensei's Divining Top
+1 Shadowy Backstreet
+1 Sheoldred, the Apocalypse
+1 Sink into Stupor // Soporific Springs
+1 Smothering Tithe
+1 Sol Ring
+1 Spellskite
+1 Staff of Compleation
+1 Swan Song
+1 Swords to Plowshares
+1 Sygg, River Cutthroat
+1 Talion, the Kindly Lord
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Teferi's Protection
+1 The One Ring
+1 Toxic Deluge
+1 Treasure Cruise
+1 Trouble in Pairs
+1 Undercity Sewers
+1 Urza's Saga
+1 Vampiric Tutor
+1 Vault of Champions
+1 Verdant Catacombs
+1 Vito, Thorn of the Dusk Rose
+1 Watery Grave
+1 Windfall
+1 Windswept Heath
+1 Wishclaw Talisman

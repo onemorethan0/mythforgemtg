@@ -1,0 +1,99 @@
+# Archidekt — (Oh, Oh, Oh) Sexy Vampire
+# source: archidekt:3758364
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Astarion, the Decadent
+
+Deck:
+1 Aura of Silence
+1 Archfiend of Despair
+1 Alhammarret's Archive
+1 Athreos, God of Passage
+1 Anguished Unmaking
+1 Command Beacon
+1 Blood Tribute
+1 Bolas's Citadel
+1 Cabal Coffers
+1 Crypt Ghast
+1 Sunlit Marsh
+1 Swords to Plowshares
+1 Witch's Cottage
+1 Aetherflux Reservoir
+1 Debt to the Deathless
+1 Exquisite Blood
+1 Exsanguinate
+1 Incarnation Technique
+1 Farewell
+1 Godless Shrine
+1 Marsh Flats
+1 Mortuary Mire
+1 Myriad Landscape
+1 Path to Exile
+1 Sanguine Bond
+1 Sol Ring
+1 Vault of Champions
+1 Authority of the Consuls
+1 Drain Life
+1 Torment of Hailfire
+1 Suture Priest
+1 Snowfield Sinkhole
+1 Arid Mesa
+1 Urborg, Tomb of Yawgmoth
+1 Arcane Signet
+1 Weathered Wayfarer
+1 Gray Merchant of Asphodel
+1 Shattered Sanctum
+1 Smothering Tithe
+1 Syr Konrad, the Grim
+1 Twilight Prophet
+1 Buried Ruin
+1 Sower of Discord
+1 Vito, Thorn of the Dusk Rose
+1 Archon of Emeria
+1 Soul Warden
+1 Blood Artist
+1 The Meathook Massacre
+1 Blind Obedience
+1 Malakir Rebirth // Malakir Mire
+1 Liesa, Forgotten Archangel
+1 Invoke Despair
+1 Wound Reflection
+1 Kokusho, the Evening Star
+1 Isolated Chapel
+1 Archivist of Oghma
+1 Jet Medallion
+1 Generous Gift
+1 Ancient Tomb
+2 Plains
+1 Animate Dead
+1 Orzhov Basilica
+1 Shineshadow Snarl
+1 Kambal, Consul of Allocation
+1 Demonic Tutor
+1 Reprieve
+1 Mana Tithe
+1 Command Tower
+1 The Gaffer
+1 Ghost Quarter
+1 Bojuka Bog
+1 Field of Ruin
+8 Swamp
+1 Concealed Courtyard
+1 Opposition Agent
+1 Baleful Mastery
+1 Kaya's Ghostform
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Bloodletter of Aclazotz
+1 Fungal Fortitude
+1 Stroke of Midnight
+1 Reanimate
+1 Vampiric Tutor
+1 Deadly Rollick
+1 Enduring Tenacity
+1 Diabolic Intent
+1 Enlightened Tutor
+1 Mana Crypt
+1 Moonsilver Key
+1 Selenia, the Cursed Heart

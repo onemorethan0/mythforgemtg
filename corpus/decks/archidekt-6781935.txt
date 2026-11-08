@@ -1,0 +1,102 @@
+# Archidekt — Get-Dino-With-The-Sickness
+# source: archidekt:6781935
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Indoraptor, the Perfect Hybrid
+
+Deck:
+1 Spikefield Hazard // Spikefield Cave
+1 Stump Stomp // Burnwillow Clearing
+1 Underground Mortuary
+1 Farseek
+1 Dark Ritual
+1 Rite of Flame
+1 Desperate Ritual
+1 Chrome Mox
+1 Demonic Tutor
+1 Yawgmoth's Will
+1 Vampiric Tutor
+1 Raucous Theater
+1 Chandra's Ignition
+1 Pyrohemia
+1 Deflecting Swat
+1 Rakdos Charm
+1 Price of Progress
+1 Acidic Soil
+1 Arcane Signet
+1 Sol Ring
+1 Last Laugh
+1 Chain of Plasma
+1 Descent into Avernus
+1 Fatal Frenzy
+1 Overblaze
+1 Berserk
+1 Blasphemous Act
+1 Bushwhack
+1 Oblivion's Hunger
+1 Wheel of Misfortune
+1 Fungal Fortitude
+1 Feign Death
+1 Spire Garden
+1 Command Tower
+1 Verdant Catacombs
+1 Ziatora's Proving Ground
+1 Kessig Wolf Run
+1 Bloodstained Mire
+1 Savage Lands
+1 Blood Crypt
+1 Luxury Suite
+1 Wooded Foothills
+1 Stomping Ground
+1 Overgrown Tomb
+1 Spinerock Knoll
+1 Atarka's Command
+1 Fiery Confluence
+1 Painful Truths
+1 Badlands
+1 Woodland Cemetery
+1 Shizo, Death's Storehouse
+1 Dragonskull Summit
+1 Rockfall Vale
+1 Yavimaya, Cradle of Growth
+1 Urborg, Tomb of Yawgmoth
+1 Cathartic Pyre
+1 Path of Ancestry
+1 Noxious Field
+1 Fling
+1 Revitalizing Repast // Old-Growth Grove
+1 Collective Resistance
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Malakir Rebirth // Malakir Mire
+1 Progenitor's Icon
+1 Savage Summoning
+1 Seize the Spoils
+1 Legolas's Quick Reflexes
+1 Bulk Up
+1 Pestilence
+1 Snake Umbra
+1 Keen Sense
+1 Fake Your Own Death
+1 Untimely Malfunction
+1 Twinferno
+1 Explore
+1 Requiem Monolith
+1 Expedite
+1 Self-Destruct
+1 Boltwave
+1 The Last Agni Kai
+1 Sazacap's Brew
+1 Withering Wisps
+1 Tainted Strike
+1 Overmaster
+1 Festering Thicket
+1 Soul's Fire
+1 Lightning Bolt
+3 Snow-Covered Mountain
+2 Snow-Covered Swamp
+2 Snow-Covered Forest
+1 Insist
+1 Night's Whisper

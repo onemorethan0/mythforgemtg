@@ -1,0 +1,98 @@
+# Archidekt — Athreos, Shroud-Veiled: Down with the Sickness
+# source: archidekt:554186
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Athreos, Shroud-Veiled
+
+Deck:
+1 Sunlit Marsh
+1 Strip Mine
+1 Fetid Heath
+1 Austere Command
+1 Scavenger Grounds
+1 Marsh Flats
+1 Sphere of Safety
+1 Pestilence Demon
+1 Pariah
+1 Anguished Unmaking
+1 Sudden Spoiling
+1 Nykthos, Shrine to Nyx
+1 Obzedat's Aid
+1 Stuffy Doll
+1 Exquisite Blood
+1 Personal Sanctuary
+1 Cabal Coffers
+1 Wound Reflection
+1 Death Pits of Rath
+1 Sphere of Grace
+1 Infected Vermin
+1 Thrashing Wumpus
+1 Replenish
+1 Serra's Sanctum
+1 Blanket of Night
+1 Withering Wisps
+1 Sign in Blood
+1 Land Tax
+1 Urborg, Tomb of Yawgmoth
+1 Ancient Tomb
+1 Godless Shrine
+1 Smothering Tithe
+1 The Wanderer
+1 Crypt Rats
+1 Generous Gift
+1 Hall of Heliod's Generosity
+1 Command Tower
+1 Bojuka Bog
+1 Chromatic Lantern
+1 Read the Bones
+1 Phyrexian Arena
+1 Pestilence
+1 Swords to Plowshares
+1 Path to Exile
+1 Lashknife Barrier
+1 Vault of Champions
+1 War Room
+1 Snowfield Sinkhole
+1 Demolition Field
+10 Snow-Covered Swamp
+1 Last Laugh
+1 Archaeomancer's Map
+1 Barbed Servitor
+1 Shadowy Backstreet
+1 Urza's Cave
+1 Abstergo Entertainment
+1 Abstruse Appropriation
+1 Fell the Profane // Fell Mire
+1 Hourglass of the Lost
+1 Trouble in Pairs
+1 Decorum Dissertation
+1 Talon Gates of Madara
+1 Dawn's Truce
+1 Equal Treatment
+1 Grievous Wound
+1 Gideon's Intervention
+1 Light of Sanction
+1 Blessed Sanctuary
+1 Black Market Connections
+1 Karma
+1 Protective Sphere
+1 Requiem Monolith
+1 Night's Whisper
+1 Council's Judgment
+1 Insatiable Avarice
+1 Dark Petition
+1 Black Market
+1 Revel in Riches
+1 Sol Ring
+1 Mind Stone
+1 Arcane Signet
+1 Thought Vessel
+1 Orzhov Signet
+1 Talisman of Hierarchy
+1 Smuggler's Share
+1 Inkshield
+1 Umbral Expanse
+2 Snow-Covered Plains
+1 Gleaming Splendor

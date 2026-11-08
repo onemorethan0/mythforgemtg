@@ -1,0 +1,99 @@
+# Archidekt — Izzet Cracklebomb
+# source: archidekt:4465244
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+
+Deck:
+1 Flare of Duplication
+1 Twinferno
+1 Dig Through Time
+1 Polluted Delta
+1 Finale of Promise
+1 Flooded Strand
+1 Force of Will
+1 High Tide
+1 Thundering Falls
+4 Mountain
+1 Otawara, Soaring City
+1 Will of the Jeskai
+1 Gut Shot
+1 Winternight Stories
+1 Stock Up
+1 Pyretic Ritual
+1 Mystic Remora
+1 Arid Mesa
+1 Mox Diamond
+1 Howl of the Horde
+1 Stormcatch Mentor
+1 Otherworldly Gaze
+1 Wheel of Misfortune
+1 Fiery Islet
+1 City of Brass
+1 Desperate Ritual
+1 Seize the Spoils
+1 Jeska's Will
+1 Underworld Breach
+1 Big Score
+1 Swan Song
+1 Solve the Equation
+1 Merchant Scroll
+1 Galvanic Iteration
+1 Gamble
+1 Personal Tutor
+1 Pact of Negation
+1 Cascade Bluffs
+1 Volcanic Island
+1 An Offer You Can't Refuse
+1 Delay
+1 Frantic Search
+1 Command Tower
+1 Ponder
+1 Gitaxian Probe
+1 Faithless Looting
+1 Preordain
+1 Steam Vents
+1 Baral, Chief of Compliance
+1 Seething Song
+1 Shivan Reef
+1 Sol Ring
+1 Past in Flames
+1 Treasure Cruise
+1 Windfall
+1 Wooded Foothills
+1 Bonus Round
+1 Training Center
+1 Mystical Tutor
+1 Springleaf Drum
+1 Thunderclap Drake
+1 Pirate's Pillage
+1 Simian Spirit Guide
+1 Inspired Tinkering
+1 Consign to Memory
+1 Deep Analysis
+1 Arcane Denial
+1 Mox Amber
+1 Hidden Strings
+1 Quiet Speculation
+1 Vivi Ornitier
+1 Snap
+1 Flashback
+1 Fierce Guardianship
+1 Mental Misstep
+1 Deflecting Swat
+1 Brain Freeze
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Scalding Tarn
+1 Wheel of Fortune
+7 Island
+1 Suspend
+1 Force of Negation
+1 Lotus Petal
+1 Chrome Mox
+1 Crackle with Power
+1 Misdirection
+1 Ragavan, Nimble Pilferer
+1 Unexpected Windfall

@@ -1,0 +1,102 @@
+# Archidekt — Iroh Grand Lotus
+# source: archidekt:15230220
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Iroh, Grand Lotus
+
+Deck:
+3 Island
+1 Command Tower
+1 Exotic Orchard
+1 Frontier Bivouac
+1 Training Center
+1 Rockfall Vale
+1 Spire Garden
+1 Path of Ancestry
+1 Evolving Wilds
+1 Ketria Triome
+1 Cinder Glade
+1 Hinterland Harbor
+1 Sulfur Falls
+1 Rootbound Crag
+1 Rejuvenating Springs
+1 Bountiful Landscape
+1 Stormcarved Coast
+1 Simic Growth Chamber
+1 Terramorphic Expanse
+1 Breeding Pool
+1 Stomping Ground
+1 Steam Vents
+1 Dreamroot Cascade
+1 Shivan Reef
+1 Karplusan Forest
+1 Gruul Turf
+1 Izzet Boilerworks
+3 Forest
+3 Mountain
+1 Fabled Passage
+1 Mistrise Village
+1 Wooded Foothills
+1 Waterbending Lesson
+1 Abandon Attachments
+1 Redirect Lightning
+1 Cycle of Renewal
+1 It'll Quench Ya!
+1 Zuko's Exile
+1 Energybending
+1 Environmental Sciences
+1 Sokka's Haiku
+1 Nature's Lore
+1 Introduction to Prophecy
+1 Gifts Ungiven
+1 Solstice Revelations
+1 Jeska's Will
+1 Gamble
+1 Mystical Tutor
+1 Mascot Exhibition
+1 Elemental Summoning
+1 Sol Ring
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Fated Firepower
+1 Leaves from the Vine
+1 Rite of the Dragoncaller
+1 Catalyst Stone
+1 Blasphemous Act
+1 Relentless Assault
+1 Elemental Teachings
+1 Grapeshot
+1 Thousand-Year Storm
+1 Cultivate
+1 Farseek
+1 Master Pakku
+1 Rhystic Study
+1 Firebending Student
+1 Seismic Sense
+1 Sokka, Bold Boomeranger
+1 Ran and Shaw
+1 Dragonfly Swarm
+1 Doc Aurlock, Grizzled Genius
+1 Gran-Gran
+1 Coruscation Mage
+1 Veyran, Voice of Duality
+1 Birds of Paradise
+1 Talrand, Sky Summoner
+1 Guru Pathik
+1 The Lion-Turtle
+1 Manamorphose
+1 Secrets of the Dead
+1 Illuminate History
+1 Counterspell
+1 Teachings of the Archaics
+1 Secret of Bloodbending
+1 Sozin's Comet
+1 Fiery Emancipation
+1 Frantic Search
+1 Hermitic Herbalist
+1 Goblin Electromancer
+1 Guttersnipe
+1 Uncle Iroh
+1 Storm-Kiln Artist

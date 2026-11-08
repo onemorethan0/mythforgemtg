@@ -1,0 +1,98 @@
+# Archidekt — Magus Lucea Kane; Hive Fleet  Temur
+# source: archidekt:4468627
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Magus Lucea Kane
+
+Deck:
+1 Savageborn Hydra
+1 Sylvan Tutor
+1 Green Sun's Zenith
+1 Training Center
+1 Spire Garden
+1 Command Tower
+1 Dreamroot Cascade
+1 Sulfur Falls
+1 Waterlogged Grove
+1 Yavimaya Coast
+1 Sol Ring
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Twinning Staff
+1 Kalonian Hydra
+1 Ketria Triome
+1 Incubation Druid
+1 Fiery Islet
+1 Danny Pink
+1 Chishiro, the Shattered Blade
+1 Innkeeper's Talent
+1 Sporocyst
+1 Benevolent Hydra
+1 Animar, Soul of Elements
+1 Kami of Whispered Hopes
+1 Winged Hive Tyrant
+1 Mawloc
+1 Ravener
+1 Zoanthrope
+1 Finale of Devastation
+1 Selvala, Heart of the Wilds
+1 Garruk's Uprising
+1 Rampaging Yao Guai
+1 Biophagus
+1 Hydroid Krasis
+1 Temur Ascendancy
+1 Chord of Calling
+1 Genesis Hydra
+1 Shivan Reef
+1 Stormcarved Coast
+1 Karplusan Forest
+1 Tervigon
+1 Ingenious Prodigy
+1 Nature's Rhythm
+1 Temur Battlecrier
+1 Willowrush Verge
+1 Stubborn Denial
+1 Ecological Appreciation
+1 Thornspire Verge
+1 Rockfall Vale
+1 Riverpyre Verge
+1 Hinterland Harbor
+1 Kurbis, Harvest Celebrant
+1 Breeding Pool
+1 Steam Vents
+1 Misty Rainforest
+1 Stomping Ground
+1 Scalding Tarn
+1 Wooded Foothills
+1 Boseiju, Who Endures
+1 Worldly Tutor
+1 Yavimaya, Cradle of Growth
+1 Altered Ego
+1 Mockingbird
+1 Seedborn Muse
+1 Arcane Signet
+1 Intervene
+1 Spectral Denial
+1 Turn Aside
+1 Gyre Sage
+1 Celestial Reunion
+1 Broodguard Elite
+1 Ouroboroid
+1 Nyxbloom Ancient
+1 Mana Bloom
+1 Sodden Verdure
+5 Forest
+4 Island
+1 Wan Shi Tong, Librarian
+1 Hardened Scales
+1 Enshrined Memories
+1 Unbound Flourishing
+1 Vorinclex, Voice of Hunger
+1 Terrasymbiosis
+1 Mind into Matter
+1 Geometer's Arthropod
+1 Kinetic Ooze
+1 Lattice Library
+4 Mountain
+1 Scorched Geyser

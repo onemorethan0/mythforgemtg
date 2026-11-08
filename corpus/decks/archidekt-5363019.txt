@@ -1,0 +1,94 @@
+# Archidekt — 49 - Kynaios and Tiro - Willy Wonka & the Chocolate Factory
+# source: archidekt:5363019
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kynaios and Tiro of Meletis
+
+Deck:
+1 Council's Judgment
+1 Fractured Identity
+1 Skullwinder
+1 Rites of Flourishing
+1 Generous Gift
+1 Dictate of Karametra
+1 Tempt with Discovery
+1 Druid of Purification
+1 Kwain, Itinerant Meddler
+1 Dictate of Kruphix
+1 Heartbeat of Spring
+1 Kami of the Crescent Moon
+1 Howling Mine
+1 Eladamri's Vineyard
+1 Mana Flare
+1 Collective Voyage
+1 Veteran Explorer
+1 Selvala, Explorer Returned
+1 Font of Mythos
+1 Minds Aglow
+1 Ghirapur Orrery
+1 Pir's Whim
+1 Horn of Greed
+1 Magus of the Vineyard
+1 Promise of Loyalty
+1 Erestor of the Council
+1 Zedruu the Greathearted
+1 Travel Through Caradhras
+1 Círdan the Shipwright
+1 Model of Unity
+1 Sail into the West
+1 Trap the Trespassers
+1 Prosperity
+1 Jace Beleren
+3 Plains
+8 Forest
+2 Mountain
+1 Plateau
+1 Savannah
+1 Tundra
+1 Tropical Island
+1 Taiga
+1 Volcanic Island
+1 Ludevic, Necro-Alchemist
+1 Rootweaver Druid
+1 Arid Mesa
+1 Misty Rainforest
+1 Scalding Tarn
+1 Flooded Strand
+1 Windswept Heath
+1 Wooded Foothills
+1 Jetmir's Garden
+1 Noble Benefactor
+5 Island
+1 Split Decision
+1 Folio of Fancies
+1 Humble Defector
+1 Zhur-Taa Ancient
+1 Coercive Portal
+1 Otherworld Atlas
+1 Phelddagrif
+1 Heartwood Storyteller
+1 Primal Vigor
+1 Pendant of Prosperity
+1 Reliquary Tower
+1 Master of Ceremonies
+1 Mikokoro, Center of the Sea
+1 Gluntch, the Bestower
+1 Ruhan of the Fomori
+1 Tempting Contract
+1 Spara's Headquarters
+1 Sol Ring
+1 Command Tower
+1 Ketria Triome
+1 Raugrin Triome
+1 Show and Tell
+1 The Second Doctor
+1 New Frontiers
+1 Oath of Druids
+1 Temple Bell
+1 Weftwalking
+1 Braids, Conjurer Adept
+1 Blessed Respite
+1 Lavaleaper
+1 Arcane Signet

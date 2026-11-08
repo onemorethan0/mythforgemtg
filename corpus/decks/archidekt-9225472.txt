@@ -1,0 +1,88 @@
+# Archidekt — Loot and his forest friends!
+# source: archidekt:9225472
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Loot, Exuberant Explorer
+
+Deck:
+1 Llanowar Elves
+1 Zopandrel, Hunger Dominus
+1 Sandwurm Convergence
+1 Augur of Autumn
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Nature's Lore
+1 Three Visits
+1 Heroic Intervention
+1 Yavimaya, Cradle of Growth
+1 Demolition Field
+1 Tyvar's Stand
+1 Tamiyo's Safekeeping
+1 Spinner of Souls
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Elvish Piper
+1 Asceticism
+1 Urza's Cave
+1 Staff of Domination
+1 Tyvar, the Pummeler
+1 Ghalta, Stampede Tyrant
+1 Vigor
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Drannith Ruins
+1 Myriad Landscape
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Shifting Woodland
+1 The Shire
+1 War Room
+1 Lightning Greaves
+1 Sol Ring
+1 Dryad Arbor
+1 Obscuring Haze
+1 Beast Within
+1 Nature's Claim
+1 Fyndhorn Elves
+1 Craterhoof Behemoth
+1 Khalni Ambush // Khalni Territory
+1 Apex Altisaur
+1 Shamanic Revelation
+1 Tribute to the World Tree
+1 Surrak and Goreclaw
+1 Kona, Rescue Beastie
+1 Umbral Mantle
+1 Fanatic of Rhonas
+1 Garruk's Uprising
+1 Gyre Sage
+1 Nature's Will
+1 Disciple of Freyalise // Garden of Freyalise
+1 Sakura-Tribe Elder
+1 Eternal Witness
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Ohran Frostfang
+1 Elemental Bond
+1 Concordant Crossroads
+1 Rogue's Passage
+1 Soul of the Harvest
+1 Ulvenwald Oddity // Ulvenwald Behemoth
+1 Karametra's Acolyte
+1 Cultivate
+1 Traverse the Outlands
+1 Fauna Shaman
+1 Ancient Bronze Dragon
+1 Selvala, Heart of the Wilds
+1 Scute Swarm
+1 Azusa, Lost but Seeking
+1 Ashaya, Soul of the Wild
+1 Pathbreaker Ibex
+1 Vorinclex, Voice of Hunger
+1 Seedtime
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Ancient Adamantoise
+1 Goreclaw, Terror of Qal Sisma
+1 Oracle of Mul Daya
+1 Kazandu Mammoth // Kazandu Valley
+1 Frenzied Baloth
+1 Questing Beast
+21 Forest
+1 Nylea, God of the Hunt
+1 Fog

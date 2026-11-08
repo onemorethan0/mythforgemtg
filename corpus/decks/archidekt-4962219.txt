@@ -1,0 +1,105 @@
+# Archidekt — EDH Zhulodok Eldrazi Tribal
+# source: archidekt:4962219
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zhulodok, Void Gorger
+
+Deck:
+1 Rise of the Eldrazi
+1 Dreamstone Hedron
+1 Lightning Greaves
+1 Hedron Archive
+1 Conduit of Ruin
+1 Basalt Monolith
+1 Mana Vault
+1 Eye of Ugin
+1 Kozilek, Butcher of Truth
+1 Kozilek, the Great Distortion
+1 Eldrazi Temple
+1 Inventors' Fair
+1 Everflowing Chalice
+1 Grim Monolith
+1 Emrakul, the Promised End
+1 Ancient Tomb
+1 All Is Dust
+1 Ugin, the Ineffable
+1 Urza's Saga
+1 Unwinding Clock
+1 Ugin, the Spirit Dragon
+1 Voltaic Key
+1 War Room
+1 Thran Dynamo
+1 Warping Wail
+1 Staff of Domination
+1 Wandering Archaic // Explore the Vastlands
+1 Void Winnower
+1 Ulamog, the Infinite Gyre
+1 Ulamog, the Ceaseless Hunger
+1 Scroll Rack
+1 Sensei's Divining Top
+1 Memory Jar
+1 Mind Stone
+1 Moonsilver Key
+1 Mox Opal
+1 Mystic Forge
+1 Sol Ring
+1 Solemn Simulacrum
+1 Metalworker
+1 Oblivion Sower
+1 Manifold Key
+1 Flayer of Loyalties
+1 Desecrate Reality
+1 Darksteel Forge
+1 Darksteel Monolith
+1 Rings of Brighthearth
+1 Calamity of the Titans
+1 The Mightstone and Weakstone
+1 Prismatic Lens
+1 Sarevok's Tome
+1 Arch of Orazca
+1 Bonders' Enclave
+1 Strip Mine
+1 Portal to Phyrexia
+1 Thought Vessel
+1 Planar Bridge
+1 Wayfarer's Bauble
+1 Wasteland
+1 Cloud Key
+1 Clock of Omens
+1 Echoes of Eternity
+1 Emrakul, the World Anew
+1 Ugin's Labyrinth
+1 Ulamog, the Defiler
+1 Kozilek, the Broken Reality
+1 Null Elemental Blast
+1 Urza's Cave
+1 Fomori Vault
+1 Glaring Fleshraker
+1 Spawnbed Protector
+1 Eldrazi Confluence
+1 Kozilek's Command
+1 Command Beacon
+1 Sea Gate Wreckage
+1 Fountainport
+1 Cavern of Souls
+1 Sire of Seven Deaths
+1 Talon Gates of Madara
+1 Rogue's Passage
+4 Wastes
+1 Homeward Path
+1 Scavenger Grounds
+1 The Mycosynth Gardens
+1 Blast Zone
+1 Crystal Vein
+1 Emergence Zone
+1 Mikokoro, Center of the Sea
+1 Buried Ruin
+1 Forsaken Monument
+1 Ugin, Eye of the Storms
+1 Scorched Ruins
+1 The Endstone
+1 Mishra's Workshop
+1 Emrakul, the Exigent Doom
+1 Hall of Echoes

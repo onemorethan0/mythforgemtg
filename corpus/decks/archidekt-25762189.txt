@@ -1,7 +1,8 @@
 # Archidekt — Budget-friendly Terra, Magical Adept deck
 # source: archidekt:25762189
 # fetched: 2026-08-26
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 5 Game Changers (Crop Rotation, Fierce Guardianship, Rhystic Study, Serra's Sanctum, Smothering Tithe); Bracket 1 allows 0
 
 Commander:
 1 Terra, Magical Adept // Esper Terra

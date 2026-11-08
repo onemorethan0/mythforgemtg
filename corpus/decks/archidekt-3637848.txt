@@ -1,0 +1,99 @@
+# Archidekt — Imoti, Celebrant of Bounty: Simic Emerge
+# source: archidekt:3637848
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Imoti, Celebrant of Bounty
+
+Deck:
+1 Mockery of Nature
+1 Wretched Gryff
+1 Sapphire Dragon // Psionic Pulse
+1 Paleoloth
+1 It of the Horrid Swarm
+1 Yavimaya Coast
+1 Flooded Grove
+1 Breeding Pool
+1 Decimator of the Provinces
+1 Cradle Clearcutter
+1 Topiary Stomper
+1 Drownyard Behemoth
+1 Lashweed Lurker
+1 Greater Tanuki
+1 Elder Deep-Fiend
+1 Generous Ent
+1 Kozilek's Unsealing
+1 Drowner of Truth // Drowned Jungle
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Disciple of Freyalise // Garden of Freyalise
+1 Abstergo Entertainment
+1 Sutina, Speaker of the Tajuru
+1 Turbulent Wilderness
+1 Sodden Verdure
+1 Krosan Drover
+1 Twisted Riddlekeeper
+1 Wastes
+1 Surrak and Goreclaw
+1 Otawara, Soaring City
+1 Sanctum of Ugin
+1 Search for Tomorrow
+1 The Great Henge
+1 Submerge
+1 Tribute to the World Tree
+1 Glen Elendra Archmage
+1 Beast Within
+1 Willowrush Verge
+1 River's Rebuke
+1 Glacier Godmaw
+1 Starwinder
+1 Hinterland Harbor
+1 Yavimaya, Cradle of Growth
+1 Rejuvenating Springs
+1 Demolition Field
+1 Dreamroot Cascade
+1 Mosswort Bridge
+1 Scavenger Grounds
+2 Island
+1 The Skullspore Nexus
+1 Nulldrifter
+1 Goreclaw, Terror of Qal Sisma
+1 Garruk's Uprising
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Wood Elves
+1 Yavimaya Dryad
+1 Guardian Augmenter
+1 Runadi, Behemoth Caller
+1 Greenwarden of Murasa
+1 Beanstalk Giant // Fertile Footsteps
+10 Forest
+1 Boseiju, Who Endures
+1 Castle Garenbrig
+1 Hedge Maze
+1 Misty Rainforest
+1 Reliquary Tower
+1 Prismatic Vista
+1 Incubation // Incongruity
+1 Lifestream's Blessing
+1 Gwenna, Eyes of Gaea
+1 Nyxbloom Ancient
+1 Enduring Vitality
+1 Keruga, the Macrosage
+1 Nylea, Keen-Eyed
+1 Rift Sower
+1 Clifftop Lookout
+1 Selvala, Heart of the Wilds
+1 Lórien Revealed
+1 Colossal Skyturtle
+1 Anticausal Vestige
+1 Vaultborn Tyrant
+1 Ugin's Binding
+1 Fierce Empath
+1 Emrakul, the Exigent Doom
+1 Akroma's Memorial
+1 Thunderous Velocipede
+1 Monstrous Vortex
+1 Waker of Waves
+1 Sagu Wildling // Roost Seek
+1 Command Tower
+1 Simulacrum Shaper

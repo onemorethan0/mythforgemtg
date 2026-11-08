@@ -1,0 +1,83 @@
+# Archidekt — Imodane, the Pyrohammer
+# source: archidekt:5423146
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Fireblast
+1 Imodane, the Pyrohammer
+
+Deck:
+1 Redirect Lightning
+1 Mizzix's Mastery
+1 Furnace of Rath
+1 Cinder Strike
+1 Hexing Squelcher
+1 Harvest Pyre
+1 Reforge the Soul
+1 Ancient Tomb
+27 Snow-Covered Mountain
+1 Boseiju, Who Shelters All
+1 Runaway Steam-Kin
+1 Spite of Mogis
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Unholy Heat
+1 Flame Slash
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 The One Ring
+1 Lithomantic Barrage
+1 Dictate of the Twin Gods
+1 Jeska's Will
+1 Faithless Looting
+1 Fiery Emancipation
+1 Mana Geyser
+1 Cathartic Reunion
+1 Solphim, Mayhem Dominus
+1 City on Fire
+1 Neheb, the Eternal
+1 Lightning Axe
+1 Sol Ring
+1 Deflecting Swat
+1 Insult // Injury
+1 Roast
+1 Gamble
+1 Ruby Medallion
+1 Wheel of Misfortune
+1 Valakut Awakening // Valakut Stoneforge
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Underworld Breach
+1 Isengard Unleashed
+1 Mine Collapse
+1 Demand Answers
+1 Bolt Bend
+1 Pyrokinesis
+1 Command Beacon
+1 Scorching Shot
+1 Ghostfire Slice
+1 Flare of Duplication
+1 Rending Volley
+1 Tibalt's Trickery
+1 Artist's Talent
+1 Trial of Agony
+1 Virtue of Courage // Embereth Blaze
+1 Flashback
+1 Magus of the Wheel
+1 Will of the Jeskai
+1 Wheel of Fortune
+1 Blood Moon
+1 Crystal Vein
+1 Dwarven Ruins
+1 Seething Song
+1 Grab the Prize
+1 Mesmeric Orb
+1 Gemstone Caverns
+1 Fellwar Stone
+1 Lightning Greaves
+1 Treasonous Ogre
+1 Twinflame Tyrant
+1 Extraplanar Lens
+1 Throne of Eldraine
+1 Ragavan, Nimble Pilferer
+1 Combust
+1 Imperial Recruiter
+1 Urza's Saga

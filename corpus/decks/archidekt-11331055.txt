@@ -1,0 +1,108 @@
+# Archidekt — The Weatherlight Crew
+# source: archidekt:11331055
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Lotus Petal
+1 Elvish Spirit Guide
+1 Gran-Gran
+1 Ruby, Daring Tracker
+1 Mana Vault
+1 Teferi, Time Raveler
+1 Fierce Guardianship
+1 Lotho, Corrupt Shirriff
+1 Silence
+1 Windswept Heath
+1 Deadpool, Trading Card
+1 Deflecting Swat
+1 Esper Sentinel
+1 Gemstone Caverns
+1 Noble Hierarch
+1 Demonic Tutor
+1 Flusterstorm
+1 Agatha's Soul Cauldron
+1 Scalding Tarn
+1 Derevi, Empyrial Tactician
+1 Command Tower
+1 Selvala, Heart of the Wilds
+1 Sol Ring
+1 Arcane Signet
+1 Tataru Taru
+1 Polluted Delta
+1 Flooded Strand
+1 Emiel the Blessed
+1 Katilda, Dawnhart Prime
+1 Mount Doom
+1 Verdant Catacombs
+1 Lavinia, Azorius Renegade
+1 Legolas's Quick Reflexes
+1 Enlightened Tutor
+1 Bloom Tender
+1 Smothering Tithe
+1 Mana Confluence
+1 City of Brass
+1 Wooded Foothills
+1 Kinnan, Bonder Prodigy
+1 The Cabbage Merchant
+1 Deathrite Shaman
+1 Arid Mesa
+1 Spider-Woman, Stunning Savior
+1 Birds of Paradise
+1 Abrupt Decay
+1 Vampiric Tutor
+1 Ragavan, Nimble Pilferer
+1 Ignoble Hierarch
+1 Scrubland
+1 Underground Sea
+1 Relic of Legends
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Mox Amber
+1 Swords to Plowshares
+1 Swan Song
+1 King T'Challa // Black Panther, Hope Enduring
+1 Colossal Skyturtle
+1 Mox Diamond
+1 Tropical Island
+1 Savannah
+1 Volcanic Island
+1 Bayou
+1 Mystic Remora
+1 Faeburrow Elder
+1 Otawara, Soaring City
+1 Boseiju, Who Endures
+1 Plateau
+1 Taiga
+1 Gaea's Cradle
+1 Tundra
+1 Force of Will
+1 Marvin, Murderous Mimic
+1 Ioreth of the Healing House
+1 Into the Flood Maw
+1 Flash Thompson, Spider-Fan
+1 Mockingbird
+1 Chrome Mox
+1 Fellwar Stone
+1 Badgermole Cub
+1 Jennifer Walters // The Sensational She-Hulk
+1 Shang-Chi, Master of Kung Fu
+1 Tyvar, Jubilant Brawler
+1 Tarnished Citadel
+1 Deafening Silence
+1 Gleaming Splendor
+1 Misty Rainforest
+1 Ancient Tomb
+1 Loki's Scepter
+1 Mindbreak Trap
+1 Imposter Mech
+1 Rhystic Study
+1 Touch the Spirit Realm
+1 Orim's Chant
+1 Exotic Orchard
+1 Avacyn's Pilgrim
+1 Elves of Deep Shadow
+1 Samut, Hazoret's Champion
+1 Mental Misstep

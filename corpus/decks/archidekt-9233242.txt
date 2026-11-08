@@ -1,0 +1,85 @@
+# Archidekt — Kudo, King Among Bears
+# source: archidekt:9233242
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kudo, King Among Bears
+
+Deck:
+1 Ayula, Queen Among Bears
+1 Werebear
+1 Ashcoat Bear
+1 Balduvian Bears
+1 Bear Cub
+1 Grizzly Bears
+1 Runeclaw Bear
+1 Vivien's Grizzly
+1 Harmonize
+1 Utopia Sprawl
+1 Wild Growth
+1 Assemble the Players
+1 Rampaging Yao Guai
+1 Toski, Bearer of Secrets
+1 Guardian Gladewalker
+1 Command Tower
+1 Wooded Bastion
+1 Llanowar Elves
+1 Woodland Changeling
+1 Forest Bear
+1 Pale Bears
+1 Realmwalker
+1 Mother Bear
+1 Sol Ring
+1 Beast Whisperer
+1 Canopy Vista
+1 Birds of Paradise
+1 Wilson, Refined Grizzly
+1 Avacyn's Pilgrim
+1 Tocasia's Welcome
+1 Avian Changeling
+1 Mangara, the Diplomat
+1 Promise of Loyalty
+1 Patchwork Banner
+1 Overgrown Farmland
+1 Hushwood Verge
+1 Generous Gift
+1 Thraben Charm
+1 Icon of Ancestry
+1 Spear of Heliod
+1 Striped Bears
+1 Windswept Heath
+1 Masked Vandal
+1 Abzan Beastmaster
+1 Paladin Class
+1 Anthem of Champions
+1 Rally the Ranks
+1 Radiant Destiny
+1 Triumph of Ferocity
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Branchloft Pathway // Boulderloft Pathway
+1 Dismantling Wave
+1 Ulvenwald Tracker
+1 Instruments of War
+1 Wrath of God
+1 Chomping Changeling
+1 Swords to Plowshares
+1 Reverence
+1 Mutable Explorer
+1 Chronicle of Victory
+1 Firdoch Core
+1 Wayfarer's Bauble
+1 Alpha Status
+1 Inheritance
+1 Temple Garden
+1 Studious First-Year // Rampant Growth
+1 Path to Exile
+1 Day of Judgment
+1 Beorn the Fierce
+1 Bountiful Promenade
+1 Glorious Anthem
+1 Gaea's Anthem
+17 Forest
+8 Plains
+1 Caller of the Claw
+1 Caller of the Hunt

@@ -1,0 +1,100 @@
+# Archidekt — Yuna - Bant Summon Tribal (Enchantment and Saga Creatures)
+# source: archidekt:13012848
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Yuna, Grand Summoner
+
+Deck:
+1 Summon: Bahamut
+1 Summon: Fenrir
+1 Seal of Primordium
+1 Seal of Cleansing
+1 Summon: Titan
+1 Danny Pink
+1 Summon: Yojimbo
+1 Summon: Ixion
+1 O'aka, Traveling Merchant
+1 Power Conduit
+1 Summon: Good King Mog XII
+1 Peerless Recycling
+1 Together Forever
+1 Garnet, Princess of Alexandria
+1 Tranquil Landscape
+1 Krosan Verge
+1 Exotic Orchard
+1 Seaside Citadel
+1 Bala Ged Recovery // Bala Ged Sanctuary
+2 Island
+1 Hinterland Harbor
+1 Sunpetal Grove
+1 Yavimaya Coast
+1 Brushland
+1 Glacial Fortress
+1 Satyr Enchanter
+1 Inquisitive Glimmer
+1 Setessan Champion
+1 Sanctum Weaver
+1 Entity Tracker
+1 Nesting Grounds
+1 Monumental Henge
+1 Enchantress's Presence
+1 Tidus, Yuna's Guardian
+1 Adarkar Wastes
+1 Kestia, the Cultivator
+1 Soaring Lightbringer
+1 Destiny Spinner
+1 Weaver of Harmony
+1 Sythis, Harvest's Hand
+1 Eidolon of Blossoms
+1 Strength of the Harvest // Haven of the Harvest
+1 Sejiri Shelter // Sejiri Glacier
+1 Trickster's Elk
+1 Utopia Sprawl
+1 Wild Growth
+1 Valgavoth's Lair
+1 Hallowed Fountain
+1 Lush Portico
+1 Hedge Maze
+1 Summon: Knights of Round
+1 Summon: Primal Garuda
+1 Falco Spara, Pactweaver
+1 Grasp of Fate
+1 Command Tower
+1 Archetype of Imagination
+1 Summon: Choco/Mog
+1 Summon: Fat Chocobo
+6 Forest
+1 Ishgard, the Holy See // Faith & Grief
+1 Scholar of New Horizons
+1 Summon: Shiva
+1 Shigeki, Jukai Visionary
+1 Summon: Valefor
+1 Summon: Magus Sisters
+1 Auroral Procession
+3 Plains
+1 Temporary Lockdown
+1 Banishment
+1 Brokers Hideout
+1 Observed Stasis
+1 Adagia, Windswept Bastion
+1 Earthbender Ascension
+1 Kruphix's Insight
+1 Calix, Destiny's Hand
+1 Temple Garden
+1 Wolfwillow Haven
+1 Enduring Curiosity
+1 Jukai Naturalist
+1 Amphibian Downpour
+1 Fertile Ground
+1 Yuna, Hope of Spira
+1 Overlord of the Hauntwoods
+1 Overlord of the Floodpits
+1 Spara's Headquarters
+1 Breeding Pool
+1 Courser of Kruphix
+1 Buried in the Garden
+1 Urban Retreat
+1 Rhys, the Evermore
+1 Lieutenant Commander Data

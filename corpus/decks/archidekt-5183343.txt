@@ -1,0 +1,85 @@
+# Archidekt — (Retired) Legolas go pew pew
+# source: archidekt:5183343
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Legolas, Master Archer
+
+Deck:
+1 Kami of Whispered Hopes
+1 Nature's Way
+1 The Hunter Maze
+1 Mosswort Bridge
+1 Guardian Augmenter
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Prizefight
+1 Command Beacon
+1 Asceticism
+1 Greatbow Doyen
+1 Thundering Mightmare
+1 Rogue's Passage
+1 Three Visits
+1 Basilisk Collar
+1 Yavimaya, Cradle of Growth
+1 Harmonize
+1 Cankerbloom
+1 Season of Growth
+1 Crawlspace
+1 Gaea's Gift
+1 Champion's Helm
+1 Galadhrim Ambush
+1 Berserk
+1 Lothlórien Blade
+1 Nature's Claim
+1 Arcane Signet
+1 Windswift Slice
+1 Vigor
+1 Kodama's Reach
+1 Rampant Growth
+1 Emerald Medallion
+1 Ancient Animus
+1 Heroic Intervention
+1 Rishkar's Expertise
+1 Field of Ruin
+1 Verdant Rebirth
+1 Hunter's Prowess
+1 Audacity
+1 Ghost Quarter
+1 Ram Through
+1 Snow-Covered Forest
+1 Gemrazer
+1 Primal Order
+1 Managorger Hydra
+1 Prey Upon
+1 Stuffy Doll
+1 Mithril Coat
+1 Loxodon Warhammer
+1 Scavenging Ooze
+1 Commander's Sphere
+1 Dryad Arbor
+1 Epic Confrontation
+1 Cultivate
+1 Snakeskin Veil
+1 Blanchwood Armor
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Isochron Scepter
+1 Raised by Giants
+1 Blossoming Defense
+1 Venerated Rotpriest
+1 Alpha Authority
+1 Wild Defiance
+1 Primal Bellow
+1 Witch's Clinic
+1 Livewire Lash
+1 Fruition
+1 Tyvar's Stand
+1 Infectious Bite
+1 Bite Down
+1 Viridian Revel
+1 Soul-Guide Lantern
+1 Sol Ring
+1 Staff of Titania
+1 Nissa, Ascended Animist
+1 Barroom Brawl
+24 Forest

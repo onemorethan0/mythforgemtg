@@ -1,0 +1,99 @@
+# Archidekt — Sonic the Hedgehog: Gotta Go Fast
+# source: archidekt:14232133
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Sonic the Hedgehog
+
+Deck:
+1 Jacked Rabbit
+1 Sephiroth, Fallen Hero
+1 Iron Man, Armored Avenger
+1 Akki Battle Squad
+1 War Machine, Avenging Arsenal
+1 Enduring Curiosity
+1 Thundering Raiju
+1 Counterspell
+1 Wave Goodbye
+1 Damning Verdict
+1 Chaos Warp
+1 Arcane Denial
+1 Swiftfoot Boots
+1 Fellwar Stone
+1 Biorganic Carapace
+1 SP//dr, Piloted by Peni
+1 Goldspan Dragon
+1 Professional Face-Breaker
+1 Sea of Clouds
+4 Island
+4 Plains
+1 Stormcarved Coast
+1 Sundown Pass
+1 Shivan Reef
+1 Ripples of Potential
+1 Akroma's Will
+1 Winged Hive Tyrant
+1 Uncivil Unrest
+1 Super State
+1 The Wandering Rescuer
+1 Herald of Secret Streams
+1 The Fire Crystal
+1 Battlefield Forge
+1 Adarkar Wastes
+1 Deserted Beach
+1 Rogue's Passage
+1 Reliquary Tower
+1 Spectator Seating
+1 Training Center
+1 Untimely Malfunction
+4 Mountain
+1 Command Tower
+1 Goro-Goro, Disciple of Ryusei
+1 Galadriel's Dismissal
+1 Abzan Falconer
+1 Plaza of Heroes
+1 Raugrin Triome
+1 Knuckles the Echidna
+1 Sol Ring
+1 Rikku, Resourceful Guardian
+1 Samut, Hazoret's Champion
+1 Spectacular Spider-Man
+1 Guiding Hydra
+1 Ledger Shredder
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Archaeomancer's Map
+1 Generous Gift
+1 Frostcliff Siege
+1 Pollywog Prodigy
+1 Together Forever
+1 Luminarch Aspirant
+1 Path to Exile
+1 An Offer You Can't Refuse
+1 Mana Geyser
+1 Unbreakable Formation
+1 Dusk Legion Duelist
+1 Danny Pink
+1 Talisman of Creativity
+1 Talisman of Conviction
+1 Talisman of Progress
+1 Karn's Bastion
+1 Lae'zel, Vlaakith's Champion
+1 Nesting Grounds
+1 Lotus Petal
+1 Command Beacon
+1 Arcane Signet
+1 Arena of Glory
+1 Minas Tirith
+1 Exotic Orchard
+1 Kami of Celebration
+1 Esper Sentinel
+1 Glen Elendra Archmage
+1 Karlach, Fury of Avernus
+1 All Will Be One
+1 Combat Celebrant
+1 Bident of Thassa
+1 Deanna Troi, Psychic Counsel
+1 Hallowed Fountain
+1 Steam Vents
+1 Sacred Foundry

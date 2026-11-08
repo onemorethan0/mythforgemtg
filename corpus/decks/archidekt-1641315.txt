@@ -1,0 +1,97 @@
+# Archidekt — Ardenn + Rograkh Equipment
+# source: archidekt:1641315
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Rograkh, Son of Rohgahh
+1 Ardenn, Intrepid Archaeologist
+
+Deck:
+1 Ancient Den
+1 Great Furnace
+1 Sundown Pass
+1 Buried Ruin
+1 Inventors' Fair
+1 Codsworth, Handy Helper
+1 Battlefield Forge
+1 Professional Face-Breaker
+1 Lizard Blades
+1 Bloodforged Battle-Axe
+1 Reckless Impulse
+1 Homeward Path
+1 Mana Vault
+1 Sacred Foundry
+1 Mox Opal
+1 Clifftop Retreat
+1 Blinkmoth Nexus
+1 Steelshaper's Gift
+1 Talisman of Conviction
+1 All That Glitters
+1 Shadowspear
+1 Stoneforge Mystic
+1 Akiri, Fearless Voyager
+1 Kediss, Emberclaw Familiar
+1 Jeska's Will
+1 Slash the Ranks
+1 Reyav, Master Smith
+1 Commander's Plate
+1 Open the Armory
+1 Boros Charm
+1 Bruenor Battlehammer
+1 Fighter Class
+1 Swords to Plowshares
+1 Puresteel Paladin
+1 Sram, Senior Edificer
+1 Mantle of the Ancients
+1 Slayers' Stronghold
+1 Command Tower
+1 Urza's Saga
+1 Thran Power Suit
+1 Austere Command
+1 Path to Exile
+1 Enlightened Tutor
+1 Teferi's Protection
+1 Bronze Guardian
+1 Sunbaked Canyon
+1 The Mycosynth Gardens
+1 Inkmoth Nexus
+1 Golem-Skin Gauntlets
+1 Wrenn's Resolve
+1 Sol Ring
+1 Masterwork of Ingenuity
+1 Colossus Hammer
+1 Arcane Signet
+1 Nettlecyst
+1 Sevinne's Reclamation
+1 Spectator Seating
+1 Sunforger
+1 Forge Anew
+1 Mithril Coat
+1 Sword of Once and Future
+1 Sword of Fire and Ice
+1 Sword of Feast and Famine
+1 Nahiri, Forged in Fury
+1 Ancient Tomb
+1 Swiftfoot Boots
+1 Hammer of Nazahn
+6 Plains
+2 Mountain
+1 Silver Shroud Costume
+1 Brotherhood Regalia
+1 Pip-Boy 3000
+1 Armored Skyhunter
+1 Buster Sword
+1 Sword of Wealth and Power
+1 Cori-Steel Cutter
+1 Liquimetal Torque
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Lightning Greaves
+1 Arid Mesa
+1 Cloud, Midgar Mercenary
+1 Chaos Warp
+1 Sunbillow Verge
+1 Elegant Parlor
+1 Land Tax
+1 Monumental Henge
+1 Witch Enchanter // Witch-Blessed Meadow

@@ -1,7 +1,8 @@
 # Archidekt — A New hope
 # source: archidekt:25771280
 # fetched: 2026-08-26
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 3 Game Changers (Cyclonic Rift, Farewell, Teferi's Protection); Bracket 2 allows 0
 
 Commander:
 1 Hope Estheim

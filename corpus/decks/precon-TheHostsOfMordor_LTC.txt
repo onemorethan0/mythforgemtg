@@ -1,0 +1,94 @@
+# WotC precon — The Hosts of Mordor (LTC, 2023-06-23)
+# source: mtgjson:TheHostsOfMordor_LTC
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Notion Thief); Bracket 2 allows 0
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Sauron, Lord of the Rings
+
+Deck:
+1 Anger
+1 Arcane Denial
+1 Arcane Signet
+1 Basalt Monolith
+1 Bitter Downfall
+1 Blasphemous Act
+1 Boon of the Wish-Giver
+1 Cavern-Hoard Dragon
+1 Choked Estuary
+1 Command Tower
+1 Commander's Sphere
+1 Consider
+1 Corsairs of Umbar
+1 Crumbling Necropolis
+1 Decree of Pain
+1 Deep Analysis
+1 Desolate Lighthouse
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Everflowing Chalice
+1 Evolving Wilds
+1 Extract from Darkness
+1 Fact or Fiction
+1 Faithless Looting
+1 Feed the Swarm
+1 Field of Ruin
+1 Fiery Inscription
+1 Forbidden Alchemy
+1 Foreboding Ruins
+1 Frostboil Snarl
+1 Goblin Cratermaker
+1 Goblin Dark-Dwellers
+1 Grishnákh, Brash Instigator
+1 Gríma, Saruman's Footman
+1 Guttersnipe
+1 Hostage Taker
+1 In the Darkness Bind Them
+1 Inferno Titan
+6 Island
+1 Knollspine Dragon
+1 Languish
+1 Lidless Gaze
+1 Living Death
+1 Lord of the Nazgûl
+1 Merciless Executioner
+1 Mind Stone
+1 Monstrosity of the Lake
+1 Moria Scavenger
+7 Mountain
+1 Notion Thief
+1 Orcish Siegemaster
+1 Path of Ancestry
+1 Rampaging War Mammoth
+1 Reanimate
+1 Relic of Sauron
+1 Revenge of Ravens
+1 Rogue's Passage
+1 Saruman, the White Hand
+1 Scourge of the Throne
+1 Shelob, Dread Weaver
+1 Shiny Impetus
+1 Siege-Gang Commander
+1 Smoldering Marsh
+1 Sol Ring
+1 Subjugate the Hobbits
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Summons of Saruman
+1 Sunken Hollow
+6 Swamp
+1 Terramorphic Expanse
+1 The Balrog of Moria
+1 The Black Gate
+1 The Mouth of Sauron
+1 Thrill of Possibility
+1 Too Greedily, Too Deep
+1 Treason of Isengard
+1 Treasure Nabber
+1 Troll of Khazad-dûm
+1 Underground River
+1 Voracious Fell Beast
+1 Wake the Dragon
+1 Worn Powerstone

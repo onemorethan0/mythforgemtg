@@ -1,0 +1,92 @@
+# Archidekt — Kenrith Dreams of Elk
+# source: archidekt:9002895
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Serra's Blessing
+1 Tromp the Domains
+1 Tome of Legends
+1 Galewind Moose
+1 Descendants' Path
+1 Enduring Vitality
+1 Ulvenwald Oddity // Ulvenwald Behemoth
+1 The Royal Scions
+1 Unexplained Vision
+1 Exponential Growth
+1 Fauna Shaman
+1 Gift of Growth
+1 Memorial to Unity
+1 Branching Evolution
+1 Skyclave Cleric // Skyclave Basilica
+1 Marath, Will of the Wild
+1 Farhaven Elf
+1 Elderwood Scion
+1 Archon of Absolution
+1 Font of Fertility
+1 Kabira Takedown // Kabira Plateau
+1 Patchwork Banner
+1 Heliod's Emissary
+1 Priest of Fell Rites
+1 Shamanic Revelation
+1 Golden Ratio
+1 Genesis Ultimatum
+1 Dawntreader Elk
+1 Oko, Thief of Crowns
+1 Kenrith's Transformation
+1 Trickster's Elk
+1 Oko, the Ringleader
+1 Icon of Ancestry
+1 Golden Hind
+1 Boreal Outrider
+1 Saddled Rimestag
+1 Rime Tender
+1 Bellowing Elk
+1 Watchful Radstag
+1 Stampeding Elk Herd
+1 Fey Steed
+1 Great Sable Stag
+1 Vernal Sovereign
+1 The Pride of Hull Clade
+1 Rimefur Reindeer
+1 Splendor Mare
+1 Beza, the Bounding Spring
+1 Somberwald Stag
+1 Linden, the Steadfast Queen
+1 Dawnglade Regent
+1 Game-Trail Changeling
+1 Star-Crowned Stag
+1 Kindred Boon
+1 Leafkin Druid
+1 Blessing of Frost
+1 Moritte of the Frost
+1 Nature's Lore
+1 Rishkar's Expertise
+1 Primeval Bounty
+1 Rowen
+1 Terramorphic Expanse
+1 Arctic Treeline
+1 The World Tree
+1 Arctic Flats
+1 Path of Ancestry
+1 Rimewood Falls
+1 Faceless Haven
+1 Evolving Wilds
+1 Woodland Chasm
+1 Highland Forest
+1 Highland Weald
+1 Boreal Shelf
+1 Command Tower
+1 Jegantha, the Wellspring
+1 Saber-Tooth Moose-Lion
+1 Snowmelt Stag
+1 Snow-Covered Swamp
+6 Snow-Covered Plains
+1 Curious Farm Animals
+9 Snow-Covered Forest
+3 Snow-Covered Island
+2 Snow-Covered Mountain
+1 Firdoch Core

@@ -1,7 +1,8 @@
 # Archidekt — Choco, Seeker of Paradise (Commander) - Tempest Hawk
 # source: archidekt:17565675
 # fetched: 2026-08-26
-# bracket: 3
+# bracket_claimed: 3
+# label_audit: fails the official Bracket 3 gates: 4 Game Changers (Enlightened Tutor, Farewell, Fierce Guardianship, Worldly Tutor); Bracket 3 allows 3
 
 Commander:
 1 Choco, Seeker of Paradise

@@ -1,0 +1,102 @@
+# Archidekt — Dragons
+# source: archidekt:4317093
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Atla Palani, Nest Tender
+
+Deck:
+1 Wooded Foothills
+1 Branchloft Pathway // Boulderloft Pathway
+1 Temple Garden
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Sacred Foundry
+1 Arid Mesa
+1 Windswept Heath
+3 Plains
+1 Rootbound Crag
+1 Jetmir's Garden
+1 Spectator Seating
+1 Lazotep Quarry
+1 Bountiful Promenade
+3 Forest
+1 Needleverge Pathway // Pillarverge Pathway
+1 Rockfall Vale
+1 Command Tower
+1 Reflecting Pool
+1 Stomping Ground
+1 Spire Garden
+1 Thornspire Verge
+1 Hushwood Verge
+1 Maelstrom of the Spirit Dragon
+3 Mountain
+1 Skullclamp
+1 Redirect Lightning
+1 Mox Jasper
+1 Mithril Coat
+1 Monster Manual // Zoological Study
+1 Maskwood Nexus
+1 Arcane Signet
+1 Utvara Hellkite
+1 Old Gnawbone
+1 Drakuseth, Maw of Flames
+1 Klauth, Unrivaled Ancient
+1 Steel Hellkite
+1 Bloomvine Regent // Claim Territory
+1 Sylvan Library
+1 Garruk's Uprising
+1 Bonehoard Dracosaur
+1 Ancient Gold Dragon
+1 Dragon Tempest
+1 Path to Exile
+1 Swords to Plowshares
+1 Three Visits
+1 Rishkar's Expertise
+1 Ascend from Avernus
+1 Mosswort Bridge
+1 Krosan Verge
+1 Haven of the Spirit Dragon
+1 Yavimaya, Cradle of Growth
+1 Boseiju, Who Endures
+1 Protector of the Wastes
+1 Blessed Respite
+1 True Conviction
+1 Dracogenesis
+1 Teferi's Protection
+1 Balefire Dragon
+1 Klauth's Will
+1 Smuggler's Surprise
+1 Twinflame Tyrant
+1 Goblin Bombardment
+1 Aura Shards
+1 Fanatical Devotion
+1 Summon: Bahamut
+1 Terror of the Peaks
+1 Canopy Gargantuan
+1 Scourge of Valkas
+1 Rith, Liberated Primeval
+1 Nesting Dragon
+1 Dragonlord Dromoka
+1 Dragonfire Blade
+1 Rith, the Awakener
+1 Lathliss, Dragon Queen
+1 Dragonhawk, Fate's Tempest
+1 Dragon Broodmother
+1 Dragonborn Champion
+1 Sting, the Glinting Dagger
+1 Broodcaller Scourge
+1 The Golden Throne
+1 Ancient Copper Dragon
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Natural Order
+1 Sol Ring
+1 The Great Henge
+1 Ashnod's Altar
+1 Dragon's Hoard
+1 Stormscale Scion
+1 Breaching Dragonstorm
+1 Road of Return
+1 Dawn's Truce
+1 Final Showdown
+1 Wasteland

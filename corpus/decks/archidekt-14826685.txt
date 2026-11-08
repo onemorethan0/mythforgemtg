@@ -1,0 +1,106 @@
+# Archidekt — Space Abacus - Inspirit Flagship Vessel
+# source: archidekt:14826685
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jean-Luc Picard, Luminary
+
+Deck:
+1 Desynchronization
+1 Nesting Grounds
+1 The Seriema
+1 Recommission
+1 Inkmoth Nexus
+1 Skrelv, Defector Mite
+1 Hallowed Fountain
+1 Raugrin Triome
+1 Adarkar Wastes
+1 Ancient Den
+1 Arcane Signet
+1 Battlefield Forge
+1 Clifftop Retreat
+1 Command Tower
+1 Darksteel Reactor
+1 Dispatch
+1 Urza, Lord High Artificer
+1 Experimental Augury
+1 Glacial Fortress
+1 Great Furnace
+1 Insight Engine
+1 Jhoira, Weatherlight Captain
+1 Karn's Bastion
+1 Plains
+1 Radiant Summit
+1 Ripples of Potential
+1 Seat of the Synod
+1 Shivan Reef
+1 Mountain
+1 Sol Ring
+1 Solar Array
+1 Spire of Industry
+1 Sulfur Falls
+1 Surge Conductor
+1 Swords to Plowshares
+1 Tezzeret's Gambit
+1 Uthros Research Craft
+1 Dawnsire, Sunstar Dreadnought
+1 Unwinding Clock
+1 Uthros, Titanic Godcore
+1 Comet, Stellar Pup
+1 Esper Sentinel
+1 Cait Sith, Fortune Teller
+1 Meteor Crater
+1 Scrawling Crawler
+1 Damning Verdict
+1 Delete
+1 Filigree Vector
+1 Kilo, Apogee Mind
+1 Aetheric Amplifier
+1 Metastatic Evangel
+1 Inventors' Fair
+1 Fabricate
+1 Prologue to Phyresis
+1 Simulacrum Synthesizer
+1 All Will Be One
+1 The Ozolith
+1 Cosmogrand Zenith
+1 Ichormoon Gauntlet
+1 Glistening Sphere
+1 Archway of Innovation
+1 Drill Too Deep
+1 Academy Ruins
+1 Steam Vents
+1 Talisman of Creativity
+1 Blast Zone
+1 Sea of Clouds
+1 Fiery Islet
+1 Sunbaked Canyon
+1 Sacred Foundry
+1 Rhystic Study
+1 Teferi's Protection
+1 Cyclonic Rift
+3 Island
+1 Mycosynth Golem
+1 Ultron, Artificial Malevolence
+1 Data, New Life
+1 U.S.S. Enterprise-D, Galaxy-Class
+1 Ethersworn Canonist
+1 Beverly Crusher, Ship's Doctor
+1 Federation Resupply
+1 Thoughtcast
+1 Slip Out the Back
+1 Krang, Master Mind
+1 Inspirit, Flagship Vessel
+1 Talisman of Conviction
+1 Contentious Plan
+1 Starship Enterprise
+1 Talisman of Progress
+1 Chief Miles O'Brien
+1 Ornithopter of Paradise
+1 Magda, Brazen Outlaw
+1 Lt. Cmdr. Geordi La Forge
+1 Deanna Troi, Psychic Counsel
+1 Nexus Mentality
+1 U.S.S. Enterprise-A, Free Spirit
+1 Seven of Nine, Unassimilated

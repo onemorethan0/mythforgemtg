@@ -1,0 +1,108 @@
+# Archidekt — [MSH] Four blokes who do f-all
+# source: archidekt:5521310
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 The Council of Four
+
+Deck:
+1 Adarkar Wastes
+1 Aetherspouts
+1 Aven Wind Guide
+1 Azorius Chancery
+1 Baldin, Century Herdmaster
+1 Brave the Sands
+1 Champions of Minas Tirith
+1 Chivalric Alliance
+1 Clever Concealment
+1 Command Tower
+1 Commander's Sphere
+1 Commit // Memory
+1 Council's Judgment
+1 Curse of Verbosity
+1 Dawn's Truce
+1 Decanter of Endless Water
+1 Delney, Streetwise Lookout
+1 Deserted Beach
+1 Dictate of Kruphix
+1 Dream Fracture
+1 Dusk // Dawn
+1 Excavation Technique
+1 Exotic Orchard
+1 Expel the Interlopers
+1 Faerie Mastermind
+1 Fealty to the Realm
+1 Field of Ruin
+1 Flumph
+1 Forbidden Orchard
+1 Geier Reach Sanitarium
+1 Ghirapur Orrery
+1 Guardian of Faith
+1 Guildless Commons
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Heliod's Intervention
+1 Herald of Hoofbeats
+1 Horizon of Progress
+1 Horn of Greed
+1 Howling Mine
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Kami of the Crescent Moon
+1 Knight Exemplar
+1 Knight of the White Orchid
+1 Knowledge Is Power
+1 Leadership Vacuum
+1 Lonely Sandbar
+1 Long River's Pull
+1 Loran of the Third Path
+1 Meticulous Archive
+1 Mikokoro, Center of the Sea
+1 Mind Stone
+1 Mirror Room // Fractured Realm
+1 Misleading Signpost
+1 Moonlit Meditation
+1 Patchwork Banner
+1 Path to Exile
+1 Perch Protection
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Relic of Legends
+1 Reliquary Tower
+1 Roaming Throne
+1 Scholarship Sponsor
+1 Sea of Clouds
+1 Secluded Steppe
+1 Settle the Wreckage
+1 Sky Hussar
+1 Sol Ring
+1 Split Decision
+1 Sunken Citadel
+1 Swords to Plowshares
+1 Temple of Enlightenment
+1 Tenuous Truce
+1 Terrain Generator
+1 The Wandering Rescuer
+1 Thought Vessel
+1 Thraben Charm
+1 Three Tree City
+1 Time Stop
+1 Union of the Third Path
+1 Venser's Journal
+1 Vodalian Wave-Knight
+1 Wand of the Worldsoul
+1 Well of Ideas
+1 Your Temple Is Under Attack
+1 Archaeomancer's Map

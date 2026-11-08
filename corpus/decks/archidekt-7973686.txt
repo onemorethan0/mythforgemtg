@@ -1,0 +1,102 @@
+# Archidekt — Communist Tokens | Kambal, Profiteering Mayor
+# source: archidekt:7973686
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kambal, Profiteering Mayor
+
+Deck:
+1 Bennie Bracks, Zoologist
+1 Ocelot Pride
+1 Pitiless Plunderer
+1 Sorin Markov
+1 Forbidden Orchard
+1 Maze of Ith
+1 Liliana, Dreadhorde General
+1 Prismatic Vista
+1 Vito, Thorn of the Dusk Rose
+1 Teysa Karlov
+1 Thalisse, Reverent Medium
+1 Sanguine Bond
+1 Shadrix Silverquill
+1 Felidar Retreat
+1 Soul Warden
+1 Stroke of Midnight
+1 Tribute to Horobi // Echo of Death's Wail
+1 Isolated Chapel
+1 Fountainport
+1 Hunted Horror
+1 Shineshadow Snarl
+1 Command Tower
+1 Tainted Field
+1 Ghostly Prison
+1 Revel in Riches
+1 Inkshield
+1 Anointed Procession
+1 Godless Shrine
+1 Esper Sentinel
+1 Elesh Norn, Mother of Machines
+1 Enlightened Tutor
+1 Smothering Tithe
+1 Urza's Saga
+1 Caretaker's Talent
+1 Path to Exile
+1 Swords to Plowshares
+1 Demonic Tutor
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Mirkwood Bats
+1 Shadowy Backstreet
+1 Marsh Flats
+1 The Meathook Massacre
+1 Bloodthirsty Conqueror
+1 Exquisite Blood
+1 Wasteland
+1 Kambal, Consul of Allocation
+1 Moonshaker Cavalry
+1 Starscape Cleric
+1 Generous Gift
+1 Fabled Passage
+1 Shattered Sanctum
+1 Fetid Heath
+1 Land Tax
+1 Bleachbone Verge
+1 Cruel Celebrant
+1 Corpse Knight
+1 Teferi's Protection
+1 Sol Ring
+1 Windswept Heath
+4 Plains
+1 Warren Soultrader
+1 Elas il-Kor, Sadistic Pilgrim
+1 Skullclamp
+1 Black Market Connections
+1 Sheoldred, the Apocalypse
+1 Phyrexian Altar
+1 Lotho, Corrupt Shirriff
+1 Panharmonicon
+1 Mondrak, Glory Dominus
+1 Comeuppance
+1 Blood Artist
+1 Vault of Champions
+1 Farewell
+1 Reflecting Pool
+1 Nadier's Nightblade
+1 Concealed Courtyard
+1 Marauding Blight-Priest
+1 Deadly Rollick
+1 Bitterblossom
+1 Caves of Koilos
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Bolas's Citadel
+1 Arcane Signet
+1 Elspeth, Storm Slayer
+1 Bloodletter of Aclazotz
+1 Wedding Ring
+1 Lightning Greaves
+1 Exalted Sunborn
+1 Saw in Half
+1 Adagia, Windswept Bastion
+1 Plaza of Heroes
+4 Swamp
+1 Reliquary Tower

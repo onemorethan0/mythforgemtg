@@ -1,0 +1,94 @@
+# Archidekt — Mono Moon cEDH
+# source: archidekt:16538352
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Alexios, Deimos of Kosmos
+
+Deck:
+1 Reverberate
+1 Blood Moon
+1 _____ Goblin
+1 Damping Sphere
+1 Deflecting Swat
+1 Imperial Recruiter
+1 Jeska, Thrice Reborn
+1 Arid Mesa
+1 Desperate Ritual
+1 Magnetic Theft
+1 Powerbalance
+1 Prismatic Vista
+1 Prying Blade
+1 Pyretic Ritual
+1 Razorkin Needlehead
+1 Simian Spirit Guide
+1 Soulless Jailer
+1 Spectacular Showdown
+1 Sword of Wealth and Power
+1 Vexing Bauble
+1 Karn, the Great Creator
+1 Professional Face-Breaker
+1 Rite of Flame
+1 Mox Opal
+1 Winds of Change
+1 Command Beacon
+1 Bolt Bend
+1 City of Traitors
+1 Crystal Vein
+1 Fork
+1 Gemstone Caverns
+1 Lotus Petal
+1 Jeska's Will
+1 Mask of Memory
+1 Sol Ring
+1 Seething Song
+1 Tarrian's Soulcleaver
+1 Scalding Tarn
+1 The Spear of Leonidas
+1 Rug of Smothering
+1 Manabarbs
+1 Strength-Testing Hammer
+1 Beamtown Beatstick
+1 Burnout
+1 Ancient Tomb
+1 Cursed Mirror
+1 Pyroblast
+1 Lightning Bolt
+1 Strip Mine
+1 Fear of Missing Out
+1 Commander's Plate
+1 Two-Handed Axe // Sweeping Cleave
+1 Goldvein Pick
+1 Winter Moon
+1 Luxior, Giada's Gift
+1 Sword of the Animist
+1 Zephyr Boots
+1 Sword of War and Peace
+1 Shiny Impetus
+1 Magebane Lizard
+1 The Sound of Drums
+1 Sardian Avenger
+1 Urza's Saga
+1 Cursed Totem
+1 Torpor Orb
+1 Cavern of Souls
+15 Mountain
+1 Bloodstained Mire
+1 Homeward Path
+1 Mox Amber
+1 Tibalt's Trickery
+1 Mox Diamond
+1 Ragavan, Nimble Pilferer
+1 Grim Monolith
+1 Umezawa's Jitte
+1 Chrome Mox
+1 Mana Vault
+1 Wheel of Fortune
+1 The One Ring
+1 Red Elemental Blast
+1 Hammer of Nazahn
+1 Wheel of Misfortune
+1 Gamble
+1 Magus of the Moon
+1 Lizard Blades

@@ -1,0 +1,108 @@
+# Archidekt — inalla cedh spellseeker combo turbo ultra swag
+# source: archidekt:10174870
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Inalla, Archmage Ritualist
+
+Deck:
+1 Vampiric Tutor
+1 Chrome Mox
+1 Lotus Petal
+1 Wishclaw Talisman
+1 Scholar of the Ages
+1 Spellseeker
+1 Sacrifice
+1 Talisman of Dominance
+1 Jeweled Amulet
+1 Fellwar Stone
+1 Finale of Promise
+1 Gemstone Caverns
+1 Mystical Tutor
+1 Step Through
+1 Emergence Zone
+1 Cavern of Souls
+1 Tainted Pact
+1 Thassa's Oracle
+1 Flusterstorm
+1 Otawara, Soaring City
+1 Burnt Offering
+1 Mox Opal
+1 Demonic Tutor
+1 Pact of Negation
+1 Rite of Flame
+1 Reanimate
+1 Bloodline Necromancer
+1 Gamble
+1 Sol Ring
+1 Verdant Catacombs
+1 Persist
+1 Simian Spirit Guide
+1 Cabal Ritual
+1 Command Tower
+1 Essence Flux
+1 Badlands
+1 Blood Crypt
+1 City of Traitors
+1 Arid Mesa
+1 City of Brass
+1 Volcanic Island
+1 Shallow Grave
+1 Swan Song
+1 Entomb
+1 Bloodstained Mire
+1 Chain of Vapor
+1 Cyclonic Rift
+1 Lion's Eye Diamond
+1 Arcane Signet
+1 Wheel of Fortune
+1 Crystal Vein
+1 Unmarked Grave
+1 Gifts Ungiven
+1 Mana Vault
+1 Steam Vents
+1 Swamp
+1 Mox Diamond
+1 Marsh Flats
+1 Wooded Foothills
+1 Polluted Delta
+1 Ancient Tomb
+1 Flooded Strand
+1 Misty Rainforest
+1 Mana Confluence
+1 Watery Grave
+1 Imperial Seal
+1 Intuition
+1 Culling the Weak
+1 Grim Monolith
+1 Underground Sea
+1 Hoarding Broodlord
+1 Animate Dead
+1 Necromancy
+1 Dance of the Dead
+1 Vedalken Aethermage
+1 Saw in Half
+1 Corpse Dance
+1 Mindbreak Trap
+1 Underworld Breach
+1 Mystic Remora
+1 Orcish Bowmasters
+1 Talisman of Indulgence
+1 Ragavan, Nimble Pilferer
+1 Redirect Lightning
+1 Hexing Squelcher
+1 Brain Freeze
+1 Mental Misstep
+1 Rhystic Study
+1 Dark Ritual
+1 Force of Will
+1 Scalding Tarn
+1 The One Ring
+1 Apprentice Necromancer
+1 Into the Flood Maw
+1 Unearth
+1 Buried Alive
+1 Ruthless Technomancer
+1 Necropotence
+1 An Offer You Can't Refuse

@@ -1,0 +1,105 @@
+# Archidekt — YURIKO competitive bitch
+# source: archidekt:4897939
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Fallen Shinobi
+1 Lotus Petal
+1 Smoke Shroud
+1 Changeling Outcast
+1 Mistblade Shinobi
+1 Ninja of the Deep Hours
+1 Demonic Consultation
+1 Thassa's Oracle
+1 Ingenious Infiltrator
+1 Command Tower
+1 Clearwater Pathway // Murkwater Pathway
+1 City of Brass
+1 Underground River
+1 Takenuma, Abandoned Mire
+1 Otawara, Soaring City
+1 Slither Blade
+1 Tormented Soul
+1 An Offer You Can't Refuse
+1 Minamo, School at Water's Edge
+1 Mist-Syndicate Naga
+1 Moon-Circuit Hacker
+1 Shizo, Death's Storehouse
+1 Dark Ritual
+1 Force of Despair
+1 Street Wraith
+1 Misdirection
+1 Commandeer
+1 Orcish Bowmasters
+1 Demonic Tutor
+1 Triton Shorestalker
+1 Satoru, the Infiltrator
+1 Lim-Dûl's Vault
+1 Vampiric Tutor
+1 Exotic Orchard
+1 Opposition Agent
+1 Tainted Pact
+1 Mockingbird
+1 Ingenious Prodigy
+1 Flare of Denial
+1 Temporal Trespass
+1 Strix Serenade
+1 Tetsuko Umezawa, Fugitive
+1 Toxic Deluge
+1 Snow-Covered Island
+1 Watery Grave
+1 Grafdigger's Cage
+1 Kaito, Bane of Nightmares
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Deadly Rollick
+1 Step Through
+1 Brainstorm
+1 Ponder
+1 Gitaxian Probe
+1 Mishra's Bauble
+1 Fierce Guardianship
+1 Underground Sea
+1 Force of Will
+1 Mindbreak Trap
+1 Snow-Covered Swamp
+1 Sakashima's Student
+1 Flare of Malice
+1 Boggart Trawler // Boggart Bog
+1 Contagion
+1 Windcaller Aven
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Sink into Stupor // Soporific Springs
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Silver-Fur Master
+1 Fell the Profane // Fell Mire
+1 Flooded Strand
+1 Polluted Delta
+1 Prismatic Vista
+1 Force of Negation
+1 Signal Pest
+1 Stifle
+1 Swan Song
+1 Thousand-Faced Shadow
+1 Mystical Tutor
+1 Dismember
+1 Dauthi Voidwalker
+1 Darkslick Shores
+1 Cyclonic Rift
+1 Dour Port-Mage
+1 Ornithopter
+1 Mana Drain
+1 Scalding Tarn
+1 Harvester of Misery
+1 Marsh Flats
+1 Volatile Stormdrake
+1 Thieves' Guild Enforcer
+1 Wingcrafter
+1 Misty Rainforest
+1 Shadow of Mortality
+1 Mental Misstep
+1 Pact of Negation
+1 Dress Down

@@ -1,0 +1,84 @@
+# Archidekt — NVM tha BoLLoCKs HERs GwEnoM (boxing legacy)
+# source: archidekt:18846900
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Spider-Punk
+1 Gwenom, Remorseless
+
+Deck:
+1 Supernatural Stamina
+1 Cadaver Imp
+1 Pilgrim's Eye
+1 Abrade
+1 Mirror Shield
+1 Sicken
+1 Tortured Existence
+16 Swamp
+1 Daily Bugle Building
+10 Mountain
+1 Vibrant Cityscape
+1 Romantic Rendezvous
+1 Taxi Driver
+1 Masked Meower
+1 Spider-Gwen, Free Spirit
+1 Hot Dog Cart
+1 The Death of Gwen Stacy
+1 Risky Research
+1 The Spot's Portal
+1 Wisecrack
+1 Scorpion, Seething Striker
+1 Shriek, Treblemaker
+1 Green Goblin, Revenant
+1 Maximum Carnage
+1 Ultimate Green Goblin
+1 Hobgoblin, Mantled Marauder
+1 Infernal Grasp
+1 Hex
+1 Spectral Searchlight
+1 Arcane Signet
+1 Soul's Fire
+1 Tevesh Szat, Doom of Fools
+1 Armix, Filigree Thrasher
+1 Guildless Commons
+1 War Room
+1 Scourge of the Throne
+1 Rankle, Master of Pranks
+1 Risky Shortcut
+1 Geode Golem
+1 Aetheric Amplifier
+1 Burner Rocket
+1 Carrion Cruiser
+1 Charcoal Diamond
+1 Quag Feast
+1 Command Tower
+1 Falter
+1 Corrupt
+1 Terramorphic Expanse
+1 Port Razer
+1 Kediss, Emberclaw Familiar
+1 Nevinyrral's Disk
+1 Bloodfell Caves
+1 Glimpse the Impossible
+1 Final Act
+1 Chthonian Nightmare
+1 Nesting Grounds
+1 Accursed Marauder
+1 Renegade Tactics
+1 Fire Diamond
+1 Reliquary Tower
+1 Minion's Return
+1 Tymaret, Chosen from Death
+1 Deflecting Swat
+1 Aspect of Manticore
+1 Path of the Pyromancer
+1 Corrupted Conviction
+1 Captain Lannery Storm
+1 Skittering Surveyor
+1 City on Fire
+1 Death Stroke
+1 Breach
+1 Stronghold Assassin
+1 Voltaic Key
+1 Sisters of the Flame

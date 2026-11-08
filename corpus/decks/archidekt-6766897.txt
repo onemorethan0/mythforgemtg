@@ -1,0 +1,108 @@
+# Archidekt — The 5 Companion Deck
+# source: archidekt:6766897
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jenson Carthalion, Druid Exile
+
+Deck:
+1 Tender Wildguide
+1 Sakura-Tribe Elder
+1 Twitching Doll
+1 Trailtracker Scout
+1 Selfless Spirit
+1 Nettle Guard
+1 Warren Elder
+1 Jolrael, Mwonvuli Recluse
+1 Exotic Orchard
+1 Passwall Adept
+1 Floodpits Drowner
+1 Ashling the Pilgrim
+1 Azure Mage
+1 Ayli, Eternal Pilgrim
+1 Ancient Ziggurat
+1 Command Tower
+1 Mountain
+1 Island
+1 Swamp
+1 Arcane Investigator
+1 Ambush Paratrooper
+1 Biomancer's Familiar
+1 Cankerbloom
+1 Apocalypse Hydra
+1 Bounty Agent
+1 Jacob Hauken, Inspector // Hauken's Insight
+1 Dark-Dweller Oracle
+1 Crashing Drawbridge
+1 Gretchen Titchwillow
+1 Dimir Infiltrator
+1 Fauna Shaman
+1 Flamekin Spitfire
+1 Ghostly Pilferer
+1 Genasi Enforcers
+1 Lampad of Death's Vigil
+1 Llanowar Loamspeaker
+1 Lonis, Cryptozoologist
+1 Mystic Archaeologist
+1 Melira, the Living Cure
+1 Malevolent Hermit // Benevolent Geist
+1 Ornithopter of Paradise
+1 Tenth District Hero
+1 Zameck Guildmage
+1 River Hoopoe
+1 Vilespawn Spider
+1 Poison Dart Frog
+1 Triskaidekaphile
+1 The Reality Chip
+1 Zimone, Quandrix Prodigy
+1 Savageborn Hydra
+1 Soulbright Flamekin
+1 Void Stalker
+1 Scalding Devil
+1 Skycat Sovereign
+1 The Ancient One
+1 Agatha of the Vile Cauldron
+1 Bronzehide Lion
+1 Novijen, Heart of Progress
+1 Forest
+1 Plains
+1 Vivid Grove
+1 Vivid Crag
+1 Vivid Creek
+1 Vivid Marsh
+1 Vivid Meadow
+1 Raucous Entertainer
+1 Voracious Varmint
+1 Tolaria West
+1 Skyserpent Seeker
+1 Diversion Unit
+1 Zahur, Glory's Past
+1 Drake Hatcher
+1 Heartfire Immolator
+1 Beastrider Vanguard
+1 Cathar Commando
+1 Sita Varma, Masked Racer
+1 The World Tree
+1 Horizon of Progress
+1 Thran Quarry
+1 Gond Gate
+1 Izzet Guildgate
+1 Citadel Gate
+1 Black Dragon Gate
+1 Golgari Guildgate
+1 Baldur's Gate
+1 Manor Gate
+1 Selesnya Guildgate
+1 Azorius Guildgate
+1 Gruul Guildgate
+1 Cliffgate
+1 Sea Gate
+1 Dimir Guildgate
+1 Simic Guildgate
+1 Maze's End
+1 Urza's Cave
+1 Intrepid Paleontologist
+1 Sunset Strikemaster
+1 Seedship Broodtender
+1 Biomechan Engineer

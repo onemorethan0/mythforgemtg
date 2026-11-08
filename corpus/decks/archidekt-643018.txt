@@ -1,0 +1,93 @@
+# Archidekt — Cat Dog - Stepdad's Deck
+# source: archidekt:643018
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Rin and Seri, Inseparable
+
+Deck:
+1 Sunbird's Invocation
+1 Feline Sovereign
+1 Austere Command
+1 Blasphemous Act
+1 Spirited Companion
+1 Skyhunter Strike Force
+1 Rootbound Crag
+1 Sunpetal Grove
+1 Alms Collector
+1 Hungry Lynx
+1 Qasali Slingers
+1 Mirri, Weatherlight Duelist
+1 Jazal Goldmane
+1 Seht's Tiger
+1 Temur Sabertooth
+1 Zendikar Resurgent
+1 Pride Sovereign
+1 Collective Unconscious
+1 Regal Caracal
+1 Scattered Groves
+1 Sheltered Thicket
+1 Chameleon Colossus
+1 Brimaz, King of Oreskos
+1 Avian Changeling
+1 Hound of Griselbrand
+1 Titanic Ultimatum
+1 Leonin Warleader
+1 Skyshroud Claim
+1 Camaraderie
+1 Selesnya Signet
+1 Boros Charm
+1 Guardian Project
+1 Resolute Watchdog
+1 Winds of Abandon
+1 King of the Pride
+1 Irregular Cohort
+1 Overwhelming Stampede
+1 Marisi, Breaker of the Coil
+1 Return of the Wildspeaker
+1 Jungle Shrine
+1 Gruul Signet
+1 Qasali Pridemage
+1 Naya Charm
+1 Shamanic Revelation
+1 Farseek
+1 Beastmaster Ascension
+1 Taurean Mauler
+1 Mirror Entity
+1 Crib Swap
+1 Temple of Abandon
+1 Temple of Plenty
+1 Arcane Signet
+1 Lifecrafter's Bestiary
+1 Path of Ancestry
+1 Command Tower
+1 Sol Ring
+1 Selesnya Sanctuary
+1 Kessig Wolf Run
+1 Krosan Verge
+1 Gruul Turf
+1 Cinder Glade
+1 Boros Garrison
+1 Canopy Vista
+1 Skullclamp
+1 Boros Signet
+1 Kodama's Reach
+1 Harmonize
+1 Chaos Warp
+1 Kaheera, the Orphanguard
+1 Evolving Wilds
+1 Pack Leader
+1 Selfless Savior
+1 Swords to Plowshares
+1 Bolt Hound
+1 Cultivate
+1 Temple of Triumph
+1 Fabled Passage
+1 Heroic Intervention
+8 Forest
+1 Cathars' Crusade
+1 Path to Exile
+1 Keeper of Fables
+3 Mountain
+7 Plains

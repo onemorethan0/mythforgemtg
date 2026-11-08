@@ -1,0 +1,95 @@
+# Archidekt — Jon's Legitimate Car Dealership
+# source: archidekt:9756584
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jon Irenicus, Shattered One
+
+Deck:
+1 Leaden Myr
+1 Fell the Profane // Fell Mire
+1 Terisiare's Devastation
+1 Academy Ruins
+1 March of the Machines
+1 Command Tower
+1 Mistvault Bridge
+1 Blinkmoth Urn
+1 Watery Grave
+1 Morphic Pool
+1 Sunken Hollow
+1 Temple of Deceit
+1 Polluted Delta
+1 Creeping Tar Pit
+1 Clearwater Pathway // Murkwater Pathway
+1 Darkwater Catacombs
+1 Darkslick Shores
+1 Dimir Aqueduct
+1 Gix, Yawgmoth Praetor
+5 Swamp
+9 Island
+1 Cyber Conversion
+1 Helm of Awakening
+1 Canoptek Spyder
+1 Night's Whisper
+1 Bessie, the Doctor's Roadster
+1 Recon Craft Theta
+1 The Indomitable
+1 Subterranean Schooner
+1 Cosima, God of the Voyage // The Omenkeel
+1 Nautiloid Ship
+1 Skysovereign, Consul Flagship
+1 Deadeye Quartermaster
+1 Cyberdrive Awakener
+1 Weatherlight
+1 Deluxe Dragster
+1 Mobilizer Mech
+1 Imposter Mech
+1 Smuggler's Copter
+1 Cultivator's Caravan
+1 Silver Myr
+1 Etherium Sculptor
+1 Fabricate
+1 Basim Ibn Ishaq
+1 Feed the Swarm
+1 Emry, Lurker of the Loch
+1 Katsumasa, the Animator
+1 Thoughtcast
+1 Vedalken Engineer
+1 Brotherhood Vertibird
+1 Reality Shift
+1 Counterspell
+1 Desynchronization
+1 Pongify
+1 Reckoner Bankbuster
+1 Smuggler's Buggy
+1 Mindlink Mech
+1 Mechtitan Core
+1 Unlicensed Hearse
+1 Buried Ruin
+1 Artificer Class
+1 Mobile Garrison
+1 Seat of the Synod
+1 Phyrexian Arena
+1 Vault of Whispers
+1 Tezzeret the Seeker
+1 Archway of Innovation
+1 Mech Hangar
+1 Inventors' Fair
+1 Geier Reach Sanitarium
+1 Arcane Signet
+1 Sol Ring
+1 Crystal Skull, Isu Spyglass
+1 Fateful Handoff
+1 Coveted Falcon
+1 Dreamtide Whale
+1 Strix Serenade
+1 Lightning Greaves
+1 Into the Flood Maw
+1 Evacuation
+1 Swan Song
+1 Resculpt
+1 Expedition Map
+1 Homeward Path
+1 The Lunar Whale
+1 The Regalia

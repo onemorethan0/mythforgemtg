@@ -1,0 +1,102 @@
+# Archidekt — Can't Spell Darevi
+# source: archidekt:6498840
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Derevi, Empyrial Tactician
+
+Deck:
+1 Sunken Palace
+1 Cast Out
+1 Urza's Cave
+1 Boseiju, Who Endures
+1 Favor of Jukai
+1 Otawara, Soaring City
+1 Mnemonic Sphere
+1 Dreamroot Cascade
+1 Deserted Beach
+1 Rejuvenating Springs
+1 Krosan Verge
+1 Overgrown Farmland
+1 Wasteland Viper
+1 Hallowed Fountain
+1 Swell of Courage
+1 Spirit en-Dal
+1 Shefet Monitor
+1 Colossal Skyturtle
+1 Herd Migration
+1 Dismantling Wave
+1 Ghost-Lit Warder
+1 Spring-Leaf Avenger
+1 Arashi, the Sky Asunder
+1 Drift of Phantasms
+1 Muddle the Mixture
+1 Flourishing Fox
+1 Compelling Argument
+1 Ghost-Lit Nourisher
+1 Lórien Revealed
+1 Warped Tusker
+1 Drownyard Lurker
+1 Valor's Flagship
+1 Shifting Woodland
+1 Reconnaissance Mission
+1 Bannerhide Krushok
+1 Krosan Tusker
+1 Horizon of Progress
+1 HELIOS One
+1 Astral Drift
+1 Waker of Waves
+1 Vizier of Tumbling Sands
+1 Talon Gates of Madara
+1 Elvish Spirit Guide
+1 Radiant Solar
+1 Hieroglyphic Illumination
+1 Wren's Run Hydra
+1 Skarrg Goliath
+1 Drannith Healer
+1 Moonsnare Prototype
+1 Slaughterhorn
+1 Boon of the Wish-Giver
+1 Oketra's Attendant
+1 Splendor Mare
+1 Striped Riverwinder
+1 Skyscribing
+1 Curator of Mysteries
+1 Mirrorshell Crab
+1 Greater Tanuki
+1 Careful Cultivation
+1 Glory
+1 Paladin of Prahv
+1 Webstrike Elite
+1 Kishla Village
+1 Eiganjo, Seat of the Empire
+1 Shigeki, Jukai Visionary
+1 Decree of Justice
+1 Nimble Obstructionist
+1 Shark Typhoon
+1 Spara's Headquarters
+1 Temple Garden
+1 Breeding Pool
+1 Sea of Clouds
+1 Bountiful Promenade
+1 Genesis
+1 Hall of Heliod's Generosity
+1 Reliquary Tower
+1 War Room
+3 Forest
+3 Island
+3 Plains
+1 Tolaria West
+1 Thawing Glaciers
+1 Command Tower
+1 Fountainport
+1 Inkmoth Nexus
+1 Agonasaur Rex
+1 Decree of Silence
+1 Windcaller Aven
+1 Agna Qel'a
+1 Ba Sing Se
+1 Abandoned Air Temple
+1 Theorist's Sanctum
+1 Gideon's Memorial

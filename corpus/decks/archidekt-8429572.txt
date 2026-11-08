@@ -1,0 +1,90 @@
+# Archidekt — Yuriko EDH (165€ Budget - Bracket 3)
+# source: archidekt:8429572
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Underground River
+1 Exotic Orchard
+1 Wingcrafter
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Boggart Trawler // Boggart Bog
+1 Fell the Profane // Fell Mire
+1 Ingenious Infiltrator
+1 Cruel Tutor
+1 Harrier Strix
+1 Splinter, Hamato Yoshi
+1 Flare of Denial
+1 Sink into Stupor // Soporific Springs
+1 Mystic Remora
+1 Dauthi Voidwalker
+1 Mothdust Changeling
+1 Skullsnatcher
+1 Changeling Outcast
+1 Hope of Ghirapur
+1 Commandeer
+1 Siren Stormtamer
+1 Draco
+1 Arcane Signet
+1 Faerie Seer
+1 Dark Ritual
+1 Temporal Trespass
+1 Consign // Oblivion
+1 Flare of Malice
+1 An Offer You Can't Refuse
+1 Mausoleum Wanderer
+1 Brainsurge
+1 Baleful Strix
+1 Tainted Isle
+1 Nanogene Conversion
+1 Toxic Deluge
+1 Satoru, the Infiltrator
+1 Command Tower
+1 Shadow of Mortality
+12 Island
+1 Misdirection
+1 Mistblade Shinobi
+1 Moon-Circuit Hacker
+1 Mystic Sanctuary
+1 Ninja of the Deep Hours
+1 Ornithopter
+1 Phantasmal Image
+8 Swamp
+1 Swan Song
+1 Wonder
+1 Mystical Tutor
+1 Shipwreck Marsh
+1 Dimir Infiltrator
+1 Universal Automaton
+1 Dokuchi Silencer
+1 Tetsuko Umezawa, Fugitive
+1 Dream Cache
+1 Doomsday
+1 Yuriko, Hope from the Shadows
+1 Secluded Courtyard
+1 Mockingbird
+1 Personal Tutor
+1 Talisman of Dominance
+1 Temporal Mastery
+1 Drowned Catacomb
+1 Prosperous Thief
+1 Thousand-Faced Shadow
+1 Silver-Fur Master
+1 Dig Through Time
+1 Snuff Out
+1 Submerge
+1 Arcane Denial
+1 Brainstorm
+1 Cover of Darkness
+1 Dimir Signet
+1 Sol Ring
+1 Sunken Hollow
+1 Treasure Cruise
+1 Hidden Lair
+1 Counterspell
+1 Dispel
+1 Fellwar Stone
+1 Propaganda

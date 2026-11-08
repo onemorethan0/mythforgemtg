@@ -1,0 +1,99 @@
+# Archidekt — Psychological Torture (Phenax Mill)
+# source: archidekt:3473747
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Phenax, God of Deception
+
+Deck:
+1 Drowned Catacomb
+1 Cruel Somnophage // Can't Wake Up
+1 Rewind
+1 Mystical Tutor
+1 Wasteland
+1 Gloomlake Verge
+1 Fractured Sanity
+1 Command Tower
+1 Preordain
+1 Sunken Hollow
+1 Ashiok, Dream Render
+1 Darkslick Shores
+1 Sheoldred // The True Scriptures
+1 Clearwater Pathway // Murkwater Pathway
+1 No Mercy
+1 Bojuka Bog
+1 Tree of Perdition
+1 The Haunt of Hightower
+1 Duskmantle Guildmage
+1 Choked Estuary
+1 Pact of Negation
+1 Propaganda
+1 Ponder
+1 Shipwreck Marsh
+1 Tainted Isle
+1 Vampiric Tutor
+1 Dimir Aqueduct
+1 Bribery
+1 Nephalia Drownyard
+1 Bloodchief Ascension
+1 Underground River
+1 Watery Grave
+1 Demonic Tutor
+1 Phantasmal Image
+1 Brainstorm
+1 Counterspell
+1 Traumatize
+1 Psychic Corrosion
+1 Mystic Remora
+1 Jin-Gitaxias, Core Augur
+1 Drown in the Loch
+1 Rhystic Study
+1 Reliquary Tower
+1 Arcane Lighthouse
+1 Boseiju, Who Shelters All
+1 Thought Vessel
+1 Visions of Beyond
+1 Fellwar Stone
+1 Bruvac the Grandiloquent
+1 Narset's Reversal
+1 Windfall
+1 Rise of the Dark Realms
+1 Maze of Ith
+1 Polluted Delta
+1 Archive Trap
+1 Jin-Gitaxias, Progress Tyrant
+1 The Ancient One
+1 Toxic Deluge
+1 Blue Sun's Twilight
+1 Ruin Crab
+1 Fraying Sanity
+1 Mental Misstep
+1 Scheming Symmetry
+1 Profane Memento
+1 Darkness
+1 Nighthowler
+1 Arcane Signet
+1 Reanimate
+1 Sol Ring
+1 Mana Drain
+1 Jidoor, Aristocratic Capital // Overture
+1 Sheoldred, Whispering One
+5 Swamp
+6 Island
+1 Morphic Pool
+1 Force of Will
+1 Sunken Ruins
+1 Maddening Cacophony
+1 Mindcrank
+1 Singularity Rupture
+1 Thoughtseize
+1 Praetor's Grasp
+1 Jace, Wielder of Mysteries
+1 Tortured Existence
+1 Gifts Ungiven
+1 Sphinx's Tutelage
+1 Consecrated Sphinx
+1 Cyclonic Rift
+1 Laboratory Maniac
+1 Consuming Aberration

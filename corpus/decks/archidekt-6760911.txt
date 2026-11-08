@@ -1,0 +1,105 @@
+# Archidekt — Oloro Live and Let Die
+# source: archidekt:6760911
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Oloro, Ageless Ascetic
+
+Deck:
+1 Godless Shrine
+1 Amalia Benavides Aguirre
+2 Swamp
+1 Heliod, Sun-Crowned
+1 Celestine, the Living Saint
+1 Moseo, Vein's New Dean
+1 Dauthi Voidwalker
+1 Toxic Deluge
+1 Command Tower
+1 Swords to Plowshares
+1 Silent Clearing
+1 Vito, Thorn of the Dusk Rose
+1 Scheming Silvertongue // Sign in Blood
+1 Queza, Augur of Agonies
+1 Decorum Dissertation
+1 Sheoldred // The True Scriptures
+1 Fetid Heath
+1 Polluted Delta
+1 Isolated Chapel
+1 Hengegate Pathway // Mistgate Pathway
+1 Selfless Spirit
+1 Ob Nixilis, the Ascended
+1 Aether Vial
+1 Dr. Beverly Crusher
+1 Kambal, Consul of Allocation
+1 Drannith Magistrate
+1 Samut, Tyrant of Naktamun
+1 Crested Sunmare
+1 Glacial Fortress
+1 Gogo, Master of Mimicry
+1 Karlov of the Ghost Council
+1 Aetherflux Reservoir
+1 Adarkar Wastes
+1 Demonic Tutor
+1 Raffine's Tower
+1 Flooded Strand
+1 Hall of Heliod's Generosity
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Wishclaw Talisman
+1 Mystic Gate
+1 Bloodthirsty Conqueror
+1 Academy Ruins
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Copy Artifact
+1 Caves of Koilos
+1 Teferi's Protection
+1 Fellwar Stone
+1 Damn
+1 Eiganjo, Seat of the Empire
+1 Scheming Symmetry
+1 Skycloud Expanse
+1 Bloodchief Ascension
+1 Walking Ballista
+1 Dark Ritual
+1 Necropotence
+1 Marsh Flats
+1 Underground River
+1 Mana Drain
+1 Snapcaster Mage
+1 Consecrated Sphinx
+1 Watery Grave
+1 Drowned Catacomb
+1 Winds of Abandon
+1 Teferi, Time Raveler
+1 Vampiric Tutor
+1 Windfall
+1 Withering Curse
+1 Witch of the Moors
+1 The Meathook Massacre
+1 Strix Serenade
+1 Reflecting Pool
+1 Well of Lost Dreams
+1 Farewell
+1 Enlightened Confidant
+1 Aura of Silence
+1 Baleful Strix
+1 Inventors' Fair
+1 Arcane Sanctum
+1 Talisman of Dominance
+1 Sensei's Divining Top
+1 Supreme Verdict
+1 Bolas's Citadel
+1 Loran of the Third Path
+1 Arcane Signet
+1 Hallowed Fountain
+1 Exotic Orchard
+1 Sol Ring
+1 Volatile Stormdrake
+2 Plains
+2 Island
+1 Ad Nauseam
+1 Archivist of Oghma
+1 Dimir Signet
+1 Niv-Mizzet, Ghost Counsel
+1 Azorius Signet
+1 Talion, the Kindly Lord

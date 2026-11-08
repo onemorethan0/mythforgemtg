@@ -1,0 +1,84 @@
+# Archidekt — Popping out some Angels
+# source: archidekt:15366995
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Giada, Font of Hope
+
+Deck:
+1 Adarkar Valkyrie
+1 Ultimate Magic: Holy
+1 Youthful Valkyrie
+1 Angel of Invention
+25 Plains
+1 Flare of Fortitude
+1 Serra Ascendant
+1 Angelic Arbiter
+1 Sunblast Angel
+1 Sephara, Sky's Blade
+1 Twilight Shepherd
+1 Akroma, Angel of Wrath
+1 Angel of Jubilation
+1 Sublime Archangel
+1 Astelli Reclaimer
+1 Angelic Field Marshal
+1 Angelic Skirmisher
+1 Angel of the Ruins
+1 Emeria Angel
+1 Angel of Serenity
+1 Bruna, the Fading Light
+1 Angel of the Dire Hour
+1 Darksteel Mutation
+1 Dog Umbra
+1 Silence
+1 Brave the Elements
+1 Restoration Magic
+1 Emeria Shepherd
+1 Starfield Shepherd
+1 Herald of War
+1 Dawnbreak Reclaimer
+1 Baneslayer Angel
+1 Staff of the Storyteller
+1 Swords to Plowshares
+1 Abolish
+1 Path to Exile
+1 Dawn Charm
+1 Sensei's Divining Top
+1 Dowsing Dagger // Lost Vale
+1 Winds of Abandon
+1 Secret Rendezvous
+1 Wayfarer's Bauble
+1 Wrath of God
+1 Emergency Eject
+1 Seer's Sundial
+1 Stroke of Midnight
+1 Mind Stone
+1 Court of Grace
+1 Icon of Ancestry
+1 Tome of Legends
+1 Day of Judgment
+1 Legion's Landing // Adanto, the First Fort
+1 Worn Powerstone
+1 Keeper of the Accord
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 The Eternity Elevator
+1 Sword of the Animist
+1 Null Elemental Blast
+1 Mask of Memory
+1 Nyx Lotus
+1 Emergence Zone
+1 Cut a Deal
+1 Karn's Bastion
+1 Bag of Holding
+1 Sliver Hive
+1 Secluded Steppe
+1 Emeria, the Sky Ruin
+1 Endless Sands
+1 Blast Zone
+1 Myriad Landscape
+1 Hall of Heliod's Generosity
+1 Demolition Field
+1 Rogue's Passage
+1 Eden, Seat of the Sanctum
+1 Geier Reach Sanitarium

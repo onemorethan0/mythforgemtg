@@ -1,0 +1,92 @@
+# Archidekt — Dwarven Legion
+# source: archidekt:25038666
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Dáin of the Ancient Halls
+
+Deck:
+1 Winds of Abandon
+1 Aerial Responder
+1 An Unexpected Party // At the Door
+1 Angrath's Marauders
+1 Beamtown Beatstick
+1 Bifur, Melodic Rider
+1 Bofur, Reliable Guardian // Concerted Care
+1 Bonders' Enclave
+1 Bruenor Battlehammer
+1 Dáin, Lord of the Iron Hills
+1 Dáin's Company
+1 Diamond Pick-Axe
+1 Dwalin, Weaponmaster
+1 Dwarven Mauler
+1 Dwarven Shortsword
+1 Fabled Passage
+1 Fíli the Pathfinder
+1 Furycalm Snarl
+1 Giott, King of the Dwarves
+1 Glóin the Mighty // Easy Pickings
+1 Glóin, Dwarf Emissary
+1 Goldspan Dragon
+1 Helm of the Host
+1 Kíli the Resourceful
+1 Lizard Blades
+1 Merry, Esquire of Rohan
+1 Minimus Containment
+1 Patchwork Banner
+1 Pyre of Heroes
+1 Reckless Crew
+1 Sami, Wildcat Captain
+1 Shattered Acolyte
+1 Sram, Senior Edificer
+1 Sun Titan
+1 Thorin Oakenshield
+1 Thorin, Company's Leader
+1 Thorin, King of Durin's Folk
+1 Zephyr Boots
+10 Plains
+1 Glittering Massif
+1 Exotic Orchard
+1 Path of Ancestry
+1 Radiant Summit
+1 Sunscorched Divide
+1 War Room
+1 Turbulent Steppe
+1 Eivor, Battle-Ready
+1 Lorehold Archivist // Restore Relic
+1 Armored Skyhunter
+1 Vandalblast
+1 Generous Gift
+1 Fellwar Stone
+1 Herald's Horn
+1 The Spear of Leonidas
+1 Umezawa's Jitte
+1 Shiny Impetus
+1 Sword of the Animist
+1 Akiri, Fearless Voyager
+1 Arcane Signet
+1 Battlefield Forge
+1 Boros Signet
+1 Chaos Warp
+1 Clifftop Retreat
+1 Command Tower
+1 Dwarven Mine
+1 Koll, the Forgemaster
+1 Magda, Brazen Outlaw
+8 Mountain
+1 Nettlecyst
+1 Priest of Ancient Lore
+1 Reyav, Master Smith
+1 Sundown Pass
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Taurean Mauler
+1 The Lonely Mountain
+1 Vanquisher's Banner
+1 Warleader's Call
+1 Boros Garrison
+1 Rugged Prairie
+1 Duergar Hedge-Mage
+1 Mirror Entity
+1 Sol Ring

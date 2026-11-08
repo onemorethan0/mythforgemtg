@@ -1,0 +1,86 @@
+# Archidekt — Nagao and A Bad Creature Type
+# source: archidekt:5629646
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Nagao, Bound by Honor
+
+Deck:
+1 Arch of Orazca
+1 Archaeomancer's Map
+1 Boreas Charger
+1 Cathedral of War
+1 Door of Destinies
+1 Eiganjo Castle
+1 Eiganjo, Seat of the Empire
+1 Endless Horizons
+1 Herald's Horn
+1 Heraldic Banner
+1 Idyllic Grange
+1 Bushi Tenderfoot // Kenzo the Hardhearted
+1 Karoo
+1 Keeper of the Accord
+1 Knight of the White Orchid
+1 Konda's Banner
+1 Land Tax
+1 Loyal Warhound
+1 Marble Diamond
+1 Michiko Konda, Truth Seeker
+1 Mind Stone
+1 Mistveil Plains
+1 Myriad Landscape
+1 Nykthos, Shrine to Nyx
+1 Nyx Lotus
+1 Pearl Medallion
+1 Rogue's Passage
+23 Plains
+1 Sunblade Samurai
+1 The Wandering Emperor
+1 True Conviction
+1 The Fall of Lord Konda // Fragment of Konda
+1 New Benalia
+1 Banishing Slash
+1 Alabaster Host Intercessor
+1 Angelic Ascension
+1 Path to Exile
+1 Austere Command
+1 Swords to Plowshares
+1 Promise of Loyalty
+1 Brittle Effigy
+1 Tragic Arrogance
+1 Wing Shards
+1 Harsh Mercy
+1 Cathedral of Serra
+1 Terrain Generator
+1 Araba Mothrider
+1 Call to Glory
+1 Cathars' Crusade
+1 Devoted Retainer
+1 Duelist's Heritage
+1 Eiganjo Exemplar
+1 General's Kabuto
+1 Hand of Honor
+1 Imperial Subduer
+1 Indebted Samurai
+1 Inner-Chamber Guard
+1 Isamaru, Hound of Konda
+1 Kentaro, the Smiling Cat
+1 Kitsune Blademaster
+1 Kitsune Dawnblade
+1 Konda's Hatamoto
+1 Konda, Lord of Eiganjo
+1 Legion Loyalty
+1 Mothrider Samurai
+1 Oathkeeper, Takeno's Daisho
+1 Opal-Eye, Konda's Yojimbo
+1 Samurai Enforcers
+1 Samurai of the Pale Curtain
+1 Selfless Samurai
+1 Sensei Golden-Tail
+1 Seven-Tail Mentor
+1 Silverstorm Samurai
+1 Takeno's Cavalry
+1 Takeno, Samurai General
+1 Vanquisher's Banner
+1 Masako the Humorless

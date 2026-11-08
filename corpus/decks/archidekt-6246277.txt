@@ -1,0 +1,104 @@
+# Archidekt — Spirited Away
+# source: archidekt:6246277
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 5 Game Changers (Crop Rotation, Cyclonic Rift, Demonic Tutor, Farewell, Teferi's Protection); Bracket 1 allows 0; two-card infinite combo Kairi, the Swirling Sky + Approach of the Second Sun; Bracket 1 allows none
+
+Commander:
+1 Kyodai, Soul of Kamigawa
+
+Deck:
+1 Teferi's Protection
+1 Yomiji, Who Bars the Way
+1 Dimir Guildgate
+2 Plains
+1 Kami of False Hope
+1 Golgari Guildgate
+1 Atsushi, the Blazing Sky
+1 Drogskol Captain
+2 Mountain
+1 Azorius Guildgate
+1 Secluded Courtyard
+1 Maze's End
+1 Horobi, Death's Wail
+1 Arcane Signet
+1 Skyfire Kirin
+1 Myojin of Night's Reach
+1 Swiftfoot Boots
+1 Myojin of Seeing Winds
+1 Orzhov Guildgate
+1 Keiga, the Tide Star
+1 Chromatic Lantern
+1 Myojin of Cleansing Fire
+1 Izzet Guildgate
+2 Swamp
+1 Ribbons of the Reikai
+1 Exotic Orchard
+2 Island
+1 Glaive of the Guildpact
+1 Kataki, War's Wage
+1 Ryusei, the Falling Star
+1 Unclaimed Territory
+1 Circuitous Route
+1 Gateway Plaza
+1 Myojin of Blooming Dawn
+2 Forest
+1 Yosei, the Morning Star
+1 Sol Ring
+1 Boros Guildgate
+1 Gravelighter
+1 Heap Gate
+1 Kairi, the Swirling Sky
+1 Command Tower
+1 Tatyova, Benthic Druid
+1 Baldur's Gate
+1 Rakdos Guildgate
+1 Temple Garden
+1 Stomping Ground
+1 Swords to Plowshares
+1 Tezzeret's Gambit
+1 Chaos Warp
+1 Counterspell
+1 The World Tree
+1 Roaming Throne
+1 Dark Ritual
+1 Putrefy
+1 Day of Judgment
+1 Approach of the Second Sun
+1 Despark
+1 Crux of Fate
+1 Herald's Horn
+1 Time Warp
+1 That Which Was Taken
+1 Growth Spiral
+1 Farewell
+1 Brainstorm
+1 Spelunking
+1 Tainted Pact
+1 Opt
+1 Mizzix's Mastery
+1 Gods Willing
+1 Sign in Blood
+1 Abundant Harvest
+1 Whirlwind Denial
+1 Primal Command
+1 Ephemerate
+1 Gond Gate
+1 The Black Gate
+1 Manor Gate
+1 Citadel Gate
+1 Kira, Great Glass-Spinner
+1 Black Dragon Gate
+1 Sea Gate
+1 Cliffgate
+1 Reliquary Tower
+1 Thought Vessel
+1 King of the Oathbreakers
+1 Leyline of the Guildpact
+1 Cyclonic Rift
+1 Zombify
+1 Shared Roots
+1 Requisition Raid
+1 Demonic Tutor
+1 Crop Rotation
+1 Krosan Grip

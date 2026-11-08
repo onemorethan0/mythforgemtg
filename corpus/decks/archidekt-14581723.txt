@@ -1,0 +1,92 @@
+# Archidekt — Azula, Cracked - Fire Lord Azula
+# source: archidekt:14581723
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Archmage Emeritus
+1 Balmor, Battlemage Captain
+1 Big Score
+1 Firebender Ascension
+1 Frantic Search
+1 Rakdos Signet
+1 Shivan Reef
+1 Shore Up
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Thrill of Possibility
+1 Brainstorm
+11 Mountain
+1 Sol Ring
+1 Talisman of Dominance
+1 Lightning Bolt
+1 Unexpected Windfall
+1 Guttersnipe
+1 Fiery Inscription
+1 Electric Revelation
+1 Rush of Adrenaline
+1 Electro, Assaulting Battery
+1 Exotic Orchard
+1 Reliquary Tower
+1 Shadow Rift
+1 Smoldering Marsh
+1 Sunken Hollow
+6 Island
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Fabled Passage
+1 Choked Estuary
+1 Twinning Staff
+1 Wizards of Thay
+1 Magic Damper
+1 Foreboding Ruins
+1 Rush of Blood
+1 Opt
+1 Command Tower
+1 Black Waltz No. 3
+1 Electrodominance
+1 Sazacap's Brew
+1 Exsanguinate
+1 Double Trouble
+1 Izzet Signet
+1 Unleash Fury
+1 Temur Battle Rage
+1 Talisman of Indulgence
+1 Coruscation Mage
+1 Blasphemous Edict
+1 Snap
+1 Storm-Kiln Artist
+1 Rogue's Passage
+1 Veyran, Voice of Duality
+1 Chandra's Ignition
+1 Ashling, Flame Dancer
+1 Monstrous Rage
+1 Feign Death
+1 Dreadmaw's Ire
+1 Drowned Catacomb
+1 Unsummon
+1 Dimir Signet
+1 Blazing Crescendo
+1 Brute Strength
+1 Longshot, Rebel Bowman
+1 Undying Malice
+1 Leyline of Resonance
+1 Arcane Signet
+1 Prismari Command
+1 Psychotic Fury
+2 Swamp
+1 Toxic Deluge
+1 Bulk Up
+1 Swiftfoot Boots
+1 The Last Agni Kai
+1 Talisman of Creativity
+1 Abrade
+1 Fists of Flame
+1 Demand Answers
+1 Frostboil Snarl
+1 Underground River
+1 Leap
+1 Dragonskull Summit
+1 Crumbling Necropolis

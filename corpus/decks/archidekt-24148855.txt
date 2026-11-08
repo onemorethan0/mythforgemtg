@@ -1,7 +1,8 @@
 # Archidekt — Kirri Drift
 # source: archidekt:24148855
 # fetched: 2026-09-04
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Enlightened Tutor); Bracket 2 allows 0
 
 Commander:
 1 Kirri, Talented Sprout

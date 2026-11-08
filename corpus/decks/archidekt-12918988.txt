@@ -1,0 +1,108 @@
+# Archidekt — The Imperium Protects! (My Combo)
+# source: archidekt:12918988
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Marneus Calgar
+
+Deck:
+1 Opposition Agent
+1 Flash Photography
+1 Mirrormade
+1 Bloodstained Mire
+1 Clever Impersonator
+1 Borne Upon a Wind
+1 Enlightened Tutor
+1 Flusterstorm
+1 Force of Negation
+1 Hallowed Fountain
+1 Chrome Mox
+1 Mana Vault
+1 Ancient Tomb
+1 Arid Mesa
+1 Cavern of Souls
+1 Gemstone Caverns
+1 Flooded Strand
+1 An Offer You Can't Refuse
+1 Exalted Sunborn
+1 Mental Misstep
+1 Dark Ritual
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Mockingbird
+1 Mystic Remora
+1 Sea of Clouds
+1 Voice of Victory
+1 Sol Ring
+1 Urza's Saga
+1 Windswept Heath
+1 Scalding Tarn
+1 Ranger-Captain of Eos
+1 Scrubland
+1 Polluted Delta
+1 Swan Song
+1 Watery Grave
+1 Tundra
+1 Rhystic Study
+1 Lotus Petal
+1 Mox Amber
+1 Stridehangar Automaton
+1 Warren Soultrader
+1 City of Traitors
+1 Timetwister
+1 Orcish Bowmasters
+1 Command Tower
+1 Esper Sentinel
+1 Godless Shrine
+1 Demonic Tutor
+1 Marsh Flats
+1 Mana Confluence
+1 Swords to Plowshares
+1 Mox Opal
+1 City of Brass
+1 Arcane Signet
+1 Imperial Seal
+1 Permission Denied
+1 Tataru Taru
+1 Smothering Tithe
+1 Mox Diamond
+1 Imposter Mech
+1 Amphibian Downpour
+1 Touch the Spirit Realm
+1 Faerie Mastermind
+1 Otawara, Soaring City
+1 Trickbind
+1 Hullbreaker Horror
+1 Lim-Dûl's Vault
+1 Namor, Atlantean King
+1 Mystical Tutor
+1 Training Grounds
+1 Blind Obedience
+1 Dread Return
+1 Misdirection
+1 Disrupting Shoal
+1 Vampiric Tutor
+1 Ocelot Pride
+1 Flesh Duplicate
+1 Force of Will
+1 Lively Dirge
+1 Lotho, Corrupt Shirriff
+1 High Fae Trickster
+1 Gleaming Splendor
+1 Kambal, Profiteering Mayor
+1 Ruthless Technomancer
+1 Underground Sea
+1 Phyrexian Metamorph
+1 Snapback
+1 Sudden Substitution
+1 Morphic Pool
+1 Cyclonic Rift
+1 Ashnod's Altar
+1 Beseech the Mirror
+1 Silence
+1 Pact of Negation
+1 Verdant Catacombs
+1 Fierce Guardianship
+1 The Queen of Dale
+1 Commandeer

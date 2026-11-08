@@ -1,0 +1,85 @@
+# Archidekt — Ognis Go Fast! ($75 Budget, Bracket 1)
+# source: archidekt:5007030
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ognis, the Dragon's Lash
+
+Deck:
+1 Arcane Signet
+1 Atalan Jackal
+1 Bloodbraid Elf
+1 Captain Lannery Storm
+1 Clackbridge Troll
+1 Commander's Sphere
+1 Cranial Plating
+1 Command Tower
+1 Deathleaper, Terror Weapon
+1 Impulsive Pilferer
+1 Jaxis, the Troublemaker
+1 Kamahl's Will
+7 Swamp
+1 Tenacious Underdog
+1 Terminate
+1 Terramorphic Expanse
+4 Forest
+15 Mountain
+1 Exotic Orchard
+1 Path of Ancestry
+1 Gruul Signet
+1 Golgari Signet
+1 Goblin Assault
+1 Gruul Turf
+1 Golgari Rot Farm
+1 Garna, Bloodfist of Keld
+1 Fires of Yavimaya
+1 Fellwar Stone
+1 Froghemoth
+1 Dreadhorde Butcher
+1 Evolving Wilds
+1 Hate Mirage
+1 Loyal Apprentice
+1 Marionette Master
+1 Mirkwood Bats
+1 Monumental Corruption
+1 Nadier's Nightblade
+1 Rakdos Charm
+1 Rankle and Torbran
+1 Reckless Fireweaver
+1 Sarinth Steelseeker
+1 Ulvenwald Oddity // Ulvenwald Behemoth
+1 Vat of Rebirth
+1 Wayfarer's Bauble
+1 Savage Lands
+1 Urabrask the Hidden
+1 Molten Primordial
+1 Hellrider
+1 Rakdos Signet
+1 Rakdos Carnarium
+1 Riveteers Overlook
+1 Sol Ring
+1 Zealous Conscripts
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Myriad Landscape
+1 Golgari Charm
+1 Legion Warboss
+1 Putrefy
+1 Call for Aid
+1 Keeper of Fables
+1 Firbolg Flutist
+1 Volatile Arsonist // Dire-Strain Anarchist
+1 Electroduplicate
+1 Chaos Warp
+1 Bootleggers' Stash
+1 Squee, Dubious Monarch
+1 Goblin Rabblemaster
+1 Vulshok Battlemaster
+1 Lobelia Sackville-Baggins
+1 In the Web of War
+1 The Balrog, Durin's Bane
+1 Urabrask, Heretic Praetor
+1 Rise of the Dark Realms
+1 Living Death
+1 Tempt with Discovery
+1 Lagomos, Hand of Hatred

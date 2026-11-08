@@ -1,0 +1,105 @@
+# Archidekt — 200-Card Commander Deck
+# source: archidekt:9616890
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Extus, Oriq Overlord // Awaken the Blood Avatar
+
+Deck:
+3 Swamp
+1 Foulmire Knight // Profane Insight
+1 Twinmaw Stormbrood // Charring Bite
+1 Stormshriek Feral // Flush Out
+1 Dusk // Dawn
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Bloodsoaked Insight // Sanguine Morass
+1 Murderous Rider // Swift End
+1 Fell the Profane // Fell Mire
+1 Virtue of Persistence // Locthwain Scorn
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blightstep Pathway // Searstep Pathway
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Wandering Archaic // Explore the Vastlands
+1 Needleverge Pathway // Pillarverge Pathway
+1 Malakir Rebirth // Malakir Mire
+1 Sejiri Shelter // Sejiri Glacier
+1 Spiked Corridor // Torture Pit
+1 Valakut Awakening // Valakut Stoneforge
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Hagra Mauling // Hagra Broodpit
+1 Blessed Hippogriff // Tyr's Blessing
+1 Razorgrass Ambush // Razorgrass Field
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Wear // Tear
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Bonecrusher Giant // Stomp
+1 Dowsing Dagger // Lost Vale
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Phyrexian Fleshgorger
+1 Decadent Dragon // Expensive Taste
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Glasswing Grace // Age-Graced Chapel
+1 Dollmaker's Shop // Porcelain Gallery
+1 Reckless Stormseeker // Storm-Charged Slasher
+1 Gallifrey Falls // No More
+1 Pegasus Guardian // Rescue the Foal
+1 Boggart Trawler // Boggart Bog
+1 Ondu Inversion // Ondu Skyruins
+1 Steel Seraph
+1 Pinnacle Monk // Mystic Peak
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Hostile Hostel // Creeping Inn
+1 Cut // Ribbons
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Sundering Eruption // Volcanic Fissure
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Legion's Landing // Adanto, the First Fort
+1 Giant Killer // Chop Down
+1 Legion Leadership // Legion Stronghold
+1 Makindi Stampede // Makindi Mesas
+1 Response // Resurgence
+1 Horn of Valhalla // Ysgard's Call
+1 Wedding Announcement // Wedding Festivity
+1 Callous Sell-Sword // Burn Together
+1 Invasion of Mercadia // Kyren Flamewright
+1 Unholy Annex // Ritual Chamber
+1 Guardian Naga // Banishing Coils
+1 Brutal Cathar // Moonrage Brute
+1 Derelict Attic // Widow's Walk
+1 Push // Pull
+1 Imodane's Recruiter // Train Troops
+1 Blackbloom Rogue // Blackbloom Bog
+1 Kabira Takedown // Kabira Plateau
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Spikefield Hazard // Spikefield Cave
+1 Realm-Cloaked Giant // Cast Off
+1 Pelakka Predation // Pelakka Caverns
+1 Zof Consumption // Zof Bloodbog
+1 Painter's Studio // Defaced Gallery
+1 Akoum Warrior // Akoum Teeth
+1 Skyclave Cleric // Skyclave Basilica
+1 Havengul Laboratory // Havengul Mystery
+1 Defiled Crypt // Cadaver Lab
+1 Fast // Furious
+1 Heartflame Duelist // Heartflame Slash
+1 Promise of Aclazotz // Foul Rebirth
+1 Funeral Room // Awakening Hall
+1 Arguel's Blood Fast // Temple of Aclazotz
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Foreboding Statue // Forsaken Thresher
+2 Plains
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Mountain
+1 The Restoration of Eiganjo // Architect of Restoration
+1 Invasion of Kaldheim // Pyre of the World Tree
+1 Invasion of Tolvada // The Broken Sky
+1 Shepherd of the Flock // Usher to Safety
+1 Gumdrop Poisoner // Tempt with Treats
+1 Treasure Map // Treasure Cove

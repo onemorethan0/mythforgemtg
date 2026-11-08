@@ -1,0 +1,96 @@
+# Archidekt — The Boys Group Hug
+# source: archidekt:8059847
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Seedborn Muse, Teferi's Protection); Bracket 1 allows 0
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Caves of Koilos
+1 Yavimaya Coast
+1 Shivan Reef
+1 Brushland
+1 Battlefield Forge
+1 Seaside Citadel
+1 Opulent Palace
+1 Nomad Outpost
+1 Mystic Monastery
+1 Jungle Shrine
+1 Exotic Orchard
+1 Arcane Sanctum
+1 Command Tower
+1 Fellwar Stone
+1 Arcane Signet
+1 Oath of Druids
+1 Llanowar Wastes
+1 Karplusan Forest
+1 Underground River
+1 Sandsteppe Citadel
+1 Path of Ancestry
+1 Crumbling Necropolis
+1 Dictate of Kruphix
+1 Heartbeat of Spring
+1 Selvala, Explorer Returned
+1 Veteran Explorer
+1 Tidal Barracuda
+1 Howling Mine
+1 Ghirapur Orrery
+1 The Second Doctor
+1 Gluntch, the Bestower
+1 Braids, Conjurer Adept
+1 Shizuko, Caller of Autumn
+1 Breena, the Demagogue
+1 Wild Evocation
+1 Fecundity
+1 Hypergenesis
+1 Crawlspace
+1 Disrupt Decorum
+1 Mana Flare
+1 Sylvan Offering
+1 Aetherize
+6 Forest
+3 Island
+1 Tempt with Discovery
+1 Helm of Awakening
+1 Folio of Fancies
+1 Victory Chimes
+1 Gate to the Aether
+1 Kwain, Itinerant Meddler
+1 Rites of Flourishing
+1 Benevolent Offering
+1 Council's Judgment
+1 Seizan, Perverter of Truth
+1 Bojuka Bog
+1 Stiltzkin, Moogle Merchant
+1 Tataru Taru
+2 Swamp
+1 Descent into Avernus
+1 Blasphemous Act
+1 Tempting Contract
+1 Ignis Scientia
+1 The Council of Four
+1 Gladiolus Amicitia
+1 The Regalia
+4 Plains
+1 Prompto Argentum
+1 Zirda, the Dawnwaker
+1 Teferi's Protection
+1 Sphere of Safety
+1 Propaganda
+1 Oath of Lieges
+1 Seedborn Muse
+3 Mountain
+1 Font of Mythos
+1 Stroke of Midnight
+1 Ring of the Lucii
+1 Coveted Jewel
+1 Krosan Grip
+1 Chaos Warp
+1 Diaochan, Artful Beauty
+1 Training Grounds
+1 Cut a Deal
+1 Maximum Carnage
+1 Oath of Ghouls
+1 Share the Spoils

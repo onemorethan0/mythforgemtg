@@ -1,0 +1,96 @@
+# Archidekt — Roon of the Hidden Realm - 11 Years of Flickery
+# source: archidekt:296293
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Roon of the Hidden Realm
+
+Deck:
+1 Fabled Passage
+1 Cyclonic Rift
+1 Abdel Adrian, Gorion's Ward
+1 Winds of Abandon
+1 Path to Exile
+1 Noble Hierarch
+1 Endurance
+1 Prismatic Vista
+1 Ephemerate
+1 Birds of Paradise
+1 White Plume Adventurer
+1 Spara's Headquarters
+1 Coiling Oracle
+1 Bronzebeak Foragers
+1 Lavinia of the Tenth
+1 Risen Reef
+1 Aerial Extortionist
+1 Lagrella, the Magpie
+1 Seaside Citadel
+1 Thassa, Deep-Dwelling
+1 Kiora's Follower
+1 Eternal Witness
+1 Aethermage's Touch
+1 Bountiful Promenade
+1 Breeding Pool
+1 Flooded Strand
+5 Forest
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Hinterland Harbor
+5 Island
+1 Minamo, School at Water's Edge
+1 Misty Rainforest
+5 Plains
+1 Scavenger Grounds
+1 Sea of Clouds
+1 Sunpetal Grove
+1 Temple Garden
+1 Windswept Heath
+1 Champion of Lambholt
+1 Craterhoof Behemoth
+1 Eerie Interlude
+1 Essence Flux
+1 Prosperous Innkeeper
+1 Sol Ring
+1 Swords to Plowshares
+1 Aura Shards
+1 Aven Interrupter
+1 Rejuvenating Springs
+1 Lonis, Cryptozoologist
+1 Uro, Titan of Nature's Wrath
+1 Yavimaya Hollow
+1 Bloodroot Apothecary
+1 Jewel Thief
+1 Ephara, God of the Polis
+1 Emiel the Blessed
+1 Restoration Angel
+1 Phantom Steed
+1 Teleportation Circle
+1 Vivien, Champion of the Wilds
+1 Starfield Vocalist
+1 Ghostway
+1 Mulldrifter
+1 Bant Panorama
+1 Alchemist's Refuge
+1 Recruiter of the Guard
+1 Blade Splicer
+1 Twining Twins // Swift Spiral
+1 Panharmonicon
+1 Soulherder
+1 Elesh Norn, Mother of Machines
+1 Quantum Riddler
+1 Spell Queller
+1 Command Tower
+1 Arcane Signet
+1 Dour Port-Mage
+1 Palinchron
+1 Radagast of Rhosgobel
+1 Yisan, the Wanderer Bard
+1 Finale of Devastation
+1 Peregrine Drake
+1 Seasoned Dungeoneer
+1 Undermountain Adventurer
+1 Yasharn, Implacable Earth
+1 Cemetery Prowler
+1 Turn to Mist
+1 Venser, the Sojourner

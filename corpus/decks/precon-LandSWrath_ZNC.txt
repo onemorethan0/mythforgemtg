@@ -1,0 +1,91 @@
+# WotC precon — Land's Wrath (ZNC, 2020-09-25)
+# source: mtgjson:LandSWrath_ZNC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Obuun, Mul Daya Ancestor
+
+Deck:
+1 Abundance
+1 Abzan Falconer
+1 Acidic Slime
+1 Admonition Angel
+1 Arcane Signet
+1 Armorcraft Judge
+1 Banishing Light
+1 Beanstalk Giant // Fertile Footsteps
+1 Blighted Woodland
+1 Boros Garrison
+1 Boros Guildgate
+1 Circuitous Route
+1 Command Tower
+1 Condemn
+1 Crush Contraband
+1 Cryptic Caves
+1 Elite Scaleguard
+1 Elvish Rejuvenator
+1 Embodiment of Insight
+1 Emeria Angel
+1 Emeria Shepherd
+1 Evolution Sage
+1 Evolving Wilds
+1 Far Wanderings
+1 Fertilid
+10 Forest
+1 Geode Rager
+1 Ground Assault
+1 Gruul Guildgate
+1 Gruul Turf
+1 Harmonize
+1 Harrow
+1 Hour of Revelation
+1 Inspiring Call
+1 Jungle Shrine
+1 Keeper of Fables
+1 Khalni Heart Expedition
+1 Kodama's Reach
+1 Kor Cartographer
+1 Krosan Verge
+1 Living Twister
+1 Mina and Denn, Wildborn
+4 Mountain
+1 Multani, Yavimaya's Avatar
+1 Murasa Rootgrazer
+1 Myriad Landscape
+1 Naya Charm
+1 Naya Panorama
+1 Needle Spires
+1 Nissa's Renewal
+1 Omnath, Locus of Rage
+7 Plains
+1 Planar Outburst
+1 Rampaging Baloths
+1 Retreat to Emeria
+1 Retreat to Kazandu
+1 Return of the Wildspeaker
+1 Rites of Flourishing
+1 Roiling Regrowth
+1 Sandstone Oracle
+1 Satyr Wayfinder
+1 Scaretiller
+1 Seer's Sundial
+1 Selesnya Guildgate
+1 Selesnya Sanctuary
+1 Sol Ring
+1 Sporemound
+1 Springbloom Druid
+1 Struggle // Survive
+1 Sun Titan
+1 Sylvan Advocate
+1 Sylvan Reclamation
+1 Terramorphic Expanse
+1 The Mending of Dominaria
+1 Together Forever
+1 Treacherous Terrain
+1 Trove Warden
+1 Tuskguard Captain
+1 Waker of the Wilds
+1 Yavimaya Elder
+1 Zendikar's Roil

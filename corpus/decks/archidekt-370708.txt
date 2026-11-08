@@ -1,0 +1,105 @@
+# Archidekt — Sliver and Gold - Bro's Deck
+# source: archidekt:370708
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 The First Sliver
+
+Deck:
+1 Ancestral Vision
+1 Kindred Discovery
+1 Kindred Dominance
+1 Kindred Summons
+1 Path of Ancestry
+1 Door of Destinies
+1 Nomad Outpost
+1 Cascading Cataracts
+1 Cryptolith Rite
+1 Evolving Wilds
+1 Constricting Sliver
+1 Belligerent Sliver
+1 Sliver Hive
+1 Reflecting Pool
+1 City of Brass
+1 Mana Confluence
+1 Bonescythe Sliver
+1 Sentinel Sliver
+1 Galerider Sliver
+1 Syphon Sliver
+1 Blur Sliver
+1 Striking Sliver
+1 Manaweft Sliver
+1 Megantic Sliver
+1 Predatory Sliver
+1 Distant Melody
+1 Sliver Legion
+1 Sinew Sliver
+1 Necrotic Sliver
+1 Pulmonic Sliver
+1 Bonesplitter Sliver
+1 Fury Sliver
+1 Two-Headed Sliver
+1 Gemhide Sliver
+1 Might Sliver
+1 Harmonic Sliver
+2 Plains
+1 Shifting Sliver
+1 Synapse Sliver
+1 Brood Sliver
+1 Aphetto Dredging
+1 Patriarch's Bidding
+1 Crystalline Sliver
+1 Hibernation Sliver
+1 Winged Sliver
+1 Heart Sliver
+1 Muscle Sliver
+1 Island
+1 Swamp
+2 Mountain
+2 Forest
+1 Mystic Remora
+1 Fellwar Stone
+1 Seaside Citadel
+1 Savage Lands
+1 Blasphemous Act
+1 Kodama's Reach
+1 Guardian Project
+1 Lavabelly Sliver
+1 Dregscape Sliver
+1 Cloudshredder Sliver
+1 Spiteful Sliver
+1 Cleaving Sliver
+1 Graveshifter
+1 Sol Ring
+1 Chromatic Lantern
+1 Vanquisher's Banner
+1 Terramorphic Expanse
+1 Opulent Palace
+1 Mystic Monastery
+1 Exotic Orchard
+1 Command Tower
+1 Stomping Ground
+1 Hallowed Fountain
+1 Godless Shrine
+1 Breeding Pool
+1 Smothering Tithe
+1 Temple Garden
+1 Sacred Foundry
+1 Overgrown Tomb
+1 Unclaimed Territory
+1 Sandsteppe Citadel
+1 Krosan Verge
+1 Jungle Shrine
+1 Frontier Bivouac
+1 Crumbling Necropolis
+1 Ash Barrens
+1 Arcane Sanctum
+1 Coat of Arms
+1 Sliver Hivelord
+1 Venom Sliver
+1 Farseek
+1 Cultivate
+1 Wheel of Fate
+1 Mirror Entity
+1 Crib Swap

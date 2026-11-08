@@ -1,0 +1,86 @@
+# Archidekt — Anarchy
+# source: archidekt:15917594
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Itazura, Lingering Wick
+
+Deck:
+1 Sol Ring
+1 Thought Vessel
+1 Paradox Haze
+1 Mana Geyser
+1 Sphinx of the Second Sun
+1 Swiftfoot Boots
+1 Omniscience
+1 Arcane Signet
+1 Teferi's Puzzle Box
+1 Shadow of the Second Sun
+1 Hive Mind
+1 Counterspell
+1 Chaos Warp
+1 Deflecting Swat
+1 Frantic Search
+1 Mana Drain
+1 Lightning Bolt
+1 Tempt with Mayhem
+1 Blasphemous Act
+1 Improvisation Capstone
+1 Breaking Point
+1 Goblin Game
+1 Fact or Fiction
+1 Liar's Pendulum
+1 Master of Predicaments
+1 Illicit Auction
+1 Prisoner's Dilemma
+1 Stronghold Gambit
+1 Wheel of Misfortune
+1 Confusion in the Ranks
+1 Reflecting Pool
+1 Command Tower
+1 Exotic Orchard
+1 Mages' Contest
+1 Manifold Insights
+1 Guff Rewrites History
+1 Descent into Avernus
+1 Reliquary Tower
+1 Elkin Lair
+1 Caverns of Despair
+1 Field of Dreams
+1 Anvil of Bogardan
+1 Path of Ancestry
+1 Ice Cave
+1 Possessed Portal
+1 Screaming Nemesis
+1 Sin Prodder
+1 Ugin's Nexus
+1 Sulfuric Vortex
+1 Lavabrink Floodgates
+1 Ghirapur Orrery
+1 Sphinx Ambassador
+1 Standstill
+1 Psychic Possession
+1 Wrong Turn
+1 Epiphany at the Drownyard
+1 Volcanic Offering
+1 Riverpyre Verge
+1 Training Center
+1 Steam Vents
+1 Armageddon Clock
+1 Mana Cache
+1 Infinite Hourglass
+1 Well of Knowledge
+1 Zur's Weirding
+1 Palantír of Orthanc
+1 Game of Chaos
+1 Stormcarved Coast
+1 Mana Clash
+1 Cascade Bluffs
+16 Mountain
+8 Island
+1 Psychic Battle
+1 Menacing Ogre
+1 Sulfur Falls
+1 Volcanic Island
+1 Sands of Time

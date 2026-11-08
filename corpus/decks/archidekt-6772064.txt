@@ -1,0 +1,88 @@
+# Archidekt — Deathleaper jank lord
+# source: archidekt:6772064
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Deathleaper, Terror Weapon
+
+Deck:
+1 Spark Elemental
+1 Ball Lightning
+1 Hellspark Elemental
+1 Sticky Fingers
+1 Flamerush Rider
+1 Gruul War Chant
+1 Hate Mirage
+1 Archwing Dragon
+1 Blitz Hellion
+1 Family's Favor
+1 Harmonize
+1 Hunter's Insight
+1 Command Tower
+1 Exotic Orchard
+1 Forgotten Cave
+1 Kessig Wolf Run
+1 Mosswort Bridge
+1 Myriad Landscape
+1 Raging Ravine
+1 Reliquary Tower
+1 Ogre Battledriver
+1 Primal Forcemage
+1 Cursed Mirror
+1 Elvish Mystic
+1 Explore
+1 Goblin Anarchomancer
+1 Gruul Signet
+1 Harrow
+1 Llanowar Elves
+1 Rampant Growth
+1 Mimic Vat
+1 Ambush Viper
+1 Artifact Mutation
+1 Chaos Warp
+1 Decimate
+1 Hull Breach
+1 Impetuous Devils
+1 Krosan Grip
+1 Ram Through
+1 Elturel Survivors
+1 Old One Eye
+1 Rite of the Raging Storm
+1 Ruby, Daring Tracker
+1 Viashino Sandsprinter
+1 Warriors' Lesson
+1 Rogue's Passage
+1 Skarrg, the Rage Pits
+1 Terramorphic Expanse
+1 Saryth, the Viper's Fang
+1 Savage Summoning
+1 Ulvenwald Oddity // Ulvenwald Behemoth
+1 Spring-Leaf Avenger
+1 Starstorm
+1 Warstorm Surge
+1 Skitterbeam Battalion
+1 Warchief Giant
+10 Mountain
+1 Acolyte Hybrid
+1 Fire Diamond
+1 Moss Diamond
+1 Purphoros's Intervention
+1 Amber Gristle O'Maul
+1 Doors of Durin
+1 Shatterskull Charger
+1 Evolving Wilds
+1 Caller of the Pack
+1 Chain Reaction
+1 Balustrade Wurm
+12 Forest
+1 Coveted Jewel
+1 Calamity, Galloping Inferno
+1 Polygoyf
+1 Gnoll War Band
+1 Street Riot
+1 Hunter's Prowess
+1 Fleeting Effigy
+1 Primordial Sage
+1 Froghemoth
+1 Ancestral Communion

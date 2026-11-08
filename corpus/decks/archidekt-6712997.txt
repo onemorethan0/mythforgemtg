@@ -1,0 +1,108 @@
+# Archidekt — S1 Mad King Kenrith
+# source: archidekt:6712997
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Act of Authority
+1 Arcane Lighthouse
+1 Abyssal Persecutor
+1 Baleful Mastery
+1 Arid Mesa
+1 Bad River
+1 Blood Crypt
+1 Bloodstained Mire
+1 Vivid Crag
+1 Chain of Acid
+1 Conjured Currency
+1 Council's Judgment
+1 Cruel Entertainment
+1 Crumbling Sanctuary
+1 Divine Gambit
+1 Endless Whispers
+1 Fractured Identity
+1 Gluntch, the Bestower
+1 Jinxed Choker
+1 Flumph
+1 Fraying Line
+1 Humble Defector
+1 Loran of the Third Path
+1 Master of Ceremonies
+1 Curse of Opulence
+1 Curse of Verbosity
+1 Chain of Vapor
+1 Bojuka Bog
+1 Breeding Pool
+1 City of Brass
+1 Command Tower
+1 Dimir Aqueduct
+1 Exotic Orchard
+1 Field of Ruin
+1 Flood Plain
+1 Flooded Strand
+1 Forbidden Orchard
+1 Forest
+1 Godless Shrine
+1 Grand Coliseum
+1 Hallowed Fountain
+1 Homeward Path
+1 Island
+1 Krosan Verge
+1 Mana Confluence
+1 Fervent Mastery
+1 Head Games
+1 Ingenious Mastery
+1 Make an Example
+1 Manifold Insights
+1 Modify Memory
+1 Order of Succession
+1 Pendant of Prosperity
+1 Perplexing Chimera
+1 Protection Racket
+1 Proteus Staff
+1 Pulsemage Advocate
+1 Spectral Searchlight
+1 Sudden Substitution
+1 Tidal Barracuda
+1 Volcanic Offering
+1 Yurlok of Scorch Thrash
+1 Victory Chimes
+1 Wishclaw Talisman
+1 Shadrix Silverquill
+1 Starke of Rath
+1 Xantcha, Sleeper Agent
+1 Oath of Lieges
+1 Out of Time
+1 Share the Spoils
+1 Tenuous Truce
+1 Mountain
+1 Overgrown Tomb
+1 Path of Ancestry
+1 Plains
+1 Scalding Tarn
+1 Steam Vents
+1 Swamp
+1 Temple of Deceit
+1 Temple of Enlightenment
+1 Mythos of Snapdax
+1 Tempt with Discovery
+1 Verdant Mastery
+1 Círdan the Shipwright
+1 Sergeant John Benton
+1 Trial of a Time Lord
+1 Coveted Falcon
+1 Unexplained Absence
+1 Wedding Ring
+1 Foreboding Steamboat
+1 Rainbow Vale
+1 Watery Grave
+1 Temple of Epiphany
+1 The Wedding of River Song
+1 Yes Man, Personal Securitron
+1 Tempt with Mayhem
+1 Shifting Grift
+1 Teyo, Geometric Tactician
+1 Jester's Mask

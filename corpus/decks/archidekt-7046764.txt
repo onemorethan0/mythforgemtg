@@ -1,0 +1,109 @@
+# Archidekt — Codie in Kyoto
+# source: archidekt:7046764
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 3 Game Changers (Demonic Tutor, Natural Order, Teferi's Protection); Bracket 1 allows 0
+
+Commander:
+1 Codie, Vociferous Codex
+
+Deck:
+1 Forest
+1 Sacred Foundry
+1 Despark
+1 Whirlwind Denial
+1 Gods Willing
+1 Defiant Strike
+1 Gift of Estates
+1 Teferi's Protection
+1 Memory Lapse
+1 Tezzeret's Gambit
+1 Agonizing Remorse
+1 Faithless Looting
+1 Adventurous Impulse
+1 Natural Order
+1 Harmonize
+1 Primal Command
+1 Electrolyze
+1 Divine Gambit
+1 Time Warp
+1 Crux of Fate
+1 Dark Ritual
+1 Sign in Blood
+1 Demonic Tutor
+1 Stone Rain
+1 Thrill of Possibility
+1 Eliminate
+1 Regrowth
+1 Channel
+1 Lightning Bolt
+1 Krosan Grip
+1 Tendrils of Agony
+1 Snakeskin Veil
+1 Abundant Harvest
+1 Village Rites
+1 Grapeshot
+1 Claim the Firstborn
+1 Mizzix's Mastery
+1 Chaos Warp
+1 Weather the Storm
+1 Growth Spiral
+1 Lightning Helix
+1 Khalni Garden
+1 Island
+1 Scalding Tarn
+1 Windswept Heath
+1 Bloodstained Mire
+1 Overgrown Tomb
+1 Steam Vents
+1 Stomping Ground
+1 Compulsive Research
+1 Counterspell
+1 Urza's Rage
+1 Mind's Desire
+1 Brainstorm
+1 Blue Sun's Zenith
+1 Approach of the Second Sun
+1 Revitalize
+1 Strategic Planning
+1 Infuriate
+1 Shock
+1 Increasing Vengeance
+1 Day of Judgment
+1 Negate
+1 Opt
+1 Duress
+1 Inquisition of Kozilek
+1 Doom Blade
+1 Putrefy
+1 Mountain
+1 Swamp
+1 Nyxbloom Ancient
+1 Jetmir's Garden
+1 Raffine's Tower
+1 Misty Rainforest
+1 Polluted Delta
+1 Flooded Strand
+1 Command Tower
+1 Wooded Foothills
+1 Arid Mesa
+1 Godless Shrine
+1 Swords to Plowshares
+1 Watery Grave
+1 Hallowed Fountain
+1 Cultivate
+1 Indatha Triome
+1 Breeding Pool
+1 Savai Triome
+1 Raugrin Triome
+1 Spara's Headquarters
+1 Temple Garden
+1 Blood Crypt
+1 Verdant Catacombs
+1 Marsh Flats
+1 Mana Tithe
+1 Minamo, School at Water's Edge
+1 Ephemerate
+1 Dryad Arbor
+1 Tainted Pact
+1 Plains

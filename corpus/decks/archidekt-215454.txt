@@ -1,0 +1,99 @@
+# Archidekt — [B2] Naya Dinosaurs
+# source: archidekt:215454
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Gishath, Sun's Avatar
+
+Deck:
+1 And They Shall Know No Fear
+1 Cinder Glade
+1 Verdant Sun's Avatar
+1 Thrashing Brontodon
+1 Wakening Sun's Avatar
+1 Sol Ring
+1 Sheltered Thicket
+1 Jungle Shrine
+1 Unclaimed Territory
+1 Secluded Courtyard
+1 Topiary Stomper
+1 Temple Altisaur
+1 Nature's Lore
+1 Rhythm of the Wild
+1 Arcane Signet
+1 Urza's Incubator
+1 Kodama's Reach
+1 Savage Stomp
+1 Primal Might
+1 Scroll Rack
+1 Zacama, Primal Calamity
+1 Canopy Vista
+1 Apex Altisaur
+1 Marauding Raptor
+1 Quartzwood Crasher
+1 Path of Ancestry
+1 Rampant Growth
+1 Rogue's Passage
+1 Herald's Horn
+1 Kogla and Yidaro
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+3 Plains
+1 Tranquil Frillback
+1 Command Tower
+1 Restless Ridgeline
+3 Mountain
+1 Cabaretti Courtyard
+1 Regal Behemoth
+1 Kessig Wolf Run
+1 Congregation at Dawn
+1 Hulking Raptor
+1 Glittering Massif
+1 Pantlaza, Sun-Favored
+1 Spectator Seating
+1 Earthshaker Dreadmaw
+1 Bronzebeak Foragers
+6 Forest
+1 Wrathful Raptors
+1 Curious Altisaur
+1 Etali, Primal Storm
+1 Wayward Swordtooth
+1 Regisaur Alpha
+1 Star of Extinction
+1 Stump Stomp // Burnwillow Clearing
+1 Karplusan Forest
+1 Battlefield Forge
+1 Explore
+1 Farseek
+1 Garruk's Uprising
+1 Domri, Anarch of Bolas
+1 Sundown Pass
+1 Intrepid Paleontologist
+1 Ghalta, Primal Hunger
+1 Game Trail
+1 Overgrown Farmland
+1 Rockfall Vale
+1 Sunpetal Grove
+1 Palani's Hatcher
+1 Radiant Summit
+1 Slayers' Stronghold
+1 Turbulent Steppe
+1 World War Hulk
+1 Devil Dinosaur
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Path to Exile
+1 Swords to Plowshares
+1 Generous Gift
+1 Skyshroud Claim
+1 Clifftop Retreat
+1 Ixalli's Lorekeeper
+1 Trumpeting Carnosaur
+1 Vaultborn Tyrant
+1 Bonehoard Dracosaur
+1 Atzocan Seer
+1 Savage Order
+1 The Great Henge
+1 Cultivate
+1 Three Visits
+1 Thunderherd Migration
+1 Regrowth

@@ -1,0 +1,96 @@
+# WotC precon — The Fantastic Four (MSC, 2026-06-26)
+# source: mtgjson:TheFantasticFour_MSC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Invisible Woman
+
+Deck:
+1 Alicia Masters, Skilled Sculptor
+1 Annie Joins Up
+1 Arcane Signet
+1 Baxter Building
+1 Black Bolt, Inhuman King
+1 Bovine Intervention
+1 Canopy Vista
+1 Chromatic Lantern
+1 Cinder Glade
+1 Cleansing Nova
+1 Clever Concealment
+1 Clifftop Retreat
+1 Collective Effort
+1 Command Tower
+1 Cosmic Crucible
+1 Council of Reeds
+1 Crystal, Inhuman Princess
+1 Cultivate
+1 Cut a Deal
+1 Deep Analysis
+1 Dragon Man, Reformed Robot
+1 Evolving Wilds
+1 Exotic Orchard
+1 Expressive Iteration
+1 Fabled Passage
+1 Fantastic Elasticity
+1 Farseek
+1 First Family
+1 Flame On!
+5 Forest
+1 Franklin Richards, Ascendant
+1 Galactus, Devourer of Worlds
+1 Galvanic Iteration
+1 Genesis Ultimatum
+1 Glacial Fortress
+1 H.E.R.B.I.E., Lovable Robot
+1 Hinterland Harbor
+1 Hull Breach
+1 Human Torch
+1 Into the Time Vortex
+1 Invisible Force Field
+4 Island
+1 It's Clobberin' Time!
+1 Lightning Greaves
+1 Lockjaw, Slobbering Teleporter
+1 Medusa, Inhuman Queen
+1 Mind's Dilation
+1 Mirage Mirror
+1 Mister Fantastic
+1 Mister Fantastic, Reed Richards
+1 Monologue Tax
+3 Mountain
+1 Namor, Atlantean King
+1 Negative Zone Portal
+1 Nova Flame
+1 Path of Ancestry
+1 Path of Discovery
+1 Path to Exile
+5 Plains
+1 Power Pack
+1 Prairie Stream
+1 Promise of Loyalty
+1 Quantum Misalignment
+1 Radiant Summit
+1 Recurring Insight
+1 Rejuvenating Springs
+1 Rootbound Crag
+1 Scorched Geyser
+1 Seize the Day
+1 Silver Surfer, Galactus's Herald
+1 Sodden Verdure
+1 Sol Ring
+1 Sulfur Falls
+1 Sunpetal Grove
+1 Taunt from the Rampart
+1 Terramorph
+1 Terramorphic Expanse
+1 The Fantasticar
+1 The Thing
+1 Three Visits
+1 Tragic Arrogance
+1 Ultimate Nullification
+1 Unstable Molecule Suit
+1 Valeria Richards, Precocious
+1 Whirlwind of Thought
+1 Willie Lumpkin, Postman

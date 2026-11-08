@@ -1,0 +1,108 @@
+# Archidekt — Dihada Midrange Hell  - CEDH
+# source: archidekt:5194087
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Dihada, Binder of Wills
+
+Deck:
+1 Urza's Saga
+1 Gemstone Caverns
+1 Final Fortune
+1 Orim's Chant
+1 Orcish Bowmasters
+1 Ranger-Captain of Eos
+1 Archivist of Oghma
+1 The One Ring
+1 Demonic Tutor
+1 Gamble
+1 Ancient Tomb
+1 Jeska's Will
+1 Dark Ritual
+1 Badlands
+1 Blood Crypt
+1 Animate Dead
+1 Esper Sentinel
+1 Entomb
+1 Enlightened Tutor
+1 Cabal Ritual
+1 Chrome Mox
+1 Lion's Eye Diamond
+1 Scalding Tarn
+1 Wishclaw Talisman
+1 Plateau
+1 Underworld Breach
+1 Sol Ring
+1 Scrubland
+1 Reanimate
+1 Deflecting Swat
+1 Sevinne's Reclamation
+1 Sacred Foundry
+1 Wheel of Fortune
+1 Ragavan, Nimble Pilferer
+1 Opposition Agent
+1 Silence
+1 Takenuma, Abandoned Mire
+1 Vampiric Tutor
+1 Mana Vault
+1 Arcane Signet
+1 Luxury Suite
+1 Out of Time
+1 Pyroblast
+1 Marsh Flats
+1 Lurrus of the Dream-Den
+1 Simian Spirit Guide
+1 Grand Abolisher
+1 Mox Opal
+1 Defense Grid
+1 Flicker
+1 Burnt Offering
+1 Saw in Half
+1 Hoarding Broodlord
+1 Abdel Adrian, Gorion's Ward
+1 Lotus Petal
+1 Soul Partition
+1 Tithe
+1 Lotho, Corrupt Shirriff
+1 Angel's Grace
+1 Touch the Spirit Realm
+1 Arid Mesa
+1 Beseech the Mirror
+1 Trouble in Pairs
+1 Goblin Welder
+1 Bloodstained Mire
+1 Braids, Arisen Nightmare
+1 Mount Doom
+1 Mana Confluence
+1 Exotic Orchard
+1 Flamescroll Celebrant // Revel in Silence
+1 Smothering Tithe
+1 Goblin Engineer
+1 Grim Monolith
+1 Ad Nauseam
+1 Demonic Counsel
+1 Raucous Theater
+1 Mastermind Plum
+1 Vault of Champions
+1 City of Brass
+1 Polluted Delta
+1 Necromancy
+1 Spectator Seating
+1 Godless Shrine
+1 Command Tower
+1 Praetor's Grasp
+1 Twinflame
+1 Spire of Industry
+1 Voice of Victory
+1 Apple of Eden, Isu Relic
+1 Redirect Lightning
+1 Hexing Squelcher
+1 Magda, Brazen Outlaw
+1 Mayhem Devil
+1 Culling the Weak
+1 Dualcaster Mage
+1 Diabolic Intent
+1 Rite of Flame
+1 Mox Diamond
+1 Fellwar Stone

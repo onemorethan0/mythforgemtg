@@ -1,0 +1,104 @@
+# Archidekt — Helga's Brothel V3(Resilient Fun)
+# source: archidekt:17560678
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Helga, Skittish Seer
+
+Deck:
+1 Food Chain
+1 Craterhoof Behemoth
+1 Elvish Mystic
+1 Plaza of Heroes
+1 Amphin Mutineer
+1 Elgaud Shieldmate
+1 Slippery Bogbonder
+1 Springheart Nantuko
+1 Delighted Halfling
+1 Spark Double
+1 Chulane, Teller of Tales
+1 Galadriel, Light of Valinor
+1 Chakram Retriever
+1 Nylea, Keen-Eyed
+1 Thassa, Deep-Dwelling
+1 Command Tower
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Disciple of Freyalise // Garden of Freyalise
+1 Flooded Strand
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Yavimaya Coast
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Minamo, School at Water's Edge
+1 Misty Rainforest
+1 Horizon Canopy
+1 Razorgrass Ambush // Razorgrass Field
+1 Rejuvenating Springs
+1 Scattered Groves
+1 Sea of Clouds
+1 Sink into Stupor // Soporific Springs
+1 Temple Garden
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Yavimaya, Cradle of Growth
+1 Lizard, Connors's Curse
+1 Ouroboroid
+1 Damage Control Crew
+1 Essence Flux
+1 Drowner of Truth // Drowned Jungle
+1 Noble Hierarch
+1 Fyndhorn Elves
+1 Monk Gyatso
+1 Vexilus Praetor
+1 The Blue Spirit
+1 Formidable Speaker
+1 Arbor Elf
+1 Wan Shi Tong, Librarian
+1 Birds of Paradise
+1 Beast Whisperer
+1 Ephemerate
+1 Vizier of the Menagerie
+1 Galadriel's Dismissal
+1 Sigarda, Font of Blessings
+1 Appa, Steadfast Guardian
+1 Riptide Gearhulk
+1 Windswept Heath
+1 Saryth, the Viper's Fang
+1 Shalai, Voice of Plenty
+1 Lilysplash Mentor
+1 Chameleon, Master of Disguise
+1 Splash Portal
+1 Kogla, the Titan Ape
+3 Island
+1 Breeding Pool
+1 Urban Retreat
+1 Boseiju, Who Endures
+1 Sakashima the Impostor
+1 Legolas's Quick Reflexes
+1 Wistfulness
+1 Avacyn's Pilgrim
+1 Tolarian Kraken
+1 Sakashima of a Thousand Faces
+1 Tanufel Rimespeaker
+1 Emiel the Blessed
+2 Plains
+1 Gaea's Cradle
+2 Forest
+1 Cloudshift
+1 Overlord of the Hauntwoods
+1 Llanowar Elves
+1 Gilded Goose
+1 Otawara, Soaring City
+1 Natural Order
+1 Hallowed Fountain
+1 Intruder Alarm
+1 Strength of the Harvest // Haven of the Harvest
+1 Tundra
+1 Savannah
+1 Tropical Island
+1 Silence
+1 Flickering Hound
+1 Surrak and Goreclaw
+1 Mana Confluence
+1 Radagast of Rhosgobel
+1 Commander Spock

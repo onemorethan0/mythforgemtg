@@ -1,0 +1,109 @@
+# Archidekt — The First Sliver
+# source: archidekt:2766461
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The First Sliver
+
+Deck:
+1 Magma Sliver
+1 Forbidden Orchard
+1 Diffusion Sliver
+1 Spiteful Sliver
+1 Sliver Hivelord
+1 Muscle Sliver
+1 Cloudshredder Sliver
+1 Sliver Hive
+1 Syphon Sliver
+1 Harmonic Sliver
+1 Temple of Mystery
+1 Needleverge Pathway // Pillarverge Pathway
+1 Sliver Legion
+1 Port Town
+1 Dreamroot Cascade
+1 Sundown Pass
+1 Command Tower
+1 Overgrown Farmland
+1 Arcane Signet
+1 Galerider Sliver
+1 Crystalline Sliver
+1 Hibernation Sliver
+1 Exotic Orchard
+1 Unclaimed Territory
+1 Bonescythe Sliver
+1 Temple of Enlightenment
+1 Vineglimmer Snarl
+1 City of Brass
+1 Secluded Courtyard
+1 Temple of Plenty
+1 Path of Ancestry
+1 Shipwreck Marsh
+1 Waterlogged Grove
+1 Herald's Horn
+1 Worldly Tutor
+1 Cavern of Souls
+1 Rhystic Study
+1 Cryptolith Rite
+1 Guardian Project
+1 Mystic Remora
+1 Thran Portal
+1 Realmwalker
+1 Boseiju, Who Endures
+1 Takenuma, Abandoned Mire
+1 Descendants' Path
+1 Sliver Overlord
+1 Crypt Sliver
+1 Sinew Sliver
+1 Sentinel Sliver
+1 Profane Tutor
+1 Mox Tantalite
+1 Ancestral Vision
+1 Sliver Gravemother
+1 Regal Sliver
+1 Hatchery Sliver
+1 Necrotic Sliver
+1 Blasphemous Act
+1 Smothering Tithe
+1 Arcane Denial
+1 Root Sliver
+1 Brood Sliver
+1 Quick Sliver
+1 Rivendell
+1 Lavabelly Sliver
+1 Basal Sliver
+1 Heart Sliver
+1 Return of the Wildspeaker
+1 Manaweft Sliver
+1 Gemhide Sliver
+1 Predatory Sliver
+1 Raise the Palisade
+1 Striking Sliver
+1 Venom Sliver
+1 Morophon, the Boundless
+1 Frostcliff Siege
+1 Shifting Sliver
+1 Herd Heirloom
+1 Sliver Queen
+1 Cascading Cataracts
+1 Synapse Sliver
+1 Shifting Woodland
+1 Eiganjo, Seat of the Empire
+1 Wayfarer's Bauble
+1 Jegantha, the Wellspring
+1 Chromatic Lantern
+1 Midgar, City of Mako // Reactor Raid
+1 Strionic Resonator
+1 The One Ring
+1 Evendo, Waking Haven
+1 Island
+1 Horizon of Progress
+1 Vivid Creek
+1 Vivid Meadow
+1 Mountain
+1 Vivid Grove
+1 Unbreakable Formation
+1 Cyclonic Rift
+1 Negate
+1 Deafening Silence
+1 Forest

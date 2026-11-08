@@ -1,0 +1,89 @@
+# Archidekt — Volo - Free Creature Copies ($200)
+# source: archidekt:5842537
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Volo, Guide to Monsters
+
+Deck:
+1 Ulvenwald Hydra
+1 Sphinx of Enlightenment
+1 Vanguard Suppressor
+1 Loyal Drake
+1 Gargoyle Flock
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Dreamroot Cascade
+1 Alchemist's Refuge
+1 Temple of Mystery
+1 Command Tower
+1 Yavimaya Coast
+1 Flooded Grove
+1 Rejuvenating Springs
+1 Simic Growth Chamber
+1 Reliquary Tower
+1 Vineglimmer Snarl
+1 Repudiate // Replicate
+1 Sol Ring
+1 Radagast the Brown
+1 Hinterland Harbor
+1 Thought Vessel
+1 Overflowing Basin
+10 Island
+1 Manaweft Sliver
+1 Thornvault Forager
+1 Prize Pig
+1 Garruk's Packleader
+1 Fog Bank
+1 Twitching Doll
+1 Ohran Frostfang
+1 Lord of Change
+1 Enduring Curiosity
+1 Territory Culler
+1 Dawnglade Regent
+1 Star Whale
+1 Lightning Greaves
+1 Clever Impersonator
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Regal Behemoth
+1 Prosperous Innkeeper
+1 Ornithopter of Paradise
+1 Simic Signet
+1 Dryad of the Ilysian Grove
+1 Primeval Herald
+1 Mist Raven
+1 Octomancer
+1 Scrapshooter
+1 Amphin Mutineer
+1 Azure Beastbinder
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Elemental Bond
+1 Silverback Elder
+1 Deepfathom Echo
+1 Marang River Regent // Coil and Catch
+1 Bladegriff Prototype
+1 Giant Ankheg
+1 Leyline Immersion
+1 Garruk's Uprising
+1 Thorn Mammoth
+1 Rampant Growth
+1 Ilysian Caryatid
+1 Faerie Artisans
+1 Baral's Expertise
+1 Murkfiend Liege
+1 Starwinder
+1 Defiler of Vigor
+1 Ornery Tumblewagg
+1 Loyal Guardian
+11 Forest
+1 Sodden Verdure
+1 River's Rebuke
+1 Uro, Titan of Nature's Wrath
+1 Herd Heirloom
+1 Mystic Reflection
+1 Kiora, Behemoth Beckoner
+1 Garruk, Curse Breaker
+1 Turbulent Wilderness
+1 Uthros Psionicist
+1 Fear of Impostors
+1 Evercoat Ursine

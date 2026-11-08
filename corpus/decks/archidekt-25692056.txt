@@ -1,7 +1,8 @@
 # Archidekt — Ketramine on Crack
 # source: archidekt:25692056
 # fetched: 2026-08-26
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Demonic Tutor, Necropotence); Bracket 1 allows 0
 
 Commander:
 1 Ketramose, the New Dawn

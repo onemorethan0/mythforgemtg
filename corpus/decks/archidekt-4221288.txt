@@ -1,0 +1,107 @@
+# Archidekt — Stella Lee Combo
+# source: archidekt:4221288
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Stella Lee, Wild Card
+
+Deck:
+1 Mindbreak Trap
+1 Otawara, Soaring City
+1 Thundering Falls
+1 Twitch
+1 Gitaxian Probe
+1 Flooded Strand
+1 Volatile Stormdrake
+1 Bloodstained Mire
+1 Obsessive Search
+1 Stormcarved Coast
+1 Scalding Tarn
+1 Arid Mesa
+1 Steam Vents
+1 Training Center
+1 Command Tower
+1 Sulfur Falls
+1 Shivan Reef
+1 Fierce Guardianship
+1 Arcane Denial
+1 Vandalblast
+1 Mystical Tutor
+1 Izzet Signet
+1 Thassa's Oracle
+2 Mountain
+1 Talisman of Creativity
+1 Island
+1 Arcane Signet
+1 Overmaster
+1 Sol Ring
+1 Mox Diamond
+1 Magic Damper
+1 Into the Flood Maw
+1 Riverpyre Verge
+1 Mental Misstep
+1 Sink into Stupor // Soporific Springs
+1 Island
+2 Island
+2 Island
+1 Mountain
+1 Mox Opal
+1 Spellseeker
+1 Chrome Mox
+1 Arena of Glory
+1 Wooded Foothills
+1 City of Brass
+1 Mistrise Village
+1 Riverglide Pathway // Lavaglide Pathway
+1 Preordain
+1 Reflecting Pool
+1 Blasphemous Act
+1 Brainstorm
+1 Lightning Bolt
+1 Reverberate
+1 Rhystic Study
+1 Personal Tutor
+1 Vivi Ornitier
+1 Flashback
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Volcanic Island
+1 Jeska's Will
+1 Serum Visions
+1 Slip Out the Back
+1 Cerulean Wisps
+1 Twisted Fealty
+1 Witness Protection
+1 Opt
+1 An Offer You Can't Refuse
+1 Merchant Scroll
+1 Visions of Beyond
+1 Faerie Mastermind
+1 Lotus Petal
+1 Flusterstorm
+1 Flow State
+1 Borne Upon a Wind
+1 Dress Down
+1 Frantic Search
+1 Fellwar Stone
+1 Snapcaster Mage
+1 Phantasmal Image
+1 Force of Will
+1 Deflecting Swat
+1 Swan Song
+1 Mana Drain
+1 Boomerang Basics
+1 Mystic Remora
+1 Isochron Scepter
+1 Force of Negation
+1 Valley Floodcaller
+1 Unable to Scream
+1 Refocus
+1 Snap
+1 Shore Up
+1 Dramatic Reversal
+1 Crimson Wisps
+1 Expedite
+1 Gamble
+1 Brain Freeze
+1 Underworld Breach

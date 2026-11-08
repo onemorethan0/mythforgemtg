@@ -1,0 +1,92 @@
+# WotC precon — Mind Flayarrrs (CLB, 2022-06-10)
+# source: mtgjson:MindFlayarrrs_CLB
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 2 allows none
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Captain N'ghathrod
+
+Deck:
+1 Aboleth Spawn
+1 Arcane Signet
+1 Ash Barrens
+1 Black Market
+1 Brainstealer Dragon
+1 Chasm Skulker
+1 Choked Estuary
+1 Command Tower
+1 Consuming Aberration
+1 Creeping Tar Pit
+1 Crippling Fear
+1 Curtains' Call
+1 Dark Hatchling
+1 Darkwater Catacombs
+1 Dauthi Horror
+1 Dimir Aqueduct
+1 Dimir Keyrune
+1 Dimir Signet
+1 Dross Harvester
+1 Drown in the Loch
+1 Drownyard Temple
+1 Dusk Mangler
+1 Endless Evil
+1 Everflowing Chalice
+1 Exotic Orchard
+1 Extract from Darkness
+1 Fact or Fiction
+1 Feed the Swarm
+1 Forgotten Creation
+1 Fractured Sanity
+1 From the Catacombs
+1 Grazilaxx, Illithid Scholar
+1 Grell Philosopher
+1 Guiltfeeder
+1 Haunted One
+1 Herald's Horn
+1 Hex
+1 Hullbreaker Horror
+1 Hunted Horror
+1 In Garruk's Wake
+9 Island
+1 Leyline of Anticipation
+1 Lightning Greaves
+1 Memory Plunder
+1 Mind Flayer
+1 Mind Stone
+1 Mindcrank
+1 Myriad Landscape
+1 Nemesis of Reason
+1 Nephalia Drownyard
+1 Nighthowler
+1 Nihilith
+1 Overcharged Amalgam
+1 Path of Ancestry
+1 Phyrexian Rager
+1 Phyrexian Revoker
+1 Plague Spitter
+1 Port of Karfell
+1 Psionic Ritual
+1 Psychosis Crawler
+1 Pull from Tomorrow
+1 Ravenous Chupacabra
+1 Reflections of Littjara
+1 River of Tears
+1 Rogue's Passage
+1 Sewer Nemesis
+1 Sludge Monster
+1 Sol Ring
+1 Spellskite
+1 Sunken Hollow
+11 Swamp
+1 Syphon Mind
+1 Tainted Isle
+1 Talisman of Dominance
+1 Temple of Deceit
+1 Temple of the False God
+1 Thought Vessel
+1 Uchuulon
+1 Wharf Infiltrator
+1 Woe Strider
+1 Zellix, Sanity Flayer

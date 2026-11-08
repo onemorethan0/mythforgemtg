@@ -1,0 +1,108 @@
+# Archidekt — Birdwatching
+# source: archidekt:3194305
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Inspiring Leader
+1 Volo, Itinerant Scholar
+
+Deck:
+1 Nimbus Maze
+1 Evolving Wilds
+1 Command Tower
+1 Azorius Chancery
+1 Glacial Floodplain
+1 Irrigated Farmland
+1 Reliquary Tower
+1 Skrelv, Defector Mite
+1 Kitesail Larcenist
+1 Winds of Abandon
+1 Arm with Aether
+1 Glasspool Mimic // Glasspool Shore
+1 Sharding Sphinx
+1 Ancient Gold Dragon
+1 Devout Invocation
+1 Tidespout Tyrant
+1 Storm Herd
+1 Wand of the Worldsoul
+1 Skyway Robber
+1 Canoptek Scarab Swarm
+1 Esior, Wardwing Familiar
+1 Flockchaser Phantom
+1 Gold-Forged Thopteryx
+1 Jubilant Skybonder
+1 Linvala, Shield of Sea Gate
+1 Voidstone Gargoyle
+1 Alrund's Epiphany
+1 Notorious Throng
+1 Zeriam, Golden Wind
+1 Dovescape
+1 Gold Myr
+1 Island
+1 Island
+1 Suppressor Skyguard
+1 Smirking Spelljacker
+1 Cartographer's Hawk
+1 Patron of the Moon
+1 Defiler of Dreams
+1 Island
+1 Knowledge Is Power
+1 Magus of the Moat
+1 Sephara, Sky's Blade
+1 Karoo
+1 Coral Atoll
+1 Guildless Commons
+1 Lonely Sandbar
+1 Archon of Redemption
+1 Idyllic Beachfront
+1 Prairie Stream
+1 Myriad Landscape
+1 Terramorphic Expanse
+1 Windbrisk Heights
+1 Curiosity Crafter
+1 Warden of Evos Isle
+1 Archetype of Imagination
+1 Dance of the Manse
+1 Kangee, Sky Warden
+1 Ornithopter of Paradise
+1 Kabira Takedown // Kabira Plateau
+1 Watcher of the Spheres
+1 Gravitational Shift
+1 Isperia the Inscrutable
+1 Sejiri Shelter // Sejiri Glacier
+1 Turbulent Dreams
+1 Ascend from Avernus
+1 Kira, Great Glass-Spinner
+1 Donal, Herald of Wings
+1 Thopter Spy Network
+1 Feywild Caretaker
+1 Glory
+1 Atemsis, All-Seeing
+1 Medomai the Ageless
+1 Omen Hawker
+1 Port Town
+1 Shadow Puppeteers
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Island
+1 Island
+1 Island
+1 Conspiracy Unraveler
+1 Volatile Stormdrake
+1 PuPu UFO
+1 Strixhaven Stadium
+1 Diversion Unit
+1 Terrain Generator
+1 Perch Protection
+1 Jackdaw Savior
+1 Murmuration
+1 Mockingbird
+1 Moon-Blessed Cleric
+1 Archaeomancer's Map
+1 Ghost Vacuum
+1 Emrakul's Messenger

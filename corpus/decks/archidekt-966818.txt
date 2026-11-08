@@ -1,0 +1,108 @@
+# Archidekt — Kefka, Court Mage (Clear Pink Box)
+# source: archidekt:966818
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Faerie Mastermind
+1 Wishclaw Talisman
+1 Arena of Glory
+1 Generator Servant
+1 Displacer Kitten
+1 Hexing Squelcher
+1 Shivan Reef
+1 Blightstep Pathway // Searstep Pathway
+1 Cavern of Souls
+1 Dragon's Rage Channeler
+1 Command Tower
+1 Sol Ring
+1 Swan Song
+1 Cyclonic Rift
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Sunken Ruins
+1 Frantic Search
+1 Mystical Tutor
+1 Demonic Tutor
+1 Luxury Suite
+1 Steam Vents
+1 Blood Crypt
+1 Fiery Islet
+1 Arcane Signet
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Grim Tutor
+1 Training Center
+1 Riverglide Pathway // Lavaglide Pathway
+1 Clearwater Pathway // Murkwater Pathway
+1 Swamp
+1 Mountain
+1 Island
+1 Dark Ritual
+1 Scalding Tarn
+1 Watery Grave
+1 Twinflame
+1 Heat Shimmer
+1 Dualcaster Mage
+1 Xander's Lounge
+1 Morphic Pool
+1 Underground River
+1 Sulfurous Springs
+1 Mana Drain
+1 Vampiric Tutor
+1 Rhystic Study
+1 Blackcleave Cliffs
+1 Darkslick Shores
+1 Toxic Deluge
+1 Mount Doom
+1 Dispel
+1 Deflecting Swat
+1 Ad Nauseam
+1 Orcish Bowmasters
+1 Notion Thief
+1 Spirebluff Canal
+1 Raucous Theater
+1 Undercity Sewers
+1 Thundering Falls
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Talisman of Creativity
+1 Necropotence
+1 Reanimate
+1 Thassa's Oracle
+1 Demonic Consultation
+1 Tainted Pact
+1 Hullbreaker Horror
+1 Urza's Cave
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Bloodstained Mire
+1 Polluted Delta
+1 Muddle the Mixture
+1 Flare of Denial
+1 Lim-Dûl's Vault
+1 Underworld Breach
+1 Brain Freeze
+1 Lotus Petal
+1 Spellseeker
+1 Sulfur Falls
+1 An Offer You Can't Refuse
+1 Mystic Remora
+1 Chain of Vapor
+1 Borne Upon a Wind
+1 Cephalid Coliseum
+1 Phyrexian Metamorph
+1 Simian Spirit Guide
+1 Harmonic Prodigy
+1 Rite of Flame
+1 Dress Down
+1 Essence Flux
+1 Step Through
+1 Dauthi Voidwalker
+1 Into the Flood Maw
+1 Cabal Ritual
+1 Waste Not
+1 Opposition Agent

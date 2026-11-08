@@ -1,0 +1,78 @@
+# Archidekt — Rograkh, Son of Rohgahh knows how to win
+# source: archidekt:1044774
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Rograkh, Son of Rohgahh
+
+Deck:
+1 Tilonalli's Skinshifter
+1 Skeleton Key
+1 Crater Elemental
+1 Flamekin Brawler
+1 Ur-Golem's Eye
+1 Terra Ravager
+1 Rush of Blood
+1 Aether Membrane
+1 Signal Pest
+1 Teetering Peaks
+1 Cinder Pyromancer
+1 Flowstone Slide
+1 Char-Rumbler
+1 Fatal Frenzy
+1 Spincrusher
+1 Goblin Machinist
+1 Ember Shot
+1 Keldon Battlewagon
+1 Cavern Crawler
+1 Pallimud
+1 Roc Hatchling
+1 Phyrexian Walker
+1 Roterothopter
+1 Dwarven Armorer
+1 Blazing Effigy
+1 Impetuous Protege
+1 Erratic Cyclops
+1 Cavalcade of Calamity
+1 Junktroller
+1 Firemind Vessel
+1 Goblin Champion
+1 Heraldic Banner
+1 Orcish Oriflamme
+1 Ghitu War Cry
+1 Mirror Shield
+1 Unleash Fury
+1 Lightning-Core Excavator
+1 Dragon Hatchling
+1 O-Naginata
+1 Darksteel Axe
+1 Kher Keep
+1 Coastline Marauders
+1 Sisay's Ring
+1 Hero's Blade
+1 Ring of Valkas
+1 Bonesplitter
+31 Mountain
+1 Dolmen Gate
+1 Fortune Thief
+1 Dowsing Dagger // Lost Vale
+1 Sword of the Paruns
+1 Keldon Megaliths
+1 Strata Scythe
+1 Balduvian Hydra
+1 Balduvian Trading Post
+1 Tenza, Godo's Maul
+1 Risky Move
+1 Dormant Volcano
+1 Tome of Legends
+1 Goblin Oriflamme
+1 Hazoret's Monument
+1 Raid Bombardment
+1 Wine of Blood and Iron
+1 Thunderstaff
+1 Thermo-Alchemist
+1 Colossus Hammer
+1 Cunning Sparkmage
+1 Vithian Stinger
+1 Ornithopter of Paradise

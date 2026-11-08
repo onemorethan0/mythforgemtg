@@ -1,0 +1,94 @@
+# Archidekt — Tataru Taru - Everyone Draws v2
+# source: archidekt:17046006
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Tataru Taru
+
+Deck:
+1 Ancient Tomb
+1 The Queen of Dale
+1 Ultron, Artificial Malevolence
+1 Forsaken Monument
+1 Terrain Generator
+1 Fountainport
+1 Psychosis Crawler
+1 Font of Mythos
+1 Grasp of Fate
+1 Echoes of Eternity
+1 Adagia, Windswept Bastion
+1 Dawn's Truce
+1 Generous Gift
+1 Pearl Medallion
+1 Loran of the Third Path
+1 Mikokoro, Center of the Sea
+1 Mirage Mirror
+1 Reliquary Tower
+1 Recruiter of the Guard
+1 Sculpting Steel
+1 Ishgard, the Holy See // Faith & Grief
+1 Season of the Burrow
+1 Enlightened Tutor
+1 Scrawling Crawler
+1 Summon: Yojimbo
+1 Sol Ring
+1 Sevinne's Reclamation
+1 Strionic Resonator
+1 Temple Bell
+1 Viseling
+1 Zenith Chronicler
+1 Wedding Ring
+1 Thought Vessel
+1 Swords to Plowshares
+1 Eldrazi Displacer
+1 Anvil of Bogardan
+1 Argent Dais
+1 Clockwork Fox
+1 Cosmic Intervention
+1 Smothering Tithe
+1 Lithoform Engine
+1 Geier Reach Sanitarium
+1 Flare of Fortitude
+1 Your Temple Is Under Attack
+1 Howling Mine
+1 Mistveil Plains
+1 Kuldotha Forgemaster
+1 The Mind Stone
+1 Eldrazi Confluence
+1 Spurnmage Advocate
+1 Meekstone
+1 Ivory Tower
+1 Parting Gust
+1 Iron Maiden
+1 Boromir, Warden of the Tower
+1 Inventors' Fair
+1 The Mycosynth Gardens
+1 Scavenger Grounds
+1 Mirrorworks
+1 Trouble in Pairs
+1 Black Vise
+1 Keeper of the Accord
+1 Treasure Vault
+1 Petrified Hamlet
+1 Monumental Henge
+1 The Legend of Yangchen // Avatar Yangchen
+1 Brilliant Restoration
+1 Abstergo Entertainment
+1 Kor Haven
+1 The Eternal Wanderer
+1 Out of Time
+1 Moon-Blessed Cleric
+1 Memory Jar
+1 Gleaming Splendor
+1 Settle the Wreckage
+1 Oblation
+1 Prismatic Strands
+1 Dispatch
+1 Split Up
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Secret Rendezvous
+1 King Solomon's Frogs
+15 Plains
+1 Troi, Winging It

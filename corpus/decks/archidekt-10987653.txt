@@ -1,0 +1,93 @@
+# Archidekt — Crime Spree
+# source: archidekt:10987653
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 1 allows none
+
+Commander:
+1 Marchesa, Dealer of Death
+
+Deck:
+1 Servant of the Stinger
+1 Arcane Signet
+1 Command Tower
+1 Temple of Epiphany
+1 Gisa, the Hellraiser
+1 Lavaspur Boots
+1 Quiet Contemplation
+1 Hearthborn Battler
+1 Seize the Secrets
+1 Slick Sequence
+1 Repulse
+1 Metamorphic Blast
+1 Rush of Dread
+1 Shifting Grift
+1 Spell Pierce
+1 Spikefield Hazard // Spikefield Cave
+1 Temple of Deceit
+1 Waterfront District
+1 Chaos Warp
+1 Sol Ring
+1 Niv-Mizzet, Visionary
+1 Forsaken Miner
+1 Refute
+1 Lightning Strike
+1 Chain Reaction
+1 Highway Robbery
+1 Swiftwater Cliffs
+1 Thriving Moor
+1 Sunken Hollow
+3 Swamp
+1 Smoldering Marsh
+1 Thrill of Possibility
+1 Abrade
+1 Saw It Coming
+1 Honored Heirloom
+1 Magda, the Hoardmaster
+1 Dismal Backwater
+1 Highland Lake
+1 Cinder Barrens
+1 Bloodfell Caves
+1 Submerged Boneyard
+1 Reinterpret
+1 Rain of Revelation
+1 Firebrand Archer
+1 Maestros Charm
+1 Teferi's Tutelage
+1 Bounty Board
+1 Guttersnipe
+1 Demolition Field
+1 Mindsplice Apparatus
+1 Hullbreaker Horror
+1 Seething Landscape
+1 Archmage Emeritus
+1 Third Path Iconoclast
+1 Tor Wauki the Younger
+1 Bonecrusher Giant // Stomp
+1 Cryptic Pursuit
+1 Torch the Witness
+1 Firespitter Whelp
+1 Baral's Expertise
+1 Galvanic Iteration
+1 Haughty Djinn
+1 Burst Lightning
+1 Agonizing Remorse
+1 Archmage of Runes
+1 Niv-Mizzet, Parun
+1 Skullcrack
+1 Glasses of Urza
+1 Tyrant's Scorn
+1 Curse of the Swine
+1 Prismatic Lens
+1 Balmor, Battlemage Captain
+1 Elspeth's Nightmare
+1 Murder
+1 Ice Tunnel
+8 Mountain
+8 Island
+1 Faithless Looting
+1 Lock and Load
+1 Lightning Bolt
+1 Think Twice
+1 Radical Idea
+1 Shock

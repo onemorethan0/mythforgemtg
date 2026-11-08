@@ -1,0 +1,98 @@
+# Archidekt — Eshki Dragonclaw Is Going On A Budget Adventure - Pillow Fort-Teen
+# source: archidekt:12012427
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Eshki Dragonclaw
+
+Deck:
+2 Mountain
+1 Elusive Otter // Grove's Bounty
+1 Picnic Ruiner // Stolen Goodies
+1 Beanstalk Giant // Fertile Footsteps
+1 Scalding Viper // Steam Clean
+1 Bramble Familiar // Fetch Quest
+1 Brazen Borrower // Petty Theft
+1 Tlincalli Hunter // Retrieve Prey
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Stormkeld Vanguard // Bear Down
+1 Sword Coast Serpent // Capsizing Wave
+1 Beanstalk Wurm // Plant Beans
+1 Dread Linnorm // Scale Deflection
+1 Young Blue Dragon // Sand Augury
+1 Questing Druid // Seek the Beast
+1 Tempest Hart // Scan the Clouds
+1 Two-Headed Hunter // Twice the Rage
+1 Merchant of the Vale // Haggle
+1 Moonshae Pixie // Pixie Dust
+1 Karvanista, Loyal Lupari // Lupari Shield
+1 Hearth Elemental // Stoke Genius
+1 Embereth Shieldbreaker // Battle Display
+1 Sapphire Dragon // Psionic Pulse
+1 Rosethorn Acolyte // Seasonal Ritual
+1 Lovestruck Beast // Heart's Desire
+1 Sea Hag // Aquatic Ingress
+1 Chancellor of Tales
+1 Doc Aurlock, Grizzled Genius
+1 Storyteller Pixie
+1 Edgewall Innkeeper
+1 Lucky Clover
+1 Savvy Trader
+1 Edgewall Inn
+1 Beluna Grandsquall // Seek Thrills
+1 Bountiful Landscape
+1 Ferrous Lake
+1 Cinder Glade
+1 Exotic Orchard
+1 Overflowing Basin
+1 Command Tower
+1 Sulfur Falls
+1 Lozhan, Dragons' Legacy
+1 Sheltered Thicket
+1 Game Trail
+1 Mossfire Valley
+1 Temple of Epiphany
+1 Restless Ridgeline
+1 Frontier Bivouac
+1 Hinterland Harbor
+1 Restless Spire
+1 Rootbound Crag
+1 Yavimaya Coast
+1 Vineglimmer Snarl
+1 Temple of Mystery
+1 Flooded Grove
+1 Bonders' Enclave
+6 Island
+1 Hypnotic Sprite // Mesmeric Glare
+1 Stump Stomp // Burnwillow Clearing
+5 Forest
+1 Frolicking Familiar // Blow Off Steam
+1 Fang Dragon // Forktail Sweep
+1 Galvanic Giant // Storm Reading
+1 Emerald Dragon // Dissonant Wave
+1 Aquatic Alchemist // Bubble Up
+1 Storm-Kiln Artist
+1 Opt
+1 Growth Spiral
+1 Picklock Prankster // Free the Fae
+1 Temur Sabertooth
+1 Evacuation
+1 Genesis Ultimatum
+1 Extraordinary Journey
+1 Garruk's Uprising
+1 Sol Ring
+1 Arcane Signet
+1 Consider
+1 Frantic Search
+1 Snap
+1 Fellwar Stone
+1 Chandra's Ignition
+1 Joint Exploration
+1 Stormcatch Mentor
+1 Quandrix Apprentice
+1 An Offer You Can't Refuse
+1 Wild Growth
+1 Dreamroot Cascade
+1 Shivan Reef
+1 Overpowering Attack

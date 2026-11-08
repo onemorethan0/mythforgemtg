@@ -1,7 +1,8 @@
 # Archidekt — Columbo
 # source: archidekt:25744057
 # fetched: 2026-08-26
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 3 Game Changers (Enlightened Tutor, Mystical Tutor, Worldly Tutor); Bracket 1 allows 0
 
 Commander:
 1 Morska, Undersea Sleuth

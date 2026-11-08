@@ -1,0 +1,97 @@
+# Archidekt — Twiddle Lotus Field Combo
+# source: archidekt:5544072
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Kalamax, the Stormsire + Flare of Duplication; Bracket 1 allows none
+
+Commander:
+1 Kalamax, the Stormsire
+
+Deck:
+1 Blue Sun's Zenith
+1 Supreme Will
+4 Island
+1 Dig Through Time
+1 Rockfall Vale
+6 Mountain
+1 Springleaf Drum
+1 Lightning Greaves
+1 Leyline Immersion
+1 Unwind
+1 Simic Growth Chamber
+1 Evolving Wilds
+1 Holdout Settlement
+1 Psychic Puppetry
+1 Reality Spasm
+1 Spelunking
+1 Relic of Legends
+1 Fabled Passage
+1 Waterlogged Grove
+1 Fertile Ground
+1 Dreamroot Cascade
+1 Storm-Kiln Artist
+1 Lórien Revealed
+1 Tale's End
+1 Blood Sun
+1 Stormcarved Coast
+1 Jacob Hauken, Inspector // Hauken's Insight
+1 Wilderness Reclamation
+1 Sol Ring
+1 Clever Conjurer
+1 Terramorphic Expanse
+1 Command Tower
+1 Frontier Bivouac
+1 Thrill of Possibility
+1 Carpet of Flowers
+1 Sulfur Falls
+1 Thousand-Year Storm
+1 Snap
+1 Jace, Wielder of Mysteries
+1 Twiddle
+1 Rising of the Day
+2 Forest
+1 Anger
+1 Flare of Duplication
+1 Frantic Search
+1 Sheltered Thicket
+1 Survivors' Encampment
+1 Krosan Restorer
+1 Wild Growth
+1 Tangled Islet
+1 You Find the Villains' Lair
+1 Commune with Lava
+1 Izzet Boilerworks
+1 Utopia Sprawl
+1 Kelpie Guide
+1 Diviner's Portent
+1 Tolaria West
+1 Path of Ancestry
+1 Dream's Grip
+1 Goblin Anarchomancer
+1 Treasure Cruise
+1 Bigger on the Inside
+1 Explore
+1 Arboreal Grazer
+1 Vizier of Tumbling Sands
+1 Pore Over the Pages
+1 Rogue's Passage
+1 Kiora's Follower
+1 Temple of Abandon
+1 Archmage Emeritus
+1 Growth Spiral
+1 Sylvan Scrying
+1 Pull from Tomorrow
+1 Expedition Map
+1 Discontinuity
+1 Thespian's Stage
+1 Hidden Strings
+1 Ioreth of the Healing House
+1 Temple of Epiphany
+1 Gruul Turf
+1 Unexpected Windfall
+1 Exotic Orchard
+1 Cerulean Wisps
+1 Portent Tracker
+1 Overgrowth
+1 Temple of Mystery
+1 Lotus Field

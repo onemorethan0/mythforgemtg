@@ -1,0 +1,85 @@
+# Archidekt — Knuck if you buck
+# source: archidekt:25930423
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Knuckles the Echidna
+
+Deck:
+1 Agatha's Soul Cauldron
+1 Akki Scrapchomper
+1 Arena of Glory
+1 Big Score
+1 Call for Aid
+1 Canoptek Scarab Swarm
+1 Charming Scoundrel
+1 Commander's Plate
+1 Curse of Opulence
+1 Darksteel Citadel
+1 Defiler of Instinct
+1 Deflecting Swat
+1 Dismissive Pyromancer
+1 Disrupt Decorum
+1 Dragon-Cursed Halls
+1 Dragonmaster Outcast
+1 Dwarven Mine
+1 Emrakul, the World Anew
+1 Fear of Missing Out
+1 Firbolg Flutist
+1 Fountainport
+1 Frantic Scapegoat
+1 Fury
+1 Fury of the Horde
+1 Goblin Engineer
+1 Goldhound
+1 Goldlust Triad
+1 Great Furnace
+1 Great Train Heist
+1 Grim Reaper's Sprint
+1 Hawkeye, Master Marksman
+1 Hexing Squelcher
+1 Hideous Taskmaster
+1 Impulsive Pilferer
+1 Inferno Titan
+1 Insurrection
+1 Inventors' Fair
+1 Ivora, Insatiable Heir
+1 J. Jonah Jameson
+1 Kari Zev, Skyship Raider
+1 Karlach, Fury of Avernus
+1 Krark-Clan Shaman
+1 Magda, Brazen Outlaw
+1 Mass Mutiny
+1 Mines of Moria
+1 Mob Rule
+23 Mountain
+1 Neheb, Dreadhorde Champion
+1 Overlord of the Boilerbilges
+1 Overpowering Attack
+1 Plaza of Heroes
+1 Professional Face-Breaker
+1 Ragavan, Nimble Pilferer
+1 Reckless Lackey
+1 Red Elemental Blast
+1 Redirect Lightning
+1 Ruby Medallion
+1 Secluded Starforge
+1 Seize the Spotlight
+1 Shadowspear
+1 Signal Pest
+1 Slagdrill Scrapper
+1 Smaug the Magnificent
+1 Spectrum Sentinel
+1 Sundering Eruption // Volcanic Fissure
+1 Tersa Lightshatter
+1 The Mycosynth Gardens
+1 The One Ring
+1 Treasure Vault
+1 Unexpected Windfall
+1 Untimely Malfunction
+1 Urza's Saga
+1 Vengeful Ancestor
+1 Village Pillagers
+1 Voldaren Epicure
+1 War Room

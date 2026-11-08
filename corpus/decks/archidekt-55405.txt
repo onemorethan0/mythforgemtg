@@ -1,0 +1,101 @@
+# Archidekt — Animar
+# source: archidekt:55405
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Animar, Soul of Elements
+
+Deck:
+1 Vizier of the Menagerie
+1 Sheltered Thicket
+1 Solemn Simulacrum
+1 Duplicant
+1 Forgotten Ancient
+1 Sylvan Library
+1 Cinder Glade
+1 Stomping Ground
+1 Steam Vents
+1 Breeding Pool
+1 Wooded Foothills
+1 Scalding Tarn
+1 Misty Rainforest
+1 Fire-Lit Thicket
+1 Flooded Grove
+1 Ulamog, the Ceaseless Hunger
+1 Managorger Hydra
+1 Ulamog, the Infinite Gyre
+1 Surrak Dragonclaw
+1 Reclamation Sage
+1 Taiga
+1 Tropical Island
+1 Volcanic Island
+1 Dack's Duplicate
+1 Fathom Mage
+1 Maelstrom Wanderer
+1 Mountain
+1 Craterhoof Behemoth
+1 Primal Surge
+1 Alchemist's Refuge
+1 Hinterland Harbor
+1 Phyrexian Ingester
+1 Urabrask the Hidden
+1 Birds of Paradise
+1 Ancient Ziggurat
+1 Sages of the Anima
+1 Mulldrifter
+1 Eternal Witness
+1 Mosswort Bridge
+1 Island
+1 Tomorrow, Azami's Familiar
+1 Dosan the Falling Leaf
+1 Goreclaw, Terror of Qal Sisma
+1 Toothy, Imaginary Friend
+1 The Great Henge
+1 Nylea, God of the Hunt
+1 Kogla, the Titan Ape
+1 Ketria Triome
+1 Scavenging Ooze
+1 Terror of the Peaks
+1 Command Tower
+1 Bane of Progress
+1 Imoti, Celebrant of Bounty
+1 Oracle of Mul Daya
+1 Reflecting Pool
+1 Scion of Draco
+1 Apex Devastator
+1 Wandering Archaic // Explore the Vastlands
+1 Rootbound Crag
+8 Forest
+1 Spire Garden
+1 Rejuvenating Springs
+1 Toski, Bearer of Secrets
+1 Dreamroot Cascade
+1 Delighted Halfling
+1 Commercial District
+1 Bloodbraid Challenger
+1 Thornspire Verge
+1 Pathbreaker Ibex
+1 Mockery of Nature
+1 Rain-Slicked Copse
+1 Augur of Autumn
+1 Eshki, Temur's Roar
+1 Mirri's Guile
+1 Ragavan, Nimble Pilferer
+1 Garruk's Uprising
+1 Beast Whisperer
+1 Guardian Project
+1 Hardened Scales
+1 Kozilek, Butcher of Truth
+1 Thunderfoot Baloth
+1 Xenagos, God of Revels
+1 Silverback Elder
+1 Pir, Imaginative Rascal
+1 Stonehoof Chieftain
+1 Questing Beast
+1 Summon: Bahamut
+1 Vaultborn Tyrant
+1 Ozolith, the Shattered Spire
+1 Tam, Mindful First-Year
+1 Emrakul, the Exigent Doom
+1 Irma, Part-Time Mutant

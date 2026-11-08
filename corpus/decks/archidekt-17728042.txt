@@ -1,0 +1,108 @@
+# Archidekt — 🥷 Yuriko’s Sneaky Snack Pack
+# source: archidekt:17728042
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Multiversal Passage
+1 Street Wraith
+1 Prismatic Vista
+1 Marsh Flats
+1 Fierce Guardianship
+1 Fourth Bridge Prowler
+1 Thassa's Oracle
+1 Mystic Remora
+1 Rhystic Study
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Nashi, Moon Sage's Scion
+1 Orcish Bowmasters
+1 Lotus Petal
+1 Deadly Rollick
+1 Command Tower
+1 Commandeer
+1 Snuff Out
+1 Mindbreak Trap
+1 Polluted Delta
+1 Underground Sea
+1 Flooded Strand
+1 Contagion
+1 Gitaxian Probe
+1 Misty Rainforest
+1 Imperial Seal
+1 Mox Diamond
+1 Mothdust Changeling
+1 Flusterstorm
+1 Ornithopter
+1 Lim-Dûl's Vault
+1 Thousand-Faced Shadow
+1 Sol Ring
+1 Mystical Tutor
+1 Submerge
+1 Changeling Outcast
+1 Subtlety
+1 Mistblade Shinobi
+1 Temporal Trespass
+1 Snow-Covered Island
+1 Skullsnatcher
+1 Ingenious Infiltrator
+1 Watery Grave
+1 Prosperous Thief
+1 Mockingbird
+1 Flare of Malice
+1 Boggart Trawler // Boggart Bog
+1 Underground River
+1 Silver-Fur Master
+1 Moon-Circuit Hacker
+1 Force of Despair
+1 Sink into Stupor // Soporific Springs
+1 Fell the Profane // Fell Mire
+1 Morphic Pool
+1 Mox Amber
+1 Entomb
+1 Gush
+1 Snow-Covered Swamp
+1 Kaito, Bane of Nightmares
+1 Brainstorm
+1 Demonic Consultation
+1 Dark Ritual
+1 Thran Portal
+1 Gemstone Caverns
+1 Wingcrafter
+1 Otawara, Soaring City
+1 Swamp
+1 Island
+1 Doomsday
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Universal Automaton
+1 Wonder
+1 Force of Negation
+1 Mental Misstep
+1 Sakashima's Student
+1 Irma, Part-Time Mutant
+1 Splinter, Hamato Yoshi
+1 Enter the Infinite
+1 Flare of Denial
+1 Misdirection
+1 Tainted Pact
+1 Memnite
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Vampiric Tutor
+1 Dismember
+1 Force of Will
+1 Mausoleum Wanderer
+1 Chrome Mox
+1 Hope of Ghirapur
+1 Yuriko, Hope from the Shadows
+1 Ancient Tomb
+1 Samut, Tyrant of Naktamun
+1 Phyrexian Walker
+1 Nanogene Conversion
+1 Demonic Tutor
+1 Insidious Dreams
+1 Fblthp, Impossibly Lost

@@ -1,0 +1,102 @@
+# Archidekt — [cEDH] Urza Poly Kraken
+# source: archidekt:4046441
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Borne Upon a Wind
+1 Force of Will
+1 Force of Negation
+1 Chain of Vapor
+1 Dramatic Reversal
+1 Fierce Guardianship
+1 Aether Spellbomb
+1 Arcane Signet
+1 Basalt Monolith
+1 Grim Monolith
+1 Ancient Tomb
+1 City of Traitors
+1 Emergence Zone
+1 Flooded Strand
+1 Gemstone Caverns
+1 Inventors' Fair
+1 Hullbreaker Horror
+1 Sol Ring
+1 Misty Rainforest
+1 Mental Misstep
+1 Isochron Scepter
+1 Mana Drain
+1 Miscast
+1 Mystical Tutor
+1 Resculpt
+1 Jeweled Amulet
+1 Lotus Petal
+1 Mana Vault
+1 Mishra's Bauble
+1 Proteus Staff
+1 Static Orb
+1 The One Ring
+1 Urza's Bauble
+1 Winter Orb
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Prismatic Vista
+1 Scalding Tarn
+1 Urza's Saga
+1 Tezzeret the Seeker
+1 Power Artifact
+1 Polymorph
+1 Reshape
+1 Transmute Artifact
+1 Tormod's Crypt
+1 Mox Opal
+1 Manifold Key
+1 Swan Song
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Pact of Negation
+1 March of Swirling Mist
+1 Whir of Invention
+1 Flusterstorm
+1 Codex Shredder
+1 Mox Diamond
+1 Tidespout Tyrant
+1 Everflowing Chalice
+1 Copy Artifact
+1 Sink into Stupor // Soporific Springs
+1 Machine Over Matter
+1 Mindbreak Trap
+1 Personal Tutor
+1 Rings of Brighthearth
+1 Rhystic Study
+1 Mystic Remora
+1 Cephalid Coliseum
+1 Tezzeret, Cruel Captain
+1 Crystal Vein
+1 Minamo, School at Water's Edge
+1 Oboro, Palace in the Clouds
+1 Seat of the Synod
+1 Talon Gates of Madara
+1 Energy Tap
+1 Gitaxian Probe
+1 Solve the Equation
+1 Copy Enchantment
+1 Mirrormade
+1 Steal Enchantment
+1 Dispel
+1 Pongify
+1 Unwinding Clock
+1 Voltaic Key
+1 Rapid Hybridization
+1 Clown Car
+1 Fellwar Stone
+1 Uthros Research Craft
+1 Commandeer
+1 Trinisphere
+1 Chrome Mox
+7 Island
+1 Scour for Scrap
+1 Fomori Vault
+1 Imposter Mech

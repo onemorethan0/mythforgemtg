@@ -1,0 +1,108 @@
+# Archidekt — Ninjutsu Art: Oni
+# source: archidekt:8456315
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Satoru Umezawa
+
+Deck:
+1 Sensei's Divining Top
+1 Darkslick Shores
+1 Counterspell
+1 Triton Shorestalker
+1 Jin-Gitaxias, Core Augur
+1 Dimir Infiltrator
+1 Kaito, Bane of Nightmares
+1 Dark Ritual
+1 Negate
+1 Otawara, Soaring City
+1 Valgavoth, Terror Eater
+1 Ninja of the Deep Hours
+1 Yuriko, the Tiger's Shadow
+1 Higure, the Still Wind
+1 Chrome Mox
+1 Minamo, School at Water's Edge
+1 Morphic Pool
+1 Ornithopter
+1 Demonic Tutor
+1 Imperial Seal
+1 Brainstorm
+1 Hall of the Bandit Lord
+1 Mox Diamond
+1 Mana Vault
+1 The One Ring
+1 Tainted Pact
+1 Lotus Petal
+1 Thassa's Oracle
+1 Orcish Bowmasters
+1 Swan Song
+1 Dauthi Voidwalker
+1 Underground Sea
+1 Bloodstained Mire
+1 Flooded Strand
+1 Marsh Flats
+1 Cyclonic Rift
+1 Talisman of Dominance
+1 Super Shredder
+1 Demonic Consultation
+1 Mental Misstep
+1 Commandeer
+1 Sakashima the Impostor
+1 Ancient Silver Dragon
+1 Fierce Guardianship
+1 Sakashima's Student
+1 Scroll Rack
+1 Mindbreak Trap
+1 Mox Amber
+1 Mothdust Changeling
+1 Mox Opal
+1 Fellwar Stone
+1 Sol Ring
+1 Changeling Outcast
+1 Lightning Greaves
+1 Force of Negation
+1 Arcane Signet
+1 March of Swirling Mist
+1 Damnation
+1 Nashi, Moon Sage's Scion
+1 Hullbreaker Horror
+1 Kozilek, Butcher of Truth
+1 Fatal Push
+1 Thousand-Faced Shadow
+1 Ulamog, the Infinite Gyre
+1 Opposition Agent
+1 Blightsteel Colossus
+1 Silver-Fur Master
+1 Consecrated Sphinx
+1 Satoru, the Infiltrator
+1 Mystic Remora
+1 Notion Thief
+1 Necropotence
+1 Rhystic Study
+1 Deadly Rollick
+1 Prosperous Thief
+1 Slither Blade
+1 Flare of Denial
+1 Mana Drain
+1 Vampiric Tutor
+1 Wan Shi Tong, Librarian
+1 Force of Will
+1 Reliquary Tower
+1 Void Winnower
+1 Ancient Tomb
+1 Blinkmoth Nexus
+1 Shizo, Death's Storehouse
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Gemstone Caverns
+1 Polluted Delta
+1 Takenuma, Abandoned Mire
+1 Command Tower
+1 Gloomlake Verge
+1 Undercity Sewers
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Underground River
+1 Watery Grave
+1 Swamp
+1 Great Whale
+1 Island

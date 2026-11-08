@@ -1,0 +1,108 @@
+# Archidekt — Muldrotha Wenn nicht jetzt dann gleich
+# source: archidekt:5896011
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Muldrotha, the Gravetide
+
+Deck:
+1 Mystic Remora
+1 Watery Grave
+1 Overgrown Tomb
+1 Underground River
+1 Rejuvenating Springs
+1 Entomb
+1 Verdant Catacombs
+1 Sol Ring
+1 Wasteland
+1 Dance of the Dead
+1 Mana Drain
+1 Sylvan Library
+1 Breeding Pool
+1 Counterspell
+1 Reanimate
+1 Displacer Kitten
+1 Demonic Tutor
+1 Spellseeker
+1 Phyrexian Tower
+1 Necromancy
+1 Morphic Pool
+1 Survival of the Fittest
+1 Demonic Consultation
+1 Flooded Strand
+1 Rhystic Study
+1 Gemstone Caverns
+1 Polluted Delta
+1 Misty Rainforest
+1 Gilded Drake
+1 Mesmeric Orb
+1 Sylvan Safekeeper
+1 Hermit Druid
+1 Ancient Tomb
+1 Bolas's Citadel
+1 Mistrise Village
+1 Glacial Chasm
+1 Cavern of Souls
+1 Gifts Ungiven
+1 Stasis
+1 Vedalken Mastermind
+1 Swamp
+1 Tainted Pact
+1 Undergrowth Stadium
+1 Necropotence
+1 Urza's Saga
+1 Boseiju, Who Endures
+1 Pact of Negation
+1 Chrome Mox
+1 Talon Gates of Madara
+1 Otawara, Soaring City
+1 Thassa's Oracle
+1 Sensei's Divining Top
+1 Vampiric Tutor
+1 Llanowar Wastes
+1 Cyclonic Rift
+1 Deathrite Shaman
+1 Bloom Tender
+1 Yavimaya, Cradle of Growth
+1 Reflecting Pool
+1 Consecrated Sphinx
+1 Urborg, Tomb of Yawgmoth
+1 The One Ring
+1 Glarb, Calamity's Augur
+1 City of Brass
+1 Worldly Tutor
+1 Animate Dead
+1 Crop Rotation
+1 Mystical Tutor
+1 Pernicious Deed
+1 Icetill Explorer
+1 Island
+1 Strip Mine
+1 Palantír of Orthanc
+1 Eternal Witness
+1 Life from the Loam
+1 Buried Alive
+1 Hullbreaker Horror
+1 Mox Amber
+1 Veil of Summer
+1 Cabal Coffers
+1 Dark Ritual
+1 Notion Thief
+1 Zagoth Triome
+1 Spore Frog
+1 Lotus Petal
+1 Exploration
+1 Assassin's Trophy
+1 Sheoldred, the Apocalypse
+1 Fierce Guardianship
+1 Force of Will
+1 Deadly Rollick
+1 Dismember
+1 Thrasios, Triton Hero
+1 Doomsday
+1 Minamo, School at Water's Edge
+1 Phantasmal Image
+1 Samut, Tyrant of Naktamun
+1 Force of Negation
+1 Laboratory Maniac

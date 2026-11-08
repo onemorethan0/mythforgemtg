@@ -1,0 +1,102 @@
+# Archidekt — 15 Merry and Pippin - Food 'N Dood
+# source: archidekt:4693445
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Merry, Warden of Isengard
+1 Pippin, Warden of Isengard
+
+Deck:
+1 Sam, Loyal Attendant
+1 Bayou
+1 Scrubland
+1 Shamanic Revelation
+1 Peregrin Took
+1 Savvy Hunter
+2 Swamp
+1 Indatha Triome
+1 Command Tower
+1 Temple Garden
+1 Undergrowth Stadium
+1 Wooded Foothills
+1 Bennie Bracks, Zoologist
+1 Polluted Delta
+1 Parallel Lives
+1 Pitiless Plunderer
+1 Mirkwood Bats
+1 Black Market Connections
+1 Swords to Plowshares
+1 Samwise Gamgee
+1 Assassin's Trophy
+1 Jaheira, Friend of the Forest
+1 Smothering Tithe
+1 Idol of Oblivion
+1 Academy Manufactor
+1 Agent of the Iron Throne
+1 The Meathook Massacre
+1 The Shire
+1 Boseiju, Who Endures
+1 Urborg, Tomb of Yawgmoth
+1 Yavimaya, Cradle of Growth
+1 Exotic Orchard
+1 Godless Shrine
+1 Overgrown Tomb
+1 Flooded Strand
+1 Bloodstained Mire
+1 Arid Mesa
+1 Misty Rainforest
+1 Windswept Heath
+1 Verdant Catacombs
+1 Marsh Flats
+1 The Battle of Bywater
+1 Bountiful Promenade
+1 Braids, Arisen Nightmare
+1 Bolas's Citadel
+1 Lotho, Corrupt Shirriff
+1 Takenuma, Abandoned Mire
+1 Phyrexian Altar
+3 Forest
+1 Mox Amber
+1 Experimental Confectioner
+1 Skullclamp
+1 Cryptolith Rite
+1 Nuka-Cola Vending Machine
+1 Urza's Saga
+1 Gilded Goose
+1 Night of the Sweets' Revenge
+1 Illustrious Wanderglyph
+1 Savannah
+1 Apothecary White
+1 Kambal, Profiteering Mayor
+1 Marionette Apprentice
+1 Camellia, the Seedmiser
+1 Ocelot Pride
+1 Caretaker's Talent
+1 Teferi's Protection
+1 Wastewood Verge
+1 Warren Soultrader
+1 Farmer Cotton
+1 Anointed Procession
+1 Ashnod's Altar
+1 Sol Ring
+1 Birds of Paradise
+1 Dusk // Dawn
+1 Vault of Champions
+1 Mana Confluence
+1 Path to Exile
+1 Deadly Rollick
+1 Caves of Koilos
+1 Esper Sentinel
+1 The Cabbage Merchant
+1 City of Brass
+1 Enduring Innocence
+1 Delighted Halfling
+1 Tireless Provisioner
+1 Toxic Deluge
+1 Anguished Unmaking
+1 Dictate of Erebos
+1 Hazel of the Rootbloom
+1 Chatterfang, Squirrel General
+1 Belladonna Took
+1 Bilbo, Fellow Conspirator

@@ -1,0 +1,82 @@
+# Archidekt — clericl error within the budget
+# source: archidekt:2852373
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Orah, Skyclave Hierophant
+1 Noble Heritage
+1 Shadowheart, Dark Justiciar
+
+Deck:
+1 White Plume Adventurer
+1 Path of Ancestry
+1 Pyre of Heroes
+1 Elas il-Kor, Sadistic Pilgrim
+1 Lethal Scheme
+1 Orzhov Basilica
+1 Taborax, Hope's Demise
+1 Reliquary Monk
+1 Edgewalker
+1 Remorseful Cleric
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Firdoch Core
+1 Gathering Stone
+1 Alms Collector
+1 Obsessive Pursuit
+1 Demon's Disciple
+1 Priest of Gix
+1 Valgavoth's Faithful
+1 Weathered Wayfarer
+1 Skirsdag High Priest
+1 Hanweir Militia Captain // Westvale Cult Leader
+1 Selfless Spirit
+1 Mirror Entity
+1 Skullclamp
+1 Cabal Archon
+5 Plains
+1 Susur Secundi, Void Altar
+1 Master of Dark Rites
+1 Heirloom Blade
+1 Redemption Choir
+1 Skemfar Shadowsage
+1 Battletide Alchemist
+1 Witch's Cottage
+1 False Prophet
+1 Cleric of Life's Bond
+1 Kabira Takedown // Kabira Plateau
+1 Spymaster's Vault
+1 Umbral Collar Zealot
+1 Lightless Evangel
+1 Whipgrass Entangler
+1 Activated Sleeper
+1 High Market
+1 Chthonian Nightmare
+1 Isolated Chapel
+1 Bojuka Bog
+1 Fetid Heath
+1 Caves of Koilos
+1 Manascape Refractor
+1 Living Death
+20 Swamp
+1 Archfiend's Vessel
+1 Benevolent Bodyguard
+1 Desperate Plea
+1 Recruiter of the Guard
+1 Rowan's Grim Search
+1 Sanguinary Priest
+1 Turbulent Moor
+1 Mirror of the Forebears
+1 Orzhov Signet
+1 Sol Ring
+1 Arcane Signet
+1 Ornithopter of Paradise
+1 Talisman of Hierarchy
+1 Starlit Sanctum
+1 Priest of Forgotten Gods
+1 Lazotep Quarry
+1 Ayli, Eternal Pilgrim
+1 Guide of Souls
+1 Devoted Caretaker
+1 Bonecaller Cleric
+1 Sister Hospitaller

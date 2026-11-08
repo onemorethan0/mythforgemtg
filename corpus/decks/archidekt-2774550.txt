@@ -1,0 +1,78 @@
+# Archidekt — Five guys
+# source: archidekt:2774550
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Obzedat, Ghost Council
+
+Deck:
+1 Ghostly Prison
+1 Promise of Loyalty
+1 Orzhov Basilica
+1 Restless Dead
+1 Order of Leitbur
+1 Profane Procession // Tomb of the Dusk Rose
+1 Undead Butler
+1 Hero's Downfall
+1 Inkshield
+1 Haunted Library
+1 Souls of the Faultless
+1 Revival // Revenge
+1 Hoarder's Greed
+1 Retribution of the Meek
+1 Silverquill Command
+1 Can't Stay Away
+16 Swamp
+1 Séance
+1 Standing Troops
+1 Reprisal
+1 Village Rites
+1 Revenge of Ravens
+1 Endless Obedience
+1 Nomads en-Kor
+1 Crypt Rats
+1 Blessed Sanctuary
+1 Minions' Murmurs
+1 Crowded Crypt
+1 Mentor of the Meek
+1 Pointed Discussion
+1 Vault of Champions
+1 Fracture
+1 Swords to Plowshares
+1 Underworld Connections
+1 Custodi Soulbinders
+1 Dramatic Finale
+1 Firja's Retribution
+1 Deathbringer Liege
+1 Rampage of the Valkyries
+1 Phyrexian Arena
+1 Starnheim Unleashed
+1 Damn
+1 Well of Lost Dreams
+1 Council's Judgment
+1 Batwing Brume
+1 Rout
+1 Karlov of the Ghost Council
+1 Ninth Bridge Patrol
+1 Cathars' Crusade
+1 General's Enforcer
+1 Dawn of Hope
+1 Command Tower
+1 Increasing Devotion
+1 Abstergo Entertainment
+1 Bounty Board
+1 Lunar Convocation
+1 Starting Column
+1 Requisition Raid
+1 Scriv, the Obligator
+16 Plains
+1 Path of Ancestry
+1 Fog of Gnats
+1 Talisman of Hierarchy
+1 Grim Wanderer
+1 Mind Stone
+1 Snake Basket
+1 Will-o'-the-Wisp
+1 Sanguimancy
+1 Curse of Conformity

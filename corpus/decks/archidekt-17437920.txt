@@ -1,0 +1,84 @@
+# Archidekt — Toph, Earthbending Master
+# source: archidekt:17437920
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Toph, Earthbending Master
+
+Deck:
+1 Sol Ring
+1 Oracle of Mul Daya
+1 Ba Sing Se
+1 Earthbender Ascension
+25 Forest
+1 Shamanic Revelation
+1 Horn of Greed
+1 Swiftfoot Boots
+1 Kodama's Reach
+1 Cultivate
+1 Burgeoning
+1 Rampant Growth
+1 Windswept Heath
+1 Tale of Katara and Toph
+1 Cracked Earth Technique
+1 Ulvenwald Tracker
+1 Ash Barrens
+1 Ashaya, Soul of the Wild
+1 Avatar Kyoshi, Earthbender
+1 Azusa, Lost but Seeking
+1 Badgermole Cub
+1 Lightning Greaves
+1 Bristly Bill, Spine Sower
+1 Bumi, Eclectic Earthbender
+1 Crop Rotation
+1 Misty Rainforest
+1 Dryad Arbor
+1 Earthbending Student
+1 Emerald Medallion
+1 Evolution Sage
+1 Exploration
+1 Fabled Passage
+1 Inkmoth Nexus
+1 Kodama of the West Tree
+1 Lotus Cobra
+1 Ramunap Excavator
+1 Return of the Wildspeaker
+1 Scute Swarm
+1 Secret Tunnel
+1 Sylvan Safekeeper
+1 Terrasymbiosis
+1 The Ozolith
+1 Toph, the Blind Bandit
+1 Tranquil Thicket
+1 Yavimaya, Cradle of Growth
+1 Yedora, Grave Gardener
+1 Nature's Lore
+1 Heroic Intervention
+1 Nature's Claim
+1 Beast Within
+1 Momentous Fall
+1 Overrun
+1 Seismic Sense
+1 Armorcraft Judge
+1 Cycle of Renewal
+1 Earth Kingdom General
+1 Earth Rumble
+1 Greater Good
+1 Kalonian Hydra
+1 Karn's Bastion
+1 Sphere Grid
+1 Inspiring Call
+1 Scapeshift
+1 Harmonize
+1 Wilderness Reclamation
+1 The Boulder, Ready to Rumble
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Rockalanche
+1 The Earth King
+1 Arcane Signet
+1 Nissa, Who Shakes the World
+1 Disciple of Freyalise // Garden of Freyalise
+1 Boseiju, Who Endures
+1 Wooded Foothills
+1 Verdant Catacombs

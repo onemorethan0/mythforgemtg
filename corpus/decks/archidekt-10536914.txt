@@ -1,0 +1,107 @@
+# Archidekt — [Edward Kenway] The Jackdaw
+# source: archidekt:10536914
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Edward Kenway
+
+Deck:
+1 The Regalia
+1 The Lunar Whale
+1 Pirated Copy
+1 Stormcarved Coast
+1 Lifecraft Engine
+1 Polluted Delta
+1 Sink into Stupor // Soporific Springs
+1 Mary Read and Anne Bonny
+1 Obsessive Pursuit
+1 Mobilizer Mech
+1 Arcane Signet
+1 Captain Lannery Storm
+1 Blood Money
+1 Time Sieve
+1 Mirkwood Bats
+1 Nautiloid Ship
+1 Mishra, Eminent One
+1 Xander's Lounge
+1 Drowned Catacomb
+1 Underground River
+1 Shipwreck Marsh
+1 Shao Jun
+1 Boosted Sloop
+1 Sol Ring
+1 Kindred Dominance
+1 Cyclonic Rift
+1 Unstoppable Plan
+1 Lightning Greaves
+1 The Indomitable
+1 Jackdaw
+1 Adéwalé, Breaker of Chains
+1 Brotherhood Vertibird
+1 Hoard Hauler
+1 Thunderhawk Gunship
+1 Black Market Connections
+1 Captain Storm, Cosmium Raider
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Deadly Rollick
+1 Haunted Ridge
+1 Malcolm, Keen-Eyed Navigator
+1 Path of Ancestry
+1 Ragavan, Nimble Pilferer
+1 Rogue's Passage
+1 Seething Landscape
+1 Sulfur Falls
+1 Coercive Recruiter
+1 Revel in Riches
+1 Tezzeret, Master of the Bridge
+1 Alchemist's Talent
+1 Mechanized Production
+1 Basim Ibn Ishaq
+1 Crystal Skull, Isu Spyglass
+1 An Offer You Can't Refuse
+1 Port Razer
+1 Desynchronization
+1 Cyberdrive Awakener
+1 Cosima, God of the Voyage // The Omenkeel
+1 Emry, Lurker of the Loch
+1 Untimely Malfunction
+1 Storm the Vault // Vault of Catlacan
+1 Descent into Avernus
+1 Breeches, the Blastmaker
+1 Shivan Reef
+1 Sulfurous Springs
+1 Blazemire Verge
+1 Gloomlake Verge
+1 Abstergo Entertainment
+1 Demonic Junker
+1 Fearless Swashbuckler
+1 Fabled Passage
+1 Admiral Beckett Brass
+1 Command Tower
+1 Watery Grave
+1 Steam Vents
+1 City of Brass
+1 Bloodstained Mire
+1 Tezzeret, Cruel Captain
+1 Gemstone Caverns
+1 Fierce Guardianship
+1 Phoenix Fleet Airship
+1 Uthros, Titanic Godcore
+1 Malakir Rebirth // Malakir Mire
+2 Island
+1 Feed the Swarm
+1 Force of Will
+1 Chandra, Spark Hunter
+1 Undercity Sewers
+1 Inventors' Fair
+1 Reflecting Pool
+1 Scalding Tarn
+1 Turbulent Springs
+1 Swamp
+1 Mountain
+1 Siren Stormtamer
+1 Clown Car
+1 Smuggler's Copter
+1 Fabricate

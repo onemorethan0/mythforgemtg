@@ -1,0 +1,92 @@
+# Archidekt — Gruul Control: Erinis, Gloom Urchin
+# source: archidekt:3605376
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Erinis, Gloom Stalker
+1 Street Urchin
+
+Deck:
+1 Chaos Warp
+1 Command Beacon
+1 Sol Ring
+1 Skyclave Pick-Axe
+8 Mountain
+1 Gilded Goose
+1 Cryptic Caves
+1 Mask of Memory
+1 Valakut Exploration
+1 Spiteful Banditry
+1 Scepter of Celebration
+1 Big Score
+1 Swiftfoot Boots
+1 Tamiyo's Safekeeping
+1 Great Furnace
+1 Ichor Wellspring
+1 Sarinth Steelseeker
+1 Tireless Tracker
+1 Blackblade Reforged
+1 Evolving Wilds
+1 Saheeli's Lattice // Mastercraft Raptor
+1 Bitter Reunion
+1 Klauth's Will
+1 Haywire Mite
+1 Goblin Engineer
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+10 Forest
+1 Scion of Calamity
+1 Ghost Quarter
+1 Slagwoods Bridge
+1 Bonehoard Dracosaur
+1 Arcane Lighthouse
+1 Beast Within
+1 Brokers Hideout
+1 Buried Ruin
+1 Cabaretti Courtyard
+1 Daretti, Scrap Savant
+1 Darksteel Citadel
+1 Demolition Field
+1 Eternal Witness
+1 Fabled Passage
+1 Faithless Looting
+1 Harmonize
+1 Harrow
+1 Jolene, the Plunder Queen
+1 Lightning Greaves
+1 Loyal Apprentice
+1 Nature's Claim
+1 Naya Panorama
+1 Prized Statue
+1 Professional Face-Breaker
+1 Rampaging Baloths
+1 Riveteers Overlook
+1 Roadside Reliquary
+1 Snake Umbra
+1 Soul-Guide Lantern
+1 Springbloom Druid
+1 Terramorphic Expanse
+1 Thrill of Possibility
+1 Tireless Provisioner
+1 Tree of Tales
+1 Karlach, Fury of Avernus
+1 Adventuring Gear
+1 Unexpected Windfall
+1 Treasure Vault
+1 Sarinth Greatwurm
+1 Tyvar's Stand
+1 Royal Treatment
+1 Escape Tunnel
+1 Demand Answers
+1 Brotherhood's End
+1 Sundering Eruption // Volcanic Fissure
+1 Magda, the Hoardmaster
+1 Collective Resistance
+1 Sazacap's Brew
+1 Altanak, the Thrice-Called
+1 Untimely Malfunction
+1 Liquimetal Torque
+1 Defend the Rider
+1 Fire Magic
+1 Melded Moxite
+1 Larval Scoutlander

@@ -1,0 +1,104 @@
+# Archidekt — Draw-Grow
+# source: archidekt:15734829
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Lady Octopus, Inspired Inventor
+
+Deck:
+1 Transplant Theorist
+1 Sonic Screwdriver
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Spider-Sense
+1 Oboro, Palace in the Clouds
+1 Horizon of Progress
+1 Machine God's Effigy
+1 Drafna, Founder of Lat-Nam
+1 Fabricate
+1 Aether Spellbomb
+1 Gitaxian Probe
+1 Mishra's Bauble
+1 Brainstorm
+1 Rhystic Study
+1 Mystic Remora
+1 Soul-Guide Lantern
+1 Arcum's Astrolabe
+1 Fierce Guardianship
+1 Transmute Artifact
+1 Unctus, Grand Metatect
+1 God-Pharaoh's Statue
+1 Chromatic Orrery
+1 Coveted Jewel
+1 Voltaic Key
+1 The One Ring
+1 Chimil, the Inner Sun
+1 Manifold Key
+1 Aphetto Alchemist
+1 Displacer Kitten
+1 Rings of Brighthearth
+1 Mental Misstep
+1 Flusterstorm
+1 Swan Song
+1 Cephalid Coliseum
+1 Pact of Negation
+1 Cyclonic Rift
+1 Force of Will
+1 Snap
+1 Mishra's Workshop
+1 Dramatic Reversal
+1 Mox Amber
+1 Mox Opal
+1 Mox Diamond
+1 Mana Vault
+1 Force of Negation
+1 Louisoix's Sacrifice
+1 Gemstone Caverns
+1 Ancient Tomb
+1 Chrome Mox
+1 Lotus Petal
+1 Sol Ring
+1 Arcane Signet
+1 Defense Grid
+1 Minamo, School at Water's Edge
+1 Into the Flood Maw
+1 Chain of Vapor
+1 Mindbreak Trap
+1 Flare of Denial
+1 Grim Monolith
+1 Urza's Saga
+1 Inventors' Fair
+1 Otawara, Soaring City
+1 Emergence Zone
+1 Tezzeret the Seeker
+1 Sensei's Divining Top
+1 Faerie Mastermind
+1 Phyrexian Metamorph
+1 Steal Enchantment
+1 Mana Drain
+1 Imposter Mech
+1 Copy Enchantment
+1 Mirrormade
+1 Clock of Omens
+1 Sculpting Steel
+1 Liquimetal Torque
+1 Ledger Shredder
+1 Riddlesmith
+1 Urza's Bauble
+1 Rebuild
+1 Seat of the Synod
+1 Talon Gates of Madara
+1 Prismatic Vista
+1 Flooded Strand
+1 Scalding Tarn
+1 Polluted Delta
+1 Misty Rainforest
+5 Snow-Covered Island
+1 Arcane Denial
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Sink into Stupor // Soporific Springs
+1 Borne Upon a Wind
+1 Midnight Clock
+1 Capital City
+1 Ghostly Pilferer
+1 Monument to Endurance

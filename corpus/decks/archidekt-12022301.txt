@@ -1,0 +1,101 @@
+# Archidekt — Temur Frontier
+# source: archidekt:12022301
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Eshki, Temur's Roar
+
+Deck:
+1 Game Trail
+1 Sheltered Thicket
+1 Rockfall Vale
+1 Mosswort Bridge
+1 Haven of the Spirit Dragon
+1 Become the Avalanche
+1 Flooded Grove
+1 Cinder Glade
+1 Temur Ascendancy
+1 Atarka, World Render
+1 Dragonlord Atarka
+1 Broodcaller Scourge
+1 Sarkhan, Soul Aflame
+1 Scourge of the Throne
+1 Command Tower
+1 Dragonlord's Servant
+1 Bountiful Landscape
+1 Sulfur Falls
+1 Dragonback Assault
+1 Island
+1 Rattleclaw Mystic
+1 Evolving Wilds
+1 Shaman of the Great Hunt
+1 Shamanic Revelation
+1 Whisperer of the Wilds
+1 Temur Battlecrier
+1 Encroaching Dragonstorm
+1 Zenith Festival
+1 Will of the Temur
+1 Mistrise Village
+1 Herd Heirloom
+1 Monstrous Vortex
+1 Foe-Razer Regent
+1 Ureni of the Unwritten
+1 Surrak Dragonclaw
+1 Winds of Qal Sisma
+1 Spit Flame
+1 Savage Punch
+1 Bloomvine Regent // Claim Territory
+1 Breaching Dragonstorm
+1 Sarkhan's Triumph
+1 Savage Ventmaw
+1 Skyline Despot
+1 Dragonspeaker Shaman
+1 Deceptive Frostkite
+1 Aether Gale
+1 Forest
+1 Mountain
+1 Opportunistic Dragon
+1 Wooded Foothills
+1 Swiftwater Cliffs
+1 Frostcliff Siege
+1 Genesis Ultimatum
+1 Dragonclaw Strike
+1 Crucible of the Spirit Dragon
+1 Temur Charm
+1 Surrak and Goreclaw
+1 Stomping Ground
+1 Frontier Bivouac
+1 Karakyk Guardian
+1 Thundermane Dragon
+1 Whirlwing Stormbrood // Dynamic Soar
+1 Tyrant's Familiar
+1 Parapet Thrasher
+1 Hammerhead Tyrant
+1 Ancient Hellkite
+1 Ureni, the Song Unending
+1 Battle Mammoth
+1 Blizzard Brawl
+1 Highland Forest
+1 Blessing of Frost
+1 Rimewood Falls
+1 Rimescale Dragon
+4 Snow-Covered Forest
+2 Snow-Covered Island
+4 Snow-Covered Mountain
+1 Into the North
+1 Shimmerdrift Vale
+1 Avalanche Caller
+1 Rugged Highlands
+1 Volatile Fjord
+1 Farseek
+1 Mountain Valley
+1 Thornwood Falls
+1 Explosive Vegetation
+1 Temur Monument
+1 Rampant Growth
+1 Rime Tender
+1 Faceless Haven
+1 Goreclaw, Terror of Qal Sisma
+1 Dragon Tempest
+1 Frontier Siege

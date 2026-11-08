@@ -1,0 +1,108 @@
+# Archidekt — Mal/Tym, Chicken or Beef
+# source: archidekt:6101339
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tymna the Weaver
+1 Malcolm, Keen-Eyed Navigator
+
+Deck:
+1 Ancient Tomb
+1 Polluted Delta
+1 Marsh Flats
+1 Verdant Catacombs
+1 Command Tower
+1 An Offer You Can't Refuse
+1 City of Brass
+1 Misty Rainforest
+1 Morphic Pool
+1 Scalding Tarn
+1 Mental Misstep
+1 Sol Ring
+1 Wishclaw Talisman
+1 Beseech the Mirror
+1 Time Sieve
+1 Demonic Tutor
+1 Gemstone Caverns
+1 Mana Confluence
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Vampiric Tutor
+1 Watery Grave
+1 Flusterstorm
+1 Mox Diamond
+1 Mystical Tutor
+1 Lively Dirge
+1 Chain of Vapor
+1 Mox Amber
+1 Flooded Strand
+1 Drannith Magistrate
+1 Mana Vault
+1 Spectral Sailor
+1 Lotus Petal
+1 Underground Sea
+1 Valley Floodcaller
+1 Grim Hireling
+1 Black Mage's Rod
+1 Rhystic Study
+1 Orcish Bowmasters
+1 Rev, Tithe Extractor
+1 Mox Opal
+1 Chrome Mox
+1 Changeling Outcast
+1 Into the Flood Maw
+1 Imperial Seal
+1 Fierce Guardianship
+1 Bloodstained Mire
+1 Mnemonic Betrayal
+1 Miscast
+1 Braids, Arisen Nightmare
+1 The One Ring
+1 Spell Pierce
+1 Mystic Remora
+1 Sink into Stupor // Soporific Springs
+1 Culling the Weak
+1 Deadly Rollick
+1 Dark Ritual
+1 Force of Will
+1 Mindbreak Trap
+1 Thassa's Oracle
+1 Demonic Consultation
+1 Retraction Helix
+1 Opposition Agent
+1 Faerie Mastermind
+1 Wan Shi Tong, Librarian
+1 Tainted Pact
+1 Siren Stormtamer
+1 Doomsday
+1 Smothering Tithe
+1 Orim's Chant
+1 Esper Sentinel
+1 Ranger-Captain of Eos
+1 Silence
+1 Gleaming Splendor
+1 Talion, the Kindly Lord
+1 Lotho, Corrupt Shirriff
+1 Delney, Streetwise Lookout
+1 Enlightened Tutor
+1 Sevinne's Reclamation
+1 Voice of Victory
+1 Force of Negation
+1 Flare of Denial
+1 Swords to Plowshares
+1 Copy Enchantment
+1 Clever Impersonator
+1 Mirrormade
+1 Windswept Heath
+1 Tundra
+1 Scrubland
+1 Arid Mesa
+1 Godless Shrine
+1 Sea of Clouds
+1 Vault of Champions
+1 Hallowed Fountain
+1 Grand Abolisher
+1 Urza's Saga
+1 Samut, Tyrant of Naktamun
+1 Fblthp, Impossibly Lost

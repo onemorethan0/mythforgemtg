@@ -1,0 +1,100 @@
+# Archidekt — 5. Bring Out Your Dead
+# source: archidekt:6482039
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Tom, Bert, and William
+
+Deck:
+1 Bojuka Bog
+1 Blood Artist
+1 Journey to Eternity // Atzal, Cave of Eternity
+1 Dread Return
+1 Viridian Emissary
+1 Woodland Cemetery
+1 Thespian's Stage
+1 Stitcher's Supplier
+1 Noxious Gearhulk
+1 Urza's Cave
+1 Command Tower
+1 Necron Deathmark
+1 Satyr Wayfinder
+1 Skullwinder
+1 Chthonian Nightmare
+1 Rise of the Witch-king
+1 Fabled Passage
+1 Vraska, the Cutting Glare
+1 Clifftop Lookout
+1 Ripples of Undeath
+1 Primal Druid
+1 Undergrowth Stadium
+1 Takenuma, Abandoned Mire
+1 Yavimaya, Cradle of Growth
+1 Eternal Witness
+1 Zulaport Cutthroat
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Field of the Dead
+1 Haywire Mite
+1 Blossoming Tortoise
+1 Deathcap Glade
+1 Metamorphosis Fanatic
+1 Prowling Geistcatcher
+1 Wastewood Verge
+1 Accursed Marauder
+1 Vein Ripper
+1 Urborg, Tomb of Yawgmoth
+1 Birthing Ritual
+1 Braids, Arisen Nightmare
+1 Sakura-Tribe Elder
+1 Wight of the Reliquary
+1 Spinner of Souls
+1 Lumra, Bellow of the Woods
+1 Incarnation Technique
+1 Skyfisher Spider
+1 Vernal Fen
+1 Aftermath Analyst
+1 Reclamation Sage
+1 Umbral Collar Zealot
+1 Disciple of Freyalise // Garden of Freyalise
+1 Living Death
+1 Underground Mortuary
+1 Hedge Shredder
+1 Altar of Dementia
+1 Skullclamp
+1 Icetill Explorer
+1 Stinkweed Imp
+1 Cauldron of Essence
+1 Dark Matter Manipulator
+3 Snow-Covered Forest
+1 Fanatic of Rhonas
+1 Llanowar Wastes
+1 Merchant of Venom
+1 Colossal Grave-Reaver
+1 Armaggon, Future Shark
+3 Snow-Covered Swamp
+1 Nurturing Peatland
+1 Phyrexian Tower
+1 Verdant Catacombs
+1 Twilight Mire
+1 Golgari Thug
+1 Shifting Woodland
+1 The Meathook Massacre
+1 Turbulent Fen
+1 Marsh Flats
+1 Bayou
+1 Boseiju, Who Endures
+1 Mole Man, Moloid Master
+1 Springheart Nantuko
+1 Orcish Bowmasters
+1 Liliana the Repentant
+1 Bloodghast
+1 Six
+1 Wood Elves
+3 Forest
+3 Swamp
+1 Overgrown Tomb
+1 Winter, Tormented Loner
+1 Pia, Aether Ascetic
+1 Primal Witchstalker
+1 Simulacrum Shaper

@@ -1,0 +1,107 @@
+# Archidekt — ...Bud that's a lot
+# source: archidekt:9019502
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Smothering Tithe); Bracket 1 allows 0
+
+Commander:
+1 Wowzer, the Aspirational
+
+Deck:
+1 Prizefight
+1 Regal Behemoth
+1 Glacial Floodplain
+1 Ice Tunnel
+1 Alpine Meadow
+1 Boreal Shelf
+2 Snow-Covered Swamp
+1 Dark Depths
+1 Arctic Flats
+1 Snow-Covered Mountain
+1 Frost Marsh
+1 Arctic Treeline
+1 Thespian's Stage
+1 Rimewood Falls
+1 Highland Forest
+1 Highland Weald
+2 Snow-Covered Forest
+1 Scrying Sheets
+1 Snow-Covered Plains
+1 Snowfield Sinkhole
+1 Sulfurous Mire
+1 Volatile Fjord
+1 Shimmerdrift Vale
+1 Exotic Orchard
+1 Snow-Covered Island
+1 Woodland Chasm
+1 Tresserhorn Sinks
+1 Chromatic Lantern
+1 Sol Ring
+1 Nature's Lore
+1 Command Tower
+1 Cascading Cataracts
+1 The World Tree
+1 Path of Ancestry
+1 Reliquary Tower
+1 Smothering Tithe
+1 Farseek
+1 Arbalest Engineers
+1 Treasure Vault
+1 Hall of Tagsin
+1 Transmutation Font
+1 Bloodtithe Harvester
+1 Tireless Tracker
+1 Argothian Opportunist
+1 Tireless Provisioner
+1 Fae Offering
+1 The Third Doctor
+1 Gleaming Geardrake
+1 Revive the Shire
+1 Shelob's Ambush
+1 Gilded Goose
+1 The Goose Mother
+1 Academy Manufactor
+1 Worldwalker Helm
+1 Sentinel of the Nameless City
+1 Kellan, Daring Traveler // Journey On
+1 Topography Tracker
+1 Guide of Souls
+1 Aether Hub
+1 Gala Greeters
+1 Prosperous Innkeeper
+1 Vault 21: House Gambit
+1 HELIOS One
+1 Aether Spike
+1 Chthonian Nightmare
+1 Roil Cartographer
+1 Gonti's Aether Heart
+1 Aetherworks Marvel
+1 Solar Transformer
+1 Pointed Discussion
+1 Toxin Analysis
+1 Vampires' Vengeance
+1 Gluttonous Guest
+1 Root Out
+1 Alquist Proft, Master Sleuth
+1 James, Wandering Dad // Follow Him
+1 Panharmonicon
+1 Junkyard Genius
+1 Yarok, the Desecrated
+1 Queen Marchesa
+1 Court of Garenbrig
+1 Court of Bounty
+1 Andúril, Narsil Reforged
+1 Arch of Orazca
+1 Dawnglade Regent
+1 Wayward Swordtooth
+1 Vona's Hunger
+1 Ascend from Avernus
+1 Secrets of the Golden City
+1 White Plume Adventurer
+1 Undermountain Adventurer
+1 Bloodboil Sorcerer
+1 Tomb of Horrors Adventurer
+1 Sarevok's Tome
+1 Virtue of Knowledge // Vantress Visions
+1 Fanatical Offering
+1 Rilsa Rael, Kingpin

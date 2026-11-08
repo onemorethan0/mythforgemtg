@@ -1,0 +1,73 @@
+# Archidekt — Phelddagrif - 90’s Commander Challenge
+# source: archidekt:18654546
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Phelddagrif
+
+Deck:
+1 Coral Atoll
+1 Glasses of Urza
+1 Jade Monolith
+1 Damping Engine
+1 Time Bomb
+1 Awakening
+1 Joven's Ferrets
+1 Tranquil Grove
+1 Familiar Ground
+1 Dense Foliage
+1 Venomous Fangs
+1 Launch
+1 Instill Energy
+1 Provoke
+1 Kelsinko Ranger
+1 Thoughtleech
+1 Hot Springs
+1 Elvish Healer
+1 Lowland Basilisk
+1 Hurricane
+1 Shanodin Dryads
+1 Creature Bond
+1 Ley Druid
+1 Lifeforce
+1 Ice Floe
+1 Mana Prism
+1 Prophecy
+1 Rowen
+1 Warmth
+1 Contempt
+1 Rootwalla
+1 Smite
+1 Reclamation
+1 Freyalise's Charm
+1 Steal Artifact
+1 Defense of the Heart
+1 Fog
+1 Balduvian Bears
+1 Tarpan
+1 Timber Wolves
+1 Remove Soul
+1 Sol Ring
+1 Circle of Protection: White
+1 Advance Scout
+1 Anoint
+1 Disenchant
+1 Master Decoy
+1 Cloudchaser Eagle
+18 Forest
+1 Natural Spring
+1 Elite Javelineer
+10 Plains
+1 Helm of Chatzuk
+1 Calming Licid
+1 Momentum
+1 Alaborn Musketeer
+1 Camouflage
+1 Thran Dynamo
+1 Spellbook
+1 Sorcerous Sight
+1 Betrayal
+1 Stalking Tiger
+1 Mind Bomb
+10 Island

@@ -1,0 +1,98 @@
+# WotC precon — Eternal Might (DRC, 2025-02-14)
+# source: mtgjson:EternalMight_DRC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Temmet, Naktamun's Will
+
+Deck:
+1 Accursed Duneyard
+1 Adarkar Wastes
+1 Angel of Sanctions
+1 Arcane Sanctum
+1 Arcane Signet
+1 Archfiend of Ifnir
+1 Ash Barrens
+1 Binding Mummy
+1 Bontu's Monument
+1 Cast Out
+1 Caves of Koilos
+1 Cemetery Reaper
+1 Champion of Wits
+1 Command Tower
+1 Commander's Sphere
+1 Commence the Endgame
+1 Corpse Augur
+1 Corpse Knight
+1 Crowded Crypt
+1 Cryptbreaker
+1 Damn
+1 Desert of the Glorified
+1 Desert of the Mindful
+1 Desert of the True
+1 Despark
+1 Dimir Signet
+1 Dread Summons
+1 Dreadhorde Invasion
+1 Drowned Catacomb
+1 Dusk // Dawn
+1 Eternal Skylord
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fetid Pools
+1 Fleshbag Marauder
+1 Forgotten Creation
+1 Gate to the Afterlife
+1 Gempalm Polluter
+1 Glacial Fortress
+1 Gleaming Overseer
+1 God-Eternal Oketra
+1 God-Pharaoh's Gift
+1 Grave Titan
+1 Gravecrawler
+1 Hashaton, Scarab's Fist
+1 Irrigated Farmland
+4 Island
+1 Isolated Chapel
+1 Lazotep Chancellor
+1 Liliana, Death's Majesty
+1 Lord of the Accursed
+1 Lost Monarch of Ifnir
+1 Maskwood Nexus
+1 Midnight Reaper
+1 Murderous Rider // Swift End
+1 Never // Return
+1 On Wings of Gold
+1 Orzhov Basilica
+1 Orzhov Signet
+1 Path of Ancestry
+1 Plague Belcher
+5 Plains
+1 Prairie Stream
+1 Priest of the Crossing
+1 Prophet of the Scarab
+1 Pull from Tomorrow
+1 Renewed Solidarity
+1 Rhet-Tomb Mystic
+1 Rot Hulk
+1 Sol Ring
+1 Sunken Hollow
+5 Swamp
+1 Swords to Plowshares
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Temple of Deceit
+1 Temple of Silence
+1 Terramorphic Expanse
+1 The Scarab God
+1 Timeless Dragon
+1 Twisted Abomination
+1 Undead Augur
+1 Underground River
+1 Unholy Grotto
+1 Vizier of Many Faces
+1 Wayward Servant
+1 Wizened Mentor
+1 Zombie Master

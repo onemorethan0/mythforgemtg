@@ -1,0 +1,108 @@
+# Archidekt — Y’shtola, Night’s Blessed
+# source: archidekt:12496716
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Curiosity
+1 Mnemonic Betrayal
+1 Mindcrank
+1 Mana Drain
+1 Sol Ring
+1 Godless Shrine
+1 Polluted Delta
+1 Mindbreak Trap
+1 Deadly Rollick
+1 Smothering Tithe
+1 Fierce Guardianship
+1 Force of Negation
+1 Drannith Magistrate
+1 Path to Exile
+1 Swords to Plowshares
+1 Morphic Pool
+1 Ancient Tomb
+1 Enlightened Tutor
+1 Orcish Bowmasters
+1 The One Ring
+1 Snuff Out
+1 Delney, Streetwise Lookout
+1 Chrome Mox
+1 Lotho, Corrupt Shirriff
+1 Swan Song
+1 Scrubland
+1 Mystic Remora
+1 Underground Sea
+1 Tundra
+1 Otawara, Soaring City
+1 Opposition Agent
+1 Mental Misstep
+1 Cyclonic Rift
+1 Wishclaw Talisman
+1 Praetor's Grasp
+1 Sink into Stupor // Soporific Springs
+1 Grim Tutor
+1 Faerie Mastermind
+1 Voice of Victory
+1 Amphibian Downpour
+1 Beseech the Mirror
+1 Esper Sentinel
+1 Ranger-Captain of Eos
+1 Exotic Orchard
+1 Flooded Strand
+1 Trouble in Pairs
+1 Talon Gates of Madara
+1 Rhystic Study
+1 Mana Vault
+1 Demonic Tutor
+1 Misdirection
+1 Mana Confluence
+1 An Offer You Can't Refuse
+1 Force of Will
+1 Urza's Saga
+1 Arcane Signet
+1 Tainted Pact
+1 Talisman of Dominance
+1 Command Tower
+1 Demonic Consultation
+1 Bloodchief Ascension
+1 Thassa's Oracle
+1 Dismember
+1 Bloodstained Mire
+1 Marsh Flats
+1 Dark Ritual
+1 Vampiric Tutor
+1 Lotus Petal
+1 Flusterstorm
+1 Mystical Tutor
+1 Mox Opal
+1 Mox Diamond
+1 Phyrexian Metamorph
+1 Chain of Vapor
+1 Kambal, Consul of Allocation
+1 Wan Shi Tong, Librarian
+1 Mirrormade
+1 Sygg, River Cutthroat
+1 Archivist of Oghma
+1 Tataru Taru
+1 Fellwar Stone
+1 City of Traitors
+1 Windswept Heath
+1 Undercity Sewers
+1 Ledger Shredder
+1 Mox Amber
+1 Pact of Negation
+1 City of Brass
+1 Watery Grave
+1 Hallowed Fountain
+1 Misty Rainforest
+1 Gemstone Caverns
+1 Forbidden Orchard
+1 Talion, the Kindly Lord
+1 Toxic Deluge
+1 Grafdigger's Cage
+1 Commandeer
+1 Massacre
+1 Notion Thief

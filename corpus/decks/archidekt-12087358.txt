@@ -1,0 +1,108 @@
+# Archidekt — Oops, No Spells
+# source: archidekt:12087358
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Child of Alara
+
+Deck:
+1 The Shire
+1 Dryad Arbor
+1 Abraded Bluffs
+1 Basilisk Gate
+1 Barad-dûr
+1 Black Dragon Gate
+1 Blast Zone
+1 Blighted Cataract
+1 Blighted Fen
+1 Blighted Gorge
+1 Boseiju, Who Endures
+1 Bojuka Bog
+1 Bristling Backwoods
+1 Cactus Preserve
+1 Castle Ardenvale
+1 Celestial Colonnade
+1 Azorius Guildgate
+1 Baldur's Gate
+1 Boros Guildgate
+1 Cliffgate
+1 Creosote Heath
+1 Creeping Tar Pit
+1 Dark Depths
+1 Den of the Bugbear
+1 Desert
+1 Deserted Temple
+1 Dimir Guildgate
+1 Drownyard Temple
+1 Echoing Deeps
+1 Dust Bowl
+1 Eiganjo, Seat of the Empire
+1 Eroded Canyon
+1 Festering Gulch
+1 Forlorn Flats
+1 Gateway Plaza
+1 Golgari Guildgate
+1 Gond Gate
+1 Gruul Guildgate
+1 Hall of Storm Giants
+1 Heap Gate
+1 Horizon of Progress
+1 High Market
+1 Hive of the Eye Tyrant
+1 Izzet Guildgate
+1 Inkmoth Nexus
+1 Jagged Barrens
+1 Kessig Wolf Run
+1 Keldon Necropolis
+1 Kher Keep
+1 Crawling Barrens
+1 Kor Haven
+1 Labyrinth of Skophos
+1 Lair of the Hydra
+1 Lazotep Quarry
+1 Lonely Arroyo
+1 Lumbering Falls
+1 Lush Oasis
+1 Manor Gate
+1 Maze of Ith
+1 Mount Doom
+1 Maze's End
+1 Miren, the Moaning Well
+1 Mishra's Factory
+1 Mishra's Foundry
+1 Needle Spires
+1 Orzhov Guildgate
+1 Otawara, Soaring City
+1 Petrified Field
+1 Phyrexian Tower
+1 Pit of Offerings
+1 Rakdos Guildgate
+1 Raging Ravine
+1 Reliquary Tower
+1 Shivan Gorge
+1 Restless Anchorage
+1 Restless Bivouac
+1 Restless Reef
+1 Restless Spire
+1 Restless Ridgeline
+1 Restless Vinestalk
+1 Restless Vents
+1 Sea Gate
+1 Selesnya Guildgate
+1 Shambling Vent
+1 Simic Guildgate
+1 Sokenzan, Crucible of Defiance
+1 Soured Springs
+1 Stirring Wildwood
+1 Talon Gates of Madara
+1 Thespian's Stage
+1 The Black Gate
+1 Tolaria West
+1 Urza's Cave
+1 Vesuva
+1 Fountainport
+1 Restless Fortress
+1 Restless Cottage
+1 Restless Prairie
+1 Grim Backwoods

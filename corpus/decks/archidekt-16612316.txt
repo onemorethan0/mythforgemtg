@@ -1,0 +1,104 @@
+# Archidekt — Vivi Ornitier: Black Wizard Money Gang
+# source: archidekt:16612316
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 Desperate Ritual
+1 Dragonfire Blade
+1 Cyclonic Rift
+1 Counterspell
+1 Brainstorm
+1 Mana Drain
+1 Mistrise Village
+1 Ophidian Eye
+1 Training Center
+1 Riverpyre Verge
+1 Ancient Tomb
+1 Gamble
+1 Dragon's Rage Channeler
+1 Cavern of Souls
+1 Steam Vents
+1 Arcane Signet
+1 Storm-Kiln Artist
+1 Izzet Signet
+1 Mystical Tutor
+1 Command Tower
+1 Sol Ring
+1 Deflecting Swat
+1 Seething Song
+1 Starting Town
+1 Mox Amber
+1 Cascade Bluffs
+1 Sensei's Divining Top
+1 Fiery Islet
+1 Hexing Squelcher
+1 Shivan Reef
+1 Force of Negation
+1 Pyroblast
+1 Redirect Lightning
+1 Urza's Saga
+1 Grapeshot
+1 Rite of Flame
+1 Underworld Breach
+1 Tandem Lookout
+1 Chaos Warp
+1 Command Beacon
+1 Lightning Bolt
+1 Jeska's Will
+1 Frantic Search
+1 Archmage Emeritus
+1 Windfall
+1 City of Brass
+1 Scalding Tarn
+1 Brain Freeze
+1 Boseiju, Who Shelters All
+1 Swan Song
+1 Treasonous Ogre
+1 Flusterstorm
+1 Gitaxian Probe
+1 Crackle with Power
+1 The One Ring
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Chrome Mox
+1 Lotus Petal
+1 Fierce Guardianship
+3 Island
+1 Curiosity
+1 Talisman of Creativity
+1 Into the Flood Maw
+1 Force of Will
+1 Gut Shot
+1 Flashback
+1 Faithless Looting
+1 Rhystic Study
+1 Harmonic Prodigy
+1 An Offer You Can't Refuse
+1 Slip Out the Back
+1 Valakut Awakening // Valakut Stoneforge
+1 Riverglide Pathway // Lavaglide Pathway
+1 Sink into Stupor // Soporific Springs
+1 Untimely Malfunction
+1 Mystic Remora
+1 Pyretic Ritual
+1 Snapcaster Mage
+1 Quicksilver Elemental
+1 Simian Spirit Guide
+1 Gifts Ungiven
+1 Virtue of Courage // Embereth Blaze
+3 Mountain
+1 Final Fortune
+1 Muddle the Mixture
+1 Snap
+1 Defense Grid
+1 Secret Identity
+1 Pongify
+1 Wheel of Misfortune
+1 Springleaf Drum
+1 Otawara, Soaring City
+1 Mana Vault
+1 Wizard's Staff
+1 Mizzix's Mastery

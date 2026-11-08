@@ -1,0 +1,95 @@
+# Archidekt — Aragorn, the One True King
+# source: archidekt:4811209
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Aragorn, King of Gondor
+
+Deck:
+1 Archivist of Gondor
+1 Denethor, Stone Seer
+3 Mountain
+1 Gimli of the Glittering Caves
+1 Glacial Fortress
+1 Call for Aid
+1 Éomer, King of Rohan
+1 Erkenbrand, Lord of Westfold
+1 Fealty to the Realm
+1 Forth Eorlingas!
+1 Lossarnach Captain
+1 Lost to Legend
+1 Oath of Eorl
+1 Prince Imrahil the Fair
+1 Théoden, King of Rohan
+1 Unbreakable Formation
+1 Zealous Conscripts
+1 Windbrisk Heights
+1 Boromir, Gondor's Hope
+1 Sol Ring
+1 Shared Animosity
+1 Arcane Signet
+1 Banishing Light
+1 Bastion Protector
+1 Battlefield Forge
+1 Beregond of the Guard
+1 Clifftop Retreat
+1 Combat Celebrant
+1 Command Tower
+1 Champions of Minas Tirith
+1 Commander's Sphere
+1 Door of Destinies
+1 Faramir, Steward of Gondor
+1 Field of Ruin
+1 Fiend Hunter
+1 Flamerush Rider
+1 Frontline Medic
+1 Gilraen, Dúnedain Protector
+1 Crown of Gondor
+1 Éowyn, Shieldmaiden
+1 Herald's Horn
+1 Marshal's Anthem
+1 Palace Jailer
+1 Path of Ancestry
+1 Path to Exile
+1 Prairie Stream
+1 Riders of Rohan
+1 Rogue's Passage
+1 Secluded Courtyard
+1 Selfless Squire
+1 Sulfur Falls
+1 Supreme Verdict
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Talisman of Progress
+1 Taunt from the Rampart
+1 Tranquil Cove
+1 Vanquisher's Banner
+1 Verge Rangers
+1 Visions of Glory
+1 Wayfarer's Bauble
+1 Weathered Wayfarer
+1 Wind-Scarred Crag
+4 Island
+1 Chart a Course
+1 Sun Quan, Lord of Wu
+1 Lórien Revealed
+1 Éomer, Marshal of Rohan
+1 Horn of Gondor
+1 Arwen's Gift
+1 Talisman of Creativity
+1 Preordain
+1 Disrupt Decorum
+1 Deserted Beach
+1 Galadriel's Dismissal
+1 Spectator Seating
+1 Sacred Foundry
+1 Commander Liara Portyr
+1 Hallowed Fountain
+1 Steam Vents
+1 Training Center
+1 Sea of Clouds
+1 Faramir, Prince of Ithilien
+9 Plains
+1 Distant Melody
+1 Shinka, the Bloodsoaked Keep

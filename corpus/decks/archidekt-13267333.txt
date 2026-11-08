@@ -1,0 +1,94 @@
+# Archidekt — 9th doctor Temur Saproling Xtra upkeep
+# source: archidekt:13267333
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Clara Oswald
+1 The Ninth Doctor
+
+Deck:
+1 Idol of Oblivion
+1 Negate
+1 Doubling Season
+1 Innkeeper's Talent
+1 Arcane Signet
+1 Counterspell
+1 Court of Vantress
+1 Command Tower
+1 Paradox Haze
+1 As Foretold
+1 Quantum Misalignment
+1 Paradise Mantle
+1 Irenicus's Vile Duplication
+1 Thallid Germinator
+1 Thallid Shell-Dweller
+1 Vitaspore Thallid
+1 Thallid Devourer
+1 Elvish Farmer
+1 Utopia Mycon
+1 Thallid
+1 Savage Thallid
+1 Psychotrope Thallid
+3 Mountain
+4 Island
+1 Enduring Vitality
+1 Springleaf Drum
+1 Chaos Warp
+1 Arcane Denial
+1 Artifact Mutation
+1 Ketria Triome
+1 Rejuvenating Springs
+1 Earthcraft
+1 Infinite Hourglass
+1 Shadow of the Second Sun
+1 Stomping Ground
+1 Breeding Pool
+1 Scene of the Crime
+1 Chart a Course
+1 Mind Stone
+1 Wooded Foothills
+1 Hinterland Harbor
+1 Misty Rainforest
+1 Karplusan Forest
+1 Rootbound Crag
+1 Rockfall Vale
+1 Dreamroot Cascade
+10 Forest
+1 Sporoloth Ancient
+1 Sol Ring
+1 Survivors' Encampment
+1 Relic of Legends
+1 Cryptolith Rite
+1 Holdout Settlement
+1 Planar Genesis
+1 Skullclamp
+1 Sporesower Thallid
+1 Karn's Bastion
+1 Sakashima of a Thousand Faces
+1 Aetheric Amplifier
+1 Brudiclad, Telchor Engineer
+1 Endless Evil
+1 Followed Footsteps
+1 Ancestral Vision
+1 Replicating Ring
+1 Mockingbird
+1 Cinder Glade
+1 Relm's Sketching
+1 Mythos of Illuna
+1 Extravagant Replication
+1 Phyrexian Metamorph
+1 Towashi Guide-Bot
+1 Fecundity
+1 Endless Atlas
+1 Shared Animosity
+1 Banner of Kinship
+1 Glasspool Mimic // Glasspool Shore
+1 Mirror Image
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Cackling Counterpart
+1 Gene Pollinator
+1 Mystic Reflection
+1 Spark Double
+1 Rite of Replication
+1 Doc Samson, Super Psychiatrist

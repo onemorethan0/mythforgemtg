@@ -1,0 +1,93 @@
+# Archidekt — Half-Life
+# source: archidekt:4317688
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Gorm the Great
+1 Virtus the Veiled
+
+Deck:
+1 Obscuring Haze
+1 Revitalizing Repast // Old-Growth Grove
+1 Reanimate
+1 Archfiend of Depravity
+1 Opal Palace
+1 Shizo, Death's Storehouse
+1 Woodland Chasm
+1 Twilight Mire
+1 Tainted Wood
+1 Pact Weapon
+1 Exquisite Blood
+1 Plaza of Heroes
+1 Infiltration Lens
+1 Darkbore Pathway // Slitherbore Pathway
+1 Undergrowth Stadium
+1 Roadside Reliquary
+1 Access Tunnel
+1 Escape Tunnel
+1 Minas Morgul, Dark Fortress
+1 Agent of the Shadow Thieves
+1 Overgrown Tomb
+1 Qarsi Revenant
+1 Viewpoint Synchronization
+1 Bloodthirsty Conqueror
+1 Farseek
+1 Sol Ring
+1 Kodama's Reach
+1 Tear Asunder
+1 Tome of Legends
+1 Rampant Growth
+1 Arcane Signet
+1 Jet Medallion
+1 Night's Whisper
+1 Read the Bones
+1 Malakir Rebirth // Malakir Mire
+1 Fell the Profane // Fell Mire
+1 Phyrexian Arena
+1 Guardian Augmenter
+1 Mithril Coat
+1 Canopy Cover
+1 Brotherhood Regalia
+1 Bloodletter of Aclazotz
+1 Varragoth, Bloodsky Sire
+1 Ochran Assassin
+11 Swamp
+1 Scytheclaw
+6 Forest
+1 Hooded Blightfang
+1 Questing Beast
+1 Cultivate
+1 Thieves' Tools
+1 Saryth, the Viper's Fang
+1 Unstoppable Slasher
+1 Game Over
+1 Thunderfoot Baloth
+1 Hissing Quagmire
+1 Tower Winder
+1 Archpriest of Shadows
+1 Viridian Revel
+1 Nightshade Dryad
+1 Road of Return
+1 Study Hall
+1 Glissa Sunslayer
+1 Loyal Subordinate
+1 Archfiend of Despair
+1 Temporal Extortion
+1 Wound Reflection
+1 Quietus Spike
+1 Leyline Axe
+1 Vorpal Sword
+1 Heroic Intervention
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Command Tower
+1 Bolas's Citadel
+1 Deadly Tempest
+1 Shredder, Shadow Master
+1 Plague Drone
+1 Black Widow, Deadly Hunter
+1 The Master of Lake-town
+1 The Serpent Society
+1 Mindcrank

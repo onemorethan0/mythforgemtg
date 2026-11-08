@@ -1,0 +1,90 @@
+# Archidekt — Tetsuko
+# source: archidekt:1932156
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Tetsuko Umezawa, Fugitive
+
+Deck:
+1 Inkmoth Nexus
+1 High Tide
+1 Inexorable Tide
+1 Hidden Strings
+1 Neurok Stealthsuit
+1 Blighted Agent
+1 Viral Drake
+1 Neurok Commando
+1 Phyrexian Digester
+1 Plague Myr
+1 Ichorclaw Myr
+1 Necropede
+1 Keep Watch
+1 Ensnare
+1 Astral Cornucopia
+1 Flux Channeler
+1 Karn's Bastion
+1 Contentious Plan
+1 Guildpact Informant
+1 Archmage's Charm
+1 Tezzeret's Gambit
+1 Thrummingbird
+1 Steady Progress
+1 Whirlwind Denial
+1 Reconnaissance Mission
+1 Buried Ruin
+1 Curiosity
+1 Aetherize
+1 Thought Vessel
+1 Mystic Sanctuary
+1 Brainstorm
+1 Aetherspouts
+1 Midnight Clock
+1 Counterspell
+1 Tandem Lookout
+1 Winged Boots
+1 Imprisoned in the Moon
+1 Propaganda
+1 Teferi's Veil
+1 Umezawa's Jitte
+1 Experimental Augury
+1 Prosthetic Injector
+1 Vivisurgeon's Insight
+1 Prologue to Phyresis
+1 Dune Mover
+1 Demolition Field
+1 Myr Convert
+1 Mirrex
+1 Aspirant's Ascent
+1 Scavenger Grounds
+1 Evacuation
+1 Cephalid Coliseum
+1 Serum Visions
+1 Preordain
+1 Ponder
+1 Isochron Scepter
+1 Elite Arcanist
+1 Forger's Foundry
+1 Opt
+1 Sapphire Medallion
+1 Arcane Denial
+1 Terrain Generator
+1 Castle Vantress
+1 Rivendell
+1 The Mycosynth Gardens
+19 Island
+1 Lonely Sandbar
+1 Blast Zone
+1 Otawara, Soaring City
+1 Academy Ruins
+1 Misleading Signpost
+1 Illusionist's Gambit
+1 Urza's Cave
+1 Meekstone
+1 Everflowing Chalice
+1 Arcane Heist
+1 Lunar Insight
+1 Mystic Confluence
+1 Archaeomancer
+1 Consult the Star Charts
+1 Distant Memories

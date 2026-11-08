@@ -1,0 +1,91 @@
+# Archidekt — 🪦 Yorion Dungeons
+# source: archidekt:3443144
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Yorion, Sky Nomad
+
+Deck:
+1 Ondu Inversion // Ondu Skyruins
+1 Shefet Dunes
+1 Aerial Extortionist
+1 Elesh Norn, Mother of Machines
+1 Seasoned Dungeoneer
+1 Omen of the Sea
+1 Deputy of Detention
+1 Kabira Takedown // Kabira Plateau
+1 Felidar Guardian
+1 Cloudshift
+1 Touch the Spirit Realm
+1 Ephemerate
+1 Hour of Revelation
+1 Watcher for Tomorrow
+1 Archaeomancer's Map
+1 Tomb of Horrors Adventurer
+1 White Plume Adventurer
+1 Aarakocra Sneak
+1 Nadaar, Selfless Paladin
+1 Serra's Emissary
+1 The Eternal Wanderer
+1 Sand Scout
+1 Springleaf Drum
+1 Getaway Glamer
+1 Angel of Indemnity
+1 Sarevok's Tome
+1 Knight Paladin
+1 Dour Port-Mage
+1 Shrieking Drake
+1 Micromancer
+1 Moonshaker Cavalry
+1 Radiant Solar
+1 Sword of Hearth and Home
+1 Flicker of Fate
+1 They Came from the Pipes
+1 Spirited Companion
+1 Wall of Omens
+1 Essence Flux
+1 Glasspool Mimic // Glasspool Shore
+1 Phelia, Exuberant Shepherd
+1 Beza, the Bounding Spring
+1 Unsettling Twins
+1 Mind Stone
+1 Charming Prince
+1 Midnight Pathlighter
+1 Endless Sands
+1 Deserted Beach
+1 Helpful Hunter
+1 An Offer You Can't Refuse
+1 Evolving Wilds
+1 Sol Ring
+1 Soulherder
+1 Ash Barrens
+1 Azorius Chancery
+1 Archaeomancer
+1 Vanquish the Horde
+1 Momentary Blink
+1 Riptide Gearhulk
+1 Flickerwisp
+1 Mystic Gate
+1 Aether Channeler
+1 Loran of the Third Path
+1 Adarkar Wastes
+1 Command Tower
+1 Demolition Field
+1 Solemn Simulacrum
+1 Talisman of Progress
+1 Distinguished Conjurer
+11 Plains
+1 Arcane Denial
+1 Skycloud Expanse
+1 Swords to Plowshares
+1 Glacial Fortress
+8 Island
+1 Arcane Signet
+1 Sink into Stupor // Soporific Springs
+1 Reality Acid
+1 Soul-Guide Lantern
+1 Loyal Warhound
+1 Scavenger Grounds
+1 Knight of the White Orchid
+1 Scroll of Fate

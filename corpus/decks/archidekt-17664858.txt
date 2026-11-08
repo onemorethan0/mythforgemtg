@@ -1,0 +1,77 @@
+# Archidekt — Mono Green Toph “Precon” - Experienced Earthbending
+# source: archidekt:17664858
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Toph, Earthbending Master
+
+Deck:
+1 Beast Within
+1 Cultivate
+1 Nature's Lore
+1 Earthbending Student
+1 Myriad Landscape
+1 Seer's Sundial
+1 Embodiment of Insight
+1 Cracked Earth Technique
+1 Rockalanche
+1 Cycle of Renewal
+1 Shared Roots
+1 Seismic Sense
+1 Hornet Queen
+1 Traverse the Outlands
+1 Sol Ring
+1 Endless Atlas
+1 Tireless Tracker
+1 Unlucky Cabbage Merchant
+1 The Earth King
+1 Earth Kingdom General
+1 Emergent Sequence
+1 Kami of Whispered Hopes
+1 Collective Resistance
+1 Druid of Purification
+1 The Hunter Maze
+1 Throne of the High City
+1 Cryptic Caves
+1 Memorial to Unity
+1 Hardened Scales
+1 Terastodon
+1 Blossoming Tortoise
+1 Soul of the Harvest
+1 Cultivator Colossus
+1 Migration Path
+1 Roaring Earth
+1 Dawnglade Regent
+1 Earth Rumble
+1 Augur of Autumn
+1 Origin of Metalbending
+1 Desert Twister
+1 Meteor Sword
+1 Harmonize
+1 Tale of Katara and Toph
+1 Flopsie, Bumi's Buddy
+1 Ba Sing Se
+1 Druid Class
+1 Undergrowth Champion
+1 Broken Bond
+31 Forest
+1 Return of the Wildspeaker
+1 Badgermole
+1 Earthbender Ascension
+1 Explore
+1 Blighted Woodland
+1 Secret Tunnel
+1 Season of Gathering
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Inspiring Call
+1 Primeval Bounty
+1 Scythecat Cub
+1 Harrow
+1 Solid Ground
+1 Bumi, Eclectic Earthbender
+1 Shamanic Revelation
+1 Bonders' Enclave
+1 The Boulder, Ready to Rumble
+1 True Ancestry
+1 Master's Guidance

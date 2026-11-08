@@ -1,0 +1,107 @@
+# Archidekt — Rowan, scion of waaaaaaaaaaar
+# source: archidekt:5165923
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rowan, Scion of War
+
+Deck:
+1 Ancient Tomb
+1 Mana Confluence
+1 Bolt Bend
+1 Plunge into Darkness
+1 Grim Tutor
+1 Treasonous Ogre
+1 Mana Vault
+1 Orcish Bowmasters
+1 Doom Whisperer
+1 Abrade
+1 Cabal Ritual
+1 Jeska's Will
+1 Beseech the Queen
+1 Hex Parasite
+1 Immolating Souleater
+1 Sol Ring
+1 Blood Crypt
+1 Exsanguinate
+1 Command Tower
+1 Sulfurous Springs
+1 Demonic Tutor
+1 Simian Spirit Guide
+1 Mount Doom
+1 Luxury Suite
+1 Lotus Petal
+1 Talisman of Indulgence
+1 Deadly Rollick
+1 Deflecting Swat
+1 Torment of Hailfire
+1 Cut // Ribbons
+1 Comet Storm
+1 Crackle with Power
+1 Diabolic Revelation
+1 Opposition Agent
+1 Blood Celebrant
+1 Polluted Delta
+1 Marsh Flats
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Bloodstained Mire
+1 Pyroblast
+1 Scheming Symmetry
+1 Phyrexian Tower
+1 Dualcaster Mage
+2 Swamp
+1 Twinflame
+1 Pyretic Ritual
+1 Dark Petition
+1 Imperial Seal
+1 Wall of Blood
+1 Mox Amber
+1 Saw in Half
+1 Tibalt's Trickery
+1 Vampiric Tutor
+1 Feed the Swarm
+1 Urborg, Tomb of Yawgmoth
+1 Black Market Connections
+1 Arid Mesa
+1 Scalding Tarn
+1 March of Reckless Joy
+1 Urza's Saga
+1 Gemstone Caverns
+1 Burnt Offering
+1 Dark Ritual
+1 Seething Song
+1 Reiterate
+1 Red Elemental Blast
+1 Fall of the Titans
+1 Claim the Firstborn
+1 Chrome Mox
+1 City of Brass
+1 Spoils of the Vault
+1 Tezzeret, Cruel Captain
+1 Arco-Flagellant
+1 Flare of Duplication
+1 Ragavan, Nimble Pilferer
+1 Priest of Gix
+1 Blazemire Verge
+1 Raucous Theater
+1 Badlands
+1 Mox Diamond
+1 Priest of Urabrask
+1 Will of the Jeskai
+1 Starting Town
+1 Commune with Lava
+1 Ad Nauseam
+1 Tarnished Citadel
+1 Arena of Glory
+1 Mountain
+1 Hexing Squelcher
+1 Rite of Flame
+1 Rakdos Charm
+1 Culling the Weak
+1 Wheel of Fortune
+1 Mox Opal
+1 Overmaster
+1 Street Wraith
+1 Arcane Signet

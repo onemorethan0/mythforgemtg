@@ -1,0 +1,84 @@
+# Archidekt — Tramplesaurus Rex (Est. 2019)
+# source: archidekt:313935
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Ghalta, Primal Hunger
+
+Deck:
+1 Yavimaya Hollow
+1 Ghalta, Stampede Tyrant
+1 Rhonas the Indomitable
+1 Garruk, Primal Hunter
+1 Selvala, Heart of the Wilds
+1 Ram Through
+1 Tribute to the World Tree
+1 Mosswort Bridge
+1 Surrak and Goreclaw
+1 Nykthos, Shrine to Nyx
+1 Castle Garenbrig
+1 Boseiju, Who Endures
+1 Rishkar's Expertise
+1 Nature's Lore
+1 Llanowar Tribe
+1 Tangleweave Armor
+1 Garruk's Uprising
+1 Surrak, the Hunt Caller
+1 Railway Brawler
+1 Cactus Preserve
+1 Pugnacious Hammerskull
+1 Archdruid's Charm
+1 Eternal Witness
+1 Fanatic of Rhonas
+1 Yavimaya, Cradle of Growth
+1 Zopandrel, Hunger Dominus
+1 Unnatural Growth
+1 Emerald Medallion
+1 Elvish Mystic
+1 Last March of the Ents
+1 Evendo, Waking Haven
+1 Pathbreaker Ibex
+1 Kogla, the Titan Ape
+1 Lightning Greaves
+1 Tyvar, the Pummeler
+1 Vaultborn Tyrant
+1 Natural Order
+1 Defiler of Vigor
+1 Runadi, Behemoth Caller
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Sylvan Library
+1 Goreclaw, Terror of Qal Sisma
+1 Shifting Woodland
+1 Return of the Wildspeaker
+1 Overwhelming Stampede
+1 Traverse the Outlands
+1 The Great Henge
+1 Sol Ring
+1 Hulking Raptor
+1 Finale of Devastation
+1 Ezuri's Predation
+1 Disciple of Freyalise // Garden of Freyalise
+1 Heroic Intervention
+1 Llanowar Elves
+1 Greater Good
+24 Forest
+1 Berserk
+1 Season of Gathering
+1 Tamiyo's Safekeeping
+1 Witch's Clinic
+1 Beast Within
+1 Keen-Eyed Curator
+1 Swiftfoot Boots
+1 The Skullspore Nexus
+1 Delighted Halfling
+1 Slumbering Trudge
+1 Mightform Harmonizer
+1 Old Gnawbone
+1 Birds of Paradise
+1 Old One Eye
+1 Topiary Stomper
+1 Wild Growth
+1 Haywire Mite
+1 Shadowspear
+1 Nature's Rhythm

@@ -1,0 +1,99 @@
+# Archidekt — Flubs Hates Counting
+# source: archidekt:7869472
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Fortune Teller's Talent + Sensei's Divining Top; Bracket 2 allows none
+
+Commander:
+1 Flubs, the Fool
+
+Deck:
+1 Wooded Foothills
+1 Plaza of Heroes
+1 Fabled Passage
+1 Misty Rainforest
+1 Rivendell
+1 Scalding Tarn
+1 Prismatic Vista
+1 Tropical Island
+1 Urza's Saga
+1 Volcanic Island
+1 Sylvan Library
+1 Azusa, Lost but Seeking
+1 Noxious Revival
+1 Case of the Locked Hothouse
+1 Containment Construct
+1 Croaking Counterpart
+1 Sylvan Safekeeper
+1 Sensei's Divining Top
+1 Taiga
+1 Command Tower
+1 Summer Bloom
+1 Bountiful Landscape
+1 Tireless Provisioner
+1 Mox Amber
+1 Valakut Exploration
+1 Spellskite
+1 Ketria Triome
+1 Delayed Blast Fireball
+1 Cavern of Souls
+1 Manabond
+1 Savvy Trader
+1 Lotus Cobra
+1 Fortune Teller's Talent
+1 Sol Ring
+1 Exploration
+1 Walk-In Closet // Forgotten Cellar
+1 City of Solitude
+1 Delighted Halfling
+1 Lotus Petal
+1 Orcish Lumberjack
+1 Thundering Falls
+1 Commercial District
+1 Hedge Maze
+1 Glacierwood Siege
+1 Paradise Mantle
+1 Mistrise Village
+4 Mountain
+1 Spore Frog
+1 Songcrafter Mage
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Ghostly Pilferer
+1 Land's Edge
+1 Song of Creation
+1 Boseiju, Who Endures
+1 Mithril Coat
+3 Island
+1 Breeding Pool
+1 Uba Mask
+1 Tlincalli Hunter // Retrieve Prey
+1 Trade Routes
+1 Icetill Explorer
+1 Otherworldly Gaze
+1 Reclaim
+1 Bohn, Beguiling Balladeer
+1 Crucible of Worlds
+1 Six
+1 Talon Gates of Madara
+1 Oracle of Mul Daya
+1 Frostcliff Siege
+1 The Lost and the Damned
+1 Formless Genesis
+1 Gustha's Scepter
+1 Ultimate Magic: Meteor
+1 Excavation
+1 Tectonic Reformation
+5 Forest
+1 Impending Flux
+1 Abundance
+1 Summon: Titan
+1 Inti, Seneschal of the Sun
+1 Rampant Frogantua
+1 Shenanigans
+1 Worldsoul's Rage
+1 Flame Jab
+1 Siren Stormtamer
+1 Hugs, Grisly Guardian
+1 Bilbo, Thief in the Night
+1 Gandalf, Goblins' Bane // Flameshape
+1 Nico Minoru, Runaway

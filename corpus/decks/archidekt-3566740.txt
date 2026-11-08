@@ -1,0 +1,99 @@
+# Archidekt — Megatron, Tyrant
+# source: archidekt:3566740
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Megatron, Tyrant // Megatron, Destructive Force
+
+Deck:
+1 Prized Statue
+1 Combustible Gearhulk
+1 Ruin Grinder
+1 Boros Charm
+1 Chaos Warp
+1 Cryptothrall
+1 Rogue's Passage
+1 Savai Triome
+1 Sundown Pass
+1 Pia's Revolution
+1 Daretti, Scrap Savant
+1 Vault of the Archangel
+1 Angel of the Ruins
+1 Rugged Prairie
+1 Shattered Sanctum
+1 Basilisk Collar
+1 Ichor Wellspring
+1 Portal to Phyrexia
+1 Resurrection Orb
+1 Sol Ring
+1 Talisman of Conviction
+1 Spine of Ish Sah
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Blitzwing, Cruel Tormentor // Blitzwing, Adaptive Assailant
+1 Ironsoul Enforcer
+1 Losheel, Clockwork Scholar
+1 Myr Battlesphere
+1 Necron Deathmark
+1 Phyrexian Fleshgorger
+1 Scrap Mastery
+1 Trash for Treasure
+1 Command Tower
+1 Fetid Heath
+1 Graven Cairns
+1 Haunted Ridge
+1 Ayara, Widow of the Realm // Ayara, Furnace Queen
+1 Blightstep Pathway // Searstep Pathway
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Needleverge Pathway // Pillarverge Pathway
+1 Their Name Is Death
+1 Fiery Emancipation
+1 Solemn Simulacrum
+1 Ugin's Nexus
+1 Steel Seraph
+1 Coveted Jewel
+1 Wurmcoil Engine
+1 Skitterbeam Battalion
+1 Goblin Welder
+1 Wake the Past
+4 Swamp
+4 Plains
+4 Mountain
+1 Reroute Systems
+1 Bygone Colossus
+1 Spire of Industry
+1 Slobad, Goblin Tinkerer
+1 Radiant Lotus
+1 Unwinding Clock
+1 Ruinous Ultimatum
+1 Ancient Den
+1 Drossforge Bridge
+1 Vault of Whispers
+1 Goldmire Bridge
+1 Great Furnace
+1 Rustvale Bridge
+1 Swiftfoot Boots
+1 Anguished Unmaking
+1 Inventors' Fair
+1 Noxious Gearhulk
+1 Loran's Escape
+1 Blacksmith's Skill
+1 All-Out Assault
+1 Flawless Maneuver
+1 Deflecting Swat
+1 Deadly Rollick
+1 Deadly Dispute
+1 Bolt Bend
+1 Crackle with Power
+1 Imposing Grandeur
+1 Arcane Signet
+1 Rescue Skiff
+1 Nomad Outpost
+1 Colossus of the Blood Age
+1 Mishra's Self-Replicator
+1 Cityscape Leveler
+1 Stinging Study
+1 Caves of Koilos
+1 Sulfurous Springs
+1 Battlefield Forge

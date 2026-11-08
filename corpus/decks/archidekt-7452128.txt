@@ -1,0 +1,108 @@
+# Archidekt — Eris Dragonslinger
+# source: archidekt:7452128
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Eris, Roar of the Storm
+
+Deck:
+1 Riverpyre Verge
+1 Sundering Eruption // Volcanic Fissure
+1 Thunderclap Drake
+1 Jwari Disruption // Jwari Ruins
+1 Press the Enemy
+1 The Last Agni Kai
+1 Baral, Chief of Compliance
+1 Reflecting Pool
+1 Steam Vents
+1 Unexpected Windfall
+1 Thundering Falls
+1 Snap
+1 Mystical Tutor
+1 Spit Flame
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Case of the Ransacked Lab
+1 Arcane Infusion
+1 Manaform Hellkite
+1 Storm-Kiln Artist
+1 Prismari Command
+1 Volcanic Island
+1 Lórien Revealed
+1 Cascade Bluffs
+1 Otawara, Soaring City
+1 Expansion // Explosion
+1 Invoke Calamity
+1 Frantic Search
+1 Silundi Vision // Silundi Isle
+1 Rewind
+1 Unwind
+1 Fiery Islet
+1 Misty Rainforest
+1 Command Tower
+1 Dragon Tempest
+1 Big Score
+1 Valakut Awakening // Valakut Stoneforge
+1 Mystic Retrieval
+1 Spikefield Hazard // Spikefield Cave
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Stormcarved Coast
+1 Island
+1 Lotus Field
+1 Lotus Vale
+1 Electric Revelation
+1 Pinnacle Monk // Mystic Peak
+1 Rush of Inspiration // Crackling Falls
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Sink into Stupor // Soporific Springs
+1 Thespian's Stage
+1 Urza's Cave
+1 Deep Analysis
+1 Scalding Tarn
+1 Flooded Strand
+1 Mountain
+1 Deflecting Swat
+1 Electrodominance
+1 Izzet Boilerworks
+1 Lightning Bolt
+1 Arid Mesa
+1 Mana Drain
+1 Force of Will
+1 Increasing Vengeance
+1 Expressive Iteration
+1 Indulge // Excess
+1 Three Steps Ahead
+1 Reinterpret
+1 Stormcatch Mentor
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Stubborn Denial
+1 Bolt Bend
+1 Sublime Epiphany
+1 Quiet Speculation
+1 Archmage Emeritus
+1 Sorceress's Schemes
+1 Lindblum, Industrial Regency // Mage Siege
+1 Training Center
+1 Sulfur Falls
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Soul Immolation
+1 Resonating Lute
+1 Traumatic Critique
+1 Giantfall
+1 Dirgur Focusmage // Braingeyser
+1 Turbulent Springs
+1 Ashling, Flame Dancer
+1 Ashling's Command
+1 Pore Over the Pages
+1 Faithless Looting
+1 Pongify
+1 Rapid Hybridization
+1 Plunder the Trollshaws
+1 Wisdom of Ages
+1 Flashback
+1 Practical Research
+1 Otherworldly Gaze
+1 Laughing Mad
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Goblin Electromancer
+1 Geist of Saint Thalia

@@ -1,0 +1,108 @@
+# Archidekt — Kydele, take the wheel!
+# source: archidekt:9794049
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Vial Smasher the Fierce
+1 Kydele, Chosen of Kruphix
+
+Deck:
+1 Birds of Paradise
+1 Frantic Search
+1 Dragon's Rage Channeler
+1 Mount Doom
+1 City of Brass
+1 Command Tower
+1 Shivan Reef
+1 Wheel of Fortune
+1 Underground River
+1 Lightning Greaves
+1 Exotic Orchard
+1 Staff of Domination
+1 Undergrowth Stadium
+1 Gilded Drake
+1 Wild Growth
+1 Scrawling Crawler
+1 Amphibian Downpour
+1 Jace's Archivist
+1 Ignoble Hierarch
+1 Deathrite Shaman
+1 Bone Miser
+1 Shifting Woodland
+1 Mana Drain
+1 Gifts Ungiven
+1 Silundi Vision // Silundi Isle
+1 Tropical Island
+1 Polluted Delta
+1 Waste Not
+1 The Locust God
+1 Sol Ring
+1 Rielle, the Everwise
+1 Pest Infestation
+1 Doppelgang
+1 Cephalid Coliseum
+1 Surly Badgersaur
+1 Dream Harvest
+1 Culling Ritual
+1 Springleaf Parade
+1 Flotsam // Jetsam
+1 Likeness Looter
+1 Dack Fayden
+1 Whispering Madness
+1 Windfall
+1 Underworld Breach
+1 Mindbreak Trap
+1 Wishclaw Talisman
+1 Stomping Ground
+1 Emergence Zone
+1 Spire Garden
+1 Overgrown Tomb
+1 Finale of Devastation
+1 Twitching Doll
+1 An Offer You Can't Refuse
+1 Faerie Mastermind
+1 Lórien Revealed
+1 Eternal Witness
+1 Breeding Pool
+1 Krosan Restorer
+1 Demonic Tutor
+1 Echo of Eons
+1 Whirlpool Warrior
+1 Lotus Petal
+1 Elves of Deep Shadow
+1 Rejuvenating Springs
+1 Walking Ballista
+1 Steam Vents
+1 Nature's Lore
+1 Bloom Tender
+1 Boggart Trawler // Boggart Bog
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sink into Stupor // Soporific Springs
+1 Jwari Disruption // Jwari Ruins
+1 Fell the Profane // Fell Mire
+1 Valakut Awakening // Valakut Stoneforge
+1 Lair of the Hydra
+1 Arcane Signet
+1 Tam, Mindful First-Year
+1 Force of Vigor
+1 Force of Will
+1 Flusterstorm
+1 Brainstorm
+1 Fellwar Stone
+1 Umbral Mantle
+1 Watery Grave
+1 Vexing Bauble
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Chart a Course
+1 Freed from the Real
+1 Vohar, Vodalian Desecrator
+1 Tinybones, Bauble Burglar
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+1 Kederekt Parasite
+1 Malevolent Hermit // Benevolent Geist
+1 Mystic Remora
+1 Eldritch Evolution
+1 Faithless Looting
+1 Samut, Hazoret's Champion
+1 Liliana's Caress

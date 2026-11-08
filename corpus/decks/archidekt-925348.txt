@@ -1,0 +1,90 @@
+# Archidekt — Karlov aktuell
+# source: archidekt:925348
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Karlov of the Ghost Council
+
+Deck:
+1 Children of Korlis
+1 Fetid Heath
+1 Disciple of Griselbrand
+1 Aetherflux Reservoir
+1 Necropotence
+1 Blind Obedience
+1 Sunscorch Regent
+1 Authority of the Consuls
+1 Kambal, Consul of Allocation
+1 Ayli, Eternal Pilgrim
+1 Essence Harvest
+1 Soul's Attendant
+1 Wall of Reverence
+1 Smothering Tithe
+1 Tainted Field
+1 Vizkopa Guildmage
+1 Soul Warden
+1 Caves of Koilos
+1 Vito, Thorn of the Dusk Rose
+1 Rogue's Passage
+1 Sol Ring
+1 High Market
+1 Witch's Clinic
+1 Dawn Charm
+1 Scrubland
+8 Swamp
+12 Plains
+1 Bojuka Bog
+1 Grand Abolisher
+1 Isolated Chapel
+1 The Gaffer
+1 Creeping Bloodsucker
+1 Enlightened Tutor
+1 Elenda's Hierophant
+1 Command Tower
+1 Exotic Orchard
+1 Case of the Uneaten Feast
+1 Leonin Elder
+1 Night's Whisper
+1 Inkshield
+1 Godless Shrine
+1 Ajani, Strength of the Pride
+1 Master of Ceremonies
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Exemplar of Light
+1 Enduring Tenacity
+1 Alseid of Life's Bounty
+1 Mother of Runes
+1 Congregate
+1 Demonic Tutor
+1 Shattered Sanctum
+1 Bolas's Citadel
+1 Strip Mine
+1 Anguished Unmaking
+1 Restoration Magic
+1 Auriok Champion
+1 Bleachbone Verge
+1 Haliya, Guided by Light
+1 Starfield Shepherd
+1 Spectrum Sentinel
+1 Shadowy Backstreet
+1 Teferi's Protection
+1 Avatar's Wrath
+1 South Wind Avatar
+1 Swords to Plowshares
+1 Revival // Revenge
+1 Lotho, Corrupt Shirriff
+1 Scheming Silvertongue // Sign in Blood
+1 Defacing Duskmage // Vandal's Edit
+1 Defiling Daemogoth
+1 Moseo, Vein's New Dean
+1 Glasswing Grace // Age-Graced Chapel
+1 Breena, the Demagogue
+1 Liliana the Faultless
+1 Germinate Recruits
+1 Enlightened Confidant
+1 Niv-Mizzet, Ghost Counsel
+1 Despark
+1 Secluded Steppe
+1 Tablet of the Guilds
+1 Nykthos, Shrine to Nyx

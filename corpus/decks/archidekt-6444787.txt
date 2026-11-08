@@ -1,0 +1,83 @@
+# Archidekt — Zoyowa Lava-Tongue
+# source: archidekt:6444787
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Zoyowa Lava-Tongue
+
+Deck:
+1 Zoyowa's Justice
+1 Blackcleave Cliffs
+1 Village Rites
+1 Sol Ring
+1 Highway Robbery
+1 Tocasia's Dig Site
+1 Tainted Peak
+1 Pompous Battlemage // Improvised Act
+1 Evolving Wilds
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Enterprising Scallywag
+1 Canonized in Blood
+1 Kolaghan's Command
+1 Command Tower
+1 Terramorphic Expanse
+1 Smoldering Marsh
+1 Hymn of the Faller
+1 Hullcarver
+1 Weftstalker Ardent
+1 Timeline Culler
+1 Melded Moxite
+1 Entropic Battlecruiser
+1 Sheoldred's Edict
+1 Seize the Spoils
+1 Bitter Triumph
+1 Osseous Sticktwister
+1 Fanatical Offering
+1 Foreboding Ruins
+10 Mountain
+1 Decode Transmissions
+1 Big Score
+1 Talisman of Indulgence
+1 Withering Torment
+17 Swamp
+1 Pyretic Rebirth
+1 Terminate
+1 Blood Crypt
+1 Scuzzback Scrounger
+1 Hexing Squelcher
+1 Grub, Storied Matriarch // Grub, Notorious Auntie
+1 Stalactite Stalker
+1 Vial Smasher, Gleeful Grenadier
+1 Redcap Thief
+1 Elder Auntie
+1 Siege-Gang Lieutenant
+1 Boggart Mischief
+1 Grub's Command
+1 Tablet of Discovery
+1 Return the Favor
+1 Goblin Glasswright // Craft with Pride
+1 Exuberant Fuseling
+1 Gristle Glutton
+1 Gutsplitter Gang
+1 Bile-Vial Boggart
+1 Heirloom Auntie
+1 Legion Warboss
+1 Howlsquad Heavy
+1 Grenzo, Havoc Raiser
+1 Bastion of Remembrance
+1 Boggart Trawler // Boggart Bog
+1 Ral Zarek, Guest Lecturer
+1 Along the Crooked Way
+1 Azog, Moria's Ruin
+1 Fearsome Goblin Pair
+1 Gathering of Darkness
+1 Bothersome Noisemaker
+1 Bolg of the North
+1 The Great Goblin
+1 Makeshift Munitions
+1 Egon, God of Death // Throne of Death
+1 Stony-Voiced Goblins
+1 Goblin-town Flunkies
+1 Tidings of War
+1 Rage into the Valley

@@ -1,0 +1,99 @@
+# Archidekt — Tayam's Torture Tetrahedron
+# source: archidekt:749036
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Ranger-Captain of Eos
+1 Entomb
+1 Life from the Loam
+1 Millikin
+1 Devoted Druid
+1 Boar Umbra
+1 Pernicious Deed
+1 Jadelight Ranger
+1 Seal of Primordium
+1 Perpetual Timepiece
+1 Selfless Spirit
+1 Heartstone
+1 Dance of the Dead
+1 Stitcher's Supplier
+1 Remorseful Cleric
+1 Opal Palace
+1 Hardened Scales
+1 Temple Garden
+1 Overgrown Tomb
+1 Knight of Autumn
+1 Golgari Grave-Troll
+1 Godless Shrine
+2 Snow-Covered Forest
+2 Snow-Covered Swamp
+2 Snow-Covered Plains
+1 Spore Frog
+1 Altar of Dementia
+1 Good-Fortune Unicorn
+1 Embodiment of Agonies
+1 Ghostly Prison
+1 Syr Konrad, the Grim
+1 Elixir of Immortality
+1 Ashnod's Altar
+1 Aura Shards
+1 Farseek
+1 Eternal Witness
+1 Promise of Bunrei
+1 Arcane Signet
+1 Luminous Broodmoth
+1 Command Tower
+1 Fiend Artisan
+1 Lurrus of the Dream-Den
+1 Sun Titan
+1 Sungrass Prairie
+1 Sandsteppe Citadel
+1 Exotic Orchard
+1 Gavony Township
+1 Caves of Koilos
+1 Blighted Woodland
+1 Bojuka Bog
+1 Canopy Vista
+1 Eerie Ultimatum
+1 Indatha Triome
+1 Blood Artist
+1 Rishkar, Peema Renegade
+1 Wooded Bastion
+1 Oubliette
+1 Twilight Mire
+1 Fetid Heath
+1 Evolving Wilds
+2 Forest
+3 Plains
+1 Swamp
+1 Vault of Champions
+1 Wasteland
+1 Skyclave Apparition
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Command Beacon
+1 Mesmeric Orb
+1 Guardian of Faith
+1 Dauthi Voidwalker
+1 Takenuma, Abandoned Mire
+1 Tribute to the World Tree
+1 Ozolith, the Shattered Spire
+1 Branching Evolution
+1 Unmarked Grave
+1 Riftstone Portal
+1 Animate Dead
+1 Bristlebane Battler
+1 Twilight Diviner
+1 Summon: Ixion
+1 Sterling Grove
+1 Patrolling Peacemaker
+1 Abigale, Eloquent First-Year
+1 Cauldron of Essence
+1 Slumbering Trudge
+1 Ral Zarek, Guest Lecturer
+1 Grave Researcher // Reanimate
+1 Opposition Agent
+1 Sol Ring

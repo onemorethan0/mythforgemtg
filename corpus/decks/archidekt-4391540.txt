@@ -1,0 +1,95 @@
+# Archidekt — council's yearly budget
+# source: archidekt:4391540
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Council of Four
+
+Deck:
+1 Cleansing Nova
+1 Ash Barrens
+1 Your Temple Is Under Attack
+1 Nadir Kraken
+1 Cut a Deal
+1 Return to Dust
+1 Orzhov Advokist
+1 Glacial Floodplain
+1 Chasm Skulker
+1 Union of the Third Path
+1 Benalish Marshal
+1 Baird, Steward of Argive
+1 Academy Loremaster
+1 Words of Wisdom
+1 Mentor of the Meek
+1 Temple of the False God
+1 Archon of Absolution
+1 Oji, the Exquisite Blade
+1 Secluded Steppe
+1 Symmetry Matrix
+1 Azorius Knight-Arbiter
+1 Monk Class
+1 Lonely Sandbar
+1 Meandering River
+1 Skycloud Expanse
+1 Pendant of Prosperity
+1 Psychosis Crawler
+1 Idyllic Beachfront
+1 Inspiring Leader
+1 Oblation
+1 Sun Titan
+1 Tranquil Cove
+1 Gates of Istfell
+1 Aetherspouts
+1 Scholarship Sponsor
+1 Isperia, Supreme Judge
+1 Myriad Landscape
+1 Tenuous Truce
+1 Sejiri Refuge
+1 Aetherize
+1 Prairie Stream
+7 Island
+1 Secret Rendezvous
+1 Port Town
+1 Walking Archive
+1 River's Rebuke
+1 Azorius Guildgate
+1 Mistveil Plains
+1 Glorious Anthem
+8 Plains
+1 Command Tower
+1 Razortide Bridge
+1 Windborn Muse
+1 Vision Skeins
+1 Silverwing Squadron
+1 Austere Command
+1 Frogify
+1 Azor's Elocutors
+1 Rumor Gatherer
+1 Skybridge Towers
+1 Kwain, Itinerant Meddler
+1 Reality Shift
+1 Prince Imrahil the Fair
+1 Worthy Knight
+1 The Second Doctor
+1 Marshal of Zhalfir
+1 The Circle of Loyalty
+1 Xerex Strobe-Knight
+1 Knights of Dol Amroth
+1 Valiant Knight
+1 Syr Alin, the Lion's Claw
+1 Gwafa Hazid, Profiteer
+1 Keeper of the Accord
+1 Thistledown Liege
+1 Unbreakable Formation
+1 Knight of the New Coalition
+1 Intangible Virtue
+1 Well of Ideas
+1 Temple of Enlightenment
+1 Azorius Chancery
+1 Bond of Discipline
+1 Thought Vessel
+1 Vodalian Wave-Knight
+1 Knight of the White Orchid
+1 Ominous Seas
+1 Decanter of Endless Water

@@ -1,0 +1,105 @@
+# Archidekt — Double Black Magic
+# source: archidekt:16832422
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 Snapback
+1 Drift of Phantasms
+1 Blazing Shoal
+1 Deflecting Swat
+1 Saprazzan Skerry
+1 Starting Town
+1 Cave-In
+1 Mountain
+1 Island
+1 Scalding Tarn
+1 Vexing Bauble
+1 Polluted Delta
+1 Training Center
+1 Fierce Guardianship
+1 Command Tower
+1 Shivan Reef
+1 Mystic Remora
+1 Ophidian Eye
+1 Pyroblast
+1 Red Elemental Blast
+1 Ancient Tomb
+1 Flusterstorm
+1 Arid Mesa
+1 Riverpyre Verge
+1 Force of Will
+1 Twisted Image
+1 Last Chance
+1 Gitaxian Probe
+1 Jeweled Amulet
+1 Lotus Petal
+1 Arcane Signet
+1 Mox Amber
+1 Simian Spirit Guide
+1 Sink into Stupor // Soporific Springs
+1 Gut Shot
+1 Mindbreak Trap
+1 Chain of Vapor
+1 Jeska's Will
+1 Steam Vents
+1 Gemstone Caverns
+1 Volcanic Island
+1 Gamble
+1 Rite of Flame
+1 City of Brass
+1 Mystical Tutor
+1 Fiery Islet
+1 Lion's Eye Diamond
+1 Hullbreaker Horror
+1 Sol Ring
+1 Rhystic Study
+1 Curiosity
+1 Misty Rainforest
+1 Swan Song
+1 Mana Vault
+1 Chrome Mox
+1 Hexing Squelcher
+1 Springleaf Drum
+1 Virtue of Courage // Embereth Blaze
+1 Sundering Eruption // Volcanic Fissure
+1 Final Fortune
+1 Snap
+1 Daze
+1 Boomerang Basics
+1 An Offer You Can't Refuse
+1 Tandem Lookout
+1 Mox Diamond
+1 Wooded Foothills
+1 Quicksilver Elemental
+1 Misdirection
+1 Sandstone Needle
+1 Mox Opal
+1 Mana Confluence
+1 Commandeer
+1 Paradise Mantle
+1 Thor, Guardian of Midgard
+1 Behind the Mask
+1 Mishra's Bauble
+1 Multiversal Passage
+1 Conqueror's Flail
+1 Spellbook
+1 Radstorm
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Merchant Scroll
+1 Pact of Negation
+1 Submerge
+1 Thunderclap
+1 Mental Misstep
+1 Strike It Rich
+1 Dizzy Spell
+1 Corrupted Conscience
+1 Ragavan, Nimble Pilferer
+1 Wild Ride
+1 Niv-Mizzet, Visionary
+1 Secret Identity
+1 Underworld Breach
+1 Tormod's Crypt

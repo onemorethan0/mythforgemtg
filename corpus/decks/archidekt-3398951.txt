@@ -1,0 +1,95 @@
+# Archidekt — Squirrels go hard
+# source: archidekt:3398951
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Squirrel Mob
+1 Yavimaya, Cradle of Growth
+1 Dig Up
+1 Plumb the Forbidden
+1 Krosan Grip
+1 Species Specialist
+1 Woodland Cemetery
+1 Undergrowth Stadium
+1 Llanowar Wastes
+1 Deep Forest Hermit
+1 Swarmyard
+1 Cultivate
+1 Ivy Lane Denizen
+1 Beastmaster Ascension
+1 Diabolic Intent
+1 Cloakwood Hermit
+1 Scale Up
+1 Ezuri's Predation
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Tendershoot Dryad
+1 Beledros Witherbloom
+1 Deathcap Glade
+1 Khalni Garden
+1 Awaken the Woods
+1 Jungle Hollow
+1 Go for the Throat
+1 Tireless Provisioner
+1 Nemata, Primeval Warden
+1 Peregrin Took
+1 Dread Return
+1 Victimize
+1 Deranged Hermit
+1 Parallel Lives
+1 Squirrel Sovereign
+1 Chitterspitter
+1 Scurry Oak
+1 Ravenous Squirrel
+1 Drey Keeper
+1 Squirrel Wrangler
+1 Second Harvest
+1 Sylvan Anthem
+1 Sol Ring
+1 Command Tower
+1 Bootleggers' Stash
+1 Jaheira, Friend of the Forest
+1 Kodama's Reach
+6 Swamp
+1 Putrefy
+1 Skullclamp
+1 Zulaport Cutthroat
+1 Pitiless Plunderer
+1 Deadly Dispute
+1 Bojuka Bog
+1 Necroblossom Snarl
+1 Oran-Rief, the Vastwood
+1 Coat of Arms
+1 Exotic Orchard
+1 Overrun
+1 Creakwood Liege
+1 Return of the Wildspeaker
+1 Freyalise, Llanowar's Fury
+1 Blood Artist
+1 Gilded Goose
+1 Tainted Wood
+1 Assassin's Trophy
+1 Academy Manufactor
+1 Staff of Titania
+1 Mirkwood Bats
+1 Gala Greeters
+9 Forest
+1 Phyrexian Tower
+1 Warren Soultrader
+1 Flare of Cultivation
+1 Collective Resistance
+1 Harmonize
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Propagator Drone
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Damnation
+1 Camellia, the Seedmiser
+1 Ashnod's Altar
+1 Three Tree City
+1 Diamond City
+1 Valley Mightcaller
+1 Natural Order
+1 Nykthos, Shrine to Nyx

@@ -1,0 +1,83 @@
+# Archidekt — Gogo: 2 Fast, 2 Furious
+# source: archidekt:12076512
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Gogo, Mysterious Mime
+
+Deck:
+1 Fractured Powerstone
+1 Dragonhawk, Fate's Tempest
+1 Balor
+1 Neheb, the Eternal
+1 Valakut, the Molten Pinnacle
+1 Arcane Signet
+1 Abrade
+1 Bloodthirster
+1 Bolt Bend
+1 Breeches, Eager Pillager
+1 Connecting the Dots
+1 Demand Answers
+1 Crimson Caravaneer
+1 Count on Luck
+1 Blasphemous Act
+1 Curse of Opulence
+1 Disrupt Decorum
+1 Access Tunnel
+1 Castle Embereth
+1 Demolition Field
+1 Etali, Primal Storm
+1 Bladegriff Prototype
+1 Jurin, Leading the Charge
+1 Karlach, Fury of Avernus
+1 Mind Stone
+1 Mezzio Mugger
+1 Nykthos, Shrine to Nyx
+1 Oliphaunt
+1 Olivia's Attendants
+1 Star Athlete
+1 Sundering Eruption // Volcanic Fissure
+1 Throne of Eldraine
+1 Tome of Legends
+1 Untimely Malfunction
+1 Zenith Chronicler
+1 Prismatic Lens
+1 Thought Vessel
+1 Rain of Riches
+1 Moria Marauder
+1 Yasmin Khan
+1 Generous Plunderer
+1 Valakut Awakening // Valakut Stoneforge
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Professional Face-Breaker
+1 Krenko, Tin Street Kingpin
+1 Laelia, the Blade Reforged
+1 Kher Keep
+1 Spinerock Knoll
+26 Mountain
+1 Horn of the Mark
+1 Magda, Brazen Outlaw
+1 Gimli of the Glittering Caves
+1 Heartless Hidetsugu
+1 Prosperous Bandit
+1 Fellwar Stone
+1 Rose, Cutthroat Raider
+1 Deflecting Swat
+1 Parapet Thrasher
+1 Sol Ring
+1 Ruby Medallion
+1 Everflowing Chalice
+1 Lightning Greaves
+1 Urza's Cave
+1 Chaos Warp
+1 Liquimetal Torque
+1 Fast Forward
+1 Knuckles the Echidna
+1 Firebird, Blazing Ranger
+1 Hex Magic
+1 Fang, Roku's Companion
+1 Titania, Proud Pummeler
+1 Elturel Survivors
+1 Delina, Wild Mage
+1 Photon, Mighty Marvel

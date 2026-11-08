@@ -1,0 +1,107 @@
+# Archidekt — STELLA!!!
+# source: archidekt:18711227
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Stella Lee, Wild Card
+
+Deck:
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Arcane Signet
+1 Arena of Glory
+1 Arid Mesa
+1 Bloodstained Mire
+1 Borne Upon a Wind
+1 Cerulean Wisps
+1 Chrome Mox
+1 City of Brass
+1 Claim the Firstborn
+1 Command Tower
+1 Daze
+1 Deflecting Swat
+1 Dragon's Rage Channeler
+1 Dramatic Reversal
+1 Dream's Grip
+1 Dualcaster Mage
+1 Emergence Zone
+1 Faerie Mastermind
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Fiery Islet
+1 Final Fortune
+1 Finale of Promise
+1 Flooded Strand
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Gamble
+1 Gemstone Caverns
+1 Gitaxian Probe
+1 Gut Shot
+1 Hidden Strings
+1 Into the Flood Maw
+2 Island
+1 Izzet Signet
+1 Jeska's Will
+1 Jeweled Amulet
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Mana Vault
+1 Mental Misstep
+1 Merchant Scroll
+1 Minamo, School at Water's Edge
+1 Mindbreak Trap
+1 Mission Briefing
+1 Misty Rainforest
+1 Brain Freeze
+1 Mountain
+1 Mox Amber
+1 Mox Diamond
+1 Mox Opal
+1 Mystic Remora
+1 Mystical Tutor
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Polluted Delta
+1 Pyretic Ritual
+1 Pyroblast
+1 Ragavan, Nimble Pilferer
+1 Red Elemental Blast
+1 Redirect Lightning
+1 Refocus
+1 Rhystic Study
+1 Rite of Flame
+1 Scalding Tarn
+1 Seat of the Synod
+1 Sensei's Divining Top
+1 Shivan Reef
+1 Shore Up
+1 Simian Spirit Guide
+1 Sink into Stupor // Soporific Springs
+1 Snap
+1 Snapcaster Mage
+1 Sol Ring
+1 Spellseeker
+1 Steam Vents
+1 Step Through
+1 Strike It Rich
+1 Swan Song
+1 Talisman of Creativity
+1 Teardrop Kami
+1 The One Ring
+1 Thundering Falls
+1 Tidal Bore
+1 Training Center
+1 Twiddle
+1 Twinflame
+1 Twisted Fealty
+1 Underworld Breach
+1 Valley Floodcaller
+1 Vexing Bauble
+1 Volcanic Island
+1 Wheel of Fortune
+1 Wooded Foothills
+1 Personal Tutor
+1 Hexing Squelcher

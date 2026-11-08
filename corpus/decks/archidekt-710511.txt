@@ -1,0 +1,101 @@
+# Archidekt — Kediss, Emberclaw Familiar/Kraum, Ludevic's Opus: Double Trouble
+# source: archidekt:710511
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kediss, Emberclaw Familiar
+1 Kraum, Ludevic's Opus
+
+Deck:
+1 Arcane Signet
+1 Izzet Signet
+1 Galvanic Iteration
+1 Glittering Stockpile
+1 Otawara, Soaring City
+1 Amphibian Downpour
+1 Fatal Frenzy
+1 Pact of Negation
+1 Cascade Bluffs
+1 Scavenger Grounds
+1 Scalding Tarn
+1 Reality Shift
+1 Shivan Reef
+1 Steam Vents
+1 Overblaze
+1 Ancient Tomb
+1 Rapid Hybridization
+1 War Room
+1 Unleash Fury
+1 Winged Words
+1 Jeska's Will
+1 Sol Ring
+1 Fierce Guardianship
+1 Sulfur Falls
+1 Valakut Awakening // Valakut Stoneforge
+1 Fiery Islet
+1 Talisman of Creativity
+1 Wasteland
+1 Twincast
+1 Titan's Strength
+1 Reverberate
+1 Fury Storm
+1 Chaos Warp
+1 Strip Mine
+1 Fellwar Stone
+1 Reckless Charge
+1 Twinferno
+1 Not of This World
+1 Mana Confluence
+1 Stormcarved Coast
+1 Training Center
+1 Command Tower
+1 Riverglide Pathway // Lavaglide Pathway
+3 Island
+1 Sink into Stupor // Soporific Springs
+1 Abstergo Entertainment
+1 City of Brass
+1 Expressive Iteration
+1 Bulk Up
+1 Riverpyre Verge
+1 Mana Vault
+1 Thundering Falls
+1 Bolt Bend
+1 Mana Geyser
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Leyline of Resonance
+1 Brute Force
+1 Rhystic Study
+1 Mystic Remora
+1 Deflecting Swat
+1 Jeska, Thrice Reborn
+1 Chart a Course
+1 Stock Up
+1 Monstrous Rage
+1 Rush of Blood
+1 Pongify
+1 Stubborn Denial
+1 Temur Battle Rage
+1 Insult // Injury
+1 Wild Ride
+1 Light Up the Stage
+1 Display of Power
+1 Veilstone Amulet
+1 Ferrous Lake
+1 Chrome Mox
+1 Primal Amulet // Primal Wellspring
+1 Mox Amber
+1 Turbulent Springs
+6 Mountain
+1 Tablet of Discovery
+1 Resonating Lute
+1 Flashback
+1 Eagle Vision
+1 Seething Song
+1 Blasphemous Act
+1 Lotus Petal
+1 Shore Leave Planet
+1 Hall of Echoes
+1 Anthropological Mission
+1 Encounter the Unknown

@@ -1,0 +1,89 @@
+# Archidekt — Burakos, PARTY Leader
+# source: archidekt:4588098
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Burakos, Party Leader
+1 Folk Hero
+
+Deck:
+1 Tainted Field
+1 Path of Ancestry
+1 Tinybones, the Pickpocket
+1 Nadier's Nightblade
+1 Selfless Spirit
+1 Archpriest of Iona
+1 Nalia de'Arnise
+1 Changeling Outcast
+1 Deep Gnome Terramancer
+1 Haunted One
+1 Phyrexian Arena
+1 Evin, Waterdeep Opportunist
+1 Journey to Oblivion
+1 Graveshifter
+1 Strionic Resonator
+1 Stonehewer Giant
+1 Despark
+1 Angel's Grace
+1 Reconnaissance
+1 Pontiff of Blight
+1 Multiclass Baldric
+1 Stick Together
+1 Access Tunnel
+1 Debt to the Deathless
+1 Mother of Runes
+1 Caves of Koilos
+1 Varragoth, Bloodsky Sire
+1 Mirror Entity
+1 Sol Ring
+1 Command Tower
+1 Blind Obedience
+1 Mangara, the Diplomat
+1 Base Camp
+1 Shattered Sanctum
+1 Orzhov Basilica
+1 Coveted Prize
+1 White Plume Adventurer
+1 Archivist of Oghma
+1 Ghostly Prison
+1 Universal Automaton
+1 Arbiter of Knollridge
+1 Scoured Barrens
+1 Temple of the False God
+1 Monologue Tax
+1 Shineshadow Snarl
+1 Temple of Silence
+1 Sorin, Vengeful Bloodlord
+1 Tarrian's Soulcleaver
+1 Reprieve
+1 Flooded Strand
+1 Black Market Connections
+1 Mage's Attendant
+1 Seasoned Dungeoneer
+1 Rumor Gatherer
+1 Thwart the Grave
+1 Deadly Alliance
+1 Squad Commander
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Flawless Maneuver
+1 Thaumatic Compass // Spires of Orazca
+1 Grand Abolisher
+1 Dire Fleet Ravager
+1 Deadly Dispute
+1 Arcane Signet
+1 Trailblazer's Boots
+1 Lich-Knights' Conquest
+1 Academy Manufactor
+1 Disciple of the Vault
+1 Fountainport
+1 Flare of Fortitude
+1 Reliquary Tower
+1 Bitterblossom
+7 Swamp
+1 Fell the Profane // Fell Mire
+1 Swords to Plowshares
+1 Elegy Acolyte
+14 Plains
+1 Gleaming Splendor
+1 Path to Exile

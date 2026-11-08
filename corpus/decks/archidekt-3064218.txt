@@ -1,0 +1,107 @@
+# Archidekt — Tevesh Abzan aristocrats combo
+# source: archidekt:3064218
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sidar Kondo of Jamuraa
+1 Tevesh Szat, Doom of Fools
+
+Deck:
+1 Viscera Seer
+1 Pattern of Rebirth
+1 Animate Dead
+1 Mana Vault
+1 Elas il-Kor, Sadistic Pilgrim
+1 Opposition Agent
+1 Deathrite Shaman
+1 Gaea's Cradle
+1 Mana Confluence
+1 Orcish Bowmasters
+1 Takenuma, Abandoned Mire
+1 Esper Sentinel
+1 Sol Ring
+1 Caves of Koilos
+1 Llanowar Wastes
+1 Scrubland
+1 Bayou
+1 Savannah
+1 Yavimaya, Cradle of Growth
+1 The One Ring
+1 Reanimate
+1 Samwise Gamgee
+1 Phyrexian Altar
+1 Birds of Paradise
+1 Avacyn's Pilgrim
+1 Dauthi Voidwalker
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Chatterfang, Squirrel General
+1 Overgrown Tomb
+1 Skullclamp
+1 Temple Garden
+1 Windswept Heath
+1 Necromancy
+1 Chord of Calling
+1 Entomb
+1 Lotho, Corrupt Shirriff
+1 Aura Shards
+1 Lotus Petal
+1 Fiend Artisan
+1 Boseiju, Who Endures
+1 Marsh Flats
+1 Carrion Feeder
+1 Urborg, Tomb of Yawgmoth
+1 Verdant Catacombs
+1 Godless Shrine
+1 Phyrexian Tower
+1 Expedition Map
+1 Diabolic Intent
+1 M.O.D.O.K.
+1 Ashnod's Altar
+1 Braids, Arisen Nightmare
+1 Chthonian Nightmare
+1 Veil of Summer
+1 Eldritch Evolution
+1 Elvish Spirit Guide
+1 Rosie Cotton of South Lane
+1 Basking Broodscale
+1 Warren Soultrader
+1 Shifting Woodland
+1 Recruiter of the Guard
+1 Elvish Mystic
+1 Elves of Deep Shadow
+1 Lurrus of the Dream-Den
+1 Noxious Revival
+1 Eternal Witness
+1 Command Tower
+1 Culling the Weak
+1 Enduring Vitality
+1 Ancient Tomb
+1 Cabal Ritual
+1 The Meathook Massacre
+1 Imperial Seal
+1 Voice of Victory
+1 Protean Hulk
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Silence
+1 Contamination
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Gravecrawler
+1 Ranger-Captain of Eos
+1 Badgermole Cub
+1 Vampiric Tutor
+1 Scheming Symmetry
+1 Orim's Chant
+1 Dark Ritual
+1 Crop Rotation
+1 Out of Time
+1 Demonic Tutor
+1 Bitterbloom Bearer
+1 Formidable Speaker
+1 Birthing Pod
+1 Cauldron Familiar
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Drannith Magistrate
+1 The Queen of Dale
+1 Bilbo's Gambit
+1 Gleaming Splendor

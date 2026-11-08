@@ -1,0 +1,108 @@
+# Archidekt — ROGSI - CEDH
+# source: archidekt:6932597
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rograkh, Son of Rohgahh
+1 Silas Renn, Seeker Adept
+
+Deck:
+1 Blood Crypt
+1 Demonic Consultation
+1 Flusterstorm
+1 Fierce Guardianship
+1 Beseech the Mirror
+1 Borne Upon a Wind
+1 Final Fortune
+1 Cabal Ritual
+1 Chain of Vapor
+1 Ad Nauseam
+1 City of Traitors
+1 Badlands
+1 Necropotence
+1 Otawara, Soaring City
+1 Defense Grid
+1 Lion's Eye Diamond
+1 Gemstone Caverns
+1 Grim Monolith
+1 Dark Ritual
+1 Infernal Plunge
+1 Paradise Mantle
+1 Mox Amber
+1 Pact of Negation
+1 Mnemonic Betrayal
+1 Imperial Seal
+1 Gamble
+1 Jeska's Will
+1 Culling the Weak
+1 Diabolic Intent
+1 Demonic Tutor
+1 Brain Freeze
+1 Deflecting Swat
+1 Force of Negation
+1 Polluted Delta
+1 Mental Misstep
+1 Force of Will
+1 Mystical Tutor
+1 Arid Mesa
+1 Ancient Tomb
+1 Command Tower
+1 Phyrexian Tower
+1 Marsh Flats
+1 Mox Opal
+1 Mox Diamond
+1 Lotus Petal
+1 Mana Vault
+1 Chrome Mox
+1 Arcane Signet
+1 Mystic Remora
+1 Pyroblast
+1 Ragavan, Nimble Pilferer
+1 Tainted Pact
+1 Watery Grave
+1 Vampiric Tutor
+1 Wheel of Fortune
+1 Volcanic Island
+1 Rhystic Study
+1 Sol Ring
+1 Swan Song
+1 Windfall
+1 Wooded Foothills
+1 Yawgmoth's Will
+1 Timetwister
+1 Underground Sea
+1 Red Elemental Blast
+1 Steam Vents
+1 Snap
+1 Scalding Tarn
+1 Wishclaw Talisman
+1 Springleaf Drum
+1 Thassa's Oracle
+1 Simian Spirit Guide
+1 Underworld Breach
+1 Wheel of Misfortune
+1 Mindbreak Trap
+1 Exotic Orchard
+1 Luxury Suite
+1 Morphic Pool
+1 Emergence Zone
+1 Talisman of Creativity
+1 Necrodominance
+1 Dramatic Reversal
+1 Warrior's Oath
+1 Valley Floodcaller
+1 Dress Down
+1 Flare of Duplication
+1 Flooded Strand
+1 Lake of the Dead
+1 Raucous Theater
+1 Overmaster
+1 An Offer You Can't Refuse
+1 Fellwar Stone
+1 Grinding Station
+1 Rite of Flame
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Praetor's Grasp
+1 Bloodstained Mire
+1 Talisman of Dominance

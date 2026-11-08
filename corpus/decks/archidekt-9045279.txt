@@ -1,0 +1,102 @@
+# Archidekt — Rem Karolus, Stalwart Slayer: Knights of Blood and Bone
+# source: archidekt:9045279
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Rem Karolus, Stalwart Slayer
+
+Deck:
+1 Rugged Prairie
+1 Scavenger Grounds
+1 Boros Signet
+1 Wear // Tear
+1 Sol Ring
+4 Mountain
+1 Strip Mine
+4 Plains
+1 Battlefield Forge
+1 Clifftop Retreat
+1 Demolition Field
+1 Sacred Foundry
+1 Spectator Seating
+1 Sunbaked Canyon
+1 Sundown Pass
+1 War Room
+1 Nykthos, Shrine to Nyx
+1 Light Up the Stage
+1 Talon Gates of Madara
+1 Generous Gift
+1 Stroke of Midnight
+1 Swords to Plowshares
+1 Path to Exile
+1 Arcane Signet
+1 Talisman of Conviction
+1 Arid Mesa
+1 Minas Tirith
+1 Chivalric Alliance
+1 Arena of Glory
+1 Smuggler's Share
+1 Urza's Cave
+1 Wrenn's Resolve
+1 Reckless Impulse
+1 Command Tower
+1 Elegant Parlor
+1 Court of Embereth
+1 Éowyn, Fearless Knight
+1 Battle Angels of Tyr
+1 Adriana, Captain of the Guard
+1 Kinsbaile Cavalier
+1 Knight Exemplar
+1 Inspiring Veteran
+1 Mirran Crusader
+1 Knight of the White Orchid
+1 Merry, Esquire of Rohan
+1 Moonshaker Cavalry
+1 Paladin Elizabeth Taggerdy
+1 Márton Stromgald
+1 Riders of Rohan
+1 Skyhunter Strike Force
+1 Imodane's Recruiter // Train Troops
+1 Cavern of Souls
+1 Patchwork Banner
+1 Path of Ancestry
+1 Three Tree City
+1 Knight of the New Coalition
+1 Valiant Knight
+1 Gallant Cavalry
+1 Silverwing Squadron
+1 Herald's Horn
+1 Guardian of Faith
+1 Abstergo Entertainment
+1 Renewed Solidarity
+1 Sunbillow Verge
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Trouble in Pairs
+1 Molten Echoes
+1 Summon: Knights of Round
+1 Dawn's Truce
+1 Folk Hero
+1 Blasphemous Act
+1 Shared Animosity
+1 Righteous Confluence
+1 Vandalblast
+1 Forth Eorlingas!
+1 Chain Reaction
+1 Chronicle of Victory
+1 Hanweir Battlements
+1 Flamekin Village
+1 Slayers' Stronghold
+1 Connecting the Dots
+1 Tori D'Avenant, Fury Rider
+1 Legion Loyalty
+1 Bloodcrusher of Khorne
+1 Galadriel's Dismissal
+1 Akroma's Will
+1 Tocasia's Welcome
+1 True Conviction
+1 Sunscorched Divide
+1 Encounter the Unknown
+1 The Beacon of Kahless
+1 The Mind Stone
+1 Concerted Effort

@@ -1,0 +1,96 @@
+# Archidekt — Athreos, God of you did this to yourself
+# source: archidekt:57849
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Athreos, God of Passage
+
+Deck:
+1 Archivist of Oghma
+1 Liliana, Death's Majesty
+1 Rise of the Dark Realms
+1 Grand Abolisher
+1 Hellish Rebuke
+1 Dauthi Voidwalker
+1 Liesa, Forgotten Archangel
+1 Shineshadow Snarl
+1 Painful Quandary
+1 Aven Mindcensor
+1 Reflecting Pool
+1 Sheoldred, the Apocalypse
+1 Caves of Koilos
+1 Arcane Signet
+1 Swords to Plowshares
+1 Thalia, Heretic Cathar
+1 Sun Titan
+1 Cabal Coffers
+1 Elesh Norn, Grand Cenobite
+1 Drana and Linvala
+1 Wrath of God
+1 Kambal, Consul of Allocation
+1 Shambling Vent
+1 Godless Shrine
+1 Marsh Flats
+1 Fetid Heath
+1 Archfiend of Depravity
+1 Path to Exile
+1 Utter End
+1 Ob Nixilis, Unshackled
+1 Dictate of Erebos
+1 Command Tower
+1 Erebos, God of the Dead
+1 Temple of Silence
+1 Anguished Unmaking
+1 Thespian's Stage
+1 Reliquary Tower
+1 Vindicate
+1 Vault of the Archangel
+1 Unburial Rites
+1 Isolated Chapel
+1 Viscera Seer
+1 Bojuka Bog
+1 Liliana Vess
+7 Plains
+1 Aura of Silence
+1 Urborg, Tomb of Yawgmoth
+1 Phyrexian Reclamation
+1 Phyrexian Tower
+1 Volrath's Stronghold
+1 Scrubland
+1 Phyrexian Altar
+1 Liliana, Dreadhorde General
+1 Phyrexian Arena
+1 Drannith Magistrate
+1 Expedition Map
+1 Sol Ring
+1 Silent Clearing
+1 Smothering Tithe
+1 Angel's Grace
+1 Cunning Rhetoric
+1 Farewell
+1 Pitiless Plunderer
+1 Blind Obedience
+1 Shattered Sanctum
+1 Damnation
+1 Esper Sentinel
+1 The Meathook Massacre
+1 Crypt Ghast
+1 Demonic Tutor
+1 Trouble in Pairs
+1 Ashnod's Altar
+1 Meathook Massacre II
+1 Warren Soultrader
+1 Cathar Commando
+1 Valkyrie's Call
+1 Liliana of the Dark Realms
+7 Swamp
+1 Bleachbone Verge
+1 Liesa, Shroud of Dusk
+1 Voice of Victory
+1 Deadly Rollick
+1 Continue?
+1 Loxodon Gatekeeper
+1 Return to Dust
+1 Bastion of Remembrance
+1 Inkshield

@@ -1,0 +1,103 @@
+# Archidekt — SUP Black Panther, Wakandan King
+# source: archidekt:22115945
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Black Panther, Wakandan King
+
+Deck:
+1 Heroic Intervention
+1 Ancient Tomb
+1 Karn's Bastion
+1 Inkmoth Nexus
+1 Brushland
+1 Wooded Foothills
+1 Eladamri's Call
+1 Branchloft Pathway // Boulderloft Pathway
+1 Flooded Strand
+1 Communal Brewing
+1 Misty Rainforest
+1 Boseiju, Who Endures
+1 Yavimaya, Cradle of Growth
+1 Guardian Project
+1 Temple Garden
+1 Chrome Mox
+1 Selesnya Signet
+1 Windswept Heath
+1 Overgrown Farmland
+1 Eternal Witness
+1 Arid Mesa
+1 Concordant Crossroads
+1 Marsh Flats
+1 Trouble in Pairs
+1 Sol Ring
+1 Defense of the Heart
+1 Savannah
+1 Smothering Tithe
+1 Sunpetal Grove
+1 Verdant Catacombs
+1 Hushwood Verge
+1 Wooded Bastion
+1 Court of Garenbrig
+1 Command Tower
+1 Sylvan Library
+1 Gaea's Cradle
+1 The One Ring
+1 Ashaya, Soul of the Wild
+1 Sphere Grid
+1 Thunderous Velocipede
+1 Arcane Signet
+1 Bountiful Promenade
+1 Spike Feeder
+1 The Great Henge
+1 Garruk's Uprising
+1 Survival of the Fittest
+1 Temur Sabertooth
+1 Mox Amber
+1 Flawless Maneuver
+1 Worldly Tutor
+1 Innkeeper's Talent
+1 Talisman of Unity
+1 Arwen, Weaver of Hope
+1 Walking Ballista
+1 Enlightened Tutor
+1 Dawn's Truce
+1 Flare of Fortitude
+1 Teferi's Protection
+1 Heliod, Sun-Crowned
+1 Knight of Autumn
+1 Sigarda, Font of Blessings
+1 Selvala, Explorer Returned
+1 Saryth, the Viper's Fang
+1 Esper Sentinel
+1 Kodama of the West Tree
+1 Elvish Mystic
+1 Selvala, Heart of the Wilds
+1 Roaming Throne
+1 Seedborn Muse
+1 Timeless Witness
+1 Chocobo Knights
+1 Pir, Imaginative Rascal
+1 Aven Interrupter
+1 Archangel of Thune
+1 Gatta and Luzzu
+1 Shalai, Voice of Plenty
+1 Voice of Victory
+1 Kutzil, Malamet Exemplar
+1 Yeva, Nature's Herald
+4 Plains
+1 Avacyn's Pilgrim
+3 Forest
+1 Delighted Halfling
+1 Llanowar Elves
+1 Kami of Whispered Hopes
+1 Birds of Paradise
+1 Selfless Spirit
+1 Recruiter of the Guard
+1 Drumbellower
+1 Basking Broodscale
+1 Grand Abolisher
+1 Triskelion
+1 Champion of Lambholt
+1 Evolution Witness

@@ -1,0 +1,105 @@
+# Archidekt — EDH: Rin and Seri (Seriously the BEST decklist)
+# source: archidekt:9476624
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Rin and Seri, Inseparable
+
+Deck:
+1 Anointed Procession
+1 Arid Mesa
+1 Basilisk Collar
+1 Aura Shards
+1 Castle Embereth
+1 Cavern of Souls
+1 Command Tower
+1 Copperline Gorge
+1 Farewell
+1 Gavony Township
+1 Jetmir's Garden
+1 Jetmir, Nexus of Revels
+1 Kaheera, the Orphanguard
+1 Keeper of Fables
+1 King of the Pride
+1 Leonin Warleader
+1 Lion Sash
+1 Minas Tirith
+1 Nacatl War-Pride
+1 Overgrown Farmland
+1 Path of Ancestry
+1 Prowling Serpopard
+1 Resolute Watchdog
+1 Rootbound Crag
+1 Sacred Foundry
+1 Secluded Courtyard
+1 Skullclamp
+1 Stomping Ground
+1 Sundown Pass
+1 Sunpetal Grove
+1 Teferi's Protection
+1 Temple Garden
+1 Tribute to the World Tree
+1 Wasteland
+1 Urza's Saga
+1 Windswept Heath
+1 Wooded Foothills
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Urza's Cave
+1 Temur Sabertooth
+1 Purphoros, God of the Forge
+1 Impact Tremors
+1 Generous Gift
+1 Galadriel's Dismissal
+1 Dawn's Truce
+1 Whitemane Lion
+2 Forest
+1 Beast Within
+1 Warleader's Call
+2 Mountain
+1 Bala Ged Recovery // Bala Ged Sanctuary
+2 Plains
+1 Exotic Orchard
+1 Heroic Intervention
+1 Sol Ring
+1 Lithoform Engine
+1 Felidar Guardian
+1 Jazal Goldmane
+1 Kutzil's Flanker
+1 Brimaz, King of Oreskos
+1 Maskwood Nexus
+1 Pride Sovereign
+1 Feline Sovereign
+1 Arcane Signet
+1 Selfless Savior
+1 Regal Caracal
+1 Qasali Pridemage
+1 Leonin Arbiter
+1 Tocasia's Welcome
+1 Kutzil, Malamet Exemplar
+1 Pack Leader
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Beastmaster Ascension
+1 Cryptolith Rite
+1 Mirror Entity
+1 Oreskos Explorer
+1 Descendants' Path
+1 Guardian Project
+1 Mirari's Wake
+1 Parallel Lives
+1 Qasali Slingers
+1 Goblin Bombardment
+1 Clever Concealment
+1 Shared Animosity
+1 Molten Echoes
+1 White Sun's Zenith
+1 Animal Sanctuary
+1 Three Tree City
+1 Boseiju, Who Endures
+1 Triumph of the Hordes
+1 Sheltering Landscape
+1 Eiganjo, Seat of the Empire
+1 Ocelot Pride
+1 Mirri, Weatherlight Duelist
+1 Marisi, Breaker of the Coil
+1 Trouble in Pairs

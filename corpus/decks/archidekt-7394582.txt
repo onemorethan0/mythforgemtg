@@ -1,0 +1,84 @@
+# Archidekt — Both Rootin and also Tootin
+# source: archidekt:7394582
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Laughing Jasper Flint
+
+Deck:
+1 Heartless Conscription
+1 Vial Smasher, Gleeful Grenadier
+1 Thieving Amalgam
+1 Hellspur Posse Boss
+1 Chaos Warp
+1 Path of Ancestry
+13 Mountain
+1 Vault Plunderer
+1 At Knifepoint
+1 Rakish Crew
+1 Thrill of Possibility
+1 Arcane Signet
+1 Talisman of Indulgence
+1 Abrade
+1 In Garruk's Wake
+1 Faithless Looting
+1 Mind Stone
+1 Overwhelming Forces
+1 Nezumi Linkbreaker
+1 Liquimetal Torque
+1 Thought Vessel
+1 Strionic Resonator
+1 Lantern of Insight
+1 Sol Ring
+1 Rakdos Signet
+1 Bedevil
+1 Treasure Nabber
+1 Reckless Lackey
+1 Prickly Pair
+1 Foreboding Ruins
+1 Relic of Legends
+1 Wayfarer's Bauble
+1 Zulaport Cutthroat
+1 Fellwar Stone
+1 Faerie Dreamthief
+1 Discerning Peddler
+1 Forsaken Miner
+1 Silver Deputy
+1 Ash Barrens
+1 Shadowblood Ridge
+1 Smoldering Marsh
+1 Rogue's Passage
+1 Tainted Peak
+1 Command Tower
+1 Nighthawk Scavenger
+1 Orcish Spy
+1 Prosper, Tome-Bound
+1 Fevered Suspicion
+1 Rakdos Charm
+1 Rakdos Carnarium
+1 Chromatic Lantern
+1 Drossforge Bridge
+1 Agate-Blade Assassin
+1 Changeling Outcast
+1 Morbid Opportunist
+1 The Infamous Cruelclaw
+1 Brimstone Roundup
+1 Vadmir, New Blood
+1 Overkill
+1 Breach the Multiverse
+1 Prosperous Bandit
+1 Tempt with Mayhem
+1 Bituminous Blast
+1 Hearthborn Battler
+1 Reverberate
+1 Backlash
+1 Deadly Rollick
+1 Blasphemous Act
+1 Terramorphic Expanse
+13 Swamp
+1 Saw in Half
+1 Gisa, the Hellraiser
+1 Back in Town
+1 Deadpool, Trading Card
+1 Vandalblast

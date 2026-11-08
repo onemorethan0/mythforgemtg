@@ -1,0 +1,89 @@
+# Archidekt — Raggadragga and the Mana Chads (157)
+# source: archidekt:5153772
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Raggadragga, Goreguts Boss
+
+Deck:
+1 Beast Within
+1 Ohran Frostfang
+1 Chaos Warp
+1 Leyline of Abundance
+1 Beanstalk Giant // Fertile Footsteps
+1 Birds of Paradise
+1 Karplusan Forest
+1 Ashaya, Soul of the Wild
+1 Dryad Arbor
+1 Apex Devastator
+1 Quirion Ranger
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Urabrask the Hidden
+1 Elvish Mystic
+1 Llanowar Elves
+1 Circle of Dreams Druid
+1 Cryptolith Rite
+1 Yavimaya, Cradle of Growth
+1 War Room
+1 Greater Good
+1 Marwyn, the Nurturer
+1 Rockfall Vale
+1 Command Tower
+1 Beastmaster Ascension
+1 Raging Ravine
+1 Cinder Glade
+1 Incubation Druid
+1 Rishkar's Expertise
+1 Beast Whisperer
+1 Rhythm of the Wild
+1 Devoted Druid
+7 Mountain
+1 Rishkar, Peema Renegade
+1 Nature's Claim
+1 Chord of Calling
+1 Ilysian Caryatid
+1 Commune with Lava
+1 Rootbound Crag
+1 Destiny Spinner
+1 Nyxbloom Ancient
+1 Awaken the Woods
+1 Elven Chorus
+1 Selvala, Heart of the Wilds
+1 Emergence Zone
+1 Wurmcalling
+1 Wirewood Lodge
+1 Copperline Gorge
+1 Veil of Summer
+1 Deflecting Swat
+1 Stomping Ground
+1 Bramble Familiar // Fetch Quest
+1 Smuggler's Surprise
+1 Wrap in Vigor
+1 Delighted Halfling
+1 Augur of Autumn
+1 Elvish Archdruid
+1 Gwenna, Eyes of Gaea
+1 Great Train Heist
+1 Praetor's Counsel
+1 Toski, Bearer of Secrets
+1 Kami of Whispered Hopes
+1 Paradise Druid
+1 Last March of the Ents
+1 Return of the Wildspeaker
+1 Quirion Elves
+1 Avenger of Zendikar
+1 Fanatic of Rhonas
+1 Thunderous Debut
+1 Collector Ouphe
+1 Tribute to the World Tree
+1 Abrade
+1 Lair of the Hydra
+1 Heroic Intervention
+1 Hateflayer
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Ruby, Daring Tracker
+1 Regal Force
+14 Forest
+1 Fyndhorn Elves
+1 Topiary Lecturer

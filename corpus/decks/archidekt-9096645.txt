@@ -1,0 +1,108 @@
+# Archidekt — Aminatou, Veil Piercer - Miracles
+# source: archidekt:9096645
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Aminatou, Veil Piercer
+
+Deck:
+1 Consider
+1 Doomsday
+1 Imperial Seal
+1 Necropotence
+1 Vampiric Tutor
+1 Marsh Flats
+1 Hallowed Fountain
+1 Island
+1 Flooded Strand
+1 Prismatic Vista
+1 Misty Rainforest
+1 Windswept Heath
+1 Arid Mesa
+1 Verdant Catacombs
+1 Serra's Sanctum
+1 Hall of Heliod's Generosity
+1 Gemstone Caverns
+1 Command Tower
+1 Arcane Signet
+1 Otawara, Soaring City
+1 Greed
+1 Chrome Mox
+1 Rhystic Study
+1 Urza's Saga
+1 Mox Diamond
+1 Talon Gates of Madara
+1 Raffine's Tower
+1 Ad Nauseam
+1 Smothering Tithe
+1 Silence
+1 Scroll Rack
+1 Bloodstained Mire
+1 Polluted Delta
+1 Nykthos, Shrine to Nyx
+1 Sensei's Divining Top
+1 Day's Undoing
+1 Watery Grave
+1 Godless Shrine
+1 Plains
+1 Force of Negation
+1 Force of Will
+1 Fellwar Stone
+1 Torment of Hailfire
+1 Dark Ritual
+1 Lim-Dûl's Vault
+1 Sol Ring
+1 Ancient Tomb
+1 Authority of the Consuls
+1 Replenish
+1 Solitary Confinement
+1 Exotic Orchard
+1 Mystic Remora
+1 Cephalid Coliseum
+1 Cabal Pit
+1 Mana Confluence
+1 Swamp
+1 Crystal Vein
+1 An Offer You Can't Refuse
+1 Scalding Tarn
+1 City of Brass
+1 Brainstorm
+1 Stasis
+1 Laboratory Maniac
+1 Cyclonic Rift
+1 Angel's Grace
+1 Mystical Tutor
+1 Lotus Petal
+1 Oboro Breezecaller
+1 Opposition Agent
+1 Talisman of Dominance
+1 Winds of Abandon
+1 Teferi's Ageless Insight
+1 Teferi, Master of Time
+1 Enlightened Tutor
+1 Urza's Cave
+1 Demonic Tutor
+1 Talisman of Progress
+1 Notion Thief
+1 Mana Vault
+1 Lotho, Corrupt Shirriff
+1 Unstoppable Plan
+1 Talisman of Hierarchy
+1 Esper Sentinel
+1 Ranger-Captain of Eos
+1 Borne Upon a Wind
+1 Counterbalance
+1 Fierce Guardianship
+1 Swift Reconfiguration
+1 Touch the Spirit Realm
+1 Demolition Field
+1 Dress Down
+1 Galadriel's Dismissal
+1 Blind Obedience
+1 Rule of Law
+1 Chain of Vapor
+1 Amphibian Downpour
+1 Copy Artifact
+1 Wishclaw Talisman
+1 Gleaming Splendor

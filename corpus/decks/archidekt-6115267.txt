@@ -1,0 +1,94 @@
+# Archidekt — Chungled Down Bim-Style
+# source: archidekt:6115267
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Xavier Sal, Infested Captain
+
+Deck:
+1 Swiftfoot Boots
+1 Jace, Ingenious Mind-Mage
+1 Inexorable Tide
+1 The Weatherseed Treaty
+1 Alaundo the Seer
+1 Freyalise, Llanowar's Fury
+1 Goldberry, River-Daughter
+1 Lithoform Engine
+1 Power Conduit
+1 Tekuthal, Inquiry Dominus
+1 Inventive Iteration // Living Breakthrough
+1 Tyvar, Jubilant Brawler
+1 Hex Parasite
+1 Kiora's Follower
+1 Ripples of Potential
+1 Everflowing Chalice
+1 Tear Asunder
+1 Clockspinning
+1 Vraska, Relic Seeker
+1 Binding the Old Gods
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Doubling Season
+1 Devoted Druid
+1 Jaheira, Friend of the Forest
+1 Tevesh Szat, Doom of Fools
+1 Sol Ring
+1 Vraska, Betrayal's Sting
+1 Kiora Bests the Sea God
+1 Kiora, the Crashing Wave
+1 Hinterland Harbor
+1 Rite of Belzenlok
+1 Deepglow Skate
+1 Tyvar's Stand
+1 Ferropede
+1 Vampire Hexmage
+1 Glissa Sunslayer
+1 Ezuri, Stalker of Spheres
+1 Shore Up
+1 Dimir Aqueduct
+1 Basilisk Gate
+1 Yavimaya Coast
+1 Manor Gate
+1 Simic Growth Chamber
+1 Baldur's Gate
+1 Gond Gate
+1 Command Tower
+1 Nesting Grounds
+1 Teferi, Temporal Archmage
+1 Sea Gate
+1 Reflecting Pool
+1 Dimir Guildgate
+1 Opulent Palace
+1 Dark Depths
+1 Thespian's Stage
+1 Golgari Guildgate
+1 Rejuvenating Springs
+1 Genesis of the Daleks
+1 Song of Eärendil
+1 Ominous Seas
+1 Scroll of Isildur
+1 Kiora, Master of the Depths
+1 Fain, the Broker
+1 Dramatic Reversal
+1 Choked Estuary
+1 Chromatic Lantern
+1 Voidslime
+6 Forest
+1 Reef Worm
+1 Urza's Cave
+1 Basking Broodscale
+1 Foreboding Landscape
+1 Evolution Witness
+1 Dreamtide Whale
+1 Intruder Alarm
+1 As Foretold
+1 Estrid's Invocation
+1 Goldvein Hydra
+1 Ioreth of the Healing House
+1 The Bath Song
+1 Birds of Paradise
+1 Awaken the Honored Dead
+5 Swamp
+1 Revitalizing Repast // Old-Growth Grove
+1 The One Ring
+6 Island

@@ -1,0 +1,105 @@
+# Archidekt — We are all Negan
+# source: archidekt:13143669
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Malik, Grim Manipulator
+
+Deck:
+1 Imperial Seal
+1 Lotus Petal
+1 Grand Abolisher
+1 Ragavan, Nimble Pilferer
+1 Arcane Signet
+1 Arid Mesa
+1 Cloudshift
+1 Marsh Flats
+1 Revel in Riches
+1 Command Tower
+1 Demonic Tutor
+1 Enlightened Tutor
+1 Vampiric Tutor
+1 Reckless Fireweaver
+1 Grim Tutor
+1 Deflecting Swat
+1 Diabolic Tutor
+1 Deadly Rollick
+1 Opposition Agent
+1 Lotho, Corrupt Shirriff
+1 Silence
+1 Blood Crypt
+1 Wasteland
+1 Orcish Bowmasters
+1 Galadriel's Dismissal
+1 Grim Monolith
+1 The One Ring
+1 Imperial Recruiter
+1 Beseech the Mirror
+1 Chrome Mox
+1 Mana Vault
+1 Cruel Tutor
+1 Godless Shrine
+1 Sacred Foundry
+1 Insatiable Avarice
+1 Esper Sentinel
+1 Smothering Tithe
+1 Ancient Tomb
+1 Bloodstained Mire
+1 Sol Ring
+1 Scrubland
+1 Razorkin Needlehead
+1 Dark Ritual
+1 Fellwar Stone
+1 Mox Opal
+1 Withering Torment
+1 Wheel of Fortune
+1 Generous Gift
+1 Mana Confluence
+1 Underworld Breach
+1 Blind Obedience
+1 Ephemerate
+1 Gemstone Caverns
+1 Plateau
+1 Badlands
+1 Raucous Theater
+1 Cabal Ritual
+1 Shadowy Backstreet
+1 Elegant Parlor
+1 Mox Diamond
+1 Peer into the Abyss
+1 Lurrus of the Dream-Den
+1 Scheming Symmetry
+1 Trouble in Pairs
+1 Approach of the Second Sun
+1 Recruiter of the Guard
+1 Flicker of Fate
+1 Ad Nauseam
+1 Swords to Plowshares
+1 Imp's Mischief
+1 Reprieve
+1 Jeska's Will
+1 Reanimate
+1 Sevinne's Reclamation
+1 Pyroblast
+1 Ranger-Captain of Eos
+1 Dismember
+1 Lightning Bolt
+1 Cut Down
+1 Red Elemental Blast
+1 Voice of Victory
+1 Blazemire Verge
+1 Galvanic Blast
+1 Yawgmoth's Will
+1 Snuff Out
+1 Demonic Counsel
+1 Rhystic Tutor
+1 Urza's Saga
+1 Reflecting Pool
+1 City of Brass
+2 Swamp
+1 Starting Town
+2 Plains
+1 Mountain
+1 Wishclaw Talisman
+1 Night's Whisper

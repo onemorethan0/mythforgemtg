@@ -1,0 +1,108 @@
+# Archidekt — yuriko
+# source: archidekt:13626340
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Ornithopter
+1 City of Brass
+1 Thassa's Oracle
+1 Varragoth, Bloodsky Sire
+1 Index
+1 Palinchron
+1 Great Whale
+1 Wishclaw Talisman
+1 Chrome Mox
+1 Force of Will
+1 Verdant Catacombs
+1 Mox Amber
+1 Force of Negation
+1 Undercity Sewers
+1 Polluted Delta
+1 Marsh Flats
+1 Misty Rainforest
+1 Scalding Tarn
+1 Gemstone Caverns
+1 Flooded Strand
+1 Bloodstained Mire
+1 Mana Vault
+1 Fierce Guardianship
+1 Flare of Malice
+1 Minamo, School at Water's Edge
+1 Pact of Negation
+1 Culling the Weak
+1 Nanogene Conversion
+1 Satoru, the Infiltrator
+1 Sensei's Divining Top
+1 Tetsuko Umezawa, Fugitive
+1 Cover of Darkness
+1 Temporal Extortion
+1 Fallen Shinobi
+1 Skullsnatcher
+1 Taeko, the Patient Avalanche
+1 Roaming Throne
+1 Thousand-Faced Shadow
+1 Peregrine Drake
+1 Saprazzan Legate
+1 Demonic Consultation
+1 Dark Ritual
+1 Lotus Petal
+1 Mistblade Shinobi
+1 Sol Ring
+1 Temporal Trespass
+1 Demonic Tutor
+1 Higure, the Still Wind
+1 Command Tower
+1 Shizo, Death's Storehouse
+1 Orcish Bowmasters
+1 Mental Misstep
+1 Opposition Agent
+1 Gifts Ungiven
+1 Mystical Tutor
+1 Shadow of Mortality
+1 Swamp
+1 Underground River
+1 Morphic Pool
+1 Watery Grave
+1 Snuff Out
+1 Mockingbird
+1 Misdirection
+1 Flusterstorm
+1 Grafdigger's Cage
+1 Cursed Totem
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Sakashima's Student
+1 Dauthi Voidwalker
+1 Arcane Adaptation
+1 Mindbreak Trap
+1 Commandeer
+1 Kaito, Bane of Nightmares
+1 Ancient Tomb
+1 Deadly Rollick
+1 Vampiric Tutor
+1 Wandering Archaic // Explore the Vastlands
+1 Island
+1 Gingerbrute
+1 Flare of Denial
+1 Subtlety
+1 Underground Sea
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Boggart Trawler // Boggart Bog
+1 Choked Estuary
+1 Null Rod
+1 Imperial Seal
+1 Stifle
+1 Mox Diamond
+1 Tainted Pact
+1 Draco
+1 Snow-Covered Swamp
+1 Snow-Covered Island
+1 Brainstorm
+1 Grim Tutor
+1 Dismember
+1 Force of Despair
+1 Lim-Dûl's Vault
+1 Diabolic Intent

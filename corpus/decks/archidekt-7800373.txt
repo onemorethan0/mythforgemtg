@@ -1,0 +1,103 @@
+# Archidekt — Ureni Dragon Tribal
+# source: archidekt:7800373
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ureni of the Unwritten
+
+Deck:
+1 Scourge of Valkas
+1 Sol Ring
+1 Sarkhan, Soul Aflame
+1 Sulfur Falls
+1 Shivan Reef
+1 Elemental Bond
+1 Exotic Orchard
+1 Arcane Signet
+1 Atarka, World Render
+2 Mountain
+1 Path of Ancestry
+1 Haven of the Spirit Dragon
+1 Blasphemous Act
+1 Rhythm of the Wild
+1 Arcane Denial
+1 Roaming Throne
+1 Heroic Intervention
+1 Goldspan Dragon
+1 Ancient Copper Dragon
+1 Cavern-Hoard Dragon
+1 Dragon Tempest
+1 Dragonborn Champion
+1 Earthquake Dragon
+1 Old Gnawbone
+1 Savage Ventmaw
+1 Up the Beanstalk
+1 Temur Ascendancy
+1 Ancient Silver Dragon
+1 Balefire Dragon
+1 Ghostly Flicker
+1 Herald's Horn
+1 Farseek
+1 Orb of Dragonkind
+1 Nature's Lore
+1 Utvara Hellkite
+1 Rishkar's Expertise
+1 Chaos Warp
+1 Kindred Discovery
+1 Reliquary Tower
+1 Counterspell
+1 Wooded Foothills
+1 Unclaimed Territory
+2 Forest
+1 Frontier Bivouac
+1 Cyclonic Rift
+1 Garruk's Uprising
+1 Astral Dragon
+1 Mountain
+1 Mountain
+1 Cinder Glade
+1 Beast Within
+1 Worldly Tutor
+1 Thornspire Verge
+1 Twinflame Tyrant
+1 Terror of the Peaks
+1 Dragonhawk, Fate's Tempest
+1 Island
+1 Evolving Wilds
+1 Jeska's Will
+1 Cultivate
+1 Panharmonicon
+1 An Offer You Can't Refuse
+1 Three Visits
+1 Lathliss, Dragon Queen
+1 Urza's Incubator
+2 Island
+1 Sneak Attack
+1 Dragon's Hoard
+1 Island
+3 Forest
+1 Karplusan Forest
+1 Island
+1 Aggravated Assault
+1 Firkraag, Cunning Instigator
+1 Scalding Tarn
+1 Mountain
+1 Carnelian Orb of Dragonkind
+1 Maelstrom of the Spirit Dragon
+1 Steam Vents
+1 Parapet Thrasher
+1 Stomping Ground
+1 Hellkite Courser
+1 Dragonlord Atarka
+1 Ureni, the Song Unending
+1 Kodama's Reach
+1 Dracogenesis
+1 Mox Jasper
+1 Breeding Pool
+1 Command Tower
+1 Lightning Greaves
+1 Fanatic of Rhonas
+1 Klauth, Unrivaled Ancient
+1 Miirym, Sentinel Wyrm
+1 Scaled Nurturer

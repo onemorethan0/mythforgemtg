@@ -1,0 +1,102 @@
+# Archidekt — Surgeon Commander: Mutate
+# source: archidekt:2326905
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Surgeon General Commander
+
+Deck:
+1 Cascading Cataracts
+1 City of Brass
+1 Raugrin Triome
+1 Souvenir Snatcher
+1 Sea-Dasher Octopus
+1 Command Tower
+1 Exotic Orchard
+1 Plains
+1 Mountain
+1 Vulpikeet
+1 Ketria Triome
+1 Slippery Bogle
+1 Brokkos, Apex of Forever
+1 Otrimi, the Ever-Playful
+1 Illuna, Apex of Wishes
+1 Trumpeting Gnarr
+1 Nethroi, Apex of Death
+1 Cubwarden
+1 Zagoth Triome
+1 Indatha Triome
+1 Pouncing Shoreshark
+1 Boros Charm
+1 Kaya's Ghostform
+1 Swiftfoot Boots
+1 Savai Triome
+1 Fabled Passage
+1 Dreamtail Heron
+1 Migratory Greathorn
+1 Dirge Bat
+1 Ivy, Gleeful Spellthief
+1 Gladecover Scout
+1 Essence Symbiote
+1 Gift of Immortality
+1 Path of Ancestry
+1 Grand Coliseum
+1 Toski, Bearer of Secrets
+1 Pollywog Symbiote
+1 Chittering Harvester
+1 Cavern Whisperer
+1 Insatiable Hemophage
+1 Farseek
+1 Three Visits
+1 Nature's Lore
+1 Swamp
+1 Island
+1 Glowstone Recluse
+1 Gemrazer
+1 Malakir Rebirth // Malakir Mire
+1 Scute Swarm
+1 Beast Whisperer
+1 Generous Gift
+1 Sawtusk Demolisher
+1 Beast Within
+1 Snapdax, Apex of the Hunt
+1 Huntmaster Liger
+1 Eerie Ultimatum
+1 Mindleecher
+1 Ruinous Ultimatum
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Parcelbeast
+7 Forest
+1 Geist of Saint Traft
+1 Silverback Elder
+1 Mythos of Snapdax
+1 Chromanticore
+1 Asceticism
+1 Silhana Ledgewalker
+1 Animar, Soul of Elements
+1 Jetmir's Garden
+1 Ancient Ziggurat
+1 Brave the Sands
+1 Auspicious Starrix
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Archipelagore
+1 Vadrok, Apex of Thunder
+1 Giggling Skitterspike
+1 Majestic Auricorn
+1 Killian, Ink Duelist
+1 Shared Roots
+1 Sakura-Tribe Elder
+1 Rampant Growth
+1 Heroic Intervention
+1 Xander's Lounge
+1 Vibrant Cityscape
+1 Starting Town
+1 Abundant Countryside
+1 Ziatora's Proving Ground
+1 Mana Confluence
+1 Raffine's Tower
+1 Spara's Headquarters
+1 Assassin's Trophy
+1 Ms. Marvel, Kamala Khan

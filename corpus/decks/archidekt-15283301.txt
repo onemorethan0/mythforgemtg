@@ -1,0 +1,100 @@
+# Archidekt — Toph, the First Metalbender 1.0
+# source: archidekt:15283301
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Arid Mesa
+1 Battlefield Forge
+1 Bountiful Promenade
+1 Brushland
+1 Clifftop Retreat
+1 Command Tower
+4 Forest
+1 Horizon Canopy
+1 Hushwood Verge
+1 Jetmir's Garden
+1 Karplusan Forest
+4 Mountain
+1 Overgrown Farmland
+1 Prismatic Vista
+1 Rootbound Crag
+1 Rockfall Vale
+1 Sacred Foundry
+1 Spectator Seating
+1 Stomping Ground
+1 Spire Garden
+1 Sundown Pass
+1 Sunbillow Verge
+1 Temple Garden
+1 Sunpetal Grove
+1 Thornspire Verge
+1 Yavimaya, Cradle of Growth
+3 Plains
+1 Wooded Foothills
+1 Terramorphic Expanse
+1 Mossborn Hydra
+1 Avenger of Zendikar
+1 Sazh's Chocobo
+1 Omnath, Locus of Rage
+1 Moraug, Fury of Akoum
+1 Springheart Nantuko
+1 Lotus Cobra
+1 Sabotender
+1 Scute Swarm
+1 Scythecat Cub
+1 Mycosynth Lattice
+1 Krosan Restorer
+1 Liquimetal Coating
+1 Nissa, Resurgent Animist
+1 Tunneling Geopede
+1 Emeria Angel
+1 Rampaging Baloths
+1 Strionic Resonator
+1 Elesh Norn, Mother of Machines
+1 Admonition Angel
+1 Traveling Chocobo
+1 Walking Ballista
+1 Comet Storm
+1 Fireball
+1 Bristly Bill, Spine Sower
+1 Sylvan Library
+1 Felidar Retreat
+1 Esper Sentinel
+1 Ichor Wellspring
+1 Mishra's Bauble
+1 Urza's Bauble
+1 Tireless Tracker
+1 Sol Ring
+1 Arcane Signet
+1 Mind Stone
+1 Coldsteel Heart
+1 Thought Vessel
+1 Tireless Provisioner
+1 Chromatic Lantern
+1 Spelunking
+1 Dryad of the Ilysian Grove
+1 Nissa, Vital Force
+1 Wedding Ring
+1 Mindslaver
+1 Tannuk, Memorial Ensign
+1 Crop Rotation
+1 Swords to Plowshares
+1 Disenchant
+1 Enlightened Tutor
+1 Worldly Tutor
+1 Planar Outburst
+1 Ground Assault
+1 Zuran Orb
+1 Sylvan Safekeeper
+1 Cosi's Ravager
+1 Krark-Clan Ironworks
+1 Path to Exile
+1 Heroic Intervention
+1 The Earth Crystal
+1 Amulet of Vigor
+1 Terra Eternal
+1 Ashaya, Soul of the Wild

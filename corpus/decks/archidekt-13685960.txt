@@ -1,0 +1,102 @@
+# Archidekt — [Cloud, EX-Soldier] Cloud Ex-Machina (FF Only)
+# source: archidekt:13685960
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Cloud, Ex-SOLDIER
+
+Deck:
+1 Lightning, Army of One
+1 The Fire Crystal
+1 Heroic Intervention
+1 Forge Anew
+1 Umezawa's Jitte
+1 Cloud, Midgar Mercenary
+1 Gogo, Mysterious Mime
+1 Summoning Materia
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Sunscorched Divide
+1 Sword of the Animist
+1 Tifa, Martial Artist
+1 Trailblazer's Boots
+1 Ultimate Magic: Holy
+1 Unfinished Business
+1 Vandalblast
+1 Vanquish the Horde
+1 Vincent, Vengeful Atoner
+1 Wooded Ridgeline
+1 Wrecking Ball Arm
+1 Zack Fair
+3 Plains
+1 Ash Barrens
+1 Austere Command
+1 Avalanche of Sector 7
+1 Barret Wallace
+1 Barret, Avalanche Leader
+1 Bastion Protector
+1 Battlefield Forge
+1 Behemoth Sledge
+1 Arcane Signet
+1 Bonders' Enclave
+1 Brushland
+1 Bugenhagen, Wise Elder
+1 Canopy Vista
+1 Champion's Helm
+1 Chaos Warp
+1 Cinder Glade
+1 Clever Concealment
+1 Clifftop Retreat
+1 Cloud's Limit Break
+1 Colossus Hammer
+1 Conformer Shuriken
+1 Conqueror's Flail
+1 Darksteel Plate
+1 Decimate
+1 Dispatch
+1 Command Tower
+1 Evolving Wilds
+1 Exotic Orchard
+1 Explorer's Scope
+1 Fire-Lit Thicket
+1 Fortified Village
+1 Furycalm Snarl
+1 Game Trail
+1 Helitrooper
+1 Hellkite Tyrant
+1 Hero's Blade
+1 Hero's Heirloom
+1 Jungle Shrine
+1 Aerith, Last Ancient
+1 Lightning Greaves
+1 Mask of Memory
+1 Mossfire Valley
+1 Nature's Lore
+3 Forest
+3 Mountain
+1 Path of Ancestry
+1 Professional Face-Breaker
+1 Professor Hojo
+1 Puresteel Paladin
+1 Radiant Grove
+1 Rampant Growth
+1 Red XIII, Proud Warrior
+1 Rootbound Crag
+1 Rugged Prairie
+1 Sacred Peaks
+1 Scavenger Grounds
+1 Sephiroth, Fallen Hero
+1 Slayers' Stronghold
+1 Sol Ring
+1 Spire of Industry
+1 Crystal Fragments // Summon: Alexander
+1 Tifa's Limit Break
+1 Ashe, Princess of Dalmasca
+1 Buster Sword
+1 Genji Glove
+1 Firion, Wild Rose Warrior
+1 Danitha Capashen, Paragon
+1 Gilgamesh, Master-at-Arms
+1 Adelbert Steiner
+1 Bruse Tarl, Boorish Herder

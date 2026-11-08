@@ -1,0 +1,103 @@
+# Archidekt — Sid Meier's Magic: The Gathering
+# source: archidekt:15287133
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kynaios and Tiro of Meletis
+
+Deck:
+1 Test of Endurance
+1 Well of Lost Dreams
+1 Irrigated Farmland
+1 Generous Gift
+1 The Eternity Elevator
+1 City of Brass
+1 Realm Seekers
+1 Tempt with Discovery
+1 Oketra's Monument
+1 Mangara, the Diplomat
+1 Edric, Spymaster of Trest
+1 Archivist of Oghma
+5 Forest
+1 Island
+1 Cleric Class
+1 Capital City
+1 Throne of the High City
+1 The Council of Four
+1 Plundering Barbarian
+1 Baldur's Gate
+1 Guild Summit
+1 Boros Guildgate
+1 Heap Gate
+1 Azorius Guildgate
+1 Cliffgate
+1 Lush Portico
+1 Burgeoning
+1 The Archimandrite
+1 Command Tower
+1 Helix Pinnacle
+1 Fodder Tosser
+1 Swords to Plowshares
+1 Mechanized Production
+1 Peace Talks
+1 Relic of Legends
+1 Academy Elite
+1 Clay-Fired Bricks // Cosmium Kiln
+1 Thought Vessel
+1 Elixir of Immortality
+1 Reconstruct History
+1 Heartwarming Redemption
+1 Monastery Mentor
+1 Chromatic Lantern
+1 Currency Converter
+1 Conspiracy Theorist
+1 Star of Extinction
+1 Circuitous Route
+1 Arcane Signet
+1 Reliquary Tower
+1 Sokrates, Athenian Teacher
+1 Azor's Elocutors
+1 Basilisk Gate
+1 Doomed Artisan
+1 Approach of the Second Sun
+1 Artist's Talent
+1 Damage Control Crew
+1 Monument to Endurance
+1 Propaganda
+1 Conqueror's Galleon // Conqueror's Foothold
+1 Detention Chariot
+1 Hazoret's Monument
+1 Metalwork Colossus
+1 Alistair, the Brigadier
+1 Megaton's Fate
+1 Buried Ruin
+1 Apothecary White
+1 Gateway Plaza
+1 Citadel Gate
+1 Gond Gate
+1 Urban Evolution
+1 Sea Gate
+1 Manor Gate
+1 Maze's End
+1 Authority of the Consuls
+2 Plains
+1 Council's Judgment
+1 Expedition Map
+1 Varchild, Betrayer of Kjeldor
+1 Orcish Lumberjack
+1 Mountain
+1 Monumental Henge
+1 Curse of the Swine
+1 Aftermath Analyst
+1 Trading Post
+1 Glittering Massif
+1 Scattered Groves
+1 Leonardo da Vinci
+1 Exotic Orchard
+1 Commercial District
+1 Gemstone Mine
+1 Simic Guildgate
+1 Selesnya Guildgate
+1 Izzet Guildgate
+1 Talon Gates of Madara

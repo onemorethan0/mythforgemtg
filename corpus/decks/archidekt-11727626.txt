@@ -1,0 +1,99 @@
+# Archidekt — Liesa, Forgotten Archangel
+# source: archidekt:11727626
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Liesa, Forgotten Archangel
+
+Deck:
+1 Steelshaper's Gift
+1 Open the Armory
+1 Myr Scrapling
+1 Sign in Blood
+1 Swords to Plowshares
+1 Command Tower
+1 Bleachbone Verge
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Godless Shrine
+1 Shattered Sanctum
+1 Caves of Koilos
+1 Flare of Fortitude
+1 Night's Whisper
+1 Isolated Chapel
+1 Desolate Mire
+1 Fetid Heath
+1 High Market
+1 Shineshadow Snarl
+1 Fell the Profane // Fell Mire
+1 Boggart Trawler // Boggart Bog
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Kami of False Hope
+1 O-Naginata
+1 Children of Korlis
+1 Scorn-Blade Berserker
+1 Fell Stinger
+1 Bojuka Bog
+1 Cabal Pit
+1 Eiganjo, Seat of the Empire
+1 Ifnir Deadlands
+1 Plaza of Heroes
+1 Horizon of Progress
+1 Malakir Rebirth // Malakir Mire
+1 Rogue's Passage
+1 Silent Clearing
+1 Giver of Runes
+1 Mother of Runes
+1 Benevolent Bodyguard
+1 Selfless Savior
+1 Skrelv, Defector Mite
+1 Selfless Samurai
+1 Selfless Spirit
+1 Remorseful Cleric
+1 Fracture
+1 Cathar Commando
+1 Flawless Maneuver
+1 Shriekmaw
+1 Razorgrass Ambush // Razorgrass Field
+1 Unscrupulous Contractor
+1 Feed the Swarm
+1 Scavenger Grounds
+10 Plains
+1 Thraben Charm
+1 Dark Knight's Greatsword
+1 Blackblade Reforged
+1 Genji Glove
+1 Mask of Memory
+1 Pact Weapon
+1 Skullclamp
+1 Lightning Greaves
+1 Read the Bones
+1 Exotic Orchard
+1 Swiftfoot Boots
+1 Faller's Faithful
+1 Concealed Courtyard
+1 Halvar, God of Battle // Sword of the Realms
+1 Turbulent Moor
+1 Hagra Mauling // Hagra Broodpit
+1 Accursed Marauder
+1 Doomed Traveler
+1 Lunar Convocation
+1 Enduring Tenacity
+1 Vito, Thorn of the Dusk Rose
+1 Twinblade Blessing
+1 Duelist's Heritage
+1 Ghost Lantern // Bind Spirit
+1 Disenchant
+1 Get Lost
+1 Bovine Intervention
+1 Phelia, Exuberant Shepherd
+1 Cataclysmic Gearhulk
+1 Puresteel Paladin
+1 Deathrender
+1 Hammer of Nazahn
+1 Grim Haruspex
+1 Damn
+1 Recruiter of the Guard
+1 Ranger-Captain of Eos
+1 Starfield Shepherd
+1 Stoneforge Mystic

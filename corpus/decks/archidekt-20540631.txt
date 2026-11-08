@@ -1,0 +1,108 @@
+# Archidekt — Esper Flipping Rhuls |  Y'shtola Night's Blessed Bracket 4 Combo
+# source: archidekt:20540631
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Cabal Ritual
+1 Shipwreck Marsh
+1 Bloodstained Mire
+1 Vault of Champions
+1 Sea of Clouds
+1 Morphic Pool
+1 Glacial Fortress
+1 Exotic Orchard
+1 Command Tower
+1 Talisman of Progress
+1 Drowned Catacomb
+1 Underground River
+1 Beseech the Mirror
+1 Arid Mesa
+1 Undercity Sewers
+1 Hallowed Fountain
+1 Watery Grave
+1 Godless Shrine
+1 Caves of Koilos
+1 Polluted Delta
+1 Marsh Flats
+1 Flooded Strand
+1 Vampiric Tutor
+1 Otawara, Soaring City
+1 Enlightened Tutor
+1 Lotho, Corrupt Shirriff
+1 Mirrormade
+1 Archivist of Oghma
+1 Esper Sentinel
+1 Deserted Beach
+1 Mana Confluence
+1 Swan Song
+1 Demonic Tutor
+1 Dark Ritual
+1 Rhystic Study
+1 Grand Abolisher
+1 Necropotence
+1 Bojuka Bog
+1 Bolas's Citadel
+1 Deadly Rollick
+1 Displacer Kitten
+1 Faerie Mastermind
+1 Force of Despair
+1 Force of Negation
+1 Force of Will
+1 Gleaming Splendor
+1 Misdirection
+1 Pact of Negation
+1 Papalymo Totolymo
+1 Path to Exile
+1 Pongify
+1 Ranger-Captain of Eos
+1 Sensei's Divining Top
+1 Smothering Tithe
+1 Teferi, Time Raveler
+1 Toxic Deluge
+1 Sol Ring
+1 Dismember
+1 Solitude
+1 Fierce Guardianship
+1 Strix Serenade
+1 Mana Drain
+1 An Offer You Can't Refuse
+1 Voice of Victory
+1 Talion, the Kindly Lord
+1 Mystical Tutor
+1 City of Brass
+1 Windswept Heath
+1 Verdant Catacombs
+1 Tataru Taru
+1 Arcane Signet
+1 Swords to Plowshares
+1 Drannith Magistrate
+1 Flusterstorm
+1 Silence
+1 Sevinne's Reclamation
+1 The Queen of Dale
+1 Mystic Remora
+1 Meticulous Archive
+1 The One Ring
+1 Cyclonic Rift
+1 Generous Gift
+1 Mana Vault
+1 Orcish Bowmasters
+1 Plains
+1 Island
+1 Geist of Saint Thalia
+1 Damn
+1 Chrome Mox
+1 Lotus Petal
+1 Scalding Tarn
+1 Shattered Sanctum
+1 Swamp
+1 Delney, Streetwise Lookout
+1 Wan Shi Tong, Librarian
+1 Adarkar Wastes
+1 Talisman of Dominance
+1 Supreme Verdict
+1 Curiosity

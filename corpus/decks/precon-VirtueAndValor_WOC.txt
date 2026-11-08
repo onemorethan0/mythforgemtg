@@ -1,0 +1,82 @@
+# WotC precon — Virtue and Valor (WOC, 2023-09-08)
+# source: mtgjson:VirtueAndValor_WOC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Ellivere of the Wild Court
+
+Deck:
+1 Ajani's Chosen
+1 Ancestral Mask
+1 Angelic Destiny
+1 Arcane Signet
+1 Archon of Sun's Grace
+1 Aura Gnarlid
+1 Austere Command
+1 Bear Umbra
+1 Canopy Vista
+1 Careful Cultivation
+1 Castle Ardenvale
+1 Celestial Archon
+1 Command Tower
+1 Danitha Capashen, Paragon
+1 Daybreak Coronet
+1 Destiny Spinner
+1 Eidolon of Blossoms
+1 Eidolon of Countless Battles
+1 Enchantress's Presence
+1 Ethereal Armor
+1 Fertile Ground
+15 Forest
+1 Fortified Village
+1 Generous Gift
+1 Giant Inheritance
+1 Gylwain, Casting Director
+1 Hall of Heliod's Generosity
+1 Indomitable Might
+1 Jukai Naturalist
+1 Kenrith's Transformation
+1 Knickknack Ouphe
+1 Kor Spiritdancer
+1 Krosan Verge
+1 Liberated Livestock
+1 Loamcrafter Faun
+1 Mantle of the Ancients
+1 Myriad Landscape
+1 Ox Drover
+1 Paradise Druid
+14 Plains
+1 Pollenbright Wings
+1 Realm-Cloaked Giant // Cast Off
+1 Retether
+1 Rishkar's Expertise
+1 Sage's Reverie
+1 Sanctum Weaver
+1 Setessan Champion
+1 Shalai, Voice of Plenty
+1 Siona, Captain of the Pyleas
+1 Snake Umbra
+1 Sol Ring
+1 Songbirds' Blessing
+1 Spectral Steel
+1 Starfield Mystic
+1 Sun Titan
+1 Sungrass Prairie
+1 Swords to Plowshares
+1 Sylvan Ranger
+1 Syr Armont, the Redeemer
+1 Tanglespan Lookout
+1 Temple of Plenty
+1 Timber Paladin
+1 Timely Ward
+1 Tithe Taker
+1 Transcendent Envoy
+1 Umbra Mystic
+1 Unfinished Business
+1 Utopia Sprawl
+1 Verdant Embrace
+1 Vitu-Ghazi, the City-Tree
+1 Warbriar Blessing
+1 Winds of Rath

@@ -1,0 +1,87 @@
+# Archidekt — Eluge and a Daydream
+# source: archidekt:14343923
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Eluge, the Shoreless Sea
+
+Deck:
+1 Arcane Lighthouse
+1 Breaching Leviathan
+1 Calamitous Tide
+1 Capsize
+1 Charix, the Raging Isle
+1 Coastal Breach
+1 Coral Atoll
+1 Counterspell
+1 Cryptic Command
+1 Deadeye Navigator
+1 Decanter of Endless Water
+1 Desertion
+1 Dissipate
+1 Dissolve
+1 Dour Port-Mage
+1 Engulf the Shore
+1 Evacuation
+1 Everdream
+1 Flood of Tears
+1 Flow of Ideas
+1 Flow of Knowledge
+1 Foil
+1 Fortune Teller's Talent
+1 Fountainport
+1 Fountainport Bell
+1 Hullbreaker Horror
+1 Halimar Depths
+1 Harbinger of the Seas
+1 High Tide
+1 Inkwell Leviathan
+1 Into the Flood Maw
+1 Inundate
+22 Island
+1 Jwari Disruption // Jwari Ruins
+1 Leyline of Anticipation
+1 Lilypad Village
+1 Lingering Mirage
+1 Lonely Sandbar
+1 Long River's Pull
+1 Magosi, the Waterveil
+1 Mikokoro, Center of the Sea
+1 Mind Spring
+1 Mnemonic Deluge
+1 Myriad Landscape
+1 Mystic Confluence
+1 Fact or Fiction
+1 Mystic Sanctuary
+1 Negate
+1 Ominous Seas
+1 Part the Waterveil
+1 Remote Isle
+1 Rewind
+1 River's Rebuke
+1 Scourge of Fleets
+1 Season of Weaving
+1 Shipwreck Dowser
+1 Sky Diamond
+1 Skyline Cascade
+1 Soaring Seacliff
+1 Spellgyre
+1 Stormtide Leviathan
+1 Strionic Resonator
+1 Sublime Epiphany
+1 Sunken Palace
+1 Tectonic Edge
+1 Time Warp
+1 Walk the Aeons
+1 Wash Out
+1 Wavebreak Hippocamp
+1 Whelming Wave
+1 Wonder
+1 Sea's Claim
+1 Chasm Skulker
+1 Colossal Whale
+1 Spreading Seas
+1 Turn Aside
+1 Wash Away
+1 Research the Deep

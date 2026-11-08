@@ -1,0 +1,99 @@
+# Archidekt — Felothar the Steadfast: Wall of Death
+# source: archidekt:12052175
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Felothar the Steadfast
+
+Deck:
+1 MacCready, Lamplight Mayor
+1 Betor, Kin to All
+1 Heroic Intervention
+1 Dragonlord Dromoka
+1 Command Tower
+1 Reliquary Tower
+1 Overgrown Tomb
+1 Sunpetal Grove
+1 Caves of Koilos
+1 Bountiful Promenade
+1 Isolated Chapel
+1 Brushland
+1 Godless Shrine
+1 Sandsteppe Citadel
+1 Llanowar Wastes
+1 Sylvan Caryatid
+1 Weathered Sentinels
+1 Shadrix Silverquill
+1 Rampart Architect
+1 Overgrown Battlement
+1 Undergrowth Stadium
+3 Swamp
+1 Indatha Triome
+1 Kodama's Reach
+1 Fecund Greenshell
+1 Exotic Orchard
+1 Stalwart Shield-Bearers
+1 Crystal Barricade
+1 Flumph
+1 Crashing Drawbridge
+1 Swiftfoot Boots
+1 Arbor Adherent
+1 Wall of Blossoms
+1 Wall of Omens
+1 Axebane Guardian
+1 Jaws of Defeat
+1 Assassin's Trophy
+1 Expel the Interlopers
+1 Tree of Perdition
+1 Assault Formation
+1 Wastewood Verge
+1 Bleachbone Verge
+1 Hushwood Verge
+1 Bedrock Tortoise
+1 Temple Garden
+1 Vault of Champions
+1 Akroma's Will
+1 Walking Bulwark
+1 Ohran Frostfang
+1 Blight Pile
+1 Rogue's Passage
+1 Ghalta the Immovable
+1 Path to Exile
+4 Plains
+1 Tree of Redemption
+1 The Black Gate
+1 The Walls of Ba Sing Se
+5 Forest
+1 Collective Resistance
+1 Doran, Besieged by Time
+1 Catapult Fodder // Catapult Captain
+1 Sol Ring
+1 Wall of Shards
+1 Vine Trellis
+1 Withering Torment
+1 Arcane Signet
+1 Swords to Plowshares
+1 Beast Within
+1 Anguished Unmaking
+1 Infernal Grasp
+1 Wall of Souls
+1 Selesnya Signet
+1 Golgari Signet
+1 Orzhov Signet
+1 Command Beacon
+1 Towering Viewpoint
+1 Access Tunnel
+1 Teyo, Geometric Tactician
+1 Wave of Reckoning
+1 Baldin, Century Herdmaster
+1 Farseek
+1 Ancient Adamantoise
+1 Captain America's Shield
+1 Last March of the Ents
+1 Galadriel's Dismissal
+1 Welcoming Vampire
+1 Behind the Scenes
+1 Tower Defense
+1 Slaughter the Strong
+1 Mentor of the Meek

@@ -1,0 +1,104 @@
+# Archidekt — EDH Gishath Dinosaur Tribal
+# source: archidekt:217018
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Gishath, Sun's Avatar
+
+Deck:
+1 Plateau
+1 Savannah
+1 Rogue's Passage
+1 Sacred Foundry
+1 Scalding Tarn
+1 Scroll Rack
+1 Stomping Ground
+1 Skyshroud Claim
+1 Sol Ring
+1 Smothering Tithe
+1 Taiga
+1 Swords to Plowshares
+1 Temple Altisaur
+1 Wheel of Fortune
+1 Boros Charm
+1 Topiary Stomper
+1 Apex Altisaur
+1 Ancient Tomb
+1 Arid Mesa
+1 Temple Garden
+1 Three Visits
+1 Aura Shards
+1 Windswept Heath
+1 Wooded Foothills
+1 Yavimaya, Cradle of Growth
+1 Zetalpa, Primal Dawn
+1 Xenagos, God of Revels
+1 Cavern of Souls
+1 Command Tower
+1 Decimate
+1 Carpet of Flowers
+1 Duelist's Heritage
+1 Enlightened Tutor
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Exploration
+1 Gaea's Cradle
+1 Farewell
+1 Kodama's Reach
+1 Jeska's Will
+1 Kinjalli's Sunwing
+1 Misty Rainforest
+1 Mana Vault
+1 Marsh Flats
+1 Verdant Catacombs
+1 Exotic Orchard
+1 Herald's Horn
+1 Wayward Swordtooth
+1 Urza's Incubator
+1 Cultivate
+1 Nature's Lore
+1 Sylvan Library
+1 Bronzebeak Foragers
+1 Curious Altisaur
+1 Wrathful Raptors
+1 Pantlaza, Sun-Favored
+1 Ghalta and Mavren
+1 Etali, Primal Storm
+1 Ghalta, Primal Hunger
+1 Ghalta, Stampede Tyrant
+1 Quartzwood Crasher
+1 Regisaur Alpha
+1 Verdant Sun's Avatar
+1 Arbor Elf
+1 Utopia Sprawl
+1 Wild Growth
+1 Sunhome, Fortress of the Legion
+1 Trapjaw Tyrant
+1 Kogla and Yidaro
+1 Trumpeting Carnosaur
+1 Scion of Calamity
+1 Domri, Anarch of Bolas
+1 Regal Behemoth
+1 Marauding Raptor
+1 Reinforcements
+1 Polyraptor
+1 Zacama, Primal Calamity
+1 Commercial District
+1 Hulking Raptor
+1 Worldly Tutor
+5 Forest
+1 Vaultborn Tyrant
+1 Sawhorn Nemesis
+1 Legion Leadership // Legion Stronghold
+1 Mountain
+1 Stump Stomp // Burnwillow Clearing
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Plains
+1 Annie Joins Up
+1 Flooded Strand
+1 Bloodstained Mire
+1 Blasphemous Act
+1 Deflecting Swat
+1 Yidaro, Wandering Monster
+1 The Great Henge
+1 Flawless Maneuver

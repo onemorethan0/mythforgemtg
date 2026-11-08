@@ -1,0 +1,90 @@
+# Archidekt — Foodborne Illness, Death By A Million Snacks; featuring Asmoranomardicadaistinaculdacar
+# source: archidekt:6763149
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Asmoranomardicadaistinaculdacar
+
+Deck:
+1 Sweettooth Witch
+1 Inti, Seneschal of the Sun
+1 Buried Ruin
+1 Smoldering Crater
+1 Terminate
+1 Anje Falkenrath
+1 Foreboding Fruit
+1 Academy Manufactor
+1 Trading Post
+1 Witch's Oven
+1 Temple of Malice
+1 Screaming Nemesis
+1 Demand Answers
+1 Bone Shards
+1 Volcano Hellion
+1 Street Wraith
+1 Mirkwood Bats
+1 Dark Withering
+1 Brash Taunter
+1 Ovalchase Daredevil
+1 Sol Ring
+1 Sign in Blood
+1 Blasphemous Act
+1 Lembas
+1 Blackcleave Cliffs
+1 Evolving Wilds
+1 Rakdos Signet
+1 Arcane Signet
+1 Mayhem Devil
+1 Gingerbrute
+1 Cauldron Familiar
+1 Foreboding Ruins
+1 Night's Whisper
+1 Bitter Feud
+1 Thrill of Possibility
+1 Barbed Servitor
+1 Voracious Fell Beast
+1 Squee, Goblin Nabob
+1 Oni-Cult Anvil
+1 Invasion Plans
+1 Imperial Recruiter
+1 Feed the Cauldron
+1 Goblin Engineer
+1 Golden Egg
+1 Furnace of Rath
+1 Candy Trail
+1 Syr Ginger, the Meal Ender
+1 Experimental Confectioner
+1 Forgotten Cave
+1 Smoldering Marsh
+1 Read the Bones
+1 Rakdos Carnarium
+1 Marionette Apprentice
+1 Feed the Swarm
+1 Stuffy Doll
+1 Mind Stone
+1 Rapacious Guest
+1 Barren Moor
+1 Dictate of the Twin Gods
+1 The Underworld Cookbook
+1 Faithless Looting
+1 Command Tower
+1 Old Flitterfang
+1 Trash for Treasure
+1 Archfiend of Ifnir
+1 Grave Scrabbler
+1 Ash Barrens
+1 Big Game Hunter
+1 Polluted Mire
+1 Containment Construct
+1 Lightning Axe
+1 Blightstep Pathway // Searstep Pathway
+1 Dragonskull Summit
+1 Raucous Theater
+1 Witch's Cottage
+1 Geier Reach Sanitarium
+1 Terminal Agony
+1 Fire Covenant
+1 Archfiend of Spite
+12 Swamp
+8 Mountain

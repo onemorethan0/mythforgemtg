@@ -1,0 +1,105 @@
+# Archidekt — SUP Zacama, Primal Calamity
+# source: archidekt:22114471
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zacama, Primal Calamity
+
+Deck:
+1 Timeless Witness
+1 Tifa, Martial Artist
+1 Mayael the Anima
+1 Fauna Shaman
+1 Polyraptor
+1 Selvala, Heart of the Wilds
+1 Temple Altisaur
+1 Ghalta and Mavren
+1 Etali, Primal Storm
+1 Combat Celebrant
+1 Formidable Speaker
+1 Forerunner of the Empire
+1 Shalai, Voice of Plenty
+1 Regisaur Alpha
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Silverclad Ferocidons
+1 Esper Sentinel
+1 Bonehoard Dracosaur
+1 Fyndhorn Elves
+1 Temur Sabertooth
+1 Kinjalli's Caller
+1 Waves of Aggression
+1 Zetalpa, Primal Dawn
+1 Otepec Huntmaster
+1 Zhur-Taa Druid
+1 Ghalta, Primal Hunger
+1 Oviya, Automech Artisan
+1 Atla Palani, Nest Tender
+1 Ripjaw Raptor
+1 Geode Golem
+1 Llanowar Elves
+1 Commercial District
+1 Swords to Plowshares
+1 Bloom Tender
+1 Kinjalli's Sunwing
+1 Tilonalli's Skinshifter
+1 Captain Sisay
+1 Frenzied Baloth
+1 Ravenous Tyrannosaurus
+1 Arcane Signet
+1 Knight of the Stampede
+1 Verdant Sun's Avatar
+1 Elvish Mystic
+1 Austere Command
+1 Rile
+1 Akroma's Memorial
+1 Sol Ring
+1 Seedborn Muse
+1 Deflecting Swat
+1 Naya Charm
+1 Shadowspear
+1 Wyll's Reversal
+1 Shamanic Revelation
+1 Teferi's Protection
+1 Helm of the Host
+1 Lightning Greaves
+1 The One Ring
+1 Herald's Horn
+1 Bloodstained Mire
+1 Survival of the Fittest
+1 Temporary Lockdown
+1 Smothering Tithe
+1 Lurking Predators
+1 Vivien on the Hunt
+1 Karplusan Forest
+1 Plateau
+1 Scalding Tarn
+1 Thornspire Verge
+1 Trouble in Pairs
+1 Sylvan Library
+1 Command Tower
+1 Spire Garden
+2 Plains
+1 Arid Mesa
+1 Ancient Tomb
+1 Savannah
+1 Temple Garden
+1 Wooded Bastion
+1 Battlefield Forge
+1 Lush Portico
+1 Spectator Seating
+1 Mountain
+1 Windswept Heath
+1 Wooded Foothills
+1 Bountiful Promenade
+1 Sunbillow Verge
+1 Stomping Ground
+1 Misty Rainforest
+1 Sacred Foundry
+1 Hushwood Verge
+1 Marsh Flats
+1 Brushland
+1 Clifftop Retreat
+1 Flooded Strand
+3 Forest
+1 Taiga

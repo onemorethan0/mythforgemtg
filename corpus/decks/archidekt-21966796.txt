@@ -1,0 +1,105 @@
+# Archidekt — Dungeon Dog and his Wacky Experiments
+# source: archidekt:21966796
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Yoshimaru, Ever Faithful
+1 Ludevic, Necro-Alchemist
+
+Deck:
+1 Slash the Ranks
+1 Adarkar Wastes
+1 Loot Dispute
+1 Sarevok's Tome
+1 Bloodboil Sorcerer
+1 Tomb of Horrors Adventurer
+1 White Plume Adventurer
+1 Caves of Chaos Adventurer
+1 Feywild Visitor
+1 Undercellar Sweep
+1 Trailblazer's Torch
+1 Goliath Paladin
+1 Seasoned Dungeoneer
+1 Stirring Bard
+1 Hama Pashar, Ruin Seeker
+1 Feywild Caretaker
+1 Far Traveler
+1 Thalia's Lancers
+1 Aarakocra Sneak
+1 Dungeon Delver
+1 Command Tower
+1 Guild Artisan
+1 Bastion Protector
+1 Noble Heritage
+1 Path of Ancestry
+1 Fury Storm
+1 Dancer's Chakrams
+1 Echo Storm
+1 Empyrial Storm
+1 Search for Dagger
+1 Red Death, Shipwrecker
+1 Taunt from the Rampart
+1 Tavern Brawler
+1 Hidden Hideout
+1 Glóin, Dwarf Emissary
+1 Nelly Borca, Impulsive Accuser
+1 Firkraag, Cunning Instigator
+1 Rivendell
+1 Search for Azcanta // Azcanta, the Sunken Ruin
+1 Mines of Moria
+1 Matzalantli, the Great Door // The Core
+1 Abstergo Entertainment
+1 Urza's Ruinous Blast
+1 Great Hall of the Citadel
+1 Senu, Keen-Eyed Protector
+1 Éowyn, Fearless Knight
+1 Commander Sofia Daguerre
+1 Plargg, Dean of Chaos // Augusta, Dean of Order
+1 Eerie Interlude
+1 Phelia, Exuberant Shepherd
+1 Brago, King Eternal
+1 Malcolm, Alluring Scoundrel
+1 Liquimetal Torque
+1 Jace, Vryn's Prodigy // Jace, Telepath Unbound
+1 Wild Research
+1 Muddle the Mixture
+1 Sunscorched Divide
+1 Mystic Monastery
+1 Kitsa, Otterball Elite
+1 Inspiring Vantage
+1 Skycloud Expanse
+1 Spirebluff Canal
+1 Perilous Landscape
+1 Cascade Bluffs
+1 Shivan Reef
+1 Axgard Armory
+1 Ferrous Lake
+1 Exotic Orchard
+1 Rugged Prairie
+1 Battlefield Forge
+1 Mystic Gate
+1 Legion Leadership // Legion Stronghold
+1 Sunbaked Canyon
+1 Mountain
+1 Seachrome Coast
+4 Plains
+1 Island
+1 Plaza of Heroes
+1 Pinnacle Monk // Mystic Peak
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Razorgrass Ambush // Razorgrass Field
+1 Sundering Eruption // Volcanic Fissure
+1 Dack Fayden
+1 Pippin, Guard of the Citadel
+1 Lord Jyscal Guado
+1 Monumental Henge
+1 Stock Up
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Ghost Vacuum
+1 Shadow of the Second Sun
+1 Teferi, Master of Time
+1 Loran of the Third Path
+1 Prismatic Strands
+1 Riverglide Pathway // Lavaglide Pathway
+1 Stormcarved Coast

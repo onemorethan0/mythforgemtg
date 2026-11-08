@@ -1,0 +1,104 @@
+# Archidekt — Felothar Defenders
+# source: archidekt:11980746
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Felothar the Steadfast
+
+Deck:
+1 Birds of Paradise
+1 Sol Ring
+1 Axebane Guardian
+1 Avacyn's Pilgrim
+1 Overgrown Battlement
+1 Assassin's Trophy
+1 Aura Shards
+1 Faeburrow Elder
+1 Wall of Blossoms
+1 Meekstone
+1 Crystal Barricade
+1 Shield Sphere
+1 Reanimate
+1 Stony Silence
+1 Teferi's Protection
+1 Verdant Catacombs
+1 Windswept Heath
+1 Bountiful Promenade
+1 Temple Garden
+1 Brushland
+1 Godless Shrine
+1 Command Tower
+1 Beast Within
+1 Dawn's Truce
+1 Wooded Foothills
+1 Yavimaya, Cradle of Growth
+1 Tyvar, Jubilant Brawler
+1 Exotic Orchard
+1 Woodland Cemetery
+1 Demonic Tutor
+1 Deafening Silence
+1 Undergrowth Stadium
+1 Slaughter the Strong
+1 Wall of Glare
+1 Nethroi, Apex of Death
+1 Wall of Roots
+1 Brave the Sands
+1 Wall of Tanglecord
+1 Bloom Tender
+1 Armageddon
+1 City of Brass
+1 Deathrite Shaman
+1 Tower Defense
+1 Toxic Deluge
+1 Worldly Tutor
+1 Lurrus of the Dream-Den
+1 Overgrown Tomb
+1 Indatha Triome
+1 Sunpetal Grove
+1 Three Visits
+1 Tree of Redemption
+1 Betor, Kin to All
+1 Horizon Canopy
+1 Heroic Intervention
+1 Fortified Rampart
+1 Wall of Shards
+1 Nature's Lore
+1 MacCready, Lamplight Mayor
+1 Wall of Junk
+1 Swords to Plowshares
+1 Vault of the Archangel
+1 Tree of Perdition
+1 Perimeter Captain
+1 Elves of Deep Shadow
+1 Walking Bulwark
+1 Misty Rainforest
+1 Flawless Maneuver
+1 Akroma's Will
+1 Wooded Bastion
+1 Kodama's Reach
+1 Zopandrel, Hunger Dominus
+4 Forest
+1 Boseiju, Who Endures
+1 Jaws of Defeat
+1 Chord of Calling
+1 Branchloft Pathway // Boulderloft Pathway
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Spectacular Spider-Man
+1 Torpor Orb
+1 Drannith Magistrate
+1 Marsh Flats
+1 Llanowar Elves
+2 Plains
+1 Swamp
+1 Crashing Drawbridge
+1 The Battle of Bywater
+1 The Walls of Ba Sing Se
+1 Wall of Mulch
+1 Hushwood Verge
+1 Doran, Besieged by Time
+1 Minas Tirith
+1 Reliquary Tower
+1 Cultivate
+1 Hakoda, Selfless Commander
+1 Ghalta the Immovable

@@ -1,0 +1,87 @@
+# Archidekt — Horobi, Death’s Wail
+# source: archidekt:4998487
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Horobi, Death's Wail
+
+Deck:
+1 Season of the Witch
+1 Tower of Coireall
+1 Desert
+1 Scale of Chiss-Goria
+1 Squee's Toy
+1 Sheoldred, the Apocalypse
+1 Liquimetal Torque
+1 Tooth of Chiss-Goria
+1 Liquimetal Coating
+1 Scuttlemutt
+1 Sangromancer
+1 Touch of Darkness
+1 Necropotence
+1 Imp's Mischief
+1 Beseech the Mirror
+1 Orcish Bowmasters
+1 Lake of the Dead
+1 Crypt Ghast
+1 Thrull Parasite
+1 Cauldron of Souls
+1 Ancient Tomb
+1 Mortuary
+1 Mind Stone
+1 Mindcrank
+1 Lifeline
+1 Distorting Lens
+1 Arcane Signet
+1 Walking Ballista
+1 Cruel Tutor
+1 Sorceress Queen
+1 Myr Welder
+1 Hex Parasite
+1 Arcane Lighthouse
+1 Buried Ruin
+1 Volrath's Stronghold
+1 Deadly Rollick
+1 Unwinding Clock
+1 Vampiric Tutor
+1 Nykthos, Shrine to Nyx
+1 Jet Medallion
+1 Gray Merchant of Asphodel
+1 No Mercy
+1 Shizo, Death's Storehouse
+1 The One Ring
+1 Phyrexian Arena
+1 Cabal Coffers
+1 Slaughter Pact
+1 Sensei's Divining Top
+1 Urborg, Tomb of Yawgmoth
+1 Opposition Agent
+1 Sol Ring
+1 Mox Opal
+1 Mikaeus, the Unhallowed
+1 Shadowspear
+1 Sorin Markov
+1 Phyrexian Reclamation
+1 Grim Tutor
+1 Zulaport Cutthroat
+1 Bloodchief Ascension
+1 Black Market Connections
+1 The Black Gate
+1 Helm of Obedience
+1 Tower of the Magistrate
+1 Urborg
+22 Swamp
+1 Ensnaring Bridge
+1 Demonic Tutor
+1 Snuff Out
+1 Unspeakable Symbol
+1 Liliana, the Last Hope
+1 Dauthi Voidwalker
+1 Dark Confidant
+1 Haunted Crossroads
+1 Sudden Spoiling
+1 Bolas's Citadel
+1 Inventors' Fair
+1 Blood Artist
+1 Imperial Seal

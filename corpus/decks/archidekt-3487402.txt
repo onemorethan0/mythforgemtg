@@ -1,0 +1,101 @@
+# Archidekt — Dahmer
+# source: archidekt:3487402
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jeska, Thrice Reborn
+1 Kodama of the East Tree
+
+Deck:
+1 Rootbound Crag
+1 Mosswort Bridge
+1 Field of the Dead
+1 Castle Garenbrig
+1 Skarrg, the Rage Pits
+1 Worldly Tutor
+1 Ghalta, Primal Hunger
+1 Delighted Halfling
+1 Karlach, Fury of Avernus
+1 Rancor
+1 Hanweir Battlements
+1 Valakut Awakening // Valakut Stoneforge
+1 Chaos Warp
+1 Command Tower
+1 Stomping Ground
+1 Urabrask the Hidden
+1 Skyshroud Claim
+1 Beast Within
+1 Swiftfoot Boots
+1 Rhythm of the Wild
+1 Quartzwood Crasher
+1 Shadowspear
+1 Rishkar's Expertise
+1 Xenagos, God of Revels
+1 Birds of Paradise
+1 Kessig Wolf Run
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Mossfire Valley
+1 Heroic Intervention
+1 Lightning Greaves
+1 Moraug, Fury of Akoum
+1 Blasphemous Act
+1 Lotus Cobra
+1 Goreclaw, Terror of Qal Sisma
+1 Temur Battle Rage
+1 Rockfall Vale
+1 Spire Garden
+1 Goblin Anarchomancer
+1 Karplusan Forest
+1 Fabled Passage
+1 Biophagus
+1 Three Visits
+1 Nature's Claim
+1 Selvala, Heart of the Wilds
+1 Tireless Provisioner
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Wooded Foothills
+1 Last March of the Ents
+1 Cinder Glade
+1 Hunter's Insight
+1 Fyndhorn Elves
+1 Beast Whisperer
+1 Old Gnawbone
+1 Toski, Bearer of Secrets
+1 Prismatic Vista
+1 The Great Henge
+1 Guardian Project
+1 Nyxbloom Ancient
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Sylvan Library
+1 Arena of Glory
+1 Fanatic of Rhonas
+1 Sundering Eruption // Volcanic Fissure
+1 RMS Titanic
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Springheart Nantuko
+1 Reflecting Pool
+1 The Reaver Cleaver
+1 Return of the Wildspeaker
+1 Thornspire Verge
+1 Tireless Tracker
+1 Harmonize
+1 Windswept Heath
+5 Forest
+1 Deflecting Swat
+1 Commercial District
+1 Sakura-Tribe Elder
+1 Overprotect
+1 Icetill Explorer
+1 Open the Way
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Terror of the Peaks
+4 Mountain
+1 Bloodstained Mire
+1 Boseiju, Who Endures
+1 Vibrance
+1 Sheltered Thicket
+1 Ilysian Caryatid
+1 Garruk's Uprising
+1 Tyvar's Stand

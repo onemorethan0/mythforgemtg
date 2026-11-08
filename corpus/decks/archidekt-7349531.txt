@@ -1,0 +1,91 @@
+# Archidekt — Rock Me Momma Like a Wagon Wheel
+# source: archidekt:7349531
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Roxanne, Starfall Savant
+
+Deck:
+1 Idol of Oblivion
+1 Nature's Lore
+1 Rampant Growth
+1 Delina, Wild Mage
+1 Stump Stomp // Burnwillow Clearing
+1 Gogo, Mysterious Mime
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Outcaster Trailblazer
+1 Trailblazer's Boots
+1 Copperline Gorge
+1 Bristling Backwoods
+1 Swiftfoot Boots
+1 Elemental Bond
+1 Panharmonicon
+1 Secluded Starforge
+1 Second Harvest
+1 Commercial District
+1 Tempestra, Dame of Games
+1 Thor, Guardian of Midgard
+1 Helm of the Host
+1 Fountainport
+1 Inspired Tinkering
+1 Bootleggers' Stash
+1 For the Common Good
+1 Devastating Onslaught
+1 Conjurer's Closet
+1 Sylvan Library
+1 Parallel Lives
+1 Shared Roots
+1 Skyclave Relic
+1 Sheltered Thicket
+1 Cloak of the Bat
+1 Freestrider Lookout
+1 Kessig Wolf Run
+1 Rootbound Crag
+1 Fleetfeather Sandals
+1 Blade of Selves
+1 Rockfall Vale
+1 Chaos Warp
+1 Command Tower
+1 Karplusan Forest
+1 Farseek
+1 Lightning Greaves
+1 Blinding Powder
+1 Cinder Glade
+1 The Fire Crystal
+1 Myth Unbound
+1 The Earth King
+1 Cactusfolk Sureshot
+1 Bitter Work
+1 Garruk's Uprising
+1 Ruby, Daring Tracker
+1 Michelangelo, Mutant BFF
+1 Hugs, Grisly Guardian
+1 Scrapshooter
+1 Scarlet Spider, Ben Reilly
+1 Topiary Stomper
+1 Karlach, Fury of Avernus
+1 Dolmen Gate
+8 Mountain
+1 Sparkcaster
+1 Kavu Lair
+1 Dragonhawk, Fate's Tempest
+1 Bramble Sovereign
+1 Goreclaw, Terror of Qal Sisma
+1 Lizard, Connors's Curse
+1 Overlord of the Boilerbilges
+1 Overlord of the Hauntwoods
+1 Sauron, Dino Devotee
+1 The Unbeatable Squirrel Girl
+1 Wulfgar of Icewind Dale
+1 Spider-Man, Brooklyn Visionary
+1 Sundering Eruption // Volcanic Fissure
+1 Galadriel, Gift-Giver
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Erratic Portal
+1 City on Fire
+1 Tome of Legends
+1 Stomping Ground
+11 Forest
+1 Spider-Man, Miles Morales
+1 Rogue's Passage

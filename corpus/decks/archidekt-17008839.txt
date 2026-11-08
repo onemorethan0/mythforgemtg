@@ -1,0 +1,108 @@
+# Archidekt — Choose Your Own Adventure
+# source: archidekt:17008839
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Emissary Green
+1 Erestor of the Council
+1 Magister of Worth
+1 Mob Verdict
+1 Midnight Crusader Shuttle
+1 Coercive Portal
+1 Expropriate
+1 Brago's Representative
+1 The Valeyard
+1 Genesis of the Daleks
+1 Hunted by The Family
+1 Custodi Squire
+1 Bite of the Black Rose
+1 Davros, Dalek Creator
+1 Capital Punishment
+1 The Dalek Emperor
+1 Círdan the Shipwright
+1 Sycorax Commander
+1 This Is How It Ends
+1 Ensnared by the Mara
+1 Trial of a Time Lord
+1 Elrond of the White Council
+1 Ballot Broker
+1 Grudge Keeper
+1 Council's Judgment
+1 Lieutenants of the Guard
+1 Illusion of Choice
+1 Messenger Jays
+1 Orchard Elemental
+1 Sail into the West
+1 Tivit, Seller of Secrets
+1 Wheel of Misfortune
+1 Model of Unity
+1 Trap the Trespassers
+1 Plea for Power
+1 Split Decision
+1 Selvala's Stampede
+1 Tempt with Bunnies
+1 Illicit Auction
+1 Truth or Consequences
+1 Tyrant's Choice
+1 Ketria Triome
+1 Vault 11: Voter's Dilemma
+1 Prisoner's Dilemma
+1 Orzhov Advokist
+1 Master of Ceremonies
+1 Tempt with Discovery
+1 Seize the Spotlight
+1 Minds Aglow
+1 Tempt with Glory
+1 Tempt with Mayhem
+1 Choice of Damnations
+1 Verdant Catacombs
+1 Sadistic Shell Game
+1 Marsh Flats
+1 Tempt with Immortality
+1 Tempt with Reflections
+1 Tempt with Vengeance
+1 Druid of Purification
+1 The World Tree
+1 Command Tower
+1 Indatha Triome
+1 Windswept Heath
+1 Bloodstained Mire
+1 Jetmir's Garden
+1 Ziatora's Proving Ground
+1 Path of Ancestry
+1 Scalding Tarn
+1 Spara's Headquarters
+1 Raugrin Triome
+1 Misty Rainforest
+1 Polluted Delta
+1 Flooded Strand
+1 Wooded Foothills
+1 Reflecting Pool
+1 Zagoth Triome
+1 Arid Mesa
+1 Raffine's Tower
+1 Savai Triome
+1 Xander's Lounge
+1 Chromatic Lantern
+1 Birds of Paradise
+1 Arcane Signet
+1 Tempting Contract
+1 Dryad of the Ilysian Grove
+1 Guadosalam, Farplane Gateway
+1 Crossroads Village
+1 Baron, Airship Kingdom
+1 Gohn, Town of Ruin
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Gongaga, Reactor Town
+1 Sharlayan, Nation of Scholars
+1 Starting Town
+1 Treno, Dark City
+1 Windurst, Federation Center
+1 Jidoor, Aristocratic Capital // Overture
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Forest
+1 Island

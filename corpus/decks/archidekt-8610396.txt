@@ -1,0 +1,108 @@
+# Archidekt — Belakor
+# source: archidekt:8610396
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Be'lakor, the Dark Master
+
+Deck:
+1 Rakdos, the Showstopper
+1 Nykthos, Shrine to Nyx
+1 Sneak Attack
+1 Blood Crypt
+1 Cyclonic Rift
+1 Command Tower
+1 Roaming Throne
+1 Mana Drain
+1 Reanimate
+1 Luxury Suite
+1 Rakdos, Lord of Riots
+1 Panharmonicon
+1 Lord Xander, the Collector
+1 Sower of Discord
+1 Archfiend of Despair
+1 Animate Dead
+1 Great Unclean One
+1 Sol Ring
+1 Urza's Incubator
+1 Watery Grave
+1 Reflecting Pool
+1 Steam Vents
+1 Herald of Slaanesh
+1 Morphic Pool
+1 Urborg, Tomb of Yawgmoth
+1 Varragoth, Bloodsky Sire
+1 Whip of Erebos
+1 Bloodletter of Aclazotz
+1 Training Center
+1 Bloodthirster
+1 Lord of Change
+1 Burning-Rune Demon
+1 Rakdos, Patron of Chaos
+1 Molten Echoes
+1 Otawara, Soaring City
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Demonic Tutor
+1 Dream Devourer
+1 Swamp
+1 Blasphemous Act
+1 Undercity Sewers
+1 Scalding Tarn
+1 Haunted Ridge
+1 Sulfur Falls
+1 Exalted Flamer of Tzeentch
+1 Valgavoth, Terror Eater
+1 Blazemire Verge
+1 Herald's Horn
+1 Demonic Counsel
+1 Gyruda, Doom of Depths
+1 Dark Ritual
+1 Kardur, Doomscourge
+1 Unholy Annex // Ritual Chamber
+1 Archfiend of Depravity
+1 Bloodstained Mire
+1 Heartless Summoning
+1 Ancient Tomb
+1 Arcane Signet
+1 Plague Drone
+1 Urza's Saga
+1 Jeska's Will
+1 Balor
+1 Black Market Connections
+1 Relic of Sauron
+1 Victimize
+1 Cavern of Souls
+1 Shipwreck Marsh
+1 Xander's Lounge
+1 Flameshadow Conjuring
+1 Malakir Rebirth // Malakir Mire
+1 Vampiric Tutor
+1 Spark Double
+1 Lightning Greaves
+1 Shadowspear
+1 The Soul Stone
+1 Ob Nixilis, Unshackled
+1 Valgavoth, Harrower of Souls
+1 Liliana's Contract
+1 Doom Whisperer
+1 Maze of Ith
+1 Island
+1 Mountain
+1 The Balrog of Moria
+1 Sword of Hearth and Home
+1 Collective Inferno
+1 Polluted Delta
+1 Lord of the Void
+1 Razaketh, the Foulblooded
+1 The One Ring
+1 Saw in Half
+1 Cabal Coffers
+1 Rhystic Study
+1 Vilis, Broker of Blood
+1 Gloomlake Verge
+1 Riverpyre Verge
+1 Deflecting Swat
+1 Toxic Deluge
+1 Untimely Malfunction

@@ -1,0 +1,108 @@
+# Archidekt — Food Sliver a la stax - Competitive - fEDH Tier 0 - 9.3
+# source: archidekt:4587488
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 The First Sliver
+
+Deck:
+1 Cavern of Souls
+1 Mystical Tutor
+1 Ad Nauseam
+1 Taiga
+1 Thassa's Oracle
+1 Food Chain
+1 Demonic Tutor
+1 Badlands
+1 Tropical Island
+1 Enlightened Tutor
+1 Bayou
+1 Plateau
+1 Savannah
+1 Scrubland
+1 Tundra
+1 Underground Sea
+1 Volcanic Island
+1 Gemstone Caverns
+1 Marsh Flats
+1 Drannith Magistrate
+1 Chrome Mox
+1 Collector Ouphe
+1 Stony Silence
+1 Null Rod
+1 Archivist of Oghma
+1 Carpet of Flowers
+1 Swan Song
+1 Eladamri's Call
+1 Lion's Eye Diamond
+1 Brain Freeze
+1 Natural State
+1 Cursed Totem
+1 Entomb
+1 Ancient Tomb
+1 Fire Covenant
+1 Wild Growth
+1 Arid Mesa
+1 Bloodstained Mire
+1 Boseiju, Who Endures
+1 Deathrite Shaman
+1 Demonic Consultation
+1 Esper Sentinel
+1 Flooded Strand
+1 Flusterstorm
+1 Force of Negation
+1 Birds of Paradise
+1 Ignoble Hierarch
+1 Imperial Seal
+1 Intuition
+1 Mental Misstep
+1 Misty Rainforest
+1 Mox Diamond
+1 Mystic Remora
+1 Noble Hierarch
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Pact of Negation
+1 Polluted Delta
+1 Ragavan, Nimble Pilferer
+1 Rhystic Study
+1 Scalding Tarn
+1 Sevinne's Reclamation
+1 Sol Ring
+1 Squee, the Immortal
+1 Tainted Pact
+1 Underworld Breach
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Worldly Tutor
+1 Abrupt Decay
+1 Torpor Orb
+1 Assassin's Trophy
+1 Pollywog Prodigy
+1 Shifting Woodland
+1 Command Tower
+1 Utopia Sprawl
+1 Clarion Conqueror
+1 Doorkeeper Thrull
+1 Phyrexian Revoker
+1 Containment Priest
+1 Sorcerous Spyglass
+1 Disruptor Flute
+1 Pithing Needle
+1 Lavinia, Azorius Renegade
+1 Force of Will
+1 Wan Shi Tong, Librarian
+1 The One Ring
+1 Noxious Revival
+1 Mana Vault
+1 Counterbalance
+1 Grafdigger's Cage
+1 Weathered Runestone
+1 Powerbalance
+1 Get Lost
+1 Rakdos Charm
+1 Nature's Claim
+1 Strix Serenade

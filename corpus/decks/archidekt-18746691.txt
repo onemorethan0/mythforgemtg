@@ -1,0 +1,94 @@
+# Archidekt — Auntie Ool: Blight Curse 🤢💀 [Upgraded Precon]
+# source: archidekt:18746691
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Blowfly Infestation + Flourishing Defenses; Bracket 2 allows none
+
+Commander:
+1 Auntie Ool, Cursewretch
+
+Deck:
+1 Decimator Beetle
+1 Xira, the Golden Sting
+1 Gristle Glutton
+1 Soul Immolation
+1 Ammit Eternal
+1 Necroblossom Snarl
+1 Overgrown Tomb
+1 Luxury Suite
+1 Scuzzback Scrounger
+4 Mountain
+6 Forest
+1 Vraska, Betrayal's Sting
+1 Black Sun's Zenith
+1 Massacre Girl, Known Killer
+1 Carnifex Demon
+1 Persist
+1 Chain Reaction
+1 Canyon Slough
+1 Ignoble Hierarch
+1 Midnight Banshee
+1 Assassin's Trophy
+1 Exotic Orchard
+1 Tree of Perdition
+1 Glissa Sunslayer
+1 Necroskitter
+1 The Scorpion God
+1 Channeler Initiate
+1 Hapatra, Vizier of Poisons
+1 Dusk Urchins
+1 Everlasting Torment
+1 Vernal Fen
+1 Festering Thicket
+1 Nesting Grounds
+1 Smoldering Marsh
+1 Grim Poppet
+1 Contagion Clasp
+1 Incremental Blight
+1 Blowfly Infestation
+1 Wickerbough Elder
+1 Woodland Cemetery
+1 Putrefy
+1 Kulrath Knight
+1 Devoted Druid
+1 Soul Snuffers
+1 Fire Covenant
+1 Binding the Old Gods
+1 Flourishing Defenses
+1 Evolution Sage
+1 Dragonskull Summit
+1 Savage Lands
+1 Warren Torchmaster
+1 Arcane Signet
+1 Sol Ring
+1 Command Tower
+1 The Reaper, King No More
+1 Obelisk Spider
+1 Grasping Dunes
+1 Nature's Lore
+1 Persistent Constrictor
+1 Oft-Nabbed Goat
+1 Dread Tiller
+1 Village Pillagers
+1 Sinister Gnarlbark
+1 Grave Venerations
+1 Aberrant Return
+1 Puca's Covenant
+1 Eventide's Shadow
+1 Lasting Tarfire
+1 Hapatra's Mark
+1 Wastewood Verge
+1 Thornspire Verge
+1 Diresight
+1 Undergrowth Stadium
+1 Twisted Landscape
+1 Heirloom Auntie
+1 Dawnhand Dissident
+1 Forbidden Orchard
+1 Burning Curiosity
+1 Unnatural Restoration
+8 Swamp
+1 Shadow Urchin
+1 Thirsting Roots
+1 Blazemire Verge
+1 Deathcap Glade

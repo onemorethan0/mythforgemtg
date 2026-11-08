@@ -1,0 +1,108 @@
+# Archidekt — Viv-Mizzet
+# source: archidekt:14689574
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 Simian Spirit Guide
+1 Brain Freeze
+1 Spirebluff Canal
+1 Sink into Stupor // Soporific Springs
+1 Gitaxian Probe
+1 Into the Flood Maw
+1 Deflecting Swat
+1 Force of Will
+1 Faerie Mastermind
+1 Riverpyre Verge
+1 Curiosity
+1 Ophidian Eye
+1 Mystic Remora
+1 Spellseeker
+1 Niv-Mizzet, Parun
+1 Arcane Signet
+1 Brainstorm
+1 Mana Drain
+1 Scalding Tarn
+1 Shivan Reef
+1 Rhystic Study
+1 Command Tower
+1 Sulfur Falls
+1 Cyclonic Rift
+1 The One Ring
+1 Mystical Tutor
+1 Storm-Kiln Artist
+1 Opt
+1 Springleaf Drum
+1 Will of the Jeskai
+1 Pongify
+1 Ponder
+1 Thassa's Oracle
+1 Hullbreaker Horror
+1 Thundering Falls
+1 Snapcaster Mage
+1 Gemstone Caverns
+1 Reflecting Pool
+1 Polluted Delta
+1 Wooded Foothills
+1 Fiery Islet
+1 Harmonic Prodigy
+1 Misty Rainforest
+1 Mindbreak Trap
+1 Chrome Mox
+1 Bloodstained Mire
+1 Lotus Petal
+1 Mystic Sanctuary
+1 Pact of Negation
+1 Windfall
+1 Intuition
+1 Final Fortune
+1 Mana Vault
+1 Exotic Orchard
+1 Flusterstorm
+1 Ancient Tomb
+1 Volcanic Island
+1 Otawara, Soaring City
+1 Mox Diamond
+1 Fellwar Stone
+1 Flooded Strand
+1 Training Center
+1 Merchant Scroll
+1 Jeska's Will
+1 Gandalf, Goblins' Bane // Flameshape
+1 Sol Ring
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Gamble
+1 City of Brass
+1 Rite of Flame
+1 Steam Vents
+1 Chain of Vapor
+1 Samut, Tyrant of Naktamun
+1 Tandem Lookout
+1 Mistrise Village
+1 Mental Misstep
+1 Mana Confluence
+1 Mox Amber
+1 Mox Opal
+1 Lion's Eye Diamond
+1 Redirect Lightning
+1 Counterspell
+1 Swan Song
+1 Force of Negation
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Disrupting Shoal
+1 Wild Ride
+1 Snap
+1 Hexing Squelcher
+1 Island
+1 Mountain
+1 Sigil of Sleep
+1 Blasphemous Act
+1 Fierce Guardianship
+1 Pyroblast
+1 An Offer You Can't Refuse
+1 Underworld Breach
+1 Mishra's Bauble
+1 Jeweled Amulet

@@ -1,0 +1,108 @@
+# Archidekt — Big creature beat down
+# source: archidekt:12406817
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Helga, Skittish Seer
+
+Deck:
+1 Selvala, Eager Trailblazer
+1 Peregrine Drake
+1 Sky Hussar
+1 Command Tower
+1 Great Oak Guardian
+1 Chakram Retriever
+1 Sink into Stupor // Soporific Springs
+1 Intruder Alarm
+1 An Offer You Can't Refuse
+1 Bloom Tender
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Venser, Shaper Savant
+1 Foundation Breaker
+1 Concordant Crossroads
+1 Craterhoof Behemoth
+1 Breeding Pool
+1 Avatar of Growth
+1 Temple Garden
+1 Hallowed Fountain
+1 Spara's Headquarters
+1 Palinchron
+1 Sparring Mummy
+1 Great Whale
+1 Chulane, Teller of Tales
+1 Shalai, Voice of Plenty
+1 Exotic Orchard
+1 Birds of Paradise
+1 Riptide Chronologist
+1 Sakashima the Impostor
+1 Surrak and Goreclaw
+1 Mystic Remora
+1 Flooded Strand
+1 Windswept Heath
+1 Gemstone Caverns
+1 Force of Will
+1 Exploration
+1 Wild Growth
+1 Saryth, the Viper's Fang
+1 Cloudstone Curio
+1 Consecrated Sphinx
+1 Deadeye Navigator
+1 Disciple of Freyalise // Garden of Freyalise
+1 Sakashima of a Thousand Faces
+1 Grand Arbiter Augustin IV
+1 Beast Whisperer
+1 Rhystic Study
+1 Dragonlord Dromoka
+1 Mistrise Village
+1 In the Eye of Chaos
+1 Druid of Purification
+1 Clever Impersonator
+1 Mightform Harmonizer
+1 Briarhorn
+1 Mox Diamond
+1 Chrome Mox
+1 Breaching Hippocamp
+1 Subtlety
+1 Solitude
+1 Wistfulness
+1 Spark Double
+1 Glen Elendra Archmage
+1 Starfield Vocalist
+1 Tanufel Rimespeaker
+1 Fierce Guardianship
+1 Carpet of Flowers
+1 Swan Song
+1 Minamo, School at Water's Edge
+1 City of Brass
+1 Tropical Island
+1 Bountiful Promenade
+1 Tundra
+1 Boseiju, Who Endures
+1 Misty Rainforest
+1 Rejuvenating Springs
+1 Savannah
+1 Mana Confluence
+1 Sea of Clouds
+1 Island
+1 Plains
+1 Otawara, Soaring City
+1 Forest
+1 Noble Hierarch
+1 Mindbreak Trap
+1 Quantum Riddler
+1 Deafening Silence
+1 Force of Negation
+1 Veil of Summer
+1 Yasharn, Implacable Earth
+1 Archon of Valor's Reach
+1 Misthollow Griffin
+1 Overcharged Amalgam
+1 Smothering Tithe
+1 Nulldrifter
+1 Trinisphere
+1 Food Chain
+1 Esper Sentinel
+1 Tidal Barracuda
+1 Flusterstorm
+1 Bane of Progress

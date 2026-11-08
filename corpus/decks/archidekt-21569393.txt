@@ -1,0 +1,108 @@
+# Archidekt — None can supplant Bant
+# source: archidekt:21569393
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Peter Parker // Amazing Spider-Man
+
+Deck:
+1 Skullclamp
+1 Amareth, the Lustrous
+1 Bant Battlemage
+1 Bant Charm
+1 Bant Sureblade
+1 Beck // Call
+1 Brokers Ascendancy
+1 Brokers Charm
+1 Brokers Confluence
+1 Chulane, Teller of Tales
+1 Temple Garden
+1 Savannah
+1 Nephalia Academy
+1 Hallowed Fountain
+1 Breeding Pool
+1 Command Tower
+1 Azorius Chancery
+1 Forest
+1 Simic Growth Chamber
+1 Island
+1 Plains
+1 Tropical Island
+1 Emeria, the Sky Ruin
+1 Empyrial Archangel
+1 Estrid, the Masked
+1 Falco Spara, Pactweaver
+1 Finest Hour
+1 Flurry of Wings
+1 Giltspire Avenger
+1 Helga, Skittish Seer
+1 Jedit Ojanen, Mercenary
+1 Spara's Adjudicators
+1 Katilda and Lier
+1 Kellan Joins Up
+1 Kros, Defense Contractor
+1 Mr. Foxglove
+1 Obelisk of Bant
+1 Perrie, the Pulverizer
+1 Rafiq of the Many
+1 Resounding Silence
+1 Roon of the Hidden Realm
+1 Rubinia Soulsinger
+1 Seaside Citadel
+1 Spara's Headquarters
+1 Stoic Angel
+1 Storvald, Frost Giant Jarl
+1 Supply // Demand
+1 Tamiyo, Field Researcher
+1 Tidus, Yuna's Guardian
+1 Treva's Charm
+1 Treva's Ruins
+1 Urban Retreat
+1 Wargate
+1 Ms. Bumbleflower
+1 Treva, the Renewer
+1 Noble Hierarch
+1 Arcane Signet
+1 Sol Ring
+1 Endless Detour
+1 Sunscape Master
+1 Yuna, Grand Summoner
+1 The Golden Throne
+1 Lightning Greaves
+1 Canopy Vista
+1 Cauldron of Souls
+1 Nesting Grounds
+1 Turbulent Wilderness
+1 Prairie Stream
+1 Elixir of Immortality
+1 Soul of Emancipation
+1 Skyward Eye Prophets
+1 Selesnya Sanctuary
+1 Kellan, the Kid
+1 Shanna, Purifying Blade
+1 Morska, Undersea Sleuth
+1 Deserted Temple
+1 Radiant Grove
+1 Feroz, Ulgrotha's Warden
+1 Tundra
+1 Turbulent Shore
+1 Relic of Legends
+1 Brenard, Ginger Sculptor
+1 Crystallization
+1 Alistair, the Brigadier
+1 Evendo, Waking Haven
+1 Ellie and Alan, Paleontologists
+1 Aang and Katara
+1 Derevi, Empyrial Tactician
+1 Aang, at the Crossroads // Aang, Destined Savior
+1 Abandoned Air Temple
+1 Arcane Lighthouse
+1 Rivendell
+1 Minamo, School at Water's Edge
+1 Fountainport
+1 Galadriel, Light of Valinor
+1 The Shire
+1 Angus Mackenzie
+2 Commander Spock
+1 Choco, Seeker of Paradise

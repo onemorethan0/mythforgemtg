@@ -1,0 +1,98 @@
+# Archidekt — Teysa Karlov Bracket 3
+# source: archidekt:11599764
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Teysa Karlov
+
+Deck:
+1 Altar of Dementia
+1 Anguished Unmaking
+1 Anointed Procession
+1 Arcane Signet
+1 Ashnod's Altar
+1 Athreos, God of Passage
+1 Bastion of Remembrance
+1 Black Market
+1 Blasphemous Edict
+1 Bleachbone Verge
+1 Blood Artist
+1 Boggart Trawler // Boggart Bog
+1 Bojuka Bog
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Carrion Feeder
+1 Castle Ardenvale
+1 Caves of Koilos
+1 Command Tower
+1 Cruel Celebrant
+1 Damn
+1 Deadly Dispute
+1 Diabolic Intent
+1 Dictate of Erebos
+1 Doomed Traveler
+1 Dread Return
+1 Drivnod, Carnage Dominus
+1 Eiganjo, Seat of the Empire
+1 Elas il-Kor, Sadistic Pilgrim
+1 Elenda, the Dusk Rose
+1 Esper Sentinel
+1 Fabled Passage
+1 Fetid Heath
+1 Field of Souls
+1 Fountainport
+1 Godless Shrine
+1 Grave Pact
+1 Gravecrawler
+1 Grim Haruspex
+1 Hallowed Spiritkeeper
+1 Hangarback Walker
+1 High Market
+1 Hunted Witness
+1 Infestation Sage
+1 Isolated Chapel
+1 Life Insurance
+1 Liliana, Dreadhorde General
+1 Luminous Broodmoth
+1 Marionette Apprentice
+1 Marsh Flats
+1 Massacre Wurm
+1 Mausoleum Secrets
+1 Midnight Reaper
+1 Open the Graves
+1 Ophiomancer
+1 Pawn of Ulamog
+1 Phyrexian Altar
+1 Phyrexian Tower
+1 Pitiless Plunderer
+5 Plains
+1 Plumb the Forbidden
+1 Priest of Forgotten Gods
+1 Prismatic Vista
+1 Reassembling Skeleton
+1 Rite of Oblivion
+1 Shadowy Backstreet
+1 Shattered Sanctum
+1 Sifter of Skulls
+1 Skullclamp
+1 Sol Ring
+1 Solemn Simulacrum
+1 Spawning Pit
+7 Swamp
+1 Swords to Plowshares
+1 Syr Konrad, the Grim
+1 Tainted Field
+1 Takenuma, Abandoned Mire
+1 Teferi's Protection
+1 Teysa, Orzhov Scion
+1 The Meathook Massacre
+1 Tragic Slip
+1 Vault of Champions
+1 Village Rites
+1 Viscera Seer
+1 Warren Soultrader
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Woe Strider
+1 Zahur, Glory's Past
+1 Zulaport Cutthroat

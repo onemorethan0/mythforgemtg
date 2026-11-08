@@ -1,0 +1,107 @@
+# Archidekt — Dargo & Thrasios Mid Range - CEDH
+# source: archidekt:5495485
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Thrasios, Triton Hero
+1 Dargo, the Shipwrecker
+
+Deck:
+1 Wooded Foothills
+1 Twinflame
+1 Scalding Tarn
+1 Exotic Orchard
+1 Birthing Pod
+1 Arcane Signet
+1 Lotus Petal
+1 An Offer You Can't Refuse
+1 Muddle the Mixture
+1 Snap
+1 Fellwar Stone
+1 Mystic Remora
+1 Misty Rainforest
+1 Boseiju, Who Endures
+1 Gaea's Cradle
+1 Ancient Tomb
+1 Steam Vents
+1 Volcanic Island
+1 Urza's Saga
+1 Training Center
+1 Command Tower
+1 Gemstone Caverns
+1 Goblin Bombardment
+1 Mox Opal
+1 Greater Good
+1 Mox Diamond
+1 Chrome Mox
+1 Seedborn Muse
+1 Relic of Legends
+1 Mana Vault
+1 Mox Amber
+1 Spire Garden
+1 Mana Confluence
+1 Mental Misstep
+1 Flusterstorm
+1 Basalt Monolith
+1 Mindbreak Trap
+1 Kinnan, Bonder Prodigy
+1 Tidespout Tyrant
+1 Pact of Negation
+1 Mystical Tutor
+1 Deflecting Swat
+1 Verdant Catacombs
+1 Breeding Pool
+1 Finale of Devastation
+1 Phantasmal Image
+1 Wheel of Fortune
+1 Brain Freeze
+1 Veil of Summer
+1 Lion's Eye Diamond
+1 Underworld Breach
+1 Gamble
+1 Jeska's Will
+1 Simian Spirit Guide
+1 Neoform
+1 Tinder Wall
+1 Elvish Mystic
+1 Pyroblast
+1 Red Elemental Blast
+1 Spellseeker
+1 Imperial Recruiter
+1 Chord of Calling
+1 Cyclonic Rift
+1 Chain of Vapor
+1 Arid Mesa
+1 Fiery Islet
+1 Birds of Paradise
+1 Cephalid Coliseum
+1 Worldly Tutor
+1 City of Traitors
+1 Forest
+1 Tishana's Tidebinder
+1 Shifting Woodland
+1 The One Ring
+1 Life's Legacy
+1 Sol Ring
+1 Spire of Industry
+1 Rhystic Study
+1 Seize the Spotlight
+1 Taiga
+1 Polluted Delta
+1 Displacer Kitten
+1 Fierce Guardianship
+1 Lightning Bolt
+1 Eldritch Evolution
+1 Ragavan, Nimble Pilferer
+1 Force of Negation
+1 Swan Song
+1 Eternal Witness
+1 City of Brass
+1 Vivi Ornitier
+1 Otawara, Soaring City
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Altar of Dementia
+1 Llanowar Elves
+1 Force of Will
+1 Gwenna, Eyes of Gaea

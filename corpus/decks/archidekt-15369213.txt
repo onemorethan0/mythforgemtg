@@ -1,0 +1,90 @@
+# Archidekt — Zuko
+# source: archidekt:15369213
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Restoration Angel + Felidar Guardian; Bracket 1 allows none
+
+Commander:
+1 Fire Lord Zuko
+
+Deck:
+1 Weftstalker Ardent
+1 Semester's End
+1 Fracture
+1 Shanid, Sleepers' Scourge
+1 Exotic Orchard
+1 Dream Devourer
+1 Restoration Angel
+1 Path to Exile
+1 Panharmonicon
+1 Arcane Signet
+1 Damning Verdict
+1 Fellwar Stone
+1 Swords to Plowshares
+1 Professional Face-Breaker
+1 Generous Gift
+1 Dark Ritual
+1 Heartless Act
+4 Swamp
+1 Sulfurous Springs
+1 Light Up the Stage
+1 Tinybones, Bauble Burglar
+1 Glorious Protector
+1 Rayblade Trooper
+1 Emergence Zone
+1 Leyline Tyrant
+1 Vedalken Orrery
+1 Gandalf the White
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Blazing Crescendo
+1 You Find Some Prisoners
+1 Never // Return
+1 Godless Shrine
+1 Shineshadow Snarl
+1 Isolated Chapel
+1 Savai Crystal
+1 Runaway Steam-Kin
+1 Teleportation Circle
+1 Ephemerate
+1 Vindicate
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 All Will Be One
+1 Wrenn's Resolve
+1 Visions of Phyrexia
+1 Electro, Assaulting Battery
+1 Interdimensional Web Watch
+1 Quintorius Kand
+1 Icewind Stalwart
+1 Laelia, the Blade Reforged
+1 Cait Sith, Fortune Teller
+1 Blade Historian
+1 Tori D'Avenant, Fury Rider
+1 Summon: Brynhildr
+1 Zuko, Exiled Prince
+1 Cunning Rhetoric
+1 Abandoned Air Temple
+1 Command Tower
+9 Plains
+1 March of Reckless Joy
+1 Commune with Lava
+1 Sol Ring
+1 Aang's Iceberg
+1 Expedited Inheritance
+1 Felidar Guardian
+1 Emperor of Bones
+1 Iroas, God of Victory
+1 Mythos of Snapdax
+1 Dragon Mantle
+1 Bre of Clan Stoutarm
+1 Etali, Primal Storm
+1 Sacred Foundry
+1 Blood Crypt
+1 Bloodstained Mire
+1 Luxury Suite
+1 Badlands
+1 Spectator Seating
+1 Savai Triome
+1 Mox Amber
+1 Conciliator's Duelist
+10 Mountain
+1 Emeritus of Truce // Swords to Plowshares

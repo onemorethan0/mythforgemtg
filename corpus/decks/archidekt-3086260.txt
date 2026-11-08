@@ -1,0 +1,90 @@
+# Archidekt — Toshiro Kill Spell Control
+# source: archidekt:3086260
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Toshiro Umezawa
+
+Deck:
+1 Morbid Opportunist
+1 Sedgemoor Witch
+1 Crypt Ghast
+1 Jet Medallion
+1 Primal Amulet // Primal Wellspring
+1 Nirkana Revenant
+1 K'rrik, Son of Yawgmoth
+1 Professor Onyx
+1 Slaughter Pact
+1 Aphotic Wisps
+1 Cling to Dust
+1 Cremate
+1 Dark Ritual
+1 Defile
+1 Malakir Rebirth // Malakir Mire
+1 Vampiric Tutor
+1 Go for the Throat
+1 Imp's Mischief
+1 Liliana's Triumph
+1 Malicious Affliction
+1 Withering Boon
+1 Blood Pact
+1 Force of Despair
+1 Sudden Spoiling
+1 Vona's Hunger
+1 Dark Bargain
+1 Deadly Rollick
+1 Arcane Lighthouse
+1 Boseiju, Who Shelters All
+1 Cabal Coffers
+1 Castle Locthwain
+1 Detection Tower
+1 Reliquary Tower
+1 Takenuma, Abandoned Mire
+1 Urborg, Tomb of Yawgmoth
+1 War Room
+1 The Meathook Massacre
+1 Hagra Mauling // Hagra Broodpit
+1 Snuff Out
+1 Necrologia
+1 Wretched Confluence
+1 Curtains' Call
+1 Demonic Tutor
+1 Feed the Swarm
+1 Toxic Deluge
+1 Caged Sun
+1 Black Market
+1 Cabal Stronghold
+1 Black Sun's Twilight
+1 Hostile Negotiations
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Sphinx-Bone Wand
+1 Sol Ring
+19 Snow-Covered Swamp
+1 Word of Command
+1 Extraplanar Lens
+1 V.A.T.S.
+1 Vein Ripper
+1 Bitter Triumph
+1 Shoot the Sheriff
+1 Rowan's Grim Search
+1 Gisa, the Hellraiser
+1 Revel in Riches
+1 Damnation
+1 Consuming Corruption
+1 Fell the Profane // Fell Mire
+1 Urza's Cave
+1 Spymaster's Vault
+1 Slaughter
+1 Infernal Grasp
+1 Nowhere to Run
+1 Séance Board
+1 Withering Torment
+1 Circle of Power
+1 Fandaniel, Telophoroi Ascian
+1 Teval's Judgment
+1 Archenemy's Charm
+1 The Soul Stone
+1 Lich's Relic
+1 Bloodline Recollector // Ancestral Craving
+1 Fire Nation Occupation

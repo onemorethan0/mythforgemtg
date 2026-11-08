@@ -1,0 +1,92 @@
+# Archidekt — Krenko cedh
+# source: archidekt:10973471
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Krenko, Mob Boss
+
+Deck:
+1 Goblin Matron
+1 Deflecting Swat
+1 Blood Moon
+1 Chaos Warp
+1 Thornbite Staff
+1 Gempalm Incinerator
+1 Goblin Trashmaster
+1 Jeska's Will
+1 Imperial Recruiter
+1 Treasonous Ogre
+1 Goblin Recruiter
+1 Sol Ring
+1 Mana Vault
+1 Sandstone Needle
+1 Gemstone Caverns
+1 Dwarven Ruins
+1 Crystal Vein
+1 Command Beacon
+1 Cavern of Souls
+1 Urza's Saga
+1 Goblin Engineer
+1 Wheel of Misfortune
+1 Inventors' Fair
+1 Great Furnace
+1 Wheel of Fortune
+1 Mox Opal
+1 Tibalt's Trickery
+1 Treasure Nabber
+1 Sokenzan, Crucible of Defiance
+1 Chrome Mox
+1 Sensei's Divining Top
+1 Fellwar Stone
+1 Mana Echoes
+1 Pyroblast
+1 Mox Diamond
+1 Wild Magic Surge
+1 Strip Mine
+1 Darksteel Citadel
+1 Grim Monolith
+1 Untimely Malfunction
+1 Three Tree City
+1 Abrade
+1 Arena of Glory
+1 Sundering Eruption // Volcanic Fissure
+1 Magus of the Wheel
+1 General Kreat, the Boltbringer
+1 Thermopod
+1 Blasting Station
+1 Reckless Handling
+1 Boots of Speed
+1 Lotus Petal
+1 Umbral Mantle
+1 Faithless Looting
+1 Lightning Greaves
+1 Pashalik Mons
+1 Goblin Chirurgeon
+1 Swiftfoot Boots
+1 Ashnod's Altar
+1 Brightstone Ritual
+1 Marvin, Murderous Mimic
+1 Mind Stone
+1 Phyrexian Altar
+1 Professional Face-Breaker
+1 Skirk Prospector
+1 Springleaf Drum
+1 Goblin Welder
+1 Red Elemental Blast
+1 Goblin Sharpshooter
+1 Lightning Crafter
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Ancient Tomb
+1 Gamble
+1 Goblin Bombardment
+1 Conspicuous Snoop
+1 Skullclamp
+1 Kiki-Jiki, Mirror Breaker
+1 The One Ring
+1 Arcane Signet
+1 Hexing Squelcher
+1 Goblin Chieftain
+1 Goro-Goro, Disciple of Ryusei
+1 Redirect Lightning
+17 Mountain

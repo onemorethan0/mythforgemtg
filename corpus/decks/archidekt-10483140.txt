@@ -1,0 +1,108 @@
+# Archidekt — Gold Finger 👉
+# source: archidekt:10483140
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Omnath, Locus of All
+
+Deck:
+1 Mr. Foxglove
+1 Sultai Charm
+1 Chromanticore
+1 Iridian Maelstrom
+1 Jared Carthalion
+1 Maelstrom Archangel
+1 Two-Headed Hellkite
+1 Primeval Spawn
+1 Sandsteppe Citadel
+1 Seaside Citadel
+1 Command Tower
+1 Obsidian Obelisk
+1 Aragorn, the Uniter
+1 Faeburrow Elder
+1 Surrak Dragonclaw
+1 Chromatic Lantern
+1 Rienne, Angel of Rebirth
+1 Naya Charm
+1 Jenson Carthalion, Druid Exile
+1 Abzan Charm
+1 Maelstrom Wanderer
+1 Glarb, Calamity's Augur
+1 Crackling Doom
+1 Brokers Charm
+1 Opulent Palace
+1 Esper Charm
+1 Nomad Outpost
+1 Void Rend
+1 Arcane Signet
+1 Frontier Bivouac
+1 Sol Ring
+1 Temur Ascendancy
+1 Jungle Shrine
+1 Bringer of the White Dawn
+1 Widespread Thieving
+1 Savage Lands
+1 Etched Monstrosity
+1 Bringer of the Blue Dawn
+1 Arthur, Marigold Knight
+1 Obscura Charm
+1 Composite Golem
+1 Swords to Plowshares
+1 Maestros Charm
+1 Path to Exile
+1 Exotic Orchard
+1 Crumbling Necropolis
+1 Wilderness Reclamation
+1 Crosis's Charm
+1 Mystic Monastery
+1 Arcane Sanctum
+1 Reborn Hope
+1 Vivid Revival
+1 Eerie Ultimatum
+1 Chulane, Teller of Tales
+1 Muldrotha, the Gravetide
+1 Eshki Dragonclaw
+1 Temur Battlecrier
+1 Perennation
+1 Ruinous Ultimatum
+1 Relic of Legends
+1 Ramos, Dragon Engine
+1 Bant Charm
+1 Jeskai Charm
+1 Riveteers Charm
+1 Samite Elder
+1 Etched Oracle
+1 Mana Cannons
+1 Kamiz, Obscura Oculus
+1 Fellwar Stone
+1 Mana Confluence
+1 Steam Vents
+1 Godless Shrine
+1 Breeding Pool
+1 Stomping Ground
+1 Sacred Foundry
+1 Temple Garden
+1 Path of Ancestry
+1 City of Brass
+1 Overgrown Tomb
+1 Hallowed Fountain
+1 Watery Grave
+1 Blood Crypt
+1 Morphic Pool
+1 Luxury Suite
+1 Windswept Heath
+1 Polluted Delta
+1 Flooded Strand
+1 Bloodstained Mire
+1 Sea of Clouds
+1 Spire Garden
+1 Bountiful Promenade
+1 Vault of Champions
+1 Spectator Seating
+1 Rejuvenating Springs
+1 Training Center
+1 Undergrowth Stadium
+1 Bloom Tender
+1 Thalia and The Gitrog Monster
+1 The Mana Rig

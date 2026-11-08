@@ -1,0 +1,92 @@
+# Archidekt — A Vampire Wedding (Wedding Vampires, Blood, Queen Marchesa)
+# source: archidekt:10676267
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Queen Marchesa
+
+Deck:
+2 Plains
+1 Markov Purifier
+1 Edgar's Awakening
+1 Feast of Blood
+1 Bloodcrazed Socialite
+1 Blood Hypnotist
+1 Blood Tribute
+1 Olivia, Crimson Bride
+1 Anje, Maid of Dishonor
+1 Imposing Grandeur
+1 Henrika Domnathi // Henrika, Infernal Seer
+1 Belligerent Guest
+1 Welcoming Vampire
+1 Chandra, Dressed to Kill
+1 Edgar, Charmed Groom // Edgar Markov's Coffin
+1 Gluttonous Guest
+1 Falkenrath Forebear
+1 Unholy Officiant
+1 Dying to Serve
+1 Blood Petal Celebrant
+1 Cemetery Gatekeeper
+1 Restless Bloodseeker // Bloodsoaked Reveler
+1 Groom's Finery
+1 Bride's Gown
+1 Alluring Suitor // Deadly Dancer
+1 Voldaren Epicure
+1 Olivia's Attendants
+1 Wedding Ring
+1 Bloodthirsty Conqueror
+1 Mirkwood Bats
+1 Carmen, Cruel Skymarcher
+1 Command Tower
+1 Debt to the Deathless
+1 Fracture
+1 Three Tree City
+1 Vault of the Archangel
+1 Savai Triome
+1 Godless Shrine
+1 Sacred Foundry
+1 Voldaren Estate
+1 Markov Enforcer
+1 Haunted Ridge
+1 Shattered Sanctum
+1 Strefan, Maurer Progenitor
+1 Sundown Pass
+1 Scion of Opulence
+1 Moonstone Eulogist
+1 Wedding Invitation
+1 Crackling Doom
+1 Sinister Waltz
+1 New Blood
+1 Stensia Bloodhall
+1 Wedding Announcement // Wedding Festivity
+1 Reckless Fireweaver
+1 Bloodtithe Harvester
+1 Falkenrath Celebrants
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Blood Crypt
+1 Reliquary Tower
+4 Swamp
+1 Command Bridge
+1 Susurian Voidborn
+1 Starting Town
+1 Susur Secundi, Void Altar
+1 Bloodsworn Squire // Bloodsworn Knight
+1 Skulking Killer
+1 Odric, Blood-Cursed
+1 Blood Servitor
+1 Ceremonial Knife
+1 Markov Retribution
+1 Pointed Discussion
+1 Malakir Bloodwitch
+1 Neonate's Rush
+1 Avacyn's Judgment
+1 Change of Fortune
+1 Dominating Vampire
+1 Wedding Security
+13 Mountain
+1 Bloodvial Purveyor
+1 Markov Waltzer
+1 Sorin the Mirthless
+1 Sigarda's Imprisonment
+1 Twilight Prophet

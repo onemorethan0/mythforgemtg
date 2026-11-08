@@ -1,0 +1,92 @@
+# Archidekt — Etali Big Boys 2.0
+# source: archidekt:4254600
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+
+Deck:
+1 Panharmonicon
+1 Mirage Phalanx
+1 Tamiyo's Safekeeping
+1 Eternal Witness
+1 Mana Geyser
+1 Birds of Paradise
+1 Gwenna, Eyes of Gaea
+1 Nalfeshnee
+1 Conjurer's Closet
+1 Otepec Huntmaster
+1 Keeper of Secrets
+1 Rockfall Vale
+1 Cultivate
+1 Kodama's Reach
+1 Copperline Gorge
+1 Gruul Turf
+1 Thrill of Possibility
+1 Swiftfoot Boots
+1 Jaxis, the Troublemaker
+1 Orthion, Hero of Lavabrink
+1 Goreclaw, Terror of Qal Sisma
+1 Faithless Looting
+1 Sword of Hearth and Home
+10 Mountain
+1 Jeska's Will
+1 Humble Defector
+1 Karplusan Forest
+1 Chaos Warp
+1 Wild-Magic Sorcerer
+1 Vigor
+1 Beast Within
+1 Archetype of Endurance
+1 Blade of Selves
+1 Rionya, Fire Dancer
+1 Possibility Storm
+1 Rishkar's Expertise
+1 Rampant Growth
+1 Stomping Ground
+1 Skyshroud Claim
+1 Spire Garden
+1 Splinter Twin
+1 Game Trail
+1 Passionate Archaeologist
+1 Harmonize
+1 Emrakul, the Promised End
+1 Vorinclex // The Grand Evolution
+1 Worldly Tutor
+1 Blasphemous Act
+1 Gamble
+1 Call Forth the Tempest
+1 Sol Ring
+1 Command Tower
+1 Rhythm of the Wild
+1 Vorinclex, Voice of Hunger
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Sakura-Tribe Elder
+1 Ulamog, the Defiler
+1 Springheart Nantuko
+1 Three Visits
+1 Thornspire Verge
+1 Twinflame
+1 Rootbound Crag
+1 Delina, Wild Mage
+1 Impending Flux
+1 Etali, Primal Storm
+1 Electroduplicate
+1 Up the Beanstalk
+1 Molten Duplication
+1 Mirror March
+1 Molten Echoes
+1 Arcane Signet
+1 Rogue's Passage
+8 Forest
+1 Goblin Anarchomancer
+1 Gruul Signet
+1 Exotic Orchard
+1 Temple of the False God
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Ancient Copper Dragon
+1 Flaming Tyrannosaurus
+1 Terror of the Peaks
+1 Sandwurm Convergence

@@ -1,0 +1,69 @@
+# Archidekt — All 43 Mono Green Hydra (plus clockwork hydra)
+# source: archidekt:14708951
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Gargos, Vicious Watcher
+
+Deck:
+1 Ramunap Hydra
+1 Hashep Oasis
+1 Desert of the Indomitable
+1 Rampaging Aetherhood
+1 Rampant Rejuvenator
+1 Clockwork Hydra
+1 Apex Devastator
+1 Benevolent Hydra
+1 Briar Hydra
+1 Bristling Hydra
+1 Capricopian
+1 Heroes' Bane
+1 Hungering Hydra
+1 Honored Hydra
+1 Hooded Hydra
+1 Hydra Broodmaster
+1 Hydra Omnivore
+1 Ironscale Hydra
+1 Domesticated Hydra
+1 Genesis Hydra
+1 Feral Hydra
+1 Kalonian Hydra
+1 Lifeblood Hydra
+1 Mossborn Hydra
+1 Managorger Hydra
+1 Mistcutter Hydra
+1 Nessian Wilds Ravager
+1 Khalni Hydra
+1 Polukranos, World Eater
+1 Primordial Hydra
+1 Vastwood Hydra
+1 Scourge of Skola Vale
+1 Sprouting Phytohydra
+1 Steelbane Hydra
+1 Stumpsquall Hydra
+1 Ulvenwald Hydra
+1 Neverwinter Hydra
+1 Nyxborn Hydra
+1 Oran-Rief Hydra
+1 Phyrexian Hydra
+1 Wren's Run Hydra
+1 Delighted Halfling
+1 Llanowar Elves
+1 Fanatic of Rhonas
+1 Fyndhorn Elves
+1 Voracious Hydra
+1 Warden of the Grove
+1 Whiptongue Hydra
+1 Wildwood Scourge
+1 Ilysian Caryatid
+1 Tender Wildguide
+1 Sylvan Caryatid
+1 Trailtracker Scout
+1 Herald's Horn
+1 The Earth Crystal
+1 Boreal Druid
+1 Aspect of Hydra
+1 Hydra's Growth
+1 Lair of the Hydra
+40 Forest

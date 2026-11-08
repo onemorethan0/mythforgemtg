@@ -1,0 +1,83 @@
+# Archidekt — Epstein's Island
+# source: archidekt:19805840
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Arixmethes, Slumbering Isle
+
+Deck:
+1 Slippery Scoundrel
+1 Devious Cover-Up
+1 Weaver of Lies
+1 Ulamog, the Defiler
+1 Stunted Growth
+1 Collective Voyage
+1 In Too Deep
+1 Press for Answers
+1 You Find the Villains' Lair
+1 Threats Undetected
+1 Hidden Nursery
+1 Early Harvest
+1 Scholar of the Ages
+1 Collected Company
+1 Collective Unconscious
+1 Witness of the Ages
+1 Coastal Discovery
+1 Council of Advisors
+1 Council's Deliberation
+1 Deep Analysis
+1 Mass Appeal
+1 Forbidden Lore
+1 Village Elder
+1 Circle of Elders
+1 Fresh Meat
+1 Life Finds a Way
+1 Long-Term Plans
+1 Gather Specimens
+1 Persuasion
+1 Abduction
+1 Burden of Proof
+1 Damage Control Crew
+1 Mass Manipulation
+1 Peer Pressure
+1 Run Away Together
+1 Seeds of Innocence
+1 Evidence Examiner
+1 Hard Evidence
+1 Trail of Evidence
+1 Seize the Secrets
+1 Child of Gaea
+1 Hidden Predators
+1 Political Trickery
+1 Conspiracy Unraveler
+1 Fountain of Youth
+1 Predator's Strike
+1 Predatory Focus
+1 Predatory Urge
+1 Lurking Predators
+1 Predatory Rampage
+14 Island
+1 Scene of the Crime
+1 Knowledge Exploitation
+1 Sower of Temptation
+1 Delver of Secrets // Insectile Aberration
+1 Secretkeeper
+1 Thriving Isle
+1 Secret Plans
+13 Forest
+1 Lure
+1 Hide in Plain Sight
+1 Party Dude
+1 Endless Evil
+1 Increasing Savagery
+1 Unknown Shores
+1 Bribe Taker
+1 Twist Reality
+1 Alter Reality
+1 Bribery
+1 Propaganda
+1 Tropical Island
+1 Breeding Pool
+1 Escape Tunnel
+1 Access Denied

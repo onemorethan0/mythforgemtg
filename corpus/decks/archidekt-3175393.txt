@@ -1,0 +1,100 @@
+# Archidekt — Return to Monke.     - Kibo, Uktabi Prince
+# source: archidekt:3175393
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Kibo, Uktabi Prince
+
+Deck:
+1 Curse of Opulence
+1 Jolene, the Plunder Queen
+1 Manglehorn
+1 Viridian Revel
+1 Rockfall Vale
+1 Rootbound Crag
+1 Karplusan Forest
+1 Command Tower
+1 Cinder Glade
+1 Wooded Foothills
+1 Stomping Ground
+1 Nature's Lore
+1 Liquimetal Torque
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Oran-Rief, the Vastwood
+1 Beast Within
+1 Kogla, the Titan Ape
+1 Silverback Elder
+1 Gorilla Berserkers
+1 Ferocious Tigorilla
+1 Ancient Silverback
+1 Grunn, the Lonely King
+1 Treetop Village
+1 Uktabi Orangutan
+1 Scrounging Bandar
+1 Towering Gibbon
+2 Mountain
+1 Goblin Anarchomancer
+1 Kodama of the West Tree
+1 Skarrg, the Rage Pits
+1 Yavimaya Steelcrusher
+1 Kessig Wolf Run
+1 Return to Nature
+1 Mob Rule
+1 Colossal Majesty
+1 Ram Through
+1 Gorilla Titan
+1 Skyshroud Claim
+1 Hardened Scales
+1 Ravenous Baboons
+1 Garruk's Uprising
+1 Wasteland
+1 Mycosynth Lattice
+1 Uktabi Kong
+1 Decimate
+1 Boseiju, Who Endures
+3 Forest
+1 Rishkar's Expertise
+1 Keen Sense
+1 Overwhelming Stampede
+1 Shattering Spree
+1 Khalni Ambush // Khalni Territory
+1 Vandalblast
+1 Gearbane Orangutan
+1 Cavern of Souls
+1 Quicksmith Genius
+1 Realmwalker
+1 Signature Slam
+1 Stump Stomp // Burnwillow Clearing
+1 Taiga
+1 Three Tree City
+1 Arena of Glory
+1 Valakut Awakening // Valakut Stoneforge
+1 Pain Distributor
+1 Embercleave
+1 Simian Spirit Guide
+1 Sundering Eruption // Volcanic Fissure
+2 Mountain
+1 Summit Apes
+1 Hooting Mandrills
+1 Beast Whisperer
+1 Primal Rage
+1 Swiftfoot Boots
+4 Forest
+1 Echoing Ruin
+1 Gorilla Chieftain
+1 Ragavan, Nimble Pilferer
+1 Guttural Response
+1 Uncivil Unrest
+1 Disciple of Freyalise // Garden of Freyalise
+1 Plaza of Heroes
+1 Untimely Malfunction
+1 Tribute to the World Tree
+1 Blasphemous Act
+1 Return of the Wildspeaker
+1 Biosynthic Burst
+3 Forest
+1 Fanatic of Rhonas
+1 Snakeskin Veil
+1 Glorious Sunrise
+1 Invigorating Hot Spring

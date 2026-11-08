@@ -1,0 +1,97 @@
+# Archidekt — Riku Of Many Paths - Bracket 3 - DSGILC Ep 3
+# source: archidekt:16058004
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Riku of Many Paths
+
+Deck:
+1 Murmuring Mystic
+1 Exotic Orchard
+1 Hinterland Harbor
+6 Island
+1 Mossfire Valley
+4 Mountain
+1 Overflowing Basin
+1 Riptide Laboratory
+1 Rootbound Crag
+1 Shivan Reef
+1 Sulfur Falls
+1 Harmonic Prodigy
+1 Flooded Grove
+4 Forest
+1 Frontier Bivouac
+1 Veyran, Voice of Duality
+1 Waterlogged Grove
+1 Arcane Bombardment
+1 Command Tower
+1 Cascade Bluffs
+1 Octavia, Living Thesis
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Sorcerer Class
+1 Bushwhack
+1 Three Steps Ahead
+1 Enduring Vitality
+1 An Offer You Can't Refuse
+1 Decisive Denial
+1 You See a Guard Approach
+1 Reverse the Polarity
+1 Great Train Heist
+1 Smuggler's Surprise
+1 Quandrix Command
+1 Simic Charm
+1 Abrade
+1 Collective Resistance
+1 Twinferno
+1 Inscription of Abundance
+1 Temur Charm
+1 Applied Biomancy
+1 You Come to a River
+1 Flame of Anor
+1 Izzet Charm
+1 Shifting Grift
+1 Return of the Wildspeaker
+1 Rootcast Apprenticeship
+1 Season of Gathering
+1 Season of Weaving
+1 Mystic Confluence
+1 Skullclamp
+1 Jeska's Will
+1 Airborne Aid
+1 Frostcliff Siege
+1 Distant Melody
+1 Winged Portent
+1 Hermes, Overseer of Elpis
+1 Secret Identity
+1 Wild Shape
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Goblin Surprise
+1 Mishra's Onslaught
+1 Shared Animosity
+1 Beastmaster Ascension
+1 Fiery Islet
+1 Yavimaya Coast
+1 Game Trail
+1 Karplusan Forest
+1 Sink into Stupor // Soporific Springs
+1 Vineglimmer Snarl
+1 Frostboil Snarl
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Silundi Vision // Silundi Isle
+1 Riverglide Pathway // Lavaglide Pathway
+1 Obelisk of Urd
+1 Roaming Throne
+1 Cryptolith Rite
+1 Untimely Malfunction
+1 Heritage Reclamation
+1 Defend the Rider
+1 Fierce Guardianship
+1 Trash the Town
+1 Cryptic Command
+1 Hull Breach
+1 Bloom Tender
+1 Quandrix Apprentice
+1 Swan Song
+1 Fire-Lit Thicket

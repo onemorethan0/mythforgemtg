@@ -1,0 +1,84 @@
+# WotC precon — Seize Control (C15, 2015-11-13)
+# source: mtgjson:SeizeControl_C15
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Mizzix of the Izmagnus
+
+Deck:
+1 Act of Aggression
+1 Aetherize
+1 Aethersnatch
+1 Arjun, the Shifting Flame
+1 Awaken the Sky Tyrant
+1 Blatant Thievery
+1 Blue Sun's Zenith
+1 Blustersquall
+1 Brainstorm
+1 Broodbirth Viper
+1 Call the Skybreaker
+1 Chain Reaction
+1 Charmbreaker Devils
+1 Comet Storm
+1 Command Tower
+1 Counterflux
+1 Desperate Ravings
+1 Dominate
+1 Dragon Mage
+1 Echoing Truth
+1 Epic Experiment
+1 Etherium-Horn Sorcerer
+1 Evolving Wilds
+1 Fact or Fiction
+1 Faithless Looting
+1 Firemind's Foresight
+1 Gigantoplasm
+1 Goblin Electromancer
+1 Illusory Ambusher
+14 Island
+1 Izzet Boilerworks
+1 Izzet Guildgate
+1 Izzet Signet
+1 Jace's Archivist
+1 Lone Revenant
+1 Magmaquake
+1 Melek, Izzet Paragon
+1 Meteor Blast
+1 Mirror Match
+1 Mizzium Mortars
+1 Mizzix's Mastery
+13 Mountain
+1 Mystic Confluence
+1 Mystic Retrieval
+1 Preordain
+1 Prophetic Bolt
+1 Psychosis Crawler
+1 Reins of Power
+1 Reliquary Tower
+1 Repeal
+1 Rite of Replication
+1 Rite of the Raging Storm
+1 Rogue's Passage
+1 Seal of the Guildpact
+1 Sleep
+1 Sol Ring
+1 Spinerock Knoll
+1 Steam Augury
+1 Stolen Goods
+1 Stroke of Genius
+1 Swiftwater Cliffs
+1 Talrand, Sky Summoner
+1 Temple of the False God
+1 Terramorphic Expanse
+1 Thought Reflection
+1 Thought Vessel
+1 Urza's Rage
+1 Vandalblast
+1 Vivid Crag
+1 Vivid Creek
+1 Warchief Giant
+1 Windfall
+1 Word of Seizing
+1 Worn Powerstone

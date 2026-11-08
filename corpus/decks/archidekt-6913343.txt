@@ -1,0 +1,84 @@
+# Archidekt — Timmay, Baron of Bats
+# source: archidekt:6913343
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Timothar, Baron of Bats
+
+Deck:
+1 Bojuka Bog
+1 Phyrexian Tower
+1 Bleak Coven Vampires
+1 Falkenrath Noble
+1 Access Tunnel
+1 Cabal Stronghold
+1 Blood Operative
+1 Callous Bloodmage
+1 Crovax the Cursed
+1 Demonmail Hauberk
+1 Discourtesy Clerk
+1 Malakir Bloodwitch
+1 Nocturnal Feeder
+1 Ravenous Vampire
+1 Sword of Forge and Frontier
+1 Vampire Spawn
+1 Minas Morgul, Dark Fortress
+1 The Black Gate
+1 Urborg
+1 Unstable Obelisk
+1 Vampire Sovereign
+1 Vault of Whispers
+1 Sword of Sinew and Steel
+1 Nevinyrral's Disk
+1 Mox Amber
+1 Malakir Blood-Priest
+1 Cabal Coffers
+1 Myriad Landscape
+1 Bloodflow Connoisseur
+1 Caged Sun
+1 Crossway Troublemakers
+1 Crypt Ghast
+1 Deadbeat Attendant
+1 Dowsing Dagger // Lost Vale
+1 Dusk Legion Zealot
+1 Elbrus, the Binding Blade // Withengar Unbound
+1 Legion Vanguard
+1 Magus of the Coffers
+1 Muck Drubb
+1 Patron of the Vein
+1 Pawn of Ulamog
+1 Shadow Alley Denizen
+1 Bloodtracker
+1 Vengeant Vampire
+1 Thief of Blood
+1 Mox Opal
+25 Swamp
+1 Viscera Seer
+1 Darksteel Citadel
+1 Scene of the Crime
+1 Treasure Vault
+1 Imp's Mischief
+1 Withering Boon
+1 Infernal Grasp
+1 Cover of Darkness
+1 Spine of Ish Sah
+1 Sword of Feast and Famine
+1 Sword of Hearth and Home
+1 Sword of the Animist
+1 Explorer's Scope
+1 Bitterthorn, Nissa's Animus
+1 Oblivion Stone
+1 Sword of War and Peace
+1 Mask of Memory
+1 Nirkana Revenant
+1 Blood Artist
+1 Vindictive Vampire
+1 Arrogant Outlaw
+1 Champion of Dusk
+1 Vampire Hexmage
+1 Kalastria Healer
+1 Soul Enervation
+1 Teval's Judgment
+1 Fang, Fearless l'Cie
+1 Bishop of the Bloodstained

@@ -1,0 +1,89 @@
+# Archidekt — CZ 683 | Brudiclad | The Best Token Commanders
+# source: archidekt:13695796
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Brudiclad, Telchor Engineer
+
+Deck:
+1 Thought Monitor
+1 Rapid Hybridization
+1 Prismari Command
+1 Deduce
+1 Hard Evidence
+1 Stern Lesson
+1 Tempt with Vengeance
+1 Song of Totentanz
+1 Idol of Oblivion
+1 Will of the Temur
+1 Mind Stone
+1 Third Path Iconoclast
+1 See Double
+1 Academy Manufactor
+1 Sai, Master Thopterist
+1 Enthusiastic Mechanaut
+1 Etherium Sculptor
+1 Stridehangar Automaton
+1 Schema Thief
+1 Mirrodin Besieged
+1 Worldwalker Helm
+1 Skullclamp
+1 Kher Keep
+1 Archway of Innovation
+1 Stormcarved Coast
+1 Sol Ring
+1 Fountainport
+1 Izzet Signet
+1 Arcane Signet
+1 Frostboil Snarl
+1 Sulfur Falls
+1 Liquimetal Torque
+1 Fellwar Stone
+1 Talisman of Creativity
+1 Thought Vessel
+1 Command Tower
+1 Temple of Epiphany
+1 Shivan Reef
+1 Karn, Scion of Urza
+1 Cascade Bluffs
+1 Exotic Orchard
+1 Silverbluff Bridge
+1 Occult Epiphany
+1 Relm's Sketching
+1 Forensic Gadgeteer
+1 Asinine Antics
+1 Perplexing Test
+1 Simulacrum Synthesizer
+1 Pongify
+1 Urza's Command
+1 Demolition Field
+1 Sundering Eruption // Volcanic Fissure
+1 Riverglide Pathway // Lavaglide Pathway
+1 Ferrous Lake
+13 Island
+8 Mountain
+1 Sublime Epiphany
+1 Curse of Opulence
+1 Professional Face-Breaker
+1 Spiteful Banditry
+1 Ornithopter of Paradise
+1 Counterspell
+1 Delay
+1 Long River's Pull
+1 Saheeli, Sublime Artificer
+1 Thopter Spy Network
+1 Lazotep Quarry
+1 Retrofitter Foundry
+1 Canoptek Spyder
+1 Detective's Satchel
+1 Vizier of Many Faces
+1 Mechanized Production
+1 Season of Weaving
+1 Myr Battlesphere
+1 Darksteel Citadel
+1 Nettlecyst
+1 Genesis Chamber
+1 Sharding Sphinx
+1 Noble's Purse
+1 Nexus of Becoming

@@ -1,0 +1,108 @@
+# Archidekt — Mono White
+# source: archidekt:689837
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Darien, King of Kjeldor
+
+Deck:
+1 Brave the Elements
+1 Archaeomancer's Map
+1 Tarnished Citadel
+1 Soul Warden
+1 Elspeth, Sun's Champion
+1 Heliod's Intervention
+1 Knight of the White Orchid
+1 Nomad Stadium
+1 Lotus Field
+1 War Room
+1 Slaughter the Strong
+1 Akroma's Will
+1 Nykthos, Shrine to Nyx
+1 Grand Coliseum
+1 Generous Gift
+1 Mother of Runes
+1 Mentor of the Meek
+1 Soul's Attendant
+1 Weathered Wayfarer
+1 Land Tax
+1 Lapse of Certainty
+1 Settle the Wreckage
+1 Flagstones of Trokair
+1 Esper Sentinel
+1 Remote Farm
+1 Welcoming Vampire
+1 Plains
+1 Plains
+1 Plains
+1 Archivist of Oghma
+1 Battle Angels of Tyr
+1 Loran of the Third Path
+1 Rumor Gatherer
+1 Plains
+1 Winds of Abandon
+1 Plains
+1 Cataclysm
+1 Auriok Champion
+1 Teferi's Protection
+1 Shefet Dunes
+1 Soul Partition
+1 Adeline, Resplendent Cathar
+1 Minas Tirith
+1 Serra Paragon
+1 Dawn Charm
+1 Sol Ring
+1 Elesh Norn, Grand Cenobite
+1 Aerial Extortionist
+1 Mass Calcify
+1 Plains
+1 Smothering Tithe
+1 Guide of Souls
+1 Plains
+1 Plains
+1 Plains
+1 Lotus Vale
+1 Equal Treatment
+1 Plains
+1 Unexplained Absence
+1 Selfless Spirit
+1 City of Brass
+1 Case of the Uneaten Feast
+1 Swords to Plowshares
+1 Cathars' Crusade
+1 Ankh of Mishra
+1 Skullclamp
+1 Plains
+1 Plains
+1 Avacyn, Angel of Hope
+1 Pearl Medallion
+1 Daxos, Blessed by the Sun
+1 Illustrious Wanderglyph
+1 Karoo
+1 Myrel, Shield of Argive
+1 Enlightened Tutor
+1 Elspeth, Storm Slayer
+1 Plains
+1 Haliya, Guided by Light
+1 The Wind Crystal
+1 Clever Concealment
+1 Path to Exile
+1 Reprieve
+1 Suture Priest
+1 Brought Back
+1 Ancient Tomb
+1 Blood of the Martyr
+1 Abandoned Air Temple
+1 Ranger of Eos
+1 The Queen of Dale
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Aven Interrupter
+1 Grasp of Fate
+1 Snow-Covered Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Appa, Steadfast Guardian
+1 Plains

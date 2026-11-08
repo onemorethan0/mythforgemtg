@@ -1,0 +1,89 @@
+# Archidekt — Kwende Walking Knight's Tribal - B1
+# source: archidekt:2209509
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kwende, Pride of Femeref
+
+Deck:
+1 Emeria, the Sky Ruin
+1 Angelic Destiny
+1 Fiendslayer Paladin
+1 The Circle of Loyalty
+1 Acclaimed Contender
+1 Sol Talisman
+1 Odric, Lunarch Marshal
+1 Temple of the False God
+20 Plains
+1 Seraphic Greatsword
+1 Guildless Commons
+1 Opal Palace
+1 Ancient Den
+1 Detection Tower
+1 Buried Ruin
+1 Terramorphic Expanse
+1 Marble Diamond
+1 Everflowing Chalice
+1 Gilded Lotus
+1 Frontline Medic
+1 Dispatch
+1 Danitha Capashen, Paragon
+1 Mistveil Plains
+1 Unbreakable Formation
+1 Commander's Insignia
+1 Dictate of Heliod
+1 Traveler's Amulet
+1 Dub
+1 Puresteel Paladin
+1 Open the Armory
+1 Knight-Captain of Eos
+1 Knight Exemplar
+1 Thalia's Lancers
+1 Sigiled Sword of Valeron
+1 Mobilized District
+1 Heirloom Blade
+1 Warded Battlements
+1 Moorland Rescuer
+1 Armored Skyhunter
+1 Gift of Estates
+1 Verge Rangers
+1 Dawn Charm
+1 Mind Stone
+1 Urza's Ruinous Blast
+1 Path of Ancestry
+1 Worthy Knight
+1 Windbrisk Heights
+1 Hero of Bladehold
+1 Mirran Crusader
+1 Archetype of Courage
+1 Battlefield Raptor
+1 Heraldic Banner
+1 Syr Alin, the Lion's Claw
+1 Youthful Knight
+1 Knight of Grace
+1 Encampment Keeper
+1 Valiant Endeavor
+1 Haunted Plate Mail
+1 Riders of Gavony
+1 Student of Warfare
+1 Sol Ring
+1 Lena, Selfless Champion
+1 Search for Glory
+1 Austere Command
+1 Lost Order of Jarkeld
+1 Valiant Knight
+1 Sejiri Shelter // Sejiri Glacier
+1 Benalish Marshal
+1 Knight of the White Orchid
+1 Basri's Lieutenant
+1 Return to Dust
+1 Vanquisher's Banner
+1 Herald's Horn
+1 Forebear's Blade
+1 Commander's Sphere
+1 Twinblade Paladin
+1 Valor in Akros
+1 Loxodon Warhammer
+1 Glimmer Lens
+1 Danitha, Benalia's Hope

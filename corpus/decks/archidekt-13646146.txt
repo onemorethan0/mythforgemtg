@@ -1,0 +1,103 @@
+# Archidekt — MTG is the fortnite of cardgames
+# source: archidekt:13646146
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Field of the Dead); Bracket 1 allows 0
+
+Commander:
+1 Magus Lucea Kane
+
+Deck:
+1 Roiling Canopy
+1 Pia, Aether Ascetic
+7 Forest
+1 Island
+1 Termagant Swarm
+1 Mawloc
+1 Zoanthrope
+1 Broodlord
+1 Tyrant Guard
+1 Hormagaunt Horde
+1 Biophagus
+1 Sporocyst
+1 Necklace of Girion
+1 Aberrant
+1 Archdruid's Charm
+1 Ba Sing Se
+1 Badgermole Cub
+1 Brainstorm
+1 Celestial Reunion
+1 Cinder Glade
+1 Command Tower
+1 Earthbender Ascension
+1 Electrodominance
+1 Expressive Iteration
+1 Farseek
+1 Field of the Dead
+1 Geometer's Arthropod
+1 Glen Elendra Archmage
+1 Green Sun's Zenith
+1 Hardened Scales
+1 Ketria Triome
+1 Lattice Library
+1 Cultivate
+1 Malanthrope
+1 Minamo, School at Water's Edge
+1 Mountain
+1 Nature's Lore
+1 Nature's Rhythm
+1 Ouroboroid
+1 Owlin Spiralmancer
+1 Planar Genesis
+1 Rampant Growth
+1 Scalding Tarn
+1 Shadow in the Warp
+1 Shared Roots
+1 Sphere Grid
+1 Steam Vents
+1 Terrasymbiosis
+1 The Lost and the Damned
+1 Three Visits
+1 Tribute to the World Tree
+1 Twinning Staff
+1 Tyranid Prime
+1 Unbound Flourishing
+1 Venomthrope
+1 Otawara, Soaring City
+1 Warden of the Grove
+1 Willowrush Verge
+1 Winged Hive Tyrant
+1 Wooded Foothills
+1 Sodden Verdure
+1 Nexos
+1 Consult the Star Charts
+1 Thespian's Stage
+1 Sol Ring
+1 Harmonize
+1 Tervigon
+1 Ravener
+1 Stomping Ground
+1 Breeding Pool
+1 Hull Breach
+1 Wan Shi Tong, Librarian
+1 Explore
+1 Temple of the False God
+1 Yavimaya, Cradle of Growth
+1 Swan Song
+1 Exocrine
+1 Break Down
+1 Finale of Devastation
+1 Mistrise Village
+1 Toxicrene
+1 Misty Rainforest
+1 Prismatic Vista
+1 Boseiju, Who Endures
+1 Thornspire Verge
+1 Chord of Calling
+1 Hierophant Bio-Titan
+1 Mind into Matter
+1 Starstorm
+1 Bloodthirster
+1 Stable Wormhole
+1 Taiga
+1 Tropical Island

@@ -1,0 +1,98 @@
+# Archidekt — Vadrik
+# source: archidekt:14225088
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Vadrik, Astral Archmage
+
+Deck:
+1 Arcane Denial
+1 Arcane Signet
+1 Big Score
+1 Brainsurge
+1 Cascade Bluffs
+1 Command Tower
+1 Confounding Riddle
+1 Delay
+1 Desperate Ritual
+1 Dig Through Time
+1 Exotic Orchard
+1 Fact or Fiction
+1 Fellwar Stone
+1 Fiery Islet
+1 Firemind's Foresight
+1 Frantic Search
+1 Frostboil Snarl
+1 Gifts Ungiven
+1 Haste Magic
+1 Impulse
+1 Inner Fire
+1 Invert // Invent
+8 Island
+1 Izzet Signet
+1 Jeska's Will
+1 Lightning Bolt
+1 Mana Leak
+1 March of Swirling Mist
+1 Mizzix's Mastery
+4 Mountain
+1 Mystic Retrieval
+1 Mystical Tutor
+1 Negate
+1 Past in Flames
+1 Pirate's Pillage
+1 Pyretic Ritual
+1 Reality Spasm
+1 Reiterate
+1 Riverglide Pathway // Lavaglide Pathway
+1 Riverpyre Verge
+1 Sazacap's Brew
+1 Seething Song
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Shivan Reef
+1 Sink into Stupor // Soporific Springs
+1 Snap
+1 Solve the Equation
+1 Sorceress's Schemes
+1 Spirebluff Canal
+1 Springleaf Drum
+1 Stock Up
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Supreme Will
+1 Talisman of Creativity
+1 Teferi's Time Twist
+1 Training Center
+1 Treasure Cruise
+1 Turnabout
+1 Unwind
+1 Valakut Awakening // Valakut Stoneforge
+1 Will of the Jeskai
+1 Witch's Mark
+1 Bonus Round
+1 Steam Vents
+1 Finale of Promise
+1 Pinnacle Monk // Mystic Peak
+1 Lose Focus
+1 Forbidden Orchard
+1 Blazing Crescendo
+1 Complete the Circuit
+1 Zhalfirin Shapecraft
+1 Water Wings
+1 Cyclonic Rift
+1 Bond of Insight
+1 Reality Ripple
+1 Secret Identity
+1 Izzet Boilerworks
+1 Fleeting Reflection
+1 Rapturous Moment
+1 We Say Thee Nay!
+1 Silundi Vision // Silundi Isle
+1 Hex Magic
+1 Zenith Festival
+1 Inspired Tinkering
+1 Riddles in the Dark
+1 Slip Out the Back
+1 Pentad Prism
+1 Hydroelectric Specimen // Hydroelectric Laboratory

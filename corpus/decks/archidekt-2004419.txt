@@ -1,0 +1,102 @@
+# Archidekt — Cat Scratch Fever
+# source: archidekt:2004419
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Nethroi, Apex of Death
+
+Deck:
+1 Ocelot Pride
+1 Profane Command
+1 Brimaz, King of Oreskos
+1 Mirari's Wake
+1 King of the Pride
+1 Adorned Pouncer
+1 Cubwarden
+1 Eerie Ultimatum
+1 Necropanther
+1 Regal Caracal
+1 Out of the Tombs
+1 Felidar Retreat
+1 Deadbridge Chant
+1 Doom Whisperer
+1 Phantom Nishoba
+1 Felidar Sovereign
+1 Ripples of Undeath
+1 Gaea's Cradle
+1 Swiftfoot Boots
+1 Fleecemane Lion
+1 Ajani Resolute
+1 Dreadmalkin
+1 Multani, Yavimaya's Avatar
+1 Gemrazer
+1 Mirri the Cursed
+1 Qasali Slingers
+1 Skyhunter Strike Force
+1 Sol Ring
+1 Ice Cream Kitty
+1 Jazal Goldmane
+1 Chronicle of Victory
+1 Feline Sovereign
+1 Hedge Shredder
+1 Abandoned Air Temple
+1 Loot, the Anomaly
+1 Ishgard, the Holy See // Faith & Grief
+1 White Lotus Tile
+1 Haunting Voyage
+1 Sovereign Okinec Ahau
+1 Pride Sovereign
+1 Mirri, Weatherlight Duelist
+1 Living Death
+1 Ygra, Eater of All
+1 Kaheera, the Orphanguard
+1 Abundant Countryside
+1 Arahbo, the First Fang
+1 Bazaar of Baghdad
+1 Shadowy Backstreet
+1 Takenuma, Abandoned Mire
+1 Kutzil, Malamet Exemplar
+1 Temple of the False God
+1 Bast, Panther Goddess
+1 Mirror Entity
+1 The Great Henge
+1 Piper's Melody
+1 Command Tower
+1 Restless Fortress
+1 Arcbound Mouser
+1 Yavimaya, Cradle of Growth
+1 Silent Clearing
+1 Eirdu, Carrier of Dawn // Isilu, Carrier of Twilight
+1 White Sun's Zenith
+1 Arcane Signet
+1 Demonic Tutor
+1 Altar of Dementia
+1 Moopsy
+2 Forest
+1 Shizo, Death's Storehouse
+1 Urborg, Tomb of Yawgmoth
+1 Skyknight Squire
+1 Akroma's Will
+1 Mythos of Nethroi
+1 Arahbo, Roar of the World
+1 Q Continuum
+1 Worldly Tutor
+1 Mistveil Plains
+1 Multiversal Passage
+1 Meteor Crater
+1 Stirring Wildwood
+6 Plains
+1 Federation Outpost
+1 The Unicomplex
+1 Perpetual Timepiece
+2 Swamp
+1 Godless Shrine
+1 Hidden Hideout
+1 Toxic Deluge
+1 Animal Sanctuary
+1 Bleachbone Verge
+1 Windbrisk Heights
+1 Diamond Lion
+1 Lion's Eye Diamond
+1 Buried Alive

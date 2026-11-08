@@ -1,0 +1,107 @@
+# Archidekt — Necronomicon Ex-Mortis
+# source: archidekt:9554012
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Varina, Lich Queen
+
+Deck:
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Raffine's Tower
+1 Bloodstained Mire
+1 Marsh Flats
+1 Misty Rainforest
+1 Polluted Delta
+1 Diregraf Colossus
+1 Entomb
+1 Reanimate
+1 Demonic Tutor
+1 Liliana, Untouched by Death
+1 Palantír of Orthanc
+1 Jet Medallion
+1 Carrion Feeder
+1 Accursed Marauder
+1 Fell the Profane // Fell Mire
+1 Havengul Lich
+1 Graveborn Muse
+1 Grimgrin, Corpse-Born
+1 Necropotence
+1 Necroduality
+1 Dark Ritual
+1 Lord of the Undead
+1 Otawara, Soaring City
+1 Funeral Room // Awakening Hall
+1 Field of the Dead
+1 Cabal Coffers
+1 Godless Shrine
+1 Phyrexian Tower
+1 Headless Rider
+1 Verdant Catacombs
+1 Urborg, Tomb of Yawgmoth
+1 Shadowy Backstreet
+1 Undercity Sewers
+1 Toxic Deluge
+1 Undead Augur
+1 Wayward Servant
+1 Warren Soultrader
+1 Unholy Grotto
+1 Vengeful Dead
+1 Tombstone Stairwell
+1 Undead Warchief
+1 Takenuma, Abandoned Mire
+1 Watery Grave
+1 Urza's Saga
+1 Cryptbreaker
+1 Gravecrawler
+1 Malakir Rebirth // Malakir Mire
+1 Meticulous Archive
+1 Living Death
+1 Shambling Ghast
+1 Culling the Weak
+1 Zombie Master
+1 Diregraf Captain
+1 Midnight Reaper
+1 Bone Miser
+1 Fleshbag Marauder
+1 Cleaver Skaab
+1 Zul Ashur, Lich Lord
+1 Skullclamp
+1 Relentless Dead
+1 Chrome Mox
+1 Shadowspear
+1 Sol Ring
+1 Bolas's Citadel
+1 Arcane Signet
+1 Dimir Signet
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Ashnod's Altar
+1 Phyrexian Altar
+1 Crypt of Agadeem
+1 Nykthos, Shrine to Nyx
+2 Swamp
+1 Vault of the Archangel
+1 Grim Servant
+1 Tormod, the Desecrator
+1 Wilhelt, the Rotcleaver
+1 Gray Merchant of Asphodel
+1 Noxious Ghoul
+1 Reconnaissance
+1 Command Tower
+1 Mikaeus, the Unhallowed
+1 The Meathook Massacre
+1 Black Market Connections
+1 Smothering Tithe
+1 Anointed Procession
+1 Kindred Discovery
+1 Rooftop Storm
+1 An Offer You Can't Refuse
+1 Scalding Tarn
+1 Darkness
+1 Cyclonic Rift
+1 Sink into Stupor // Soporific Springs
+1 Flooded Strand
+1 Cavern of Souls
+1 Three Tree City
+1 Ancient Tomb

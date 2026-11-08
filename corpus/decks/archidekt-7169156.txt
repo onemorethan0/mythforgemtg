@@ -1,0 +1,108 @@
+# Archidekt — Insufferable Slivers - High Power Combo B4
+# source: archidekt:7169156
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The First Sliver
+
+Deck:
+1 Teferi's Protection
+1 Winged Sliver
+1 Necrotic Sliver
+1 Spiteful Sliver
+1 Basal Sliver
+1 Magma Sliver
+1 Galerider Sliver
+1 Cloudshredder Sliver
+1 Crystalline Sliver
+1 Dregscape Sliver
+1 Gemhide Sliver
+1 Heart Sliver
+1 Hibernation Sliver
+1 Homing Sliver
+1 Essence Sliver
+1 Cyclonic Rift
+1 Cavern of Souls
+1 Imperial Seal
+1 Enlightened Tutor
+1 Farewell
+1 Farseek
+1 Kindred Dominance
+1 Morophon, the Boundless
+1 Mana Echoes
+1 Quick Sliver
+1 Sentinel Sliver
+1 Shifting Sliver
+1 Scalding Tarn
+1 Skyshroud Claim
+1 Sliver Queen
+1 Sliver Legion
+1 Venom Sliver
+1 Vampiric Tutor
+1 Windswept Heath
+1 Squee, the Immortal
+1 Worldly Tutor
+1 Exotic Orchard
+1 Three Visits
+1 Sliver Overlord
+1 Sliver Hivelord
+1 Mistrise Village
+1 Wooded Foothills
+1 Polluted Delta
+1 Misty Rainforest
+1 Marsh Flats
+1 Nature's Lore
+1 Bloodstained Mire
+1 Thrumming Hivepool
+1 Training Grounds
+1 Defense of the Heart
+1 Arid Mesa
+1 Flooded Strand
+1 Verdant Catacombs
+1 Demonic Tutor
+1 Ancient Tomb
+1 Sliver Hive
+1 Survival of the Fittest
+1 Bonescythe Sliver
+1 Food Chain
+1 Sterling Grove
+1 Sylvan Scrying
+1 Flare of Fortitude
+1 Lavabelly Sliver
+1 Manaweft Sliver
+1 Harmonic Sliver
+1 Screeching Sliver
+1 Cosmic Rebirth
+1 Anguished Unmaking
+1 Bayou
+1 Badlands
+1 Plateau
+1 Tropical Island
+1 Tundra
+1 Taiga
+1 Volcanic Island
+1 Scrubland
+1 Underground Sea
+1 Savannah
+1 Dawn's Truce
+1 Coalition Victory
+1 Profane Tutor
+1 Command Tower
+1 Sensei's Divining Top
+1 Chromatic Lantern
+1 Fellwar Stone
+1 Entomb
+1 Indatha Triome
+1 Rhystic Study
+1 Smothering Tithe
+1 Sol Ring
+1 Barkform Harvester
+1 Mana Confluence
+1 City of Brass
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Reflecting Pool
+1 Obscuring Haze
+1 Arcane Signet
+1 Gemstone Caverns

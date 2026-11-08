@@ -1,0 +1,71 @@
+# Archidekt — I Have No Words
+# source: archidekt:13076882
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Yargle and Multani
+
+Deck:
+1 Oxidize
+1 Zombify
+1 Rampant Growth
+1 Command Tower
+1 Harmonize
+1 Yargle, Glutton of Urborg
+1 Giant Growth
+1 Garruk's Gorehorn
+20 Swamp
+19 Forest
+1 Phyrexian Hulk
+1 Razorfield Thresher
+1 Rumbling Baloth
+1 Prakhata Club Security
+1 Catacomb Slug
+1 Douser of Lights
+1 Canal Monitor
+1 Catacomb Crocodile
+1 Pheres-Band Centaurs
+1 Golgari Longlegs
+1 Felhide Minotaur
+1 Dross Crocodile
+1 Undead Minotaur
+1 Nessian Courser
+1 Gutter Skulk
+1 Headless Horseman
+1 Bronze Sable
+1 Field Creeper
+1 Grizzly Bears
+1 Queen's Bay Soldier
+1 Swordwise Centaur
+1 Runeclaw Bear
+1 Kalonian Tusker
+1 Alpha Myr
+1 Ancient Brontodon
+1 Terrain Elemental
+1 Dune Beetle
+1 Gloom Pangolin
+1 Terrian, World Tyrant
+1 Doom Blade
+1 Sign in Blood
+1 Infest
+1 Recollect
+1 Rotted Hulk
+1 Gigantosaurus
+1 Quakestrider Ceratops
+1 Putrefy
+1 Nameless Inversion
+1 Kalakscion, Hunger Tyrant
+1 Corrupt
+1 Vorstclaw
+1 Durkwood Boars
+1 Elvish Warrior
+1 Woodland Druid
+1 Jibbirik Omnivore
+1 Terror
+1 Garruk Wildspeaker
+1 Ironroot Treefolk
+1 Redwood Treefolk
+1 Leatherback Baloth
+1 Nyxborn Colossus
+1 Ordinary Bear

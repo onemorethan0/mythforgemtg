@@ -1,0 +1,86 @@
+# Archidekt — Wear it well
+# source: archidekt:9076453
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sythis, Harvest's Hand
+
+Deck:
+1 War Room
+1 Hall of Heliod's Generosity
+1 Spirited Companion
+1 Unfinished Business
+1 Canopy Vista
+1 Danitha, New Benalia's Light
+1 Bear Umbra
+1 Kami of Transience
+1 Kenrith's Transformation
+1 Eidolon of Countless Battles
+1 Rancor
+1 Light-Paws, Emperor's Voice
+1 Mantle of the Ancients
+1 Holy Avenger
+1 Retether
+1 Redress Fate
+1 Brushland
+1 Command Tower
+12 Forest
+1 Lush Portico
+1 Hushwood Verge
+1 Mosswort Bridge
+1 Temple Garden
+1 Yavimaya, Cradle of Growth
+12 Plains
+1 Sunpetal Grove
+1 Valgavoth's Lair
+1 Darksteel Mutation
+1 Ethereal Armor
+1 Felidar Umbra
+1 Lignify
+1 Redemption Arc
+1 Snake Umbra
+1 Spirit Loop
+1 Songbirds' Blessing
+1 Archon of Sun's Grace
+1 Archetype of Courage
+1 Calix, Guided by Fate
+1 Destiny Spinner
+1 Celestial Archon
+1 Codsworth, Handy Helper
+1 Eidolon of Blossoms
+1 Golden-Tail Trainer
+1 Jukai Naturalist
+1 Pearl-Ear, Imperial Advisor
+1 Ondu Spiritdancer
+1 Sanctum Weaver
+1 Setessan Champion
+1 Shigeki, Jukai Visionary
+1 Timber Paladin
+1 Transcendent Envoy
+1 Umbra Mystic
+1 With Great Power . . .
+1 Sheltered by Ghosts
+1 All That Glitters
+1 Tempest Technique
+1 Ancestral Mask
+1 Temple of Plenty
+1 Nature's Chosen
+1 Mammoth Umbra
+1 Hyena Umbra
+1 Eland Umbra
+1 Boar Umbra
+1 Ellivere of the Wild Court
+1 Angelic Destiny
+1 Lion Umbra
+1 Brilliant Wings
+1 Chains of Custody
+1 Strength of the Harvest // Haven of the Harvest
+1 Resurgent Belief
+1 Royal Treatment
+1 Herald of Amity
+1 Shielded by Faith
+1 Eiganjo Dynastorian // Replenish
+1 Eldrazi Conscription
+1 Dog Umbra
+1 Winds of Rath

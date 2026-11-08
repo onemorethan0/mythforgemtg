@@ -1,0 +1,108 @@
+# Archidekt — Captain of Legends
+# source: archidekt:5726928
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Arcane Signet
+1 Plains
+1 Mox Amber
+1 Steam Vents
+1 Verdant Catacombs
+1 Marsh Flats
+1 Xander's Lounge
+1 Raffine's Tower
+1 Birds of Paradise
+1 K-9, Mark I
+1 Stomping Ground
+1 Kutzil, Malamet Exemplar
+1 Path to Exile
+1 Godless Shrine
+1 Nicol Bolas, Dragon-God
+1 Oath of Teferi
+1 Aminatou, the Fateshifter
+1 Sigarda, Font of Blessings
+1 The World Tree
+1 Pippin, Guard of the Citadel
+1 Swords to Plowshares
+1 Bloodstained Mire
+1 Flooded Strand
+1 Polluted Delta
+1 Breeding Pool
+1 Windswept Heath
+1 Wooded Foothills
+1 Gwenna, Eyes of Gaea
+1 Fierce Guardianship
+1 Bloom Tender
+1 Skrelv, Defector Mite
+1 Fellwar Stone
+1 Temple Garden
+1 Smothering Tithe
+1 Boseiju, Who Endures
+1 Relic of Legends
+1 Teferi, Time Raveler
+1 Hallowed Fountain
+1 Sacred Foundry
+1 Rhystic Study
+1 Arid Mesa
+1 Scalding Tarn
+1 Spara's Headquarters
+1 Ketria Triome
+1 Dovin's Veto
+1 Idyllic Tutor
+1 Faeburrow Elder
+1 Raugrin Triome
+1 Sea of Clouds
+1 Teferi's Protection
+1 Delighted Halfling
+1 Mountain
+1 Island
+1 Swamp
+1 Forest
+1 Command Tower
+1 Ruby, Daring Tracker
+1 Marvin, Murderous Mimic
+1 Emiel the Blessed
+1 Kinnan, Bonder Prodigy
+1 Ioreth of the Healing House
+1 King T'Challa // Black Panther, Hope Enduring
+1 Sol Ring
+1 Lightning Greaves
+1 Selvala, Heart of the Wilds
+1 Tyvar, Jubilant Brawler
+1 Blood Crypt
+1 Watery Grave
+1 Overgrown Tomb
+1 Stormcarved Coast
+1 Ashiok, Dream Render
+1 Sakashima the Impostor
+1 Mount Doom
+1 Lotho, Corrupt Shirriff
+1 Phelia, Exuberant Shepherd
+1 Derevi, Empyrial Tactician
+1 Dynaheir, Invoker Adept
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Deflecting Swat
+1 Demonic Tutor
+1 City of Brass
+1 Plaza of Heroes
+1 Drana and Linvala
+1 Lavinia, Azorius Renegade
+1 Lotus Petal
+1 Ragavan, Nimble Pilferer
+1 Deadpool, Trading Card
+1 Ignoble Hierarch
+1 Assassin's Trophy
+1 Shang-Chi, Master of Kung Fu
+1 Torgal, A Fine Hound
+1 Pact of Negation
+1 Swan Song
+1 Jennifer Walters // The Sensational She-Hulk
+1 Crop Rotation
+1 Enduring Vitality
+1 Samut, Hazoret's Champion
+1 Captain America, Living Legend
+1 Pia, Aether Ascetic

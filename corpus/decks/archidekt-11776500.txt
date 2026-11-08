@@ -1,0 +1,83 @@
+# Archidekt — Moral Vorel
+# source: archidekt:11776500
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Vorel of the Hull Clade
+
+Deck:
+1 The Earth Crystal
+1 Slurrk, All-Ingesting
+1 Ochre Jelly
+1 Midnight Clock
+1 Jiang Yanggu, Wildcrafter
+1 Steady Progress
+1 Song of Freyalise
+1 Death's Presence
+1 Simic Manipulator
+1 Kiora, Behemoth Beckoner
+1 Rishkar, Peema Renegade
+1 Lorescale Coatl
+1 Sharktocrab
+1 Master Biomancer
+1 Give // Take
+1 Hardened Scales
+1 Solidarity of Heroes
+1 Flux Channeler
+1 Renata, Called to the Hunt
+1 Chasm Skulker
+1 Thrummingbird
+1 Courage in Crisis
+1 Innkeeper's Talent
+1 Kalonian Hydra
+1 Contentious Plan
+1 Loyal Guardian
+1 Defiler of Vigor
+1 Prowling Serpopard
+1 Darksteel Reactor
+1 Evolution Sage
+1 Vorinclex, Monstrous Raider
+1 Overflowing Basin
+1 Forbidden Orchard
+1 Temple of Mystery
+1 Myriad Landscape
+1 Yavimaya Coast
+1 Command Tower
+12 Island
+1 Elemental Bond
+1 Predator Ooze
+1 Alchemist's Refuge
+1 Quirion Beastcaller
+1 The Millennium Calendar
+1 Freyalise, Llanowar's Fury
+1 The Pride of Hull Clade
+1 Gilder Bairn
+1 Kasmina, Enigmatic Mentor
+1 Tezzeret's Gambit
+1 Everflowing Chalice
+1 Tamiyo, Collector of Tales
+1 Lumbering Falls
+15 Forest
+1 Twenty-Toed Toad
+1 Zameck Guildmage
+1 Teferi, Temporal Archmage
+1 Jace, Wielder of Mysteries
+1 Path of Discovery
+1 Inspiring Call
+1 Jace Beleren
+1 Fathom Mage
+1 Scavenging Ooze
+1 Ripples of Potential
+1 Moxite Refinery
+1 Hangarback Walker
+1 Astral Cornucopia
+1 Karn's Bastion
+1 Tekuthal, Inquiry Dominus
+1 Master Chef
+1 Deepglow Skate
+1 Kiora's Follower
+1 Umbral Mantle
+1 Aven Courier
+1 Simic Ascendancy
+1 Aetheric Amplifier

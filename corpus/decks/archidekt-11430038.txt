@@ -1,0 +1,87 @@
+# Archidekt — Urza Brew - Budget high power
+# source: archidekt:11430038
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Aphetto Alchemist
+1 An Offer You Can't Refuse
+1 Arcum Dagsson
+1 Counterspell
+1 Darksteel Citadel
+1 Freed from the Real
+22 Island
+1 Lightning Greaves
+1 Muddle the Mixture
+1 Mystic Forge
+1 Pemmin's Aura
+1 Seat of the Synod
+1 Sensei's Divining Top
+1 Scrap Trawler
+1 Swan Song
+1 Swiftfoot Boots
+1 The Reality Chip
+1 Thought Monitor
+1 Unctus, Grand Metatect
+1 Academy Ruins
+1 Urza's Power Plant
+1 Archway of Innovation
+1 Urza's Workshop
+1 Emergence Zone
+1 Urza's Factory
+1 Unwinding Clock
+1 Dramatic Reversal
+1 Whir of Invention
+1 Padeem, Consul of Innovation
+1 Ornithopter
+1 Forensic Gadgeteer
+1 Vedalken Archmage
+1 Hullbreaker Horror
+1 Liberator, Urza's Battlethopter
+1 Shimmer Myr
+1 Displacer Kitten
+1 Master Transmuter
+1 Mirrodin Besieged
+1 Sai, Master Thopterist
+1 Winter Orb
+1 Welding Jar
+1 Simulacrum Synthesizer
+1 Darksteel Forge
+1 Sapphire Medallion
+1 Basalt Monolith
+1 Urza's Cave
+1 Crystal Skull, Isu Spyglass
+1 Foundry Inspector
+1 Efficient Construction
+1 Reshape
+1 Rings of Brighthearth
+1 Thoughtcast
+1 Tribute Mage
+1 Drafna, Founder of Lat-Nam
+1 Buried Ruin
+1 Emry, Lurker of the Loch
+1 Etherium Sculptor
+1 Phyrexian Metamorph
+1 Sol Ring
+1 Spellskite
+1 Fabricate
+1 Isochron Scepter
+1 Urza's Mine
+1 Mystical Tutor
+1 Trinket Mage
+1 Jhoira's Familiar
+1 Arcane Denial
+1 Thopter Spy Network
+1 Mechanized Production
+1 Memnarch
+1 Cloud Key
+1 Mana Drain
+1 Urza's Tower
+1 Howling Mine
+1 Inventors' Fair
+1 Aetherflux Reservoir
+1 Pili-Pala
+1 Deadeye Navigator

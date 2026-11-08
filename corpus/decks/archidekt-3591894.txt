@@ -1,0 +1,102 @@
+# Archidekt — Yarok, the Desecrated - Cosmic Horror (Eldrazi/Horror Kindred)
+# source: archidekt:3591894
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 2 allows none
+
+Commander:
+1 Yarok, the Desecrated
+
+Deck:
+1 Geier Reach Sanitarium
+1 Preordain
+1 Mindleech Mass
+1 Three Steps Ahead
+1 Starving Revenant
+1 Artisan of Kozilek
+1 Deepfathom Skulker
+1 Ravenous Chupacabra
+1 Consuming Aberration
+1 Painful Truths
+1 Brainstealer Dragon
+1 Aboleth Spawn
+1 Guardian Project
+1 Zagoth Triome
+1 Arcane Denial
+1 Demolition Field
+1 Overlord of the Hauntwoods
+1 Captain N'ghathrod
+1 Rejuvenating Springs
+1 Morphic Pool
+1 Regrowth
+1 Victimize
+1 Reanimate
+1 Fell the Profane // Fell Mire
+1 Toxrill, the Corrosive
+1 Bitter Triumph
+1 Ulamog, the Ceaseless Hunger
+3 Island
+4 Swamp
+1 Port of Karfell
+1 Hullbreaker Horror
+1 Grazilaxx, Illithid Scholar
+1 Elder Brain
+1 Umbris, Fear Manifest
+1 Hell's Caretaker
+1 Undergrowth Stadium
+1 Forgotten Creation
+1 Rogue's Passage
+1 Wharf Infiltrator
+1 Cultivate
+1 Night's Whisper
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Sol Ring
+1 Bojuka Bog
+1 Command Tower
+1 Exotic Orchard
+1 Fabled Passage
+1 Farseek
+1 Glasspool Mimic // Glasspool Shore
+1 Kodama's Reach
+1 Scavenger Grounds
+1 Thespian's Stage
+1 Three Visits
+1 Sire of Stagnation
+1 Nature's Lore
+1 Mutated Cultist
+1 Hedge Maze
+1 Underground Mortuary
+1 Undercity Sewers
+1 Kozilek's Unsealing
+1 Skyshroud Claim
+1 Nulldrifter
+1 Sludge Monster
+1 The Gitrog, Ravenous Ride
+1 Void Attendant
+1 Bismuth Mindrender
+1 Eldrazi Temple
+1 Chittering Dispatcher
+3 Forest
+1 Sowing Mycospawn
+1 Collective Resistance
+1 Shifting Woodland
+1 Overlord of the Floodpits
+1 Lightning Greaves
+1 Silent Hallcreeper
+1 Ash Barrens
+1 Path of Ancestry
+1 Assassin's Trophy
+1 Ancient Cellarspawn
+1 Awakening Zone
+1 Breach the Multiverse
+1 Flotsam // Jetsam
+1 Springleaf Parade
+1 Abundant Countryside
+1 Turbulent Fen
+1 Animate Dead
+1 Turbulent Wilderness
+1 Anticausal Vestige
+1 Frantic Search
+1 The Weaver King
+1 Oblivion Sower
+1 Dream Harvest

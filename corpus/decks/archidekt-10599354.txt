@@ -1,0 +1,97 @@
+# Archidekt — Pre Mercadian Masques Sol'kanar
+# source: archidekt:10599354
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sol'kanar the Swamp King
+
+Deck:
+1 Reins of Power
+1 Spire Owl
+1 Citanul Flute
+1 Recall
+1 Barrin, Master Wizard
+1 Mind Stone
+1 Coffin Queen
+1 Worn Powerstone
+1 Gilded Drake
+1 Frantic Search
+1 Spirit of the Night
+1 Earthquake
+1 Shivan Hellkite
+1 Tetsuo Umezawa
+1 Ritual of the Machine
+1 Maze of Ith
+1 Counterspell
+1 Sol Grail
+1 Nicol Bolas
+1 Lim-Dûl's Vault
+1 Archivist
+1 Raven Familiar
+1 Phyrexian Purge
+1 Bad River
+1 Flood Plain
+1 Underground Sea
+1 Thawing Glaciers
+1 Sulfurous Springs
+1 Faerie Conclave
+1 Reflecting Pool
+1 Rocky Tar Pit
+1 Polluted Mire
+1 Underground River
+1 Undiscovered Paradise
+1 Crystal Vein
+1 Spawning Pool
+1 Soldevi Excavations
+1 School of the Unseen
+1 Caldera Lake
+1 Volcanic Island
+1 Smoldering Crater
+1 Badlands
+1 Gemstone Mine
+1 Ghitu Encampment
+1 Remote Isle
+5 Swamp
+4 Mountain
+1 Dance of the Dead
+1 Jalum Tome
+1 Merfolk Looter
+1 Living Death
+1 Baron Sengir
+1 Krovikan Sorcerer
+1 Lord of the Pit
+1 Crimson Hellkite
+1 Deep Spawn
+1 Victimize
+1 Crater Hellion
+1 Diabolic Servitude
+1 Ephemeron
+1 Sol Ring
+1 Thopter Squadron
+1 Arcane Denial
+1 Snake Basket
+1 Hell's Caretaker
+1 Ashen Powder
+1 Dregs of Sorrow
+1 Necromancy
+1 Nevinyrral's Disk
+1 Howling Mine
+1 Fellwar Stone
+1 Helm of Possession
+1 Necrologia
+1 Inferno
+1 Thieving Magpie
+1 Dominating Licid
+1 Shivan Dragon
+1 City of Shadows
+1 City of Brass
+1 Vesuvan Doppelganger
+1 Sneak Attack
+1 Reanimate
+1 Clone
+1 Tawnos's Coffin
+1 Altar of Dementia
+1 Dark Hatchling
+1 Carrionette
+5 Island

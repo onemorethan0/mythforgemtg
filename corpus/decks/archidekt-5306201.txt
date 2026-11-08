@@ -1,0 +1,108 @@
+# Archidekt — Atraxa, Deadly Infection
+# source: archidekt:5306201
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Atraxa, Praetors' Voice
+
+Deck:
+1 Thrummingbird
+1 Plague Stinger
+1 Swamp
+1 Tekuthal, Inquiry Dominus
+1 Misty Rainforest
+1 Mental Misstep
+1 Marsh Flats
+1 Temple Garden
+1 Exotic Orchard
+1 Overgrown Tomb
+1 Enlightened Tutor
+1 Dovin's Veto
+1 Mystical Tutor
+1 Nature's Lore
+1 Metastatic Evangel
+1 Blighted Agent
+1 Verdant Catacombs
+1 Forest
+1 Venerated Rotpriest
+1 Arcane Signet
+1 Astral Cornucopia
+1 Bloated Contaminator
+1 Godless Shrine
+1 Ichor Rats
+1 Phyrexian Censor
+1 Skrelv, Defector Mite
+1 Cankerbloom
+1 Karn's Bastion
+1 Breeding Pool
+1 Phyresis Outbreak
+1 Flux Channeler
+1 Evolution Sage
+1 Tainted Strike
+1 Bilious Skulldweller
+1 Watery Grave
+1 Hallowed Fountain
+1 Staff of Compleation
+1 Infectious Bite
+1 Prologue to Phyresis
+1 Reflecting Pool
+1 Fynn, the Fangbearer
+1 Radstorm
+1 Glistener Elf
+1 Crop Rotation
+1 Dreamtide Whale
+1 Polluted Delta
+1 Flooded Strand
+1 Windswept Heath
+1 Phyresis
+1 Triumph of the Hordes
+1 Worldly Tutor
+1 Inkmoth Nexus
+1 Ajani, Sleeper Agent
+1 Hand of the Praetors
+1 Glistening Oil
+1 Phyrexian Crusader
+1 Vampiric Tutor
+1 Three Visits
+1 City of Brass
+1 Swords to Plowshares
+1 Ancient Tomb
+1 Cavern of Souls
+1 Force of Negation
+1 Force of Will
+1 Chrome Mox
+1 Mox Amber
+1 Lotus Petal
+1 Fierce Guardianship
+1 Flusterstorm
+1 Culling Ritual
+1 Urza's Saga
+1 Command Tower
+1 Island
+1 Plains
+1 Mana Confluence
+1 Gemstone Caverns
+1 Starting Town
+1 Smothering Tithe
+1 Sol Ring
+1 Birds of Paradise
+1 Mystic Remora
+1 Ledger Shredder
+1 Path to Exile
+1 Rhystic Study
+1 Mox Opal
+1 Cyclonic Rift
+1 Demonic Tutor
+1 Silence
+1 Orim's Chant
+1 Drannith Magistrate
+1 Everflowing Chalice
+1 Grand Abolisher
+1 Fellwar Stone
+1 Deadly Rollick
+1 Roaming Throne
+1 Ranger-Captain of Eos
+1 Orcish Bowmasters
+1 Chain of Vapor
+1 Opposition Agent

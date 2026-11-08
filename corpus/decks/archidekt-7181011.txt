@@ -1,0 +1,97 @@
+# Archidekt — Tough Enough
+# source: archidekt:7181011
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Doran, Besieged by Time
+
+Deck:
+1 Indatha Triome
+1 Dormant Grove // Gnarled Grovestrider
+1 Ulvenwald Observer
+1 Miren, the Moaning Well
+1 Deathcap Glade
+1 Shattered Sanctum
+1 Professor Dellian Fel
+1 Chelonian Tackle
+1 Perennation
+1 Sol Ring
+1 Ezzaroot Channeler
+1 Sapling of Colfenor
+1 Quickbeam, Upstart Ent
+1 Tree of Redemption
+1 Arcane Signet
+1 Canopy Vista
+1 Yavimaya Ancients
+1 Tree of Perdition
+1 Heartwood Storyteller
+1 Command Tower
+1 Lignify
+1 Sylvan Caryatid
+1 Assault Formation
+1 Yavimaya, Cradle of Growth
+1 Bala Ged Recovery // Bala Ged Sanctuary
+6 Forest
+1 Bojuka Bog
+1 Hushwood Verge
+1 Castle Garenbrig
+1 Exotic Orchard
+1 Deceptive Landscape
+1 Grim Backwoods
+1 Murmuring Bosk
+1 Woodland Cemetery
+1 Temple Garden
+1 Overgrown Tomb
+1 Takenuma, Abandoned Mire
+1 Huatli, the Sun's Heart
+1 Stoneskin
+1 Might of Oaks
+1 Last March of the Ents
+1 Assassin's Trophy
+1 Drag to the Roots
+1 Rootgrapple
+1 Reach of Branches
+1 Ancient Lumberknot
+1 Colfenor, the Last Yew
+1 Bosk Banneret
+1 Dauntless Dourbark
+1 Generous Ent
+1 Faeburrow Elder
+1 Deadwood Treefolk
+1 Indomitable Ancients
+1 Great Oak Guardian
+1 Leaf-Crowned Elder
+1 Orchard Warden
+1 Timber Protector
+1 Six
+1 Woodfall Primus
+1 Yedora, Grave Gardener
+1 Wickerbough Elder
+1 Fangorn, Tree Shepherd
+1 Life Chisel
+1 Doran, the Siege Tower
+1 Felothar the Steadfast
+1 Treebeard, Gracious Host
+1 Betor, Kin to All
+1 Tower Defense
+1 Bleachbone Verge
+4 Plains
+4 Swamp
+1 Wastewood Verge
+1 Godless Shrine
+1 Gavony Township
+1 Blighted Blackthorn
+1 Reaping Willow
+1 Winnowing
+1 Spry and Mighty
+1 Sapling Nursery
+1 Moonlit Lamenter
+1 Tip the Scales
+1 South Wind Avatar
+1 Sinister Gnarlbark
+1 Great Forest Druid
+1 Cauldron of Essence
+1 Part in Friendship
+1 Sign in Blood
+1 Radagast of Rhosgobel

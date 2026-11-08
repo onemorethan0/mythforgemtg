@@ -1,0 +1,76 @@
+# Archidekt — Meren - The Necromancer - Archenemy Hero
+# source: archidekt:5908450
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Meren of Clan Nel Toth
+
+Deck:
+17 Swamp
+17 Forest
+1 Thran Vigil
+1 Blossoming Wreath
+1 Spider Spawning
+1 Lotleth Giant
+1 Liliana's Elite
+1 Rhizome Lurcher
+1 Molderhulk
+1 Overwhelming Remorse
+1 Criminal Past
+1 Viconia, Drow Apostate
+1 Eternal Witness
+1 Genesis
+1 Mosswood Dreadknight // Dread Whispers
+1 Acolyte of Affliction
+1 Gravedigger
+1 Sanitarium Skeleton
+1 Persistent Specimen
+1 Gravewaker
+1 Bortuk Bonerattle
+1 Hogaak, Arisen Necropolis
+1 Deathbloom Ritualist
+1 Reclusive Taxidermist
+1 Spore Crawler
+1 Shessra, Death's Whisper
+1 Sengir Connoisseur
+1 Zombie Ogre
+1 Rot Shambler
+1 Silumgar Scavenger
+1 Undercity Scrounger
+1 Moss Diamond
+1 Torgaar, Famine Incarnate
+1 Kjeldoran Dead
+1 Rot-Tide Gargantua
+1 Grafted Wargear
+1 Legion Vanguard
+1 Crypt Lurker
+1 Neverwinter Dryad
+1 Tar Fiend
+1 Indulgent Tormentor
+1 Loathsome Curator
+1 Stitcher's Supplier
+1 Korozda Guildmage
+1 Bone Shredder
+1 Feign Death
+1 Fungal Infection
+1 Yavimaya Sapherd
+1 Charcoal Diamond
+1 Jalum Tome
+1 Whisper of the Dross
+1 Atrocious Experiment
+1 Drown in Filth
+1 Discerning Taste
+1 Avenging Druid
+1 Glowspore Shaman
+1 Druidic Ritual
+1 Slimefoot, the Stowaway
+1 Crawling Infestation
+1 Satyr Wayfinder
+1 Summon Undead
+1 Mire Triton
+1 Penumbra Bobcat
+1 Fungal Plots
+1 Saproling Migration
+1 Carrier Thrall
+1 Bonder's Ornament

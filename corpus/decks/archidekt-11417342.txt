@@ -1,0 +1,72 @@
+# Archidekt — Driverless Cars Hitting Pedestrians
+# source: archidekt:11417342
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Shorikai, Genesis Engine
+
+Deck:
+1 Mobilizer Mech
+1 Weatherlight Compleated
+1 Alacrian Armory
+1 Spine of Ish Sah
+1 The Prydwen, Steel Flagship
+1 Guidelight Matrix
+1 Mighty Servant of Leuk-o
+1 Heart of Kiran
+1 Reckoner Bankbuster
+1 Racers' Scoreboard
+1 Enchanted Carriage
+1 Broadcast Rambler
+1 Salvation Engine
+1 Recon Craft Theta
+1 Night Scythe
+1 Brute Suit
+1 Aether Syphon
+1 Arcane Signet
+1 Aether Spellbomb
+1 Mind Stone
+1 Monument to Endurance
+1 Mystic Forge
+1 Peacewalker Colossus
+1 Portable Hole
+1 Prodigy's Prototype
+1 Raiders' Karve
+1 Scourglass
+1 Smuggler's Copter
+1 Skysovereign, Consul Flagship
+1 Sol Ring
+1 Staff of Nin
+1 Argent Dais
+1 Azorius Cluestone
+1 Azorius Signet
+1 Azorius Locket
+1 Bag of Holding
+1 Commander's Sphere
+1 Deluxe Dragster
+1 Bonder's Ornament
+1 Brotherhood Vertibird
+1 Careening Mine Cart
+1 Clown Car
+1 Collector's Vault
+1 Cultivator's Caravan
+1 Lifecraft Engine
+1 Everflowing Chalice
+1 Fellwar Stone
+1 Imposter Mech
+1 Parhelion II
+1 Luxurious Locomotive
+1 Mechtitan Core
+1 Perilous Snare
+1 Mobile Garrison
+1 Surgehacker Mech
+1 Talisman of Progress
+1 Thopter Fabricator
+1 Thought Vessel
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Unlicensed Hearse
+1 Valor's Flagship
+1 Weatherlight
+19 Island
+19 Plains

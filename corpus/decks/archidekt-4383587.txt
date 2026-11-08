@@ -1,0 +1,85 @@
+# Archidekt — Welcome to the Zoo
+# source: archidekt:4383587
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Yoshimaru, Ever Faithful
+1 Keleth, Sunmane Familiar
+
+Deck:
+1 Brimaz, King of Oreskos
+1 Major Teroh
+1 Ajani, Adversary of Tyrants
+1 Teshar, Ancestor's Apostle
+1 The Celestus
+1 Light-Paws, Emperor's Voice
+1 Flagstones of Trokair
+1 Mikokoro, Center of the Sea
+1 Gods' Eye, Gate to the Reikai
+1 Urza's Sylex
+1 Rath's Edge
+1 Noble Heritage
+1 Losheel, Clockwork Scholar
+1 Far Traveler
+1 Mavinda, Students' Advocate
+1 Veteran Soldier
+1 Opal-Eye, Konda's Yojimbo
+1 Spear of Heliod
+1 Eye of Vecna
+1 Sword of the Chosen
+1 Flaming Fist
+1 Isamaru, Hound of Konda
+1 Godsend
+1 Eight-and-a-Half-Tails
+1 Kemba, Kha Regent
+1 Commander Eesha
+1 Celestial Kirin
+1 Throne of the God-Pharaoh
+1 Rune-Tail, Kitsune Ascendant // Rune-Tail's Essence
+1 Icingdeath, Frost Tyrant
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Sanctum of Tranquil Light
+1 Fortune, Loyal Steed
+1 Flowering of the White Tree
+1 Ajani, Caller of the Pride
+1 Ajani Goldmane
+1 Mana Tithe
+1 Hope of Ghirapur
+1 Syr Ginger, the Meal Ender
+1 Zeriam, Golden Wind
+1 Blackblade Reforged
+1 Oketra's Monument
+1 Sensei Golden-Tail
+1 Lieutenant Kirtar
+1 Lulu, Loyal Hollyphant
+1 Kataki, War's Wage
+1 Jazal Goldmane
+1 Nadaar, Selfless Paladin
+1 Prava of the Steel Legion
+1 Balan, Wandering Knight
+1 Flawless Maneuver
+1 Oath of Gideon
+1 Geier Reach Sanitarium
+1 Eiganjo Castle
+1 Cut a Deal
+1 Wings of the Cosmos
+1 Eater of Virtue
+1 Skrelv, Defector Mite
+1 Legion's Landing // Adanto, the First Fort
+1 Kayla's Music Box
+1 Hand of Vecna
+1 Gods Willing
+24 Plains
+1 Urza's Ruinous Blast
+1 Eiganjo, Seat of the Empire
+1 Nykthos, Shrine to Nyx
+1 Oketra the True
+1 Untaidake, the Cloud Keeper
+1 Hall of the Bandit Lord
+1 Search for Glory
+1 Ephemerate
+1 Brought Back
+1 Escape from Orthanc
+1 Acrobatic Leap
+1 Ravnica at War

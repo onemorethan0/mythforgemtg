@@ -1,0 +1,104 @@
+# Archidekt — Niv Mizzet at home
+# source: archidekt:9838703
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ob Nixilis, Captive Kingpin
+
+Deck:
+1 Flashback
+1 City of Traitors
+1 Prosper, Tome-Bound
+1 Lion's Eye Diamond
+1 Red Elemental Blast
+1 Agatha's Soul Cauldron
+1 Wheel of Fortune
+1 Mana Confluence
+1 Verdant Catacombs
+1 Orcish Bowmasters
+1 Pyretic Ritual
+1 Tainted Pact
+1 Deflecting Swat
+1 Starting Town
+1 Luxury Suite
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Underworld Breach
+1 Opposition Agent
+1 Cursed Mirror
+1 Vault of Whispers
+1 Saw in Half
+1 Blazemire Verge
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 Lotus Petal
+1 Goryo's Vengeance
+1 Ruby Medallion
+1 Mox Opal
+1 Ghostfire Slice
+1 Bloodstained Mire
+1 Praetor's Grasp
+1 Fire Covenant
+1 Strike It Rich
+1 Ragavan, Nimble Pilferer
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Jeska's Will
+1 Simian Spirit Guide
+1 Kederekt Parasite
+1 Mox Diamond
+1 Chrome Mox
+1 Sol Ring
+1 Deadly Rollick
+1 Pyroblast
+1 Talisman of Indulgence
+1 Mana Vault
+1 Unstable Amulet
+1 Desperate Ritual
+1 Coruscation Mage
+1 Kessig Flamebreather
+1 Party Thrasher
+1 Imperial Seal
+1 Cabal Ritual
+1 Dark Ritual
+1 Gamble
+1 Walking Ballista
+1 Goblin Engineer
+1 Arcane Signet
+1 Molten Duplication
+1 Final Fortune
+1 Rite of Flame
+1 Shadow of the Goblin
+1 Tibalt's Trickery
+1 Vivi's Persistence
+1 Redirect Lightning
+1 The Last Agni Kai
+1 Hexing Squelcher
+1 Flare of Duplication
+1 Beseech the Mirror
+1 Casey Jones, Back Alley Brute
+1 Gleeful Arsonist
+1 Entomb
+1 Lively Dirge
+1 Badlands
+1 Ancient Tomb
+1 Command Tower
+1 Blood Crypt
+1 City of Brass
+1 Gemstone Caverns
+1 Mount Doom
+1 Swamp
+1 Emergence Zone
+1 Polluted Delta
+1 Marsh Flats
+1 Scalding Tarn
+1 Exotic Orchard
+1 Mountain
+1 Great Furnace
+1 Fellwar Stone
+1 Bolt Bend
+1 Untimely Malfunction
+1 Lightning Bolt
+1 Alicia Masters, Skilled Sculptor
+1 Vexing Bauble
+1 Raucous Theater
+1 Gandalf, Goblins' Bane // Flameshape

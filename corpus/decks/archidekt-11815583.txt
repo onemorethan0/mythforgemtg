@@ -1,0 +1,76 @@
+# Archidekt — Drunk Driving - Quips&Guac
+# source: archidekt:11815583
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Captain Rex Nebula
+
+Deck:
+1 Aradara Express
+1 Ashnod's Cylix
+1 Ballista Charger
+1 Bandit's Haul
+1 Bessie, the Doctor's Roadster
+1 Blessed Wine
+1 Blitz Automaton
+1 Braidwood Cup
+1 Built to Smash
+1 Chalice of Life // Chalice of Death
+1 Clamorous Ironclad
+1 Clown Car
+1 Colossal Plow
+1 Combat Thresher
+1 Commander Sofia Daguerre
+1 Crash and Burn
+1 Daredevil Dragster
+1 Dermotaxi
+1 Earnest Fellowship
+1 Everflowing Chalice
+1 Faithless Looting
+1 Fallaji Dragon Engine
+1 Filigree Racer
+1 Fleetwheel Cruiser
+1 Fling
+1 Flywheel Racer
+1 Font of Ire
+1 Font of Vigor
+1 Foundry Inspector
+1 Frogmyr Enforcer
+1 Gastal Thrillroller
+1 Getaway Car
+1 Goblin Festival
+1 Goliath Truck
+1 Hierophant's Chalice
+1 Hijack
+1 Irontread Crusher
+1 Ivory Cup
+1 Lithoform Engine
+1 Luxurious Locomotive
+1 Magda, the Hoardmaster
+1 Mizzium Tank
+1 Mobile Garrison
+1 Mobile Homestead
+1 Mysterious Limousine
+1 Ovalchase Dragster
+1 Parhelion II
+1 Pia's Revolution
+16 Plains
+1 Reckless Handling
+1 Salvation Engine
+1 Scrambleverse
+1 Skitterbeam Battalion
+1 Smuggler's Buggy
+1 Start Your Engines
+1 Steel Seraph
+1 Strionic Resonator
+1 Take for a Ride
+1 Threefold Thunderhulk
+1 Trash for Treasure
+1 Urza's Chalice
+1 Valor's Flagship
+1 Vexing Puzzlebox
+1 Voyager Quickwelder
+1 Warp World
+1 Wine of Blood and Iron
+18 Mountain

@@ -1,0 +1,97 @@
+# Archidekt — Twisted Thaumaturge
+# source: archidekt:8206675
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+
+Deck:
+1 Arcane Signet
+1 Sol Ring
+1 Lotus Petal
+1 Swan Song
+1 Fierce Guardianship
+1 Demonic Tutor
+1 Drowned Catacomb
+1 Imperial Seal
+1 Mystical Tutor
+1 Spell Pierce
+1 Deadly Rollick
+1 Merchant Scroll
+1 Feed the Swarm
+1 Demonic Consultation
+1 Thassa's Oracle
+1 An Offer You Can't Refuse
+1 Cyclonic Rift
+1 Flusterstorm
+1 Pact of Negation
+1 Clearwater Pathway // Murkwater Pathway
+1 Sensei's Divining Top
+1 Urborg, Tomb of Yawgmoth
+1 Orcish Bowmasters
+1 Windfall
+1 Sheoldred, the Apocalypse
+1 Ad Nauseam
+1 Toxic Deluge
+1 Twiddle
+1 Mana Drain
+1 Vampiric Tutor
+1 Ancient Tomb
+1 Dark Ritual
+1 Shipwreck Marsh
+1 Muddle the Mixture
+1 Verdant Catacombs
+1 Mana Confluence
+1 Prismatic Vista
+1 Underground River
+1 Bloodstained Mire
+1 Mystic Remora
+1 Yawgmoth's Will
+6 Island
+7 Swamp
+1 Brainstorm
+1 Snapcaster Mage
+1 Snap
+1 Scheming Symmetry
+1 Necropotence
+1 Borne Upon a Wind
+1 Mental Misstep
+1 Chrome Mox
+1 Dispel
+1 Force of Negation
+1 Force of Will
+1 Cabal Ritual
+1 Rhystic Study
+1 Lim-Dûl's Vault
+1 Bloodchief Ascension
+1 Mindcrank
+1 Watery Grave
+1 Polluted Delta
+1 Gloomlake Verge
+1 Darkslick Shores
+1 Morphic Pool
+1 Opposition Agent
+1 Otawara, Soaring City
+1 Grim Tutor
+1 Profane Tutor
+1 Solve the Equation
+1 Command Tower
+1 City of Brass
+1 Urza's Saga
+1 Retraction Helix
+1 Mox Amber
+1 Wishclaw Talisman
+1 Mox Opal
+1 Talisman of Dominance
+1 Mana Vault
+1 Frantic Search
+1 Miscast
+1 Gemstone Caverns
+1 Chain of Vapor
+1 Personal Tutor
+1 Mindbreak Trap
+1 Cruel Tutor
+1 Brain Freeze
+1 Emergence Zone
+1 Banishing Knack

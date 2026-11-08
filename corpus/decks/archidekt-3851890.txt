@@ -1,0 +1,108 @@
+# Archidekt — Urtet, Remnant of Memnarch
+# source: archidekt:3851890
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Urtet, Remnant of Memnarch
+
+Deck:
+1 Darksteel Myr
+1 Palladium Myr
+1 Plague Myr
+1 Archway of Innovation
+1 Steam Vents
+1 Stomping Ground
+1 Windfall
+1 Bountiful Promenade
+1 Agatha's Soul Cauldron
+1 Shifting Woodland
+1 Ruinous Ultimatum
+1 Path of Ancestry
+1 Gold Myr
+1 Perilous Myr
+1 Ichorclaw Myr
+1 Iron Myr
+1 Myr Battlesphere
+1 Myr Convert
+1 Myr Galvanizer
+1 Myr Retriever
+1 Myr Reservoir
+1 Sol Ring
+1 Leaden Myr
+1 Knighted Myr
+1 Myr Welder
+1 Copper Myr
+1 Command Tower
+1 Alloy Myr
+1 Exotic Orchard
+1 Kindred Discovery
+1 Swords to Plowshares
+1 Mountain
+1 Swamp
+1 Island
+1 Plains
+1 Forest
+1 Luxury Suite
+1 Morphic Pool
+1 Rejuvenating Springs
+1 Spectator Seating
+1 Arcane Signet
+1 Ketria Triome
+1 Aggravated Assault
+1 Cryptolith Rite
+1 Hovermyr
+1 Myr Sire
+1 Myr Superion
+1 Shimmer Myr
+1 Arid Mesa
+1 Crib Swap
+1 Silver Myr
+1 Yavimaya Hollow
+1 The Mycosynth Gardens
+1 Godless Shrine
+1 Midnight Clock
+1 Elven Chorus
+1 Magistrate's Scepter
+1 Parcel Myr
+1 The Everflowing Well // The Myriad Pools
+1 Myr Custodian
+1 Painful Truths
+1 Genesis Chamber
+1 Parasitic Implant
+1 Coretapper
+1 Overgrown Tomb
+1 Hallowed Fountain
+1 Indatha Triome
+1 Crystal Skull, Isu Spyglass
+1 Flawless Maneuver
+1 Spreading Plague
+1 Nameless Inversion
+1 Dispatch
+1 Lodestone Myr
+1 Marsh Flats
+1 Three Tree City
+1 Verdant Catacombs
+1 Boseiju, Who Endures
+1 Ancient Tomb
+1 Urza's Incubator
+1 Minamo, School at Water's Edge
+1 Fierce Guardianship
+1 Myr Kinsmith
+1 Trouble in Pairs
+1 Myr Turbine
+1 Farewell
+1 Rhystic Study
+1 Misty Rainforest
+1 Deflecting Swat
+1 Enlightened Tutor
+1 Muddle the Mixture
+1 Sevinne's Reclamation
+1 Solar Array
+1 Vampiric Tutor
+1 Terrasymbiosis
+1 Uthros, Titanic Godcore
+1 Inspiring Call
+1 Mishra's Workshop
+1 Raugrin Triome
+1 Scalding Tarn

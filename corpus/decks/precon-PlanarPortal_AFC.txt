@@ -1,0 +1,84 @@
+# WotC precon — Planar Portal (AFC, 2021-07-23)
+# source: mtgjson:PlanarPortal_AFC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Prosper, Tome-Bound
+
+Deck:
+1 Apex of Power
+1 Arcane Signet
+1 Bag of Devouring
+1 Bedevil
+1 Bituminous Blast
+1 Bojuka Bog
+1 Bucknard's Everfull Purse
+1 Chaos Channeler
+1 Chaos Wand
+1 Chaos Warp
+1 Chittering Witch
+1 Command Tower
+1 Commander's Sphere
+1 Commune with Lava
+1 Consuming Vapors
+1 Danse Macabre
+1 Dark-Dweller Oracle
+1 Dead Man's Chest
+1 Death Tyrant
+1 Dire Fleet Daredevil
+1 Disrupt Decorum
+1 Dream Pillager
+1 Ebony Fly
+1 Etali, Primal Storm
+1 Exotic Orchard
+1 Fellwar Stone
+1 Fevered Suspicion
+1 Fiend of the Shadows
+1 Fiendlash
+1 Foreboding Ruins
+1 Gonti, Lord of Luxury
+1 Grim Hireling
+1 Hellish Rebuke
+1 Hex
+1 Hurl Through Hell
+1 Ignite the Future
+1 Izzet Chemister
+1 Karazikar, the Eye Tyrant
+1 Light Up the Stage
+1 Lorcan, Warlock Collector
+1 Loyal Apprentice
+1 Marionette Master
+1 Mind Stone
+1 Mortuary Mire
+13 Mountain
+1 Ogre Slumlord
+1 Orazca Relic
+1 Phthisis
+1 Piper of the Swarm
+1 Pontiff of Blight
+1 Rakdos Carnarium
+1 Rakdos Charm
+1 Rakdos Signet
+1 Reckless Endeavor
+1 Shadowblood Ridge
+1 Share the Spoils
+1 Shiny Impetus
+1 Smoldering Marsh
+1 Sol Ring
+1 Spinerock Knoll
+14 Swamp
+1 Tainted Peak
+1 Talisman of Indulgence
+1 Tectonic Giant
+1 Terminate
+1 Theater of Horrors
+1 Throes of Chaos
+1 Underdark Rift
+1 Unstable Obelisk
+1 Vandalblast
+1 Warlock Class
+1 Wild-Magic Sorcerer
+1 You Find Some Prisoners
+1 Zhalfirin Void

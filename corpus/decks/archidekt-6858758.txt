@@ -1,0 +1,102 @@
+# Archidekt — Ravnica Real Estate Agency
+# source: archidekt:6858758
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Reset
+
+Deck:
+1 Nexus of Fate
+1 Insatiable Avarice
+1 Personal Tutor
+1 Simic Growth Chamber
+1 Explore the Underdark
+1 Orzhov Guildgate
+1 Azorius Guildgate
+1 Boros Guildgate
+1 Crop Rotation
+1 Emerald Charm
+1 Jeska's Will
+1 Jeskai Ascendancy
+1 Inkshield
+1 Bring to Light
+1 Faithless Looting
+1 Cultivate
+1 Sylvan Scrying
+1 Hour of Promise
+1 Reshape the Earth
+1 Ravenform
+1 Gates Ablaze
+1 Dance with Calamity
+1 Shore Up
+1 Blacksmith's Skill
+1 Tamiyo's Safekeeping
+1 Profane Tutor
+1 Farewell
+1 Thrill of Possibility
+1 Growth Spiral
+1 Blessed Respite
+1 Circuitous Route
+1 Abundant Harvest
+1 Silence
+1 Titania's Command
+1 Memory's Journey
+1 Swarm Intelligence
+1 Genesis Storm
+1 Counterspell
+1 Galvanic Iteration
+1 Path to Exile
+1 Swords to Plowshares
+1 Open the Gates
+1 Tempt with Discovery
+1 Turn the Earth
+1 Fog
+1 Swamp
+1 Plains
+2 Island
+3 Forest
+4 Mountain
+1 Plaza of Harmony
+1 Dimir Guildgate
+1 Golgari Guildgate
+1 Gruul Guildgate
+1 Izzet Guildgate
+1 Rakdos Guildgate
+1 Selesnya Guildgate
+1 Simic Guildgate
+1 Maze's End
+1 Manor Gate
+1 Sea Gate
+1 Command Tower
+1 Baldur's Gate
+1 Gond Gate
+1 Cerulean Wisps
+1 Djeru's Resolve
+1 Light the Way
+1 Sudden Spinnerets
+1 Talon Gates of Madara
+1 All Is Dust
+1 Gruul Turf
+1 Izzet Boilerworks
+1 Planar Genesis
+1 Mizzix's Mastery
+1 Diabolic Tutor
+1 Witness the Future
+1 Freed from the Real
+1 Deserted Temple
+1 Ad Nauseam
+1 An Offer You Can't Refuse
+1 Increasing Vengeance
+1 Boseiju, Who Shelters All
+1 Culling Ritual
+1 Dream's Grip
+1 Entomb
+1 Burst of Energy
+1 Gifts Ungiven
+1 Inevitable Betrayal
+1 Saw It Coming
+1 Twiddle
+1 Dark Ritual
+1 Vanishing Verse
+1 Codie, Vociferous Codex

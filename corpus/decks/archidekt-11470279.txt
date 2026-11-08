@@ -1,0 +1,79 @@
+# Archidekt — All I need is one mana
+# source: archidekt:11470279
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Norin, Swift Survivalist
+
+Deck:
+1 Stonewright
+1 Frantic Scapegoat
+1 Gingerbrute
+1 Cacophony Scamp
+1 Fireblade Charger
+1 Laccolith Whelp
+1 Scorch Spitter
+1 Goblin Vandal
+1 End the Festivities
+1 Dreadmaw's Ire
+1 Flame Blitz
+1 Soul-Guide Lantern
+1 Kumano Faces Kakkazan // Etching of Kumano
+1 Vexing Bauble
+1 Dead-Iron Sledge
+1 Spikefield Hazard // Spikefield Cave
+1 Masterwork of Ingenuity
+1 Blacksmith's Talent
+1 Tormentor's Helm
+1 Trusty Machete
+1 Lavaspur Boots
+1 Epiphany Storm
+1 Faithless Looting
+1 Experimental Synthesizer
+1 Pyrite Spellbomb
+1 Reckless Charge
+1 Titan's Strength
+1 Cartouche of Zeal
+1 Hidden Footblade
+1 Taste for Mayhem
+1 Signal Pest
+1 Heartfire Hero
+1 Sawblade Scamp
+1 Fervent Champion
+1 Bomat Courier
+1 Rosnakht, Heir of Rohgahh
+1 Kessig Wolfrider
+1 Simian Sling
+1 Karplusan Wolverine
+1 Foundry Street Denizen
+1 Goblin Gaveleer
+1 Rotisserie Elemental
+1 Kellan, Planar Trailblazer
+1 Goblin Javelineer
+1 Clockwork Percussionist
+1 Gorilla Shaman
+1 Lightning Bolt
+30 Mountain
+1 Forgotten Cave
+1 Castle Embereth
+1 Bonesplitter
+1 Sai of the Shinobi
+1 Dragon's Rage Channeler
+1 Brute Force
+1 Burnout Bashtronaut
+1 Greasewrench Goblin
+1 Dragonmaster Outcast
+1 Voldaren Epicure
+1 Spikeshot Elder
+1 Taunting Kobold
+1 Goblin Bushwhacker
+1 Rabbit Battery
+1 Ghitu Lavarunner
+1 Blisterspit Gremlin
+1 Goblin Fireslinger
+1 Vandalblast
+1 Infiltration Lens
+1 Short Sword
+1 Golem-Skin Gauntlets
+1 Infuriate

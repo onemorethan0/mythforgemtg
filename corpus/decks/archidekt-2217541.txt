@@ -1,0 +1,103 @@
+# Archidekt — I'm Going To Be Honest With You, It's A Cult
+# source: archidekt:2217541
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Katilda, Dawnhart Prime
+
+Deck:
+1 Command Tower
+1 Winding Canyons
+1 Weathered Wayfarer
+1 Mother of Runes
+1 Horizon Canopy
+1 Windswept Heath
+1 Razorverge Thicket
+1 Bountiful Promenade
+1 Sunpetal Grove
+1 Brushland
+1 Fortified Village
+1 Canopy Vista
+1 Overgrown Farmland
+1 Temple Garden
+1 Devoted Caretaker
+1 Grand Abolisher
+1 Ranger-Captain of Eos
+1 Worldly Tutor
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Three Tree City
+1 Galadriel's Dismissal
+1 Shifting Woodland
+1 Eiganjo, Seat of the Empire
+1 Boseiju, Who Endures
+1 Flare of Fortitude
+1 Guardian of Faith
+1 Seedborn Muse
+1 Heronblade Elite
+1 Saryth, the Viper's Fang
+1 Emergence Zone
+1 Cavern of Souls
+1 Castle Garenbrig
+1 Castle Ardenvale
+1 Yavimaya, Cradle of Growth
+1 Wooded Bastion
+1 Maze of Ith
+1 Minas Tirith
+3 Forest
+1 Kamahl, Fist of Krosa
+1 Boromir, Warden of the Tower
+1 Drannith Magistrate
+1 Collector Ouphe
+1 Dragon Sniper
+1 Shang-Chi, Master of Kung Fu
+1 Delney, Streetwise Lookout
+1 Reverent Mantra
+1 Tax Collector
+1 Surrak and Goreclaw
+1 Badgermole Cub
+1 Angel of Glory's Rise
+1 Formidable Speaker
+1 Fauna Shaman
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Wylie Duke, Atiin Hero
+1 Finale of Devastation
+1 Brigid, Clachan's Heart // Brigid, Doun's Mind
+1 Thalia, Guardian of Thraben
+1 Voice of Victory
+1 Lurking Predators
+1 Mangara, the Diplomat
+1 Avacyn's Pilgrim
+1 Esper Sentinel
+1 Village Bell-Ringer
+1 Black Panther, Wakandan King
+1 Sylvan Safekeeper
+1 Ellivere of the Wild Court
+1 Cathar Commando
+1 Ulvenwald Tracker
+1 Recruiter of the Guard
+1 Greymond, Avacyn's Stalwart
+1 Monk Gyatso
+1 Eternal Witness
+1 Spectacular Spider-Man
+1 The Cabbage Merchant
+1 Great Oak Guardian
+1 Strip Mine
+1 Captain Kathryn Janeway
+1 Seedcradle Witch
+1 The Queen of Dale
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Beast Whisperer
+1 Gilraen, Dúnedain Protector
+1 Temur Sabertooth
+1 Emiel the Blessed
+1 Talon Gates of Madara
+1 Pia, Aether Ascetic
+3 Plains
+1 Radagast of Rhosgobel
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Recruitment Officer
+1 Beastrider Vanguard
+1 Gleaming Splendor
+1 Captain Sisay

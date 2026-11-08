@@ -1,0 +1,94 @@
+# Archidekt — [2] LA MUERRA PIU' TOTALEEEEEEH!
+# source: archidekt:8525043
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Muerra, Trash Tactician
+
+Deck:
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Birds of Paradise
+1 Bramble Familiar // Fetch Quest
+1 Brazen Collector
+1 Command Tower
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Prosperous Bandit
+1 Scrapshooter
+1 Season of Gathering
+1 Sol Ring
+1 Sylvan Scavenging
+1 Thran Dynamo
+1 Thornspire Verge
+1 Peerless Recycling
+1 Chaos Warp
+1 Electric Revelation
+1 Wear Down
+1 Gift of the Viper
+1 Innkeeper's Talent
+1 Vandalblast
+1 Crackle with Power
+1 Boseiju, Who Endures
+1 Junkblade Bruiser
+1 Laughing Mad
+1 Yuna's Whistle
+1 War Room
+1 Kessig Wolf Run
+1 Ignite the Future
+1 Firdoch Core
+1 Wandering Archaic // Explore the Vastlands
+1 Mage Slayer
+1 Fabled Passage
+1 Communal Brewing
+1 Shifting Woodland
+8 Mountain
+1 Demolition Field
+1 Beast Within
+1 Inspiring Call
+1 Path of Ancestry
+1 Sheltered Thicket
+1 Red XIII, Proud Warrior
+1 Roaming Throne
+1 Sphere Grid
+1 Snakeskin Veil
+1 Teapot Slinger
+1 Rust-Shield Rampager
+1 Duskshell Crawler
+1 Brambleguard Veteran
+1 The Earth Crystal
+1 Kodama of the West Tree
+1 Blossoming Bogbeast
+1 Realmwalker
+1 Trailtracker Scout
+1 Walking Ballista
+1 Taurean Mauler
+1 Hugs, Grisly Guardian
+1 Rhythm of the Wild
+1 Wandertale Mentor
+1 Keen-Eyed Curator
+1 Scrappy Bruiser
+1 Take Out the Trash
+1 Silkguard
+1 Capricopian
+1 Ouroboroid
+8 Forest
+1 Swiftfoot Boots
+1 Ozolith, the Shattered Spire
+1 Wildgrowth Archaic
+1 Bark-Knuckle Boxer
+1 Rootbound Crag
+1 Cinder Glade
+1 Thickest in the Thicket
+1 Leyline Immersion
+1 Commune with Lava
+1 Oakhollow Village
+1 Patchwork Banner
+1 Warden of the Grove
+1 Chain Reaction
+1 All Will Be One
+1 Gourmand's Talent
+1 Krosan Grip
+1 Uncivil Unrest
+1 Spire Garden
+1 Hangarback Walker
+1 Exotic Orchard

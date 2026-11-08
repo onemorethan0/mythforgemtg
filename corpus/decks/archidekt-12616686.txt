@@ -1,0 +1,76 @@
+# Archidekt — 🌞
+# source: archidekt:12616686
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Otharri, Suns' Glory
+
+Deck:
+1 Sunforger
+1 Evolving Wilds
+1 Myr Convert
+1 Secret Rendezvous
+1 Heliod, God of the Sun
+1 Endless Sands
+1 Sunset Revelry
+1 Elspeth, Sun's Champion
+1 Volt Charge
+1 Sunbird Standard // Sunbird Effigy
+1 Sunscorch Regent
+1 Inti, Seneschal of the Sun
+1 Sunscorched Divide
+1 Sunset Pyramid
+1 Commander's Insignia
+1 Dawn of Hope
+1 Cavalier of Dawn
+1 Sol Grail
+1 Sol Ring
+1 Caparocti Sunborn
+1 Chimil, the Inner Sun
+1 White Sun's Twilight
+1 Glistening Sphere
+1 Sword of Light and Shadow
+1 Throne of the God-Pharaoh
+1 Blood Sun
+1 Talisman of Conviction
+1 Solar Transformer
+1 Slaughter the Strong
+1 Haliya, Guided by Light
+19 Plains
+1 Approach of the Second Sun
+1 Sunstar Expansionist
+1 Steel Hellkite
+1 Astelli Reclaimer
+1 Valakut Exploration
+1 Sunblast Angel
+1 Phyrexian Atlas
+1 Thopter Assembly
+1 Sungold Barrage
+1 Force of Virtue
+1 Neheb, the Eternal
+1 Sigil of the New Dawn
+1 Darksteel Mutation
+1 Dusk // Dawn
+1 Sunhome, Fortress of the Legion
+1 Red Sun's Twilight
+15 Mountain
+1 Omen of the Sun
+1 Dawn Charm
+1 White Sun's Zenith
+1 Swords to Plowshares
+1 Glorious Anthem
+1 Kinjalli's Sunwing
+1 Daxos, Blessed by the Sun
+1 Plague Myr
+1 Sunseed Nurturer
+1 Caged Sun
+1 Sunpearl Kirin
+1 Alloy Myr
+1 Sungold Sentinel
+1 Dawnstrike Vanguard
+1 Moraug, Fury of Akoum
+1 Abrade
+1 Zetalpa, Primal Dawn
+1 Keleth, Sunmane Familiar
+1 Vedalken Orrery

@@ -1,0 +1,102 @@
+# Archidekt — Kastral, the Windcrested - Bird Kindred
+# source: archidekt:59968
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Kastral, the Windcrested
+
+Deck:
+1 Arcane Denial
+1 Murder of Crows
+1 Emeria Angel
+1 Kindred Discovery
+1 Nimble Obstructionist
+1 Scavenger Grounds
+1 Thought Vessel
+1 Aven Mindcensor
+1 Augury Owl
+1 Migratory Route
+1 Thrummingbird
+1 Mirrorweave
+1 Skullclamp
+1 Command Tower
+1 Soulcatcher
+1 Warden of Evos Isle
+1 Path to Exile
+1 High Sentinels of Arashin
+1 Wingmate Roc
+1 Celestial Gatekeeper
+1 Keeper of the Nine Gales
+1 Seaside Haven
+1 Soulcatchers' Aerie
+1 Sea of Clouds
+1 Thespian's Stage
+1 Azorius Chancery
+1 Azorius Signet
+1 Battle Screech
+1 Heliod's Intervention
+1 Shabraz, the Skyshark
+1 Cartographer's Hawk
+1 Swan Song
+1 Watcher of the Spheres
+1 Mystic Gate
+1 Glasspool Mimic // Glasspool Shore
+1 Hengegate Pathway // Mistgate Pathway
+1 Empyrean Eagle
+1 Scouting Hawk
+1 Fabled Passage
+1 Reconnaissance Mission
+1 Otawara, Soaring City
+1 Three Steps Ahead
+1 Aerial Extortionist
+1 Demolition Field
+1 Aven Interrupter
+1 Lieutenant Kirtar
+1 Preordain
+1 Temple of Enlightenment
+1 Nesting Dovehawk
+1 Ledger Shredder
+1 Curiosity Crafter
+1 Ondu Inversion // Ondu Skyruins
+1 Eiganjo, Seat of the Empire
+1 Dowsing Dagger // Lost Vale
+1 Restless Anchorage
+1 Falcon and Redwing
+1 Meticulous Archive
+1 Reliquary Tower
+1 Conjurer's Mantle
+1 Plumecreed Escort
+1 Mockingbird
+1 Strix Serenade
+1 Lupinflower Village
+1 Jackdaw Savior
+3 Island
+5 Plains
+1 Three Tree City
+1 Glacial Fortress
+1 Murmuration
+1 Sol Ring
+1 Arcane Signet
+1 Ash Barrens
+1 Mutavault
+1 Path of Ancestry
+1 Renewed Solidarity
+1 Patchwork Banner
+1 Sink into Stupor // Soporific Springs
+1 Swords to Plowshares
+1 Gustcloak Savior
+1 Unexplained Absence
+1 Firdoch Core
+1 Kangee, Sky Warden
+1 Airborne Aid
+1 Harmonized Crescendo
+1 Winnowing
+1 Requisition Raid
+1 Rogue's Passage
+1 Herald's Horn
+1 Adarkar Wastes
+1 Deserted Beach
+1 Turbulent Shore
+1 Talisman of Progress
+1 Perch Protection

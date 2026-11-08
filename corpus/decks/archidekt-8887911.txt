@@ -1,0 +1,96 @@
+# Archidekt — Miirym EDH (300€ Budget - Bracket 2)
+# source: archidekt:8887911
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Miirym, Sentinel Wyrm
+
+Deck:
+1 Earthquake Dragon
+1 Bountiful Landscape
+1 Elemental Bond
+1 Roiling Dragonstorm
+1 Marang River Regent // Coil and Catch
+1 Dragonhawk, Fate's Tempest
+1 Temur Ascendancy
+1 Stubborn Denial
+1 Sarkhan's Triumph
+1 Neoform
+1 Birds of Paradise
+1 Dreamroot Cascade
+1 Dragon Tempest
+1 Spark Double
+1 Scorched Geyser
+1 Maelstrom of the Spirit Dragon
+1 Sodden Verdure
+1 Mystic Remora
+1 Rejuvenating Springs
+1 Nature's Lore
+1 Shivan Reef
+1 Twinflame Tyrant
+1 Firkraag, Cunning Instigator
+1 Fabled Passage
+1 Herd Heirloom
+1 Atsushi, the Blazing Sky
+1 Spire Garden
+1 Heroic Intervention
+1 Arcane Signet
+1 Stormcarved Coast
+1 Scourge of Valkas
+1 Ureni of the Unwritten
+1 Command Tower
+1 Counterspell
+1 Dragon's Hoard
+1 Dragonspeaker Shaman
+1 Exotic Orchard
+5 Forest
+1 Garruk's Uprising
+1 Haven of the Spirit Dragon
+5 Island
+1 Lightning Greaves
+5 Mountain
+1 Rootbound Crag
+1 Sarkhan, Soul Aflame
+1 Sol Ring
+1 Urza's Incubator
+1 Beast Within
+1 Ganax, Astral Hunter
+1 Goldspan Dragon
+1 Astral Dragon
+1 Arcane Denial
+1 Sulfur Falls
+1 Rockfall Vale
+1 Farseek
+1 Eternal Witness
+1 Dragonlord's Servant
+1 Nature's Claim
+1 Yavimaya Coast
+1 Karplusan Forest
+1 Bolt Bend
+1 Dragonologist
+1 Eldritch Evolution
+1 Sakashima the Impostor
+1 Cultivate
+1 Selvala, Heart of the Wilds
+1 Swan Song
+1 Klauth, Unrivaled Ancient
+1 Terror of the Peaks
+1 Frostcliff Siege
+1 Oviya, Automech Artisan
+1 Bloom Tender
+1 Cinder Glade
+1 An Offer You Can't Refuse
+1 Pongify
+1 Dragonborn Champion
+1 Atarka, World Render
+1 Training Compound
+1 Wrathful Red Dragon
+1 Blasphemous Act
+1 Hinterland Harbor
+1 Essence Flux
+1 Tamiyo's Safekeeping
+1 Chameleon, Master of Disguise
+1 Vengeful Ancestor
+1 Fellwar Stone
+1 Kodama's Reach

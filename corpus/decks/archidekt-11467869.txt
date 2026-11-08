@@ -1,0 +1,102 @@
+# Archidekt — Beyond Gloam's Veil || Y'shtola, Night's Blessed
+# source: archidekt:11467869
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Mortify
+1 Underground River
+1 Command Tower
+1 Thought Vessel
+1 Talisman of Progress
+1 Sol Ring
+1 Sunken Ruins
+1 Papalymo Totolymo
+1 Sunken Hollow
+1 Swords to Plowshares
+1 Estinien Varlineau
+2 Swamp
+1 Watery Grave
+1 Exsanguinate
+1 Raffine's Tower
+1 Anguished Unmaking
+1 Ghostly Prison
+1 Cleansing Nova
+1 Mana Sculpt
+1 Void Rend
+1 Vindicate
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Flawless Maneuver
+1 Idyllic Tutor
+1 Bender's Waterskin
+1 Defacing Duskmage // Vandal's Edit
+1 Relic of Legends
+1 Adarkar Wastes
+1 Arcane Sanctum
+1 Hallowed Fountain
+1 Godless Shrine
+4 Island
+1 Frantic Search
+1 Undermine
+1 Propaganda
+1 Disallow
+1 Reliquary Tower
+1 Norn's Annex
+1 Curiosity
+3 Plains
+1 Floodfarm Verge
+1 Helm of the Ghastlord
+1 Gloomlake Verge
+1 Bleachbone Verge
+1 Shipwreck Marsh
+1 Shattered Sanctum
+1 Unwind
+1 Isolated Chapel
+1 Arcane Signet
+1 G'raha Tia, Scion Reborn
+1 Alphinaud Leveilleur
+1 Archmage Emeritus
+1 Circle of Power
+1 Fandaniel, Telophoroi Ascian
+1 Hypnotic Sprite // Mesmeric Glare
+1 Ishgard, the Holy See // Faith & Grief
+1 Transpose
+1 Darkwater Catacombs
+1 Baleful Strix
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Despark
+1 Risky Shortcut
+1 Solitary Confinement
+1 Sharlayan, Nation of Scholars
+1 Louisoix's Sacrifice
+1 Cornered by Black Mages
+1 Eye of Nidhogg
+1 Curator's Ward
+1 Starting Town
+1 Scavenger Grounds
+1 Plaza of Heroes
+1 Caves of Koilos
+1 Black Mage's Rod
+1 Deserted Beach
+1 Lyse Hext
+1 Alisaie Leveilleur
+1 Stormscape Familiar
+1 Snapcaster Mage
+1 Ophidian Eye
+1 Tandem Lookout
+1 Emet-Selch of the Third Seat
+1 Decanter of Endless Water
+1 Prairie Stream
+1 Eclipsed Steppe
+1 Torment of Hailfire
+1 Perplex
+1 Delney, Streetwise Lookout
+1 Cast Away Doubt
+1 Snuff Out
+1 The Destined Black Mage
+1 Geist of Saint Thalia

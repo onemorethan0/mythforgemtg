@@ -1,0 +1,86 @@
+# Archidekt — The Bookclub
+# source: archidekt:11261791
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Codie, Vociferous Codex
+
+Deck:
+1 The Lord of the Eagles
+1 Perplexing Test
+1 Owl Familiar
+1 Pore Over the Pages
+1 Inventors' Fair
+1 Venser's Journal
+1 Faerie Conclave
+1 Blinkmoth Nexus
+1 Radiant Fountain
+1 Obscura Storefront
+1 Brokers Hideout
+1 Academy Ruins
+1 Mysterious Tome // Chilling Chronicle
+1 Nerd Rage
+1 Overlord of the Floodpits
+1 Plagiarize
+1 Pseudodragon Familiar
+1 Obsessive Search
+1 Index
+1 Lat-Nam's Legacy
+1 Ideas Unbound
+1 Ledger Shredder
+1 Library of Lat-Nam
+1 Ethereal Investigator
+1 Augury Owl
+1 Frantic Search
+1 You Find the Villains' Lair
+1 Occult Epiphany
+1 Quick Study
+1 Opt
+1 Geth's Grimoire
+1 Marina Vendrell's Grimoire
+1 Wizard's Spellbook
+1 Grimoire of the Dead
+1 Biblioplex Assistant
+1 Investigator's Journal
+1 Heirloom Epic
+1 Mazemind Tome
+1 River Song's Diary
+1 Patriar's Seal
+1 Sky Diamond
+1 Spell Satchel
+1 The Underworld Cookbook
+1 Vhal, Candlekeep Researcher
+1 Sage Owl
+1 Sarpadian Empires, Vol. VII
+1 Letter of Acceptance
+1 Introduction to Annihilation
+1 Hard Cover
+1 Hold for Questioning
+1 Fact or Fiction
+1 Ghost Quarter
+1 Folio of Fancies
+1 Curious Homunculus // Voracious Reader
+1 Curfew
+1 Bury in Books
+1 Academy Loremaster
+1 Automatic Librarian
+1 Piper Wright, Publick Reporter
+1 Senator Peacock
+1 Trail of Evidence
+1 Artificer's Assistant
+1 Rescind
+1 Maestros Theater
+1 Tamiyo's Logbook
+1 Book of Rass
+1 Study
+1 Careful Study
+1 Buried Ruin
+1 Staff of the Mind Magus
+1 Inniaz, the Gale Force
+1 Library
+24 Island
+1 Tamiyo's Journal
+1 Five Hundred Year Diary
+1 Study Hall
+1 Codie, Ravenous Codex

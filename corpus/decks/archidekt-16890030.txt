@@ -1,0 +1,79 @@
+# Archidekt — Ambassador Laquatus
+# source: archidekt:16890030
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ambassador Laquatus
+
+Deck:
+1 Basalt Monolith
+1 Rings of Brighthearth
+1 Forensic Gadgeteer
+1 Omen Hawker
+1 Training Grounds
+1 Myr Welder
+1 Sol Ring
+1 Mirran Spy
+1 Behind the Mask
+1 Karn's Touch
+1 Rise and Shine
+1 Heartstone
+1 Pili-Pala
+1 Paradise Mantle
+1 Knacksaw Clique
+1 Forensic Researcher
+1 Clever Conjurer
+1 Freed from the Real
+1 Ioreth of the Healing House
+1 Vizier of Tumbling Sands
+1 Kelpie Guide
+1 Puppeteer
+1 Niblis of the Breath
+1 Coral Atoll
+1 Winter Moon
+1 Telepathy
+1 Trophy Mage
+1 Solve the Equation
+1 Mind Stone
+1 Wash Away
+1 Back to Basics
+1 Imprisoned in the Moon
+1 Preordain
+1 Opt
+1 Consider
+30 Island
+1 Relic of Progenitus
+1 Grafdigger's Cage
+1 Trinket Mage
+1 Grand Architect
+1 Counterbalance
+1 Sink into Stupor // Soporific Springs
+1 Grip of Amnesia
+1 Laquatus's Disdain
+1 Spell Pierce
+1 Fabricate
+1 Merchant Scroll
+1 Remand
+1 Miscast
+1 Tribute Mage
+1 Liquimetal Torque
+1 Banishing Knack
+1 Battered Golem
+1 Pemmin's Aura
+1 High Tide
+1 Tideforce Elemental
+1 Ensoul Artifact
+1 Relic's Roar
+1 Muddle the Mixture
+1 Tormod's Crypt
+1 Arcane Signet
+1 Marvin, Murderous Mimic
+1 Refute
+1 Thirst for Discovery
+1 Frantic Search
+1 Stern Lesson
+1 Curate
+1 Deliberate
+1 Dispel
+1 Urza's Cave

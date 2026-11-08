@@ -1,0 +1,93 @@
+# Archidekt — Plagon: His Job is Just Beach
+# source: archidekt:9969914
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Plagon, Lord of the Beach
+
+Deck:
+1 Space-Time Anomaly
+1 Welcoming Vampire
+1 Fog Bank
+1 Sanctum of Eternity
+1 Kraken Hatchling
+6 Island
+1 Hengegate Pathway // Mistgate Pathway
+1 Mesmerizing Benthid
+1 Skycloud Expanse
+1 Murmuration
+1 PuPu UFO
+1 Sea of Clouds
+1 Adarkar Wastes
+1 Command Tower
+1 Prairie Stream
+1 Deserted Beach
+1 Flooded Strand
+6 Plains
+1 Port Town
+1 The Reality Chip
+1 Talisman of Progress
+1 Dusk // Dawn
+1 Azorius Signet
+1 Arcane Signet
+1 Thought Vessel
+1 Wall of Kelp
+1 Hard Evidence
+1 Scuttletide
+1 Phantasmal Shieldback
+1 Riptide Laboratory
+1 Momentary Blink
+1 Shorecomber Crab
+1 Hedron Crab
+1 Ruin Crab
+1 Thriving Turtle
+1 Wall of Omens
+1 Flumph
+1 Esior, Wardwing Familiar
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Reliquary Tower
+1 Jace's Erasure
+1 Psychic Corrosion
+1 Sphinx's Tutelage
+1 Teferi's Tutelage
+1 Sink into Stupor // Soporific Springs
+1 Exchange of Words
+1 Tidal Barracuda
+1 Kykar, Zephyr Awakener
+1 Idyllic Beachfront
+1 Evacuation
+1 Charix, the Raging Isle
+1 The Water Crystal
+1 Thassa, Deep-Dwelling
+1 Exotic Orchard
+1 Path to Exile
+1 Sigiled Starfish
+1 Merfolk Secretkeeper // Venture Deeper
+1 Teleportation Circle
+1 Swords to Plowshares
+1 Soul Partition
+1 Ephemerate
+1 Tetsuko Umezawa, Fugitive
+1 Scrabbling Skullcrab
+6 Island
+1 Aboleth Spawn
+1 Caelorna, Coral Tyrant
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Seachrome Coast
+1 Aegis Turtle
+1 Dour Port-Mage
+1 Riverchurn Monument
+1 Jidoor, Aristocratic Capital // Overture
+1 Hide on the Ceiling
+1 Waterbender's Restoration
+1 Y'shtola Rhul
+1 Prehistoric Pet
+1 Gilded Scuttler
+1 Daydream
+1 Skycoach Conductor // All Aboard
+1 Floodhound
+1 Fellwar Stone
+1 Mind Stone
+1 Flare of Denial

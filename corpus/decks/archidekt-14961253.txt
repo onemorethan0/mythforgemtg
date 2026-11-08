@@ -1,0 +1,87 @@
+# Archidekt — Villainous Choice
+# source: archidekt:14961253
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Valeyard
+
+Deck:
+1 Tempt with Mayhem
+1 Davros, Dalek Creator
+1 Truth or Consequences
+1 Genesis of the Daleks
+1 Great Intelligence's Plan
+1 Hunted by The Family
+1 Midnight Crusader Shuttle
+1 Missy
+1 Sycorax Commander
+1 The Dalek Emperor
+1 Vashta Nerada
+1 Dalek Squadron
+1 Cult of Skaro
+1 Dalek Drone
+1 Auton Soldier
+1 Rassilon, the War President
+1 Doomsday Confluence
+1 Blasphemous Act
+1 Mizzix's Mastery
+1 K-9, Mark I
+1 Quantum Misalignment
+1 Arcane Signet
+1 Cursed Mirror
+1 TARDIS
+1 Sonic Screwdriver
+1 Relic of Sauron
+1 Laser Screwdriver
+1 Double Vision
+1 Prisoner's Dilemma
+1 Command Tower
+1 Mob Verdict
+1 Nightscape Familiar
+1 Exotic Orchard
+1 Fellwar Stone
+1 Dragonskull Summit
+1 Trenzalore Clocktower
+1 Crumbling Necropolis
+1 Drowned Catacomb
+1 Path of Ancestry
+1 Grudge Keeper
+1 Plea for Power
+1 Torrential Gearhulk
+1 This Is How It Ends
+1 Sol Ring
+1 Phyrexian Metamorph
+1 Weeping Angel
+1 Sadistic Shell Game
+1 Cyber Conversion
+1 Death in Heaven
+1 Toxic Deluge
+1 Split Decision
+1 Solemn Simulacrum
+1 Illusion of Choice
+1 Capital Punishment
+1 Lightning Greaves
+1 Model of Unity
+1 Ensnared by the Mara
+1 Nanogene Conversion
+1 Trap the Trespassers
+1 Smoldering Marsh
+1 Stormcarved Coast
+1 Ominous Cemetery
+1 Temple of the False God
+1 Expropriate
+1 Coercive Portal
+1 Vandalblast
+1 Mnemonic Deluge
+1 The Master, Multiplied
+1 Cybermen Squadron
+1 Exterminate!
+1 Villainous Hideout
+1 Damocles Base, Sword of Kang
+8 Swamp
+1 The Master, Gallifrey's End
+7 Mountain
+1 Sunken Hollow
+1 Hall of Echoes
+9 Island

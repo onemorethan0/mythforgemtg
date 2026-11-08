@@ -1,0 +1,101 @@
+# Archidekt — Pride Parade
+# source: archidekt:9959179
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kynaios and Tiro of Meletis
+
+Deck:
+1 Happily Ever After
+1 Social Climber
+1 Irrigated Farmland
+1 Jetmir's Garden
+1 Krosan Verge
+1 Tomik, Distinguished Advokist
+1 Arcane Signet
+1 Errant, Street Artist
+1 Wall of Reverence
+1 Cabaretti Courtyard
+1 Azorius Chancery
+1 Saheeli, Sublime Artificer
+1 Command Tower
+1 Mystic Monastery
+1 Seaside Citadel
+1 Gruul Turf
+1 Wedding Ring
+1 Planewide Celebration
+1 Paradise Mantle
+1 Gala Greeters
+1 Triumphant Reckoning
+1 Starlight Spectacular
+1 Mana Confluence
+1 Exotic Orchard
+1 Heartbeat of Spring
+1 Dryad of the Ilysian Grove
+1 Intangible Virtue
+1 Selesnya Sanctuary
+1 Huatli, the Sun's Heart
+1 Boros Garrison
+1 Rith's Grove
+1 Ghostly Prison
+1 Ajani's Pridemate
+1 Soul's Attendant
+1 Canopy Vista
+1 Sacred Foundry
+1 Izzet Boilerworks
+1 Azorius Signet
+1 Halana and Alena, Partners
+1 Generous Gift
+1 Inga and Esika
+1 Reliquary Tower
+1 Frontier Bivouac
+1 Fallaji Wayfarer
+1 Dawn's Truce
+1 Folio of Fancies
+1 Prairie Stream
+1 Cinder Glade
+1 True Love's Kiss
+1 Swords to Plowshares
+1 Jeskai Banner
+1 Brokers Hideout
+1 True Conviction
+4 Forest
+1 Bearscape
+1 Collective Voyage
+1 Savor the Moment
+1 Sol Ring
+1 Genku, Future Shaper
+1 Cathartic Reunion
+1 Voice of the Blessed
+1 Windborn Muse
+1 Branching Evolution
+1 Concordant Crossroads
+1 Call for Unity
+1 Cathars' Crusade
+1 Ballroom Brawlers
+1 Kami of Whispered Hopes
+1 Pridemalkin
+3 Plains
+2 Island
+2 Mountain
+1 Chromatic Lantern
+1 Selvala, Explorer Returned
+1 Mentor of the Meek
+1 Enthralling Victor
+1 Veronica, Dissident Scribe
+1 Jennika, Bad Apple Big Sister
+1 Shalai, Voice of Plenty
+1 Enduring Courage
+1 Secret Rendezvous
+1 Run Away Together
+1 Magic Damper
+1 Promise of Loyalty
+1 Bound in Silence
+1 Warrior's Resolve
+1 Ral, Storm Conduit
+1 Overflowing Basin
+1 Vineglimmer Snarl
+1 Terramorphic Expanse
+1 Fortified Village
+1 Evolving Wilds

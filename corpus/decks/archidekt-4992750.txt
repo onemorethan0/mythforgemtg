@@ -1,0 +1,101 @@
+# Archidekt — Isshin, Two Heavens as One - Bushido Samurai
+# source: archidekt:4992750
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Farewell); Bracket 1 allows 0
+
+Commander:
+1 Isshin, Two Heavens as One
+
+Deck:
+1 Godo, Bandit Warlord
+1 Takeno, Samurai General
+1 Konda, Lord of Eiganjo
+1 Hand of Cruelty
+1 Hand of Honor
+1 Toshiro Umezawa
+1 Michiko Konda, Truth Seeker
+1 The Wandering Emperor
+1 Aurelia, Exemplar of Justice
+1 Aurelia, the Warleader
+1 Oathkeeper, Takeno's Daisho
+1 Sword of the Animist
+1 Brave the Sands
+1 Folk Hero
+1 Risona, Asari Commander
+1 Mardu Ascendancy
+1 Alesha, Who Smiles at Death
+1 Eiganjo, Seat of the Empire
+1 Takenuma, Abandoned Mire
+1 Eiganjo Exemplar
+1 Iroas, God of Victory
+1 Exotic Orchard
+1 Luxury Suite
+1 Rogue's Passage
+1 Two-Handed Axe // Sweeping Cleave
+1 Command Tower
+1 Reflecting Pool
+1 Cast Down
+1 Fabled Passage
+1 Ronin Houndmaster
+1 Arcane Signet
+1 Peerless Samurai
+6 Plains
+1 Kentaro, the Smiling Cat
+1 Swiftfoot Boots
+1 Selfless Samurai
+1 Furycalm Snarl
+1 Unclaimed Territory
+1 Nomad Outpost
+1 Path of Ancestry
+1 Foreboding Ruins
+1 Herald's Horn
+1 Orzhov Signet
+1 Nagao, Bound by Honor
+1 Needleverge Pathway // Pillarverge Pathway
+1 Goro-Goro, Disciple of Ryusei
+1 Tori D'Avenant, Fury Rider
+1 Spectator Seating
+1 Swamp
+1 Boros Charm
+1 Terramorphic Expanse
+1 Blood Crypt
+1 Vault of Champions
+1 Sign in Blood
+1 Hammer of Purphoros
+1 Kitsune Blademaster
+1 Sun Titan
+1 Despark
+1 Evolving Wilds
+1 Boros Signet
+1 Samurai of the Pale Curtain
+1 Fumiko the Lowblood
+1 Iizuka the Ruthless
+1 Raiyuu, Storm's Edge
+1 Asari Captain
+1 Umezawa's Jitte
+1 Eater of Virtue
+1 Sol Ring
+1 Araba Mothrider
+1 Battle-Mad Ronin
+1 Sensei Golden-Tail
+1 Audacious Thief
+1 Indebted Samurai
+1 Paladin Class
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Duelist's Heritage
+1 Shared Animosity
+1 Wear // Tear
+1 Bojuka Bog
+4 Mountain
+1 Savai Triome
+1 Eiganjo Uprising
+1 Farewell
+1 Ruinous Ultimatum
+1 Reinforced Ronin
+1 Swords to Plowshares
+1 Path to Exile
+1 Call to Glory
+1 Sacred Foundry
+1 Godless Shrine
+1 Bushi Tenderfoot // Kenzo the Hardhearted

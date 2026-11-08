@@ -1,0 +1,106 @@
+# Archidekt — Sliver Overlord
+# source: archidekt:11670266
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sliver Overlord
+
+Deck:
+1 Mystic Monastery
+1 Diffusion Sliver
+1 Savage Lands
+1 Brood Sliver
+1 Sentinel Sliver
+1 Shattered Sanctum
+1 Stomping Ground
+1 Sliver Legion
+1 Path of Ancestry
+1 Icon of Ancestry
+1 Maelstrom Nexus
+1 Urza's Incubator
+1 Reliquary Tower
+1 Firewake Sliver
+1 Hollowhead Sliver
+1 Secluded Courtyard
+1 Two-Headed Sliver
+1 Hibernation Sliver
+1 Quick Sliver
+1 Fellwar Stone
+1 Mountain
+1 Dragonskull Summit
+1 Lavabelly Sliver
+1 The World Tree
+1 Deathcap Glade
+1 Crypt Sliver
+1 Chromatic Lantern
+3 Forest
+1 Pillar of Origins
+1 Spiteful Sliver
+1 Harmonic Sliver
+1 Herald's Horn
+1 Harsh Mercy
+1 Omenpath Journey
+1 Swamp
+1 Lazotep Sliver
+1 Syphon Sliver
+1 Clifftop Retreat
+1 Might Sliver
+1 Canopy Vista
+1 Rugged Prairie
+1 Megantic Sliver
+1 Cleansing Nova
+1 Cleaving Sliver
+1 Gemhide Sliver
+1 Toxin Sliver
+1 Bonesplitter Sliver
+1 Cloudshredder Sliver
+1 Arcane Signet
+1 Winged Sliver
+1 Rockfall Vale
+1 Venom Sliver
+1 Blur Sliver
+1 Bonescythe Sliver
+1 Irrigated Farmland
+1 No Mercy
+1 Hatchery Sliver
+1 The First Sliver
+1 Zagoth Triome
+1 Command Tower
+1 Galerider Sliver
+1 Crystalline Sliver
+1 Hunting Grounds
+1 Ketria Triome
+1 Sinew Sliver
+1 Exotic Orchard
+1 Three Tree City
+1 Prairie Stream
+1 Farseek
+1 Cultivate
+1 Indatha Triome
+1 Necrotic Sliver
+1 Jungle Shrine
+1 Stormcarved Coast
+1 Plains
+1 Nature's Lore
+1 Taunting Sliver
+1 Patriarch's Bidding
+1 Root Sliver
+1 Sliver Hivelord
+1 Sol Ring
+1 Sunken Hollow
+1 Decimate
+1 Striking Sliver
+1 Island
+1 Morophon, the Boundless
+1 Sliver Queen
+1 Cinder Glade
+1 Seaside Citadel
+1 Blade Sliver
+1 Manaweft Sliver
+1 Scattered Groves
+1 Smoldering Marsh
+1 Sliver Gravemother
+1 Three Visits
+1 Bleachbone Verge
+1 Thrumming Hivepool

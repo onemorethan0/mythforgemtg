@@ -1,0 +1,108 @@
+# Archidekt — TANA/TYMNA BLOOD FARM
+# source: archidekt:4264207
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tana, the Bloodsower
+1 Tymna the Weaver
+
+Deck:
+1 Ad Nauseam
+1 Molten Duplication
+1 Worldly Tutor
+1 Lotho, Corrupt Shirriff
+1 Ranger-Captain of Eos
+1 Diabolic Intent
+1 Swords to Plowshares
+1 Silence
+1 Grand Abolisher
+1 Drannith Magistrate
+1 Opposition Agent
+1 Imperial Seal
+1 Gaea's Cradle
+1 Witherbloom Apprentice
+1 Veil of Summer
+1 Enlightened Tutor
+1 Orcish Bowmasters
+1 Deathrite Shaman
+1 Esper Sentinel
+1 Kiki-Jiki, Mirror Breaker
+1 Birds of Paradise
+1 Underworld Breach
+1 Tinder Wall
+1 Wheel of Fortune
+1 Ignoble Hierarch
+1 Elvish Spirit Guide
+1 Archivist of Oghma
+1 Mox Diamond
+1 Mana Vault
+1 Dark Ritual
+1 Deflecting Swat
+1 Smothering Tithe
+1 Delighted Halfling
+1 Ragavan, Nimble Pilferer
+1 Ancient Tomb
+1 Karmic Guide
+1 Felidar Guardian
+1 Chrome Mox
+1 Vampiric Tutor
+1 Voice of Victory
+1 Demonic Tutor
+1 Dauthi Voidwalker
+1 Professional Face-Breaker
+1 Simian Spirit Guide
+1 Dualcaster Mage
+1 Deadly Rollick
+1 Gamble
+1 Finale of Devastation
+1 Red Elemental Blast
+1 Lotus Petal
+1 Eladamri's Call
+1 Arcane Signet
+1 Lion's Eye Diamond
+1 Eldritch Evolution
+1 Wishclaw Talisman
+1 Abrupt Decay
+1 Culling the Weak
+1 Culling Ritual
+1 Command Tower
+1 Noxious Revival
+1 Sevinne's Reclamation
+1 Crop Rotation
+1 Chain of Smog
+1 Pyroblast
+1 Cabal Ritual
+1 Sol Ring
+1 Final Fortune
+1 Carpet of Flowers
+1 Birthing Pod
+1 Fellwar Stone
+1 Badlands
+1 Plateau
+1 Verdant Catacombs
+1 Savannah
+1 Windswept Heath
+1 The One Ring
+1 Necropotence
+1 Survival of the Fittest
+1 Mana Confluence
+1 Taiga
+1 Misty Rainforest
+1 Scalding Tarn
+1 Wooded Foothills
+1 Scrubland
+1 Bayou
+1 Boseiju, Who Endures
+1 Marsh Flats
+1 Arid Mesa
+1 Bloodstained Mire
+1 City of Brass
+1 Gemstone Caverns
+1 Blood Crypt
+1 Polluted Delta
+1 Starting Town
+1 Overgrown Tomb
+1 Exotic Orchard
+1 Shifting Woodland
+1 Hexing Squelcher

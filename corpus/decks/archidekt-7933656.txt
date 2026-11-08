@@ -1,0 +1,91 @@
+# Archidekt — Cirdan Chaos Politics
+# source: archidekt:7933656
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Círdan the Shipwright
+
+Deck:
+1 Hinterland Harbor
+1 Koma, Cosmos Serpent
+1 Simic Signet
+1 Three Visits
+1 Nature's Lore
+1 Displacer Kitten
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Phyrexian Metamorph
+1 Sakashima the Impostor
+1 An Offer You Can't Refuse
+1 March of Swirling Mist
+1 Illusion of Choice
+1 Gruff Triplets
+1 Misty Rainforest
+1 Breeding Pool
+1 Cultivate
+1 Arcane Signet
+1 Clever Impersonator
+1 Sakashima of a Thousand Faces
+1 Erestor of the Council
+1 Command Tower
+1 Dreamroot Cascade
+1 Exotic Orchard
+1 Nyxbloom Ancient
+7 Forest
+1 Rapid Hybridization
+1 Rejuvenating Springs
+1 Ominous Seas
+1 Panharmonicon
+1 Psychosis Crawler
+1 Reliquary Tower
+1 Wild Growth
+1 Sol Ring
+1 Thought Vessel
+1 Yavimaya, Cradle of Growth
+1 Undercover Operative
+1 Kogla, the Titan Ape
+1 Model of Unity
+1 Spark Double
+1 Ghostly Flicker
+1 Golden Argosy
+1 Druid of Purification
+1 Omniscience
+1 Farseek
+1 Selvala's Stampede
+1 Thassa, Deep-Dwelling
+1 Rogue's Passage
+1 Hedge Maze
+1 Mystic Sanctuary
+1 Path of Ancestry
+1 Hornet Queen
+1 Ghalta, Stampede Tyrant
+1 Temple of Mystery
+1 Cyclonic Rift
+1 Fierce Guardianship
+1 Volatile Stormdrake
+1 Otawara, Soaring City
+1 Swiftfoot Boots
+1 Voidwalk
+1 Heroic Intervention
+1 Portal to Phyrexia
+1 Show and Tell
+1 Auton Soldier
+1 Toothy, Imaginary Friend
+1 Eureka
+1 Willowrush Verge
+1 Aesi, Tyrant of Gyre Strait
+1 Oath of Druids
+1 Zopandrel, Hunger Dominus
+1 Sail into the West
+1 Kodama of the East Tree
+1 Ancient Silver Dragon
+1 Chasm Skulker
+12 Island
+1 Deadeye Navigator
+1 Elrond of the White Council
+1 Mystical Tutor
+1 Avenger of Zendikar
+1 Ancient Adamantoise
+1 Force of Negation
+1 Boseiju, Who Endures
+1 Verdant Kraken

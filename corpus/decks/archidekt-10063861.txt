@@ -1,0 +1,98 @@
+# Archidekt — Oloro (Dr. Kevorkian)
+# source: archidekt:10063861
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Oloro, Ageless Ascetic
+
+Deck:
+1 Command Tower
+1 Teferi's Protection
+1 Vampiric Tutor
+1 Teferi's Ageless Insight
+1 Nexus of Fate
+1 Laboratory Maniac
+1 Ancient Tomb
+1 Silence
+1 Omniscience
+1 Demonic Tutor
+1 Sol Ring
+1 Mana Drain
+1 Urborg, Tomb of Yawgmoth
+1 Godless Shrine
+1 Lotus Petal
+1 Rhystic Study
+1 Leyline of Anticipation
+1 Render Silent
+1 Grim Tutor
+1 Watery Grave
+1 Mana Vault
+1 Bolas's Citadel
+1 Spellbook
+1 Ghostly Prison
+1 Toxic Deluge
+1 Diabolic Tutor
+1 Drowned Catacomb
+1 Reliquary Tower
+1 Peer into the Abyss
+1 Enter the Infinite
+1 Silent Clearing
+1 Jace, Wielder of Mysteries
+1 Fabled Passage
+1 Lethal Vapors
+1 Brainstorm
+1 Archmage's Charm
+1 Chromatic Lantern
+1 Isolated Chapel
+1 Port Town
+1 Windfall
+1 Utter End
+1 Underground River
+1 Tainted Isle
+1 Mastermind's Acquisition
+1 Whispering Madness
+1 Glacial Fortress
+1 Elixir of Immortality
+1 Disallow
+1 Thought Vessel
+1 Caves of Koilos
+1 Nightmare Unmaking
+1 Emergence Zone
+1 Mortify
+1 Sunken Hollow
+1 Tainted Field
+1 Perplex
+1 Summary Dismissal
+1 Choked Estuary
+1 Merciless Eviction
+1 Prairie Stream
+1 Disappearing Act
+1 Beacon of Immortality
+1 Sensei's Divining Top
+1 Thassa's Oracle
+1 Dark Ritual
+1 Arcane Signet
+1 Necropotence
+1 Propaganda
+1 Demonic Consultation
+1 Show and Tell
+1 Lim-Dûl's Vault
+1 Doomsday
+4 Plains
+1 Leveler
+1 Idyllic Tutor
+1 Commander's Sphere
+1 Land Tax
+1 Dissipation Field
+1 Enlightened Tutor
+1 Notion Thief
+1 Orim's Chant
+1 Dark Deal
+5 Island
+4 Swamp
+1 Mystical Tutor
+1 Jace's Archivist
+1 Hallowed Fountain
+1 Kozilek, Butcher of Truth
+1 Smothering Tithe

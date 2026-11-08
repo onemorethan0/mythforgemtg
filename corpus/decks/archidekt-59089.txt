@@ -1,0 +1,103 @@
+# Archidekt — Teshar combo conundrum
+# source: archidekt:59089
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Teshar, Ancestor's Apostle
+
+Deck:
+1 Esper Sentinel
+1 Sevinne's Reclamation
+1 Loran of the Third Path
+1 Moonsilver Key
+1 Grand Abolisher
+1 Mana Vault
+1 Mox Amber
+1 Land Tax
+1 Helm of Awakening
+1 Delney, Streetwise Lookout
+1 Blast Zone
+1 Mishra's Bauble
+1 Skullclamp
+1 Scavenger Grounds
+1 Crystal Vein
+1 Aven Mindcensor
+1 Ornithopter
+1 Scrap Trawler
+1 Aetherflux Reservoir
+1 Foundry Inspector
+1 Workshop Assistant
+1 Inventors' Fair
+1 Sequestered Stash
+1 Ashnod's Altar
+1 Millikin
+1 Darksteel Citadel
+1 Swords to Plowshares
+1 Silence
+1 Myr Retriever
+1 Memnite
+1 Ancient Den
+1 Treasure Hunter
+1 Leonin Squire
+1 Conjurer's Bauble
+1 Grinding Station
+1 Krark-Clan Ironworks
+1 Chromatic Sphere
+1 Strip Mine
+1 Lotus Petal
+1 Urza's Bauble
+1 Phyrexian Walker
+1 Enlightened Tutor
+1 Zhalfirin Void
+1 Trusty Packbeast
+1 Engineered Explosives
+1 Altar of Dementia
+1 Ranger-Captain of Eos
+1 Salvager of Ruin
+1 Geier Reach Sanitarium
+1 Deafening Silence
+1 Codex Shredder
+1 Blasting Station
+1 Arcbound Ravager
+1 Tormod's Crypt
+1 Mox Opal
+1 Walking Ballista
+1 Ethersworn Canonist
+1 Ichor Wellspring
+1 Chromatic Star
+1 Welding Jar
+1 Everflowing Chalice
+1 Buried Ruin
+1 Arcane Signet
+1 Sol Ring
+1 Urza's Saga
+1 Oswald Fiddlebender
+1 Treasure Vault
+1 Chrome Mox
+1 Cathar Commando
+1 Mystic Forge
+1 Junk Diver
+1 Ancient Tomb
+1 Eiganjo, Seat of the Empire
+1 Archivist of Oghma
+1 Springleaf Drum
+1 Skyclave Apparition
+1 The One Ring
+1 Skrelv, Defector Mite
+1 Boromir, Warden of the Tower
+1 Scrapyard Recombiner
+1 Dauntless Dismantler
+1 Samwise the Stouthearted
+1 Monumental Henge
+1 Razorgrass Ambush // Razorgrass Field
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Recruiter of the Guard
+1 Vexing Bauble
+1 Ingenious Smith
+6 Plains
+1 Voyager Quickwelder
+1 United Battlefront
+1 Voice of Victory
+1 Phyrexian Altar
+1 Gemstone Caverns

@@ -1,0 +1,103 @@
+# Archidekt — Yuriko cEDH
+# source: archidekt:5279363
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Tormented Soul
+1 Walker of Secret Ways
+1 Sakashima's Student
+1 Fallen Shinobi
+1 Thousand-Faced Shadow
+1 Changeling Outcast
+1 Sensei's Divining Top
+1 Kaito Shizuki
+1 Command Tower
+1 Underground River
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Higure, the Still Wind
+1 Nashi, Moon Sage's Scion
+1 Ingenious Infiltrator
+1 Counterbalance
+1 Lim-Dûl's Vault
+1 Pact of Negation
+1 Vampiric Tutor
+1 Arcane Signet
+1 Watery Grave
+1 Urborg, Tomb of Yawgmoth
+1 Rogue's Passage
+1 Ornithopter
+1 Bolas's Citadel
+1 Azure Beastbinder
+1 Sink into Stupor // Soporific Springs
+3 Swamp
+1 Archon of Cruelty
+1 Show and Tell
+1 Flusterstorm
+1 Swan Song
+1 Omniscience
+1 Expropriate
+1 Necropotence
+1 Necrodominance
+1 Thassa's Oracle
+1 Consecrated Sphinx
+1 Triton Shorestalker
+1 Fierce Guardianship
+1 Fell the Profane // Fell Mire
+1 Cephalid Coliseum
+1 Nexus of Fate
+1 Chrome Mox
+1 Force of Negation
+1 Force of Will
+1 Mana Drain
+1 Morphic Pool
+1 Wasteland
+1 Sunken Ruins
+1 Lotus Petal
+1 Talisman of Dominance
+1 Scroll Rack
+1 Demonic Tutor
+1 Demonic Consultation
+1 Stifle
+1 Gemstone Caverns
+1 Slither Blade
+1 Innocent Blood
+1 Narset, Parter of Veils
+1 Brainstorm
+1 The One Ring
+1 Mystical Tutor
+1 Dark Ritual
+1 Boggart Trawler // Boggart Bog
+1 Polluted Delta
+1 Undercity Sewers
+1 Mana Confluence
+1 Mental Misstep
+1 Phyrexian Metamorph
+1 Flooded Strand
+1 Bloodstained Mire
+1 Chain of Vapor
+1 Phyrexian Tower
+1 Snuff Out
+1 Diabolic Intent
+1 Kaito, Bane of Nightmares
+1 Dauthi Voidwalker
+1 Mockingbird
+1 Gloomlake Verge
+1 Orcish Bowmasters
+1 Deadly Rollick
+1 Tetsuko Umezawa, Fugitive
+1 Mystic Remora
+1 Grazilaxx, Illithid Scholar
+1 Dour Port-Mage
+1 Temporal Mastery
+1 Temporal Trespass
+1 Sol Ring
+1 Cavern of Souls
+1 Wan Shi Tong, Librarian
+1 Bitterbloom Bearer
+4 Island
+1 Underground Sea
+1 Mana Vault

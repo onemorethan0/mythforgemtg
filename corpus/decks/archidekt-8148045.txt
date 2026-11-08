@@ -1,0 +1,93 @@
+# Archidekt — Black Friday
+# source: archidekt:8148045
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Rev, Tithe Extractor
+1 Metamorphosis Fanatic
+1 Gray Merchant of Asphodel
+1 Temporal Extortion
+1 Beseech the Mirror
+1 Black Market Connections
+1 Nykthos, Shrine to Nyx
+1 Shard of the Nightbringer
+1 Crypt Ghast
+1 Jet Medallion
+1 Exquisite Blood
+1 Erebos, God of the Dead
+1 Bloodletter of Aclazotz
+1 The Meathook Massacre
+1 Urza's Saga
+1 Sol Ring
+1 Toxic Deluge
+1 Force of Despair
+1 Aetherflux Reservoir
+1 Urborg, Tomb of Yawgmoth
+1 Saw in Half
+1 Torment of Hailfire
+1 Fell the Profane // Fell Mire
+1 Demonic Tutor
+1 Sheoldred, the Apocalypse
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Dark Ritual
+1 Cabal Ritual
+1 Buried Alive
+1 Orcish Bowmasters
+1 Cabal Coffers
+1 Reanimate
+1 Vampiric Tutor
+1 No Mercy
+1 Lotus Petal
+1 Entomb
+1 Sidisi, Undead Vizier
+1 Valgavoth, Terror Eater
+1 Animate Dead
+1 Ad Nauseam
+1 Culling the Weak
+1 Necropotence
+1 Throne of Eldraine
+1 Font of Agonies
+1 Urza's Incubator
+1 Commander's Plate
+1 Dauthi Voidwalker
+1 Shizo, Death's Storehouse
+1 Phyrexian Tower
+1 Cavern of Souls
+1 Bolas's Citadel
+1 Command Tower
+1 Grim Tutor
+1 Sanguine Bond
+1 Archfiend of Despair
+1 Bloodthirsty Conqueror
+1 Chainer, Dementia Master
+1 Vilis, Broker of Blood
+1 Liliana of the Veil
+1 Opposition Agent
+1 Enduring Tenacity
+1 Bitterblossom
+1 Necromancy
+1 Deadly Rollick
+16 Snow-Covered Swamp
+1 Phyrexian Arena
+1 Deserted Temple
+1 The Aetherspark
+1 Praetor's Grasp
+1 Bubbling Muck
+1 War Room
+1 Ancient Tomb
+1 Razaketh, the Foulblooded
+1 Sudden Spoiling
+1 Balthor the Defiled
+1 Make an Example
+1 The Soul Stone
+1 The Darkness Crystal
+1 Dark Deal
+1 Grim Hireling
+1 Ancient Cellarspawn
+1 Vito, Thorn of the Dusk Rose
+1 Bontu's Monument
+1 Blood Celebrant

@@ -1,0 +1,89 @@
+# Archidekt — Witherbloom, The Balancer (B4) BUDGET
+# source: archidekt:22970023
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Witherbloom, the Balancer
+
+Deck:
+1 Blood Artist
+1 Warren Soultrader
+1 Nature's Rhythm
+1 Beast Within
+1 Lab Rats
+1 Tooth and Nail
+1 Pile On
+1 Lethal Scheme
+1 Return of the Wildspeaker
+1 Gilded Goose
+1 Fyndhorn Elves
+1 Boreal Druid
+1 Dryad Arbor
+1 Woodland Cemetery
+1 Lifestream's Blessing
+1 Weaponcraft Enthusiast
+1 Increasing Ambition
+1 Springheart Nantuko
+1 Marionette Apprentice
+1 Wall of Blossoms
+1 Elvish Visionary
+1 Clattering Augur
+1 Disturbed Burial
+1 Alpha Deathclaw
+1 Mirkwood Bats
+1 Verdant Command
+1 Witherbloom Apprentice
+1 Grim Servant
+1 Zulaport Cutthroat
+1 Viscera Seer
+1 Protean Hulk
+1 Arbor Elf
+1 Saproling Migration
+1 Pattern of Rebirth
+1 Greedy Freebooter
+1 Beseech the Queen
+1 Llanowar Wastes
+1 Twilight Mire
+1 Tainted Wood
+1 Command Tower
+1 Nest Invader
+1 Assassin's Trophy
+1 Sprout Swarm
+1 Sylvan Offering
+1 Elvish Mystic
+1 Khalni Garden
+1 Elves of Deep Shadow
+1 Llanowar Elves
+1 Chord of Calling
+1 Dusk Legion Zealot
+1 Carrion Feeder
+1 Shamanic Revelation
+1 Dark Petition
+1 Collective Unconscious
+1 Rishkar's Expertise
+1 Seasons Past
+1 Brightcap Badger // Fungus Frolic
+1 Abrupt Decay
+1 Veil of Summer
+1 Ilysian Caryatid
+1 Infernal Grasp
+1 Wishclaw Talisman
+1 Frenzied Baloth
+1 Fists of Ironwood
+1 Bitter Triumph
+1 Audience with Trostani
+1 Necroblossom Snarl
+1 Blooming Marsh
+1 Golgari Rot Farm
+8 Swamp
+1 Sidisi, Undead Vizier
+1 Trailtracker Scout
+1 Tender Wildguide
+1 Soul's Majesty
+1 Revitalizing Repast // Old-Growth Grove
+1 Viridescent Bog
+1 Temple of Malady
+13 Forest
+1 Haunted Mire
+1 Stargaze

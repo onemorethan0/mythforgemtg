@@ -1,0 +1,95 @@
+# Archidekt — Fighting in the Shade
+# source: archidekt:53568
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ohabi Caleria
+
+Deck:
+1 Eladamri's Call
+1 Bitterbow Sharpshooters
+1 Scattered Groves
+1 Selesnya Signet
+1 Opal Palace
+1 Hail of Arrows
+1 Kill Shot
+1 Explosive Vegetation
+1 Clear Shot
+1 Harmonize
+1 Fortified Village
+1 Aerie Bowmasters
+1 Ainok Artillerist
+1 Dromoka's Command
+1 Evolving Wilds
+2 Plains
+2 Forest
+1 Archers of Qarsi
+1 Commander's Sphere
+1 Arcane Lighthouse
+1 Predator, Flagship
+1 Blossoming Sands
+2 Plains
+1 Swords to Plowshares
+1 Bassara Tower Archer
+1 Bow of Nylea
+1 Nylea's Disciple
+1 Reverent Hunter
+1 Selesnya Cluestone
+1 Avenging Arrow
+1 Selesnya Charm
+1 Temple Garden
+5 Forest
+1 Gavony Township
+1 Swiftfoot Boots
+1 Sunpetal Grove
+1 Sol Ring
+1 Command Tower
+1 Vivid Grove
+1 Vivid Meadow
+1 Path to Exile
+1 Terramorphic Expanse
+1 Court Archers
+1 Coordinated Barrage
+1 Hankyu
+1 Sword of Kaldra
+1 Jolrael's Centaur
+1 Rashka the Slayer
+1 Serrated Arrows
+1 Elvish Hunter
+2 Plains
+1 Arbor Armament
+1 D'Avenant Trapper
+1 Selesnya Guildgate
+1 Selesnya Locket
+1 Vivien's Arkbow
+1 Vivien, Champion of the Wilds
+1 Generous Gift
+1 Dragon Sniper
+1 True Conviction
+1 Brave the Sands
+1 Quest for Renewal
+1 Glare of Subdual
+1 Gaea's Anthem
+1 Collective Blessing
+1 Nylea, God of the Hunt
+1 Longshot Squad
+1 Lady Caleria
+1 Greatbow Doyen
+1 Brigid, Hero of Kinsbaile
+1 Thornweald Archer
+1 Saryth, the Viper's Fang
+1 Jagged-Scar Archers
+1 Wildborn Preserver
+1 Gorgon's Head
+1 Titania's Chosen
+1 Webstrike Elite
+1 Stalking Leonin
+1 Gift of the Viper
+1 Cultivate
+1 Kodama's Reach
+1 Arcane Signet
+1 Selesnya Sanctuary
+4 Forest
+4 Forest
+1 Aim High

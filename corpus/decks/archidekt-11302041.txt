@@ -1,0 +1,105 @@
+# Archidekt — Saheeli - Radiant Runner
+# source: archidekt:11302041
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Lightning Runner + Stone Idol Generator; Bracket 2 allows none
+
+Commander:
+1 Saheeli, Radiant Creator
+
+Deck:
+1 Academy Ruins
+1 Armored Scrapgorger
+1 Mosswort Bridge
+1 Three Steps Ahead
+1 Skullclamp
+1 Sol Ring
+1 Solar Transformer
+1 Rogue Refiner
+1 Simulacrum Synthesizer
+1 Bushwhack
+1 Volatile Stormdrake
+1 Sundial of the Infinite
+1 Hedge Maze
+1 Tune the Narrative
+1 Servant of the Conduit
+1 Whirler Virtuoso
+1 Breeding Pool
+1 Steam Vents
+1 Riverpyre Verge
+1 Thornspire Verge
+1 Willowrush Verge
+1 Great Furnace
+1 Seat of the Synod
+1 Wooded Foothills
+1 Misty Rainforest
+1 Attune with Aether
+1 Decoction Module
+1 Rejuvenating Springs
+1 Spire Garden
+1 Worldwalker Helm
+1 Fanatic of Rhonas
+1 An Offer You Can't Refuse
+1 Aether Hub
+1 Command Tower
+1 Stomping Ground
+1 Scalding Tarn
+1 Training Center
+1 Shivan Reef
+1 Peema Trailblazer
+1 Gonti's Aether Heart
+1 Garruk's Uprising
+1 Daretti, Scrap Savant
+1 Roil Cartographer
+1 Unstable Amulet
+1 Aether Refinery
+1 Aether Swooper
+1 Abstergo Entertainment
+1 Octomancer
+1 Lightning Runner
+1 Izzet Generatorium
+1 Repurposing Bay
+1 Neoform
+1 Phyrexian Metamorph
+1 Synth Eradicator
+1 Haywire Mite
+3 Island
+1 Peema Aether-Seer
+1 Aetherworks Marvel
+1 Pongify
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Tree of Tales
+1 Stump Stomp // Burnwillow Clearing
+1 Formidable Speaker
+1 Yavimaya Coast
+1 Idol of Oblivion
+1 Aether Spike
+1 Greater Good
+1 Stone Idol Generator
+1 Era of Innovation
+1 Esoteric Duplicator
+1 Goblin Engineer
+1 Determined Iteration
+1 Peter Parker's Camera
+1 Thundering Falls
+1 Nissa, Worldsoul Speaker
+1 Stubborn Denial
+1 Exotic Orchard
+1 Fabled Passage
+1 Rapid Hybridization
+1 Aether Spellbomb
+1 Arcane Denial
+1 Ichor Wellspring
+1 Cryogen Relic
+1 Temur Battlecrier
+1 Goldvein Hydra
+1 Fabricate
+1 Territorial Aetherkite
+1 Conversion Apparatus
+1 Behemoth of Vault 0
+1 Bolt Bend
+2 Mountain
+1 Rockfall Vale
+2 Forest
+1 Dreamroot Cascade
+1 Radiant Performer

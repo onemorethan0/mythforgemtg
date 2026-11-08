@@ -1,0 +1,74 @@
+# Archidekt — Adeline Innistrad
+# source: archidekt:2597813
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Adeline, Resplendent Cathar
+
+Deck:
+1 Field of Ruin
+1 Intrepid Adversary
+1 Odric, Master Tactician
+1 Resistance Squad
+1 Champion of the Parish
+1 Search Party Captain
+1 Odric's Outrider
+1 Stalwart Pathlighter
+1 Sanctify
+1 Bruna, the Fading Light
+1 Mentor of the Meek
+1 Ritual of Hope
+1 Breathkeeper Seraph
+1 Welcoming Vampire
+1 Thraben Inspector
+1 Vanquish the Horde
+1 Gisela, the Broken Blade
+1 Descend upon the Sinful
+1 Emrakul, the Promised End
+1 Humble the Brute
+1 Open the Armory
+1 Thalia's Lancers
+1 Sigarda's Splendor
+1 Cathar Commando
+1 Mikaeus, the Lunarch
+1 Sigarda's Vanguard
+1 Avacyn, Angel of Hope
+1 Sigarda's Summons
+1 Thalia's Lieutenant
+1 Priest of the Blessed Graf
+1 Courageous Outrider
+1 Ghost Quarter
+1 Chaplain of Alms // Chapel Shieldgeist
+1 Fateful Absence
+1 Goldnight Commander
+1 Nearheath Pilgrim
+1 Remorseful Cleric
+1 Cathars' Crusade
+1 Moonsilver Spear
+1 Katilda, Dawnhart Martyr // Katilda's Rising Dawn
+1 Bygone Bishop
+1 Divine Reckoning
+1 Dearly Departed
+1 Thraben Watcher
+1 Unruly Mob
+1 Lone Rider // It That Rides as One
+1 Rebuke
+1 Thalia, Guardian of Thraben
+1 Thalia, Heretic Cathar
+1 Hanged Executioner
+1 Intangible Virtue
+1 Angel of Glory's Rise
+1 Cloudshift
+1 Valorous Stance
+1 Collective Effort
+1 Always Watching
+1 Sharpened Pitchfork
+35 Plains
+1 Reprobation
+1 Geier Reach Sanitarium
+1 Grafdigger's Cage
+1 Sungold Barrage
+1 By Invitation Only
+1 Gryff's Boon
+1 Angelic Purge

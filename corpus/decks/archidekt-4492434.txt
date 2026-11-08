@@ -1,0 +1,104 @@
+# Archidekt — MYR_Urtet
+# source: archidekt:4492434
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Urtet, Remnant of Memnarch
+
+Deck:
+1 Inventors' Fair
+1 Island
+1 Forest
+1 Bloodstained Mire
+1 Flooded Strand
+1 Misty Rainforest
+1 Esper Sentinel
+1 Blood Crypt
+1 Breeding Pool
+1 Hallowed Fountain
+1 Overgrown Tomb
+1 Stomping Ground
+1 Temple Garden
+1 Cyclonic Rift
+1 Chromatic Lantern
+1 Myr Kinsmith
+1 Urza's Saga
+1 Scalding Tarn
+1 Phyrexian Metamorph
+1 Tezzeret, Master of the Bridge
+1 Darksteel Forge
+1 Godless Shrine
+1 Sacred Foundry
+1 Steam Vents
+1 Windswept Heath
+1 Verdant Catacombs
+1 Marsh Flats
+1 Arid Mesa
+1 Polluted Delta
+1 Wooded Foothills
+1 Dispatch
+1 Teferi's Protection
+1 Watery Grave
+1 Alibou, Ancient Witness
+1 All Will Be One
+1 The Mycosynth Gardens
+1 Fomori Vault
+1 Heroic Intervention
+1 Myr Galvanizer
+1 Mana Confluence
+1 Cavern of Souls
+1 Whir of Invention
+1 Unwinding Clock
+1 Sol Ring
+1 Caretaker's Talent
+1 Sculpting Steel
+1 Urza, Lord High Artificer
+1 Three Tree City
+1 Plague Myr
+1 Command Tower
+1 Plains
+1 Swamp
+1 Mountain
+1 Alloy Myr
+1 Hovermyr
+1 Palladium Myr
+1 Fabricate
+1 Diabolic Intent
+1 Clever Concealment
+1 Raise the Palisade
+1 Boseiju, Who Endures
+1 Myr Enforcer
+1 Myr Turbine
+1 Myr Battlesphere
+1 Roaming Throne
+1 Urza, Lord Protector
+1 Final Showdown
+1 Path to Exile
+1 Swords to Plowshares
+1 Beast Within
+1 Shimmer Myr
+1 Mox Opal
+1 Arcane Signet
+1 Reliquary Tower
+1 Rhystic Study
+1 Smothering Tithe
+1 Mirrorworks
+1 Knighted Myr
+1 Lodestone Myr
+1 Darksteel Myr
+1 Myr Retriever
+1 Myr Propagator
+1 Myr Superion
+1 Sensei's Divining Top
+1 Padeem, Consul of Innovation
+1 Mirrodin Besieged
+1 The Mightstone and Weakstone
+1 Three Steps Ahead
+1 Doubling Season
+1 Kindred Discovery
+1 Vedalken Archmage
+1 Symmetry Matrix
+1 The Millennium Calendar
+1 Jhoira, Weatherlight Captain
+1 Myr Matrix

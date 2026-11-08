@@ -1,0 +1,75 @@
+# Archidekt — Selesnya Watermark Tribal
+# source: archidekt:11771680
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tolsimir Wolfblood
+
+Deck:
+1 Centaur Safeguard
+1 Autochthon Wurm
+1 Conclave Equenaut
+1 Conclave's Blessing
+1 Collective Blessing
+1 Camaraderie
+1 Armada Wurm
+1 Dryad Militant
+1 Assure // Assemble
+1 Crown of Convergence
+1 Conclave Evangelist
+1 Devouring Light
+1 Conclave Cavalier
+1 Loxodon Hierarch
+1 Emmara, Soul of the Accord
+1 Eyes in the Skies
+1 Glare of Subdual
+1 Knight of Autumn
+1 Growing Ranks
+1 Hour of Reckoning
+1 Seed Spark
+1 Scion of Vitu-Ghazi
+1 Phytohydra
+1 Root-Kin Ally
+1 Vitu-Ghazi Guildmage
+1 Vitu-Ghazi, the City-Tree
+1 Watchwolf
+1 Selesnya Sanctuary
+1 Sundering Growth
+1 Vernal Sovereign
+1 Selesnya Cluestone
+1 Selesnya Guildgate
+1 Selesnya Evangel
+1 Selesnya Keyrune
+1 Selesnya Locket
+1 Selesnya Signet
+1 Wayfaring Temple
+1 Trostani Discordant
+1 Sundering Vitae
+1 Siege Wurm
+1 Temple Garden
+1 Trostani, Selesnya's Voice
+1 Conclave Guildmage
+18 Plains
+17 Forest
+1 Privileged Position
+1 Conclave Phalanx
+1 Scatter the Seeds
+1 Selesnya Charm
+1 March of the Multitudes
+1 Conclave Tribunal
+1 Advent of the Wurm
+1 Pollenbright Wings
+1 Call of the Conclave
+1 Grove of the Guardian
+1 Overwhelm
+1 Alive // Well
+1 Rootborn Defenses
+1 Chorus of the Conclave
+1 Guardian of Vitu-Ghazi
+1 Venerated Loxodon
+1 Voice of Resurgence
+1 Loxodon Smiter
+1 Selesnya Guildmage
+1 Unflinching Courage
+1 Impervious Greatwurm

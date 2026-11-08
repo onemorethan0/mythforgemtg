@@ -1,0 +1,69 @@
+# Archidekt — 09 – Krark, the Thumbless
+# source: archidekt:849597
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Krark, the Thumbless
+
+Deck:
+1 Vance's Blasting Cannons // Spitfire Bastion
+1 Outpost Siege
+1 Boompile
+1 Chaos Warp
+1 Pyroblast
+1 Goblin Kaboomist
+1 Molten Birth
+1 Volatile Rig
+1 Reverberate
+1 Creepy Doll
+1 Goblin Bangchuckers
+1 Sorcerer's Strongbox
+1 Karplusan Minotaur
+1 Molten Sentry
+1 Tide of War
+1 Goblin Archaeologist
+1 Wirefly Hive
+1 Fiery Gambit
+1 Mass Hysteria
+1 Krark's Thumb
+1 Goblin Psychopath
+1 Risky Move
+1 Skittish Valesk
+1 Planar Chaos
+1 Crazed Firecat
+1 Chance Encounter
+1 Impulsive Maneuvers
+1 Mana Clash
+1 Chaotic Strike
+1 Fickle Efreet
+1 Puppet's Verdict
+1 Crooked Scales
+1 Goblin Festival
+1 Scoria Wurm
+1 Viashino Sandswimmer
+1 Fighting Chance
+1 Mogg Assassin
+1 Chaotic Goo
+1 Wild Wurm
+1 Desperate Gambit
+1 Goblin Bomb
+1 Aleatory
+1 Winter Sky
+1 Goblin Lyre
+1 Red Elemental Blast
+1 Bottle of Suleiman
+1 Goblin Kites
+1 Mijae Djinn
+1 Goblin Artisans
+1 Two-Headed Giant
+1 Game of Chaos
+1 Mirror March
+1 Chandra, Fire Artisan
+40 Mountain
+1 Sol Ring
+1 Goblin Traprunner
+1 Tavern Scoundrel
+1 Okaun, Eye of Chaos
+1 Goblin Assassin
+1 Wild Magic Surge

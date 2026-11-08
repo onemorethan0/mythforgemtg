@@ -1,0 +1,108 @@
+# Archidekt — Death & Taxes  - Alela, Artful Provocateur
+# source: archidekt:11585916
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Alela, Artful Provocateur
+
+Deck:
+1 Ornithopter of Paradise
+1 Skullclamp
+1 Kindred Discovery
+1 Mystic Barrier
+1 Auton Soldier
+1 Dovin Baan
+1 Vampiric Tutor
+1 Spell Stutter
+1 Grim Tutor
+1 Isolation Cell
+1 Serra's Sanctum
+1 Teferi, Who Slows the Sunset
+1 Talisman of Progress
+1 Arcane Signet
+1 Esper Sentinel
+1 Bitterblossom
+1 All That Glitters
+1 Mystic Remora
+1 Grand Arbiter Augustin IV
+1 Roaming Throne
+1 Raffine's Tower
+1 Monologue Tax
+1 Teferi's Protection
+1 Mana Drain
+1 Cyclonic Rift
+1 Enlightened Tutor
+1 Underground Sea
+1 Underground River
+1 Tundra
+1 Three Tree City
+1 Shadowy Backstreet
+1 Marsh Flats
+1 Hallowed Fountain
+1 Godless Shrine
+1 Gloomlake Verge
+1 Floodfarm Verge
+1 Flooded Strand
+1 Exotic Orchard
+1 Deserted Beach
+1 Command Tower
+1 Ancient Tomb
+1 Adarkar Wastes
+1 Academy Ruins
+1 Idyllic Tutor
+1 Chrome Mox
+1 Mox Opal
+1 Mox Amber
+1 Helm of the Host
+1 Bident of Thassa
+1 Kindred Dominance
+1 Farewell
+1 Lightning Greaves
+1 Demonic Tutor
+1 Talisman of Dominance
+1 Grand Abolisher
+1 Painful Quandary
+1 Talisman of Hierarchy
+1 Sol Ring
+1 Trouble in Pairs
+1 Fabled Passage
+1 Phyrexian Metamorph
+1 Spark Double
+1 Sen Triplets
+1 Smothering Tithe
+1 Faerie Mastermind
+1 Moat
+1 Anointed Procession
+1 Lavinia, Azorius Renegade
+1 Etchings of the Chosen
+1 Rhystic Study
+1 Swords to Plowshares
+1 Blind Obedience
+1 Unstoppable Plan
+1 Ghostly Prison
+1 Propaganda
+1 Swan Song
+1 Dovin's Veto
+1 Path to Exile
+1 Intangible Virtue
+1 Shattered Sanctum
+1 Fierce Guardianship
+1 Mystical Tutor
+1 Reliquary Tower
+1 Spire of Industry
+1 Shipwreck Marsh
+1 Undercity Sewers
+1 Watery Grave
+1 Reflecting Pool
+1 Hall of Heliod's Generosity
+1 Scrubland
+1 Polluted Delta
+1 Meticulous Archive
+1 Otawara, Soaring City
+1 Caves of Koilos
+1 Bleachbone Verge
+1 Fellwar Stone
+1 Frantic Search
+1 Obyra, Dreaming Duelist
+1 Mana Vault

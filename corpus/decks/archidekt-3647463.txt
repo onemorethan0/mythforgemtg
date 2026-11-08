@@ -1,0 +1,71 @@
+# Archidekt — CHROMIUM 95
+# source: archidekt:3647463
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Chromium
+1 Swords to Plowshares
+
+Deck:
+1 Sengir Vampire
+1 Dark Banishing
+1 Basal Thrull
+1 Fallen Angel
+1 Royal Assassin
+1 Pestilence
+1 Hypnotic Specter
+1 Hymn to Tourach
+1 Bad Moon
+1 Brine Shaman
+1 Terror
+1 Ashes to Ashes
+1 Koskun Falls
+1 Nettling Imp
+1 Eater of the Dead
+1 Mind Twist
+1 Jalum Tome
+1 Jandor's Saddlebags
+1 Will-o'-the-Wisp
+1 Nightmare
+1 Lord of the Pit
+1 Demonic Hordes
+1 Abyssal Specter
+1 Black Knight
+1 Mindstab Thrull
+1 Sinkhole
+1 Drudge Skeletons
+1 Minion of Leshrac
+1 Sol Ring
+1 Fellwar Stone
+1 Dark Ritual
+1 Underground River
+1 Dance of the Dead
+1 Oubliette
+1 Krovikan Sorcerer
+1 Nebuchadnezzar
+1 Gangrenous Zombies
+1 Frozen Shade
+1 Rag Man
+1 Hoar Shade
+1 Shimian Night Stalker
+1 Hyalopterous Lemure
+1 City of Brass
+1 Strip Mine
+1 Clone
+1 Sengir Autocrat
+1 Hell's Caretaker
+1 Cuombajj Witches
+1 Sorceress Queen
+1 Xenic Poltergeist
+1 Wall of Bone
+1 Jayemdae Tome
+1 Greed
+1 Animate Dead
+1 Underworld Dreams
+7 Plains
+1 Adarkar Wastes
+25 Swamp
+7 Island
+1 Darkness
+1 Howling Mine

@@ -1,0 +1,108 @@
+# Archidekt — Jhoira, Wheatherlight Captain Cedh
+# source: archidekt:5247721
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Jhoira, Weatherlight Captain
+
+Deck:
+1 Glaring Fleshraker
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Mindbreak Trap
+1 Simian Spirit Guide
+1 Ragavan, Nimble Pilferer
+1 Polluted Delta
+1 Ancient Tomb
+1 Wan Shi Tong, Librarian
+1 Isochron Scepter
+1 Sink into Stupor // Soporific Springs
+1 Arcane Signet
+1 Izzet Signet
+1 Archway of Innovation
+1 Jeska's Will
+1 Emergence Zone
+1 Memnite
+1 Mystic Forge
+1 Springleaf Drum
+1 Swan Song
+1 Mox Amber
+1 Chain of Vapor
+1 Paradise Mantle
+1 Pact of Negation
+1 Chrome Mox
+1 Volcanic Island
+1 Grinding Station
+1 Underworld Breach
+1 Mental Misstep
+1 Wooded Foothills
+1 Borne Upon a Wind
+1 Flooded Strand
+1 Mana Confluence
+1 Scalding Tarn
+1 Dragon's Rage Channeler
+1 Lotus Petal
+1 Thundering Falls
+1 Rhystic Study
+1 Mox Opal
+1 Island
+1 Paradoxical Outcome
+1 Repeal
+1 Steam Vents
+1 Snow-Covered Island
+1 Lodestone Bauble
+1 Gemstone Caverns
+1 Phyrexian Metamorph
+1 Shield Sphere
+1 Mistrise Village
+1 Uthros Research Craft
+1 The Mycosynth Gardens
+1 Grim Monolith
+1 Pyrite Spellbomb
+1 Tezzeret, Cruel Captain
+1 Aether Spellbomb
+1 Dramatic Reversal
+1 Retract
+1 Sol Ring
+1 Gitaxian Probe
+1 Valley Floodcaller
+1 Mystic Remora
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Crystal Skull, Isu Spyglass
+1 Deflecting Swat
+1 Flusterstorm
+1 An Offer You Can't Refuse
+1 Hexing Squelcher
+1 Snapback
+1 Sensei's Divining Top
+1 Gamble
+1 Mishra's Bauble
+1 Mountain
+1 Spellskite
+1 Shuri, Wakandan Inventor
+1 Enthusiastic Mechanaut
+1 Etherium Sculptor
+1 Soul-Guide Lantern
+1 Geist of Saint Thalia
+1 Mystical Tutor
+1 Thassa's Oracle
+1 Force of Will
+1 Mana Vault
+1 Brain Freeze
+1 Windfall
+1 Fiery Islet
+1 Command Tower
+1 Riverglide Pathway // Lavaglide Pathway
+1 Tormod's Crypt
+1 Training Center
+1 Shivan Reef
+1 Talisman of Creativity
+1 Ornithopter
+1 Everflowing Chalice
+1 Urza's Bauble
+1 Artist's Talent
+1 City of Brass
+1 Spire of Industry
+1 Otawara, Soaring City
+1 Vexing Bauble

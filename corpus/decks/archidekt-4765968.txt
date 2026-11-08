@@ -1,0 +1,83 @@
+# Archidekt — (Retro) Queen of the Wild West
+# source: archidekt:4765968
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Queen Kayla bin-Kroog
+
+Deck:
+1 Alaborn Zealot
+1 Benevolent Bodyguard
+1 Devoted Caretaker
+1 Giver of Runes
+1 Goblin Welder
+1 Meekstone
+1 Sol Ring
+1 Soul Warden
+1 Weathered Wayfarer
+1 Catalyst Stone
+1 Crimson Acolyte
+1 Fellwar Stone
+1 Fire Diamond
+1 Scholar of New Horizons
+1 Soltari Emissary
+1 Scroll Rack
+1 Swiftfoot Boots
+1 Thought Vessel
+1 Wall of Essence
+1 Cursed Mirror
+1 Sculpting Steel
+1 Shieldmage Advocate
+1 Soltari Crusader
+1 Treasure Hunter
+1 Clifftop Retreat
+1 Gemstone Mine
+1 Ghost Town
+1 Remote Farm
+1 Sandstone Needle
+1 Strip Mine
+1 Ancestral Tribute
+1 Anger
+1 Fault Line
+1 Planar Birth
+1 Starstorm
+1 Vengeance
+1 Winds of Rath
+14 Plains
+1 Soltari Visionary
+1 Reflect Damage
+1 Earthquake
+1 Past in Flames
+1 Spirit Cairn
+1 Soltari Priest
+1 Ashnod's Altar
+1 Barbed Wire
+1 Commander's Sphere
+1 Junk Diver
+1 Jandor's Saddlebags
+1 Kayla's Music Box
+1 Marble Diamond
+1 Quietus Spike
+1 Sandstone Deadfall
+1 Star Compass
+1 Confessor
+1 Goblin Engineer
+1 Mystic Crusader
+1 Pitchstone Wall
+1 Sisters of the Flame
+1 Psychosis Crawler
+1 Soltari Foot Soldier
+1 Worn Powerstone
+1 Magewright's Stone
+13 Mountain
+1 Arid Mesa
+1 Petrified Field
+1 Devout Witness
+1 Soul Separator
+1 Twinblade Geist // Twinblade Invocation
+1 Goblin Tinkerer
+1 Pulsemage Advocate
+1 Bird Maiden
+1 Wall of Hope
+1 Preacher

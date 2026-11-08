@@ -1,0 +1,93 @@
+# Archidekt — Abzan Armor +
+# source: archidekt:12355705
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Betor, Kin to All
+
+Deck:
+1 Assault Formation
+1 Indomitable Ancients
+1 Access Tunnel
+1 Canopy Vista
+1 Overgrown Farmland
+1 Radiant Grove
+1 Tainted Remedy
+1 Avacyn, Angel of Hope
+1 Selesnya Signet
+1 Expel the Interlopers
+1 Towering Titan
+1 Dragonlord Dromoka
+1 Weathered Sentinels
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Temple of Plenty
+1 Sandsteppe Citadel
+1 Temple of Silence
+1 Swords to Plowshares
+1 Evolving Wilds
+1 Axebane Guardian
+1 Overgrown Battlement
+1 Despark
+1 Walking Bulwark
+1 Felothar the Steadfast
+1 Doran, Besieged by Time
+1 Sol Ring
+1 Tree of Redemption
+1 Sidar Kondo of Jamuraa
+5 Swamp
+1 Swiftfoot Boots
+1 Seedborn Muse
+1 Tree of Perdition
+1 Stoneskin
+1 Doran, the Siege Tower
+1 Fecund Greenshell
+1 Suspicious Bookcase
+1 Karn's Bastion
+1 Roaming Throne
+1 Wall of Junk
+1 V.A.T.S.
+1 Karn, the Great Creator
+1 Privileged Position
+1 Sterling Grove
+1 Verdant Catacombs
+1 Reliquary Tower
+1 Bloodletter of Aclazotz
+1 Toxic Deluge
+1 Crystal Barricade
+1 Head Games
+1 Deathcap Glade
+1 Vernal Fen
+1 Athreos, God of Passage
+1 The Walls of Ba Sing Se
+1 Wall of Reverence
+1 Canopy Gargantuan
+1 Giant Ankheg
+1 Overgrown Tomb
+1 Crashing Drawbridge
+1 Shalai, Voice of Plenty
+1 Wall of Tanglecord
+1 Steel Wall
+6 Plains
+7 Forest
+1 Godless Shrine
+1 Arcane Signet
+1 Darkness
+1 Anguished Unmaking
+1 Command Tower
+1 Windborn Muse
+1 Arbor Adherent
+1 Orzhov Signet
+1 Aura Shards
+1 Eerie Ultimatum
+1 Demonic Tutor
+1 Phyrexian Walker
+1 Wall of Souls
+1 Primeval Bounty
+1 Magistrate's Scepter
+1 Smothering Tithe
+1 Marsh Flats
+1 Rampart Architect
+1 Splinter
+1 Liquimetal Coating

@@ -1,0 +1,101 @@
+# Archidekt — yarok RIP
+# source: archidekt:863372
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Yarok, the Desecrated
+
+Deck:
+1 Rejuvenating Springs
+1 Saw in Half
+1 Wood Elves
+1 Mana Confluence
+1 Reflecting Pool
+1 Nissa, Resurgent Animist
+1 Tear Asunder
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Polluted Delta
+1 Swan Song
+1 Nature's Lore
+1 Watery Grave
+1 Overgrown Tomb
+1 Breeding Pool
+1 Risen Reef
+1 Tatyova, Benthic Druid
+1 Coiling Oracle
+1 Wall of Blossoms
+1 Baleful Strix
+1 Cyclonic Rift
+1 Hinterland Harbor
+1 Woodland Cemetery
+1 Hostage Taker
+1 Drowned Catacomb
+1 Temur Sabertooth
+1 Talisman of Dominance
+1 Deadeye Navigator
+1 Heroic Intervention
+1 Greenwarden of Murasa
+1 Misty Rainforest
+1 Birds of Paradise
+1 Eternal Witness
+1 Farseek
+1 Elvish Visionary
+1 Night's Whisper
+1 Sakura-Tribe Elder
+1 Reclamation Sage
+1 Mulldrifter
+1 Zagoth Triome
+2 Island
+1 Swamp
+1 Panharmonicon
+1 Arcane Signet
+1 Sol Ring
+1 Command Tower
+1 Undergrowth Stadium
+1 Morphic Pool
+1 Windfall
+1 Timeless Witness
+1 Toxic Deluge
+1 Counterspell
+1 Verdant Catacombs
+1 Foundation Breaker
+1 Talisman of Curiosity
+1 Peregrine Drake
+1 Champion of Wits
+1 Baleful Mastery
+1 Nissa of Shadowed Boughs
+1 Windswept Heath
+1 Arcane Denial
+1 Fabled Passage
+1 Tireless Provisioner
+1 Chord of Calling
+1 Dreamroot Cascade
+1 Worldly Tutor
+1 Wooded Foothills
+1 Ertai Resurrected
+1 Path of Ancestry
+1 Cloud of Faeries
+1 Palinchron
+1 Shrieking Drake
+1 Ghostly Flicker
+1 Sunken Hollow
+1 Young Necromancer
+1 Damnation
+1 Orcish Bowmasters
+1 Shared Summons
+1 Demonic Tutor
+1 Virtue of Knowledge // Vantress Visions
+1 Resculpt
+1 Guardian Project
+1 Lotus Cobra
+1 Bitter Triumph
+1 Hedge Maze
+1 Undercity Sewers
+1 Underground Mortuary
+1 Kishla Village
+1 Assassin's Trophy
+7 Forest
+1 Three Visits
+1 Starfield Vocalist
+1 Gonti, Lord of Luxury

@@ -1,0 +1,93 @@
+# Archidekt — The Eleventh Doctor
+# source: archidekt:5545877
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Eleventh Doctor
+1 K-9, Mark I
+
+Deck:
+1 Arid Mesa
+1 Polluted Delta
+1 Windswept Heath
+1 Marsh Flats
+1 Scalding Tarn
+1 Misty Rainforest
+1 Trenzalore Clocktower
+1 Deserted Beach
+1 Time Warp
+1 Capture of Jingzhou
+1 Mana Confluence
+1 Esper Sentinel
+1 Hallowed Fountain
+1 Flooded Strand
+1 Hengegate Pathway // Mistgate Pathway
+1 Sea of Clouds
+1 City of Brass
+1 Adarkar Wastes
+1 Eiganjo, Seat of the Empire
+1 Flagstones of Trokair
+1 Command Tower
+1 Forbidden Orchard
+1 Prismatic Vista
+1 Otawara, Soaring City
+1 Sol Ring
+1 Temporal Manipulation
+1 Arcane Signet
+1 Bioluminary
+1 Glitterflitter
+1 Ticketomaton
+1 Complaints Clerk
+1 Monitor Monitor
+1 Seasoned Buttoneer
+1 Vega, the Watcher
+1 Ghostly Pilferer
+1 Giver of Runes
+1 Mother of Runes
+1 Skrelv, Defector Mite
+1 Force of Negation
+1 Disrupting Shoal
+1 Sapphire Medallion
+1 Teleportation Circle
+1 Thassa, Deep-Dwelling
+1 Soulherder
+1 Thought Monitor
+1 Faerie Mastermind
+1 Palantír of Orthanc
+1 The First Doctor
+1 Propaganda
+1 Ghostly Prison
+1 Multiversal Passage
+8 Plains
+9 Island
+1 Pollywog Prodigy
+1 Worship
+1 TARDIS
+1 Pixie Guide
+1 Command Performance
+1 Omen Hawker
+1 Thran Turbine
+1 Copy Artifact
+1 Misdirection
+1 Ride Guide
+1 Draconian Gate-Bot
+1 The Enigma Jewel // Locus of Enlightenment
+1 Tundra
+1 Floodfarm Verge
+1 Recruiter of the Guard
+1 Trinket Mage
+1 Thought Vessel
+1 Reverent Mantra
+1 Deep Gnome Terramancer
+1 Ranger-Captain of Eos
+1 Loyal Drake
+1 Reflecting Pool
+1 Chronomantic Escape
+1 Tribute Mage
+1 Talisman of Progress
+1 Retribution of the Meek
+1 Unable to Scream
+1 Witness Protection
+1 The Battle of Bywater
+1 Citywide Bust

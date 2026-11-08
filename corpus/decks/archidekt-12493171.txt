@@ -1,0 +1,108 @@
+# Archidekt — Scion of the Ur-Dragon? I hardly know 'er Dragon!
+# source: archidekt:12493171
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Scion of the Ur-Dragon
+
+Deck:
+1 Arid Mesa
+1 Deathrite Shaman
+1 City of Brass
+1 Chrome Mox
+1 Birds of Paradise
+1 Brain Freeze
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Arcane Signet
+1 Dark Ritual
+1 Bloodstained Mire
+1 Boseiju, Who Endures
+1 Elvish Spirit Guide
+1 Demonic Tutor
+1 Command Tower
+1 Bayou
+1 An Offer You Can't Refuse
+1 Cyclonic Rift
+1 Tarnished Citadel
+1 Faerie Mastermind
+1 Sol Ring
+1 Flooded Strand
+1 Pact of Negation
+1 Lotus Petal
+1 Imperial Seal
+1 Intuition
+1 Lotho, Corrupt Shirriff
+1 Mana Confluence
+1 Misty Rainforest
+1 Mystic Remora
+1 Orcish Bowmasters
+1 Polluted Delta
+1 Rhystic Study
+1 Scalding Tarn
+1 Sevinne's Reclamation
+1 Silence
+1 Gemstone Caverns
+1 Marsh Flats
+1 Tainted Pact
+1 Underworld Breach
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Worldly Tutor
+1 Thassa's Oracle
+1 Mindbreak Trap
+1 Mental Misstep
+1 Fellwar Stone
+1 Force of Will
+1 Flusterstorm
+1 Mana Vault
+1 Mox Diamond
+1 Swan Song
+1 Borne Upon a Wind
+1 Tundra
+1 Underground Sea
+1 Volcanic Island
+1 Tropical Island
+1 Scrubland
+1 Plateau
+1 Savannah
+1 Vampiric Tutor
+1 Ancient Tomb
+1 Lion's Eye Diamond
+1 Exotic Orchard
+1 Smothering Tithe
+1 Tataru Taru
+1 Abrupt Decay
+1 Ranger-Captain of Eos
+1 Force of Negation
+1 Imposter Mech
+1 Steal Enchantment
+1 Storm-Kiln Artist
+1 City of Traitors
+1 Wan Shi Tong, Librarian
+1 Red Elemental Blast
+1 Forbidden Orchard
+1 Culling Ritual
+1 Orim's Chant
+1 Mirrormade
+1 Opposition Agent
+1 Mockingbird
+1 Into the Flood Maw
+1 Misdirection
+1 Mnemonic Betrayal
+1 Snapback
+1 Simian Spirit Guide
+1 Commandeer
+1 Gifts Ungiven
+1 Valley Floodcaller
+1 The Cabbage Merchant
+1 Flash Photography
+1 Korvold, Fae-Cursed King
+1 Prismari, the Inspiration
+1 Copy Enchantment
+1 Redirect Lightning
+1 Pyroblast
+1 Fire Covenant
+1 Clever Impersonator

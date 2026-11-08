@@ -1,0 +1,101 @@
+# Archidekt — Tinybones, Tables Nightmare
+# source: archidekt:4437514
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tinybones, Trinket Thief
+
+Deck:
+1 Hopeless Nightmare
+1 Doomsday Confluence
+1 Bloodstained Mire
+1 Chain of Smog
+1 Jet Medallion
+1 Lightning Greaves
+1 Syphon Mind
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Waste Not
+1 Necrogen Mists
+1 Sangromancer
+1 Urza's Saga
+1 Verdant Catacombs
+1 Liliana Vess
+1 Fell Specter
+1 Anvil of Bogardan
+1 Bottomless Pit
+1 Liliana's Caress
+1 Liliana, Waker of the Dead
+1 Arcane Signet
+1 Vicious Rumors
+1 Myriad Landscape
+1 Noetic Scales
+1 Oppression
+1 Leyline of the Void
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Vampiric Tutor
+1 Ash Barrens
+1 Geier Reach Sanitarium
+1 Damnation
+1 Expedition Map
+1 Sol Ring
+1 Thought Vessel
+1 Terror Tide
+1 Meekstone
+1 Tragic Slip
+1 Cabal Coffers
+1 Geth's Grimoire
+1 Necrogoyf
+1 Tinybones Joins Up
+1 Painful Quandary
+1 Plaguecrafter
+1 Bloodchief Ascension
+1 Strip Mine
+1 Fabled Passage
+1 Arterial Flow
+1 Witch's Cottage
+1 Raiders' Wake
+1 Withering Boon
+1 Thoughtseize
+1 Tinybones, Bauble Burglar
+1 Marsh Flats
+1 Grief
+1 Darkness
+1 Entropic Battlecruiser
+1 Torment of Hailfire
+1 Tinybones, Pocket Nuisance
+1 Polluted Delta
+1 Mox Amber
+1 Demonic Tutor
+1 Rankle, Master of Pranks
+1 Deadly Rollick
+1 Cabal Stronghold
+1 Takenuma, Abandoned Mire
+1 Fell the Profane // Fell Mire
+1 Withering Torment
+1 Monument to Endurance
+1 Smallpox
+8 Swamp
+1 Ensnaring Bridge
+1 Dark Deal
+1 Bojuka Bog
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Liliana of the Veil
+1 Urborg, Tomb of Yawgmoth
+1 Prismatic Vista
+1 Nykthos, Shrine to Nyx
+1 Long Goodbye
+1 Pox
+1 Beseech the Mirror
+1 Gibbering Descent
+1 Scroll Rack
+1 Crypt Ghast
+1 Sheoldred, the Apocalypse
+1 Gray Merchant of Asphodel
+1 Sheoldred's Edict
+1 Megrim
+1 Professor Onyx
+1 Dark Ritual
+1 Grim Tutor
+1 Urza's Cave
+1 Malakir Rebirth // Malakir Mire

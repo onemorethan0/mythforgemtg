@@ -1,0 +1,83 @@
+# Archidekt — WWE is Good for Me!
+# source: archidekt:13562604
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Coram, the Undertaker
+
+Deck:
+1 Suplex
+1 Mask of Griselbrand
+1 The Last Ride
+1 Heroic Intervention
+1 Chandra, Spark Hunter
+1 Signature Slam
+1 Goblin Piledriver
+1 Avishkar Raceway
+1 Buried Alive
+1 Killer's Mask
+1 Entomb
+1 Knockout Maneuver
+1 Chariot of Victory
+1 Ghoulcaller's Bell
+1 Unlicensed Hearse
+1 Maarika, Brutal Gladiator
+1 Outmuscle
+1 Culling the Weak
+1 The First Iroan Games
+1 Shattergang Brothers
+1 Brotherhood's End
+1 Bedevil
+1 Act of Treason
+1 Dramatic Entrance
+1 Abrade
+1 Minsc & Boo, Timeless Heroes
+1 Grotag Bug-Catcher
+1 Battle Strain
+1 Alley Grifters
+1 Fountainport Bell
+1 Mugging
+1 The Brothers' War
+1 Savage Punch
+1 Cait, Cage Brawler
+1 Epic Confrontation
+1 Brotherhood Regalia
+1 Fight Rigging
+1 Kapow!
+1 Prizefight
+1 Jaxis, the Troublemaker
+1 Pugnacious Pugilist
+1 Professional Face-Breaker
+1 Cemetery Tampering
+1 Vile Entomber
+1 Gravedigger
+1 Abstergo Entertainment
+1 Bojuka Bog
+1 Gratuitous Violence
+1 Glowcap Lantern
+1 Chromatic Lantern
+1 Soul-Guide Lantern
+1 Stomping Ground
+1 Overgrown Tomb
+9 Swamp
+1 Command Tower
+10 Mountain
+1 Professional Wrestler
+1 Glamorous Grapplers
+1 The Boulder, Ready to Rumble
+1 Virtus the Veiled
+1 Gorm the Great
+1 No Mercy
+1 Vicious Rivalry
+1 Boommobile
+1 Titan's Grave
+9 Forest
+1 Ziatora's Proving Ground
+1 Backlash
+1 Capital Punishment
+1 Walk-In Closet // Forgotten Cellar
+1 Blood Crypt
+1 Strixhaven Stadium
+1 Undergrowth Stadium
+1 Stadium Headliner

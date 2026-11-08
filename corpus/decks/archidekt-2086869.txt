@@ -1,0 +1,83 @@
+# Archidekt — Group Squeeze
+# source: archidekt:2086869
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kami of the Crescent Moon
+
+Deck:
+1 Mana Breach
+1 Sol Ring
+1 Emry, Lurker of the Loch
+1 Long-Term Plans
+1 Counterspell
+1 Viseling
+1 Iron Maiden
+1 Prosperity
+1 Minds Aglow
+1 Silent Arbiter
+1 Temple Bell
+1 Font of Mythos
+1 Fog Bank
+1 Folio of Fancies
+1 Dictate of Kruphix
+1 Thought Vessel
+1 Anvil of Bogardan
+1 Forced Fruition
+1 Sunder
+1 Aetherize
+1 Laboratory Maniac
+1 Mystic Sanctuary
+1 Sculpting Steel
+1 Mikokoro, Center of the Sea
+1 Inventors' Fair
+1 Reliquary Tower
+1 Hedron Archive
+1 Foil
+1 Clever Impersonator
+1 Jace's Archivist
+1 Black Vise
+1 Psychosis Crawler
+1 Howling Mine
+1 Propaganda
+1 Arcane Signet
+1 Phyrexian Metamorph
+1 Mirrormade
+1 Misdirection
+1 Force of Negation
+1 Force of Will
+1 Forbid
+1 Misleading Signpost
+1 Fabricate
+1 Spectral Deluge
+1 Flood of Tears
+1 River's Rebuke
+1 Replication Technique
+1 Turnabout
+1 Retreat to Coralhelm
+1 Windfall
+1 Consecrated Sphinx
+1 Scrawling Crawler
+1 Faerie Mastermind
+1 Zenith Chronicler
+1 Ebony Owl Netsuke
+1 Fierce Guardianship
+1 Whirlwind Denial
+1 Walking Atlas
+1 Trophy Mage
+1 Vnwxt, Verbose Host
+1 Sea Gate Restoration // Sea Gate, Reborn
+26 Island
+1 Wash Out
+1 Wizard Class
+1 Maze of Ith
+1 Teferi's Ageless Insight
+1 Arcane Lighthouse
+1 Academy Ruins
+1 Kozilek, Butcher of Truth
+1 Cyclonic Rift
+1 Muddle the Mixture
+1 Meekstone
+1 Struggle for Project Purity
+1 Winter Moon

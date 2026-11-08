@@ -1,0 +1,86 @@
+# Archidekt — Laughing Jasper Flint
+# source: archidekt:8937144
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Laughing Jasper Flint
+
+Deck:
+1 The Lord of Pain
+1 Smoldering Marsh
+1 Treasure Nabber
+1 Mana Geyser
+1 Blasphemous Act
+1 Talisman of Indulgence
+1 Vandalblast
+1 Command Tower
+1 Rakdos Signet
+1 Arcane Signet
+1 Rogue's Passage
+1 Grim Servant
+1 Lightning Greaves
+1 Morbid Opportunist
+1 Rankle, Master of Pranks
+1 Vial Smasher, Gleeful Grenadier
+1 At Knifepoint
+1 Back in Town
+1 Generous Plunderer
+1 Mari, the Killing Quill
+1 Graywater's Fixer
+1 Sol Ring
+1 Dragonskull Summit
+1 Grenzo, Havoc Raiser
+12 Swamp
+1 Gisa, the Hellraiser
+1 Charred Graverobber
+1 Insurrection
+1 Bitterblossom
+1 Reliquary Tower
+1 Deadly Rollick
+1 Deadpool, Trading Card
+1 Massacre Girl
+1 Rakdos Charm
+1 Cruelclaw's Heist
+1 Kellogg, Dangerous Mind
+1 Saw in Half
+1 Amonkhet Raceway
+1 Humble Defector
+1 Hellspur Posse Boss
+1 Phyrexian Arena
+1 Fellwar Stone
+1 Deadly Dispute
+1 Cloak and Dagger
+1 Cunning Rhetoric
+1 Brimstone Roundup
+1 Bloodstained Mire
+1 Ruin Raider
+1 Insatiable Avarice
+1 Massacre Girl, Known Killer
+1 Forsaken Miner
+1 Changeling Outcast
+1 Snuff Out
+1 Headliner Scarlett
+1 Bolt Bend
+1 Shoot the Sheriff
+1 Evolving Wilds
+1 Magda, the Hoardmaster
+1 Passionate Archaeologist
+1 Robber of the Rich
+1 Black Market Connections
+1 Descent into Avernus
+1 Impulsive Pilferer
+1 Rev, Tithe Extractor
+1 Grim Hireling
+1 Locke, Treasure Hunter
+1 Blood Crypt
+1 Fabled Passage
+1 You Find Some Prisoners
+1 Grave Researcher // Reanimate
+1 Prosper, Tome-Bound
+1 Wild-Magic Sorcerer
+1 Dauthi Voidwalker
+13 Mountain
+1 Haunted Ridge
+1 Gideon the Oathless
+1 Jhoira, Weatherlight Corsair

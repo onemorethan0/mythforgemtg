@@ -1,0 +1,103 @@
+# Archidekt — Rin and Seri, Inseparable (Tokens)
+# source: archidekt:2453663
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Rin and Seri, Inseparable
+
+Deck:
+1 Jetmir, Nexus of Revels
+1 Pride Sovereign
+1 Return of the Wildspeaker
+1 Boros Garrison
+1 Hushwood Verge
+1 Mirri, Weatherlight Duelist
+1 Pack Leader
+1 Skullclamp
+1 Mountain
+1 Leonin Warleader
+1 Cinder Glade
+1 Canopy Vista
+1 Brushland
+1 Selfless Savior
+1 Felidar Cub
+1 Taurean Mauler
+1 Gruul Turf
+1 Trouble in Pairs
+1 Phelia, Exuberant Shepherd
+1 Thornspire Verge
+1 Maskwood Nexus
+1 Skyknight Squire
+1 Arahbo, the First Fang
+1 Regal Caracal
+1 Mentor of the Meek
+1 Resolute Watchdog
+1 Enduring Courage
+1 Qasali Slingers
+1 Qasali Pridemage
+1 Feline Sovereign
+1 Lightning Greaves
+1 Kutzil, Malamet Exemplar
+1 Mangara, the Diplomat
+1 Guardian Project
+1 Harmonize
+1 Path to Exile
+1 Wrath of God
+1 Farewell
+1 Eiganjo, Seat of the Empire
+1 Sacred Foundry
+1 Guildless Commons
+1 Beast Whisperer
+1 Enduring Innocence
+1 Stomping Ground
+1 Minas Tirith
+1 Sol Ring
+1 Helpful Hunter
+1 Mosswort Bridge
+1 Scavenger Grounds
+1 Rhythm of the Wild
+1 Swiftfoot Boots
+1 Sejiri Shelter // Sejiri Glacier
+1 Teferi's Protection
+1 Spirited Companion
+1 Windbrisk Heights
+1 Secret Rendezvous
+1 Undergrowth Leopard
+1 Everything Comes to Dust
+1 Brimaz, King of Oreskos
+1 Swords to Plowshares
+1 Selesnya Sanctuary
+1 Command Tower
+1 Cait Sith, Fortune Teller
+1 Sunbillow Verge
+6 Plains
+1 Wasteland
+1 Overgrown Farmland
+1 Arid Archway
+1 Sunpetal Grove
+1 Temple Garden
+1 Temple of Plenty
+1 Gavony Township
+1 Rugged Prairie
+3 Forest
+1 The Eternal Wanderer
+1 Realmwalker
+1 Austere Command
+1 Ohran Frostfang
+1 Smothering Tithe
+1 Birds of Paradise
+1 Rampant Growth
+1 Loyal Warhound
+1 Traveling Botanist
+1 Arbor Adherent
+1 Farseek
+1 Three Visits
+1 Yoshimaru, Ever Faithful
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Moonshaker Cavalry
+1 Firdoch Core
+1 Lion Sash
+1 Chivalric Alliance
+1 Caretaker's Talent
+1 Tocasia's Welcome

@@ -1,0 +1,87 @@
+# Archidekt — Magnus the Red
+# source: archidekt:5450389
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Magnus the Red
+
+Deck:
+1 Hordeling Outburst
+1 Krenko's Command
+1 Song of Totentanz
+1 Tempt with Vengeance
+1 You See a Pair of Goblins
+1 Path of Ancestry
+1 Drown in Dreams
+1 Training Center
+1 Faebloom Trick
+1 Banefire
+1 Mystic Sanctuary
+1 Arcane Signet
+1 Brass's Bounty
+1 Command Tower
+1 Finale of Revelation
+1 Frantic Search
+1 Inspired Tinkering
+1 Izzet Signet
+1 Jeska's Will
+1 Molten Tributary
+1 Pull from Tomorrow
+1 Searing Touch
+1 Silver Scrutiny
+1 Steam Vents
+1 Storm King's Thunder
+1 Temple of Epiphany
+1 Apex of Power
+1 Imperial Recruiter
+1 Unwind
+1 Dragon Fodder
+1 Empty the Warrens
+1 Big Score
+1 Power Sink
+1 Sol Ring
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Cyclonic Rift
+1 Ral's Reinforcements
+1 Forbidden Friendship
+1 Mind Spring
+1 Solve the Equation
+1 Shivan Reef
+1 Chaos Warp
+1 Dig Through Time
+1 Jaya's Immolating Inferno
+1 Mystic Retrieval
+1 Reliquary Tower
+1 Seething Song
+1 Sulfur Falls
+1 Thought Vessel
+1 Stormcarved Coast
+1 Storm-Kiln Artist
+1 Young Pyromancer
+1 Third Path Iconoclast
+1 Syncopate
+1 Glimmerburst
+1 Rally at the Hornburg
+1 Past in Flames
+1 Urabrask // The Great Work
+1 Fierce Guardianship
+1 Talisman of Creativity
+1 Insurrection
+1 Bender's Waterskin
+1 Battle Hymn
+1 Prismari Pianist
+1 Enter the Infinite
+1 Scalding Tarn
+1 Desertion
+1 Crackle with Power
+10 Mountain
+13 Island
+1 Frostboil Snarl
+1 Access Denied
+1 Spell Swindle
+1 Rewind
+1 Reverberate
+1 Mathemagics
+1 By Force
+1 Spell Burst

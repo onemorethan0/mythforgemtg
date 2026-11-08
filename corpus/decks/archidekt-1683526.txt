@@ -1,0 +1,108 @@
+# Archidekt — Sen Triplets - Sense of Control
+# source: archidekt:1683526
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sen Triplets
+
+Deck:
+1 Damn
+1 Chrome Mox
+1 Raffine's Tower
+1 Dauthi Voidwalker
+1 Notion Thief
+1 Vault of Champions
+1 Morphic Pool
+1 Sea of Clouds
+1 Sensei's Divining Top
+1 Praetor's Grasp
+1 Pact of Negation
+1 Damnation
+1 Reflecting Pool
+1 Tundra
+1 Underground Sea
+1 Telepathy
+1 Talisman of Dominance
+1 Gilded Drake
+1 Time Spiral
+1 Volrath's Stronghold
+1 Enlightened Tutor
+1 Scrubland
+1 Urborg, Tomb of Yawgmoth
+1 Path to Exile
+1 Drannith Magistrate
+1 Exotic Orchard
+1 Strip Mine
+1 Opposition Agent
+1 Reliquary Tower
+1 Counterspell
+1 Dovin's Veto
+1 Swords to Plowshares
+1 Sol Ring
+1 Lightning Greaves
+1 Command Tower
+1 Grand Arbiter Augustin IV
+1 Marsh Flats
+1 Windfall
+1 Mana Drain
+1 Vampiric Tutor
+1 Toxic Deluge
+1 Force of Will
+1 Teferi's Protection
+1 Mana Vault
+1 Bribery
+1 Polluted Delta
+1 Flooded Strand
+1 Wasteland
+1 Swan Song
+1 Watery Grave
+1 Misty Rainforest
+1 Scalding Tarn
+1 City of Brass
+1 Mystic Remora
+1 Force of Negation
+1 Godless Shrine
+1 Smothering Tithe
+1 Hallowed Fountain
+1 Demonic Tutor
+1 Mystical Tutor
+1 Elesh Norn, Grand Cenobite
+1 Imperial Seal
+1 Talisman of Progress
+1 Urza's Saga
+1 Grand Abolisher
+1 Rhystic Study
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Island
+1 Windswept Heath
+1 Plains
+1 Arid Mesa
+1 Time Warp
+1 Mana Confluence
+1 Temporal Manipulation
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 The One Ring
+1 Sheoldred, the Apocalypse
+1 Chromatic Lantern
+1 Mox Opal
+1 Talion, the Kindly Lord
+1 Esper Sentinel
+1 Jin-Gitaxias, Progress Tyrant
+1 Orcish Bowmasters
+1 Expropriate
+1 Arcane Signet
+1 Narset, Parter of Veils
+1 Lotho, Corrupt Shirriff
+1 Ancient Tomb
+1 Otawara, Soaring City
+1 Teferi, Time Raveler
+1 Consecrated Sphinx
+1 Drana and Linvala
+1 Talisman of Hierarchy
+1 Cyclonic Rift
+1 Gleaming Splendor
+1 Land Equilibrium
+1 Farewell

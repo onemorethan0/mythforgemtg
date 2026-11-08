@@ -1,0 +1,107 @@
+# Archidekt — Korvold’s Cereal Killer
+# source: archidekt:13095970
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Korvold, Fae-Cursed King
+
+Deck:
+1 Squee, the Immortal
+1 Temur Sabertooth
+1 Sakura-Tribe Elder
+1 Sylvan Safekeeper
+1 Cauldron Familiar
+1 Reclamation Sage
+1 Lion's Eye Diamond
+1 Grim Monolith
+1 Trail of Crumbs
+1 Red Elemental Blast
+1 Autumn's Veil
+1 Nature's Claim
+1 Ad Nauseam
+1 Bayou
+1 Taiga
+1 Badlands
+1 Jeska's Will
+1 Greater Good
+1 Talisman of Indulgence
+1 Wheel of Fortune
+1 Dark Confidant
+1 Mayhem Devil
+1 Walking Ballista
+1 Birds of Paradise
+1 Deathrite Shaman
+1 Elves of Deep Shadow
+1 Llanowar Elves
+1 Fyndhorn Elves
+1 Ignoble Hierarch
+1 Arbor Elf
+1 Gilded Goose
+1 Eternal Witness
+1 Imperial Recruiter
+1 Vexing Shusher
+1 Collector Ouphe
+1 Sol Ring
+1 Mox Diamond
+1 Chrome Mox
+1 Lotus Petal
+1 Mana Vault
+1 Arcane Signet
+1 Witch's Oven
+1 Food Chain
+1 Sylvan Library
+1 Necropotence
+1 Carpet of Flowers
+1 Survival of the Fittest
+1 Abrupt Decay
+1 Assassin's Trophy
+1 Pyroblast
+1 Veil of Summer
+1 Dark Ritual
+1 Entomb
+1 Crop Rotation
+1 Vampiric Tutor
+1 Worldly Tutor
+1 Deflecting Swat
+1 Deadly Rollick
+1 Force of Vigor
+1 Culling the Weak
+1 Demonic Tutor
+1 Imperial Seal
+1 Green Sun's Zenith
+1 Gamble
+1 Finale of Devastation
+1 Diabolic Intent
+1 Toxic Deluge
+1 Culling Ritual
+1 Eldritch Evolution
+1 Three Visits
+1 Nature's Lore
+1 Overgrown Tomb
+1 Stomping Ground
+1 Blood Crypt
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Bloodstained Mire
+1 Arid Mesa
+1 Marsh Flats
+1 Misty Rainforest
+1 Scalding Tarn
+1 Ancient Tomb
+1 Gaea's Cradle
+1 Strip Mine
+1 Boseiju, Who Endures
+1 Yavimaya, Cradle of Growth
+1 Command Tower
+1 Mana Confluence
+1 City of Brass
+1 Forbidden Orchard
+1 Exotic Orchard
+2 Forest
+1 Swamp
+1 Mountain
+1 Urborg, Tomb of Yawgmoth
+1 Cavern of Souls
+1 Mox Opal
+1 Regrowth

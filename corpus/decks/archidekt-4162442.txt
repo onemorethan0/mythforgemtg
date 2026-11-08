@@ -1,0 +1,95 @@
+# Archidekt — Oops, All Pests
+# source: archidekt:4162442
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Beledros Witherbloom
+
+Deck:
+1 March of the World Ooze
+1 Sphere Grid
+1 Cabal Coffers
+6 Swamp
+1 Verdant Kraken
+1 Ninja Pizza
+1 Eldrazi Monument
+1 Feral Appetite
+1 Immoral Bargain
+1 Undergrowth Stadium
+1 Vampiric Rites
+1 Verdant Catacombs
+1 Ancient Tomb
+1 Wooded Foothills
+1 Llanowar Wastes
+1 Jaheira, Friend of the Forest
+1 Moldervine Reclamation
+1 Emeritus of Woe // Demonic Tutor
+1 Phyrexian Tower
+1 Parallel Lives
+1 Bolas's Citadel
+1 Reliquary Tower
+1 Creakwood Liege
+1 Germination Practicum
+1 Ribtruss Roaster
+1 Dina, Soul Steeper
+1 Teacher's Pest
+1 Mazirek, Kraul Death Priest
+1 Craterhoof Behemoth
+1 Prismatic Vista
+1 Jungle Hollow
+1 Urborg, Tomb of Yawgmoth
+1 Heroic Intervention
+1 Doubling Season
+1 The Earth Crystal
+1 Diabolic Intent
+1 The Ten Rings
+1 Chatterfang, Squirrel General
+1 The Soul Stone
+1 Stardew Valley
+1 Full Flowering
+1 Blood Artist
+1 Pitiless Plunderer
+1 Viscera Seer
+1 Warren Soultrader
+1 Eaten Alive
+1 Pest Infestation
+1 Bayou
+1 Festering Thicket
+1 Enduring Tenacity
+1 Mortality Spear
+1 Academy Manufactor
+1 Essence Warden
+1 Fabled Passage
+9 Forest
+1 Yavimaya, Cradle of Growth
+1 Asceticism
+1 Fertile Ground
+1 Nature's Lore
+1 Assassin's Trophy
+1 Diabolic Tutor
+1 Professor Dellian Fel
+1 Exquisite Blood
+1 Command Tower
+1 Gaea's Cradle
+1 Overgrown Tomb
+1 Sol Ring
+1 Arcane Signet
+1 Tempt with Discovery
+1 Eternal Witness
+1 Toxic Deluge
+1 Mirkwood Bats
+1 Seedborn Muse
+1 Demonic Tutor
+1 Urborg Repossession
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Black Market Connections
+1 Awakening Zone
+1 Tainted Wood
+1 Bojuka Bog
+1 Wastewood Verge
+1 Darkbore Pathway // Slitherbore Pathway
+1 Necroblossom Snarl
+1 Phyrexian Altar
+1 Ashnod's Altar
+1 Omnipresence

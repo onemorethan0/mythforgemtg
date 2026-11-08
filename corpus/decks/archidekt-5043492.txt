@@ -1,0 +1,108 @@
+# Archidekt — The Ur-Dragon
+# source: archidekt:5043492
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Windswept Heath
+1 Misty Rainforest
+1 Cavern of Souls
+1 Miirym, Sentinel Wyrm
+1 Dragonlord Dromoka
+1 Terror of the Peaks
+1 Sarkhan Unbroken
+1 Wooded Foothills
+1 Delighted Halfling
+1 Temple Garden
+1 Tropical Island
+1 Badlands
+1 Taiga
+1 Kaalia of the Vast
+1 Ramos, Dragon Engine
+1 Mana Confluence
+1 Command Tower
+1 Crux of Fate
+1 Tiamat
+1 Wheel of Fortune
+1 Nature's Lore
+1 Dragon's Hoard
+1 Morophon, the Boundless
+1 Birds of Paradise
+1 Two-Headed Hellkite
+1 Vampiric Tutor
+1 Cyclonic Rift
+1 Temur Ascendancy
+1 Rhystic Study
+1 Klauth, Unrivaled Ancient
+1 Verdant Catacombs
+1 Stomping Ground
+1 Breeding Pool
+1 Steam Vents
+1 Overgrown Tomb
+1 Haven of the Spirit Dragon
+1 Boseiju, Who Endures
+1 Heroic Intervention
+1 Savannah
+1 Bayou
+1 Dragon Tempest
+1 Ancient Copper Dragon
+1 Hellkite Courser
+1 Three Visits
+1 Nicol Bolas, the Ravager // Nicol Bolas, the Arisen
+1 Reflecting Pool
+1 Eternal Witness
+1 Bloom Tender
+1 Summon: Bahamut
+1 Volrath's Stronghold
+1 Twinflame Tyrant
+1 Mana Drain
+1 Wood Elves
+1 Sol Ring
+1 Fellwar Stone
+1 Chaos Warp
+1 Dragonborn Champion
+1 Mountain
+1 Swords to Plowshares
+1 Three Steps Ahead
+1 Forest
+1 Roaming Throne
+1 Marang River Regent // Coil and Catch
+1 Ketria Triome
+1 Farseek
+1 Arcane Signet
+1 Ancient Tomb
+1 Deflecting Swat
+1 An Offer You Can't Refuse
+1 Scrubland
+1 Beast Within
+1 The Great Henge
+1 Phyrexian Metamorph
+1 Ancient Silver Dragon
+1 Old Gnawbone
+1 Scion of the Ur-Dragon
+1 Selvala, Heart of the Wilds
+1 Mana Vault
+1 Chrome Mox
+1 Polluted Delta
+1 Bloodstained Mire
+1 Lotus Petal
+1 Cavern-Hoard Dragon
+1 Finale of Devastation
+1 The One Ring
+1 Farewell
+1 Jeska's Will
+1 Exotic Orchard
+1 Demonic Tutor
+1 Teferi's Protection
+1 Otawara, Soaring City
+1 Starting Town
+1 Goldspan Dragon
+1 Noble Hierarch
+1 Ignoble Hierarch
+1 Reanimate
+1 Noxious Revival
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Bala Ged Recovery // Bala Ged Sanctuary

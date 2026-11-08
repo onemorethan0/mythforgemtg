@@ -1,0 +1,97 @@
+# Archidekt — Casual-er slicer
+# source: archidekt:8307917
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+
+Deck:
+1 Mox Opal
+1 Cursed Totem
+1 Infiltration Lens
+1 Lightning Bolt
+1 Beamtown Beatstick
+1 Jeska's Will
+1 Lost Jitte
+1 Desperate Ritual
+1 Red Elemental Blast
+1 Goblin Welder
+1 Rite of Flame
+1 Sol Ring
+1 Gamble
+1 Inventors' Fair
+1 Umezawa's Jitte
+1 Pip-Boy 3000
+1 Simian Spirit Guide
+1 Pyroblast
+1 Pyretic Ritual
+1 Seething Song
+1 Gemstone Caverns
+1 Homeward Path
+1 Command Beacon
+1 Commander's Plate
+1 Grafdigger's Cage
+1 Weathered Runestone
+1 Adaptive Omnitool
+12 Mountain
+1 Ancient Tomb
+1 Blood Moon
+1 Deflecting Swat
+1 Urza's Saga
+1 Brotherhood Regalia
+1 Chrome Mox
+1 Grim Monolith
+1 Torpor Orb
+1 Mask of Memory
+1 Mana Vault
+1 Metalworker
+1 City of Traitors
+1 Mishra's Workshop
+1 Professional Face-Breaker
+1 Sandstone Needle
+1 Crystal Vein
+1 Static Orb
+1 Untimely Malfunction
+1 Lotus Petal
+1 Winter Moon
+1 Vexing Bauble
+1 Rug of Smothering
+1 Damping Sphere
+1 Goldvein Pick
+1 Tangle Wire
+1 Prying Blade
+1 Abrade
+1 Hexing Squelcher
+1 Winter Orb
+1 Tezzeret, Cruel Captain
+1 Rogue's Gloves
+1 Cavern of Souls
+1 Mox Diamond
+1 Wheel of Fortune
+1 Goblin Engineer
+1 Ragavan, Nimble Pilferer
+1 Wasteland
+1 Trinisphere
+1 Redirect Lightning
+1 Great Furnace
+1 Final Fortune
+1 Mox Amber
+1 Longshot, Rebel Bowman
+1 Wandering Archaic // Explore the Vastlands
+1 Artist's Talent
+1 Powerbalance
+1 Imperial Recruiter
+1 Magda, Brazen Outlaw
+1 Fomori Vault
+1 Chaos Warp
+1 Silver Shroud Costume
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Casey Jones, Jury-Rig Justiciar
+1 Cool but Rude
+1 The One Ring
+1 Improvised Arsenal
+1 Mystic Forge
+1 Excalibur, Sword of Eden
+1 Reckless Handling
+1 Jeska, Thrice Reborn

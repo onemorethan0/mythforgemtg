@@ -1,0 +1,95 @@
+# Archidekt — Tribal: Mummies
+# source: archidekt:11307241
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Temmet, Vizier of Naktamun
+
+Deck:
+1 Restless Anchorage
+1 Wall of Omens
+1 Disposal Mummy
+1 Wizened Mentor
+1 Fan Bearer
+1 Those Who Serve
+1 Accursed Duneyard
+1 Trueheart Duelist
+1 Angel of Sanctions
+1 In Oketra's Name
+1 Temple of the False God
+1 Hidden Courtyard
+1 Volatile Fault
+1 Karoo
+1 Field of Ruin
+1 Arid Archway
+1 Oketra's Attendant
+1 Dutiful Servants
+1 Dusk // Dawn
+1 Guildless Commons
+1 Desert of the True
+1 Desert
+1 Sunscorched Desert
+1 Dunes of the Dead
+1 Shefet Dunes
+1 Secluded Steppe
+1 Lazotep Quarry
+1 Anointed Procession
+1 Arcane Signet
+1 Rhet-Tomb Mystic
+1 Compulsory Rest
+1 Condemn
+1 Djeru's Resolve
+1 Renewed Solidarity
+1 Tocasia's Welcome
+1 Anointer Priest
+1 Indestructible Aura
+1 Buried Treasure
+1 Sol Ring
+1 Time to Reflect
+1 Aven Mindcensor
+1 Binding Mummy
+1 God-Eternal Oketra
+1 Cast Out
+1 Unconventional Tactics
+1 Devoted Crop-Mate
+1 Swords to Plowshares
+1 Forsake the Worldly
+1 Oketra the True
+1 Priest of the Crossing
+1 Sparring Mummy
+1 Oketra's Monument
+1 Sacred Cat
+1 Secret Rendezvous
+1 Overlord of the Mistmoors
+1 Vizier of Many Faces
+6 Island
+1 Unwavering Initiate
+1 Mummy Paramount
+1 On Wings of Gold
+1 Kefnet the Mindful
+1 Prophet of the Scarab
+1 Embalmer's Tools
+1 Desert of the Mindful
+1 Eternal Skylord
+1 God-Pharaoh's Gift
+1 Aven Wind Guide
+1 Hour of Eternity
+1 Ipnu Rivulet
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Hour of Revelation
+1 Cradle of the Accursed
+1 Gate to the Afterlife
+1 Adarkar Wastes
+1 Vizier of the Anointed
+1 Lazotep Plating
+1 Temple of Enlightenment
+1 Pull from Tomorrow
+1 Hostile Desert
+9 Plains
+1 Luxa River Shrine
+1 Kefnet's Monument
+1 Adorned Pouncer
+1 Champion of Wits
+1 Glyph Keeper
+1 Irrigated Farmland

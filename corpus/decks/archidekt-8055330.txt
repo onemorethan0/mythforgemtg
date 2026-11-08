@@ -1,0 +1,80 @@
+# Archidekt — Tamiyo, Inquisitive Student brings the noise
+# source: archidekt:8055330
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tamiyo, Inquisitive Student // Tamiyo, Seasoned Scholar
+
+Deck:
+1 Thirst for Discovery
+1 Miscast
+1 Thirst for Knowledge
+1 Brainstorm
+1 Veil of Summer
+1 Sol Ring
+1 Beast Within
+1 Witness Protection
+1 Song of the Dryads
+1 Imprisoned in the Moon
+1 Chrome Mox
+1 Daze
+1 Fierce Guardianship
+1 Force of Will
+1 Experimental Augury
+1 Rapid Hybridization
+1 Laboratory Maniac
+1 Psychosis Crawler
+1 The One Ring
+1 Contentious Plan
+1 Sylvan Library
+1 Ichormoon Gauntlet
+1 Tolarian Winds
+1 Rhystic Study
+1 Mystic Remora
+1 Tamiyo, Collector of Tales
+1 Explore
+1 Teferi, Temporal Pilgrim
+1 Jace, Wielder of Mysteries
+1 Frantic Search
+1 Growth Spiral
+1 Windfall
+1 Teferi's Ageless Insight
+1 Jace Reawakened
+1 Mind Over Matter
+1 An Offer You Can't Refuse
+1 Teferi, Master of Time
+1 Unnatural Restoration
+1 Counterspell
+1 Gitaxian Probe
+1 Back to Basics
+1 Kasmina, Enigma Sage
+1 Enter the Infinite
+1 Oko, Thief of Crowns
+1 Kiora, Behemoth Beckoner
+1 Tezzeret's Gambit
+1 Flux Channeler
+1 Inexorable Tide
+1 Evolution Sage
+1 Narset, Parter of Veils
+1 Mox Amber
+1 Cyclonic Rift
+1 Thassa's Oracle
+1 Steady Progress
+1 Ripples of Potential
+1 Boseiju, Who Endures
+1 Misty Rainforest
+1 Mana Drain
+1 Force of Negation
+1 Swan Song
+1 Standstill
+1 Mox Diamond
+1 Mana Vault
+1 Reliquary Tower
+1 Jace, the Mind Sculptor
+1 Mox Opal
+1 Stifle
+1 Noxious Revival
+1 Radstorm
+13 Forest
+17 Island

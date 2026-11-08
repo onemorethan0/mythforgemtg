@@ -1,0 +1,84 @@
+# Archidekt — Ayula - The Right to Bear Arms
+# source: archidekt:1874111
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ayula, Queen Among Bears
+
+Deck:
+1 Path of Ancestry
+1 River Bear
+1 Ulvenwald Tracker
+1 Owlbear Cub
+1 Karn's Bastion
+27 Forest
+1 Castle Garenbrig
+1 Argoth, Sanctum of Nature
+1 Insist
+1 Caller of the Claw
+1 Savage Punch
+1 Grizzly Fate
+1 Hibernation's End
+1 Grizzly Bears
+1 Ulvenwald Bear
+1 Striped Bears
+1 Mother Bear
+1 Field of Ruin
+1 Oran-Rief, the Vastwood
+1 Bear Umbra
+1 Awaken the Bear
+1 Werebear
+1 Ruxa, Patient Professor
+1 Realmwalker
+1 Quirion Beastcaller
+1 Pale Bears
+1 Owlbear
+1 Vivien's Grizzly
+1 Ashcoat Bear
+1 Copper Host Crusher
+1 Bear Cub
+1 Bloodline Pretender
+1 Changeling Titan
+1 Dragon-Scarred Bear
+1 Surrak and Goreclaw
+1 Goreclaw, Terror of Qal Sisma
+1 Druid's Familiar
+1 Drannith Ruins
+1 The Hunter Maze
+1 Vivien, Champion of the Wilds
+1 Titania's Command
+1 Outmuscle
+1 Kamahl's Summons
+1 Fade from History
+1 Ayula's Influence
+1 Fangs of Kalonia
+1 Rampaging Yao Guai
+1 Drover Grizzly
+1 Ursine Monstrosity
+1 Alpine Grizzly
+1 Forest Bear
+1 Bearscape
+1 Adaptive Automaton
+1 Metallic Mimic
+1 Thornwood Falls
+1 Forest
+1 Primal Vigor
+1 Casal, Lurkwood Pathfinder // Casal, Pathbreaker Owlbear
+1 Flaxen Intruder // Welcome Home
+1 Wilson, Refined Grizzly
+1 Tribute to the World Tree
+1 Inspiring Call
+1 Beast Within
+1 Studious First-Year // Rampant Growth
+1 Additive Evolution
+1 Vastlands Scavenger // Bind to Life
+1 Sword of Truth and Justice
+1 Shamanic Revelation
+1 Sword of Feast and Famine
+1 Sword of Hearth and Home
+1 Forebear's Blade
+1 Sword of the Animist
+1 Blackblade Reforged
+1 Blade of Selves
+1 Circle of Dreams Druid

@@ -1,0 +1,105 @@
+# Archidekt — Winota, Rider of Hate Bears - ARCHIVED
+# source: archidekt:4596485
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Winota, Joiner of Forces
+
+Deck:
+1 Lotus Petal
+1 Loyal Apprentice
+1 Magus of the Moon
+1 Mana Confluence
+1 Mana Crypt
+1 Mana Vault
+1 Marsh Flats
+1 Mother of Runes
+1 Mountain
+1 Myrel, Shield of Argive
+1 Needleverge Pathway // Pillarverge Pathway
+1 Orim's Chant
+1 Ornithopter
+1 Ornithopter of Paradise
+1 Path to Exile
+1 Phyrexian Revoker
+1 Phyrexian Walker
+4 Plains
+1 Plateau
+1 Prismatic Vista
+1 Professional Face-Breaker
+1 Ragavan, Nimble Pilferer
+1 Ranger-Captain of Eos
+1 Recruiter of the Guard
+1 Red Elemental Blast
+1 Alseid of Life's Bounty
+1 Ancient Tomb
+1 Archivist of Oghma
+1 Archon of Emeria
+1 Arid Mesa
+1 Aven Mindcensor
+1 Battlefield Forge
+1 Benevolent Bodyguard
+1 Blade Historian
+1 Blinkmoth Nexus
+1 Bloodstained Mire
+1 Boromir, Warden of the Tower
+1 Cathar Commando
+1 Cavern of Souls
+1 Charismatic Conqueror
+1 Chrome Mox
+1 City of Brass
+1 City of Traitors
+1 Cliffside Rescuer
+1 Combat Celebrant
+1 Command Tower
+1 Dauntless Dismantler
+1 Deafening Silence
+1 Deflecting Swat
+1 Delney, Streetwise Lookout
+1 Dockside Extortionist
+1 Drannith Magistrate
+1 Eidolon of Rhetoric
+1 Eiganjo, Seat of the Empire
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Ethersworn Canonist
+1 Flooded Strand
+1 Gemstone Caverns
+1 Gingerbrute
+1 Giver of Runes
+1 Glowrider
+1 Goblin Cratermaker
+1 Goblin Rabblemaster
+1 Grand Abolisher
+1 Greymond, Avacyn's Stalwart
+1 Hope of Ghirapur
+1 Imperial Recruiter
+1 Inkmoth Nexus
+1 Jeweled Lotus
+1 Legion Warboss
+1 Remorseful Cleric
+1 Rionya, Fire Dancer
+1 Sacred Foundry
+1 Sanctum Prelate
+1 Scalding Tarn
+1 Seasoned Pyromancer
+1 Serra Ascendant
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Signal Pest
+1 Silence
+1 Simian Spirit Guide
+1 Skyclave Apparition
+1 Sokenzan, Crucible of Defiance
+1 Sol Ring
+1 Solitude
+1 Soulless Jailer
+1 Spectator Seating
+1 Spirit of the Labyrinth
+1 Sunbaked Canyon
+1 Swords to Plowshares
+1 Thalia, Guardian of Thraben
+1 Windswept Heath
+1 Wooded Foothills
+1 Zurzoth, Chaos Rider

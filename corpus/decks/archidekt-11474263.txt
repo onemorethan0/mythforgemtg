@@ -1,0 +1,73 @@
+# Archidekt — CUTE LITTLE MOOGLE BABY aaaa
+# source: archidekt:11474263
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Stiltzkin, Moogle Merchant
+
+Deck:
+1 Swords to Plowshares
+1 Path to Exile
+36 Plains
+1 Grid Monitor
+1 Rust Elemental
+1 Oblation
+1 Tempt with Bunnies
+1 Steelburr Champion
+1 Orzhov Advokist
+1 Promise of Loyalty
+1 Sun Titan
+1 Tenuous Truce
+1 Nine Lives
+1 Darien, King of Kjeldor
+1 Marvin, Murderous Mimic
+1 Transcendence
+1 Steel Golem
+1 Helm of Awakening
+1 Your Temple Is Under Attack
+1 Angel of Invention
+1 Baneslayer Angel
+1 Everflowing Chalice
+1 Marble Diamond
+1 Commander's Sphere
+1 Phyrexian Juggernaut
+1 Metropolis Reformer
+1 Holy Day
+1 Odric, Master Tactician
+1 Kongming, "Sleeping Dragon"
+1 Benalish Marshal
+1 Dictate of Heliod
+1 Pianna, Nomad Captain
+1 Syr Alin, the Lion's Claw
+1 Glorious Anthem
+1 Aurification
+1 Knight of the White Orchid
+1 Mind Stone
+1 Truce
+1 Akroan Horse
+1 Thopter Assembly
+1 Alabaster Leech
+1 Mishra's War Machine
+1 Lich's Tomb
+1 Fellwar Stone
+1 Grafted Skullcap
+1 Generous Gift
+1 Ghostly Prison
+1 Windborn Muse
+1 Norn's Annex
+1 Cut a Deal
+1 Alms Collector
+1 Stroke of Midnight
+1 Wrath of God
+1 Angelsong
+1 Baird, Steward of Argive
+1 Secret Rendezvous
+1 Loran of the Third Path
+1 Mangara, the Diplomat
+1 Sunscorch Regent
+1 Austere Command
+1 Hedron Archive
+1 Thought Vessel
+1 Arcane Signet
+1 Sol Ring

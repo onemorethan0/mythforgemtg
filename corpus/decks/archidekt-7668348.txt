@@ -1,0 +1,93 @@
+# Archidekt — (BRC) Gargoyles <Defenders of the night>
+# source: archidekt:7668348
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Alela, Artful Provocateur
+
+Deck:
+1 Azorius Guildgate
+1 Buried Ruin
+1 Command Tower
+1 Sea of Clouds
+1 Granite Witness
+1 Gatekeeper Gargoyle
+1 Lumengrid Gargoyle
+1 Gargoyle Castle
+1 Biblioplex Assistant
+1 Orzhov Signet
+1 Evolving Wilds
+1 Sejiri Shelter // Sejiri Glacier
+1 Marble Diamond
+1 Ojutai Monument
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Spire Mangler
+1 Skybridge Towers
+1 Obscura Charm
+1 Castle
+1 Floodfarm Verge
+1 Arcane Signet
+1 Avacyn, Angel of Hope
+1 Negate
+1 Stonecloaker
+1 Ivory Gargoyle
+1 Locthwain Gargoyle
+1 Marble Gargoyle
+1 Darklit Gargoyle
+1 Kjeldoran Gargoyle
+1 Gargoyle Sentinel
+1 Opal Gargoyle
+1 Arcane Sanctum
+1 Graven Dominator
+1 Shrieking Grotesque
+1 Tomik, Distinguished Advokist
+1 Harbor Guardian
+1 Darksteel Gargoyle
+1 Tomik, Wielder of Law
+1 Nullstone Gargoyle
+1 Opal Guardian
+1 Voidstone Gargoyle
+1 Warden of the Wall
+1 Tower Gargoyle
+1 Akroma's Will
+1 Wakestone Gargoyle
+1 Thraben Gargoyle // Stonewing Antagonizer
+1 Millennial Gargoyle
+1 Vantress Gargoyle
+1 Skyclave Sentinel
+1 Azorius Signet
+1 Orzhov Basilica
+1 Obscura Storefront
+1 An Offer You Can't Refuse
+1 Azorius Chancery
+1 Temple of Silence
+1 Patchwork Banner
+1 Isolated Chapel
+1 Grotesque Demise
+1 Austere Command
+1 Abbey Gargoyles
+1 Grimoire of the Dead
+1 Leering Gargoyle
+1 Sanctum Gargoyle
+1 Sephara, Sky's Blade
+1 Raffine's Tower
+1 Dimir Guildgate
+1 Orzhov Guildgate
+1 Manor Gargoyle
+2 Swamp
+1 Swords to Plowshares
+1 Gravitational Shift
+1 Favorable Winds
+2 Island
+14 Plains
+1 Path to Exile
+1 Ghostly Prison
+1 Stony Silence
+1 Emeritus of Truce // Swords to Plowshares
+1 Withering Curse
+1 The Biblioplex
+1 Sol Ring
+1 Vibrant Cityscape
+1 Ral Zarek, Guest Lecturer
+1 Afterthought Sentry

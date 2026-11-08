@@ -1,0 +1,88 @@
+# Archidekt — Town Bike 2.0
+# source: archidekt:7663096
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Karona, False God
+
+Deck:
+1 Custodi Squire
+1 Elrond of the White Council
+1 Assault Suit
+1 Ghost Quarter
+1 Minds Aglow
+1 Alexios, Deimos of Kosmos
+1 The Valeyard
+1 This Is How It Ends
+1 Druid of Purification
+1 Council's Judgment
+1 Magister of Worth
+1 Mob Verdict
+1 Brago's Representative
+1 Tivit, Seller of Secrets
+1 Ensnared by the Mara
+1 Great Intelligence's Plan
+1 Expropriate
+1 Capital Punishment
+1 Split Decision
+1 Plea for Power
+1 Sol Ring
+1 Truth or Consequences
+1 Tempt with Discovery
+1 Collective Voyage
+1 Mana-Charged Dragon
+1 Tempt with Vengeance
+1 Ballot Broker
+1 Emissary Green
+1 The Second Doctor
+1 Virtus's Maneuver
+1 Game Plan
+1 Kynaios and Tiro of Meletis
+1 Pir's Whim
+1 Wandering Archaic // Explore the Vastlands
+1 Arcane Signet
+1 Marchesa's Decree
+1 Case of the Shattered Pact
+1 Fealty to the Realm
+1 Evasive Action
+1 Leyline Binding
+1 Aragorn, King of Gondor
+1 Queen Marchesa
+1 Out of Bounds
+1 Play of the Game
+1 Invasion of Zendikar // Awakened Skyclave
+1 Sokenzan, Crucible of Defiance
+5 Forest
+5 Plains
+5 Swamp
+1 Boseiju, Who Endures
+1 Eiganjo, Seat of the Empire
+1 Prismatic Vista
+5 Island
+1 Takenuma, Abandoned Mire
+1 Thaumatic Compass // Spires of Orazca
+1 Otawara, Soaring City
+1 Fabled Passage
+1 Escape Tunnel
+1 Blighted Woodland
+5 Mountain
+1 Demolition Field
+1 Command Tower
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Sadistic Shell Game
+1 Parting Gust
+1 Long River's Pull
+1 Perch Protection
+1 Heaped Harvest
+1 Wernog, Rider's Chaplain
+1 Starfall Invocation
+1 Dawn's Truce
+1 Tempt with Bunnies
+1 Travel Through Caradhras
+1 Mikey & Mona, Mutant Sitters
+1 Casey & Raph, Hotheads
+1 Donnie & April, Adorkable Duo
+1 Splinter & Leo, Father & Son
+1 Turtle Tracks
+1 Everything Pizza

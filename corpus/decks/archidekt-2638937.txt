@@ -1,0 +1,95 @@
+# Archidekt — Animar's [Temur] "Whoops! All Creatures!"
+# source: archidekt:2638937
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Animar, Soul of Elements
+
+Deck:
+1 Walking Ballista
+1 Benevolent Hydra
+1 Haywire Mite
+1 Birds of Paradise
+1 Beastcaller Savant
+1 Copper Myr
+1 Iron Myr
+1 Ornithopter of Paradise
+1 Silver Myr
+1 Shaman of Forgotten Ways
+1 Scuttlemutt
+1 Biophagus
+1 Earthshaker Giant
+1 Volcanic Island
+1 Yavimaya, Cradle of Growth
+1 Taiga
+1 Tropical Island
+1 Augur of Autumn
+1 Vizier of the Menagerie
+1 Endless One
+1 Steam Vents
+1 Stomping Ground
+1 Breeding Pool
+1 Hydroid Krasis
+1 Stonecoil Serpent
+1 Castle Garenbrig
+1 Ancient Ziggurat
+1 Manglehorn
+1 Phyrexian Ingester
+1 Cryptic Trilobite
+1 Ketria Triome
+1 Fabled Passage
+1 Skyscanner
+1 Skittering Surveyor
+1 Primordial Sage
+1 Soul of the Harvest
+1 Ancestral Statue
+1 Craterhoof Behemoth
+1 Llanowar Visionary
+1 Phyrexian Metamorph
+1 Tuktuk Rubblefort
+1 Springbloom Druid
+1 Farhaven Elf
+1 Beast Whisperer
+1 Duplicant
+1 Pilgrim's Eye
+1 Guardian Augmenter
+1 Terastodon
+1 Endurance
+1 Myr Scrapling
+1 Mulldrifter
+1 Overcharged Amalgam
+1 Opal Palace
+3 Mountain
+1 Wood Elves
+1 Temur Sabertooth
+1 Sakura-Tribe Elder
+1 Exotic Orchard
+1 Command Tower
+1 Wooded Foothills
+1 Misty Rainforest
+1 Scalding Tarn
+1 Bronze Walrus
+1 Drillworks Mole
+1 Cankerbloom
+1 Eladamri, Korvecdal
+1 Nulldrifter
+1 Goldvein Hydra
+1 Fanatic of Rhonas
+1 Painter's Servant
+1 Drowner of Truth // Drowned Jungle
+1 Fierce Empath
+1 World Breaker
+1 Sylvok Replica
+1 Thassa, God of the Sea
+1 Primal Surge
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Mockingbird
+1 Myr Convert
+1 Branch of Vitu-Ghazi
+10 Forest
+3 Island
+1 Hexing Squelcher
+1 Danny Pink
+1 Guardian Project
+1 Samut, Hazoret's Champion

@@ -1,0 +1,90 @@
+# Archidekt — Kratos' Journey
+# source: archidekt:17058137
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kratos, Stoic Father
+1 Atreus, Impulsive Son
+
+Deck:
+2 Snow-Covered Island
+4 Plains
+1 Surtr, Fiery Jötun
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Altar of the Pantheon
+1 Alpine Meadow
+1 Temple of Enlightenment
+1 Opaline Unicorn
+6 Mountain
+1 Quakebringer
+4 Island
+4 Snow-Covered Mountain
+1 Starnheim Memento
+1 Sword of Light and Shadow
+1 Seething Song
+1 Heliod, God of the Sun
+1 Mjölnir, Storm Hammer
+1 Toralf, God of Fury // Toralf's Hammer
+1 Purphoros, God of the Forge
+1 Aegar, the Freezing Flame
+1 Cosima, God of the Voyage // The Omenkeel
+1 Ephara, God of the Polis
+1 Invasion of Theros // Ephara, Ever-Sheltering
+1 Keranos, God of Storms
+1 Thassa, Deep-Dwelling
+1 Thassa, God of the Sea
+1 Field of Ruin
+1 Temple of Epiphany
+4 Snow-Covered Plains
+1 Halvar, God of Battle // Sword of the Realms
+1 Tyrite Sanctum
+1 Unknown Shores
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Kalemne, Disciple of Iroas
+1 Hall of Heliod's Generosity
+1 Nykthos, Shrine to Nyx
+1 Nyx Lotus
+1 Shatter the Sky
+1 Mana Confluence
+1 Tranquil Cove
+1 Heliod, Sun-Crowned
+1 Heroes' Podium
+1 Kratos, God of War
+1 Alrund, God of the Cosmos // Hakka, Whispering Raven
+1 Burnished Hart
+1 Sulfuric Vortex
+1 Teferi's Ageless Insight
+1 Glacial Floodplain
+1 Rite of Flame
+1 Temple of Triumph
+1 Volatile Fjord
+1 Pyrohemia
+1 Hengegate Pathway // Mistgate Pathway
+1 Frost Titan
+1 Sun Titan
+1 Valkyrie's Call
+1 Iroas, God of Victory
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Cosmic Intervention
+1 Unbreakable Formation
+1 World at War
+1 Anger of the Gods
+1 Wrath of God
+1 Ravenform
+1 Phlage, Titan of Fire's Fury
+1 Inferno Titan
+1 Thryx, the Sudden Storm
+1 Purphoros, Bronze-Blooded
+1 Alexios, Deimos of Kosmos
+1 Stone Quarry
+1 Raven Clan War-Axe
+1 The Spear of Leonidas
+1 Caduceus, Staff of Hermes
+1 Loki's Scepter
+1 Loki, Lord of Misrule
+1 Thor, Guardian of Midgard
+1 Mjölnir, Hammer of Thor
+1 Thor, God of Thunder
+1 Thor, Asgard's Avenger
+1 Loki, God of Mischief

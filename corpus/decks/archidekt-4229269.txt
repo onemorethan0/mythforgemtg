@@ -1,0 +1,87 @@
+# Archidekt — Community Feast
+# source: archidekt:4229269
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jerren, Corrupted Bishop // Ormendahl, the Corrupter
+
+Deck:
+1 Bojuka Bog
+1 Priest of Forgotten Gods
+1 Corrupted Conviction
+1 Pitiless Plunderer
+1 Dakmor Salvage
+1 Grim Haruspex
+1 Elegy Acolyte
+1 Soldevi Adnate
+1 Open the Graves
+1 Phyrexian Tower
+1 Shadow-Rite Priest
+1 Demon's Disciple
+1 Mob
+1 Castle Locthwain
+1 Faller's Faithful
+1 Umbral Collar Zealot
+1 Golgari Thug
+1 Xathrid Necromancer
+1 Jet Medallion
+1 Syr Konrad, the Grim
+1 Village Cannibals
+1 Village Rites
+1 Lethal Scheme
+1 Ghoulish Procession
+1 Plaguecrafter
+1 Liliana, Heretical Healer // Liliana, Defiant Necromancer
+1 Dig Up the Body
+1 Dogged Detective
+1 Witch's Cottage
+1 Body Count
+1 Bloodsoaked Champion
+1 Unearth
+1 Jadar, Ghoulcaller of Nephalia
+1 Undertaker
+1 Eaten Alive
+1 Doomed Dissenter
+1 Novice Occultist
+1 Cryptic Caves
+1 Zulaport Cutthroat
+1 Thespian's Stage
+1 Ashnod, Flesh Mechanist
+1 Scorn-Blade Berserker
+1 Pile On
+1 Doomed Necromancer
+1 Disciple of Perdition
+1 Greedy Freebooter
+1 Dark Confidant
+1 Fell the Profane // Fell Mire
+1 Gravedig
+1 Spymaster's Vault
+1 Urza's Cave
+1 Plumb the Forbidden
+1 Ripples of Undeath
+1 Roadside Reliquary
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Mortuary Mire
+1 Crypt of Agadeem
+1 The Meathook Massacre
+1 Morbid Opportunist
+1 Metamorphosis Fanatic
+1 Marionette Apprentice
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Macabre Waltz
+1 The Sibsig Ceremony
+1 Valgavoth's Faithful
+1 Victimize
+1 Whisper, Blood Liturgist
+1 Dutiful Attendant
+1 Bonecaller Cleric
+1 Pit Keeper
+1 Skirsdag Flayer
+1 Tortured Existence
+1 Dark Matter Manipulator
+1 Oversold Cemetery
+1 Winter, Tormented Loner
+1 Liliana the Repentant
+1 Way of the Necromancer
+18 Swamp

@@ -1,0 +1,72 @@
+# Archidekt — Purple ... Purple & Black!
+# source: archidekt:19428569
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Liliana, Heretical Healer // Liliana, Defiant Necromancer
+
+Deck:
+1 Liliana the Repentant
+1 Cemetery Recruitment
+1 Command the Dreadhorde
+1 Dark Petition
+1 Dark Salvation
+1 Death Baron
+1 Demonic Pact
+1 Dread Summons
+1 Endless Obedience
+1 Final Parting
+1 Finale of Eternity
+1 From Under the Floorboards
+1 Geth's Grimoire
+1 Ghoulcaller Gisa
+1 Kalitas, Traitor of Ghet
+1 Liliana, Death Mage
+1 Liliana, Death's Majesty
+1 Liliana, Dreadhorde General
+1 Liliana, the Last Hope
+1 Liliana, the Necromancer
+1 Liliana, Untouched by Death
+1 Liliana, Waker of the Dead
+1 Liliana's Caress
+1 Liliana's Contract
+1 Liliana's Devotee
+1 Liliana's Elite
+1 Liliana's Indignation
+1 Liliana's Mastery
+1 Liliana's Reaver
+1 Liliana's Shade
+1 Liliana's Specter
+1 Liliana's Spoils
+1 Liliana's Talent
+1 Liliana's Triumph
+1 Oath of Liliana
+1 Price of Betrayal
+1 Professor Onyx
+1 Rise from the Grave
+1 Rise of the Dark Realms
+1 Risen Executioner
+1 Settle the Score
+1 The Chain Veil
+1 Waste Not
+1 Way of the Necromancer
+1 Sol Ring
+1 Crypt Ghast
+1 Zombie Master
+1 Snuff Out
+1 Liliana's Standard Bearer
+1 Dark Ritual
+1 Liliana of the Dark Realms
+1 Blasphemous Edict
+1 Killing Wave
+1 Undead Warchief
+1 Dreadhorde Invasion
+1 Grave Betrayal
+1 Endless Ranks of the Dead
+1 Grave Titan
+1 Unbreathing Horde
+1 Diregraf Colossus
+1 Liliana's Scorn
+1 Shepherd of Rot
+37 Swamp

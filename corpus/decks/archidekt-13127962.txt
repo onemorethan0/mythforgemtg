@@ -1,0 +1,108 @@
+# Archidekt — Cemetery Casino
+# source: archidekt:13127962
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Winter, Cynical Opportunist
+
+Deck:
+1 The One Ring
+1 Ardyn, the Usurper
+1 Noxious Revival
+1 Command Tower
+1 Darkbore Pathway // Slitherbore Pathway
+1 Overgrown Tomb
+1 Vault of Whispers
+1 Tree of Tales
+1 Wastewood Verge
+1 Whip of Erebos
+1 Sol Ring
+1 Necromancy
+1 Animate Dead
+1 Incarnation Technique
+1 Metamorphosis Fanatic
+1 Victimize
+1 Portal to Phyrexia
+1 Life // Death
+1 Reanimate
+1 Nurturing Peatland
+1 Chain of Smog
+1 Vampiric Tutor
+1 Shizo, Death's Storehouse
+1 Sylvan Tutor
+1 Nyxbloom Ancient
+1 Boseiju, Who Endures
+1 Urza's Saga
+1 Birds of Paradise
+1 Imperial Seal
+1 Surrak and Goreclaw
+1 City of Brass
+1 Mana Confluence
+1 Verdant Catacombs
+1 Lotus Petal
+1 Dark Ritual
+1 Shifting Woodland
+1 Ancient Tomb
+1 Fauna Shaman
+1 Yavimaya, Cradle of Growth
+1 Crystal Vein
+1 Swamp
+1 Urborg, Tomb of Yawgmoth
+1 Survival of the Fittest
+1 Jumbo Cactuar
+1 Force of Vigor
+1 Yawgmoth's Will
+1 Wishclaw Talisman
+1 Living Death
+1 Tortured Existence
+1 Underground Mortuary
+1 Twitching Doll
+1 Defense of the Heart
+1 Bayou
+1 Chrome Mox
+1 Mox Diamond
+1 Grim Monolith
+1 Mana Vault
+1 Demonic Tutor
+1 Echoing Deeps
+1 Forest
+1 Undergrowth Stadium
+1 Stitch Together
+1 Grim Tutor
+1 Sheoldred, Whispering One
+1 Crop Rotation
+1 Arcane Signet
+1 Triskelion
+1 Hermit Druid
+1 Vorinclex, Voice of Hunger
+1 Gloomshrieker
+1 Witherbloom Apprentice
+1 Talisman of Resilience
+1 Buried Alive
+1 Sedgemoor Witch
+1 Eternal Witness
+1 Elvish Spirit Guide
+1 Brawn
+1 Tarnished Citadel
+1 Gemstone Mine
+1 Valgavoth, Terror Eater
+1 Exotic Orchard
+1 Summon: Primal Odin
+1 Forbidden Orchard
+1 Lion's Eye Diamond
+1 Mikaeus, the Unhallowed
+1 Cabal Ritual
+1 Llanowar Wastes
+1 Insatiable Avarice
+1 Haywire Mite
+1 Formidable Speaker
+1 Gemstone Caverns
+1 Reflecting Pool
+1 Acererak the Archlich
+1 Aluren
+1 Twilight Mire
+1 Entomb
+1 Worldly Tutor
+1 Dismember
+1 Elvish Mystic

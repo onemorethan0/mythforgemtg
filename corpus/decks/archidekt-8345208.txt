@@ -1,0 +1,104 @@
+# Archidekt — The Fool
+# source: archidekt:8345208
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Flubs, the Fool
+
+Deck:
+1 Misty Rainforest
+1 Phyrexian Walker
+1 Forest
+1 Summer Bloom
+1 Shield Sphere
+1 Brain Freeze
+1 Lightning Bolt
+1 Arcane Signet
+1 Shifting Woodland
+1 Urza's Bauble
+1 Pick Your Poison
+1 Spellbook
+1 Island
+1 Impact Tremors
+1 Memnite
+1 Lotus Petal
+1 Jeweled Amulet
+1 Gitaxian Probe
+1 Strike It Rich
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Training Compound
+1 Gustha's Scepter
+1 Delif's Cone
+1 Ragavan, Nimble Pilferer
+1 Cloudstone Curio
+1 Echoing Deeps
+1 Vesuva
+1 Impulsive Pilferer
+1 Lotus Field
+1 Dark Depths
+1 Voldaren Epicure
+1 Horizon of Progress
+1 Elvish Reclaimer
+1 Stomping Ground
+1 Mystic Remora
+1 Wild Growth
+1 Mountain
+1 Talon Gates of Madara
+1 Fabled Passage
+1 Crimson Kobolds
+1 Faithless Looting
+1 Underworld Breach
+1 Tinder Wall
+1 Ornithopter
+1 Dragon's Rage Channeler
+1 Grapeshot
+1 Six
+1 Zuran Orb
+1 Flame Jab
+1 Lodestone Bauble
+1 Wild Cantor
+1 Song of Creation
+1 Birds of Paradise
+1 Command Tower
+1 Springleaf Drum
+1 Breeding Pool
+1 Accorder's Shield
+1 Fiery Islet
+1 Rite of Flame
+1 Currency Converter
+1 Kobolds of Kher Keep
+1 Gut Shot
+1 Mutagenic Growth
+1 Crookshank Kobolds
+1 Rejuvenating Springs
+1 Containment Construct
+1 Crop Rotation
+1 Cloud of Faeries
+1 Boltwave
+1 Exotic Orchard
+1 Thassa's Oracle
+1 Eruth, Tormented Prophet
+1 Rootbound Crag
+1 Spire Garden
+1 Sylvan Safekeeper
+1 Otherworldly Gaze
+1 Tormod's Crypt
+1 Exploration
+1 Fortune Teller's Talent
+1 Rograkh, Son of Rohgahh
+1 Bone Saw
+1 Scalding Tarn
+1 Lava Dart
+1 Grinding Station
+1 Obscuring Haze
+1 Squee, the Immortal
+1 Food Chain
+1 Carpet of Flowers
+1 Inti, Seneschal of the Sun
+1 Snap
+1 Mishra's Bauble
+1 Paradise Mantle
+1 Welding Jar
+1 Lotus Cobra
+1 Noxious Revival

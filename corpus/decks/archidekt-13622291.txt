@@ -1,0 +1,96 @@
+# Archidekt — I'll Be Your Knight
+# source: archidekt:13622291
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Squall, SeeD Mercenary
+
+Deck:
+1 Promising Vein
+1 Kusari-Gama
+1 Sword of War and Peace
+1 Sword of Body and Mind
+1 Single Combat
+1 Divine Reckoning
+1 Sword of Vengeance
+1 Feather of Flight
+1 Mother of Runes
+1 Necromancer's Assistant
+1 Merciless Executioner
+1 Fleshbag Marauder
+1 Knight of Dusk's Shadow
+1 Shire Terrace
+1 Sol Ring
+1 General's Enforcer
+1 Sigil of Valor
+1 Barrow-Blade
+1 Arcane Signet
+1 Feign Death
+1 Despark
+1 Zephyr Boots
+1 Prowler's Helm
+1 Bleachbone Verge
+1 Lavaspur Boots
+1 Duty-Bound Dead
+1 Knight of Glory
+1 Knight of Infamy
+1 Akrasan Squire
+1 Idolized
+1 Servant of Nefarox
+1 Aven Squire
+1 Guardians of Akrasa
+1 Cathedral of War
+1 Knight Exemplar
+1 Exsanguinator Cavalry
+1 Danitha Capashen, Paragon
+1 Puresteel Paladin
+1 Fetid Heath
+1 Codsworth, Handy Helper
+1 Basilisk Collar
+1 Vindicate
+1 Open the Armory
+1 Gift of Immortality
+1 Obscura Storefront
+1 Unquestioned Authority
+1 Gift of Orzhova
+1 Myriad Landscape
+1 Sunlit Marsh
+1 High Market
+1 Isolated Chapel
+1 Command Tower
+1 Evolving Wilds
+1 Caves of Koilos
+1 Temple of Silence
+1 Shineshadow Snarl
+1 Concealed Courtyard
+1 Path of Ancestry
+1 Desolate Mire
+1 Demolition Field
+11 Plains
+3 Swamp
+1 Vorrac Battlehorns
+1 Haunted Cloak
+1 Kami of False Hope
+1 Selfless Spirit
+1 Agent of the Shadow Thieves
+1 Bonders' Enclave
+1 Lunatic Pandora
+1 Millikin
+1 Rogue's Passage
+1 Summon: Ixion
+1 Geier Reach Sanitarium
+1 Key to the City
+1 Wedding Invitation
+1 Breathless Knight
+1 Knight of the White Orchid
+1 Corpse Knight
+1 Midnight Reaper
+1 Mind Stone
+1 Knight of the Ebon Legion
+1 Swiftfoot Boots
+1 Paladin Danse, Steel Maverick
+1 Westfold Rider
+1 Command Beacon
+1 Vault of the Archangel
+1 Esper Panorama

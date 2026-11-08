@@ -1,0 +1,108 @@
+# Archidekt — Caesar's Ungentlemanly Warfare
+# source: archidekt:7484618
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Caesar, Legion's Emperor
+
+Deck:
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Caretaker's Talent
+1 Commander Mustard
+1 Funeral Room // Awakening Hall
+1 Diabolic Intent
+1 Vault of Champions
+1 Mondrak, Glory Dominus
+1 Kambal, Profiteering Mayor
+1 Anim Pakal, Thousandth Moon
+1 Bastion of Remembrance
+1 Esper Sentinel
+1 Warleader's Call
+1 Talisman of Hierarchy
+1 War of the Last Alliance
+1 Greymond, Avacyn's Stalwart
+1 Arid Mesa
+1 Herald's Horn
+1 Impact Tremors
+1 Commissar Severina Raine
+1 Ashnod's Altar
+1 Skullclamp
+1 Bloodstained Mire
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Secluded Courtyard
+1 Rite of Oblivion
+1 Ranger-Captain of Eos
+1 Savai Triome
+1 White Lotus Tile
+1 General's Enforcer
+1 Three Tree City
+1 The Meathook Massacre
+1 Haunted Ridge
+1 Fell the Profane // Fell Mire
+1 Shadowy Backstreet
+1 Phyrexian Altar
+1 Ruinous Ultimatum
+1 Sunbaked Canyon
+1 Bleachbone Verge
+1 Crackling Doom
+1 Roaming Throne
+1 V.A.T.S.
+1 Colonel Autumn
+1 Myrel, Shield of Argive
+1 Company Commander
+1 Renewed Solidarity
+1 Mountain
+1 Sothera, the Supervoid
+1 Social Snub
+1 Turbulent Steppe
+1 Isshin, Two Heavens as One
+1 Patchwork Banner
+1 Sol Ring
+1 Elspeth, Storm Slayer
+1 Elspeth, Sun's Champion
+1 Cavern of Souls
+1 Haliya, Guided by Light
+1 Grave Venerations
+1 Lightning, Army of One
+1 Phyrexian Tower
+1 Pitiless Plunderer
+1 The Golden Throne
+1 Arcane Signet
+1 Reconnaissance
+1 Elas il-Kor, Sadistic Pilgrim
+1 Minas Tirith
+1 Zulaport Cutthroat
+1 Recruiter of the Guard
+1 Horn of Gondor
+1 Blood Crypt
+1 Isolated Chapel
+1 Battlefield Forge
+1 Mother of Runes
+1 Marionette Apprentice
+1 Arena of Glory
+1 Monumental Henge
+1 Cover of Darkness
+1 Priest of Forgotten Gods
+1 Shattered Sanctum
+1 Sundown Pass
+1 Sacred Foundry
+1 Anguished Unmaking
+1 Loran of the Third Path
+1 Godless Shrine
+1 Marsh Flats
+1 The Queen of Dale
+1 Lossarnach Captain
+1 Midgar, City of Mako // Reactor Raid
+1 Cosmogrand Zenith
+1 SOLDIER Military Program
+1 Cathars' Crusade
+1 Dalkovan Encampment
+1 The Arkenstone // Seek the Heart
+1 Fetid Heath
+1 Command Tower
+1 Graven Cairns
+1 Rugged Prairie
+1 Turbulent Moor
+1 Luxury Suite
+1 Spectator Seating

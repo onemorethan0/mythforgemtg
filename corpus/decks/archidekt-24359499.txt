@@ -1,0 +1,78 @@
+# Archidekt — Gruul Trample Tribal
+# source: archidekt:24359499
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Stonebrow, Krosan Hero
+
+Deck:
+20 Forest
+12 Mountain
+1 Rhythm of the Wild
+1 Cultivate
+1 Command Tower
+1 Quartzwood Crasher
+1 Managorger Hydra
+1 Sol Ring
+1 Swiftfoot Boots
+1 Chaos Warp
+1 Rampant Growth
+1 Champion of Lambholt
+1 Lavaleaper
+1 Goblin Anarchomancer
+1 Boldwyr Heavyweights
+1 Red XIII, Proud Warrior
+1 Proud Wildbonder
+1 Chainsaw
+1 Stonehoof Chieftain
+1 Furious Spinesplitter
+1 Atalan Jackal
+1 Gruul War Chant
+1 Herald of Ilharg
+1 Ulvenwald Oddity // Ulvenwald Behemoth
+1 Shifting Ceratops
+1 Hornbash Mentor
+1 Restless Ridgeline
+1 Gongaga, Reactor Town
+1 Rugged Highlands
+1 Cactusfolk Sureshot
+1 Ground Assault
+1 Sunder Shaman
+1 Traverse the Outlands
+1 Long Rest
+1 Colossal Majesty
+1 Ghalta, Primal Hunger
+1 Giant Solifuge
+1 Domri's Ambush
+1 Avatar of the Resolute
+1 Polis Crusher
+1 Stump Stomp // Burnwillow Clearing
+1 Mightform Harmonizer
+1 Akki Battle Squad
+1 Grumgully, the Generous
+1 Snakeskin Veil
+1 Gift of the Viper
+1 Collective Resistance
+1 General Marhault Elsdragon
+1 Raised by Giants
+1 Hammer of Purphoros
+1 Llanowar Elves
+1 Ashroot Animist
+1 Spawnwrithe
+1 Gruul Guildgate
+1 Garruk's Uprising
+1 Adventurous Impulse
+1 Vivien Reid
+1 Loyal Guardian
+1 Boartusk Liege
+1 Domri, Anarch of Bolas
+1 Harmonize
+1 Arlinn Kord // Arlinn, Embraced by the Moon
+1 Deus of Calamity
+1 Ilharg, the Raze-Boar
+1 Bear Umbra
+1 Neheb, the Eternal
+1 Mage Slayer
+1 Chishiro, the Shattered Blade
+1 Gladiolus Amicitia

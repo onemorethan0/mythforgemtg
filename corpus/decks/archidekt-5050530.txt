@@ -1,0 +1,95 @@
+# Archidekt — Bria, Riptide Rogue: The Madcap’s Torrent
+# source: archidekt:5050530
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Bria, Riptide Rogue
+
+Deck:
+1 Sol Ring
+1 Molten Tributary
+1 Burn Down the House
+1 Aetherize
+1 Faerie Slumber Party
+1 Coruscation Mage
+1 Sulfur Falls
+1 Command Tower
+1 Mystic Sanctuary
+1 Izzet Boilerworks
+1 Shivan Reef
+1 Training Center
+1 Temple of the False God
+1 Castle Vantress
+1 Command Beacon
+1 Resculpt
+1 Ponder
+1 Young Pyromancer
+1 Wayfarer's Bauble
+1 Arcane Signet
+1 Surge to Victory
+1 Treasure Cruise
+1 Blasphemous Act
+1 Preordain
+1 Serum Visions
+1 Pongify
+1 Emrakul's Messenger
+1 Kitsa, Otterball Elite
+4 Mountain
+1 Lazotep Plating
+1 Talisman of Creativity
+1 Great Train Heist
+1 Slip Out the Back
+1 Third Path Iconoclast
+1 Ferrous Lake
+1 Cascade Bluffs
+1 Thundering Falls
+1 Volatile Fjord
+1 Steam Vents
+1 Eagle Vision
+1 Stormcatch Mentor
+1 Pearl of Wisdom
+11 Island
+1 Fabled Passage
+1 Twinferno
+1 Surrakar Spellblade
+1 Psychotic Fury
+1 Overpowering Attack
+1 Rapid Hybridization
+1 Lunar Insight
+1 Consider
+1 Cori-Steel Cutter
+1 Reckless Charge
+1 Frostcliff Siege
+1 Izzet Signet
+1 Propaganda
+1 Dissipation Field
+1 Expressive Iteration
+1 Alchemist's Gambit
+1 Drake Hatcher
+1 Proft's Eidetic Memory
+1 Glimpse the Impossible
+1 Vivi Ornitier
+1 Octopus Form
+1 Rockface Village
+1 Impolite Entrance
+1 Fellwar Stone
+1 Reliquary Tower
+1 Great Hall of the Biblioplex
+1 Flashback
+1 Splatter Technique
+1 Prismari Charm
+1 Turbulent Springs
+1 Scorched Geyser
+1 Archmage Emeritus
+1 Stock Up
+1 Mischievous Mystic
+1 Shore Up
+1 Brainstorm
+1 Exotic Orchard
+1 Veyran, Voice of Duality
+1 Professional Face-Breaker
+1 Gitaxian Probe
+1 Opt
+1 Filter Out
+1 Samut, Hazoret's Champion

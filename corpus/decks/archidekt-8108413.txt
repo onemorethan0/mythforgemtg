@@ -1,0 +1,104 @@
+# Archidekt — Tiamat - Dragon Tribal
+# source: archidekt:8108413
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tiamat
+
+Deck:
+1 Twinflame Tyrant
+1 Frontier Bivouac
+1 Dragon's Hoard
+1 City of Brass
+1 Garruk's Uprising
+2 Forest
+2 Island
+1 Maelstrom of the Spirit Dragon
+1 Miirym, Sentinel Wyrm
+1 Haven of the Spirit Dragon
+1 Fabled Passage
+1 Elvish Piper
+1 Fellwar Stone
+1 Sarkhan, Soul Aflame
+1 Dragonlord Dromoka
+1 Command Tower
+1 Exotic Orchard
+1 Path of Ancestry
+1 Ancient Copper Dragon
+1 Birds of Paradise
+2 Swamp
+1 Chromatic Lantern
+1 Forbidden Orchard
+1 Crux of Fate
+1 Goldspan Dragon
+1 Evolving Wilds
+1 Lathliss, Dragon Queen
+1 Old Gnawbone
+1 Rhythm of the Wild
+1 Kodama's Reach
+1 Lightning Greaves
+1 Hellkite Tyrant
+1 Ancient Silver Dragon
+1 Smothering Tithe
+1 Dragon Tempest
+1 Bojuka Bog
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Morophon, the Boundless
+1 Dryad of the Ilysian Grove
+1 Reflecting Pool
+1 Boseiju, Who Endures
+1 Roaming Throne
+1 Scion of the Ur-Dragon
+1 The Ur-Dragon
+1 Otawara, Soaring City
+1 Cyclonic Rift
+1 Balefire Dragon
+1 Temur Ascendancy
+1 Farseek
+1 Dracogenesis
+1 Ancient Gold Dragon
+1 Cavern of Souls
+1 Scalelord Reckoner
+1 Grand Coliseum
+1 Rhystic Study
+1 Scaled Nurturer
+1 Arcane Signet
+1 Mox Jasper
+1 Arcane Denial
+1 Summon: Bahamut
+1 Generous Gift
+1 Beast Within
+1 Spara's Headquarters
+1 Delighted Halfling
+1 Ureni of the Unwritten
+1 The World Tree
+2 Mountain
+1 Jetmir's Garden
+1 Ketria Triome
+1 Ziatora's Proving Ground
+1 Sacred Foundry
+1 Temple Garden
+1 Hallowed Fountain
+1 Sol Ring
+1 Dragonspeaker Shaman
+1 Dragonlord's Servant
+1 Elemental Bond
+1 Hellkite Courser
+1 Urza's Incubator
+1 Blood Crypt
+1 Steam Vents
+1 Nature's Lore
+1 Stomping Ground
+1 Overgrown Tomb
+1 Three Visits
+1 Bloom Tender
+1 Clever Concealment
+1 Dawn's Truce
+1 Scourge of Valkas
+1 Godless Shrine
+1 Breeding Pool
+1 Plains
+1 Skyshroud Claim
+1 Reanimate
+1 Animate Dead

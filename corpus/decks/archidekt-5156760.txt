@@ -1,0 +1,97 @@
+# Archidekt — Zangief Fight Club
+# source: archidekt:5156760
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Maarika, Brutal Gladiator
+
+Deck:
+1 Gimli's Reckless Might
+1 Boxing Ring
+1 Bushwhack
+1 Inscription of Abundance
+1 Last One Standing
+1 Tail Swipe
+1 The Reaver Cleaver
+1 Assault Suit
+1 Deathreap Ritual
+1 Sol Ring
+1 Worldslayer
+1 Prizefight
+1 Pit Fight
+1 Infiltration Lens
+1 Kogla, the Titan Ape
+1 Cartouche of Strength
+1 Arcane Signet
+1 Tyvar's Stand
+1 Neyith of the Dire Hunt
+1 Ulvenwald Tracker
+1 Arena
+1 Back for More
+1 Chevill, Bane of Monsters
+1 Foe-Razer Regent
+1 Primal Might
+1 Delighted Halfling
+1 Birds of Paradise
+1 Ignoble Hierarch
+1 Swiftfoot Boots
+1 Heroic Intervention
+1 Beast Within
+1 Kusari-Gama
+1 Season of Growth
+1 Harvester of Souls
+1 Selvala, Heart of the Wilds
+1 Rishkar's Expertise
+1 The Great Henge
+1 Rhythm of the Wild
+1 Wooded Foothills
+4 Forest
+1 Overgrown Tomb
+1 Luxury Suite
+1 Command Tower
+1 Tamiyo's Safekeeping
+1 Bojuka Bog
+1 Yavimaya, Cradle of Growth
+1 Kessig Wolf Run
+1 Undergrowth Stadium
+1 Spire Garden
+1 Scavenger Grounds
+1 Urborg, Tomb of Yawgmoth
+1 Boseiju, Who Endures
+1 Blood Crypt
+1 Takenuma, Abandoned Mire
+1 Stomping Ground
+1 Bonders' Enclave
+1 Ziatora's Proving Ground
+1 Bloodstained Mire
+3 Mountain
+1 Verdant Catacombs
+1 Forbidden Orchard
+1 Khalni Ambush // Khalni Territory
+3 Swamp
+1 Vigor
+1 Three Visits
+1 Phyrexian Obliterator
+1 Traverse the Outlands
+1 Decimate
+1 Smuggler's Surprise
+1 Revitalizing Repast // Old-Growth Grove
+1 Glissa Sunslayer
+1 Taiga
+1 Arena of Glory
+1 Barbed Servitor
+1 Bayou
+1 Badlands
+1 Susur Secundi, Void Altar
+1 Meltstrider's Resolve
+1 Requiem Monolith
+1 Bolt Bend
+1 Kraven the Hunter
+1 Generator Servant
+1 Rhino's Rampage
+1 The Last Agni Kai
+1 Wolverine, Fierce Fighter
+1 Fight for the Throne
+1 Domri, Anarch of Bolas
+1 Hexhaven Invigorator

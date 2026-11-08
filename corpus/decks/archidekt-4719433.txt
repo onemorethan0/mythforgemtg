@@ -1,0 +1,82 @@
+# Archidekt — Frodo Voltron
+# source: archidekt:4719433
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Frodo, Sauron's Bane
+
+Deck:
+1 Lightning Greaves
+1 Sol Ring
+1 Arcane Signet
+1 Call of the Ring
+1 Dark Ritual
+1 Duelist's Heritage
+1 Samwise the Stouthearted
+1 Spirit Mantle
+1 Sigarda's Aid
+1 Selfless Savior
+1 Drannith Magistrate
+1 Skrelv, Defector Mite
+1 Halvar, God of Battle // Sword of the Realms
+1 Grand Abolisher
+1 Archivist of Oghma
+1 Prowler's Helm
+1 Orcish Bowmasters
+1 Ancient Tomb
+1 Access Tunnel
+1 Cabal Coffers
+1 Shizo, Death's Storehouse
+1 Command Beacon
+1 Rogue's Passage
+1 Strip Mine
+1 Sword of Feast and Famine
+1 Isolated Chapel
+1 Caves of Koilos
+1 Fireshrieker
+10 Plains
+1 Boromir, Warden of the Tower
+1 Feed the Swarm
+1 Damn
+1 Esper Sentinel
+1 Slip On the Ring
+1 Orzhov Signet
+1 Anguished Unmaking
+1 Generous Gift
+1 Sram, Senior Edificer
+1 Path to Exile
+1 Swiftfoot Boots
+1 Teferi's Protection
+1 Trailblazer's Boots
+1 Claim the Precious
+1 Gollum, Patient Plotter
+1 Lost to Legend
+1 Swords to Plowshares
+1 Lotho, Corrupt Shirriff
+1 Thalia, Guardian of Thraben
+1 Open the Armory
+1 Demonic Tutor
+9 Nazgûl
+1 Puresteel Paladin
+1 Stoneforge Mystic
+1 The One Ring
+1 Vampiric Tutor
+1 Reprieve
+1 Rebuff the Wicked
+1 Imp's Mischief
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Command Tower
+1 Godless Shrine
+1 Marsh Flats
+1 Plaza of Heroes
+1 Vault of Champions
+1 Wasteland
+1 Mother of Runes
+1 Crypt Ghast
+1 You Cannot Pass!
+1 Mithril Coat
+1 Battle Mastery
+1 Witch-king of Angmar
+1 Smothering Tithe
+10 Swamp

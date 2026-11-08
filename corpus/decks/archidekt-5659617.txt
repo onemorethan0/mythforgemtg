@@ -1,0 +1,96 @@
+# Archidekt — Bushi's Candy Bars (Max CMC:1)
+# source: archidekt:5659617
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Enlightened Tutor); Bracket 1 allows 0; two-card infinite combo Cleric Class + Walking Ballista; Bracket 1 allows none
+
+Commander:
+1 Mikaeus, the Lunarch
+
+Deck:
+1 Galadriel's Dismissal
+1 Blacksmith's Skill
+1 Bloodforged Battle-Axe
+1 Ancient Den
+1 Basilisk Collar
+1 Argivian Find
+1 Authority of the Consuls
+1 Chalice of the Void
+1 Cavern of Souls
+1 Champion of the Parish
+1 Commander's Plate
+1 Colossus Hammer
+1 Cleric Class
+1 Urza's Saga
+1 Condemn
+1 Deafening Silence
+1 Ethereal Haze
+1 Expedition Map
+1 Eiganjo Castle
+1 Erase
+1 Devout Harpist
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Ethereal Armor
+1 Fragmentize
+1 Hall of Heliod's Generosity
+1 Helm of the Gods
+1 Glittering Lynx
+1 Giver of Runes
+1 Grafdigger's Cage
+1 Hopeful Initiate
+1 Holy Day
+1 Hyena Umbra
+1 Luxior, Giada's Gift
+1 Inheritance
+1 Kytheon, Hero of Akros // Gideon, Battle-Forged
+1 Law-Rune Enforcer
+1 Land Tax
+1 Novice Knight
+1 Mana Tithe
+1 Masterwork of Ingenuity
+1 Minas Tirith
+1 Mother of Runes
+1 Ornithopter
+1 On Thin Ice
+1 Paladin Class
+1 Path to Exile
+1 Portable Hole
+1 Sol Ring
+1 Swords to Plowshares
+1 Rebuff the Wicked
+1 Soldier of the Pantheon
+1 Skullclamp
+1 Soul's Attendant
+1 Shadowspear
+1 Serra Ascendant
+1 Sensei's Divining Top
+1 Sigarda's Aid
+1 Slumbering Keepguard
+1 Soul Warden
+1 Soul-Guide Lantern
+1 Spectrum Sentinel
+1 Speaker of the Heavens
+1 Swallow Whole
+1 Stonecoil Serpent
+1 The Ozolith
+1 Tithe
+1 Swift Reconfiguration
+1 Swooping Lookout
+1 Walking Ballista
+1 Weathered Wayfarer
+1 Infiltration Lens
+1 Tarrian's Soulcleaver
+1 Ruin-Lurker Bat
+1 Warden of the Inner Sky
+1 Miner's Guidewing
+1 The Millennium Calendar
+1 War Room
+1 Stone of Erech
+1 Blade of the Bloodchief
+1 Requisition Raid
+14 Snow-Covered Plains
+1 Archery Training
+1 Restore Balance
+1 Guide of Souls
+1 Final Showdown

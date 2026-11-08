@@ -1,0 +1,97 @@
+# Archidekt — Zuberi, Golden Feather - "Feathers Bright as the Sun"
+# source: archidekt:6384140
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Zuberi, Golden Feather
+
+Deck:
+1 Rogue's Gloves
+1 Devastating Mastery
+1 Absolute Grace
+1 Bloodline Pretender
+1 Angel's Grace
+1 Flagstones of Trokair
+1 Aurora Griffin
+1 Light of Day
+1 Path to Exile
+1 Bubble Matrix
+1 Morningtide
+1 Diving Griffin
+1 Fearless Fledgling
+1 Mtenda Griffin
+1 Soul Foundry
+1 Eiganjo, Seat of the Empire
+1 Griffin Canyon
+1 Griffin Aerie
+1 Ekundu Griffin
+1 Razorfoot Griffin
+1 Unyaro Griffin
+1 Griffin Guide
+1 Mistmoon Griffin
+1 Prized Griffin
+1 Demolition Field
+1 Invoke the Divine
+1 Rune of Sustenance
+1 Teremko Griffin
+1 Arcane Signet
+1 Crush Contraband
+1 Thespian's Stage
+1 Sejiri Shelter // Sejiri Glacier
+1 Nomad Stadium
+1 Icon of Ancestry
+1 Mask of Memory
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Excavation Technique
+1 Pearl Medallion
+1 Sword of the Animist
+1 Ondu Inversion // Ondu Skyruins
+1 Valorous Stance
+1 Debt of Loyalty
+1 Dowsing Dagger // Lost Vale
+1 Gift of Estates
+1 Crib Swap
+1 Hour of Revelation
+1 Cosmos Elixir
+1 Howling Mine
+1 Bladegriff Prototype
+1 Search the Premises
+1 Play of the Game
+1 Oketra's Monument
+1 Oath of Lieges
+1 Plains
+1 Plains
+1 Plains
+6 Plains
+2 Plains
+4 Plains
+3 Plains
+1 Secret Rendezvous
+1 Land Tax
+1 Mikokoro, Center of the Sea
+1 Akroma's Will
+1 Your Temple Is Under Attack
+1 Minas Tirith
+1 Monumental Henge
+1 War Room
+1 Tithe
+1 Generous Gift
+1 Tocasia's Welcome
+1 Myriad Landscape
+1 Tenuous Truce
+1 Zeriam, Golden Wind
+1 Plains
+1 World Map
+1 Flawless Maneuver
+1 Sol Ring
+1 Swords to Plowshares
+1 Razorgrass Ambush // Razorgrass Field
+1 Temple of the False God
+1 Plains
+1 The Wind Crystal
+1 Universal Automaton
+1 Skystreamer
+1 Karoo
+1 Path of Ancestry
+1 Settle the Wreckage

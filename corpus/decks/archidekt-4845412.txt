@@ -1,0 +1,102 @@
+# Archidekt — Shadow Wizard Money Gang
+# source: archidekt:4845412
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Veyran, Voice of Duality
+
+Deck:
+1 An Offer You Can't Refuse
+1 Brain Freeze
+1 Arcane Bombardment
+1 Aria of Flame
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Bria, Riptide Rogue
+1 Cascade Bluffs
+1 Case of the Ransacked Lab
+1 Chandra's Ignition
+1 Fierce Guardianship
+1 Archmage Emeritus
+1 Mana Drain
+1 Mana Confluence
+1 Enter the Enigma
+1 Exalted Flamer of Tzeentch
+1 Ferrous Lake
+1 Fiery Islet
+1 Forgotten Cave
+1 Frostboil Snarl
+1 Gitaxian Probe
+1 Harmonic Prodigy
+1 Haze of Rage
+1 Jaya's Immolating Inferno
+1 Lonely Sandbar
+1 Cyclonic Rift
+1 Deflecting Swat
+1 Guttersnipe
+1 Blasphemous Act
+1 Crackle with Power
+1 Grapeshot
+1 Expressive Iteration
+1 Jeska's Will
+1 Ancient Tomb
+1 City of Brass
+1 Command Tower
+1 Melek, Izzet Paragon
+1 Mind's Desire
+1 Mistrise Village
+4 Mountain
+1 Mystic Remora
+1 Mystical Tutor
+1 Overmaster
+1 Ponder
+1 Niv-Mizzet, Parun
+1 Past in Flames
+1 Primal Amulet // Primal Wellspring
+1 Prismatic Vista
+1 Rapid Hybridization
+1 Reality Shift
+1 Reiterate
+1 Reliquary Tower
+1 Resculpt
+1 Rhystic Study
+1 Riptide Laboratory
+1 Riverpyre Verge
+1 Scalding Tarn
+1 Shivan Reef
+1 Slip Through Space
+1 Snap
+1 Stormcatch Mentor
+1 Sulfur Falls
+1 Swan Song
+1 Training Center
+1 Rogue's Passage
+1 Volcanic Island
+1 Solve the Equation
+1 Windfall
+1 Sol Ring
+1 Seething Song
+1 Urabrask // The Great Work
+1 Vivi Ornitier
+1 Shadow Rift
+1 Storm-Kiln Artist
+1 Thousand-Year Storm
+1 Stormcarved Coast
+1 Steam Vents
+1 Vandalblast
+1 Will of the Jeskai
+1 Counterspell
+1 Arcane Denial
+1 Brainstorm
+1 Chaos Warp
+1 Flame of Anor
+1 Galvanic Iteration
+1 Narset's Reversal
+1 Frantic Search
+1 Opt
+1 Mizzix's Mastery
+1 Mana Geyser
+1 Preordain
+1 Ral, Storm Conduit
+4 Island
+1 Reflecting Pool

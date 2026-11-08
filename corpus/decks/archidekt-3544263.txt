@@ -1,0 +1,83 @@
+# Archidekt — Aegar, the Freezing Flame
+# source: archidekt:3544263
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Aegar, the Freezing Flame
+
+Deck:
+1 Arcane Lighthouse
+1 Arcane Signet
+1 Basalt Ravager
+1 Battle of Frost and Fire
+1 Blasphemous Act
+1 Bloodfire Colossus
+1 Bloodshot Cyclops
+1 Bonecrusher Giant // Stomp
+1 Borderland Behemoth
+1 Brash Taunter
+1 Calamity Bearer
+1 Chain Reaction
+1 Change of Plans
+1 Command Tower
+1 Corporeal Projection
+1 Counterspell
+1 Crush Underfoot
+1 Cursed Mirror
+1 Cyclone Summoner
+1 Detection Tower
+1 Electrodominance
+1 Fall of the Hammer
+1 Firbolg Flutist
+1 Flame of Anor
+1 Galecaster Colossus
+1 Galvanic Giant // Storm Reading
+1 Giant's Ire
+1 Glaring Spotlight
+1 Glimpse the Cosmos
+1 Hamletback Goliath
+1 Hammerfist Giant
+1 Inferno Titan
+1 Invasion of the Giants
+1 Izzet Signet
+1 Kozilek's Unsealing
+1 Lava Coil
+1 March of Swirling Mist
+1 Mizzium Mortars
+1 Path of Ancestry
+1 Prophetic Titan
+1 Quakebringer
+1 Rebel Salvo
+1 Reliquary Tower
+1 Rising of the Day
+1 Secluded Courtyard
+1 Skred
+1 Sol Ring
+1 Soul Sear
+1 Soul's Fire
+1 Squash
+1 Stinkdrinker Daredevil
+1 Sunrise Sovereign
+1 Surtland Elementalist
+1 Surtland Flinger
+1 Swiftfoot Boots
+1 Talisman of Creativity
+1 Tectonic Giant
+1 Teferi's Ageless Insight
+1 Thought Vessel
+1 Thran Dynamo
+1 Thryx, the Sudden Storm
+1 Thundercloud Shaman
+1 Tundra Fumarole
+1 Unclaimed Territory
+1 Warchief Giant
+1 Worn Powerstone
+1 Machine God's Effigy
+1 Powerbalance
+20 Snow-Covered Mountain
+7 Snow-Covered Island
+1 Mana Geyser
+1 Invert Polarity
+1 Obliterating Bolt
+1 Archmage of Runes

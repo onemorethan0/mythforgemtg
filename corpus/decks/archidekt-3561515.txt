@@ -1,0 +1,87 @@
+# Archidekt — Optimus Prime, Hero
+# source: archidekt:3561515
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Optimus Prime, Hero // Optimus Prime, Autobot Leader
+
+Deck:
+1 Storm Cauldron
+1 Master of Etherium
+8 Plains
+9 Island
+1 Indomitable Archangel
+1 Swords to Plowshares
+1 Etherium Sculptor
+1 Sai, Master Thopterist
+1 Dispatch
+1 Crush Contraband
+1 Generous Gift
+1 Imposter Mech
+1 Cyberdrive Awakener
+1 Ironsoul Enforcer
+1 Organic Extinction
+1 Command Tower
+1 Research Thief
+1 Kappa Cannoneer
+1 Urza, Prince of Kroog
+1 Zenith Chronicler
+1 Herald of Secret Streams
+1 Akki Battle Squad
+1 The Reality Chip
+1 Brash Taunter
+1 Plateau
+1 Flooded Strand
+1 Arid Mesa
+1 Sacred Foundry
+1 Darksteel Forge
+1 Chiss-Goria, Forge Tyrant
+1 Jin-Gitaxias, Progress Tyrant
+1 The Mycosynth Gardens
+1 Gold-Forged Thopteryx
+1 Great Hall of the Citadel
+1 Great Train Heist
+1 Aven Interrupter
+1 Losheel, Clockwork Scholar
+9 Mountain
+1 Mana Flare
+1 Drumbellower
+1 Abzan Battle Priest
+1 Danny Pink
+1 Mikaeus, the Lunarch
+1 Anim Pakal, Thousandth Moon
+1 Padeem, Consul of Innovation
+1 Gisela, Blade of Goldnight
+1 Abzan Falconer
+1 Saheeli, Filigree Master
+1 All Will Be One
+1 Emry, Lurker of the Loch
+1 Slaughter the Strong
+1 Karn, the Great Creator
+1 Generous Pup
+1 Giggling Skitterspike
+1 Sword of Hours
+1 Tundra
+1 Seachrome Coast
+1 Hallowed Fountain
+1 Hylda's Crown of Winter
+1 Azorius Chancery
+1 Unwinding Clock
+1 Encroaching Mycosynth
+1 Foundry Inspector
+1 Queen Kayla bin-Kroog
+1 Wrath of God
+1 Path to Exile
+1 Mirror Room // Fractured Realm
+1 Cephalopod Sentry
+1 Grand Arbiter Augustin IV
+1 Visions of Phyrexia
+1 Big Mother Mouser
+1 Solemn Simulacrum
+1 Fellwar Stone
+1 Sol Ring
+1 Azorius Signet
+1 Arcane Signet
+1 Esper Sentinel
+1 Enlightened Tutor

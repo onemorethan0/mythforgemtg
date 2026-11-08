@@ -1,0 +1,94 @@
+# Archidekt — B1: The Deadliest Astrotorium, Starring The Most Dangerous Gamer
+# source: archidekt:21189844
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Most Dangerous Gamer
+
+Deck:
+1 Black Hole
+1 High Score
+1 "Lifetime" Pass Holder
+1 Acidic Slime
+1 Aphelia, Viper Whisperer
+1 Arcane Signet
+1 Ash Barrens
+1 Birds of Paradise
+1 Blorbian Buddy
+1 Cauldron of Essence
+1 Chatter of the Squirrel
+1 Chicken Troupe
+1 Command Beacon
+1 Command Tower
+1 Cranial Plating
+1 Darkbore Pathway // Slitherbore Pathway
+1 Darksteel Citadel
+1 Deadly Rollick
+1 Deathcap Glade
+1 Discourtesy Clerk
+1 Dismember
+1 Explore
+1 Fabled Passage
+1 Finishing Move
+1 Force of Despair
+9 Forest
+1 Fynn, the Fangbearer
+1 Glissa Sunslayer
+1 Golgari Signet
+1 Harmonize
+1 Harvester of Souls
+1 Inspiring Statuary
+1 Lightning Greaves
+1 Malakir Rebirth // Malakir Mire
+1 Massacre Girl
+1 Meren of Clan Nel Toth
+1 Midgar, City of Mako // Reactor Raid
+1 Night's Whisper
+1 Ohran Frostfang
+1 Overgrown Tomb
+1 Petting Zookeeper
+1 Pharika, God of Affliction
+1 Phyrexian Arena
+1 Quick Fixer
+1 Revitalizing Repast // Old-Growth Grove
+1 Sidisi, Regent of the Mire
+1 Sol Ring
+1 Solemn Simulacrum
+1 Squirrel Squatters
+1 Stiltstrider
+1 Strip Mine
+7 Swamp
+1 Swarmyard
+1 Talisman of Resilience
+1 The Odd Acorn Gang
+1 The Serpent Society
+1 Thought Vessel
+1 Three Visits
+1 Ticketomaton
+1 Toski, Bearer of Secrets
+1 Tragic Slip
+1 Tree of Tales
+1 Vault of Whispers
+1 Vibrant Cityscape
+1 Vraska, the Silencer
+1 Wastewood Verge
+1 Wicker Picker
+1 Xenosquirrels
+1 Liliana, Dreadhorde General
+1 Undergrowth Stadium
+1 Exotic Orchard
+1 Black Widow, Deadly Hunter
+1 Unstoppable Slasher
+1 The Unbeatable Squirrel Girl
+1 Shadow, Mysterious Assassin
+1 Saw in Half
+1 Archpriest of Shadows
+1 Ravenous Squirrel
+1 Woodland Cemetery
+1 Coming Attraction
+1 Bonders' Enclave
+1 Deadbeat Attendant
+1 Clandestine Chameleon
+1 Lineprancers
+1 Sothera, the Supervoid

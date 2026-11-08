@@ -1,0 +1,73 @@
+# Archidekt — Mono Black Commander Deck- Sheoldred, the Apocalypse (2024)
+# source: archidekt:4606686
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sheoldred, the Apocalypse
+
+Deck:
+1 Animate Dead
+1 Deadly Rollick
+1 Grim Monolith
+1 Wishclaw Talisman
+1 Ancient Tomb
+1 Lightning Greaves
+1 Jet Medallion
+1 The Meathook Massacre
+1 Demonic Tutor
+1 Gix, Yawgmoth Praetor
+1 Tenacious Underdog
+1 Sol Ring
+1 Mana Vault
+1 Reanimate
+1 Doom Whisperer
+1 The One Ring
+1 Imperial Seal
+1 Varragoth, Bloodsky Sire
+1 Exsanguinate
+1 Sheoldred // The True Scriptures
+1 Phyrexian Arena
+1 Archon of Cruelty
+1 Dark Ritual
+1 Vampiric Tutor
+1 Baleful Mastery
+1 Infernal Grasp
+1 Memory Jar
+1 Grave Titan
+1 Wurmcoil Engine
+1 Bloodvial Purveyor
+1 Orcish Bowmasters
+1 No Mercy
+1 Urza's Saga
+1 Lake of the Dead
+1 Mithril Coat
+1 Helm of Obedience
+1 Sheoldred's Edict
+1 Dauthi Voidwalker
+1 Arcane Signet
+1 Mox Diamond
+1 Chimil, the Inner Sun
+1 Vein Ripper
+1 Everflowing Chalice
+1 Grim Tutor
+1 Morbid Opportunist
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Spitting Dilophosaurus
+36 Swamp
+1 Volrath's Stronghold
+1 Evolved Sleeper
+1 Massacre Girl, Known Killer
+1 Swiftfoot Boots
+1 The Cruelty of Gix
+1 City of Traitors
+1 Chrome Mox
+1 Insatiable Avarice
+1 Zodiark, Umbral God
+1 Dismember
+1 The Soul Stone
+1 Murderous Rider // Swift End
+1 Ophiomancer
+1 Bloodchief Ascension
+1 Multiply by Zero
+1 Necromancy

@@ -1,0 +1,83 @@
+# Archidekt — Doric, Nature's Warden [Retired - 2023]
+# source: archidekt:4247858
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Casal, Lurkwood Pathfinder // Casal, Pathbreaker Owlbear
+
+Deck:
+1 Cultivate
+1 Tyvar's Stand
+1 Kolvori, God of Kinship // The Ringhart Crest
+1 Kamahl's Druidic Vow
+1 Saryth, the Viper's Fang
+1 Goreclaw, Terror of Qal Sisma
+1 Instrument of the Bards
+1 Barroom Brawl
+1 You Look Upon the Tarrasque
+1 Kenrith's Transformation
+1 Master Chef
+1 Kogla, the Titan Ape
+1 Heroes' Podium
+1 Return of the Wildspeaker
+1 Traverse the Outlands
+1 Castle Garenbrig
+1 War Room
+1 Renata, Called to the Hunt
+1 Sol Ring
+1 Heroic Intervention
+1 Anara, Wolvid Familiar
+1 Jaheira's Respite
+1 Radagast the Brown
+1 Mirror of Galadriel
+1 Scavenger Grounds
+1 Entish Restoration
+1 Rhonas's Monument
+1 Vivien's Arkbow
+1 Mosswort Bridge
+1 The Ring Goes South
+1 Rishkar, Peema Renegade
+1 Vivien, Champion of the Wilds
+1 Yedora, Grave Gardener
+1 Thrun, Breaker of Silence
+1 Beast Within
+1 Erinis, Gloom Stalker
+1 Slippery Karst
+1 Owlbear Cub
+1 Ghalta, Primal Hunger
+1 Rampant Growth
+1 Tyrite Sanctum
+1 Soul's Majesty
+1 Bag of Tricks
+1 Journey to the Lost City
+1 You Meet in a Tavern
+1 Rishkar's Expertise
+1 Oran-Rief, the Vastwood
+1 Arasta of the Endless Web
+1 Dosan the Falling Leaf
+1 Zopandrel, Hunger Dominus
+1 God-Eternal Rhonas
+1 Kura, the Boundless Sky
+1 Witch's Clinic
+1 Arwen, Weaver of Hope
+1 Greensleeves, Maro-Sorcerer
+1 Beast Whisperer
+1 Defiler of Vigor
+1 Fog
+1 Bow of Nylea
+26 Forest
+1 Arena
+1 Ezuri's Predation
+1 Vorinclex, Voice of Hunger
+1 Genesis Wave
+1 Reki, the History of Kamigawa
+1 Blossoming Defense
+1 Sakura-Tribe Elder
+1 Delighted Halfling
+1 Animist's Might
+1 Benefactor's Draught
+1 Basilisk Collar
+1 Konda's Banner
+1 Yorvo, Lord of Garenbrig
+1 The Great Henge

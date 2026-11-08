@@ -1,0 +1,98 @@
+# WotC precon — Temur Roar (TDC, 2025-04-11)
+# source: mtgjson:TemurRoar_TDC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Eshki, Temur's Roar
+
+Deck:
+1 Arcane Signet
+1 Atarka, World Render
+1 Atsushi, the Blazing Sky
+1 Beast Within
+1 Become the Avalanche
+1 Blasphemous Act
+1 Bountiful Landscape
+1 Breaching Dragonstorm
+1 Broodcaller Scourge
+1 Chaos Warp
+1 Cinder Glade
+1 Command Tower
+1 Deceptive Frostkite
+1 Draconic Lore
+1 Dragon Tempest
+1 Dragon's Hoard
+1 Dragonlord Atarka
+1 Dragonlord's Servant
+1 Dragonmaster Outcast
+1 Elemental Bond
+1 Encroaching Dragonstorm
+1 Evolving Wilds
+1 Exotic Orchard
+1 Farseek
+1 Fellwar Stone
+1 Flooded Grove
+5 Forest
+1 Frontier Bivouac
+1 Frontier Siege
+1 Gadrak, the Crown-Scourge
+1 Glorybringer
+1 Hammerhead Tyrant
+1 Harbinger of the Hunt
+1 Haven of the Spirit Dragon
+1 Hellkite Courser
+1 Hinterland Harbor
+3 Island
+1 Karplusan Forest
+1 Keiga, the Tide Star
+1 Kessig Wolf Run
+1 Kodama's Reach
+1 Lathliss, Dragon Queen
+1 Leyline Tyrant
+1 Migration Path
+1 Mossfire Valley
+1 Mosswort Bridge
+6 Mountain
+1 Nesting Dragon
+1 Nogi, Draco-Zealot
+1 Opportunistic Dragon
+1 Parapet Thrasher
+1 Path of Ancestry
+1 Rapacious Dragon
+1 Rapid Hybridization
+1 Reality Shift
+1 Reflections of Littjara
+1 Rockfall Vale
+1 Rootbound Crag
+1 Sarkhan, Soul Aflame
+1 Scourge of the Throne
+1 Selvala's Stampede
+1 Sheltered Thicket
+1 Shivan Reef
+1 Skarrgan Hellkite
+1 Sol Ring
+1 Spit Flame
+1 Steel Hellkite
+1 Storm's Wrath
+1 Stormbreath Dragon
+1 Stormshriek Feral // Flush Out
+1 Sulfur Falls
+1 Talisman of Creativity
+1 Talisman of Impulse
+1 Taurean Mauler
+1 Temple of Abandon
+1 Temple of Mystery
+1 Temple of the Dragon Queen
+1 Temur Ascendancy
+1 Territorial Hellkite
+1 Thunderbreak Regent
+1 Thundermane Dragon
+1 Ureni of the Unwritten
+1 Vengeful Ancestor
+1 Verix Bladewing
+1 Whirlwing Stormbrood // Dynamic Soar
+1 Will of the Temur
+1 Yavimaya Coast
+1 Zenith Festival

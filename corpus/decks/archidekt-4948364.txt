@@ -1,0 +1,92 @@
+# Archidekt — Virus
+# source: archidekt:4948364
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Karona, False God
+
+Deck:
+1 Galadriel, Elven-Queen
+1 Split Decision
+1 Tivit, Seller of Secrets
+1 Magister of Worth
+2 Swamp
+7 Forest
+4 Island
+1 Entish Restoration
+1 Orzhov Advokist
+1 Kodama's Reach
+1 Messenger Jays
+1 Chromatic Lantern
+1 Tempting Contract
+1 Custodi Squire
+1 Orchard Elemental
+1 Druid of Purification
+1 Grudge Keeper
+1 Tempt with Vengeance
+1 Canopy Vista
+6 Mountain
+2 Plains
+1 Crystal Quarry
+1 Truth or Consequences
+1 Tempt with Mayhem
+1 Tempt with Bunnies
+1 Elrond of the White Council
+1 Collective Voyage
+1 Order of Succession
+1 Tempt with Discovery
+1 Grenzo's Rebuttal
+1 Brago's Representative
+1 Mana-Charged Dragon
+1 Tempt with Immortality
+1 Tempt with Glory
+1 Tyrant's Choice
+1 The World Tree
+1 Alliance of Arms
+1 Illusion of Choice
+1 Thieves' Auction
+1 Sail into the West
+1 Travel Through Caradhras
+1 Trap the Trespassers
+1 Model of Unity
+1 Tempt with Reflections
+1 Master of Ceremonies
+1 Coercive Portal
+1 Rootweaver Druid
+1 Illicit Auction
+1 Erestor of the Council
+1 Mob Verdict
+1 Lieutenants of the Guard
+1 Ballot Broker
+1 Capital Punishment
+1 Disciple of Caelus Nin
+1 Council Guardian
+1 Council's Judgment
+1 Bite of the Black Rose
+1 Wheel of Misfortune
+1 Plea for Power
+1 Selvala's Stampede
+1 Círdan the Shipwright
+1 Sunken Hollow
+1 Command Tower
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Cinder Glade
+1 Blighted Woodland
+1 Prairie Stream
+1 Krosan Verge
+1 Ash Barrens
+1 Smoldering Marsh
+1 Exotic Orchard
+1 Minds Aglow
+1 Whims of the Fates
+1 Sol Ring
+1 Arcane Signet
+1 Commander's Sphere
+1 Cultivate
+1 Seaside Citadel
+1 Frontier Bivouac
+1 Jungle Shrine
+1 Farseek
+1 Prisoner's Dilemma

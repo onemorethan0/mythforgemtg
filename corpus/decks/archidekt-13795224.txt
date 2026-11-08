@@ -1,0 +1,102 @@
+# Archidekt — Y'shtola Flings Some Spells (cEDHish)
+# source: archidekt:13795224
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Alisaie Leveilleur
+1 Anguished Unmaking
+1 Baleful Mastery
+1 Bolas's Citadel
+1 Desolate Mire
+1 Drowned Catacomb
+1 Fandaniel, Telophoroi Ascian
+1 Fell the Profane // Fell Mire
+1 Generous Gift
+1 Glacial Fortress
+1 Godless Shrine
+1 Hullbreaker Horror
+1 Isolated Chapel
+1 Lotho, Corrupt Shirriff
+1 Lyse Hext
+1 Mana Drain
+1 Marsh Flats
+1 Mortify
+3 Plains
+1 Polluted Delta
+1 Propaganda
+1 Raffine's Tower
+1 Render Silent
+1 Sink into Stupor // Soporific Springs
+1 Prairie Stream
+1 Aetherize
+1 Arcane Signet
+1 Reliquary Tower
+1 Inkshield
+1 Darkwater Catacombs
+1 Hallowed Fountain
+5 Island
+1 Absorb
+1 Archmage of Runes
+1 Fierce Guardianship
+1 Roaming Throne
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Bojuka Bog
+1 Archmage Emeritus
+1 Ghostly Prison
+1 Archaeomancer
+1 Midgar, City of Mako // Reactor Raid
+1 Command Tower
+1 Fetid Heath
+1 Displacer Kitten
+1 Shipwreck Marsh
+1 Frantic Search
+1 Snuff Out
+1 Soul Shatter
+1 Stroke of Midnight
+1 Sunken Ruins
+1 Swan Song
+1 Undermine
+1 Unwind
+1 Vindicate
+1 Waterlogged Teachings // Inundated Archive
+1 Watery Grave
+1 Skycloud Expanse
+1 Sol Ring
+1 Utter End
+1 Sunken Hollow
+1 Underground Sea
+1 Smothering Tithe
+1 Rewind
+1 Kambal, Consul of Allocation
+1 Force of Will
+1 Recoil
+1 Void Rend
+1 Ranger-Captain of Eos
+1 Teferi, Time Raveler
+1 Talisman of Dominance
+1 Esper Sentinel
+1 Narset, Parter of Veils
+1 Morphic Pool
+1 Toxic Deluge
+1 Papalymo Totolymo
+1 Deadly Rollick
+1 Clever Concealment
+1 Brainsurge
+1 Dismember
+1 Disallow
+1 Teferi's Protection
+1 Narset Transcendent
+1 Mox Amber
+1 Chrome Mox
+1 Mox Diamond
+1 Mox Opal
+1 Mana Vault
+1 Urza's Saga
+1 Talisman of Hierarchy
+1 Drannith Magistrate
+1 Helm of the Ghastlord
+1 Flare of Denial

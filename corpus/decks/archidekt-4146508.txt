@@ -1,0 +1,104 @@
+# Archidekt — Only Atraxa (Atraxa, Grand Unifier)
+# source: archidekt:4146508
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Atraxa, Grand Unifier
+
+Deck:
+1 Shattered Sanctum
+1 Swamp
+1 Talisman of Dominance
+1 Void Rend
+1 Toxic Deluge
+1 Sea of Clouds
+1 Vault of Champions
+1 Raffine's Tower
+1 Shipwreck Marsh
+1 Morphic Pool
+1 Adarkar Wastes
+1 Mana Confluence
+1 City of Brass
+1 Reflecting Pool
+1 Prismatic Vista
+1 Command Tower
+1 Hallowed Fountain
+1 Watery Grave
+1 Exotic Orchard
+1 Godless Shrine
+1 Plains
+1 Mana Drain
+1 Mystic Remora
+1 Demonic Tutor
+1 An Offer You Can't Refuse
+1 Temple Garden
+1 Brushland
+1 Overgrown Farmland
+1 Talisman of Hierarchy
+1 Fellwar Stone
+1 Farseek
+1 Yavimaya Coast
+1 Delighted Halfling
+1 Fierce Guardianship
+1 Talisman of Progress
+1 Displacer Kitten
+1 Breeding Pool
+1 Island
+1 Misty Rainforest
+1 Arid Mesa
+1 Verdant Catacombs
+1 Marsh Flats
+1 Scalding Tarn
+1 Forest
+1 The One Ring
+1 Drawn from Dreams
+1 Bloodstained Mire
+1 Dovin's Veto
+1 Necromantic Selection
+1 Rhystic Study
+1 Memory Deluge
+1 Polluted Delta
+1 Flooded Strand
+1 Arcane Signet
+1 Talisman of Resilience
+1 Pact of Negation
+1 Enlightened Tutor
+1 Lotho, Corrupt Shirriff
+1 Flusterstorm
+1 Loran's Escape
+1 Tamiyo's Safekeeping
+1 Ephemerate
+1 Marang River Regent // Coil and Catch
+1 Planar Genesis
+1 Anguished Unmaking
+1 Fireshrieker
+1 Vampiric Tutor
+1 Genji Glove
+1 Restoration Magic
+1 Windswept Heath
+1 Swan Song
+1 Necrodominance
+1 Necropotence
+1 Three Visits
+1 Spara's Headquarters
+1 Sol Ring
+1 Smothering Tithe
+1 Open the Way
+1 Omenpath Journey
+1 Invasion of Zendikar // Awakened Skyclave
+1 Ugin, the Spirit Dragon
+1 Cavern of Souls
+1 Cyclonic Rift
+1 Rogue's Passage
+1 Overgrown Tomb
+1 Sigarda, Font of Blessings
+1 Pippin, Guard of the Citadel
+1 Tyvar's Stand
+1 Leyline Axe
+1 Elbrus, the Binding Blade // Withengar Unbound
+1 Lim-Dûl's Vault
+1 Defend the Rider
+1 Imperial Seal
+1 Thran Dynamo
+1 Grim Tutor

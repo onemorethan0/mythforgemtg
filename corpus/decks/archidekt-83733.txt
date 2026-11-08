@@ -1,0 +1,96 @@
+# Archidekt — Hearthhull, the Worldseed
+# source: archidekt:83733
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Hearthhull, the Worldseed
+
+Deck:
+1 Aftermath Analyst
+1 Ancient Greenwarden
+1 Assassin's Trophy
+1 Azusa, Lost but Seeking
+1 Baloth Prime
+1 Blood Crypt
+1 Bloodstained Mire
+1 Braids, Arisen Nightmare
+1 Command Tower
+1 Commercial District
+1 Crop Rotation
+1 Crucible of Worlds
+1 Dark Depths
+1 Deadly Rollick
+1 Dryad Arbor
+1 Eumidian Hatchery
+1 Evendo Brushrazer
+1 Exploration
+1 Exploration Broodship
+1 Fabled Passage
+1 Field of the Dead
+1 Glacial Chasm
+1 Green Sun's Zenith
+1 Harrow
+1 Horizon Explorer
+1 Icetill Explorer
+1 Korvold, Fae-Cursed King
+1 Life from the Loam
+1 Lord Windgrace
+1 Lotus Cobra
+1 Lotus Field
+1 Nahiri's Lithoforming
+1 Nature's Lore
+1 Nurturing Peatland
+1 Omnath, Locus of Rage
+1 Oracle of Mul Daya
+1 Overgrown Tomb
+1 Pir's Whim
+1 Prismatic Vista
+1 Ramunap Excavator
+1 Raucous Theater
+1 Scapeshift
+1 Scouring Swarm
+1 Shifting Woodland
+1 Sol Ring
+1 Song of the Dryads
+1 Splendid Reclamation
+1 Stomping Ground
+1 Strip Mine
+1 Sylvan Safekeeper
+1 Tannuk, Memorial Ensign
+1 Tear Asunder
+1 The Gitrog Monster
+1 Thespian's Stage
+1 Tireless Provisioner
+1 Underground Mortuary
+1 Valakut Exploration
+1 Walk-In Closet // Forgotten Cellar
+1 Wooded Foothills
+1 Worldsoul's Rage
+1 Wrenn and Six
+1 Ziatora's Proving Ground
+1 Manifold Key
+1 Toxic Deluge
+1 Entish Restoration
+1 Sabotender
+1 Crystal Vein
+4 Swamp
+1 Titania, Voice of Gaea
+6 Forest
+1 Argoth, Sanctum of Nature
+1 Blasphemous Edict
+1 Constant Mists
+1 Bojuka Bog
+5 Mountain
+1 Culling Ritual
+1 Orcish Lumberjack
+1 Zuran Orb
+1 Shadow of the Goblin
+1 Marsh Flats
+1 Scalding Tarn
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Blasphemous Act
+1 Redirect Lightning
+1 Amulet of Vigor
+1 Nature's Claim

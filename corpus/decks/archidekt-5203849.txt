@@ -1,0 +1,91 @@
+# Archidekt — Pillow Fortced Combat
+# source: archidekt:5203849
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Fumiko the Lowblood
+
+Deck:
+1 Maximum Carnage
+1 Wand of Wonder
+1 Hedron Archive
+1 Kher Keep
+1 Tyrite Sanctum
+1 Creepy Doll
+1 Sol Talisman
+1 Stuffy Doll
+1 Chaos Warp
+1 War Room
+1 Manor Gargoyle
+1 Weathered Sentinels
+1 Sol Ring
+1 Guff Rewrites History
+1 The Brothers' War
+1 Reckoner Bankbuster
+1 War's Toll
+1 Labyrinth of Skophos
+1 Pariah's Shield
+1 The Akroan War
+1 Mishra's Research Desk
+1 Koth, Fire of Resistance
+1 Chandra, Torch of Defiance
+1 Emberwilde Captain
+1 Roadside Reliquary
+1 Desert of the Fervent
+1 Demolition Field
+1 Spinerock Knoll
+1 Forgotten Cave
+18 Snow-Covered Mountain
+1 Crawlspace
+1 Thaumatic Compass // Spires of Orazca
+1 Glacial Crevasses
+1 Bloodthirsty Blade
+1 Fiendlash
+1 Hylda's Crown of Winter
+1 Chaosphere
+1 The Flux
+1 Donna Noble
+1 The Sound of Drums
+1 Visions of Phyrexia
+1 Emergence Zone
+1 Maze of Ith
+1 Traxos, Scourge of Kroog
+1 Smoke
+1 Silent Arbiter
+1 Aether Membrane
+1 Stonecoil Serpent
+1 Collector's Vault
+1 Guildless Commons
+1 Arid Archway
+1 Alexios, Deimos of Kosmos
+1 Basilisk Collar
+1 Dormant Volcano
+1 Towering Viewpoint
+1 Rage Nimbus
+1 Mazemind Tome
+1 Buried Ruin
+1 Myriad Landscape
+1 Abstergo Entertainment
+1 Branch of Vitu-Ghazi
+1 Ral and the Implicit Maze
+1 Return the Favor
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Dictate of the Twin Gods
+1 Laser Screwdriver
+1 Sonic Screwdriver
+1 Screaming Nemesis
+1 Giggling Skitterspike
+1 Valakut Awakening // Valakut Stoneforge
+1 Blasphemous Act
+1 Mind's Eye
+1 There and Back Again
+1 Karn, Living Legacy
+1 Kazuul, Tyrant of the Cliffs
+1 General's Regalia
+1 Mjölnir, Storm Hammer
+1 Curse of Opulence
+1 Slumbering Dragon
+1 Worn Powerstone
+1 Darksteel Myr
+1 Brash Taunter

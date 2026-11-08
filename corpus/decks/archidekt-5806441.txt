@@ -1,0 +1,76 @@
+# Archidekt — Tinybones, Pure Evil
+# source: archidekt:5806441
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tinybones, Bauble Burglar
+
+Deck:
+1 Jet Medallion
+1 Lightning Greaves
+1 Nyx Lotus
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Dark Confidant
+1 Mindslicer
+1 Tourach, Dread Cantor
+1 Liliana's Caress
+1 Necrogen Mists
+1 No Mercy
+1 Painful Quandary
+1 Slaughter Pact
+1 Quest for the Nihil Stone
+1 Waste Not
+1 Baleful Mastery
+1 Bubbling Muck
+1 Duress
+1 Damnation
+1 Unearth
+1 Hymn to Tourach
+1 Liliana of the Veil
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Arterial Flow
+1 Bojuka Bog
+1 Liliana's Specter
+1 Boggart Trawler // Boggart Bog
+1 Unnerve
+1 Oppression
+1 Sol Ring
+1 Dark Ritual
+1 Hypnotic Specter
+1 Crypt Ghast
+1 Dauthi Voidwalker
+1 Geier Reach Sanitarium
+1 Megrim
+1 Dark Deal
+1 Snuff Out
+1 Withering Boon
+1 Bottomless Pit
+1 Tasigur's Cruelty
+1 Call to the Netherworld
+1 Cunning Lethemancer
+1 Burglar Rat
+1 Defile
+33 Swamp
+1 Exhume
+1 Everglades
+1 Grief
+1 Tinybones, Trinket Thief
+1 Victimize
+1 Mind Rake
+1 Darkstar Augur
+1 Toxic Deluge
+1 Magus of the Coffers
+1 Dismember
+1 Soul-Guide Lantern
+1 Feed the Swarm
+1 Vicious Rumors
+1 Phyrexian Arena
+1 Rankle, Master of Pranks
+1 Tinybones Joins Up
+1 Opposition Agent
+1 Pilfer
+1 Necrogoyf
+1 Thoughtseize
+1 Tinybones, Pocket Nuisance
+1 Smallpox

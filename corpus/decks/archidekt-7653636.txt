@@ -1,0 +1,94 @@
+# Archidekt — Shadrix & The Debate Team - My Favorite Deck
+# source: archidekt:7653636
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Shadrix Silverquill
+
+Deck:
+1 Inkshield
+1 Selfless Savior
+1 Reprieve
+1 Damning Verdict
+7 Swamp
+1 Exotic Orchard
+1 Anguished Unmaking
+1 Felidar Retreat
+1 Mind Stone
+1 Arcane Signet
+1 Sol Ring
+1 Felisa, Fang of Silverquill
+1 Talisman of Hierarchy
+1 Shineshadow Snarl
+1 Your Temple Is Under Attack
+1 Shattered Sanctum
+1 Command Tower
+1 Marsh Flats
+1 Caves of Koilos
+1 Temple of Silence
+1 Damn
+1 Abzan Falconer
+1 Read the Bones
+1 Crux of Fate
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Despark
+1 Snowfield Sinkhole
+1 Star Pupil
+1 Ghostly Prison
+1 Vault of Champions
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Swords to Plowshares
+1 Sigarda's Summons
+1 Gods Willing
+1 Flumph
+1 Rogue's Passage
+1 Bojuka Bog
+1 Fracture
+1 Godless Shrine
+1 Knight of the White Orchid
+1 Ornithopter of Paradise
+1 Lightning Greaves
+1 Silverquill Campus
+1 Necropolis Regent
+1 Selfless Glyphweaver // Deadly Vanity
+1 Sunscorch Regent
+1 Basri's Lieutenant
+1 Wishclaw Talisman
+1 Dauthi Voidwalker
+1 Hagra Constrictor
+1 Breena, the Demagogue
+1 Skyclave Shadowcat
+1 Scholar of New Horizons
+1 Sejiri Shelter // Sejiri Glacier
+1 Loran of the Third Path
+1 Aven Interrupter
+1 Keeper of the Accord
+1 Mikokoro, Center of the Sea
+1 Selfless Squire
+1 Archaeomancer's Map
+1 Yathan Tombguard
+1 Duty Beyond Death
+1 Nesting Grounds
+1 Conduit Pylons
+1 Keen Duelist
+1 Mangara, the Diplomat
+1 Wayfarer's Bauble
+1 Tataru Taru
+1 Fetid Heath
+1 Joined Researchers // Secret Rendezvous
+1 Zack Fair
+1 Orzhov Signet
+9 Plains
+1 Desolate Mire
+1 Abandoned Air Temple
+1 Lae'zel, Vlaakith's Champion
+1 Decorum Dissertation
+1 Esper Sentinel
+1 Shaile, Dean of Radiance // Embrose, Dean of Shadow
+1 Grand Abolisher
+1 Teferi's Protection
+1 Citadel Siege
+1 Duelist's Heritage
+1 Dusk Legion Duelist
+1 Sunlit Marsh

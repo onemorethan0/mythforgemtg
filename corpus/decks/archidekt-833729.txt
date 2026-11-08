@@ -1,0 +1,99 @@
+# Archidekt — FAST AND FRIGHTENING
+# source: archidekt:833729
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Overgrown Farmland
+1 Sunpetal Grove
+1 Spirit Mantle
+1 Sphere of Safety
+1 Ethereal Armor
+1 Ancestral Mask
+1 Temple Garden
+1 Command Tower
+1 Enchantress's Presence
+1 Setessan Champion
+1 Hallowed Fountain
+1 Spara's Headquarters
+1 Primal Rage
+1 Fabled Passage
+1 Strength of the Harvest // Haven of the Harvest
+1 Eidolon of Blossoms
+1 Song of the Dryads
+1 Sythis, Harvest's Hand
+1 Nature's Lore
+1 Entity Tracker
+1 Fertile Ground
+1 Invisible Stalker
+1 Bear Umbra
+1 Daybreak Coronet
+1 Brilliant Wings
+1 All That Glitters
+1 Jetmir's Garden
+1 Island
+1 Mountain
+1 Rockfall Vale
+1 Brushland
+1 Xenagos, God of Revels
+1 Breeding Pool
+1 Sol Ring
+1 Ajani's Anguish
+1 Carpet of Flowers
+1 Silhana Ledgewalker
+1 Stomping Ground
+1 Helm of the Gods
+1 Concordant Crossroads
+1 Birds of Paradise
+1 Wooded Foothills
+1 Windswept Heath
+1 Kor Spiritdancer
+1 Winds of Rath
+1 Emblem of the Warmind
+1 Armadillo Cloak
+1 Sacred Foundry
+1 Gladecover Scout
+1 Sea of Clouds
+1 Adarkar Wastes
+1 Kutzil, Malamet Exemplar
+1 Hyena Umbra
+1 Bassara Tower Archer
+1 Heroic Intervention
+1 Valakut Awakening // Valakut Stoneforge
+1 Mystic Remora
+1 Estrid's Invocation
+1 Celebrate the Mountain-king
+1 Sundown Pass
+1 Slippery Bogle
+1 Wooded Bastion
+1 Herald of the Pantheon
+1 Dawn's Truce
+1 Gloomshrieker
+1 Bloom Tender
+4 Plains
+1 Bountiful Promenade
+1 Lightning Greaves
+1 Farewell
+1 Sanctum Weaver
+1 Arcane Signet
+1 Darksteel Mutation
+1 Idyllic Tutor
+1 Indatha Triome
+1 Invasion of Theros // Ephara, Ever-Sheltering
+1 Sylvan Library
+1 Mantle of the Ancients
+1 Arcane Denial
+1 Bolt Bend
+1 Messenger's Speed
+1 Gleaming Splendor
+1 Malevolent Rumble
+1 Sheltered by Ghosts
+1 Mirrormade
+1 Hallowed Haunting
+1 Yavimaya, Cradle of Growth
+1 Eladamri's Call
+1 Pia, Aether Ascetic
+4 Forest

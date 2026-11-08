@@ -1,0 +1,104 @@
+# Archidekt — Rad-ical Mothman
+# source: archidekt:6927736
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Fierce Guardianship
+1 Toxic Deluge
+1 Nurturing Peatland
+1 Assassin's Trophy
+1 Swarmyard
+1 Wave Goodbye
+1 Nuclear Fallout
+1 Michelangelo, Weirdness to 11
+1 Atomize
+1 Undercity Sewers
+1 Misty Rainforest
+1 Shifting Woodland
+1 Mutational Advantage
+1 Sol Ring
+1 Danny Pink
+1 Bojuka Bog
+1 Opulent Palace
+1 Sunken Hollow
+1 Command Tower
+1 Mesmeric Orb
+1 Exotic Orchard
+1 Arcane Signet
+1 Kami of Whispered Hopes
+1 Boseiju, Who Endures
+1 Polluted Delta
+1 Evolution Witness
+1 Breeding Pool
+1 Fathom Mage
+1 Three Visits
+1 The Great Henge
+1 Uro, Titan of Nature's Wrath
+1 Dreamroot Cascade
+1 Reflecting Pool
+1 Gloomlake Verge
+1 City of Brass
+1 Waterlogged Grove
+1 Drown in the Loch
+1 Rejuvenating Springs
+1 Beast Within
+1 Willowrush Verge
+1 Deathrite Shaman
+1 Mana Drain
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Farseek
+1 Sink into Stupor // Soporific Springs
+1 Psychic Strike
+1 Delighted Halfling
+1 Icetill Explorer
+1 Terrasymbiosis
+2 Forest
+1 Hardened Scales
+1 Overgrown Tomb
+1 Bloatfly Swarm
+1 Feral Ghoul
+1 Lumra, Bellow of the Woods
+1 Eldritch Evolution
+1 Mindcrank
+1 Ruin Crab
+1 Ripples of Potential
+1 Starting Town
+1 Ray Fillet, Wave Warrior
+1 Tezzeret's Gambit
+1 Michelangelo, Improviser
+1 Zagoth Triome
+1 Jenova, Ancient Calamity
+1 Hedge Shredder
+1 Six
+1 Sylvan Library
+1 Rhystic Study
+1 Hedge Maze
+1 The Ooze
+1 Watery Grave
+1 Morphic Pool
+2 Swamp
+1 Evolution Sage
+1 Bloom Tender
+1 Tyvar, Jubilant Brawler
+1 Turbulent Wilderness
+1 Obscuring Haze
+1 Kaya's Ghostform
+2 Island
+1 Hide on the Ceiling
+1 Mirelurk Queen
+1 Stock Up
+1 Altar of Dementia
+1 Flare of Malice
+1 Sphere Grid
+1 Tropical Island
+1 Fabled Passage
+1 Mirri's Guile
+1 Mana Confluence
+1 Wan Shi Tong, Librarian
+1 Grave Researcher // Reanimate
+1 Natural Order
+1 Glen Elendra Archmage

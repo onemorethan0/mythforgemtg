@@ -1,0 +1,104 @@
+# Archidekt — Homer Mill
+# source: archidekt:24985256
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Homer, the Hermit
+
+Deck:
+1 Lotus Field
+1 Multiversal Recruitment
+1 Icetill Explorer
+1 Mutable Explorer
+1 Roaming Throne
+1 Aftermath Analyst
+1 Malakir Rebirth // Malakir Mire
+1 Chameleon, Master of Disguise
+1 Harrow
+1 Deathsprout
+1 Sakashima of a Thousand Faces
+1 Spark Double
+1 Growth Spiral
+1 Planar Genesis
+1 Cultivate
+1 Irenicus's Vile Duplication
+1 Singularity Rupture
+1 Splendid Reclamation
+1 Archdruid's Charm
+1 Skyshroud Claim
+1 Rise of the Dark Realms
+1 Kodama's Reach
+1 Planar Engineering
+1 Reanimate
+1 Breach the Multiverse
+1 Will of the Sultai
+1 Quantum Misalignment
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Open the Way
+1 Formless Genesis
+1 Hedge Shredder
+1 Conduit of Worlds
+1 Black Market Connections
+1 Walk-In Closet // Forgotten Cellar
+1 Animate Dead
+1 Necromancy
+1 Uro, Titan of Nature's Wrath
+1 The Scarab God
+1 Lazotep Quarry
+1 Mnemonic Betrayal
+1 Sepulchral Primordial
+1 Puppeteer Clique
+1 Volrath's Stronghold
+1 Diluvian Primordial
+1 Afterlife from the Loam
+1 Memory Plunder
+1 Sunken Palace
+1 The Master, Transcendent
+1 Arcane Heist
+1 The Mimeoplasm
+1 Far Wanderings
+1 Command the Dreadhorde
+1 Superior Spider-Man
+1 Spelltwine
+1 Geth, Lord of the Vault
+1 Sol Ring
+1 Reenact the Crime
+1 Beast Within
+1 Assassin's Trophy
+1 Necrotic Ooze
+1 Life's Finale
+1 Chancellor of the Spires
+1 Inspiration from Beyond
+1 Fabled Passage
+1 Lightning Greaves
+1 Command Tower
+1 Scalding Tarn
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Polluted Delta
+1 Breeding Pool
+1 Flooded Strand
+1 Windswept Heath
+1 Misty Rainforest
+1 Wooded Foothills
+1 Marsh Flats
+1 Watery Grave
+1 Otawara, Soaring City
+1 Boseiju, Who Endures
+1 Overgrown Tomb
+1 Phyrexian Tower
+1 Prismatic Vista
+1 Fell the Profane // Fell Mire
+1 Takenuma, Abandoned Mire
+1 Underground Sea
+1 Shifting Woodland
+1 Tropical Island
+3 Forest
+1 Bayou
+2 Swamp
+2 Island
+1 Dauthi Voidwalker
+1 Ghouls' Night Out
+1 Sorcerous Squall
+1 Tyvar, Jubilant Brawler

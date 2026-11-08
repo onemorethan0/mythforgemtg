@@ -1,0 +1,84 @@
+# Archidekt — Sliver commander
+# source: archidekt:11466330
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The First Sliver
+
+Deck:
+1 Spiteful Sliver
+1 Striking Sliver
+1 Two-Headed Sliver
+1 Basal Sliver
+1 Acidic Sliver
+1 Bonescythe Sliver
+1 Cloudshredder Sliver
+1 Brood Sliver
+1 Crypt Sliver
+1 Crystalline Sliver
+1 Root Sliver
+1 Darkheart Sliver
+1 Diffusion Sliver
+1 First Sliver's Chosen
+1 Gemhide Sliver
+1 Galerider Sliver
+1 Harmonic Sliver
+1 Megantic Sliver
+6 Plains
+1 Constricting Sliver
+3 Island
+1 Manaweft Sliver
+1 Might Sliver
+1 Mesmeric Sliver
+1 Toxin Sliver
+1 Sliver Hivelord
+1 Descendants' Path
+1 Call to the Kindred
+1 Harsh Mercy
+1 Virulent Sliver
+1 Herald's Horn
+1 Patriarch's Bidding
+1 Command Tower
+1 Magma Sliver
+1 Cleaving Sliver
+1 Yavimaya Coast
+1 Battlefield Forge
+1 Ferrous Lake
+1 Skycloud Expanse
+1 Path of Ancestry
+1 Seaside Citadel
+1 Spinerock Knoll
+1 Howltooth Hollow
+1 Windbrisk Heights
+1 Shelldock Isle
+1 Mosswort Bridge
+1 Go for the Throat
+1 Beastmaster Ascension
+1 Counterspell
+1 Beast Within
+1 Shapers' Sanctuary
+1 Predatory Sliver
+1 Tangle
+1 Pillar of Origins
+1 Secluded Courtyard
+1 Armor Sliver
+1 Fellwar Stone
+1 Clot Sliver
+1 Lavabelly Sliver
+1 Metallic Sliver
+1 Spinneret Sliver
+1 Plated Sliver
+1 Swords to Plowshares
+1 Cautery Sliver
+1 Foil
+1 Rampant Growth
+1 Damn
+1 Farseek
+1 Sol Ring
+1 Kodama's Reach
+1 Thrumming Hivepool
+8 Forest
+5 Mountain
+7 Swamp
+1 Bloodline Bidding

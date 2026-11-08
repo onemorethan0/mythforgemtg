@@ -1,0 +1,108 @@
+# Archidekt — Evereth, Viceroy of Plunder: Hard Mode
+# source: archidekt:11132098
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Evereth, Viceroy of Plunder
+
+Deck:
+1 Simian Spirit Guide
+1 Sedgemoor Witch
+1 Sulfurous Springs
+1 Drossforge Bridge
+1 Treasure Vault
+1 Darksteel Citadel
+1 Dualcaster Mage
+1 Twinflame
+1 Molten Duplication
+1 Saw in Half
+1 Heat Shimmer
+1 Snow-Covered Mountain
+1 Tainted Pact
+1 Flare of Duplication
+1 Mountain
+1 Great Furnace
+1 Vault of Whispers
+1 Sensei's Divining Top
+1 Defense Grid
+1 Volrath's Stronghold
+1 Pyretic Ritual
+1 Priest of Gix
+1 Mox Diamond
+1 Mox Amber
+1 Demonic Consultation
+1 Burnt Offering
+1 Wheel of Fortune
+1 Springleaf Drum
+1 Beseech the Mirror
+1 Chrome Mox
+1 Arid Mesa
+1 Marsh Flats
+1 Sol Ring
+1 Verdant Catacombs
+1 Polluted Delta
+1 Luxury Suite
+1 Blood Crypt
+1 Command Tower
+1 Raucous Theater
+1 Graven Cairns
+1 Urborg, Tomb of Yawgmoth
+1 Mana Confluence
+1 Dark Ritual
+1 Necropotence
+1 Vandalblast
+1 Seize the Spotlight
+1 Deflecting Swat
+1 Village Rites
+1 Treasure Nabber
+1 Carrion Feeder
+1 Imperial Seal
+1 Profane Tutor
+1 Vampiric Tutor
+1 Wishclaw Talisman
+1 Demonic Tutor
+1 Imperial Recruiter
+1 Gamble
+1 Mana Vault
+1 Pyroblast
+1 Red Elemental Blast
+1 Callous Sell-Sword // Burn Together
+1 Viscera Seer
+1 Fork
+1 Phyrexian Altar
+1 Phyrexian Tower
+1 Lazotep Quarry
+1 Untimely Malfunction
+1 Culling the Weak
+1 High Market
+1 Tibalt's Trickery
+1 Grim Tutor
+1 Lotus Petal
+1 Ragavan, Nimble Pilferer
+1 Boseiju, Who Shelters All
+1 Snuff Out
+1 Deadly Rollick
+1 Baleful Mastery
+1 Underworld Breach
+1 Jeska's Will
+1 Wooded Foothills
+1 Scalding Tarn
+1 City of Brass
+1 Urza's Saga
+1 Goblin Engineer
+1 Storm-Kiln Artist
+1 The One Ring
+1 Bloodstained Mire
+1 Chain of Smog
+1 Blasphemous Act
+1 Haze of Rage
+1 Fury Storm
+1 Ancient Tomb
+1 Nasty End
+1 Swamp
+1 Fire Covenant
+1 Electroduplicate
+1 Rionya, Fire Dancer
+1 Combat Celebrant
+1 Kiki-Jiki, Mirror Breaker

@@ -1,0 +1,109 @@
+# Archidekt — Lathliss: Reign of Fire
+# source: archidekt:69366
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lathliss, Dragon Queen
+
+Deck:
+1 Valakut, the Molten Pinnacle
+1 Mana Vault
+1 Chandra, Torch of Defiance
+1 Wrathful Red Dragon
+1 Orb of Dragonkind
+1 Blasphemous Act
+1 Dragonspeaker Shaman
+1 Glittering Stockpile
+1 Big Score
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 War Room
+1 Mana Geyser
+1 Cavern of Souls
+1 Jeska's Will
+1 Mountain
+1 Dragon Tempest
+1 Sarkhan's Triumph
+1 Haven of the Spirit Dragon
+1 Nykthos, Shrine to Nyx
+1 Vandalblast
+1 Scourge of Valkas
+1 Hellkite Charger
+1 Knollspine Dragon
+1 Spinerock Knoll
+1 Wheel of Fortune
+1 Dragon's Hoard
+1 Dragon Mage
+1 Drakuseth, Maw of Flames
+1 Scourge of the Throne
+1 Bonders' Enclave
+1 Balefire Dragon
+1 Utvara Hellkite
+1 Mountain
+1 Valakut Awakening // Valakut Stoneforge
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Urabrask the Hidden
+1 Mountain
+1 Invasion of Tarkir // Defiant Thundermaw
+1 Lightning Greaves
+1 Deflecting Swat
+1 Mountain
+1 Dracogenesis
+1 Ancient Tomb
+1 Sol Ring
+1 Molten Echoes
+1 Blood Moon
+1 Myriad Landscape
+1 Maelstrom of the Spirit Dragon
+1 Will of the Jeskai
+1 Volatile Fault
+1 Zenith Festival
+1 Descent into Avernus
+1 Swiftfoot Boots
+1 Twinflame Tyrant
+1 Thundermane Dragon
+1 Generous Plunderer
+1 Breaching Dragonstorm
+1 Roaming Throne
+1 Banner of Kinship
+1 Mountain
+1 Urza's Incubator
+1 The One Ring
+1 Mountain
+1 Swashbuckler Extraordinaire
+1 Descendants' Fury
+1 Minion of the Mighty
+1 Rain of Riches
+1 Gimli's Reckless Might
+1 Herald's Horn
+1 Mines of Moria
+1 Goldlust Triad
+1 Parapet Thrasher
+1 Bonehoard Dracosaur
+1 Ancient Copper Dragon
+1 Ganax, Astral Hunter
+1 Goldspan Dragon
+1 Carnelian Orb of Dragonkind
+1 The Fire Crystal
+1 Dragonhawk, Fate's Tempest
+1 Extraplanar Lens
+1 Ruby Medallion
+1 Arena of Glory
+1 Dragonlord's Servant
+1 Hellkite Tyrant
+1 Chaos Warp
+1 Terror of the Peaks
+1 Sundering Eruption // Volcanic Fissure

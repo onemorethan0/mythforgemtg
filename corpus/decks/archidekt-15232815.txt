@@ -1,0 +1,90 @@
+# Archidekt — Toph, the First Metalbender - "Earthbend, Landfall, Artifacts"
+# source: archidekt:15232815
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Bumi, Unleashed + Ashaya, Soul of the Wild; Bracket 2 allows none
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 The Stasis Coffin
+1 Liquimetal Torque
+1 Moraug, Fury of Akoum
+1 Path to Exile
+1 Sungrass Egg
+1 Mossfire Egg
+1 Mishra's Bauble
+1 Panharmonicon
+1 Blackblade Reforged
+1 Commander's Sphere
+1 Zuran Orb
+1 Welding Jar
+1 Cultivate
+1 Tannuk, Memorial Ensign
+8 Forest
+7 Plains
+1 Brushland
+1 Fortified Village
+1 Jungle Shrine
+1 Chromatic Star
+1 Prized Statue
+1 Prismatic Omen
+1 Farseek
+1 Omnath, Locus of Rage
+1 Felidar Retreat
+1 Geode Rager
+1 Planar Outburst
+1 Stomping Ground
+1 Ashaya, Soul of the Wild
+1 Chromatic Lantern
+1 Ichor Wellspring
+1 Rogue's Passage
+1 Adventurer's Inn
+1 Dispatch
+1 Bootleggers' Stash
+1 Swiftfoot Boots
+1 Sol Ring
+1 World Map
+1 Lotus Cobra
+1 Rampaging Baloths
+1 Titania, Protector of Argoth
+1 Tireless Provisioner
+1 Scute Swarm
+1 Terra Eternal
+1 Mind Stone
+1 Temple Garden
+1 Restless Prairie
+1 Rugged Highlands
+1 Thornglint Bridge
+1 Gongaga, Reactor Town
+1 Arcane Signet
+1 Karplusan Forest
+1 Wooded Ridgeline
+7 Mountain
+1 Peter Parker's Camera
+1 Black Panther, Wakandan King
+1 Toph, the Blind Bandit
+1 Bumi, Unleashed
+1 Avatar Kyoshi, Earthbender
+1 Tale of Katara and Toph
+1 Planetarium of Wan Shi Tong
+1 Great Divide Guide
+1 Seismic Sense
+1 Solid Ground
+1 Earthbender Ascension
+1 Meria, Scholar of Antiquity
+1 Ragost, Deft Gastronaut
+1 Sabotender
+1 Barrels of Blasting Jelly
+1 Bender's Waterskin
+1 Cultivator Colossus
+1 Bygone Colossus
+1 Darksteel Juggernaut
+1 Scuttling Doom Engine
+1 Meteor Golem
+1 Mindslaver
+1 Command Tower
+1 Survey Mechan
+1 Haywire Mite
+1 Steel Wrecking Ball

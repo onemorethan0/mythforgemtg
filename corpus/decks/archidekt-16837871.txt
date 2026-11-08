@@ -1,0 +1,106 @@
+# Archidekt — Mr Eggman, Man Me an Egg
+# source: archidekt:16837871
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Dr. Eggman
+
+Deck:
+1 Command Tower
+1 Metalworker
+1 Arcane Signet
+1 Sol Ring
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Scrawling Crawler
+1 Cityscape Leveler
+1 Imposter Mech
+1 Cryptothrall
+1 Thunderhawk Gunship
+1 Chaos Defiler
+1 Nautiloid Ship
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Surge Conductor
+1 Cyberdrive Awakener
+1 The Regalia
+1 Jetfire, Ingenious Scientist // Jetfire, Air Guardian
+1 Adaptive Automaton
+1 Pinnacle Emissary
+1 Blitzwing, Cruel Tormentor // Blitzwing, Adaptive Assailant
+1 Weatherlight
+1 The Indomitable
+1 Deluxe Dragster
+1 Midnight Crusader Shuttle
+1 Jackdaw
+1 Cyclonus, the Saboteur // Cyclonus, Cybertronian Fighter
+1 Smuggler's Buggy
+1 Noxious Gearhulk
+1 Cybership
+1 Demonic Junker
+1 Myr Battlesphere
+1 The Belligerent
+1 Combustible Gearhulk
+1 Mechan Assembler
+1 Hulldrifter
+1 Tezzeret, Betrayer of Flesh
+1 Chandra, Spark Hunter
+1 Edward Kenway
+1 Doc Ock, Evil Inventor
+1 Mishra, Eminent One
+1 Setzer, Wandering Gambler
+1 Simulacrum Synthesizer
+1 Dollhouse of Horrors
+1 Scrapyard Recombiner
+1 Cosima, God of the Voyage // The Omenkeel
+1 Lifecraft Engine
+1 Geth's Grimoire
+1 Canoptek Spyder
+1 Urborg, Tomb of Yawgmoth
+1 Gemstone Caverns
+1 Waste Not
+1 Volcanic Island
+1 Badlands
+1 Scorched Ruins
+1 Underground Sea
+1 Volrath's Stronghold
+1 Cavern of Souls
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Urza's Saga
+1 Luxury Suite
+1 Mana Confluence
+1 Prismatic Vista
+1 Three Tree City
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Scalding Tarn
+1 Undercity Sewers
+1 Morphic Pool
+1 Starting Town
+1 Polluted Delta
+1 Thundering Falls
+1 Ugin's Labyrinth
+1 Steam Vents
+1 Blood Crypt
+1 City of Brass
+1 Inventors' Fair
+1 Uthros, Titanic Godcore
+1 Bloodstained Mire
+1 Valakut Awakening // Valakut Stoneforge
+1 Mountain
+1 Riverpyre Verge
+1 Raucous Theater
+1 Gloomlake Verge
+1 Island
+1 Training Center
+1 Entropic Battlecruiser
+1 Swamp
+1 Xander's Lounge
+1 Liliana's Caress
+1 RMS Titanic
+1 Path of Ancestry
+1 Iron Spider, Stark Upgrade
+1 White Lotus Tile
+1 Spire Mechcycle
+1 Knuckles the Echidna
+1 Rolling Hamsphere
+1 Possession Engine
+1 Flamewar, Brash Veteran // Flamewar, Streetwise Operative

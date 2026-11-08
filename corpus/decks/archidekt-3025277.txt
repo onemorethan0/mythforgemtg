@@ -1,0 +1,100 @@
+# Archidekt — The Mimeoplasm
+# source: archidekt:3025277
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Mimeoplasm
+
+Deck:
+1 Tasigur, the Golden Fang
+1 Fierce Guardianship
+1 Deadly Rollick
+1 Frantic Search
+1 Grave Researcher // Reanimate
+1 Underground Mortuary
+1 Thirst for Discovery
+1 Thirst for Knowledge
+1 Kodama's Reach
+1 Nature's Lore
+1 Jodah's Avenger
+1 Buried Alive
+1 Nezahal, Primal Tide
+1 Undercity Sewers
+1 Entomb
+3 Island
+1 Assassin's Trophy
+1 Lightning Greaves
+4 Forest
+1 Undergrowth Stadium
+1 Cyclonic Rift
+1 Breeding Pool
+1 Overgrown Tomb
+1 Rejuvenating Springs
+1 Zagoth Triome
+4 Swamp
+1 Animate Dead
+1 Path of Ancestry
+1 Thirst for Meaning
+1 Consecrated Sphinx
+1 Toxic Deluge
+1 Reanimate
+1 Damnation
+1 Urborg, Tomb of Yawgmoth
+1 Titanoth Rex
+1 Consuming Aberration
+1 Yavimaya, Cradle of Growth
+1 Emrakul, the Promised End
+1 Dimir Aqueduct
+1 Death's Shadow
+1 Cultivate
+1 Farseek
+1 Kozilek, the Great Distortion
+1 Impervious Greatwurm
+1 Deathcap Glade
+1 Golgari Rot Farm
+1 Simic Growth Chamber
+1 Ulamog, the Ceaseless Hunger
+1 Shipwreck Marsh
+1 Vorinclex, Voice of Hunger
+1 Ledger Shredder
+1 Dreamroot Cascade
+1 Vorinclex, Monstrous Raider
+1 Mana Drain
+1 Underrealm Lich
+1 Oko, Thief of Crowns
+1 Yargle and Multani
+1 Jace, the Mind Sculptor
+1 Orcish Bowmasters
+1 Ghalta, Primal Hunger
+1 Rampant Growth
+1 Arcane Signet
+1 Troll of Khazad-dûm
+1 Watery Grave
+1 Sheoldred, the Apocalypse
+1 Hedge Maze
+1 Polluted Delta
+1 Misty Rainforest
+1 Morphic Pool
+1 Koma, World-Eater
+1 Windfall
+1 Gifts Ungiven
+1 Hermit Druid
+1 Tyrranax Rex
+1 Mystic Remora
+1 Rhystic Study
+1 Teval, the Balanced Scale
+1 Treasure Cruise
+1 Winternight Stories
+1 Command Tower
+1 Opulent Palace
+1 Sol Ring
+1 Doom Whisperer
+1 Swiftfoot Boots
+1 Sheoldred, Whispering One
+1 Uro, Titan of Nature's Wrath
+1 Marang River Regent // Coil and Catch
+1 Lord of Extinction
+1 Liliana of the Veil
+1 Galactus, Devourer of Worlds
+1 Muldrotha, the Gravetide

@@ -1,0 +1,92 @@
+# Archidekt — Jodah Brings his Friends
+# source: archidekt:1772559
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Thriving Moor
+1 Lagrella, the Magpie
+1 Garruk's Uprising
+1 Hofri Ghostforge
+1 Tanazir Quandrix
+1 Xyris, the Writhing Storm
+1 Marwyn, the Nurturer
+1 Evolving Wilds
+1 Mr. Orfeo, the Boulder
+1 Esior, Wardwing Familiar
+1 Thriving Grove
+1 Prismatic Geoscope
+1 Stubborn Denial
+1 Sakura-Tribe Elder
+1 Kamiz, Obscura Oculus
+1 Arcane Signet
+1 Tangled Islet
+1 Temur Ascendancy
+1 Hajar, Loyal Bodyguard
+1 Pippin, Guard of the Citadel
+1 Sigarda, Heron's Grace
+1 Krenko, Tin Street Kingpin
+1 Ash Barrens
+1 Farseek
+1 Haunted Mire
+1 Volo, Itinerant Scholar
+1 Monastery Siege
+1 Kutzil, Malamet Exemplar
+1 Joint Exploration
+1 Cinder Glade
+3 Swamp
+3 Mountain
+1 Command Tower
+1 Terramorphic Expanse
+1 Exotic Orchard
+1 Rampant Growth
+1 Path of Ancestry
+1 Kodama's Reach
+1 Cultivate
+1 Swords to Plowshares
+1 Atarka, World Render
+1 Thriving Bluff
+1 Bolt Bend
+1 Decanter of Endless Water
+1 Nature's Lore
+1 Thriving Heath
+1 Hinata, Dawn-Crowned
+1 Vega, the Watcher
+1 Jolene, the Plunder Queen
+1 Garth One-Eye
+1 Beast Within
+1 Chulane, Teller of Tales
+1 Swiftfoot Boots
+1 Jhoira, Weatherlight Captain
+1 Bard Class
+1 Gerrard, Weatherlight Hero
+1 Thriving Isle
+1 Prairie Stream
+1 Canopy Vista
+1 Disenchant
+1 Linvala, Shield of Sea Gate
+1 Faeburrow Elder
+1 An Offer You Can't Refuse
+1 Ratadrabik of Urborg
+1 Urza's Ruinous Blast
+1 Shanid, Sleepers' Scourge
+1 Raffine, Scheming Seer
+1 Relic of Legends
+1 Melira, the Living Cure
+1 Skrelv, Defector Mite
+1 Karlach, Fury of Avernus
+1 Void Rend
+3 Plains
+3 Island
+1 Laelia, the Blade Reforged
+1 Revitalizing Repast // Old-Growth Grove
+1 Overflowing Basin
+1 Shadowblood Ridge
+1 Negate
+7 Forest
+1 Annie Joins Up
+1 Liesa, Forgotten Archangel
+1 Halana and Alena, Partners

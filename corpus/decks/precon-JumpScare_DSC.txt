@@ -1,0 +1,93 @@
+# WotC precon — Jump Scare! (DSC, 2024-09-27)
+# source: mtgjson:JumpScare_DSC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Zimone, Mystery Unraveler
+
+Deck:
+1 Aesi, Tyrant of Gyre Strait
+1 Aether Gale
+1 Arcane Signet
+1 Arixmethes, Slumbering Isle
+1 Ash Barrens
+1 Ashaya, Soul of the Wild
+1 Augur of Autumn
+1 Beanstalk Giant // Fertile Footsteps
+1 Beast Within
+1 Biomass Mutation
+1 Body of Knowledge
+1 Cackling Counterpart
+1 Castle Vantress
+1 Citanul Hierophants
+1 Command Tower
+1 Counterspell
+1 Cultivate
+1 Curator Beastie
+1 Deathmist Raptor
+1 Dig Through Time
+1 Disorienting Choice
+1 Drownyard Temple
+1 Eureka Moment
+1 Evolving Wilds
+1 Experimental Lab // Staff Room
+1 Explosive Vegetation
+1 Ezuri's Predation
+1 Flooded Grove
+9 Forest
+1 Giggling Skitterspike
+1 Glitch Interpreter
+1 Greater Tanuki
+1 Growing Dread
+1 Growth Spiral
+1 Hinterland Harbor
+1 Hydra Omnivore
+9 Island
+1 Kefnet the Mindful
+1 Kheru Spellsnatcher
+1 Kianne, Corrupted Memory
+1 Mosswort Bridge
+1 Multani, Yavimaya's Avatar
+1 Myriad Landscape
+1 Overflowing Basin
+1 Overgrown Zealot
+1 Oversimplify
+1 Overwhelming Stampede
+1 Primordial Mist
+1 Quandrix Campus
+1 Rampant Growth
+1 Rashmi, Eternities Crafter
+1 Reality Shift
+1 Reliquary Tower
+1 Retreat to Coralhelm
+1 Sakura-Tribe Elder
+1 Sandwurm Convergence
+1 Scroll of Fate
+1 Scute Swarm
+1 Shigeki, Jukai Visionary
+1 Shriekwood Devourer
+1 Simic Growth Chamber
+1 Simic Signet
+1 Skaab Ruinator
+1 Sol Ring
+1 Tangled Islet
+1 Tatyova, Benthic Druid
+1 Temple of Mystery
+1 Temple of the False God
+1 Temur War Shaman
+1 Terramorphic Expanse
+1 They Came from the Pipes
+1 Thornwood Falls
+1 Thunderfoot Baloth
+1 Trail of Mystery
+1 Trygon Predator
+1 Vineglimmer Snarl
+1 Whisperwood Elemental
+1 Wilderness Reclamation
+1 Worldspine Wurm
+1 Yavimaya Coast
+1 Yavimaya Elder
+1 Yedora, Grave Gardener
+1 Zimone's Hypothesis

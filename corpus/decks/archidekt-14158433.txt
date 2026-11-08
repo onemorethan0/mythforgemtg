@@ -1,0 +1,86 @@
+# Archidekt — Get To Wark!
+# source: archidekt:14158433
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Choco, Seeker of Paradise
+
+Deck:
+1 Radagast, Wizard of Wilds
+1 Mockingbird
+1 Birds of Paradise
+1 Sazh's Chocobo
+1 Sage Owl
+1 Traveling Chocobo
+1 Arcanist's Owl
+1 Curiosity Crafter
+1 Kangee, Aerie Keeper
+1 Guardian of Tazeem
+1 Summon: Fat Chocobo
+1 Winged Boots
+1 Hindering Light
+1 Gysahl Greens
+1 Beastmaster Ascension
+1 Flawless Maneuver
+1 Banner of Kinship
+1 Bident of Thassa
+1 Chocobo Racetrack
+1 Murmuration
+1 Kindred Discovery
+1 Akroma's Will
+1 Swan Song
+1 Door of Destinies
+1 Bartz and Boko
+1 Silver Raven
+1 Cultivate
+1 Harrow
+1 Kodama's Reach
+1 Primal Growth
+1 Chocobo Kick
+1 Fabled Passage
+1 Tawnos, the Toymaker
+1 Irenicus's Vile Duplication
+1 Terramorphic Expanse
+1 Esper Panorama
+1 Naya Panorama
+1 Prairie Stream
+1 Exotic Orchard
+1 Mystic Gate
+1 Lilypad Village
+1 Evolving Wilds
+1 Myriad Landscape
+10 Island
+7 Plains
+1 Essence Scatter
+1 Hermes, Overseer of Elpis
+1 Reshape the Earth
+1 Distant Melody
+1 Rogue's Passage
+1 Gift of Estates
+8 Forest
+1 Vibrant Cityscape
+1 Guardian of Faith
+1 Sidequest: Raise a Chocobo // Black Chocobo
+1 Burnished Hart
+1 Wild-Field Scarecrow
+1 Navigation Orb
+1 Wayfarer's Bauble
+1 Path to Exile
+1 Emeria Angel
+1 Dryad of the Ilysian Grove
+1 Murkfiend Liege
+1 Aerie Mystics
+1 Coiling Oracle
+1 Sakashima the Impostor
+1 Chameleon, Master of Disguise
+1 Secluded Courtyard
+1 Sword of the Animist
+1 Instrument of the Bards
+1 Quicksilver Amulet
+1 Monster Manual // Zoological Study
+1 Explorer's Scope
+1 Gretchen Titchwillow
+1 Genemorph Imago
+1 Teferi, Hero of Dominaria
+1 Tilling Treefolk

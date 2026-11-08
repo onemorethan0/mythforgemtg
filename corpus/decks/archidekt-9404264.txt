@@ -1,0 +1,108 @@
+# Archidekt — Tivit, Seller of Secrets
+# source: archidekt:9404264
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tivit, Seller of Secrets
+
+Deck:
+1 Mana Confluence
+1 Urza's Saga
+1 Mana Vault
+1 Rhystic Study
+1 Tainted Pact
+1 Mystic Remora
+1 Esper Sentinel
+1 Smothering Tithe
+1 Lotho, Corrupt Shirriff
+1 Mana Drain
+1 Swords to Plowshares
+1 Hallowed Fountain
+1 City of Brass
+1 Bloodstained Mire
+1 Morphic Pool
+1 Exotic Orchard
+1 Orcish Bowmasters
+1 Godless Shrine
+1 Vault of Champions
+1 Watery Grave
+1 Polluted Delta
+1 Sea of Clouds
+1 Sevinne's Reclamation
+1 Phyrexian Metamorph
+1 Talisman of Progress
+1 Fellwar Stone
+1 Silence
+1 Cavern of Souls
+1 Mockingbird
+1 Demonic Tutor
+1 Time Sieve
+1 Ancient Tomb
+1 Talisman of Dominance
+1 Demonic Consultation
+1 Vampiric Tutor
+1 Arid Mesa
+1 Flusterstorm
+1 Ranger-Captain of Eos
+1 Mox Opal
+1 Hullbreaker Horror
+1 Tezzeret the Seeker
+1 Teferi, Time Raveler
+1 Dark Ritual
+1 Thassa's Oracle
+1 Faerie Mastermind
+1 Gemstone Caverns
+1 Grand Abolisher
+1 Chrome Mox
+1 Command Tower
+1 Sol Ring
+1 Arcane Signet
+1 Minamo, School at Water's Edge
+1 Flooded Strand
+1 Cursed Totem
+1 Grafdigger's Cage
+1 Manifold Key
+1 Enlightened Tutor
+1 Chain of Vapor
+1 Underground Sea
+1 Misty Rainforest
+1 Tundra
+1 Fomori Vault
+1 Wishclaw Talisman
+1 Mirrormade
+1 Marsh Flats
+1 Voice of Victory
+1 Lotus Petal
+1 Whir of Invention
+1 Mox Diamond
+1 Imperial Seal
+1 Scalding Tarn
+1 The One Ring
+1 Amphibian Downpour
+1 Blind Obedience
+1 Displacer Kitten
+1 Tataru Taru
+1 Copy Artifact
+1 Lim-Dûl's Vault
+1 Toxic Deluge
+1 Scrubland
+1 Intuition
+1 Otawara, Soaring City
+1 Imposter Mech
+1 Spire of Industry
+1 Tezzeret, Cruel Captain
+1 Wan Shi Tong, Librarian
+1 Gleaming Splendor
+1 Thraben Charm
+1 Grand Arbiter Augustin IV
+1 Misdirection
+1 Mindbreak Trap
+1 Swan Song
+1 Pact of Negation
+1 Mental Misstep
+1 Fierce Guardianship
+1 Muddle the Mixture
+1 Force of Negation
+1 Force of Will
+1 Orim's Chant

@@ -1,0 +1,89 @@
+# Archidekt — All the Legends... All at Once!
+# source: archidekt:16400532
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 General Marhault Elsdragon
+
+Deck:
+1 Adventurers' Guildhouse
+1 Agatha of the Vile Cauldron
+1 Alluring Scent
+1 Animist's Might
+1 Archdruid's Charm
+1 Bard Class
+1 Baton of Morale
+1 Battering Ram
+1 Beast Within
+1 Benefactor's Draught
+1 Blasphemous Act
+1 Bombadil's Song
+1 Boseiju, Who Endures
+1 Chaos Warp
+1 Command Tower
+1 Commercial District
+1 Expedition Map
+1 Fabled Passage
+1 Forbidden Orchard
+11 Forest
+1 Garruk's Uprising
+1 Genesis Chamber
+1 Goblin Grappler
+1 Greater Good
+1 Guardian Project
+1 Hajar, Loyal Bodyguard
+1 Helm of Chatzuk
+1 Heroes' Podium
+1 Hunted Troll
+1 Inti, Seneschal of the Sun
+1 Invasion Plans
+1 Isao, Enlightened Bushi
+1 Jangling Automaton
+1 Kamahl's Druidic Vow
+1 Khenra Charioteer
+1 Klothys, God of Destiny
+1 Kura, the Boundless Sky
+1 Life's Legacy
+1 Lure
+1 Mithril Coat
+1 Mogg Infestation
+10 Mountain
+1 Mountain Stronghold
+1 Mox Amber
+1 Nemesis Mask
+1 Nylea, God of the Hunt
+1 Outmaneuver
+1 Ragavan, Nimble Pilferer
+1 Reki, the History of Kamigawa
+1 Relic of Legends
+1 Return to Nature
+1 Revenge of the Hunted
+1 Rograkh, Son of Rohgahh
+1 Rootbound Crag
+1 Shadowspear
+1 Shroofus Sproutsire
+1 Spire Garden
+1 Stomping Ground
+1 Sylvan Scrying
+1 Taunting Elf
+1 Tempt with Discovery
+1 Tempting Licid
+1 The Great Henge
+1 The Ring Goes South
+1 Timber Wolves
+1 Toski, Bearer of Secrets
+1 Tyrite Sanctum
+1 Urza's Cave
+1 Urza's Engine
+1 Urza's Saga
+1 Varchild's War-Riders
+1 Wooded Foothills
+1 Yavimaya, Cradle of Growth
+1 Wilson, Refined Grizzly
+1 Ivora, Insatiable Heir
+1 Shigeki, Jukai Visionary
+1 Ruby, Daring Tracker
+1 Nylea's Intervention
+1 Casal, Lurkwood Pathfinder // Casal, Pathbreaker Owlbear
+1 Kolvori, God of Kinship // The Ringhart Crest

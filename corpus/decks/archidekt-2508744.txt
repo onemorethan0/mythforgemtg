@@ -1,0 +1,95 @@
+# Archidekt — Sweet But Deathly Tea | Dina, Soul Steeper
+# source: archidekt:2508744
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Dina, Soul Steeper
+
+Deck:
+1 Haywire Mite
+1 Bojuka Bog
+1 Twilight Mire
+1 Beledros Witherbloom
+1 Bastion of Remembrance
+1 High Market
+1 Marauding Blight-Priest
+1 Prosperous Innkeeper
+1 Tend the Pests
+1 Sapseep Forest
+1 Deadly Brew
+1 Plumb the Forbidden
+1 Radiant Fountain
+1 Mortality Spear
+1 Birds of Paradise
+1 Assassin's Trophy
+1 Overgrown Tomb
+1 Essence Warden
+1 Undergrowth Stadium
+1 Bontu's Monument
+1 Riveteers Overlook
+1 Pest Infestation
+1 Gala Greeters
+1 Vito, Thorn of the Dusk Rose
+1 Lifegift
+1 Jungle Hollow
+1 Llanowar Wastes
+1 Witherbloom Apprentice
+1 Deathgreeter
+1 Zulaport Cutthroat
+1 Village Rites
+1 Cultivate
+1 Sedgemoor Witch
+1 Woodland Cemetery
+1 Necroblossom Snarl
+1 Grim Backwoods
+1 Sinister Monolith
+1 Beast Whisperer
+1 Yavimaya, Cradle of Growth
+1 Toxic Deluge
+1 The Meathook Massacre
+1 Guardian Project
+1 Staff of the Wild Magus
+1 Breathe Your Last
+1 Bloodthirsty Conqueror
+1 Starscape Cleric
+1 Sign in Blood
+1 Greed
+1 Tablet of the Guilds
+1 Valentin, Dean of the Vein // Lisette, Dean of the Root
+1 Moldervine Reclamation
+1 Blood Artist
+1 Ezzaroot Channeler
+1 Pristine Talisman
+1 Retreat to Hagra
+1 Ayara, First of Locthwain
+1 Phyrexian Arena
+1 Skullclamp
+1 Scavenging Ooze
+1 Social Climber
+1 Bloodletter of Aclazotz
+1 Trespasser's Curse
+1 Mosswood Dreadknight // Dread Whispers
+1 Jaddi Offshoot
+1 Spectrum Sentinel
+1 Veinwitch Coven
+1 Witherbloom Command
+1 Enduring Tenacity
+1 Golgari Rot Farm
+1 Exsanguinate
+1 Deathrite Shaman
+1 Fruition
+1 Wastewood Verge
+1 Ancient Cornucopia
+1 Viridescent Bog
+1 Vernal Fen
+1 Command Tower
+1 Bogwater Lumaret
+1 Deathcap Glade
+7 Forest
+1 Grapple with Death
+1 Arcane Signet
+1 Sol Ring
+1 Virulent Emissary
+1 South Wind Avatar
+7 Swamp

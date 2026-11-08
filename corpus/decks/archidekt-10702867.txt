@@ -1,0 +1,84 @@
+# Archidekt — Have your cake, but I'll eat it
+# source: archidekt:10702867
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Iwamori of the Open Fist
+
+Deck:
+1 Hypergenesis
+1 Hunted Wumpus
+1 Genesis Chamber
+1 Angel's Trumpet
+1 Heartbeat of Spring
+1 Howling Mine
+1 Gate to the Aether
+1 Eladamri's Vineyard
+1 Oath of Druids
+1 Helm of Awakening
+1 Awakening
+1 Kavu Lair
+1 Weird Harvest
+1 Tempting Wurm
+1 Horn of Greed
+1 Fecundity
+1 Kamahl's Summons
+1 Ghirapur Orrery
+1 Concordant Crossroads
+1 Aluren
+1 Clear the Land
+1 Avatar of Growth
+1 Briarbridge Patrol
+1 Font of Mythos
+1 Coveted Jewel
+1 Collective Voyage
+1 Dictate of Karametra
+1 Helm of Possession
+1 Crown of Empires
+1 Hithlain Rope
+1 Ghalta, Stampede Tyrant
+1 Kodama's Reach
+1 Dubious Challenge
+1 Grothama, All-Devouring
+1 Throne of Empires
+1 Beast Within
+1 Yisan, the Wanderer Bard
+1 Ezuri's Predation
+1 Ulamog, the Infinite Gyre
+1 Kozilek, the Great Distortion
+1 Kozilek, the Broken Reality
+1 Disciple of Freyalise // Garden of Freyalise
+1 Ulamog, the Ceaseless Hunger
+1 Eriette's Tempting Apple
+1 Flayer of Loyalties
+1 Midnight Crusader Shuttle
+1 Ulamog, the Defiler
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Leela, Sevateem Warrior
+1 Bramble Sovereign
+1 Communal Brewing
+1 Myojin of Life's Web
+1 Otherworld Atlas
+1 Kodama of the East Tree
+1 Longstalk Brawl
+1 Pir's Whim
+1 Willow Satyr
+1 New Frontiers
+1 Tempt with Discovery
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Emrakul, the World Anew
+1 Vorinclex, Voice of Hunger
+1 Old-Growth Dryads
+1 Gauntlets of Chaos
+1 Scepter of Empires
+1 Llanowar Elves
+1 Mikokoro, Center of the Sea
+25 Forest
+1 Forbidden Orchard
+1 Eldrazi Temple
+1 Castle Garenbrig
+1 Boseiju, Who Endures
+1 Thespian's Stage
+1 Dark Depths
+1 Harmonize

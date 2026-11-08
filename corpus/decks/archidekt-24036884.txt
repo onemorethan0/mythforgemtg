@@ -1,0 +1,55 @@
+# Archidekt — Sanar's (Not so) Improvised Time Trick
+# source: archidekt:24036884
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sanar, Unfinished Genius // Wild Idea
+
+Deck:
+1 Dream's Grip
+1 Magic Damper
+1 Cerulean Wisps
+1 Twiddle
+1 Shore Up
+1 Improvisation Capstone
+1 Triton Tactics
+1 Nexus of Fate
+1 Jidoor, Aristocratic Capital // Overture
+1 Lindblum, Industrial Regency // Mage Siege
+1 Ornithopter
+1 Rograkh, Son of Rohgahh
+1 Phyrexian Walker
+1 Memnite
+1 Crookshank Kobolds
+1 Bone Saw
+1 Tormod's Crypt
+1 Kobolds of Kher Keep
+1 Beacon of Tomorrows
+1 Inevitable Betrayal
+26 Mountain
+29 Island
+1 Seething Anger
+1 Octopus Form
+1 Vault Skyward
+1 Claws of Gix
+1 Accorder's Shield
+1 Kite Shield
+1 Cathar's Shield
+1 Spidersilk Net
+1 Mystic Sanctuary
+1 Command Tower
+1 Otawara, Soaring City
+1 Access Tunnel
+1 Rogue's Passage
+1 Mirrex
+1 Secluded Starforge
+1 Chain Stasis
+1 Karn's Temporal Sundering
+1 Alrund's Epiphany
+1 Expropriate
+1 Time Warp
+1 Capture of Jingzhou
+1 Temporal Trespass
+1 Time Stretch
+1 Searing Touch

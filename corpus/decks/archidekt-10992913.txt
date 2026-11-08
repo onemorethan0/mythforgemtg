@@ -1,0 +1,85 @@
+# Archidekt — Vnwxt, Verbose Host - The Weenie Wheeler and Dealer
+# source: archidekt:10992913
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Vnwxt, Verbose Host
+
+Deck:
+1 Silent Hallcreeper
+1 Shoreline Looter
+1 Misdirection
+1 Mockingbird
+1 Spectral Sailor
+1 Avishkar Raceway
+1 Brainstorm
+1 Propaganda
+1 Faerie Mastermind
+1 Jace, Wielder of Mysteries
+1 Day's Undoing
+1 Mystic Sanctuary
+1 Remote Isle
+1 Ledger Shredder
+1 Sensei's Divining Top
+1 Aether Syphon
+1 Waxen Shapethief
+1 Transit Mage
+1 Laboratory Maniac
+1 Foil
+1 Scrawling Crawler
+1 Midnight Clock
+1 Teferi's Puzzle Box
+1 Thought Vessel
+1 Twenty-Toed Toad
+1 Arcane Denial
+1 Mystic Remora
+1 Teferi's Ageless Insight
+1 Sapphire Medallion
+1 Arcane Signet
+1 Clinquant Skymage
+1 Oneirophage
+1 Amonkhet Raceway
+1 Flare of Denial
+1 Windfall
+1 Sol Ring
+1 Inundate
+1 Lonely Sandbar
+1 Enduring Curiosity
+1 An Offer You Can't Refuse
+1 Counterspell
+1 Three Steps Ahead
+1 Azure Beastbinder
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Psychosis Crawler
+1 Frantic Search
+1 High Tide
+1 Faerie Conclave
+1 Echo of Eons
+1 Malcolm, Alluring Scoundrel
+1 Long-Term Plans
+1 Reconnaissance Mission
+1 Mischievous Mystic
+1 Slick Imitator
+1 Swan Song
+1 Mind Stone
+1 Sceptre of Eternal Glory
+1 Muraganda Raceway
+1 Sink into Stupor // Soporific Springs
+1 Pongify
+1 Rapid Hybridization
+1 Glasspool Mimic // Glasspool Shore
+1 Proft's Eidetic Memory
+1 Negate
+1 Thunderclap Drake
+1 Illvoi Galeblade
+1 Faerie Seer
+1 Bender's Waterskin
+1 Wan Shi Tong, Librarian
+1 War Room
+1 Flitterwing Nuisance
+1 Reliquary Tower
+1 Blinkmoth Nexus
+1 Terrain Generator
+24 Island
+1 Starting Column

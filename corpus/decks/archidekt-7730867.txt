@@ -1,0 +1,85 @@
+# Archidekt — Norin cEDH
+# source: archidekt:7730867
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Norin the Wary
+
+Deck:
+1 Confusion in the Ranks
+1 Return the Favor
+1 Witty Roastmaster
+1 City on Fire
+1 Highway Robbery
+1 Reforge the Soul
+1 Generous Plunderer
+1 Thorn of Amethyst
+1 Molten Gatekeeper
+1 Ruination
+1 Rite of Flame
+1 Zhao, the Moon Slayer
+1 Teferi's Puzzle Box
+1 Roiling Vortex
+1 Blood Moon
+1 Stranglehold
+1 Kher Keep
+1 Untimely Malfunction
+1 Scrying Sheets
+1 General Kreat, the Boltbringer
+1 Ancient Tomb
+1 Lodestone Golem
+1 Purphoros, God of the Forge
+1 Genesis Chamber
+1 Vandalblast
+1 Impact Tremors
+1 Pandemonium
+1 Solphim, Mayhem Dominus
+1 Planar Chaos
+1 Sulfuric Vortex
+1 Ruby Medallion
+1 Pyroblast
+1 Gamble
+1 Terror of the Peaks
+1 Fiery Emancipation
+1 Reverberate
+1 Panharmonicon
+1 Magus of the Wheel
+1 Forgotten Cave
+1 Chaos Warp
+1 Arena of Glory
+1 Agate Instigator
+1 Extraplanar Lens
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Winter Moon
+1 Abrade
+1 Obliterate
+1 Trinisphere
+1 Damping Sphere
+1 Jokulhaups
+1 Valakut, the Molten Pinnacle
+1 Sol Ring
+1 Arcane Signet
+1 Price of Glory
+1 Powerbalance
+1 Manabarbs
+1 Tibalt's Trickery
+1 Razorkin Needlehead
+1 War Room
+1 Maze of Ith
+1 Magus of the Moon
+1 Hexing Squelcher
+1 Lotus Petal
+1 Desperate Ritual
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Strip Mine
+1 Simian Spirit Guide
+1 Ghost Quarter
+1 Vexing Bauble
+1 Crucible of Worlds
+1 Weftstalker Ardent
+1 Wasteland
+1 Jeska's Will
+1 Red Elemental Blast
+24 Snow-Covered Mountain
+1 Faithless Looting

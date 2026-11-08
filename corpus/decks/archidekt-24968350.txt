@@ -1,0 +1,100 @@
+# Archidekt — smaugslinger
+# source: archidekt:24968350
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Smaug the Impenetrable
+
+Deck:
+1 Past in Flames
+1 Ad Nauseam
+1 Ancient Tomb
+1 Arcane Signet
+1 Blasphemous Act
+1 Blazemire Verge
+1 Blood Crypt
+1 Boggart Trawler // Boggart Bog
+1 Bolt Bend
+1 Cabal Ritual
+1 Chain Lightning
+1 Crackle with Power
+1 Cut Propulsion
+1 Deflecting Swat
+1 Demonic Tutor
+1 Desperate Ritual
+1 Fell the Profane // Fell Mire
+1 Flashback
+1 Gamble
+1 Geosurge
+1 Grinding Station
+1 Hexing Squelcher
+1 Imperial Seal
+1 Jeska's Will
+1 Lightning Bolt
+1 Lotus Petal
+1 Luxury Suite
+1 Mana Vault
+1 Mayhem Devil
+1 Mount Doom
+5 Mountain
+1 Command Tower
+1 Exotic Orchard
+1 Dark Ritual
+1 Necropotence
+1 Night's Whisper
+1 Orcish Bowmasters
+1 Pinnacle Monk // Mystic Peak
+1 Professional Face-Breaker
+1 Pyrohemia
+1 Reckless Fireweaver
+1 Redirect Lightning
+1 Seething Song
+1 Self-Destruct
+1 Shock
+1 Sol Ring
+1 Star of Extinction
+1 Sulfurous Springs
+1 Sundering Eruption // Volcanic Fissure
+5 Swamp
+1 Tainted Peak
+1 Talisman of Indulgence
+1 The One Ring
+1 Underworld Breach
+1 Untimely Malfunction
+1 Urborg, Tomb of Yawgmoth
+1 Vampiric Tutor
+1 Wishclaw Talisman
+1 Pestilence
+1 Pyroblast
+1 Cave-In
+1 Simian Spirit Guide
+1 Treasonous Ogre
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Rob the Archives
+1 Rite of Flame
+1 Hex Magic
+1 Will of the Jeskai
+1 Vision of Love
+1 Lava Dart
+1 Reiterate
+1 Valakut Awakening // Valakut Stoneforge
+1 Tibalt's Trickery
+1 Scheming Symmetry
+1 Malakir Rebirth // Malakir Mire
+1 Grapeshot
+1 Gut Shot
+1 Ranger's Firebrand
+1 Pitiless Carnage
+1 Requiem Monolith
+1 Urza's Saga
+1 Return the Favor
+1 Emergence Zone
+1 Pyretic Ritual
+1 Recoup
+1 Walking Ballista
+1 Exsanguinate
+1 Opera Love Song
+1 Great Furnace
+1 Vault of Whispers
+1 Smaug, Wicked Worm

@@ -1,0 +1,105 @@
+# Archidekt — Smack the Dargo
+# source: archidekt:1412901
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Jeska, Thrice Reborn
+1 Dargo, the Shipwrecker
+
+Deck:
+1 Agatha's Soul Cauldron
+1 Treasure Nabber
+1 Ancient Tomb
+1 Lion's Eye Diamond
+1 Prized Statue
+1 Jeska's Will
+1 Mishra's Bauble
+1 Tormod's Crypt
+1 Pyretic Ritual
+1 Runaway Steam-Kin
+1 Kediss, Emberclaw Familiar
+1 Crystal Vein
+1 Skirk Prospector
+1 Impulsive Pilferer
+1 Relic of Legends
+1 Urza's Saga
+1 Arena of Glory
+1 Pinnacle Monk // Mystic Peak
+1 Magda, Brazen Outlaw
+1 Sol Ring
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Thermopod
+1 Great Furnace
+1 Lotus Petal
+1 Ragavan, Nimble Pilferer
+1 Red Elemental Blast
+1 Seize the Spotlight
+1 Moonsilver Key
+1 Mox Amber
+1 Gamble
+1 Altar of Dementia
+1 Inventors' Fair
+1 Underworld Breach
+1 The One Ring
+1 Fire Giant's Fury
+1 Sticky Fingers
+1 Weapons Manufacturing
+1 Evendo Brushrazer
+1 Goblin Engineer
+1 Goblin Welder
+1 Untimely Malfunction
+1 Rite of Flame
+1 Grim Monolith
+1 Vexing Bauble
+1 Final Fortune
+1 Manifold Key
+1 Infiltration Lens
+1 Infernal Plunge
+1 Desperate Ritual
+1 The Last Agni Kai
+1 Hexing Squelcher
+1 Shadow of the Goblin
+1 Mana Vault
+1 Phyrexian Altar
+1 Pyroblast
+1 Hanweir Battlements
+1 Seething Song
+1 Grinding Station
+1 Goblin Bombardment
+1 Tezzeret, Cruel Captain
+1 Zenith Festival
+1 Gemstone Caverns
+1 Knuckles the Echidna
+1 Professional Face-Breaker
+1 Flamekin Herald
+1 Arid Mesa
+1 Prismatic Vista
+1 Wooded Foothills
+1 Snow-Covered Mountain
+1 Redirect Lightning
+1 Scalding Tarn
+1 Coveted Jewel
+1 Bloodstained Mire
+1 Wheel of Misfortune
+1 Claim the Firstborn
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sundering Eruption // Volcanic Fissure
+1 Mox Opal
+1 Wheel of Fortune
+1 Deflecting Swat
+1 Flare of Duplication
+1 Treasure Vault
+1 Chrome Mox
+1 Darksteel Citadel
+1 Chalice of the Void
+4 Mountain
+1 Ricochet Trap
+1 Simian Spirit Guide
+1 Damping Sphere
+1 Mox Diamond
+1 Cave-In
+1 Flashback
+1 Samut, Hazoret's Champion
+1 _____ Goblin
+1 Rose, Cutthroat Raider

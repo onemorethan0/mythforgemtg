@@ -1,0 +1,92 @@
+# Archidekt — Underwhorled
+# source: archidekt:8585414
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Wick, the Whorled Mind
+
+Deck:
+1 Typhoid Rats
+1 Sunken Hollow
+1 Fell the Profane // Fell Mire
+2 Mountain
+1 Fell
+1 Shoreline Looter
+1 Mindwhisker
+1 Lightshell Duo
+1 Rat Out
+1 Sugar Coat
+1 Portent of Calamity
+1 Nightwhorl Hermit
+1 Polluted Bonds
+1 Feed the Cycle
+1 Diresight
+1 Daggerfang Duo
+1 Fountainport Bell
+1 Mukotai Ambusher
+1 Lord Skitter's Butcher
+1 Season of Loss
+1 Hidden Grotto
+1 Maha, Its Feathers Night
+1 Mind Drill Assailant
+1 Ruthless Negotiation
+1 Hazel's Nocturne
+1 Sinister Monolith
+1 Thornplate Intimidator
+1 Psychic Whorl
+1 Savor
+1 Cruelclaw's Heist
+1 Bandit's Talent
+1 Thought Shucker
+1 Mudflat Village
+1 Command Tower
+1 Diabolic Intent
+1 Reanimate
+1 Bloodfell Caves
+1 Mirage Mesa
+1 Evolving Wilds
+1 Commander's Sphere
+1 Perplex
+1 Negate
+5 Island
+1 Blightbelly Rat
+1 Tidecaller Mentor
+1 Karumonix, the Rat King
+1 Barkform Harvester
+1 Persistent Marshstalker
+1 Raze the Effigy
+1 Piper of the Swarm
+1 Patchwork Banner
+1 Twisted Sewer-Witch
+1 Silver-Fur Master
+1 Nezumi Bladeblesser
+1 Nezumi Prowler
+1 Shimmering Grotto
+1 Syr Konrad, the Grim
+1 Sticky Fingers
+1 Glittering Stockpile
+1 Vren, the Relentless
+1 Secluded Courtyard
+1 Three Tree City
+1 Gossip's Talent
+1 Valley Rotcaller
+1 Mad Ratter
+1 Fire Diamond
+1 Sol Ring
+1 Prismatic Lens
+1 Harvester of Misery
+1 Ogre Slumlord
+1 Chittering Witch
+1 Nashi, Searcher in the Dark
+1 Reliquary Tower
+1 Exotic Orchard
+1 Oliphaunt
+1 Smoldering Marsh
+1 Dismal Backwater
+12 Swamp
+1 Gloomlake Verge
+1 Blazemire Verge
+1 Spectral Snatcher
+1 Swiftwater Cliffs
+1 Soured Springs

@@ -1,0 +1,108 @@
+# Archidekt — Bracket 4 Galadriel, Light of Valinor
+# source: archidekt:9096268
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Galadriel, Light of Valinor
+
+Deck:
+1 Gilded Drake
+1 Boseiju, Who Endures
+1 Tropical Island
+1 Savannah
+1 Tundra
+1 Swords to Plowshares
+1 Hallowed Fountain
+1 Dryad Arbor
+1 Breeding Pool
+1 Otawara, Soaring City
+1 Fyndhorn Elves
+1 Gaea's Cradle
+1 Misty Rainforest
+1 Birds of Paradise
+1 Marsh Flats
+1 Flooded Strand
+1 Arid Mesa
+1 Command Tower
+1 Polluted Delta
+1 Temple Garden
+1 Verdant Catacombs
+1 Sol Ring
+1 Windswept Heath
+1 Scalding Tarn
+1 Crop Rotation
+1 Chord of Calling
+1 Wooded Foothills
+1 Noble Hierarch
+1 Selvala, Heart of the Wilds
+1 Finale of Devastation
+1 Delighted Halfling
+1 Urza's Saga
+1 Esper Sentinel
+1 Worldly Tutor
+1 Emiel the Blessed
+1 Chulane, Teller of Tales
+1 Kami of Whispered Hopes
+1 Gemstone Caverns
+1 Elvish Mystic
+1 Llanowar Elves
+1 Springheart Nantuko
+1 Charismatic Conqueror
+1 Path to Exile
+1 Yavimaya, Cradle of Growth
+1 Wood Elves
+1 Island
+1 Intruder Alarm
+1 Archdruid's Charm
+1 Kutzil, Malamet Exemplar
+1 Arbor Elf
+1 Eladamri's Call
+1 Ranger-Captain of Eos
+1 Reclamation Sage
+1 Faerie Artisans
+1 Koma, Cosmos Serpent
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Tireless Provisioner
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Sylvan Library
+1 Basking Broodscale
+1 Danny Pink
+1 Nissa, Resurgent Animist
+1 Wave Goodbye
+1 Green Sun's Zenith
+1 Craterhoof Behemoth
+1 Evolution Witness
+1 Glen Elendra Archmage
+1 Shrieking Drake
+1 Alchemist's Refuge
+1 Haywire Mite
+1 Plains
+1 Walking Ballista
+1 Elvish Spirit Guide
+1 Forest
+1 Cyclonic Rift
+1 Chrome Mox
+1 Arcane Denial
+1 Biomancer's Familiar
+1 Delay
+1 Coiling Oracle
+1 Sprout Swarm
+1 Flawless Maneuver
+1 Mystic Remora
+1 Kenrith's Transformation
+1 Eladamri, Korvecdal
+1 Yisan, the Wanderer Bard
+1 Cloud of Faeries
+1 Legolas's Quick Reflexes
+1 Galadriel's Dismissal
+1 Avacyn's Pilgrim
+1 Birthing Pod
+1 Akroma's Will
+1 Crystal Vein
+1 Lotus Petal
+1 Ancient Tomb
+1 City of Brass
+1 Exotic Orchard
+1 Cavern of Souls

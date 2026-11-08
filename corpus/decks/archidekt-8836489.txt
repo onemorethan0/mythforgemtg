@@ -1,0 +1,93 @@
+# Archidekt — Ygra, Behemoth of Bloomburrow
+# source: archidekt:8836489
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ygra, Eater of All
+
+Deck:
+1 Rite of Consumption
+1 Nature's Lore
+1 Bristlebud Farmer
+1 Innkeeper's Talent
+1 Fountainport
+1 Scavenger's Talent
+1 The Shire
+1 Woodland Cemetery
+1 Necroblossom Snarl
+1 Revitalizing Repast // Old-Growth Grove
+1 Grave Pact
+1 Peregrin Took
+1 Hazel's Brewmaster
+1 Toski, Bearer of Secrets
+1 Twilight Mire
+1 Deathcap Glade
+1 Castle Garenbrig
+1 Skullclamp
+10 Forest
+1 Talisman of Resilience
+1 Command Tower
+1 Sol Ring
+1 Season of Gathering
+1 Restless Cottage
+1 Ravenous Squirrel
+1 Mirkwood Bats
+1 Heroic Intervention
+1 Deadly Dispute
+1 Tower of the Magistrate
+1 Lazotep Quarry
+1 Miren, the Moaning Well
+1 Nuka-Cola Vending Machine
+1 Warren Soultrader
+1 Mycoloth
+1 Tel-Jilad Defiance
+1 Legolas's Quick Reflexes
+1 Overgrown Tomb
+1 Gyome, Master Chef
+1 Village Rites
+1 Mazirek, Kraul Death Priest
+1 Gilded Goose
+1 Experimental Confectioner
+1 Mandate of Abaddon
+1 Creeping Corrosion
+1 The Meathook Massacre
+1 Astarion's Thirst
+1 Rancor
+1 Braids, Arisen Nightmare
+1 Chatterfang, Squirrel General
+1 Academy Manufactor
+1 Viscera Seer
+1 Ashnod's Altar
+1 Witch's Oven
+1 Kill Switch
+1 Assassin's Trophy
+1 Beast Within
+1 Fade from History
+1 Abrupt Decay
+1 Tear Asunder
+1 Fell the Profane // Fell Mire
+1 Infernal Grasp
+7 Swamp
+1 Swamp
+1 Rogue's Passage
+1 Llanowar Wastes
+1 Mosswort Bridge
+1 Pitiless Carnage
+1 Manglehorn
+1 Camellia, the Seedmiser
+1 Cauldron Familiar
+1 Marionette Apprentice
+1 Oran-Rief, the Vastwood
+1 Thornvault Forager
+1 Sidisi, Undead Vizier
+1 Insidious Fungus
+1 Herd Heirloom
+1 Hollowmurk Siege
+1 Bitterblossom
+1 Zulaport Cutthroat
+1 Night of the Sweets' Revenge
+1 Unlucky Cabbage Merchant
+1 Biorhythm
+1 Utopia Sprawl
+1 Basking Broodscale

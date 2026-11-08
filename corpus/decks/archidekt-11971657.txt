@@ -1,0 +1,106 @@
+# Archidekt — Zurgo Stormrender [High Power]
+# source: archidekt:11971657
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zurgo Stormrender
+
+Deck:
+1 Necropotence
+1 Sacred Foundry
+1 Silent Clearing
+1 Luxury Suite
+1 Caves of Koilos
+1 Blood Crypt
+1 Command Tower
+1 Concealed Courtyard
+2 Swamp
+2 Mountain
+1 Plains
+1 Arid Mesa
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Vault of Champions
+1 Wooded Foothills
+1 Exotic Orchard
+1 Godless Shrine
+1 Urborg, Tomb of Yawgmoth
+1 Spectator Seating
+1 Marsh Flats
+1 Flooded Strand
+1 Polluted Delta
+1 Mana Confluence
+1 Scalding Tarn
+1 City of Brass
+1 Urza's Saga
+1 Prismatic Vista
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Imperial Seal
+1 Goblin Bombardment
+1 Viscera Seer
+1 Sol Ring
+1 Dark Ritual
+1 Mana Vault
+1 Lotus Petal
+1 Chain of Smog
+1 Sedgemoor Witch
+1 Blasting Station
+1 Archivist of Oghma
+1 Esper Sentinel
+1 Yawgmoth, Thran Physician
+1 Ocelot Pride
+1 Teferi's Protection
+1 Silence
+1 Grand Abolisher
+1 Deflecting Swat
+1 Pyroblast
+1 Red Elemental Blast
+1 Chrome Mox
+1 Sensei's Divining Top
+1 Vandalblast
+1 Deadly Rollick
+1 Toxic Deluge
+1 Demonic Consultation
+1 Wishclaw Talisman
+1 Tainted Pact
+1 Enlightened Tutor
+1 Phyrexian Tower
+1 High Market
+1 Lazotep Quarry
+1 Wheel of Fortune
+1 Blade of Selves
+1 Bitterblossom
+1 Skrelv's Hive
+1 Charismatic Conqueror
+1 Altar of Dementia
+1 Ashnod's Altar
+1 Tragic Slip
+1 Swords to Plowshares
+1 Phyrexian Altar
+1 Reconnaissance
+1 Talisman of Conviction
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Zulaport Cutthroat
+1 Abrade
+1 Mox Amber
+1 Defense Grid
+1 Saw in Half
+1 Loyal Apprentice
+1 Heat Shimmer
+1 The One Ring
+1 Mass Hysteria
+1 Diabolic Intent
+1 Ranger-Captain of Eos
+1 Recruiter of the Guard
+1 Loran of the Third Path
+1 Solitude
+1 The Meathook Massacre
+1 Skirk Prospector
+1 Thornbite Staff
+1 Krenko, Mob Boss
+1 Twinflame
+1 Dualcaster Mage
+1 Molten Duplication

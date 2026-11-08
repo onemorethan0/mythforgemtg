@@ -1,0 +1,98 @@
+# Archidekt — Are We Human or Archaeomancer
+# source: archidekt:293572
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Darien, King of Kjeldor
+
+Deck:
+1 Soul Warden
+1 Swords to Plowshares
+1 Blighted Steppe
+1 Pearl Medallion
+1 Nykthos, Shrine to Nyx
+1 Murder Investigation
+1 Sol Ring
+1 Ajani, Strength of the Pride
+1 Reconnaissance
+1 Test of Endurance
+1 Hall of Heliod's Generosity
+1 Skullclamp
+1 Throne of Eldraine
+1 High Market
+1 Horn of Gondor
+1 Miren, the Moaning Well
+1 Emeria, the Sky Ruin
+1 Three Tree City
+1 Finale of Glory
+1 Elesh Norn, Grand Cenobite
+1 Serra Ascendant
+1 Anointed Procession
+1 Aetherflux Reservoir
+1 Felidar Sovereign
+1 Tarnished Citadel
+1 Cathars' Crusade
+1 Blasting Station
+1 Heliod, Sun-Crowned
+1 Reverent Hoplite
+1 Call the Coppercoats
+1 Reliquary Tower
+1 Mangara, the Diplomat
+1 Keeper of the Accord
+1 Soul of Eternity
+1 Knight-Captain of Eos
+1 Esper Sentinel
+1 Mistveil Plains
+1 Ancient Tomb
+1 Auriok Champion
+1 Smothering Tithe
+1 Archangel of Thune
+1 Kjeldoran Outpost
+1 Academy Rector
+1 Resplendent Mentor
+1 Kor Haven
+1 Archaeomancer's Map
+1 Greymond, Avacyn's Stalwart
+1 Ajani's Welcome
+1 City of Brass
+1 Famished Paladin
+1 Fiend Hunter
+1 Proper Burial
+1 Flawless Maneuver
+1 Mondrak, Glory Dominus
+1 Forbidding Watchtower
+1 Myrel, Shield of Argive
+1 Recruiter of the Guard
+1 Nomad Stadium
+1 Deserted Temple
+1 Mother of Runes
+1 Visions of Glory
+1 Teferi's Protection
+1 Caretaker's Talent
+1 Haliya, Guided by Light
+1 The Wind Crystal
+1 Soul's Attendant
+1 Ranger-Captain of Eos
+1 Daru Encampment
+11 Plains
+1 Authority of the Consuls
+1 Gift of Immortality
+1 General Leo Cristophe
+1 Captain of the Watch
+1 Walking Ballista
+1 Trouble in Pairs
+1 Maze of Ith
+1 Knight of the White Orchid
+1 Sword of the Animist
+1 Eiganjo, Seat of the Empire
+1 Grand Coliseum
+1 Elspeth, Storm Slayer
+1 Linden, the Steadfast Queen
+1 Daxos, Blessed by the Sun
+1 Daru Warchief
+1 Wasteland
+1 Erode
+1 Path to Exile
+1 Arcane Lighthouse
+1 Liliana the Faultless

@@ -1,0 +1,78 @@
+# Archidekt — Kratos, God of Salt
+# source: archidekt:16431872
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kratos, God of War
+
+Deck:
+1 The Reaver Cleaver
+1 Mithril Coat
+1 Gornog, the Red Reaper
+1 Heartless Hidetsugu
+1 Sol Ring
+1 Alexios, Deimos of Kosmos
+1 Gratuitous Violence
+1 Fiery Emancipation
+1 Mjölnir, Storm Hammer
+1 Twinflame Tyrant
+1 Torbran, Thane of Red Fell
+1 Ruby Medallion
+1 Fiendish Duo
+1 Silent Arbiter
+1 Ragavan, Nimble Pilferer
+1 Rogue's Passage
+1 Tyrite Sanctum
+1 Descent into Avernus
+1 Ensnaring Bridge
+1 Razorkin Needlehead
+1 Humble Defector
+1 Fanatic of Mogis
+1 War Room
+1 Command Beacon
+1 Neheb, the Eternal
+1 Price of Progress
+1 Sunspine Lynx
+1 Valakut, the Molten Pinnacle
+1 Solphim, Mayhem Dominus
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Vandalblast
+1 Thrill of Possibility
+1 Untimely Malfunction
+1 Faithless Looting
+1 Blasphemous Act
+1 Shadowspear
+1 Jeska's Will
+1 Seize the Spotlight
+1 Commander's Plate
+1 City on Fire
+1 Curse of Opulence
+1 Magus of the Wheel
+1 Bolt Bend
+1 Magus of the Moon
+1 Screaming Nemesis
+1 Tibalt's Trickery
+1 Redirect Lightning
+1 Cool but Rude
+1 War's Toll
+1 Uphill Battle
+1 Powerbalance
+1 Inti, Seneschal of the Sun
+1 Disrupt Decorum
+1 Price of Glory
+1 Reverberate
+1 Smoke
+1 Bedlam
+1 Pyroblast
+1 Red Elemental Blast
+1 Arcane Signet
+31 Mountain
+1 Blood Moon
+1 Puppet Master, String Puller
+1 Mjölnir, Hammer of Thor
+1 Chaos Warp
+1 Professional Face-Breaker
+1 Winds of Change
+1 Urabrask the Hidden
+1 Kazuul, Tyrant of the Cliffs

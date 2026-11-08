@@ -1,0 +1,90 @@
+# Archidekt — Fluttershy's animal shelter
+# source: archidekt:16937981
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Fluttershy
+
+Deck:
+1 Wary Okapi
+10 Plains
+1 Cultivate
+1 Rampant Growth
+1 Explosive Vegetation
+1 Kazandu Mammoth // Kazandu Valley
+1 Loyal Guardian
+1 Command Tower
+1 Selesnya Sanctuary
+1 Myriad Landscape
+1 Mosswort Bridge
+1 Cockatrice
+1 Ornery Tumblewagg
+11 Forest
+1 Sol Ring
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Generous Gift
+1 Beast Within
+1 Luminous Broodmoth
+1 Badgermole
+1 Giant Beaver
+1 Wilson, Refined Grizzly
+1 Vernal Sovereign
+1 Eel-Hounds
+1 Joven's Ferrets
+1 Silverchase Fox
+1 Hippo-Cows
+1 Yannik, Scavenging Sentinel
+1 Flumph
+1 Trained Jackal
+1 Basking Broodscale
+1 Restless Prairie
+1 Lumbering Megasloth
+1 Scrounging Bandar
+1 Nimble Mongoose
+1 Cheeky House-Mouse // Squeak By
+1 Sledding Otter-Penguin
+1 Tender Wildguide
+1 Bakersbane Duo
+1 Squirrel Dealer
+1 Battering Krasis
+1 Bridled Bighorn
+1 Sedge Scorpion
+1 Tower Winder
+1 Pale Recluse
+1 Tundra Wolves
+1 Deepwood Wolverine
+1 Yasharn, Implacable Earth
+1 Armored Armadillo
+1 Sunpetal Grove
+1 Horizon Canopy
+1 Krosan Verge
+1 Fortified Village
+1 Canopy Vista
+1 Sungrass Prairie
+1 Temple of Plenty
+1 Karn's Bastion
+1 Rabaroo Troop
+1 Ancient Adamantoise
+1 Driftgloom Coyote
+1 Treeshaker Chimera
+1 Crocanura
+1 Jolly Gerbils
+1 Griffin Sentinel
+1 Blessed Hippogriff // Tyr's Blessing
+1 Domesticated Mammoth
+1 Barry's Land
+1 Momo, Playful Pet
+1 Curious Farm Animals
+1 Appa, Loyal Sky Bison
+1 Gnarlid Colony
+1 Uktabi Kong
+1 Capricopian
+1 Hungry Hungry Heifer
+1 Guardian Sunmare
+1 Champion of the Hareish
+1 Applejack
+1 Ridgescale Tusker
+1 Pet Avengers
+1 Tarpan

@@ -1,0 +1,92 @@
+# Archidekt — Moonchild ~Primer~ Uyo, Silent Prophet B4
+# source: archidekt:13532115
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Uyo, Silent Prophet
+
+Deck:
+1 Apprentice Wizard
+1 Frantic Search
+1 Atemsis, All-Seeing
+3 Island
+1 Negate
+1 Myriad Landscape
+1 Imprisoned in the Moon
+15 Island
+1 Time Stretch
+1 Rush of Knowledge
+1 Cryptic Command
+1 Narset's Reversal
+1 Mystic Sanctuary
+1 Aetherspouts
+1 Triskaidekaphile
+1 March of Swirling Mist
+1 Lunar Insight
+1 Sink into Stupor // Soporific Springs
+1 Azami, Lady of Scrolls
+1 Temporal Manipulation
+1 Consecrated Sphinx
+1 Pongify
+1 Aetherize
+1 Counterspell
+1 Gauntlet of Power
+1 Swan Song
+1 Lighthouse Chronologist
+1 Time Warp
+1 Arcane Signet
+1 Force of Negation
+1 Nykthos, Shrine to Nyx
+1 Wan Shi Tong, Librarian
+1 Mana Vault
+1 Gemstone Caverns
+1 Chrome Mox
+1 Mox Opal
+1 Sol Ring
+1 The One Ring
+1 Ledger Shredder
+1 Expropriate
+1 Island
+1 Lotus Petal
+1 Mox Diamond
+1 Gush
+1 Arcanis the Omnipotent
+1 Faerie Mastermind
+1 Aminatou's Augury
+1 Mystic Remora
+1 Rhystic Study
+1 High Tide
+1 Psychic Possession
+1 Island
+1 Wandering Archaic // Explore the Vastlands
+1 Propaganda
+1 Cyclonic Rift
+1 Fierce Guardianship
+1 Extraplanar Lens
+1 Uncover the Moon-Letters
+1 Ancient Tomb
+1 Mystical Tutor
+1 Force of Will
+1 Omniscience
+1 Dream Halls
+1 Mind Over Matter
+1 Twinning Staff
+1 Teferi's Ageless Insight
+1 Jace's Archivist
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Island
+1 Parallax Tide
+1 Copy Artifact
+1 Sceptre of Eternal Glory
+1 Gilded Lotus
+1 Commandeer
+1 Defense Grid
+1 Time Spiral
+1 The Unagi of Kyoshi Island
+1 Nexus of Fate
+1 Foil
+1 Otawara, Soaring City
+1 Mana Drain
+1 Mindbreak Trap
+1 Copy Enchantment

@@ -1,0 +1,101 @@
+# Archidekt — Liarra Festival
+# source: archidekt:11704604
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Gallia of the Endless Dance
+1 Sierra, Nuka's Biggest Fan
+
+Deck:
+1 Master of Ceremonies
+4 Plains
+1 Mountain
+1 Seize the Spotlight
+1 Moment's Peace
+1 Irreverent Revelers
+1 Eternal Witness
+1 Champions of Minas Tirith
+1 Ellywick Tumblestrum
+1 Gylwain, Casting Director
+1 Bountiful Promenade
+1 Karplusan Forest
+1 Spire Garden
+1 Jetmir's Garden
+1 Cabaretti Courtyard
+5 Forest
+1 Elspeth Resplendent
+1 Fabled Passage
+1 Grove of the Burnwillows
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Dolmen Gate
+1 Rootbound Crag
+1 Rootrider Faun
+1 Sacred Foundry
+1 Skewer Slinger
+1 Branchloft Pathway // Boulderloft Pathway
+1 Brushland
+1 Welcoming Vampire
+1 Destructive Revelry
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Mentor of the Meek
+1 Life of the Party
+1 Gala Greeters
+1 Rocco, Street Chef
+1 Yisan, the Wanderer Bard
+1 Thrill of Possibility
+1 Satyr Wayfinder
+1 Augur of Autumn
+1 Cathartic Reunion
+1 Nature's Chant
+1 Temple Garden
+1 Wooded Foothills
+1 Arid Mesa
+1 Windswept Heath
+1 Reconnaissance
+1 Canopy Vista
+1 Cinder Glade
+1 Spectator Seating
+1 Halana and Alena, Partners
+1 Leinore, Autumn Sovereign
+1 Selvala, Explorer Returned
+1 Harmonize
+1 Gilraen, Dúnedain Protector
+1 Phelia, Exuberant Shepherd
+1 Rockfall Vale
+1 Gilded Goose
+1 Grand Crescendo
+1 Return to Nature
+1 Rip Apart
+1 Trostani, Three Whispers
+1 Gisela, Blade of Goldnight
+1 Needleverge Pathway // Pillarverge Pathway
+1 Command Tower
+1 Tendershoot Dryad
+1 Mog, Moogle Warrior
+1 Springleaf Drum
+1 Taurean Mauler
+1 Aerith, Last Ancient
+1 Cait Sith, Fortune Teller
+1 Stroke of Midnight
+1 Clever Concealment
+1 Aerith Gainsborough
+1 Reclamation Sage
+1 Chord of Calling
+1 Mogg War Marshal
+1 Exotic Orchard
+1 Morningtide's Light
+1 Dusk // Dawn
+1 Tifa, Martial Artist
+1 Elven Chorus
+1 Joined Researchers // Secret Rendezvous
+1 Stomping Ground
+1 Sunpetal Grove
+1 Battlefield Forge
+1 Peregrin Took
+1 Gallia, the Merrymaker
+1 Jennifer Walters // The Sensational She-Hulk
+1 Dancing from Dark to Dawn
+1 Sungrass Prairie
+1 Delighted Halfling
+1 Sylvan Library

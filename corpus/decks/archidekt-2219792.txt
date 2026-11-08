@@ -1,0 +1,108 @@
+# Archidekt — Dimir Artifacts
+# source: archidekt:2219792
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Rona, Disciple of Gix
+
+Deck:
+1 Tale's End
+1 Otawara, Soaring City
+1 Scrap Trawler
+1 Bojuka Bog
+1 Fabricate
+1 Muddle the Mixture
+1 Command Tower
+1 Sol Ring
+1 Tezzeret the Seeker
+1 Darksteel Citadel
+1 Talisman of Dominance
+1 Seat of the Synod
+1 Morphic Pool
+1 Dimir Signet
+1 Etherium Sculptor
+1 Watery Grave
+1 Isochron Scepter
+1 Mystic Sanctuary
+1 Reliquary Tower
+1 Mistvault Bridge
+1 Infernal Grasp
+1 Mox Opal
+1 Mana Vault
+1 Aetherflux Reservoir
+1 Myr Retriever
+1 Cloud Key
+1 Fierce Guardianship
+1 Geist of Saint Thalia
+1 Swamp
+1 Flooded Strand
+1 Arcane Denial
+1 Undercity Sewers
+1 Withering Torment
+1 Sensei's Divining Top
+1 Underground Sea
+1 Tribute Mage
+1 Force of Negation
+1 Island
+1 Underground River
+1 Clearwater Pathway // Murkwater Pathway
+1 Shipwreck Marsh
+1 Grim Monolith
+1 Silas Renn, Seeker Adept
+1 Mystic Forge
+1 Mox Diamond
+1 Cyclonic Rift
+1 Mishra's Bauble
+1 The One Ring
+1 Ad Nauseam
+1 Dauthi Voidwalker
+1 Aether Spellbomb
+1 Gemstone Caverns
+1 Baleful Strix
+1 Dramatic Reversal
+1 The Reality Chip
+1 Opposition Agent
+1 Inventors' Fair
+1 Nihil Spellbomb
+1 Brainstorm
+1 Laboratory Maniac
+1 Rhystic Study
+1 Winter, Cursed Rider
+1 Polluted Delta
+1 Pact of Negation
+1 Mana Drain
+1 Resculpt
+1 Foundry Inspector
+1 Bolas's Citadel
+1 Jhoira's Familiar
+1 Demonic Consultation
+1 Trinket Mage
+1 Thassa's Oracle
+1 Urza's Saga
+1 Imperial Seal
+1 Chrome Mox
+1 Drowned Catacomb
+1 Academy Ruins
+1 Vault of Whispers
+1 Vampiric Tutor
+1 Tezzeret, Cruel Captain
+1 Demonic Tutor
+1 Arcane Signet
+1 Fellwar Stone
+1 Fateful Discovery
+1 Snow-Covered Island
+1 Marsh Flats
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Sink into Stupor // Soporific Springs
+1 Force of Will
+1 Mana Confluence
+1 Urza, Lord High Artificer
+1 Urza's Bauble
+1 Snow-Covered Swamp
+1 Cephalid Coliseum
+1 Takenuma, Abandoned Mire
+1 Tainted Pact
+1 City of Brass
+1 Bilbo, Thief in the Night

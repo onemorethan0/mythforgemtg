@@ -1,0 +1,105 @@
+# Archidekt — Build Your Own Ultima
+# source: archidekt:13082856
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Noctis, Prince of Lucis
+
+Deck:
+1 Academy Ruins
+1 Hallowed Fountain
+1 Adarkar Wastes
+1 Bojuka Bog
+1 Underground River
+1 Flooded Strand
+1 Dimir Signet
+1 Etherium Sculptor
+1 Mishra's Bauble
+1 Biotransference
+1 Thought Monitor
+1 Vedalken Archmage
+1 Watery Grave
+1 Godless Shrine
+1 Sea of Clouds
+1 Morphic Pool
+1 Vault of Champions
+1 Underground Sea
+1 Scrubland
+1 Tundra
+1 Polluted Delta
+1 Command Tower
+1 Kappa Cannoneer
+1 Wayfarer's Bauble
+1 Aetherflux Reservoir
+1 Arcane Signet
+1 Tormod's Crypt
+1 Azorius Signet
+1 Secrets of the Dead
+1 Careful Study
+1 Seat of the Synod
+1 Gifts Ungiven
+1 Swords to Plowshares
+1 Swamp
+1 Spire of Industry
+1 Wasteland
+1 Hex Parasite
+1 Path to Exile
+1 Demolition Field
+1 Stubborn Denial
+1 Forensic Gadgeteer
+1 Frantic Search
+1 Ponder
+1 Palantír of Orthanc
+1 Cloud Key
+1 Rise and Shine
+1 Fierce Guardianship
+1 Cyclonic Rift
+1 Smothering Tithe
+1 Teferi's Protection
+1 Vexing Bauble
+1 Sai, Master Thopterist
+1 Field of the Dead
+1 Inventors' Fair
+1 Night's Whisper
+1 Anguished Unmaking
+1 O'aka, Traveling Merchant
+1 Agent of the Iron Throne
+1 Voice of Victory
+1 Rhystic Study
+3 Plains
+1 Solemnity
+1 Unidentified Hovership
+1 Damn
+1 Krark-Clan Ironworks
+1 Mirrodin Besieged
+1 Repurposing Bay
+1 Chalice of the Void
+1 Walking Ballista
+1 Lotus Petal
+1 Counterspell
+1 Dovin's Veto
+1 Reshape
+1 An Offer You Can't Refuse
+1 Marketback Walker
+1 Midgar, City of Mako // Reactor Raid
+1 Stroke of Midnight
+1 Fabricate
+1 Grand Abolisher
+1 Golbez, Crystal Collector
+2 Island
+1 Power Conduit
+1 Mystic Forge
+1 Undercity Sewers
+1 Meticulous Archive
+1 Shadowy Backstreet
+1 Raffine's Tower
+1 Urza's Bauble
+1 Cryogen Relic
+1 Marionette Apprentice
+1 Nesting Grounds
+1 Sol Ring
+1 Ichor Wellspring
+1 Talisman of Hierarchy
+1 Chrome Mox
+1 Mox Opal

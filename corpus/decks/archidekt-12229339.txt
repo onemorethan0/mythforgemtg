@@ -1,0 +1,107 @@
+# Archidekt — 🐟 Eluge cEDH 🐟
+# source: archidekt:12229339
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Eluge, the Shoreless Sea
+
+Deck:
+2 Island
+1 Svyelunite Temple
+1 Cephalid Coliseum
+1 Archmage Emeritus
+1 Hide on the Ceiling
+1 Narset, Parter of Veils
+1 Island
+1 Minamo, School at Water's Edge
+1 Sink into Stupor // Soporific Springs
+1 Polluted Delta
+1 Mox Opal
+1 Saprazzan Skerry
+1 Temporal Manipulation
+1 Lotus Petal
+1 Harbinger of the Seas
+1 Swan Song
+1 Rhystic Study
+1 Gemstone Caverns
+1 Mystic Remora
+1 Force of Negation
+1 Fellwar Stone
+1 Inspiration from Beyond
+1 Misty Rainforest
+1 Time Spiral
+1 Counterspell
+1 Jeweled Amulet
+1 Solve the Equation
+1 Misdirection
+1 Arcane Signet
+1 Mystical Tutor
+1 Merchant Scroll
+1 Step Through
+1 Spellseeker
+1 Capture of Jingzhou
+1 Personal Tutor
+1 Everdream
+1 Spider-Sense
+1 Scalding Tarn
+1 Mana Drain
+1 Faerie Mastermind
+1 Silundi Vision // Silundi Isle
+1 Snap
+1 Muddle the Mixture
+1 Island
+1 Island
+1 Island
+1 Island
+1 Island
+1 Cyclonic Rift
+1 Flusterstorm
+1 Mindbreak Trap
+1 Mystic Sanctuary
+1 Otawara, Soaring City
+1 Sapphire Medallion
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Time Warp
+1 Gifts Ungiven
+1 Tempted by the Oriq
+1 An Offer You Can't Refuse
+1 Fierce Guardianship
+1 Chrome Mox
+1 Delay
+1 Ancient Tomb
+1 Strix Serenade
+1 Force of Will
+1 Narset's Reversal
+1 High Tide
+1 Volatile Stormdrake
+1 Sol Ring
+1 The One Ring
+1 Cursed Totem
+1 Wan Shi Tong, Librarian
+1 Kitsa, Otterball Elite
+1 Whir of Invention
+1 Stock Up
+1 Imposter Mech
+1 Nexus of Fate
+1 Island
+1 Flash Photography
+1 Grafdigger's Cage
+1 Island
+1 Enter the Infinite
+1 Isochron Scepter
+1 Brainstorm
+1 Pulse of the Grid
+1 Steal Enchantment
+1 Mockingbird
+1 Island
+1 Flooded Strand
+1 Seat of the Synod
+1 Into the Flood Maw
+1 Damping Sphere
+1 Samut, Tyrant of Naktamun
+1 Chain of Vapor
+1 Copy Artifact
+1 Commandeer
+1 Island
+1 Island

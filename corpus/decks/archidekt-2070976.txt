@@ -1,0 +1,93 @@
+# Archidekt — Urza, Magic's True Villain - Sort By Tag
+# source: archidekt:2070976
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Muddle the Mixture
+1 Fomori Vault
+1 Tezzeret the Seeker
+1 Reshape
+1 Archway of Innovation
+1 Collector's Vault
+1 Season of Weaving
+1 Howling Mine
+1 Sol Ring
+1 Inventors' Fair
+1 Deadeye Navigator
+1 Tolaria West
+1 Solve the Equation
+1 An Offer You Can't Refuse
+1 Counterspell
+1 Swiftfoot Boots
+1 Conjurer's Closet
+1 Fabricate
+1 Force of Negation
+1 Rings of Brighthearth
+1 Sapphire Medallion
+1 Basalt Monolith
+1 Rhystic Study
+1 Mystical Tutor
+1 Phyrexian Metamorph
+1 Mana Drain
+1 Winter Moon
+1 Repurposing Bay
+1 Three Steps Ahead
+1 Mana Vault
+1 Nim Deathmantle
+1 Ashnod's Altar
+1 Dramatic Reversal
+1 Forensic Gadgeteer
+1 Isochron Scepter
+1 Whir of Invention
+1 Voyager Staff
+1 Displacer Kitten
+1 Rapid Hybridization
+9 Island
+9 Island
+1 Strix Serenade
+1 Trophy Mage
+1 Moonsilver Key
+1 Vexing Bauble
+1 Worldwalker Helm
+1 Slip Out the Back
+1 Academy Ruins
+1 Otawara, Soaring City
+1 Brainstorm
+1 The One Ring
+1 Spider-Sense
+1 Gifts Ungiven
+1 Negate
+1 Hullbreaker Horror
+1 Mistrise Village
+1 Sensei's Divining Top
+1 Lotus Petal
+1 Static Orb
+1 Urza's Saga
+1 Narset's Reversal
+1 Emergence Zone
+1 Command Beacon
+1 Scour for Scrap
+1 Cyclonic Rift
+1 Force of Will
+1 Chrome Mox
+1 Miscast
+1 High Tide
+1 Arcane Denial
+1 Pact of Negation
+1 Proteus Staff
+1 Tormod's Crypt
+1 Grafdigger's Cage
+1 Peregrine Drake
+1 Stone of Erech
+1 Seat of the Synod
+1 Lithoform Engine
+1 Unwinding Clock
+1 The Guardian of Forever
+1 Spellskite
+1 Winter Orb
+1 Daily Bugle Newspaper
+1 Candlekeep Sage

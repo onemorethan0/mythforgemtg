@@ -1,0 +1,86 @@
+# Archidekt — Jawsome
+# source: archidekt:16535218
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jaws, Relentless Predator
+
+Deck:
+1 Inventors' Fair
+1 Mithril Coat
+23 Mountain
+1 Warp World
+1 Spiked Corridor // Torture Pit
+1 Neheb, the Eternal
+1 Great Furnace
+1 Ragavan, Nimble Pilferer
+1 Krark-Clan Shaman
+1 Weftstalker Ardent
+1 Crime Novelist
+1 Untimely Malfunction
+1 Adaptive Omnitool
+1 Roaming Throne
+1 Radiant Lotus
+1 Nettlecyst
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Sol Ring
+1 Rogue's Passage
+1 Krark-Clan Ironworks
+1 Treasure Vault
+1 Reckless Fireweaver
+1 Arcbound Ravager
+1 Bolt Bend
+1 Smoke Bomb
+1 Silver Shroud Costume
+1 Jeska's Will
+1 Wyll's Reversal
+1 Gamble
+1 Reckless Handling
+1 Simian Spirit Guide
+1 Gogo, Mysterious Mime
+1 Gemstone Caverns
+1 Two-Handed Axe // Sweeping Cleave
+1 Seething Song
+1 Deflecting Swat
+1 Fire Nation Palace
+1 Urza's Saga
+1 Return the Favor
+1 Tibalt's Trickery
+1 Torbran, Thane of Red Fell
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Inspiring Statuary
+1 Audacious Reshapers
+1 The Reaver Cleaver
+1 Descent into Avernus
+1 Shinka, the Bloodsoaked Keep
+1 Ancient Tomb
+1 Redirect Lightning
+1 Fomori Vault
+1 Indomitable Creativity
+1 Over the Top
+1 Pulverize
+1 Fated Firepower
+1 War Room
+1 Ingenious Artillerist
+1 Isengard Unleashed
+1 Doc Ock's Tentacles
+1 Ruby Medallion
+1 Vessel of Volatility
+1 Reckless Barbarian
+1 Generous Plunderer
+1 Saheeli's Directive
+1 _____ Goblin
+1 Mana Vault
+1 Chandra's Ignition
+1 Extruder
+1 Aether Revolt
+1 Sundering Eruption // Volcanic Fissure
+1 Strike It Rich
+1 Meltdown
+1 Knuckles the Echidna
+1 Gonti's Aether Heart
+1 Pinnacle Monk // Mystic Peak
+1 Mechanized Warfare
+1 Darksteel Citadel
+1 Tarrian's Soulcleaver

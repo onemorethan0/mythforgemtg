@@ -1,0 +1,98 @@
+# Archidekt — Sythis, Harvest´s Hand
+# source: archidekt:5251090
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sythis, Harvest's Hand
+
+Deck:
+1 Static Prison
+1 Argothian Enchantress
+1 Razorverge Thicket
+1 Nykthos, Shrine to Nyx
+1 Overgrown Farmland
+1 Exploration
+1 Command Tower
+1 Temple Garden
+1 Brushland
+1 Blind Obedience
+1 Setessan Champion
+1 Alseid of Life's Bounty
+1 Enchantress's Presence
+1 Sterling Grove
+1 Sanctum Weaver
+1 Kenrith's Transformation
+1 Wild Growth
+1 Windswept Heath
+1 Hall of Heliod's Generosity
+1 Esper Sentinel
+1 Aura of Silence
+1 Serra's Sanctum
+1 Horizon Canopy
+1 Nature's Chosen
+1 Land Tax
+1 Fertile Ground
+1 Earthcraft
+1 Sheltered by Ghosts
+1 Darksteel Mutation
+1 Ancient Tomb
+6 Snow-Covered Forest
+6 Snow-Covered Plains
+1 On Thin Ice
+1 Overgrowth
+1 Mesa Enchantress
+1 Utopia Sprawl
+1 Hushwood Verge
+1 Verduran Enchantress
+1 Dawn's Truce
+1 Teferi's Protection
+1 Ethereal Armor
+1 Heroic Intervention
+1 Gaea's Touch
+1 Ghostly Prison
+1 Concordant Crossroads
+1 Reliquary Tower
+1 Canopy Vista
+1 Clever Concealment
+1 Carpet of Flowers
+1 Dryad of the Ilysian Grove
+1 Deserted Temple
+1 Boseiju, Who Endures
+1 Prismatic Vista
+1 Open the Armory
+1 Yavimaya, Cradle of Growth
+1 Birds of Paradise
+1 Heliod, Sun-Crowned
+1 Wolfwillow Haven
+1 Trickster's Elk
+1 Elvish Spirit Guide
+1 Ghostly Dancers
+1 Llanowar Elves
+1 Burgeoning
+1 Helm of the Gods
+1 Eidolon of Blossoms
+1 Hallowed Haunting
+1 Smothering Tithe
+1 Archon of Sun's Grace
+1 Elephant Grass
+1 Solitary Confinement
+1 Glacial Chasm
+1 Swords to Plowshares
+1 Sylvan Library
+1 Aura Shards
+1 Rancor
+1 Authority of the Consuls
+1 Grasp of Fate
+1 Satyr Enchanter
+1 Sigil of the Empty Throne
+1 Flickering Ward
+1 Crop Rotation
+1 Root Maze
+1 Elvish Mystic
+1 Brilliant Wings
+1 Seal of Primordium
+1 Gleaming Splendor
+1 Stony Silence
+1 Sunpetal Grove
+1 Bountiful Promenade

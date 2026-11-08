@@ -1,0 +1,104 @@
+# Archidekt — Jimmy's Etali | Extra Turns #62
+# source: archidekt:11819137
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+
+Deck:
+1 Sol Ring
+1 Guardian Project
+1 Orthion, Hero of Lavabrink
+1 Molten Duplication
+1 Twinflame
+1 Jaxis, the Troublemaker
+1 Heat Shimmer
+1 Rionya, Fire Dancer
+1 Cultivate
+1 Delina, Wild Mage
+1 Temur Sabertooth
+1 Nature's Lore
+1 Boseiju, Who Endures
+1 Yavimaya, Cradle of Growth
+1 Mosswort Bridge
+1 Hellkite Courser
+1 Wild Growth
+1 Farseek
+1 Goblin Anarchomancer
+1 Ancient Tomb
+1 Sakura-Tribe Elder
+1 Nalfeshnee
+1 Treasonous Ogre
+1 Fanatic of Rhonas
+1 Hunting Velociraptor
+1 Wild-Magic Sorcerer
+1 Springheart Nantuko
+1 Disciple of Freyalise // Garden of Freyalise
+1 Somberwald Sage
+1 Kessig Wolf Run
+1 Kogla and Yidaro
+1 Heroic Intervention
+1 Noxious Revival
+1 Return of the Wildspeaker
+1 Force of Vigor
+1 Wheel of Misfortune
+1 Flare of Duplication
+1 Tibalt's Trickery
+1 Valakut Awakening // Valakut Stoneforge
+1 Command Beacon
+1 Temple of the False God
+1 Shifting Woodland
+1 Mirrorpool
+1 Nykthos, Shrine to Nyx
+1 Sanctum of Eternity
+1 Beast Within
+1 Blasphemous Act
+1 Three Visits
+1 Escape to the Wilds
+1 Rishkar's Expertise
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Chandra's Ignition
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Return to Nature
+1 Vandalblast
+1 Urza's Saga
+1 Arena of Glory
+1 Cursed Mirror
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Garruk's Uprising
+1 Helm of the Host
+1 Pair o' Dice Lost
+1 Minsc & Boo, Timeless Heroes
+1 Sylvan Library
+1 Call Forth the Tempest
+1 Sword of Hearth and Home
+1 Castle Garenbrig
+1 Lightning Greaves
+1 Stomping Ground
+1 Wooded Foothills
+1 Prismatic Vista
+1 Command Tower
+1 Spire Garden
+3 Forest
+1 Myriad Landscape
+1 Sheltered Thicket
+1 Cavern of Souls
+1 Commercial District
+1 Professional Face-Breaker
+1 The Great Henge
+3 Mountain
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Momentous Fall
+1 Season of Gathering
+1 Stump Stomp // Burnwillow Clearing
+1 Utopia Sprawl
+1 Staff of Eden, Vault's Key
+1 Blade of Selves
+1 Shaman of Forgotten Ways
+1 Spiteful Banditry
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Path of the Pyromancer
+1 Mana Geyser
+1 Yavimaya Hollow
+1 Strip Mine

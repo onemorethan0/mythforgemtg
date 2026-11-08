@@ -1,0 +1,104 @@
+# Archidekt — Glarb in all his Glory [Bracket 4]
+# source: archidekt:13372945
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Glarb, Calamity's Augur
+
+Deck:
+1 Reanimate
+1 Vampiric Tutor
+1 Consecrated Sphinx
+1 Dread Return
+1 Animate Dead
+1 Doom Whisperer
+1 Buried Alive
+1 Razaketh, the Foulblooded
+1 Entomb
+1 Overlord of the Balemurk
+1 Bolas's Citadel
+1 Muldrotha, the Gravetide
+1 Teval, the Balanced Scale
+1 Exhume
+1 Ramunap Excavator
+1 Azusa, Lost but Seeking
+1 Tatyova, Benthic Druid
+1 The Gitrog Monster
+1 Aesi, Tyrant of Gyre Strait
+1 Six
+1 Delighted Halfling
+1 Birds of Paradise
+1 Elves of Deep Shadow
+1 Utopia Sprawl
+1 Underrealm Lich
+1 Unmarked Grave
+1 Overwhelming Remorse
+1 Dakmor Salvage
+1 Life from the Loam
+1 Rhystic Study
+1 Lotus Petal
+1 Demonic Tutor
+1 Mystic Remora
+1 Elvish Spirit Guide
+1 Fierce Guardianship
+1 Exploration
+1 Yavimaya Coast
+1 Cyclonic Rift
+1 Mistrise Village
+1 The One Ring
+1 Command Tower
+1 Watery Grave
+1 Breeding Pool
+1 Overgrown Tomb
+1 Dryad of the Ilysian Grove
+1 Verdant Catacombs
+1 Hinterland Harbor
+1 Culling Ritual
+1 Misty Rainforest
+1 Polluted Delta
+1 Hedge Maze
+1 Undergrowth Stadium
+1 Underground Mortuary
+1 Shipwreck Marsh
+2 Island
+1 Deathcap Glade
+1 Gloomlake Verge
+1 Woodland Cemetery
+1 Zagoth Triome
+3 Swamp
+1 Drowned Catacomb
+1 Undercity Sewers
+1 Fabled Passage
+1 Underground Sea
+1 Rejuvenating Springs
+1 Llanowar Wastes
+1 Dreamroot Cascade
+1 Bayou
+1 Willowrush Verge
+1 Tropical Island
+2 Forest
+1 Underground River
+1 Wastewood Verge
+1 Platinum Angel
+1 Mana Drain
+1 Narcomoeba
+1 Crucible of Worlds
+1 Glacierwood Siege
+1 Ashnod's Altar
+1 Ancient Tomb
+1 Food Chain
+1 Valgavoth, Terror Eater
+1 Thassa's Oracle
+1 Vedalken Orrery
+1 Eternal Scourge
+1 Dark Ritual
+1 Beseech the Queen
+1 Displacer Kitten
+1 Eternal Witness
+1 Phyrexian Altar
+1 Mystical Tutor
+1 Sol Ring
+1 Toxic Deluge
+1 Aetherflux Reservoir
+1 Seal of Primordium

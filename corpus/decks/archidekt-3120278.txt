@@ -1,0 +1,108 @@
+# Archidekt — That deck that my friends hate
+# source: archidekt:3120278
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Satoru Umezawa
+
+Deck:
+1 Sign in Blood
+1 Propaganda
+1 Dimir Aqueduct
+1 Swiftfoot Boots
+1 Exotic Orchard
+1 Reliquary Tower
+1 Sol Ring
+1 Aetherize
+1 Gudul Lurker
+1 Baleful Mastery
+1 Witness Protection
+1 Wayfarer's Bauble
+1 Spectral Sailor
+1 Faerie Seer
+1 Baleful Strix
+1 Rogue's Passage
+1 Island
+1 Grim Tutor
+1 Dimir Signet
+1 Arcane Signet
+1 Thousand-Faced Shadow
+1 Changeling Outcast
+1 Fellwar Stone
+1 Vorpal Sword
+1 Opposition Agent
+1 Lightning Greaves
+1 Sunken Hollow
+1 Dowsing Dagger // Lost Vale
+1 Talisman of Dominance
+1 Sakashima the Impostor
+1 Void Winnower
+1 Consecrated Sphinx
+1 Whip of Erebos
+1 Tainted Isle
+1 Watery Grave
+1 Rhystic Study
+1 Cyclonic Rift
+1 Cabal Coffers
+1 Urborg, Tomb of Yawgmoth
+1 Infernal Grasp
+1 Jin-Gitaxias, Progress Tyrant
+1 Vilis, Broker of Blood
+1 Jin-Gitaxias, Core Augur
+1 Hullbreaker Horror
+1 Sire of Stagnation
+1 Sheoldred, Whispering One
+1 Ancient Silver Dragon
+1 Arcane Lighthouse
+1 Snow-Covered Swamp
+1 Underground River
+1 Thought Vessel
+1 Deadly Rollick
+1 Notion Thief
+1 Gingerbrute
+1 Blightsteel Colossus
+1 Command Tower
+1 Island
+1 Choked Estuary
+1 Darkwater Catacombs
+1 Myriad Landscape
+1 Swamp
+1 Bojuka Bog
+1 Swamp
+1 Swamp
+1 Swamp
+1 Island
+1 Swamp
+1 Island
+1 Island
+1 Swamp
+1 Island
+1 Drowned Catacomb
+1 Spawning Kraken
+1 Ornithopter
+1 Slither Blade
+1 Expedition Map
+1 Glasspool Mimic // Glasspool Shore
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Urza's Cave
+1 Sink into Stupor // Soporific Springs
+1 Swamp
+1 Necropotence
+1 Gloomlake Verge
+1 Satoru, the Infiltrator
+1 Faerie Mastermind
+1 Toxic Deluge
+1 Swan Song
+1 Ghostly Pilferer
+1 Counterspell
+1 Sun Quan, Lord of Wu
+1 Reanimate
+1 Mystic Remora
+1 It That Betrays
+1 Withering Torment
+1 Dark Ritual
+1 Filter Out
+1 Island
+1 Toxrill, the Corrosive
+1 Starwinder

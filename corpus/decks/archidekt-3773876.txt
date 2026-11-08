@@ -1,0 +1,96 @@
+# Archidekt — Ashaya, The King of Infinite Mana. -Combo
+# source: archidekt:3773876
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ashaya, Soul of the Wild
+
+Deck:
+1 Ancient Greenwarden
+1 Temur Sabertooth
+1 Lotus Cobra
+1 Tireless Provisioner
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Heroic Intervention
+1 Nylea, Keen-Eyed
+1 Springheart Nantuko
+1 Magus of the Candelabra
+1 Wild Growth
+1 War Room
+1 Scavenger Grounds
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Quirion Ranger
+1 Prismatic Vista
+1 Ba Sing Se
+13 Forest
+1 Birds of Paradise
+1 Veil of Summer
+1 Chord of Calling
+1 Deserted Temple
+1 Emerald Medallion
+1 Fountainport
+1 Mirri's Guile
+1 Misty Rainforest
+1 Shaman of Forgotten Ways
+1 Sylvan Library
+1 Verdant Catacombs
+1 Elvish Mystic
+1 Dryad Arbor
+1 Talon Gates of Madara
+1 Evendo, Waking Haven
+1 Bushwhack
+1 Last March of the Ents
+1 Glacial Chasm
+1 Arbor Elf
+1 Scryb Ranger
+1 Leyline of Abundance
+1 Silverback Elder
+1 Constant Mists
+1 Sylvan Safekeeper
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Endurance
+1 Sowing Mycospawn
+1 Lightning Greaves
+1 Thespian's Stage
+1 Tireless Tracker
+1 Foundation Breaker
+1 Disciple of Freyalise // Garden of Freyalise
+1 Nissa, Who Shakes the World
+1 Awaken the Woods
+1 Kogla, the Titan Ape
+1 Finale of Devastation
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Eternal Witness
+1 Crop Rotation
+1 Avenger of Zendikar
+1 Fabled Passage
+1 Yavimaya, Cradle of Growth
+1 Once Upon a Time
+1 Reclamation Sage
+1 Famished Worldsire
+1 Shifting Woodland
+1 Windswept Heath
+1 Seedborn Muse
+1 Nissa, Resurgent Animist
+1 Archdruid's Charm
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Soulstone Sanctuary
+1 Shang-Chi, Master of Kung Fu
+1 Field of the Dead
+1 Nykthos, Shrine to Nyx
+1 Lifestream's Blessing
+1 Fyndhorn Elves
+1 Llanowar Elves
+1 Elven Passage
+1 Formidable Speaker
+1 Selvala, Heart of the Wilds
+1 Omnath, Locus of Mana
+1 Traveling Chocobo
+1 Badgermole Cub
+1 Sakura-Tribe Scout
+1 Rishkar's Expertise
+1 Worldly Tutor
+1 Sunscorched Desert
+1 Wooded Foothills
+1 Utopia Sprawl

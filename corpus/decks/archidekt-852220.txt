@@ -1,0 +1,108 @@
+# Archidekt — The Lady of House Grixis
+# source: archidekt:852220
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Marchesa, the Black Rose
+
+Deck:
+1 Gray Merchant of Asphodel
+1 Satoru, the Infiltrator
+1 Sol Ring
+1 Thought Sponge
+1 Braids, Arisen Nightmare
+1 Baleful Strix
+1 Vigean Graftmage
+1 Iron Apprentice
+1 Blightstep Pathway // Searstep Pathway
+1 Riverglide Pathway // Lavaglide Pathway
+1 Sulfurous Springs
+1 Scorn-Blade Berserker
+1 Steam Vents
+1 Scalding Tarn
+1 Wooded Foothills
+1 Mountain
+1 Swamp
+1 Island
+1 Forge of Heroes
+1 Guildmages' Forum
+1 Underground River
+1 Blood Crypt
+1 Exotic Orchard
+1 Lazotep Quarry
+1 Shivan Reef
+1 Phyrexian Altar
+1 Kalain, Reclusive Painter
+1 Watery Grave
+1 Gev, Scaled Scorch
+1 Clearwater Pathway // Murkwater Pathway
+1 Chthonian Nightmare
+1 Ashnod's Altar
+1 Flare of Denial
+1 Sage of Fables
+1 Blasphemous Act
+1 Unspeakable Symbol
+1 Carrion Feeder
+1 Aether Channeler
+1 Opal Palace
+1 Viscera Seer
+1 Urza's Saga
+1 Phyrexian Tower
+1 Living Death
+1 Ripples of Undeath
+1 Swamp
+1 Island
+1 Mountain
+1 Arcane Signet
+1 Talisman of Creativity
+1 Altar of Dementia
+1 Charming Scoundrel
+1 Ledger Shredder
+1 Spymaster's Vault
+1 Yawgmoth, Thran Physician
+1 Warren Soultrader
+1 Goblin Bombardment
+1 Agatha's Soul Cauldron
+1 Boggart Trawler // Boggart Bog
+1 Forbidden Orchard
+1 Vampiric Tutor
+1 Mob Lookout
+1 Imperial Recruiter
+1 Madame Null, Power Broker
+1 Command Tower
+1 The Ozolith
+1 Metallic Mimic
+1 Venser, Shaper Savant
+1 Seize the Spotlight
+1 Toxic Deluge
+1 Flayer of the Hatebound
+1 Junji, the Midnight Sky
+1 Umbral Collar Zealot
+1 Lively Dirge
+1 Necromancy
+1 Ruthless Technomancer
+1 Talisman of Indulgence
+1 Skullclamp
+1 Talisman of Dominance
+1 Pensive Professor
+1 Fellwar Stone
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Uncivil Unrest
+1 Juri, Master of the Revue
+1 Dimension X Pizzasaur
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Otawara, Soaring City
+1 Takenuma, Abandoned Mire
+1 Glasspool Mimic // Glasspool Shore
+1 Pinnacle Monk // Mystic Peak
+1 Lethal Scheme
+1 City of Brass
+1 Path of Ancestry
+1 Smaug, Wicked Worm
+1 Body Launderer
+1 Flame of Anor
+1 Loki's Scepter
+1 Kardur, Doomscourge
+1 Quark, Humble Proprietor

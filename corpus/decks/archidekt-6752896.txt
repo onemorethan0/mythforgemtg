@@ -1,0 +1,107 @@
+# Archidekt — Tayam cEDH
+# source: archidekt:6752896
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Thousand-Year Elixir
+1 Gemstone Caverns
+1 Devoted Druid
+1 Eidolon of Rhetoric
+1 Emperor of Bones
+1 Elves of Deep Shadow
+1 Talon Gates of Madara
+1 Flooded Strand
+1 City of Brass
+1 Boseiju, Who Endures
+1 Badgermole Cub
+1 Ancient Tomb
+1 Patrolling Peacemaker
+1 Chrome Mox
+1 Cavern of Souls
+1 Circle of Dreams Druid
+1 Avacyn's Pilgrim
+1 Aven Interrupter
+1 Bayou
+1 Birds of Paradise
+1 Bloom Tender
+1 Carrion Feeder
+1 Centaur Garden
+1 Command Tower
+1 Deafening Silence
+1 Deathrite Shaman
+1 Delighted Halfling
+1 Enduring Vitality
+1 Esper Sentinel
+1 Forest
+1 Gaea's Cradle
+1 Gavony Township
+1 Green Sun's Zenith
+1 Incubation Druid
+1 Lion's Eye Diamond
+1 Marsh Flats
+1 Marvin, Murderous Mimic
+1 Misty Rainforest
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Overgrown Tomb
+1 Phyrexian Tower
+1 Plains
+1 Ranger-Captain of Eos
+1 Rishkar, Peema Renegade
+1 Savannah
+1 Scrubland
+1 Strangleroot Geist
+1 Temple Garden
+1 Tyvar, Jubilant Brawler
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Young Wolf
+1 Arid Mesa
+1 Bloodstained Mire
+1 Sol Ring
+1 Ethersworn Canonist
+1 Sylvan Safekeeper
+1 White Plume Adventurer
+1 Ashnod's Altar
+1 Archon of Emeria
+1 Formidable Speaker
+1 Tarnished Citadel
+1 Demonic Tutor
+1 Pithing Needle
+1 Cryptolith Rite
+1 Moonshadow
+1 Earthcraft
+1 Mana Confluence
+1 Rosie Cotton of South Lane
+1 Warden of the Grove
+1 Icatian Moneychanger
+1 Shang-Chi, Master of Kung Fu
+1 Agatha's Soul Cauldron
+1 Nature's Chosen
+1 Basking Broodscale
+1 Wall of Roots
+1 Knight of the Reliquary
+1 Hammerhead, Maggia Boss
+1 Yavimaya, Cradle of Growth
+1 Crop Rotation
+1 Touch the Spirit Realm
+1 Chord of Calling
+1 Loot, the Nexus
+1 Dryad Arbor
+1 Urza's Saga
+1 Mana Vault
+1 Faeburrow Elder
+1 Abigale, Eloquent First-Year
+1 Walking Ballista
+1 Expedition Map
+1 Summon: Ixion
+1 Colonel Autumn
+1 Llanowar Elves
+1 Aven Mindcensor
+1 The Queen of Dale
+1 Nature's Rhythm

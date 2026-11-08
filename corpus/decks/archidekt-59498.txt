@@ -1,0 +1,102 @@
+# Archidekt — Surrak Dragonclaw - Flash Creature Control
+# source: archidekt:59498
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 2 allows none
+
+Commander:
+1 Surrak Dragonclaw
+
+Deck:
+1 Rhythm of the Wild
+1 Reinterpret
+1 Teferi, Mage of Zhalfir
+1 Kruphix, God of Horizons
+1 Shadow in the Warp
+1 Rashmi, Eternities Crafter
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Glasspool Mimic // Glasspool Shore
+1 Blasphemous Act
+1 Exotic Orchard
+1 Fabled Passage
+1 Ghostly Flicker
+1 Three Steps Ahead
+1 Terror of the Peaks
+1 Demolition Field
+1 Enduring Curiosity
+1 Preordain
+1 Valakut Awakening // Valakut Stoneforge
+1 Druid of Purification
+1 Alchemist's Refuge
+1 Arcane Denial
+1 Mystic Snake
+1 Scavenger Grounds
+1 Thought Vessel
+1 Deadeye Navigator
+1 Farseek
+1 Scavenging Ooze
+1 Command Tower
+1 Reliquary Tower
+1 Wood Elves
+1 Stunt Double
+1 Beast Within
+1 Rogue's Passage
+1 Zendikar Resurgent
+1 Prime Speaker Zegana
+1 Cinder Glade
+1 Shaman of the Great Hunt
+1 Clever Impersonator
+1 Cultivate
+1 Reality Shift
+1 Edric, Spymaster of Trest
+1 Spire Garden
+1 Balefire Dragon
+1 Thespian's Stage
+1 Kodama's Reach
+1 Guardian Project
+1 Ruric Thar, the Unbowed
+1 Trygon Predator
+2 Snow-Covered Mountain
+1 Ice-Fang Coatl
+1 Regrowth
+1 Ohran Frostfang
+1 Ketria Triome
+1 Training Center
+1 Rejuvenating Springs
+1 Three Visits
+1 Wilderness Reclamation
+1 Hullbreaker Horror
+1 Skyshroud Claim
+1 Nature's Lore
+1 Otawara, Soaring City
+1 Commercial District
+1 Hedge Maze
+1 Thundering Falls
+1 Smuggler's Surprise
+1 Saryth, the Viper's Fang
+1 Collective Resistance
+1 Sphinx of the Second Sun
+1 Skyserpent Seeker
+1 Sol Ring
+1 Lightning Greaves
+1 Ash Barrens
+1 Path of Ancestry
+1 High Fae Trickster
+1 Venser, Shaper Savant
+3 Snow-Covered Island
+1 Sink into Stupor // Soporific Springs
+1 Frostcliff Siege
+1 Sakura-Tribe Elder
+1 Abundant Countryside
+1 Wistfulness
+1 Tribute to the World Tree
+1 Temur Sabertooth
+5 Snow-Covered Forest
+1 Boseiju, Who Endures
+1 Hydra Omnivore
+1 Turbulent Wilderness
+1 Smirking Spelljacker
+1 Skullwinder
+1 Radagast of Rhosgobel
+1 Skycoach Conductor // All Aboard
+1 Warstorm Surge

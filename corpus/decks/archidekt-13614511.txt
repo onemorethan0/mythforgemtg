@@ -1,0 +1,84 @@
+# Archidekt — T.H.C. (Theft, Horses, and Capitalism)
+# source: archidekt:13614511
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Bill Ferny, Bree Swindler
+
+Deck:
+1 Sol Ring
+1 Leyline of Transformation
+1 Maskwood Nexus
+1 Belbe's Portal
+1 Arcane Adaptation
+1 Rite of Replication
+1 Callous Oppressor
+1 Beguiler of Wills
+1 Brass Herald
+1 Raise the Palisade
+1 Peer Pressure
+1 Standardize
+1 Keiga, the Tide Star
+1 Courtly Provocateur
+1 Will of the Temur
+1 Trickery Charm
+1 Sapphire Medallion
+1 Evolving Wilds
+1 Unclaimed Territory
+1 Coral Atoll
+1 Reflections of Littjara
+1 Path of Ancestry
+1 Myriad Landscape
+1 Ash Barrens
+1 Blatant Thievery
+1 Agent of Treachery
+1 Legacy's Allure
+1 Karn's Bastion
+1 Disarm
+1 Sower of Temptation
+1 Magic Damper
+1 Reliquary Tower
+1 An Offer You Can't Refuse
+1 Archaeomancer
+1 Wavebreak Hippocamp
+1 Distant Melody
+1 Pull from the Deep
+1 Deduce
+1 Exotic Orchard
+1 Nykthos, Shrine to Nyx
+1 Relearn
+1 Door of Destinies
+1 Clone
+1 Counterspell
+1 Twisted Image
+1 Long-Term Plans
+1 Archmage Ascension
+1 Mind Flayer
+1 Chamber of Manipulation
+1 Master Thief
+1 Kukemssa Pirates
+1 Riptide Entrancer
+1 Howling Mine
+1 Cytoplast Manipulator
+1 Wonder
+1 Thought Vessel
+1 Dominating Licid
+1 Eluge, the Shoreless Sea
+1 Lazotep Plating
+1 Perplexing Chimera
+1 Sakashima of a Thousand Faces
+1 Aetherize
+1 Twiddle
+1 Abjure
+1 Diamond Mare
+1 Imagecrafter
+1 Opt
+1 Invoke the Winds
+1 Memnarch
+1 Birthing Boughs
+1 Orvar, the All-Form
+1 Empress Galina
+1 Propaganda
+25 Island
+1 Steal Enchantment

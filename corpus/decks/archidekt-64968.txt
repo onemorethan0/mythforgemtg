@@ -1,0 +1,92 @@
+# Archidekt — X gon give it to ya.
+# source: archidekt:64968
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Mizzix of the Izmagnus
+
+Deck:
+1 Increasing Vengeance
+1 Mithril Coat
+1 Izzet Signet
+1 Invert Polarity
+1 Radstorm
+1 The Immortal Sun
+1 Primal Amulet // Primal Wellspring
+1 Dualcaster Mage
+1 Burn from Within
+1 Fall of the Titans
+1 Mystic Confluence
+1 Preordain
+1 Scour from Existence
+1 Tezzeret's Gambit
+1 Banefire
+1 Crawlspace
+1 Sol Ring
+1 Cyclonic Rift
+1 Vandalblast
+1 Reliquary Tower
+1 Volt Charge
+1 Fuel for the Cause
+1 Inexorable Tide
+1 Contagion Engine
+1 Ponder
+1 Reiterate
+1 Capsize
+1 Flux Channeler
+1 Karn's Bastion
+1 Command Tower
+1 Lightning Greaves
+1 Command Beacon
+1 Rowan, Scholar of Sparks // Will, Scholar of Frost
+1 Crackle with Power
+1 Scalding Tarn
+1 Boseiju, Who Shelters All
+1 Shivan Reef
+1 Vedalken Orrery
+1 Rhystic Study
+1 Mystical Tutor
+1 Force of Will
+1 Tekuthal, Inquiry Dominus
+1 Chandra, Hope's Beacon
+1 Baral, Chief of Compliance
+1 Flame of Anor
+1 Stormcarved Coast
+1 Jaya's Immolating Inferno
+1 Force of Negation
+1 Fierce Guardianship
+1 Deflecting Swat
+1 Disintegrate
+1 Training Center
+1 Thunderclap Drake
+1 Torpor Orb
+1 Fiery Islet
+1 Ral, Crackling Wit
+1 Dreamtide Whale
+1 Vivi Ornitier
+1 Lulu, Stern Guardian
+8 Mountain
+1 Riverpyre Verge
+10 Island
+1 Steam Vents
+1 Sulfur Falls
+1 Jeska's Will
+1 Mana Sculpt
+1 Expansion Algorithm
+1 Flashback
+1 Resonating Lute
+1 Narset's Reversal
+1 Fabled Passage
+1 Mistrise Village
+1 Katara, Waterbending Master
+1 Owlin Spiralmancer
+1 Wisdom of Ages
+1 Traumatic Critique
+1 Otawara, Soaring City
+1 Mystic Sanctuary
+1 Brainstorm
+1 Geist of Saint Thalia
+1 Samut, Tyrant of Naktamun
+1 Turbulent Springs
+1 Archmage Emeritus

@@ -1,0 +1,74 @@
+# Archidekt — Nobushi
+# source: archidekt:4984130
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Guilty Conscience + Phyrexian Vindicator; Bracket 1 allows none
+
+Commander:
+1 Sensei Golden-Tail
+
+Deck:
+1 Blade Banish
+1 Martyrdom
+1 Shrine Steward
+1 Union of the Third Path
+1 Mothrider Samurai
+1 Sunblade Samurai
+1 Selfless Samurai
+1 Angelic Purge
+1 Revitalize
+1 Combat Professor
+1 Pacifism
+1 Auramancer
+1 Territorial Hammerskull
+1 Safe Passage
+1 Basilica Skullbomb
+1 Imperial Oath
+1 Ancestral Katana
+1 Norika Yamazaki, the Poet
+1 Michiko's Reign of Truth // Portrait of Michiko
+1 Bring to Trial
+1 Radiant Grace // Radiant Restraints
+1 Axis of Mortality
+1 Lapse of Certainty
+1 Windborn Muse
+1 Bereaved Survivor // Dauntless Avenger
+1 Feat of Resistance
+1 Mana Tithe
+1 Glory Bearers
+1 Rustwing Falcon
+1 Brave the Sands
+1 Adamant Will
+1 Tamiyo's Journal
+1 Stuffy Doll
+1 Mirran Bardiche
+1 Dreadful Apathy
+1 Kill Shot
+1 Araba Mothrider
+1 Defiler of Faith
+1 Phyrexian Vindicator
+1 Dueling Coach
+1 Pariah's Shield
+1 Sunset Revelry
+1 Pariah
+1 Angelic Gift
+1 Imperial Subduer
+1 Swooping Lookout
+1 Ossification
+1 Glaring Aegis
+1 Seven-Tail Mentor
+1 Estwald Shieldbasher
+1 Eiganjo Exemplar
+1 Dragon's Eye Sentry
+1 Flare of Faith
+1 Traveling Minister
+1 Anointer of Champions
+36 Plains
+1 Day of Judgment
+1 Guilty Conscience
+1 Parish-Blade Trainee
+1 Leyline of Sanctity
+1 The Fair Basilica
+1 Zetalpa, Primal Dawn
+1 Heroes Remembered
+1 Nine Lives

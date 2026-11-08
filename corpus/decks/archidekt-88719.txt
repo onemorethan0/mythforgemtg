@@ -1,0 +1,105 @@
+# Archidekt — (RETIRED) Nekusar's Wheel House
+# source: archidekt:88719
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Nekusar, the Mindrazer
+
+Deck:
+1 Chaos Warp
+1 Xander's Lounge
+1 Underground River
+1 Lotus Petal
+1 An Offer You Can't Refuse
+1 Ghyrson Starn, Kelermorph
+1 Seething Song
+1 Dauthi Voidwalker
+1 Tainted Strike
+1 Fate Unraveler
+1 Morphic Pool
+1 Stormcarved Coast
+1 Mana Geyser
+1 Solphim, Mayhem Dominus
+1 Reforge the Soul
+2 Swamp
+1 Dark Ritual
+1 Jeska's Will
+1 Sulfur Falls
+1 Arcane Denial
+1 Windfall
+1 Fellwar Stone
+1 Toxic Deluge
+1 Thought Vessel
+1 Dark Deal
+1 Polluted Delta
+1 Reflecting Pool
+1 Mana Confluence
+1 Command Tower
+1 Swan Song
+1 Whispering Madness
+1 Cyclonic Rift
+1 Molten Psyche
+1 Liliana's Caress
+1 Scalding Tarn
+1 Underworld Dreams
+1 Drowned Catacomb
+1 Cascade Bluffs
+1 Sunken Ruins
+1 Pact of Negation
+1 Izzet Signet
+1 Steam Vents
+1 Dimir Signet
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Wheel and Deal
+1 Shivan Reef
+1 Megrim
+1 Teferi's Puzzle Box
+1 City of Brass
+1 Nightscape Familiar
+1 Rhystic Study
+1 Memory Jar
+1 Time Spiral
+1 Counterspell
+1 Library of Leng
+1 Vampiric Tutor
+1 Mystical Tutor
+1 Winds of Change
+1 Demonic Tutor
+1 Wheel of Fortune
+1 Badlands
+1 Reliquary Tower
+1 Watery Grave
+1 Blood Crypt
+1 Prismatic Vista
+1 Talisman of Creativity
+1 Echo of Eons
+1 Arcane Signet
+1 Training Center
+1 Luxury Suite
+1 Jace's Archivist
+1 Ancient Tomb
+1 Incendiary Command
+1 Orcish Bowmasters
+1 Exotic Orchard
+1 Magus of the Wheel
+1 Fierce Guardianship
+1 Underworld Breach
+1 Blasphemous Act
+1 Blasphemous Edict
+1 Gloomlake Verge
+1 Razorkin Needlehead
+1 Waste Not
+1 Bloodchief Ascension
+1 Scrawling Crawler
+1 Mountain
+3 Island
+1 Bloodstained Mire
+1 Riverpyre Verge
+1 Peer into the Abyss
+1 Sheoldred, the Apocalypse
+1 Propaganda
+1 Shipwreck Marsh
+1 Sol Ring
+1 Mana Drain

@@ -1,0 +1,105 @@
+# Archidekt — Flubs, Impulsive Traveler
+# source: archidekt:8686005
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Flubs, the Fool
+
+Deck:
+1 Scapeshift
+1 Boseiju, Who Endures
+1 Mistrise Village
+1 Amphibian Downpour
+1 Misty Rainforest
+1 Inkmoth Nexus
+1 Dryad Arbor
+1 Yavimaya, Cradle of Growth
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Case of the Locked Hothouse
+1 Command Tower
+1 Inti, Seneschal of the Sun
+1 Noxious Revival
+1 Scalding Tarn
+1 Song of Creation
+1 Training Center
+1 Shifting Woodland
+1 Impending Flux
+1 Saw It Coming
+1 Laelia, the Blade Reforged
+1 Passionate Archaeologist
+1 Eruth, Tormented Prophet
+1 Ketria Triome
+1 Wooded Foothills
+1 Commercial District
+1 Anger
+1 Stomping Ground
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Vesuva
+1 Sink into Stupor // Soporific Springs
+1 Bilbo, Thief in the Night
+1 Urza's Cave
+1 Summer Bloom
+1 Azusa, Lost but Seeking
+1 Wonder
+1 Dryad of the Ilysian Grove
+1 Rejuvenating Springs
+1 Thornspire Verge
+1 Savvy Trader
+1 Wild Wasteland
+1 Auroral Procession
+1 Delayed Blast Fireball
+2 Mountain
+1 Hedge Maze
+1 Karplusan Forest
+2 Island
+1 Thespian's Stage
+1 Exploration Broodship
+1 Gustha's Scepter
+1 Icetill Explorer
+1 Breeding Pool
+1 Sensei's Divining Top
+1 Valakut Exploration
+1 Springheart Nantuko
+1 Keeper of Secrets
+1 Worldly Tutor
+1 Glasspool Mimic // Glasspool Shore
+1 Mox Amber
+1 Lotus Petal
+1 Doc Aurlock, Grizzled Genius
+1 Gemstone Caverns
+1 Field of the Dead
+1 Sylvan Safekeeper
+1 Steam Vents
+1 Concordant Crossroads
+1 Thundering Falls
+1 City of Brass
+1 Tormod's Crypt
+1 Bonehoard Dracosaur
+2 Forest
+1 Oboro, Palace in the Clouds
+1 Lotus Cobra
+1 Crop Rotation
+1 Jeska's Will
+1 Scute Swarm
+1 Exploration
+1 Pongify
+1 Explore
+1 Brain Freeze
+1 Thassa's Oracle
+1 Underworld Breach
+1 Chrome Mox
+1 Party Thrasher
+1 Veil of Summer
+1 Nico Minoru, Runaway
+1 Otawara, Soaring City
+1 Autumn's Veil
+1 Oracle of Mul Daya
+1 Abundance
+1 Unstable Amulet
+1 Tireless Provisioner
+1 Valakut, the Molten Pinnacle
+1 Walk-In Closet // Forgotten Cellar
+1 Spire Garden
+1 Roiling Canopy
+1 Finale of Devastation

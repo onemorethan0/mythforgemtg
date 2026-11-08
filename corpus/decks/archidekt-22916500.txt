@@ -1,7 +1,8 @@
 # Archidekt — UnBy - Saruman - The Power Of My Army
 # source: archidekt:22916500
 # fetched: 2026-09-18
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Fall of Cair Andros + Blasphemous Act; Bracket 2 allows none
 
 Commander:
 1 Saruman, the White Hand

@@ -1,0 +1,87 @@
+# Archidekt — UU Too Cool for Pool Teferi by The_Constable
+# source: archidekt:6871147
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Snap + Naru Meha, Master Wizard; Bracket 1 allows none
+
+Commander:
+1 Teferi, Mage of Zhalfir
+
+Deck:
+1 Bonded Fetch
+1 Disrupt
+1 Azami, Lady of Scrolls
+1 Thousand Winds
+1 Kheru Spellsnatcher
+1 Reins of Power
+1 Mulldrifter
+1 Blink of an Eye
+1 Apprentice Wizard
+23 Island
+1 Commit // Memory
+1 Martyr of Frost
+1 Mind Stone
+1 Fathom Seer
+1 Cyclone Summoner
+1 Mystic Confluence
+1 Laboratory Maniac
+1 Mystic Sanctuary
+1 Ixidron
+1 Evacuation
+1 Aeon Chronicler
+1 Midnight Clock
+1 Patron Wizard
+1 Riptide Director
+1 Venser, Shaper Savant
+1 Otawara, Soaring City
+1 Barrin, Tolarian Archmage
+1 Crystal Shard
+1 Gadwick, the Wizened
+1 Erratic Portal
+1 Arcanis the Omnipotent
+1 Naru Meha, Master Wizard
+1 Field of Ruin
+1 Nezahal, Primal Tide
+1 Sol Ring
+1 Reliquary Tower
+1 Rewind
+1 Arch of Orazca
+1 Basalt Monolith
+1 Soramaro, First to Dream
+1 Riptide Laboratory
+1 Sturmgeist
+1 Confound
+1 Wavebreak Hippocamp
+1 Defiler of Dreams
+1 Naiad of Hidden Coves
+1 Into the Roil
+1 Body of Knowledge
+1 Delay
+1 Unwind
+1 Castle Vantress
+1 Thought Vessel
+1 Hall of Storm Giants
+1 Fatespinner
+1 Snap
+1 Telling Time
+1 Malevolent Hermit // Benevolent Geist
+1 Turnabout
+1 Zhalfirin Void
+1 Arcane Signet
+1 Emergence Zone
+1 Fellwar Stone
+1 Opt
+1 Zoetic Cavern
+1 Remand
+1 Suspend
+1 Kefnet's Monument
+1 Burnished Hart
+1 Kefnet the Mindful
+1 Teferi's Ageless Insight
+1 Aether Adept
+1 Aether Channeler
+1 Aphetto Alchemist
+1 Withdraw
+1 Uyo, Silent Prophet
+1 Faerie Seer
+1 Leyline of Anticipation

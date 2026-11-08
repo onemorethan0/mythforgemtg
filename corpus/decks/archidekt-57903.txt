@@ -1,0 +1,99 @@
+# Archidekt — Maelstrom Wanderer Cascade of Value
+# source: archidekt:57903
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Maelstrom Wanderer
+
+Deck:
+1 Chaos Warp
+1 Sol Ring
+1 Alchemist's Refuge
+1 Sunbird's Invocation
+1 Stunt Double
+1 Zendikar Resurgent
+1 Clever Impersonator
+1 Wooded Foothills
+1 Rattleclaw Mystic
+1 Surrak Dragonclaw
+1 Shivan Reef
+1 Kruphix, God of Horizons
+1 Avenger of Zendikar
+1 Hull Breach
+1 Nylea, God of the Hunt
+1 Command Tower
+1 Thundermaw Hellkite
+1 Etherium-Horn Sorcerer
+1 Ancient Grudge
+1 Inferno Titan
+1 Animar, Soul of Elements
+1 Beast Within
+1 Rootbound Crag
+1 Raging Ravine
+1 Oracle of Mul Daya
+1 Cascade Bluffs
+1 Flooded Grove
+1 Mana Reflection
+1 Fire-Lit Thicket
+1 Sunken Hope
+1 Steam Vents
+1 Stomping Ground
+1 Sensei's Divining Top
+1 Crystal Shard
+1 Seedborn Muse
+1 Skyshroud Claim
+4 Forest
+4 Island
+1 Ketria Triome
+1 Eternal Witness
+1 Solemn Simulacrum
+1 Scavenging Ooze
+1 Acidic Slime
+1 Riverglide Pathway // Lavaglide Pathway
+1 Strip Mine
+1 Apex Devastator
+1 Averna, the Chaos Bloom
+1 Etali, Primal Storm
+1 Old Gnawbone
+1 Chromatic Lantern
+1 Blasphemous Act
+1 Temur Sabertooth
+1 Genesis Ultimatum
+1 Creative Technique
+1 Bloodbraid Elf
+1 Worldly Tutor
+1 Hinterland Harbor
+1 Maze of Ith
+1 Birds of Paradise
+1 Nature's Lore
+1 Misty Rainforest
+1 Arcane Signet
+1 Reflecting Pool
+1 Shardless Agent
+1 Terror of the Peaks
+1 Three Visits
+1 Rejuvenating Springs
+1 Dreamroot Cascade
+1 Craterhoof Behemoth
+1 Hullbreaker Horror
+1 Ancient Copper Dragon
+1 Breeding Pool
+1 Rhystic Study
+1 Scalding Tarn
+1 Nyxbloom Ancient
+1 Chimil, the Inner Sun
+1 Sulfur Falls
+4 Mountain
+1 Ancient Tomb
+1 Sylvan Library
+1 The Great Henge
+1 Exploration
+1 Bribery
+1 Call Forth the Tempest
+1 Nalfeshnee
+1 Desertion
+1 Rampant Growth
+1 Azusa, Lost but Seeking
+1 Glen Elendra Archmage
+1 Dryad of the Ilysian Grove

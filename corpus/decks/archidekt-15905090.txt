@@ -1,0 +1,98 @@
+# Archidekt — Unnamable
+# source: archidekt:15905090
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Azlask, the Swelling Scourge
+
+Deck:
+1 Carrion Feeder
+1 Carrier Thrall
+1 Blisterpod
+1 Phyrexian Reclamation
+1 Overlord of the Mistmoors
+1 Shrapnel Slinger
+1 Caves of Koilos
+1 Llanowar Wastes
+1 Sulfurous Springs
+1 Underground River
+1 Chromatic Lantern
+1 Cathar Commando
+1 Spore Frog
+1 Accursed Marauder
+1 Simic Guildgate
+3 Plains
+3 Mountain
+3 Swamp
+3 Island
+3 Forest
+1 Hanweir Battlements
+1 Dark Depths
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Maze's End
+1 Expedition Map
+1 Wight of the Reliquary
+1 Sylvan Scrying
+1 Hanweir Militia Captain // Westvale Cult Leader
+1 Mutated Cultist
+1 Cabal Therapist
+1 Investigator's Journal
+1 Idol of Oblivion
+1 Aboleth Spawn
+1 Altar of the Wretched // Wretched Bonemass
+1 Orzhov Guildgate
+1 Dimir Guildgate
+1 Azorius Guildgate
+1 Rakdos Guildgate
+1 Izzet Guildgate
+1 Golgari Guildgate
+1 Boros Guildgate
+1 Gruul Guildgate
+1 Selesnya Guildgate
+1 Chainer, Nightmare Adept
+1 Extricator of Sin // Extricator of Flesh
+1 Novice Inspector
+1 Bygone Bishop
+1 Thraben Inspector
+1 Alquist Proft, Master Sleuth
+1 Wojek Investigator
+1 Case of the Stashed Skeleton
+1 Hanweir Garrison
+1 Idol of False Gods
+1 Emrakul's Evangel
+1 Wharf Infiltrator
+1 Zimone, Quandrix Prodigy
+1 Pawn of Ulamog
+1 Phenomenon Investigators
+1 Lavinia, Foil to Conspiracy
+1 Circuitous Route
+1 Command Tower
+1 Silent Hallcreeper
+1 Ornithopter of Paradise
+1 Sol Ring
+1 Ancient Stone Idol
+1 Reluctant Role Model
+1 Vampiric Rites
+1 Desperate Sentry
+1 Felidar Retreat
+1 Awakening Zone
+1 Emrakul's Hatcher
+1 Rapacious One
+1 Charming Prince
+1 Thran Lens
+1 Brood Birthing
+1 Glimpse the Impossible
+1 Glaring Fleshraker
+1 Maskwood Nexus
+1 Greedy Freebooter
+1 Xantcha, Sleeper Agent
+1 Sidisi's Faithful
+1 Zephyr Singer
+1 Elbrus, the Binding Blade // Withengar Unbound
+1 Gond Gate
+1 Phyrexian Portal
+1 Exotic Orchard
+1 Thran Portal
+1 Baldur's Gate
+1 Sage of the Maze

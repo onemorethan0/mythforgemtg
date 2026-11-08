@@ -1,0 +1,108 @@
+# Archidekt — Bolas Betrayal
+# source: archidekt:64352
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Nicol Bolas, the Ravager // Nicol Bolas, the Arisen
+
+Deck:
+1 Take for a Ride
+1 Training Center
+1 City of Brass
+1 Mana Confluence
+1 Mass Mutiny
+1 Slave of Bolas
+1 Thud
+1 Arcane Signet
+1 Riverpyre Verge
+1 Twisted Fealty
+1 A Little Chat
+1 Vengeful Possession
+1 Virtue of Persistence // Locthwain Scorn
+1 Sulfur Falls
+1 Cascade Bluffs
+1 Graven Cairns
+1 Dragonskull Summit
+1 Island
+1 Diabolic Intent
+1 Damnation
+1 Dimir Signet
+1 Rakdos Signet
+1 Kari Zev's Expertise
+1 Reins of Power
+1 Grab the Reins
+1 Mana Drain
+1 Mizzix's Mastery
+1 Fellwar Stone
+1 Painful Truths
+1 Mob Rule
+1 Domineering Will
+1 Polluted Delta
+1 Reflecting Pool
+1 Forbidden Orchard
+1 Drowned Catacomb
+1 Culling Dais
+1 Sunken Ruins
+1 Greater Gargadon
+1 Twist Allegiance
+1 Spawning Pit
+1 High Market
+1 Tainted Aether
+1 Altar of Dementia
+1 Ray of Command
+1 Last One Standing
+1 Command Tower
+1 Izzet Signet
+1 Watery Grave
+1 Steam Vents
+1 Reanimate
+1 Phyrexian Tower
+1 Bolas's Citadel
+1 Scalding Tarn
+1 Toxic Deluge
+1 Witch's Oven
+1 Riverglide Pathway // Lavaglide Pathway
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Clearwater Pathway // Murkwater Pathway
+1 Blightstep Pathway // Searstep Pathway
+1 Shackles of Treachery
+1 Blood Crypt
+1 Detection Tower
+1 Xander's Lounge
+1 Seize the Spotlight
+1 Furnace Reins
+1 The Nipton Lottery
+1 Nasty End
+1 Lórien Revealed
+1 Gloomlake Verge
+1 Starting Town
+1 Swamp
+1 Mountain
+1 Sol Ring
+1 Insatiable Avarice
+1 Bloodstained Mire
+1 Roaring Furnace // Steaming Sauna
+1 Phantom Train
+1 Blazemire Verge
+1 Sink into Stupor // Soporific Springs
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Mutinous Massacre
+1 Ashnod's Altar
+1 Phyrexian Altar
+1 Modify Memory
+1 Smoke
+1 Stock Up
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Vile Consumption
+1 Pendrell Mists
+1 No Mercy
+1 Goblin Bombardment
+1 Insurrection
+1 Midgar, City of Mako // Reactor Raid
+1 Fling
+1 Dragon's Hoard
+1 Hour of Devastation
+1 Great Hall of the Biblioplex
+1 Loki's Scepter
+1 Relic of Sauron

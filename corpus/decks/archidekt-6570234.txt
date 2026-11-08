@@ -1,0 +1,102 @@
+# Archidekt — The Mothmill Cometh
+# source: archidekt:6570234
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Heroic Intervention
+1 Deadly Rollick
+1 Eternal Witness
+1 Food Chain
+1 Aftermath Analyst
+1 Golgari Thug
+1 Delighted Halfling
+1 Reanimate
+1 Breach the Multiverse
+1 Exotic Orchard
+1 Stitch Together
+1 Mana Drain
+1 Cyclonic Rift
+1 Swan Song
+1 World Shaper
+1 Otawara, Soaring City
+1 Mesmeric Orb
+1 Hardened Scales
+1 Zagoth Triome
+1 Overgrown Tomb
+1 Undergrowth Stadium
+1 Bojuka Bog
+1 Toxic Deluge
+1 Breeding Pool
+1 Six
+1 Fierce Guardianship
+1 Shifting Woodland
+1 Palantír of Orthanc
+1 Verdant Catacombs
+1 Polluted Delta
+1 Misty Rainforest
+1 Ashiok, Dream Render
+1 Sink into Stupor // Soporific Springs
+1 Hedge Maze
+1 Blossoming Tortoise
+1 Boseiju, Who Endures
+1 Glen Elendra Archmage
+1 Lumra, Bellow of the Woods
+1 Rejuvenating Springs
+1 Assassin's Trophy
+1 Golgari Rot Farm
+1 Kami of Whispered Hopes
+1 Swarmyard
+1 Takenuma, Abandoned Mire
+1 Rhystic Study
+1 Mistrise Village
+1 Evolution Witness
+1 Dreamroot Cascade
+4 Forest
+1 Bayou
+1 Terrasymbiosis
+1 Ouroboroid
+1 Icetill Explorer
+1 Auroral Procession
+1 Counterspell
+1 Mindcrank
+1 Ledger Shredder
+1 Deathrite Shaman
+1 The Ozolith
+1 Oko, Thief of Crowns
+1 Wan Shi Tong, Librarian
+1 Danny Pink
+1 Branching Evolution
+1 Ruin Crab
+1 Farseek
+1 Brainstorm
+1 Germination Practicum
+1 Explore
+1 Frantic Search
+1 Culling Ritual
+1 Birds of Paradise
+1 Seedborn Muse
+1 The Soul Stone
+1 Wasteland
+1 Morphic Pool
+1 Eternal Scourge
+1 Misthollow Griffin
+1 Underground Mortuary
+2 Swamp
+3 Island
+1 Watery Grave
+1 Muldrotha, the Gravetide
+1 Feral Ghoul
+1 Life from the Loam
+1 Pensive Professor
+1 Force of Vigor
+1 Berta, Wise Extrapolator
+1 Cephalid Coliseum
+1 Willowrush Verge
+1 Sol Ring
+1 Arcane Signet
+1 Command Tower
+1 Bristly Bill, Spine Sower

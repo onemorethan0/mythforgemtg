@@ -1,0 +1,62 @@
+# Archidekt — 7. fly me through the tempest
+# source: archidekt:11986722
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Kastral, the Windcrested
+
+Deck:
+1 Shrike Force
+1 Arcane Signet
+1 Wayfarer's Bauble
+1 Prairie Stream
+1 Glacial Fortress
+1 Azorius Chancery
+1 Skycloud Expanse
+1 Path to Exile
+1 Deserted Beach
+1 Aven Shrine
+1 Mirror Box
+1 Soulcatchers' Aerie
+1 Pearl Medallion
+1 Swords to Plowshares
+1 Generous Gift
+1 Stroke of Midnight
+1 Sol Ring
+1 Azorius Signet
+1 Adarkar Wastes
+1 Port Town
+1 Command Tower
+1 Path of Ancestry
+1 Lupinflower Village
+1 Ripples of Potential
+30 Tempest Hawk
+1 Into the Flood Maw
+1 Force of Virtue
+1 Stormscape Familiar
+1 Kindred Discovery
+1 Talisman of Progress
+15 Plains
+1 Patchwork Banner
+1 Lilypad Village
+1 Nesting Grounds
+1 Restless Anchorage
+1 Mystic Gate
+1 Temple of Enlightenment
+1 Urza's Incubator
+1 Battlefield Raptor
+1 Dazzling Denial
+1 Ledger Shredder
+1 Dawn's Truce
+1 Thriving Isle
+1 Lórien Revealed
+1 Thriving Heath
+1 Refute
+5 Island
+1 Lightning Greaves
+1 Watcher of the Spheres
+1 Avatar's Wrath
+1 Duelist's Heritage
+1 Ascend from Avernus
+1 Harmonized Crescendo

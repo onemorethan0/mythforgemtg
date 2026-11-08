@@ -1,0 +1,74 @@
+# Archidekt — I love Latinas, Sonic
+# source: archidekt:14110778
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Shadow the Hedgehog
+
+Deck:
+1 Cathartic Reunion
+1 Bill Potts
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blood Hustler
+1 Bloodthirsty Aerialist
+1 Crackling Spellslinger
+1 Crash Through
+1 Headliner Scarlett
+1 Liquimetal Torque
+1 Marionette Master
+1 Marionette Apprentice
+1 Maulfist Squad
+1 Murderous Cut
+1 Ancestors' Aid
+1 Tilonalli's Summoner
+1 Tilonalli's Skinshifter
+1 Vraska's Contempt
+1 Dire Fleet Poisoner
+18 Mountain
+1 Dire Fleet Neckbreaker
+1 Mark of the Vampire
+1 Dire Fleet Daredevil
+1 Dire Fleet Captain
+1 Dire Fleet Hoarder
+1 Dire Fleet Interloper
+1 Vraska, Betrayal's Sting
+1 Act of Treason
+1 Ashling's Prerogative
+1 Ashling, Flame Dancer
+1 Ayara, First of Locthwain
+1 Ayara, Widow of the Realm // Ayara, Furnace Queen
+1 Big Score
+1 Bond of Passion
+1 Blood Artist
+1 Liliana, Dreadhorde General
+1 Chandra, Legacy of Fire
+1 Bond of Revival
+1 Captain Lannery Storm
+1 Chandra, Dressed to Kill
+1 Chandra, Fire Artisan
+1 Chandra, Hope's Beacon
+1 Liliana of the Veil
+1 Liliana, Death Mage
+1 Chandra, Acolyte of Flame
+1 Charming Scoundrel
+1 Crimson Wisps
+1 Cynical Loner
+1 Demand Answers
+1 Doom Blade
+1 Boarding Party
+1 Garna, the Bloodflame
+1 Garna, Bloodfist of Keld
+1 Hungry for More
+1 Jaxis, the Troublemaker
+1 Monastery Swiftspear
+1 Zariel, Archduke of Avernus
+1 Gwenom, Remorseless
+1 Command Tower
+1 Fabled Passage
+1 Diaochan, Artful Beauty
+1 Wasteland
+1 Thespian's Stage
+1 Bender's Waterskin
+1 Olivia's Attendants
+18 Swamp

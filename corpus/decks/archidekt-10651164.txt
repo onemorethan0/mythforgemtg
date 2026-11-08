@@ -1,0 +1,85 @@
+# Archidekt — Dommy Mommy
+# source: archidekt:10651164
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Queen Marchesa
+
+Deck:
+1 Cruel Celebrant
+1 Banisher Priest
+1 Eternal Taskmaster
+1 Leather Armor
+1 Shadowheart, Dark Justiciar
+1 Rug of Smothering
+1 Towering Viewpoint
+1 Blind Obedience
+1 Blood Price
+1 Heliod's Punishment
+1 Charming Scoundrel
+1 Banewhip Punisher
+1 Basandra, Battle Seraph
+1 Bullwhip
+1 Capital Punishment
+1 Captive Audience
+1 Choking Restraints
+1 Chosen of Markov // Markov's Servant
+1 Cruel Sadist
+1 Decree of Pain
+1 Deviant Glee
+1 Earthbind
+1 Elas il-Kor, Sadistic Pilgrim
+1 Final Punishment
+1 Humiliate
+1 Jaya Ballard, Task Mage
+1 Duress
+1 Dominating Vampire
+1 Lash of the Whip
+1 Lashknife
+1 One Thousand Lashes
+1 Plague Witch
+1 Remorseless Punishment
+1 Restrain
+1 Scepter of Dominance
+1 Shackles
+1 Shadow Alley Denizen
+1 Smother
+1 Sovereign's Bite
+1 Sparring Collar
+1 Swashbuckler's Whip
+1 The Rack
+1 Torture
+1 Victimize
+1 Wand of Denial
+1 Whip of Erebos
+8 Plains
+10 Mountain
+1 Felisa, Fang of Silverquill
+1 Crossway Vampire
+1 Teysa, Envoy of Ghosts
+1 Drana, Kalastria Bloodchief
+1 Stab Wound
+1 Kor Spiritdancer
+1 Asylum Visitor
+1 Welcoming Vampire
+1 Soul Collector
+1 Chromatic Lantern
+1 Access Tunnel
+1 Exotic Orchard
+1 Drannith Ruins
+1 Command Tower
+1 Vault of the Archangel
+1 Isolated Chapel
+1 Shineshadow Snarl
+8 Swamp
+1 Ash Barrens
+1 Path of Ancestry
+1 Concealed Courtyard
+1 Snowfield Sinkhole
+1 Smoldering Marsh
+1 Spirit en-Dal
+1 Bonecaller Cleric
+1 Enslave
+1 Coveted Jewel
+1 Dakmor Sorceress

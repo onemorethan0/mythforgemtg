@@ -1,0 +1,89 @@
+# Archidekt — MTGDS Certified™ 100th %ile hip- I like your deck, let me play it
+# source: archidekt:856632
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Grenzo, Havoc Raiser
+
+Deck:
+1 Mascot Interception
+1 Hour of Devastation
+1 Hazoret's Favor
+1 Wrangle
+1 Might Makes Right
+1 Harness by Force
+1 Traitorous Blood
+1 Magma Phoenix
+1 Wanderer's Twig
+1 Thud
+1 Claim the Firstborn
+1 Dwarven Mine
+1 Blood Aspirant
+1 Tectonic Reformation
+1 Captivating Crew
+1 Barrage of Expendables
+1 Makeshift Munitions
+1 Fling
+1 Spikefield Hazard // Spikefield Cave
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Shackles of Treachery
+1 The Autonomous Furnace
+1 Storm's Wrath
+1 Jaya Ballard
+1 Desert of the Fervent
+1 Furnace Reins
+1 Bloody Betrayal
+1 Fast // Furious
+1 Forgotten Cave
+1 Shire Terrace
+1 Break Through the Line
+1 Smoldering Crater
+1 Plargg and Nassari
+1 Ominous Parcel
+1 Searslicer Goblin
+20 Mountain
+1 Access Tunnel
+1 Magmatic Insight
+1 Jaya, Fiery Negotiator
+1 Escape Tunnel
+1 Phoenix Chick
+1 Promising Vein
+1 Sonic Screwdriver
+1 Midnight Crusader Shuttle
+1 Renegade Map
+1 Armillary Sphere
+1 Scorched Rusalka
+1 Mark of Mutiny
+1 Endless Sands
+1 Gingerbrute
+1 Iron Myr
+1 Pinnacle Monk // Mystic Peak
+1 Curse of Hospitality
+1 Stolen Strategy
+1 Fountainport Bell
+1 Vengeful Possession
+1 Keys to the House
+1 Ghitu Encampment
+1 Court of Embereth
+1 Kher Keep
+1 Ravenous Amulet
+1 Bitter Reunion
+1 Urabrask's Forge
+1 Hazoret, Godseeker
+1 Terminal Moraine
+1 Zealous Conscripts
+1 Squee, Goblin Nabob
+1 Hijack
+1 Burn Down the House
+1 Robber of the Rich
+1 Realmbreaker, the Invasion Tree
+1 Squee, the Immortal
+1 Trading Post
+1 Mob Rule
+1 High Market
+1 Cathartic Pyre
+1 Synod Sanctum
+1 Key to the City
+1 Loyal Apprentice
+1 Wand of Wonder

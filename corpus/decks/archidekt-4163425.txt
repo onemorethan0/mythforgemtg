@@ -1,0 +1,108 @@
+# Archidekt — Kaalia
+# source: archidekt:4163425
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kaalia of the Vast
+
+Deck:
+1 Resolute Archangel
+1 Angel of Despair
+1 Avacyn, Angel of Hope
+1 Godless Shrine
+1 Balefire Dragon
+1 Battlefield Forge
+1 Windcrag Siege
+1 Archfiend of Depravity
+1 Bloodstained Mire
+1 Hellkite Tyrant
+1 Marsh Flats
+1 Starting Town
+1 Arena of Glory
+1 Chancellor of the Annex
+1 Arid Mesa
+1 Burning-Rune Demon
+1 Isshin, Two Heavens as One
+1 Kaalia, Zenith Seeker
+1 Animate Dead
+1 Hall of the Bandit Lord
+1 Vault of Champions
+1 Summon: Bahamut
+1 Demonic Tutor
+1 Vilis, Broker of Blood
+1 Multiversal Passage
+1 Giver of Runes
+1 Armageddon
+1 Reanimate
+1 Polluted Delta
+1 Wheel of Fortune
+1 Swords to Plowshares
+1 Smaug, Wicked Worm
+1 Razaketh, the Foulblooded
+1 Ancient Gold Dragon
+1 Angelic Arbiter
+1 Aurelia, the Warleader
+1 Lord of the Void
+1 Luxury Suite
+1 Savai Triome
+1 Spectator Seating
+1 Terror of the Peaks
+1 Rising of the Day
+1 Grim Tutor
+1 Ancient Copper Dragon
+1 Angel of Serenity
+1 Arcane Signet
+1 Blast-Furnace Hellkite
+1 Blood Crypt
+1 Cavern of Souls
+1 Caves of Koilos
+1 Clifftop Retreat
+1 Command Tower
+1 Deflecting Swat
+1 Dragon Tempest
+1 Dragonskull Summit
+1 Drana and Linvala
+1 Exotic Orchard
+1 Fellwar Stone
+1 Gisela, Blade of Goldnight
+1 Hoarding Broodlord
+1 Isolated Chapel
+1 Lightning Greaves
+1 Master of Cruelties
+1 Mountain
+1 Phyrexian Arena
+1 Plains
+1 Rune-Scarred Demon
+1 Sacred Foundry
+1 Sephara, Sky's Blade
+1 Serra's Emissary
+1 Sol Ring
+1 Steel Hellkite
+1 Swamp
+1 Swiftfoot Boots
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Teferi's Protection
+1 Vampiric Tutor
+1 Flawless Maneuver
+1 Shilgengar, Sire of Famine
+1 Rugged Prairie
+1 Fetid Heath
+1 Sulfurous Springs
+1 Esper Sentinel
+1 Rakdos, Patron of Chaos
+1 Demonic Counsel
+1 Herald of Eternal Dawn
+1 Archfiend of Despair
+1 Smothering Tithe
+1 Necropotence
+1 The One Ring
+1 Sneak Attack
+1 Faithless Looting
+1 Plaza of Heroes
+1 Twinflame Tyrant
+1 Valgavoth, Terror Eater
+1 Enlightened Tutor
+1 Talisman of Conviction
+1 Avacyn, Angel of Horror

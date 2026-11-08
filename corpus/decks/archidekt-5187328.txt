@@ -1,0 +1,77 @@
+# Archidekt — Limp Bizkit - Rollin'.mp3
+# source: archidekt:5187328
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Myra the Magnificent
+
+Deck:
+16 Island
+1 Run Away Together
+1 Wild Magic Surge
+1 Pixie Guide
+1 Fiery Inscription
+1 Omen Hawker
+1 Impulse
+1 Aria of Flame
+1 Lightning Bolt
+1 Arcane Signet
+1 Bucknard's Everfull Purse
+1 Command Tower
+1 Boing!
+1 Chaos Warp
+1 Barbarian Class
+1 Frostboil Snarl
+1 Izzet Signet
+1 Negate
+1 Izzet Boilerworks
+1 Sol Ring
+1 Talisman of Creativity
+1 Sulfur Falls
+1 Izzet Charm
+1 Turn Aside
+1 Abrade
+1 Teferi's Time Twist
+1 Goblin Electromancer
+1 Shivan Reef
+1 Wyll, Blade of Frontiers
+1 Storm-Kiln Artist
+1 Command Performance
+1 Of One Mind
+1 Frantic Search
+1 Thrill of Possibility
+1 Tormenting Voice
+1 Jori En, Ruin Diver
+1 Rise and Shine
+1 Ancestral Vision
+1 Inevitable Betrayal
+1 Molten Psyche
+1 Counterspell
+1 Seething Song
+1 Role Reversal
+1 Desperate Ritual
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Urabrask // The Great Work
+1 Refocus
+1 Cerulean Wisps
+1 Confounding Riddle
+1 Akal Pakal, First Among Equals
+1 Bamboozling Beeble
+1 Thought Scour
+1 Guttersnipe
+1 Galvanic Blast
+1 Tasha's Hideous Laughter
+1 Risk Factor
+1 Light Up the Stage
+1 Dramatic Reversal
+1 Grab the Prize
+1 Marvin, Murderous Mimic
+1 Electrostatic Field
+1 Fellwar Stone
+1 Curate
+1 Taigam's Scheming
+1 Strategic Planning
+1 Blazing Salvo
+1 Faithless Looting
+17 Mountain

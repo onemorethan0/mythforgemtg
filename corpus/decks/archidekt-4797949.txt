@@ -1,0 +1,108 @@
+# Archidekt — Muldrotha EDH
+# source: archidekt:4797949
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Muldrotha, the Gravetide
+
+Deck:
+1 Rejuvenating Springs
+1 Morphic Pool
+1 Scalding Tarn
+1 Eternal Witness
+1 Overgrown Tomb
+1 Assassin's Trophy
+1 Animate Dead
+1 Yavimaya Coast
+1 Deathrite Shaman
+1 Kaya's Ghostform
+1 Buried Alive
+1 Llanowar Wastes
+1 Fabled Passage
+1 Lightning Greaves
+1 Dryad Arbor
+1 Watery Grave
+1 Drowned Catacomb
+1 Hinterland Harbor
+1 Breeding Pool
+1 Zagoth Triome
+1 Aether Spellbomb
+1 Mystic Remora
+1 Finale of Devastation
+1 Undergrowth Stadium
+1 Dreamroot Cascade
+1 Misty Rainforest
+1 Deathcap Glade
+1 Yavimaya, Cradle of Growth
+1 Lotus Cobra
+1 Arcane Signet
+1 Nurturing Peatland
+1 Verdant Catacombs
+1 Urza's Saga
+1 Sanctum Weaver
+1 Woodland Cemetery
+1 Search for Azcanta // Azcanta, the Sunken Ruin
+1 Sheoldred // The True Scriptures
+1 Strip Mine
+1 Hedge Maze
+1 Shifting Woodland
+1 Sheoldred, the Apocalypse
+1 Island
+1 Underground Mortuary
+1 Undercity Sewers
+1 Ledger Shredder
+1 Hermit Druid
+1 Swamp
+1 Forest
+1 Windswept Heath
+1 Gemstone Caverns
+1 Icetill Explorer
+1 Command Tower
+1 Cephalid Coliseum
+1 Talisman of Resilience
+1 Boseiju, Who Endures
+1 Palantír of Orthanc
+1 Lotus Petal
+1 Rhystic Study
+1 Sol Ring
+1 The One Ring
+1 Birds of Paradise
+1 Grist, Voracious Larva // Grist, the Plague Swarm
+1 Haywire Mite
+1 Spore Frog
+1 Sylvan Safekeeper
+1 Baleful Strix
+1 Braids, Arisen Nightmare
+1 Dauthi Voidwalker
+1 Fiend Artisan
+1 Volatile Stormdrake
+1 Abhorrent Oculus
+1 Formidable Speaker
+1 Kitesail Larcenist
+1 Six
+1 Twilight Diviner
+1 Uro, Titan of Nature's Wrath
+1 Phyrexian Metamorph
+1 Teval, the Balanced Scale
+1 Wistfulness
+1 Jubilation
+1 Koma, Cosmos Serpent
+1 Exploration
+1 Utopia Sprawl
+1 Return of the Mole Man
+1 Ripples of Undeath
+1 Sylvan Library
+1 The Meathook Massacre
+1 Black Market Connections
+1 Teval's Judgment
+1 Entomb
+1 Field of the Dead
+1 Waterlogged Grove
+1 Ashiok, Dream Render
+1 Oko, Thief of Crowns
+1 Teferi, Master of Time
+1 Life from the Loam
+1 Toxic Deluge
+1 Ancient Tomb
+1 Crop Rotation

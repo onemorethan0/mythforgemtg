@@ -1,0 +1,80 @@
+# Archidekt — Thunderer (Toralf, God of Fury)
+# source: archidekt:4445153
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Toralf, God of Fury // Toralf's Hammer
+
+Deck:
+1 Memory Vessel
+1 Pinnacle Monk // Mystic Peak
+1 Delayed Blast Fireball
+1 Wheel of Fortune
+1 Thought Vessel
+1 Wild Magic Surge
+1 Skred
+1 Urabrask // The Great Work
+1 Invasion of Kaldheim // Pyre of the World Tree
+1 Soulfire Eruption
+1 War Room
+1 Invoke Calamity
+1 Lightning Bolt
+1 Myriad Landscape
+1 Dualcaster Mage
+1 Crackle with Power
+1 Vandalblast
+1 Magus of the Wheel
+1 Arcane Signet
+1 Liquimetal Torque
+1 Reforge the Soul
+1 Increasing Vengeance
+1 Mana Geyser
+1 Past in Flames
+1 Ignite the Future
+1 Mind Stone
+1 Prismatic Lens
+1 Hedron Archive
+1 Chaos Warp
+1 Volcanic Torrent
+1 Sokenzan, Crucible of Defiance
+1 Seasoned Pyromancer
+1 Visions of Phyrexia
+1 Outpost Siege
+1 Bolt Bend
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Fellwar Stone
+1 Lavaball Trap
+1 Embrace the Unknown
+1 Return the Favor
+1 Runaway Steam-Kin
+1 Rousing Refrain
+1 Storm King's Thunder
+1 March of Reckless Joy
+1 Inspired Tinkering
+1 Bloodfire Colossus
+1 Artist's Talent
+1 Valakut Awakening // Valakut Stoneforge
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Seething Song
+1 Ruby Medallion
+1 Magmaquake
+1 Everflowing Chalice
+1 Extraplanar Lens
+1 Anger of the Gods
+1 Jeska's Will
+1 Dance with Calamity
+1 Deflecting Swat
+1 Fiery Emancipation
+1 Will of the Jeskai
+1 Valakut, the Molten Pinnacle
+1 Fury
+1 Boseiju, Who Shelters All
+1 Reckless Endeavor
+1 Ruination
+1 From the Ashes
+1 Winter Moon
+1 Magus of the Moon
+1 Blood Moon
+1 Insult // Injury
+29 Snow-Covered Mountain

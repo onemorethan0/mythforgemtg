@@ -1,0 +1,101 @@
+# Archidekt — Saruman of Milling Colors (b4)
+# source: archidekt:4711919
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Saruman of Many Colors
+
+Deck:
+1 Polluted Delta
+1 Marsh Flats
+1 Flooded Strand
+1 Godless Shrine
+1 Damnation
+1 Thought Scour
+1 Visions of Beyond
+1 Mystic Remora
+1 Rhystic Study
+1 Fact or Fiction
+1 Counterspell
+1 Mana Drain
+1 Force of Will
+1 Opposition Agent
+1 Sol Ring
+1 Arcane Signet
+1 Dimir Signet
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Mission Briefing
+1 Snapcaster Mage
+1 Swords to Plowshares
+1 Drown in the Loch
+1 Anguished Unmaking
+1 Deadly Rollick
+1 Void Rend
+1 Mystical Tutor
+1 Tithe
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Command Tower
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Glacial Fortress
+1 Isolated Chapel
+1 Archaeomancer's Map
+1 Azorius Signet
+3 Swamp
+1 Underground Sea
+1 Tundra
+1 Hallowed Fountain
+1 Watery Grave
+1 Mystic Gate
+1 Sunken Ruins
+1 Comeuppance
+1 Sea of Clouds
+1 Morphic Pool
+1 Raffine's Tower
+1 Fierce Guardianship
+3 Plains
+1 Teferi's Protection
+1 Damn
+1 Cyclonic Rift
+1 Reflecting Pool
+1 Borne Upon a Wind
+1 Notion Thief
+1 Narset, Parter of Veils
+1 Waterlogged Teachings // Inundated Archive
+1 Sink into Stupor // Soporific Springs
+1 Fell the Profane // Fell Mire
+4 Island
+1 Windfall
+1 Bojuka Bog
+1 Orzhov Signet
+1 Brainstorm
+1 Whispering Madness
+1 Drown in Dreams
+1 Animate Dead
+1 Mnemonic Betrayal
+1 Dark Deal
+1 Bloodchief Ascension
+1 Maddening Cacophony
+1 Duskmantle Guildmage
+1 Grim Monolith
+1 Mindcrank
+1 Consecrated Sphinx
+1 Smothering Tithe
+1 The Scarab God
+1 Echo of Eons
+1 Snuff Out
+1 Mana Vault
+1 The Mindskinner
+1 Syr Konrad, the Grim
+1 Inkshield
+1 Orcish Bowmasters
+1 Sheoldred, the Apocalypse
+1 Farewell
+1 Dovin's Veto
+1 Enlightened Tutor
+1 Shipwreck Marsh
+1 Deserted Beach
+1 Myriad Landscape

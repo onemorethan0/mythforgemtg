@@ -1,0 +1,78 @@
+# Archidekt — Dragon Tribal // Tannuk, Steadfast Second Deck
+# source: archidekt:14587267
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tannuk, Steadfast Second
+
+Deck:
+1 Vanquisher's Banner
+1 Temple of the Dragon Queen
+1 Chaos Warp
+1 Utvara Hellkite
+1 Sarkhan the Masterless
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Coveted Jewel
+1 Dragon Mage
+1 Knollspine Dragon
+1 Drakuseth, Maw of Flames
+1 Blasphemous Act
+1 Ingenuity Engine
+1 Stormscale Scion
+1 Ancient Copper Dragon
+1 Terror of the Peaks
+1 Mox Jasper
+1 Hellkite Tyrant
+1 Twinflame Tyrant
+1 Lightning Greaves
+1 Spinerock Knoll
+1 Valakut, the Molten Pinnacle
+1 War Room
+1 Extinguisher Battleship
+1 Myojin of Roaring Blades
+1 Ganax, Astral Hunter
+1 Ran and Shaw
+1 Conjurer's Closet
+1 Ruby Medallion
+1 Sundial of the Infinite
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Goldspan Dragon
+1 Lavaleaper
+1 Hazoret's Monument
+1 Abrade
+1 Lightning Bolt
+1 Wrathful Red Dragon
+1 Flamerush Rider
+1 Sol Ring
+1 Maelstrom of the Spirit Dragon
+1 Scourge of the Throne
+1 Haven of the Spirit Dragon
+1 Dragonspeaker Shaman
+1 Bolt Bend
+1 Combustible Gearhulk
+1 Nogi, Draco-Zealot
+1 Faithless Looting
+1 Dragonhawk, Fate's Tempest
+1 Lathliss, Dragon Queen
+1 Goldlust Triad
+1 Fang, Roku's Companion
+1 The Misty Mountains Cold
+1 Last Light of Durin's Day
+1 Desert Were-Worm
+1 Draconic Visitor
+1 Magus of the Wheel
+1 Chimil, the Inner Sun
+1 Etali, Primal Storm
+1 Cursed Mirror
+31 Mountain
+1 Scourge of Valkas
+1 Great Train Heist
+1 Mask of Memory
+1 Gogo, Mysterious Mime
+1 Charred Foyer // Warped Space
+1 Mana Geyser
+1 Red Elemental Blast
+1 Warstorm Surge
+1 Dragon's Fire
+1 Nykthos, Shrine to Nyx

@@ -1,0 +1,95 @@
+# Archidekt — B1: The Gambling Theftslinger, Starring Jeleva
+# source: archidekt:20665799
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jeleva, Nephalia's Scourge
+
+Deck:
+1 Strago and Relm
+1 Talisman of Creativity
+1 Dreadbore
+1 Valakut Awakening // Valakut Stoneforge
+1 Haunted Ridge
+1 Arcane Signet
+1 Stormcarved Coast
+1 Chandra, Torch of Defiance
+1 Brainstorm
+1 Throes of Chaos
+1 Emet-Selch of the Third Seat
+1 Arcane Heist
+1 Mathise, Surge Channeler
+1 Expressive Iteration
+1 Fireglass Mentor
+1 Dimir Signet
+1 Rakdos Signet
+1 Izzet Signet
+1 Talisman of Dominance
+1 Archmage Emeritus
+1 Silundi Vision // Silundi Isle
+1 Crumbling Necropolis
+1 Seething Landscape
+1 Command Tower
+1 Smoldering Marsh
+1 Sunken Hollow
+1 Spider-Man 2099
+1 Invert Polarity
+1 Chaos Wand
+1 Chaos Warp
+1 Lightning Bolt
+1 Chemister's Insight
+1 Reckless Endeavor
+1 Keeper of Secrets
+1 Veyran, Voice of Duality
+1 Wand of Wonder
+1 League Guildmage
+1 Wizard's Spellbook
+1 Sol Ring
+1 Tectonic Giant
+1 Dragonhawk, Fate's Tempest
+5 Mountain
+1 Reckless Impulse
+1 Wrenn's Resolve
+1 Fabled Passage
+1 Frostboil Snarl
+1 Maddening Hex
+1 Malicious Affliction
+1 Hagra Mauling // Hagra Broodpit
+1 Waterlogged Teachings // Inundated Archive
+1 Gloomlake Verge
+1 Neera, Wild Mage
+1 Fellwar Stone
+1 Boompile
+1 Reality Scramble
+1 Behold the Multiverse
+1 Guttersnipe
+1 Thing in the Ice // Awoken Horror
+1 Talisman of Indulgence
+1 Zoyowa's Justice
+1 Risk Factor
+1 Zof Consumption // Zof Bloodbog
+1 Chaos Channeler
+1 Wildfire Devils
+1 Otherworldly Gaze
+1 Party Thrasher
+1 Sink into Stupor // Soporific Springs
+1 Fell the Profane // Fell Mire
+1 Decree of Pain
+1 Guff Rewrites History
+1 Wild Magic Surge
+1 Tibalt's Trickery
+1 Flaming Tyrannosaurus
+1 Blazemire Verge
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Nightscape Familiar
+1 Sulfurous Springs
+6 Island
+5 Swamp
+1 Blightstep Pathway // Searstep Pathway
+1 Ponder
+1 Laelia, the Blade Reforged
+1 Think Twice
+1 Black Waltz No. 3
+1 Preordain
+1 Electrostatic Field

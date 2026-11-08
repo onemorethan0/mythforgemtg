@@ -1,0 +1,92 @@
+# Archidekt — Delina
+# source: archidekt:3040290
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Delina, Wild Mage
+
+Deck:
+1 Cloak of the Bat
+3 Mountain
+1 Cosmotronic Wave
+1 Glittering Stockpile
+1 Ignite the Future
+1 Professional Face-Breaker
+1 Access Tunnel
+1 Breya's Apprentice
+1 Barbarian Class
+1 Harmonic Prodigy
+1 Plundering Barbarian
+1 Thopter Engineer
+1 Patron of the Arts
+1 Reckless Impulse
+1 Chaos Warp
+1 Wild Magic Surge
+1 You Find Some Prisoners
+1 Lightning Bolt
+1 Wyll, Blade of Frontiers
+1 Rogue's Passage
+1 Seize the Spotlight
+1 Great Furnace
+1 Invoke Calamity
+1 Frenzied Fugue
+1 Fire Diamond
+1 Arcane Signet
+1 Sol Ring
+1 Pia and Kiran Nalaar
+1 Pia Nalaar
+3 Mountain
+3 Mountain
+3 Mountain
+3 Mountain
+3 Mountain
+3 Mountain
+1 Mind Stone
+1 Liquimetal Torque
+1 Dwarven Mine
+1 Vandalblast
+1 Castle Embereth
+1 Swashbuckler Extraordinaire
+1 Wily Goblin
+1 Coldsteel Heart
+3 Mountain
+1 Goblin Bombardment
+1 Ardent Elementalist
+1 Manifold Key
+1 Ganax, Astral Hunter
+1 Kediss, Emberclaw Familiar
+1 Demolition Field
+1 Mizzium Mortars
+1 Ghirapur Gearcrafter
+1 Hazardous Blast
+1 Wrenn's Resolve
+1 Vexing Puzzlebox
+1 Siege-Gang Commander
+1 Ebony Fly
+1 Maze of Ith
+1 Shivan Gorge
+1 Dolmen Gate
+1 Myr Battlesphere
+1 Charming Scoundrel
+1 Forgotten Cave
+1 Cursed Mirror
+1 Trumpeting Carnosaur
+1 Den of the Bugbear
+1 Barbarian Ring
+1 Anzrag's Rampage
+1 Ruby Medallion
+1 Sonic Screwdriver
+1 Zoyowa's Justice
+1 Arena of Glory
+1 Terrain Generator
+1 War Cadence
+1 Caves of Chaos Adventurer
+1 Seize Opportunity
+1 Skyscanner
+1 Circuit Mender
+1 Glimpse the Impossible
+1 Splinter Twin
+1 Possibility Technician
+1 Norin, Swift Survivalist
+1 Dire Fleet Daredevil

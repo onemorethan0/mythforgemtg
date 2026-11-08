@@ -1,0 +1,101 @@
+# Archidekt — Haunted House
+# source: archidekt:9316571
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Secret Arcade // Dusty Parlor + Ghostly Dancers; Bracket 1 allows none
+
+Commander:
+1 Marina Vendrell
+
+Deck:
+1 Unwilling Vessel
+1 Ghostly Dancers
+1 Greenhouse // Rickety Gazebo
+1 Inquisitive Glimmer
+1 Meat Locker // Drowned Diner
+1 Moldering Gym // Weight Room
+1 Derelict Attic // Widow's Walk
+1 Restricted Office // Lecture Hall
+1 Surgical Suite // Hospital Room
+1 Mirror Room // Fractured Realm
+1 Bottomless Pool // Locker Room
+1 Door to Nothingness
+1 Keys to the House
+1 Dance of the Manse
+1 Command Tower
+1 Ghostly Keybearer
+1 Haunted Screen
+1 Sheltered by Ghosts
+1 Balemurk Leech
+4 Plains
+1 Central Elevator // Promising Stairs
+1 Mountain
+1 Entity Tracker
+1 Valgavoth's Lair
+1 Dazzling Theater // Prop Room
+1 Victor, Valgavoth's Seneschal
+1 Unholy Annex // Ritual Chamber
+1 Smoky Lounge // Misty Salon
+1 Grand Entryway // Elegant Rotunda
+1 Gremlin Tamer
+1 Cramped Vents // Access Maze
+1 Dollmaker's Shop // Porcelain Gallery
+1 Funeral Room // Awakening Hall
+1 Roaring Furnace // Steaming Sauna
+1 Secret Arcade // Dusty Parlor
+1 Spiked Corridor // Torture Pit
+1 Ticket Booth // Tunnel of Hate
+1 Exotic Orchard
+1 Patriar's Seal
+1 Mesa Enchantress
+1 False Floor
+1 Suspicious Bookcase
+1 Unable to Scream
+1 Trapped in the Screen
+1 Split Up
+1 Ethereal Armor
+1 Shardmage's Rescue
+1 Rug of Smothering
+1 Cursed Mirror
+1 Ghostly Prison
+1 Escape Tunnel
+1 Terramorphic Expanse
+1 Manor Gate
+1 Defenestrate
+1 Maze's End
+1 Propaganda
+1 Gond Gate
+1 Grim Guardian
+1 Glassworks // Shattered Yard
+1 Scrabbling Skullcrab
+1 Thran Portal
+1 Azorius Guildgate
+1 Simic Guildgate
+1 Selesnya Guildgate
+1 Izzet Guildgate
+1 Orzhov Guildgate
+1 Gruul Guildgate
+1 Dimir Guildgate
+1 Heap Gate
+1 Echoing Deeps
+1 Wall of Omens
+1 Creeping Peeper
+1 Crawlspace
+1 Fear of Sleep Paralysis
+1 Soaring Lightbringer
+1 Boros Guildgate
+1 Basilisk Gate
+1 Baldur's Gate
+1 Golgari Guildgate
+1 Rakdos Guildgate
+1 Roadside Reliquary
+1 Arcane Signet
+1 Defiled Crypt // Cadaver Lab
+1 Fear of the Dark
+1 Overlord of the Floodpits
+3 Forest
+2 Swamp
+1 Viscera Seer
+3 Island
+1 Ashnod's Altar
+1 Twitching Doll

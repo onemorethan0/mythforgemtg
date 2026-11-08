@@ -1,0 +1,97 @@
+# Archidekt — Un-Urza SIlver Border
+# source: archidekt:13191005
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Urza, Academy Headmaster
+
+Deck:
+1 Taiga
+1 Entirely Normal Armchair
+1 Five-Finger Discount
+1 Fowl Play
+1 Free-for-All
+6 Island
+1 Jack-in-the-Mox
+1 Johnny, Combo Player
+1 Kill! Destroy!
+1 Loose Lips
+1 Mobile Clone
+1 My First Tome
+1 Nearby Planet
+1 Number Crunch
+1 Park Map
+1 Phoebe, Head of S.N.E.A.K.
+1 Stocking Tiger
+1 Infinity Elemental
+2 Mountain
+1 Rings a Bell
+1 The Big Top
+1 Underdome
+1 Yet Another Aether Vortex
+1 B.O.B. (Bevy of Beebles)
+1 Censorship
+1 City of Ass
+1 Common Courtesy
+1 Animate Library
+3 Swamp
+1 Checks and Balances
+1 AWOL
+1 Granny's Payback
+1 Split Screen
+1 Blurry Beeble
+1 Duh
+1 Summon the Pack
+1 Sol Ring
+1 Command Tower
+1 X
+1 Arcane Signet
+2 Forest
+3 Plains
+1 Forbidden Orchard
+1 Grand Coliseum
+1 Eye to Eye
+1 Gateway Plaza
+1 Spy Eye
+1 Commander's Sphere
+1 Booster Tutor
+1 Alexander Clamilton
+1 Urza's Fun House
+1 Rules Lawyer
+1 Topsy Turvy
+1 Enter the Dungeon
+1 Staying Power
+1 Ashnod's Coupon
+1 Burning Cinder Fury of Crimson Chaos Fire
+1 Who // What // When // Where // Why
+1 Knight of the Kitchen Sink
+1 Flaccify
+1 Frazzled Editor
+1 Land Aid '04
+1 Path of Ancestry
+1 Knight of the Hokey Pokey
+1 Exotic Orchard
+1 Rogue's Passage
+1 Gifts Given
+1 Subcontract
+1 Darksteel Ingot
+1 Coalition Relic
+1 Chromatic Lantern
+1 Phone a Friend
+1 Bayou
+1 Zagoth Triome
+1 Indatha Triome
+1 Ketria Triome
+1 Scrubland
+1 Savannah
+1 Raugrin Triome
+1 Savai Triome
+1 Tundra
+1 Volcanic Island
+1 Badlands
+1 Tropical Island
+1 Plateau
+1 Underground Sea
+1 Opening Ceremony
+1 Timmy, Power Gamer

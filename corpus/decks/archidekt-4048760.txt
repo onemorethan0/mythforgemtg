@@ -1,0 +1,85 @@
+# Archidekt — Devil's Dance Floor
+# source: archidekt:4048760
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Rakdos, the Showstopper
+
+Deck:
+1 Carnival Hellsteed
+1 Massacre Girl
+1 Master of Cruelties
+1 Pack Rat
+1 Captive Audience
+1 Anthem of Rakdos
+1 Rix Maadi, Dungeon Palace
+1 Underworld Connections
+1 Pain Magnification
+1 Rakdos Keyrune
+1 Skullmead Cauldron
+1 Rakdos Signet
+1 Rakdos Locket
+1 Rakdos Cluestone
+1 Chromatic Lantern
+1 Rakdos Guildgate
+1 Blood Crypt
+1 Rix Maadi Guildmage
+1 Rakdos Carnarium
+1 Ignorant Bliss
+1 Wrecking Ball
+1 Rakdos, Lord of Riots
+1 Exava, Rakdos Blood Witch
+1 Lyzolda, the Blood Witch
+1 Judith, the Scourge Diva
+1 Rakdos Pit Dragon
+1 Sire of Insanity
+11 Mountain
+1 Sandstorm Eidolon
+1 Desecration Demon
+1 Thrill-Kill Assassin
+1 Carnage Gladiator
+1 Hellhole Flailer
+1 Cryptborn Horror
+1 Rakdos Augermage
+1 Rix Maadi Reveler
+1 Gobhobbler Rats
+1 Avatar of Discord
+1 Lord of the Void
+1 Utvara Hellkite
+1 Hex
+1 Rakdos Charm
+1 Dead Revels
+1 Skull Rend
+1 Dreadbore
+1 Skewer the Critics
+1 Toil // Trouble
+1 Bedevil
+1 Havoc Festival
+1 Nihilistic Glee
+1 Entropic Eidolon
+1 Dread Slag
+1 Ogre Slumlord
+1 Gutterbones
+1 Spawn of Mayhem
+1 Glaring Spotlight
+1 Infernal Tutor
+1 Theater of Horrors
+1 Rain of Gore
+1 Light Up the Stage
+14 Swamp
+1 Public Thoroughfare
+1 Rakdos, Patron of Chaos
+1 Massacre Girl, Known Killer
+1 Judith, Carnage Connoisseur
+1 Barbed Servitor
+1 Expedited Inheritance
+1 Convenient Target
+1 Showstopping Surprise
+1 Rakdos Ickspitter
+1 Tesak, Judith's Hellhound
+1 Raucous Theater
+1 Deadly Rollick
+1 Carnage Interpreter
+1 Headliner Scarlett
+1 Splatter Thug

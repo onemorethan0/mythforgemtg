@@ -1,0 +1,108 @@
+# Archidekt — LET'S GO GAMBLING!!
+# source: archidekt:9823052
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kinnan, Bonder Prodigy
+
+Deck:
+1 Arcane Signet
+1 Emergence Zone
+1 Yavimaya Coast
+1 Nezahal, Primal Tide
+1 Fyndhorn Elves
+1 Phyrexian Metamorph
+1 Tezzeret the Seeker
+1 Talisman of Curiosity
+1 Seedborn Muse
+1 Mana Vault
+1 Spellskite
+1 Finale of Devastation
+1 Breeding Pool
+1 Lotus Petal
+1 Rejuvenating Springs
+1 Delighted Halfling
+1 Mana Drain
+1 Polluted Delta
+1 Flooded Strand
+1 Boseiju, Who Endures
+1 Island
+1 The One Ring
+1 Void Winnower
+1 Pact of Negation
+1 Chord of Calling
+1 Worldly Tutor
+1 Nyxbloom Ancient
+1 Thrasios, Triton Hero
+1 Forest
+1 Glen Elendra Archmage
+1 Hullbreaker Horror
+1 Wandering Archaic // Explore the Vastlands
+1 Tidespout Tyrant
+1 Mindbreak Trap
+1 Green Sun's Zenith
+1 Flusterstorm
+1 Trophy Mage
+1 Simic Signet
+1 Mox Opal
+1 Cephalid Coliseum
+1 Scalding Tarn
+1 Crop Rotation
+1 Minamo, School at Water's Edge
+1 Chrome Mox
+1 Transmute Artifact
+1 Tropical Island
+1 Enduring Vitality
+1 Treasure Vault
+1 Command Tower
+1 Mana Confluence
+1 Thorn Mammoth
+1 An Offer You Can't Refuse
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Elvish Mystic
+1 Rhystic Study
+1 Waterlogged Grove
+1 Bloom Tender
+1 Pongify
+1 Grim Monolith
+1 City of Brass
+1 Mirrormade
+1 Nature's Rhythm
+1 Gaea's Cradle
+1 Mox Diamond
+1 Clever Impersonator
+1 Gemstone Caverns
+1 Mox Amber
+1 Ancient Tomb
+1 Colossal Skyturtle
+1 Endurance
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Cyclonic Rift
+1 Consecrated Sphinx
+1 Springleaf Drum
+1 Talon Gates of Madara
+1 Swan Song
+1 Mystic Remora
+1 Force of Negation
+1 Mental Misstep
+1 Into the Flood Maw
+1 Force of Will
+1 Sink into Stupor // Soporific Springs
+1 Otawara, Soaring City
+1 Fierce Guardianship
+1 Mirage Mirror
+1 Misty Rainforest
+1 Mistrise Village
+1 Fabricate
+1 Basalt Monolith
+1 Dispel
+1 Valley Floodcaller
+1 Scour for Scrap
+1 Llanowar Elves
+1 Birds of Paradise
+1 Fellwar Stone
+1 Sol Ring
+1 Elvish Spirit Guide
+1 Force of Vigor
+1 Chain of Vapor

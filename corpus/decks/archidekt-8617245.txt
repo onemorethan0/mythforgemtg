@@ -1,0 +1,65 @@
+# Archidekt — *EDH* Bunny Mayhem
+# source: archidekt:8617245
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ms. Bumbleflower
+
+Deck:
+1 Canopy Vista
+1 Generous Gift
+1 Flooded Grove
+1 Sungrass Prairie
+1 Overflowing Basin
+1 Opal Palace
+1 Prairie Stream
+1 Swiftfoot Boots
+1 Exotic Orchard
+1 Razorverge Thicket
+3 Island
+1 Seachrome Coast
+1 Glacial Fortress
+1 Command Tower
+1 Temple of Plenty
+1 Path to Exile
+1 Pollen-Shield Hare // Hare Raising
+1 Finneas, Ace Archer
+1 Jacked Rabbit
+1 Martyr's Cause
+1 Cadira, Caller of the Small
+1 Fanatical Devotion
+1 Nature's Claim
+29 Hare Apparent
+1 Azorius Signet
+1 Beast Within
+1 Fellwar Stone
+1 Seaside Citadel
+1 Hinterland Harbor
+1 Temple of Enlightenment
+1 Swords to Plowshares
+11 Plains
+4 Forest
+1 Mirror Entity
+1 Eerie Interlude
+1 Ascend from Avernus
+1 Raise the Past
+1 Sol Ring
+1 Thought Vessel
+1 Brushland
+1 Skycloud Expanse
+1 Sunpetal Grove
+1 Valley Questcaller
+1 Arcane Signet
+1 Path of Ancestry
+1 Simic Signet
+1 Glare of Subdual
+1 Wrath of God
+1 An Offer You Can't Refuse
+1 Cathars' Crusade
+1 Distant Melody
+1 Kindred Discovery
+1 Panharmonicon
+1 Storm of Souls
+1 Stroke of Midnight
+1 Tetsuko Umezawa, Fugitive

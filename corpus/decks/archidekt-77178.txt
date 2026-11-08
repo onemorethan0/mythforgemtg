@@ -1,0 +1,99 @@
+# Archidekt — Karador's Perpetual Toolbox
+# source: archidekt:77178
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Karador, Ghost Chieftain
+
+Deck:
+1 Isolated Chapel
+1 Woodland Cemetery
+1 Protean Hulk
+1 Pernicious Deed
+1 Ravenous Chupacabra
+1 Sunpetal Grove
+1 Meren of Clan Nel Toth
+1 Marsh Flats
+1 Verdant Catacombs
+1 Renegade Rallier
+1 Eldritch Evolution
+1 Sylvan Library
+1 Deathrite Shaman
+1 Anguished Unmaking
+1 Hissing Quagmire
+1 Canopy Vista
+1 Caustic Caterpillar
+1 Sidisi, Undead Vizier
+1 Merciless Executioner
+1 Damnation
+1 Sandsteppe Citadel
+1 Windswept Heath
+1 Reclamation Sage
+1 Reflecting Pool
+1 Satyr Wayfinder
+1 Ashen Rider
+3 Plains
+1 Swords to Plowshares
+1 Green Sun's Zenith
+1 Reveillark
+1 Eternal Witness
+1 Godless Shrine
+1 Overgrown Tomb
+1 Temple Garden
+1 High Market
+1 Murmuring Bosk
+1 Urborg, Tomb of Yawgmoth
+1 Disciple of Bolas
+1 Blood Artist
+1 Mikaeus, the Unhallowed
+1 Karmic Guide
+1 Command Tower
+1 Solemn Simulacrum
+1 Sol Ring
+1 Birthing Pod
+1 Massacre Wurm
+1 Viscera Seer
+1 Sun Titan
+1 Birds of Paradise
+1 Bojuka Bog
+1 Skullclamp
+1 Strip Mine
+1 Farhaven Elf
+5 Forest
+4 Swamp
+1 Wrath of God
+1 Saffi Eriksdotter
+1 Hermit Druid
+1 Shriekmaw
+1 Living Death
+1 Buried Alive
+1 Sungrass Prairie
+1 Nature's Revolt
+1 Wood Elves
+1 Eladamri's Call
+1 Aura Shards
+1 Phyrexian Altar
+1 Spore Frog
+1 Kor Haven
+1 Sakura-Tribe Elder
+1 Academy Rector
+1 Yavimaya Elder
+1 Gaea's Cradle
+1 Survival of the Fittest
+1 Demonic Tutor
+1 Llanowar Elves
+1 Greater Good
+1 Knight of Autumn
+1 Plaguecrafter
+1 Fauna Shaman
+1 Luminous Broodmoth
+1 Sheoldred, Whispering One
+1 Gravebreaker Lamia
+1 Life from the Loam
+1 Archivist of Oghma
+1 Elesh Norn, Grand Cenobite
+1 Phyrexian Tower
+1 Avacyn's Pilgrim
+1 Miren, the Moaning Well
+1 Twilight Diviner

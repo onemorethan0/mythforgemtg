@@ -1,0 +1,105 @@
+# Archidekt — Captain Sisay cEDH
+# source: archidekt:1210972
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Captain Sisay
+
+Deck:
+1 Mox Diamond
+1 Loran of the Third Path
+1 Myrel, Shield of Argive
+1 Savannah
+1 Esper Sentinel
+1 Chrome Mox
+1 Lightning Greaves
+1 Sol Ring
+1 Wooded Foothills
+1 Windswept Heath
+1 Temple Garden
+2 Plains
+1 Mana Confluence
+1 Homeward Path
+1 Gaea's Cradle
+3 Forest
+1 Flooded Strand
+1 Ancient Tomb
+1 Bountiful Promenade
+1 City of Brass
+1 Eiganjo Castle
+1 Brushland
+1 Blind Obedience
+1 Carpet of Flowers
+1 Beast Within
+1 Crop Rotation
+1 Swords to Plowshares
+1 Birds of Paradise
+1 Avacyn's Pilgrim
+1 Elesh Norn, Grand Cenobite
+1 Fyndhorn Elves
+1 Kamahl, Fist of Krosa
+1 Linvala, Keeper of Silence
+1 Quirion Ranger
+1 Selvala, Heart of the Wilds
+1 Enlightened Tutor
+1 Path to Exile
+1 Worldly Tutor
+1 Ashaya, Soul of the Wild
+1 Elvish Mystic
+1 Llanowar Elves
+1 Ranger-Captain of Eos
+1 Yasharn, Implacable Earth
+1 Shalai, Voice of Plenty
+1 Grand Abolisher
+1 Sting, the Glinting Dagger
+1 Umezawa's Jitte
+1 Delighted Halfling
+1 Gemstone Caverns
+1 Destiny Spinner
+1 Eiganjo, Seat of the Empire
+1 Eladamri's Call
+1 Green Sun's Zenith
+1 Pendelhaven
+1 Misty Rainforest
+1 Boseiju, Who Endures
+1 Utopia Sprawl
+1 Veil of Summer
+1 Village Bell-Ringer
+1 Wild Growth
+1 Command Tower
+1 Silence
+1 Emiel the Blessed
+1 Endurance
+1 Hope Tender
+1 Kogla, the Titan Ape
+1 Magus of the Candelabra
+1 Finale of Devastation
+1 Chord of Calling
+1 Thousand-Year Elixir
+1 Yavimaya, Cradle of Growth
+1 Solitude
+1 Legolas's Quick Reflexes
+1 Drannith Magistrate
+1 Galadriel's Dismissal
+1 The One Ring
+1 Containment Priest
+1 Skyclave Apparition
+1 Deafening Silence
+1 Archdruid's Charm
+1 Kutzil, Malamet Exemplar
+1 Touch the Spirit Realm
+1 Aven Mindcensor
+1 Dauntless Dismantler
+1 Winds of Abandon
+1 Sigarda, Font of Blessings
+1 Karn, the Great Creator
+1 Voice of Victory
+1 Nature's Rhythm
+1 Verdant Catacombs
+1 Emergence Zone
+1 The Wandering Rescuer
+1 Nissa, Resurgent Animist
+1 Lotus Petal
+1 Shifting Woodland
+1 Arcane Signet

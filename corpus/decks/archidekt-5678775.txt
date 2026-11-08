@@ -1,0 +1,98 @@
+# Archidekt — Teysa Karlov
+# source: archidekt:5678775
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Teysa Karlov
+
+Deck:
+1 Priest of the Blood Rite
+1 Woe Strider
+1 Blood Artist
+1 Sorin, Solemn Visitor
+1 Solemn Simulacrum
+1 Zulaport Cutthroat
+1 Xathrid Necromancer
+1 Carrion Feeder
+1 Doomed Traveler
+1 Fleshbag Marauder
+1 Austere Command
+1 Anguished Unmaking
+1 Mortify
+1 Utter End
+1 Commander's Sphere
+1 Anointed Procession
+1 Talisman of Hierarchy
+1 Hall of Heliod's Generosity
+1 Isolated Chapel
+1 Orzhov Basilica
+1 Caves of Koilos
+1 Command Tower
+1 Godless Shrine
+1 Marsh Flats
+6 Swamp
+1 Temple of Silence
+1 Tainted Field
+1 Cruel Celebrant
+1 Ethereal Absolution
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Elas il-Kor, Sadistic Pilgrim
+1 Hidden Stockpile
+1 Death Pits of Rath
+1 Mithril Coat
+1 Pitiless Carnage
+1 Syr Konrad, the Grim
+1 Increasing Devotion
+1 Single Combat
+1 Ravos, Soultender
+5 Plains
+1 Hidden Courtyard
+1 Shadowy Backstreet
+1 Bastion of Remembrance
+1 Field of Ruin
+1 Court of Grace
+1 Bojuka Bog
+1 Castle Ardenvale
+1 Fetid Heath
+1 Ghost Quarter
+1 Shattered Sanctum
+1 Fellwar Stone
+1 Orzhov Signet
+1 Storm of Souls
+1 Divine Visitation
+1 Jadar, Ghoulcaller of Nephalia
+1 Ophiomancer
+1 Grave Titan
+1 Skrelv's Hive
+1 Elenda, the Dusk Rose
+1 Bitterblossom
+1 Denethor, Ruling Steward
+1 Dreadhorde Invasion
+1 Lord Skitter, Sewer King
+1 Ocelot Pride
+1 White Sun's Zenith
+1 Grave Pact
+1 Dollmaker's Shop // Porcelain Gallery
+1 Adeline, Resplendent Cathar
+1 Liliana, Dreadhorde General
+1 Thalisse, Reverent Medium
+1 Silent Clearing
+1 Mondrak, Glory Dominus
+1 Warren Soultrader
+1 Dictate of Erebos
+1 High Market
+1 Damn
+1 Elspeth, Sun's Champion
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Arcane Signet
+1 Bleachbone Verge
+1 Drivnod, Carnage Dominus
+1 Kambal, Profiteering Mayor
+1 Elspeth, Storm Slayer
+1 Fire Navy Trebuchet
+1 Tolls of War
+1 Wedding Announcement // Wedding Festivity
+1 Duty Beyond Death
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Caretaker's Talent

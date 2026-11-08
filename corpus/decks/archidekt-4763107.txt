@@ -1,0 +1,106 @@
+# Archidekt — KinGnan
+# source: archidekt:4763107
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kinnan, Bonder Prodigy
+
+Deck:
+1 Dimensional Infiltrator
+1 Lotus Petal
+1 Yavimaya Coast
+1 Mockingbird
+2 Forest
+1 Mystic Remora
+1 Thrasios, Triton Hero
+1 Seedborn Muse
+1 Mindbreak Trap
+1 Autumn's Veil
+1 Birds of Paradise
+1 Worldly Tutor
+1 Noxious Revival
+1 Swan Song
+1 Mox Amber
+1 Liquimetal Torque
+1 Breeding Pool
+1 Shifting Woodland
+1 Willowrush Verge
+1 Mana Confluence
+1 Walking Ballista
+1 Force of Negation
+1 Gemstone Caverns
+1 Urza's Saga
+1 Command Tower
+1 Formidable Speaker
+1 Waterlogged Grove
+1 Whir of Invention
+1 Arcane Denial
+1 Rapid Hybridization
+1 Finale of Devastation
+2 Island
+1 Delay
+1 Pact of Negation
+1 Wooded Foothills
+1 Boseiju, Who Endures
+1 Rhystic Study
+1 Strix Serenade
+1 Endurance
+1 Valley Floodcaller
+1 Kozilek's Command
+1 An Offer You Can't Refuse
+1 Nature's Rhythm
+1 Tishana's Tidebinder
+1 Consecrated Sphinx
+1 Sink into Stupor // Soporific Springs
+1 Nyxbloom Ancient
+1 Fellwar Stone
+1 Talisman of Curiosity
+1 Basalt Monolith
+1 Simic Signet
+1 Mystical Tutor
+1 Fierce Guardianship
+1 Enduring Vitality
+1 Phyrexian Metamorph
+1 Otawara, Soaring City
+1 Tropical Island
+1 Rejuvenating Springs
+1 City of Brass
+1 Ancient Tomb
+1 Faerie Mastermind
+1 Arcane Signet
+1 Volatile Stormdrake
+1 Gilded Drake
+1 Spider-Sense
+1 Inventors' Fair
+1 Treasure Vault
+1 Clever Impersonator
+1 Reshape
+1 Stonework Packbeast
+1 Hullbreaker Horror
+1 Gitaxian Probe
+1 Chord of Calling
+1 Springleaf Drum
+1 Sol Ring
+1 Chrome Mox
+1 Archdruid's Charm
+1 Transmute Artifact
+1 Crop Rotation
+1 Mox Diamond
+1 Mana Vault
+1 Gaea's Cradle
+1 Into the Flood Maw
+1 Force of Will
+1 Misty Rainforest
+1 Grim Monolith
+1 Cyclonic Rift
+1 Flusterstorm
+1 Veil of Summer
+1 Borne Upon a Wind
+1 Mirage Mirror
+1 Memory Deluge
+1 Phantasmal Image
+1 Summoner's Pact
+1 Flash Photography
+1 Dosan the Falling Leaf
+1 Green Sun's Zenith

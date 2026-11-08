@@ -1,0 +1,92 @@
+# Archidekt — Brenard, Ginger Sculptor
+# source: archidekt:5017286
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Brenard, Ginger Sculptor
+
+Deck:
+1 Elven Chorus
+1 Mithril Coat
+1 Darksteel Plate
+1 Swiftfoot Boots
+1 Mimic Vat
+1 Adrix and Nev, Twincasters
+1 Bountiful Promenade
+1 Rejuvenating Springs
+1 Mystic Gate
+1 Scavenger Grounds
+1 Reliquary Tower
+1 Temple of the False God
+1 Command Tower
+1 Sea of Clouds
+1 Flooded Grove
+1 Wooded Bastion
+1 Mondrak, Glory Dominus
+1 Heroic Intervention
+1 Homeward Path
+1 Darksteel Splicer
+1 Wing Splicer
+6 Forest
+1 Eerie Interlude
+1 Minamo, School at Water's Edge
+1 Command Beacon
+1 Asceticism
+1 Privileged Position
+1 Sigarda, Host of Herons
+1 Tyrite Sanctum
+1 Rogue's Passage
+1 Flawless Maneuver
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Return to Dust
+1 Somberwald Beastmaster
+1 Amonkhet Raceway
+1 Muraganda Raceway
+1 Rumor Gatherer
+1 Overlord of the Hauntwoods
+1 Skyclave Relic
+1 Oltec Matterweaver
+1 Silverback Elder
+1 Kozilek's Unsealing
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Mana Drain
+1 Clever Concealment
+1 Illustrious Wanderglyph
+1 Counterspell
+1 Overlord of the Mistmoors
+1 Spectacular Pileup
+1 Gala Greeters
+6 Island
+1 Wolverine Riders
+1 Tendershoot Dryad
+1 Caretaker's Talent
+1 Tocasia's Welcome
+1 Coiling Oracle
+1 Risen Reef
+1 Thassa, Deep-Dwelling
+1 Teleportation Circle
+1 Conjurer's Closet
+1 Displacer Kitten
+1 Ocelot Pride
+1 Curiosity Crafter
+1 Tragic Arrogance
+1 Hour of Revelation
+1 Swords to Plowshares
+1 Sensor Splicer
+1 Master Splicer
+1 Exalted Sunborn
+1 The Immortal Sun
+1 Vital Splicer
+1 Chulane, Teller of Tales
+1 Galadriel, Light of Valinor
+1 Threefold Thunderhulk
+1 Helga, Skittish Seer
+1 Losheel, Clockwork Scholar
+1 Bronze Guardian
+1 Mulldrifter
+1 Displaced Dinosaurs
+1 Bennie Bracks, Zoologist
+1 Elder Gargaroth
+7 Plains
+1 Octomancer

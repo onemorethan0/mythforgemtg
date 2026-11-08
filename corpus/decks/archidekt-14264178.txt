@@ -1,0 +1,100 @@
+# Archidekt — Dissidia FF - Warriors of Cosmos / Materia
+# source: archidekt:14264178
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Summon: Primal Odin
+1 Collective Effort
+1 Cloud, Midgar Mercenary
+1 Sharlayan, Nation of Scholars
+1 Lindblum, Industrial Regency // Mage Siege
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Ishgard, the Holy See // Faith & Grief
+1 Guadosalam, Farplane Gateway
+1 Insomnia, Crown City
+1 Gohn, Town of Ruin
+1 Zell Dincht
+1 Zidane, Tantalus Thief
+1 Tidus, Yuna's Guardian
+1 Ignis Scientia
+1 Alphinaud Leveilleur
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Swords to Plowshares
+1 Herald's Horn
+1 Zack Fair
+1 World Map
+1 Noctis, Heir Apparent
+1 Tifa, Martial Artist
+1 Chocobo Camp
+1 Barret, Avalanche Leader
+1 Wakka, Devoted Guardian
+1 Command Tower
+1 Vandalblast
+1 Vector, Imperial Capital
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Firion, Wild Rose Warrior
+1 Rampant Growth
+1 Chromatic Lantern
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 Jidoor, Aristocratic Capital // Overture
+1 Rejoin the Fight
+1 The Wind Crystal
+8 Plains
+1 Reach the Horizon
+1 Squall, SeeD Mercenary
+1 Midgar, City of Mako // Reactor Raid
+1 Alisaie Leveilleur
+1 Yuna, Grand Summoner
+1 Serah Farron // Crystallized Serah
+1 Vincent, Vengeful Atoner
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Aerith, Last Ancient
+1 Thancred Waters
+1 Sol Ring
+1 Rinoa Heartilly
+1 Cultivate
+1 Prishe's Wanderings
+1 Promise of Loyalty
+1 Baron, Airship Kingdom
+1 Capital City
+1 Clive's Hideaway
+2 Forest
+1 Gongaga, Reactor Town
+1 Rabanastre, Royal City
+1 Swamp
+1 Treno, Dark City
+1 Windurst, Federation Center
+1 Crystal Fragments // Summon: Alexander
+1 Summoning Materia
+1 Summon: Esper Ramuh
+1 Summon: Leviathan
+1 Cut a Deal
+1 Ultimate Magic: Holy
+1 Travel the Overworld
+1 Terra, Herald of Hope
+1 Bartz and Boko
+1 Sword of the Animist
+1 Eden, Seat of the Sanctum
+1 Sword of Truth and Justice
+1 Island
+1 Rogue's Passage
+1 Y'shtola, Night's Blessed
+1 The Prima Vista
+1 Vaan, Street Thief
+1 Lightning, Army of One
+1 Shantotto, Tactician Magician
+1 Arcane Signet
+1 Damn
+1 Commander's Sphere
+1 Heroic Intervention
+1 Umezawa's Jitte
+1 Kain, Traitorous Dragoon
+1 Locke, Treasure Hunter
+1 Rosa, Resolute White Mage
+1 Mountain
+1 Cecil, Dark Knight // Cecil, Redeemed Paladin

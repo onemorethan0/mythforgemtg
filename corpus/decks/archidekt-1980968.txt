@@ -1,0 +1,108 @@
+# Archidekt — Project X
+# source: archidekt:1980968
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Garth One-Eye
+
+Deck:
+1 Lulu, Loyal Hollyphant
+1 Comet, Stellar Pup
+1 Depopulate
+1 Travel Preparations
+1 Weatherlight
+1 Chromatic Lantern
+1 Opulent Palace
+1 Shivan Reef
+1 Mystic Monastery
+1 Grasslands
+1 Jungle Shrine
+1 Snow-Covered Island
+1 Temple of the False God
+1 Waterfront District
+1 Triumph of Saint Katherine
+1 Careening Mine Cart
+1 Complaints Clerk
+1 Birds of Paradise
+1 Nashi, Moon Sage's Scion
+1 Foreboding Steamboat
+1 Rassilon, the War President
+1 Edward Kenway
+1 Forest
+1 Dance of the Manse
+1 Flying Men
+1 Dee Kay, Finder of the Lost
+1 Taiga
+1 The World Tree
+1 Discourtesy Clerk
+1 Diabolic Tutor
+1 Draconian Gate-Bot
+1 Katsumasa, the Animator
+1 Misty Rainforest
+1 Night Shift of the Living Dead
+1 Quick Fixer
+1 Ride Guide
+1 Mech Hangar
+1 Seasoned Buttoneer
+1 Alela, Artful Provocateur
+1 Pin Collection
+1 Beloved Princess
+1 Thespian's Stage
+1 Greasefang, Okiba Boss
+1 Untethered Express
+1 Mountain
+1 Thunderhawk Gunship
+1 Friendly Teddy
+1 Castle Ardenvale
+1 Lovestruck Beast // Heart's Desire
+1 Rakdos Carnarium
+1 Renegade Freighter
+1 Wilson, Refined Grizzly
+1 Thieving Skydiver
+1 Bayou
+1 Bello, Bard of the Brambles
+1 Jwar Isle Refuge
+1 "Lifetime" Pass Holder
+1 Sprite Dragon
+1 Cybership
+1 Aerial Surveyor
+1 Shard Convergence
+1 Coming Attraction
+1 Glistening Sphere
+1 Irrigated Farmland
+1 Inspiring Statuary
+1 Fabled Passage
+1 Starlight Spectacular
+1 Command Tower
+1 Deserted Beach
+1 Starting Town
+1 Cabaretti Courtyard
+1 Tramway Station
+1 Sol Ring
+1 Spire of Industry
+1 Island
+1 Path of Ancestry
+1 Adeline, Resplendent Cathar
+1 Arcane Signet
+1 The Most Dangerous Gamer
+1 Evacuation
+1 Generous Gift
+1 Farseek
+1 Priority Boarding
+1 Riddlekeeper
+1 Power Depot
+1 Reality Shift
+1 Rise and Shine
+1 Cyberdrive Awakener
+1 Deluxe Dragster
+1 Racers' Ring
+1 Mobile Garrison
+1 Novijen, Heart of Progress
+1 Space Beleren
+1 Hedge Maze
+1 Ancient Ziggurat
+1 Drumbellower
+1 Prodigy's Prototype
+1 Raiders' Karve
+1 Shipwreck Marsh

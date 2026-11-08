@@ -1,0 +1,102 @@
+# Archidekt — Delirium Disa Nuts
+# source: archidekt:7767629
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Disa the Restless
+
+Deck:
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Cathartic Reunion
+1 Buried Alive
+1 Vault of Whispers
+1 Polygoyf
+1 Arcane Signet
+1 Blood Crypt
+1 Bojuka Bog
+1 Dragonskull Summit
+1 Cultivate
+1 Heroic Intervention
+1 Khalni Ambush // Khalni Territory
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Overgrown Tomb
+1 Incarnation Technique
+1 Garruk's Uprising
+1 Sheoldred, Whispering One
+1 Pinnacle Monk // Mystic Peak
+4 Forest
+1 Sol Ring
+1 Blasphemous Act
+1 Luxury Suite
+1 Talisman of Indulgence
+1 Smoldering Marsh
+1 Command Tower
+1 Rootbound Crag
+1 Rampant Growth
+1 Maskwood Nexus
+1 Entomb
+2 Swamp
+1 Exotic Orchard
+1 Anger
+1 Timeless Witness
+1 Eternal Witness
+1 Fell the Profane // Fell Mire
+1 Great Furnace
+1 Invasion of Mercadia // Kyren Flamewright
+1 Wrenn and Realmbreaker
+1 Talisman of Resilience
+1 Sakura-Tribe Elder
+1 Dryad Arbor
+1 Tree of Tales
+1 Fabled Passage
+1 Valgavoth's Lair
+1 Demolisher Spawn
+1 Winter, Misanthropic Guide
+1 Demonic Covenant
+1 Shifting Woodland
+1 Cinder Glade
+1 Road // Ruin
+1 Pyrewood Gearhulk
+1 Enduring Courage
+1 Entish Restoration
+1 Twisted Landscape
+1 Invasion of Zendikar // Awakened Skyclave
+1 Slagwoods Bridge
+1 Farseek
+1 Peer Past the Veil
+1 Necron Deathmark
+1 Kodama's Reach
+1 Noxious Gearhulk
+1 Faithless Looting
+1 Six
+1 Ashes of the Fallen
+1 Archfiend of Ifnir
+1 Whip of Erebos
+1 Disciple of Freyalise // Garden of Freyalise
+1 Barrowgoyf
+1 Fear of Missing Out
+1 Pyrogoyf
+1 Rankle, Master of Pranks
+1 Rune-Scarred Demon
+1 Bitter Reunion
+1 Conspiracy
+1 Breach the Multiverse
+1 Demand Answers
+1 Reforge the Soul
+1 Formless Genesis
+1 Gravebreaker Lamia
+1 Overlord of the Boilerbilges
+1 Stomping Ground
+3 Mountain
+1 Elemental Bond
+1 Grab the Prize
+1 Assassin's Trophy
+1 Greater Good
+1 Vile Entomber
+1 Formidable Speaker
+1 Shared Roots
+1 Vernal Fen
+1 Swamp
+1 Overlord of the Hauntwoods
+1 Hagra Mauling // Hagra Broodpit

@@ -1,7 +1,8 @@
 # Archidekt — Doctor Who 1-8
 # source: archidekt:24776093
 # fetched: 2026-07-28
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo The Fifth Doctor + Adric, Mathematical Genius; Bracket 2 allows none
 
 Commander:
 1 The Fourth Doctor

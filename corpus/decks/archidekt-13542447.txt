@@ -1,0 +1,105 @@
+# Archidekt — Y'shtola's villain arc
+# source: archidekt:13542447
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Dig Through Time
+1 Cyclonic Rift
+1 Starting Town
+1 Polluted Delta
+1 Hallowed Fountain
+1 Beseech the Mirror
+1 Path to Exile
+1 Deadly Rollick
+1 Command Tower
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Glacial Fortress
+1 Relic of Legends
+1 Sunken Ruins
+1 Underground River
+2 Swamp
+1 Undercity Sewers
+1 Nowhere to Run
+1 Generous Revival
+1 Turbulent Shore
+1 Turbulent Wetlands
+1 Darkslick Shores
+1 Curiosity
+1 Black Market Connections
+1 Ishgard, the Holy See // Faith & Grief
+1 Smothering Tithe
+1 Flare of Fortitude
+1 Godless Shrine
+1 Watery Grave
+1 Lethal Scheme
+1 Fierce Guardianship
+1 Toxic Deluge
+1 Flooded Strand
+1 Snuff Out
+1 Sink into Stupor // Soporific Springs
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Talisman of Hierarchy
+1 Faerie Mastermind
+1 Unwind
+1 Frantic Search
+2 Island
+1 Force of Negation
+1 Clever Concealment
+1 Zombify
+1 Papalymo Totolymo
+1 Mystic Sanctuary
+1 Meticulous Archive
+1 Ophidian Eye
+1 Lotho, Corrupt Shirriff
+1 Avatar's Wrath
+1 Bojuka Bog
+1 Marsh Flats
+1 Urza's Cave
+1 Delney, Streetwise Lookout
+1 Irenicus's Vile Duplication
+1 Shadowy Backstreet
+1 Rhystic Study
+1 Darkwater Catacombs
+2 Plains
+1 Primal Amulet // Primal Wellspring
+1 Force of Will
+1 Cloud Key
+1 Tataru Taru
+1 Turbulent Moor
+1 Generous Gift
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+1 Grim Tutor
+1 Windfall
+1 Raffine's Tower
+1 Torment of Hailfire
+1 Geist of Saint Thalia
+1 Wan Shi Tong, Librarian
+1 Orcish Bowmasters
+1 Glistening Oil
+1 Flare of Denial
+1 Three Steps Ahead
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Phyresis
+1 Reanimate
+1 Deep Analysis
+1 Dark Confidant
+1 Temporal Trespass
+1 Ripples of Undeath
+1 Fell the Profane // Fell Mire
+1 Narset's Reversal
+1 Emet-Selch of the Third Seat
+1 Flare of Malice
+1 Cast Away Doubt
+1 Deep Gnome Terramancer
+1 Grand Abolisher
+1 Baleful Strix
+1 Ether
+1 Abstruse Appropriation
+1 Erode
+1 Winternight Stories

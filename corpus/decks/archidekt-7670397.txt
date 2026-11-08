@@ -1,0 +1,85 @@
+# Archidekt — group hug of pain
+# source: archidekt:7670397
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Fall of Cair Andros + Blasphemous Act; Bracket 1 allows none
+
+Commander:
+1 Gimli, Counter of Kills
+
+Deck:
+1 Goblin Charbelcher
+1 Relic Robber
+1 Goblin Spymaster
+1 Akroan Horse
+25 Mountain
+1 Liquimetal Torque
+1 Mana Geyser
+1 Unstable Obelisk
+1 Inner Fire
+1 Seize the Spotlight
+1 Meteor Golem
+1 Myriad Landscape
+1 Chaos Warp
+1 Electrickery
+1 End the Festivities
+1 Blasphemous Act
+1 Blazing Volley
+1 Dagger Caster
+1 Chain Reaction
+1 Spine of Ish Sah
+1 Goblin Chainwhirler
+1 Chandra, Torch of Defiance
+1 Fang Dragon // Forktail Sweep
+1 The Elder Dragon War
+1 Endless Atlas
+1 Varchild's War-Riders
+1 Genesis Chamber
+1 Acorn Catapult
+1 Ghost Quarter
+1 Varchild, Betrayer of Kjeldor
+1 Life of the Party
+1 Mogg Infestation
+1 Vicious Shadows
+1 Mines of Moria
+1 Caltrops
+1 Spiteful Prankster
+1 Wayfarer's Bauble
+1 Gadrak, the Crown-Scourge
+1 Dictate of the Twin Gods
+1 Torbran, Thane of Red Fell
+1 Hissing Iguanar
+1 Rampaging Ferocidon
+1 Wild Magic Surge
+1 Surveyor's Scope
+1 Dwarven Hold
+1 Mikokoro, Center of the Sea
+1 Burnished Hart
+1 Volcanic Offering
+1 Access Tunnel
+1 Rogue's Passage
+1 Treasure Vault
+1 Gratuitous Violence
+1 Angrath's Marauders
+1 Star of Extinction
+1 Howling Mine
+1 Flick a Coin
+1 Sandstone Oracle
+1 Forbidden Orchard
+1 Spark of Creativity
+1 Seize the Spoils
+1 Rite of the Raging Storm
+1 Smite the Deathless
+1 Bolt Bend
+1 Treasure Nabber
+1 Pain Distributor
+1 Shattering Spree
+1 Aether Flash
+1 Renegade Map
+1 Mercadian Bazaar
+1 Tibalt's Trickery
+1 Fall of Cair Andros
+1 Sazacap's Brew
+1 Hoarder's Overflow
+1 Playful Shove
+1 Heartless Hidetsugu

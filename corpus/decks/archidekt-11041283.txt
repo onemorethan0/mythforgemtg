@@ -1,0 +1,110 @@
+# Archidekt — O Sapo Não Lava o Pé
+# source: archidekt:11041283
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Glarb, Calamity's Augur
+
+Deck:
+1 Mystical Tutor
+1 Sol Ring
+1 Doomsday
+1 Verdant Catacombs
+1 Deathrite Shaman
+1 Necromancy
+1 Undergrowth Stadium
+1 Rejuvenating Springs
+1 Morphic Pool
+1 Zagoth Triome
+1 Overgrown Tomb
+1 Talisman of Curiosity
+1 Reanimate
+1 Entomb
+1 Misty Rainforest
+1 Polluted Delta
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Counterspell
+1 Command Tower
+1 Windfall
+1 Brainstorm
+1 Gush
+1 Careful Study
+1 Dark Ritual
+1 Abrupt Decay
+1 Hullbreaker Horror
+1 Elves of Deep Shadow
+1 Forbidden Orchard
+1 Pact of Negation
+1 Force of Vigor
+1 Breeding Pool
+1 Exotic Orchard
+1 Noxious Revival
+1 Beseech the Mirror
+1 Protean Hulk
+1 Into the Flood Maw
+1 Fellwar Stone
+1 Flare of Denial
+1 Llanowar Wastes
+1 Yavimaya Coast
+1 Gifts Ungiven
+1 Underground River
+1 Gitaxian Probe
+1 Demonic Tutor
+1 Unearth
+1 Flusterstorm
+1 Elvish Mystic
+1 Rhystic Study
+1 Talion, the Kindly Lord
+1 Talisman of Resilience
+1 Mox Amber
+1 An Offer You Can't Refuse
+1 Thassa's Oracle
+1 Mystic Remora
+1 Mindbreak Trap
+1 Mental Misstep
+1 Counterbalance
+1 Flooded Strand
+1 Mana Confluence
+1 Necropotence
+1 Veil of Summer
+1 Pia, Aether Ascetic
+1 Ancient Tomb
+1 Bloodstained Mire
+1 Windswept Heath
+1 Watery Grave
+1 Warren Soultrader
+1 Opposition Agent
+1 Blood Artist
+1 Force of Despair
+1 Cyclonic Rift
+1 Diabolic Intent
+1 Arcane Signet
+1 Island
+1 Mystic Sanctuary
+1 Demonic Consultation
+1 Emergence Zone
+1 Forsaken Miner
+1 Amphibian Downpour
+1 Hedge Maze
+1 Undercity Sewers
+1 Wooded Foothills
+1 City of Brass
+1 Lotus Petal
+1 Neoform
+1 Tainted Pact
+1 Culling Ritual
+1 Dryad of the Ilysian Grove
+1 Carpet of Flowers
+1 Samut, Tyrant of Naktamun
+1 Birds of Paradise
+1 Chrome Mox
+1 Misdirection
+1 Ponder
+1 Swan Song
+1 Mox Diamond
+1 Force of Will
+1 Mnemonic Betrayal
+1 Ashiok, Dream Render
+1 Lim-Dûl's Vault
+1 Chain of Vapor

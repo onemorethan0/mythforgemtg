@@ -1,0 +1,108 @@
+# Archidekt — Sisay, Weatherlight Captain
+# source: archidekt:15379339
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Deafening Silence
+1 Bayou
+1 Savannah
+1 Underground Sea
+1 Scrubland
+1 Volcanic Island
+1 Fierce Guardianship
+1 City of Brass
+1 Ertai Resurrected
+1 Flooded Strand
+1 Bloom Tender
+1 Flusterstorm
+1 Delighted Halfling
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Derevi, Empyrial Tactician
+1 Emiel the Blessed
+1 Otawara, Soaring City
+1 Noble Hierarch
+1 Misty Rainforest
+1 Wooded Foothills
+1 Mox Amber
+1 Deflecting Swat
+1 Enlightened Tutor
+1 Worldly Tutor
+1 Faeburrow Elder
+1 Lavinia, Azorius Renegade
+1 Selvala, Heart of the Wilds
+1 Chrome Mox
+1 Deadpool, Trading Card
+1 Sol Ring
+1 Ragavan, Nimble Pilferer
+1 Boseiju, Who Endures
+1 Taiga
+1 Plateau
+1 Arcane Signet
+1 Kalain, Reclusive Painter
+1 Gaea's Cradle
+1 Eladamri's Call
+1 Tundra
+1 Legolas's Quick Reflexes
+1 Mount Doom
+1 Exotic Orchard
+1 Mindbreak Trap
+1 Crop Rotation
+1 Cavern of Souls
+1 Skrelv, Defector Mite
+1 Veil of Summer
+1 Ioreth of the Healing House
+1 Jennifer Walters // The Sensational She-Hulk
+1 Mystic Remora
+1 Flash Thompson, Spider-Fan
+1 The Cabbage Merchant
+1 Demonic Tutor
+1 Agatha's Soul Cauldron
+1 Eldritch Evolution
+1 Mana Vault
+1 Mox Diamond
+1 Birds of Paradise
+1 Kinnan, Bonder Prodigy
+1 Rhystic Study
+1 Smothering Tithe
+1 Demonic Consultation
+1 Redirect Lightning
+1 Vampiric Tutor
+1 Swords to Plowshares
+1 Tyvar, Jubilant Brawler
+1 Arid Mesa
+1 Silence
+1 Mana Confluence
+1 Plains
+1 Bloodstained Mire
+1 Command Tower
+1 Polluted Delta
+1 Scalding Tarn
+1 Windswept Heath
+1 Gleaming Splendor
+1 Relic of Legends
+1 Marvin, Murderous Mimic
+1 Mox Opal
+1 Pact of Negation
+1 Thassa's Oracle
+1 Shang-Chi, Master of Kung Fu
+1 Cultist of the Absolute
+1 Mental Misstep
+1 Mirrormade
+1 Leyline of the Guildpact
+1 Samut, Hazoret's Champion
+1 Hapatra, the Desert Frost
+1 Samut, Tyrant of Naktamun
+1 Tam, Mindful First-Year
+1 Tainted Pact
+1 Ruby, Daring Tracker
+1 Lotus Petal
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Lotho, Corrupt Shirriff
+1 Bilbo's Gambit
+1 Retraction Helix
+1 Chameleon, Master of Disguise

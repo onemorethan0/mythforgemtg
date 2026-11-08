@@ -1,0 +1,95 @@
+# Archidekt — Prosper - Outlaw Exiles (EDH)
+# source: archidekt:6611967
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Prosper, Tome-Bound
+
+Deck:
+1 Swiftfoot Boots
+1 Weftstalker Ardent
+1 Susurian Voidborn
+1 Nadier's Nightblade
+1 Marionette Apprentice
+1 Goblin Engineer
+1 Vampiric Tutor
+1 Fell the Profane // Fell Mire
+1 Withering Torment
+1 Mayhem Devil
+1 Delayed Blast Fireball
+1 Street Urchin
+1 Viridian Longbow
+1 Lightning Greaves
+1 Imp's Mischief
+1 Command Beacon
+1 Revel in Riches
+1 Goldspan Dragon
+1 Krark-Clan Ironworks
+1 Interdimensional Web Watch
+1 Xorn
+1 Inspiring Statuary
+1 Crime Novelist
+1 Seething Song
+1 Lobelia Sackville-Baggins
+1 Evendo Brushrazer
+1 Pyretic Ritual
+1 Desperate Ritual
+1 Sol Ring
+1 Tainted Peak
+1 Vault of Whispers
+1 Reckless Fireweaver
+1 Feed the Swarm
+8 Swamp
+1 Smoldering Marsh
+1 Shadowblood Ridge
+1 Drossforge Bridge
+1 Dragonskull Summit
+1 Command Tower
+1 Blood Crypt
+1 Blightstep Pathway // Searstep Pathway
+1 Bloodsoaked Insight // Sanguine Morass
+1 Inspired Tinkering
+1 Bonehoard Dracosaur
+1 Reckless Impulse
+1 Roaming Throne
+1 Big Score
+1 Wild Wasteland
+1 Seize the Spoils
+1 Light Up the Stage
+1 Jeska's Will
+1 Embrace the Unknown
+1 Wrenn's Resolve
+1 Party Thrasher
+1 Mishra's Research Desk
+1 Experimental Synthesizer
+1 Spinerock Knoll
+1 Great Furnace
+1 Haunted Ridge
+1 Sulfurous Springs
+1 Luxury Suite
+1 Plaza of Heroes
+8 Mountain
+1 Uba Mask
+1 Stridehangar Automaton
+1 Darksteel Citadel
+1 Unstable Amulet
+1 Rain of Riches
+1 Midgar, City of Mako // Reactor Raid
+1 Faithless Looting
+1 Heroes' Hangout
+1 Deadly Dispute
+1 Academy Manufactor
+1 Treasure Vault
+1 Dark Ritual
+1 Chaos Warp
+1 Agent of the Iron Throne
+1 Ingenious Artillerist
+1 Glimpse the Impossible
+1 Disciple of the Vault
+1 Arcane Signet
+1 Inventors' Fair
+1 Tormod's Crypt
+1 Goblin Welder
+1 Hedron Detonator
+1 Asgardian Inspiration

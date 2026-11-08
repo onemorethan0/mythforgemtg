@@ -1,0 +1,87 @@
+# Archidekt — Emet-Selch Of The Third Seat - Bracket 2
+# source: archidekt:19393471
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Emet-Selch of the Third Seat
+
+Deck:
+1 Waterlogged Teachings // Inundated Archive
+1 Boggart Trawler // Boggart Bog
+1 Eat to Extinction
+1 Bane's Contingency
+1 Bender's Waterskin
+1 Blightspeaker
+1 Circular Logic
+1 Confounding Riddle
+1 Consuming Tide
+1 Countervailing Winds
+1 Cruel Truths
+1 Curate
+1 Diresight
+1 Dogged Detective
+1 Dream Fracture
+1 Enhanced Surveillance
+1 Ephara's Dispersal
+1 Fandaniel, Telophoroi Ascian
+1 Fang, Fearless l'Cie
+1 Feed the Swarm
+1 Forbidden Alchemy
+1 Into the Roil
+1 Likeness Looter
+1 Lord of the Nazgûl
+1 Lórien Revealed
+1 Neerdiv, Devious Diver
+1 Negate
+1 Onyx Goblet
+1 Overkill
+1 Pile On
+1 Piranha Marsh
+1 Price of Fame
+1 Resentful Revelation
+1 Rewind
+1 Ripples of Undeath
+1 Rise from the Tides
+1 Risky Research
+1 Rug of Smothering
+1 Secrets of the Dead
+1 Sinister Sabotage
+1 Solve the Equation
+1 Soot Imp
+1 Start the TARDIS
+1 Sunken Hollow
+1 Swallowed by Leviathan
+1 Tainted Isle
+1 Teval's Judgment
+1 Choked Estuary
+1 Tezzeret's Simulacrum
+1 Thirst for Discovery
+1 Thirst for Identity
+1 Unauthorized Exit
+1 Unwind
+1 Vohar, Vodalian Desecrator
+1 Wash Out
+1 Underground River
+1 Wonder
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Silundi Vision // Silundi Isle
+9 Swamp
+14 Island
+1 Command Tower
+1 Darkwater Catacombs
+1 Drowned Catacomb
+1 Evacuation
+1 Frantic Search
+1 Go for the Throat
+1 Infernal Grasp
+1 Ledger Shredder
+1 Leechridden Swamp
+1 Mystic Confluence
+1 Reality Shift
+1 Shepherd of Rot
+1 Sol Ring
+1 Talrand, Sky Summoner
+1 Fire Nation Occupation
+1 Candlekeep Inspiration

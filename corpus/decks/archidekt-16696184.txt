@@ -1,0 +1,108 @@
+# Archidekt — Ysh CEDH
+# source: archidekt:16696184
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Ancient Tomb
+1 Arid Mesa
+1 Flooded Strand
+1 Scalding Tarn
+1 Tundra
+1 Godless Shrine
+1 Hallowed Fountain
+1 Marsh Flats
+1 Scrubland
+1 City of Brass
+1 Underground Sea
+1 Mana Confluence
+1 Esper Sentinel
+1 Opposition Agent
+1 Thassa's Oracle
+1 Sheoldred, the Apocalypse
+1 Orcish Bowmasters
+1 Grand Abolisher
+1 Rhystic Study
+1 Faerie Mastermind
+1 Archivist of Oghma
+1 Smothering Tithe
+1 Teferi, Time Raveler
+1 Mystic Remora
+1 Curiosity
+1 Hullbreaker Horror
+1 Drannith Magistrate
+1 Blind Obedience
+1 Sol Ring
+1 Mox Diamond
+1 Chrome Mox
+1 Lotus Petal
+1 Bloodchief Ascension
+1 Arcane Signet
+1 The One Ring
+1 Fellwar Stone
+1 Wishclaw Talisman
+1 Toxic Deluge
+1 Imperial Seal
+1 Beseech the Mirror
+1 Demonic Tutor
+1 Mnemonic Betrayal
+1 Mindbreak Trap
+1 Demonic Consultation
+1 Pact of Negation
+1 An Offer You Can't Refuse
+1 Dark Ritual
+1 Silence
+1 Enlightened Tutor
+1 Flusterstorm
+1 Mental Misstep
+1 Mystical Tutor
+1 Cyclonic Rift
+1 Vampiric Tutor
+1 Tainted Pact
+1 Force of Negation
+1 Swan Song
+1 Dismember
+1 Force of Will
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Swords to Plowshares
+1 Praetor's Grasp
+1 Bloodstained Mire
+1 Command Tower
+1 Misty Rainforest
+1 Morphic Pool
+1 Polluted Delta
+1 Sea of Clouds
+1 Verdant Catacombs
+1 Watery Grave
+1 Windswept Heath
+1 Mana Vault
+1 Displacer Kitten
+1 Underground River
+1 Cephalid Coliseum
+1 Borne Upon a Wind
+1 Snap
+1 Talion, the Kindly Lord
+1 Into the Flood Maw
+1 Talisman of Hierarchy
+1 Gemstone Caverns
+1 Cursed Totem
+1 Minamo, School at Water's Edge
+1 Forbidden Orchard
+1 Otawara, Soaring City
+1 Urza's Saga
+1 Frantic Search
+1 Tataru Taru
+1 Kambal, Consul of Allocation
+1 Phyrexian Metamorph
+1 Delney, Streetwise Lookout
+1 Lotho, Corrupt Shirriff
+1 Chain of Vapor
+1 Snuff Out
+1 Sink into Stupor // Soporific Springs
+1 Unwind
+1 Fell the Profane // Fell Mire
+1 Grafdigger's Cage

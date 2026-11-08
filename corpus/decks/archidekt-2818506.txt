@@ -1,0 +1,78 @@
+# Archidekt — Ellyn Harbreeze, Master Chef
+# source: archidekt:2818506
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ellyn Harbreeze, Busybody
+1 Master Chef
+
+Deck:
+1 Trading Post
+1 Icatian Town
+1 Killer Service
+1 Gather the Townsfolk
+1 Mouth // Feed
+1 Captain of the Watch
+1 Nature's Lore
+1 Comeuppance
+1 Market Festival
+1 Devout Invocation
+1 Holy Day
+1 Oblation
+1 Peace and Quiet
+1 Congregate
+1 Khalni Garden
+1 Assure // Assemble
+1 Pause for Reflection
+1 Storm Herd
+1 Gingerbread Cabin
+1 Late to Dinner
+1 Celebrate the Harvest
+1 By Invitation Only
+1 Benevolent Offering
+1 Halo Fountain
+1 Gala Greeters
+1 Darling of the Masses
+1 Master of Ceremonies
+1 Camaraderie
+1 Command Tower
+1 Sol Ring
+15 Forest
+17 Plains
+1 Cut a Deal
+1 Rumor Gatherer
+1 Gilded Goose
+1 Bess, Soul Nourisher
+1 Festival of Trokin
+1 Path of Peace
+1 Banquet Guests
+1 Expel the Interlopers
+1 Discerning Financier
+1 Food Coma
+1 Welcome to Sweettooth
+1 End Hostilities
+1 Apothecary White
+1 Supportive Parents
+1 Friendly Neighborhood
+1 Cat Collector
+1 Bumbleflower's Sharepot
+1 Crumb and Get It
+1 Heaped Harvest
+1 Carrot Cake
+1 Stocking the Pantry
+1 Nomads' Assembly
+1 Head of the Homestead
+1 Bagel and Schmear
+1 Rosie Cotton of South Lane
+1 Prosperous Innkeeper
+1 Of Herbs and Stewed Rabbit
+1 City Pigeon
+1 Unlucky Cabbage Merchant
+1 Capital City
+1 Hot Dog Cart
+1 Rent Is Due
+1 The Art of Tea
+1 Kindly Customer
+1 Curious Farm Animals
+1 Tireless Provisioner

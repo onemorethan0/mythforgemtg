@@ -1,0 +1,89 @@
+# Archidekt — Wolverine fights all
+# source: archidekt:10773635
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Wolverine, Best There Is
+
+Deck:
+1 Rishkar's Expertise
+1 Sylvan Tutor
+1 Mosswort Bridge
+1 Ashroot Animist
+1 Chandra's Ignition
+1 Rancor
+1 Leyline Axe
+1 Rite of Passage
+1 Kalonian Hydra
+1 Hunter's Prowess
+1 Managorger Hydra
+1 Command Tower
+1 Guardian Augmenter
+1 Domri, Anarch of Bolas
+1 Windswift Slice
+1 Fanatic of Rhonas
+1 Reliquary Tower
+1 Hunter's Talent
+1 Lizard Blades
+1 Selvala, Heart of the Wilds
+1 Kediss, Emberclaw Familiar
+1 The Great Henge
+1 Goblin Anarchomancer
+1 Kami of Whispered Hopes
+1 Contest of Claws
+1 The Ozolith
+1 Rhythm of the Wild
+1 Halana and Alena, Partners
+1 Ohran Frostfang
+1 Berserk
+1 Jeska's Will
+1 Ulvenwald Tracker
+1 Rockfall Vale
+1 Forgotten Ancient
+1 Mage Slayer
+1 Duskshell Crawler
+1 Stomping Ground
+1 Saryth, the Viper's Fang
+1 Infiltration Lens
+1 Sol Ring
+1 Anzrag, the Quake-Mole
+1 Soul's Majesty
+1 Fiendlash
+1 Thickest in the Thicket
+1 Power Fist
+1 Innkeeper's Talent
+1 Biophagus
+1 Cinder Glade
+1 Quilled Greatwurm
+1 Kessig Wolf Run
+1 Season of Gathering
+1 Twinflame Tyrant
+1 Path of Ancestry
+1 Neyith of the Dire Hunt
+1 Defiler of Vigor
+1 Branching Evolution
+1 Elvish Mystic
+1 Ram Through
+1 Spinerock Knoll
+1 Garruk's Uprising
+1 Ozolith, the Shattered Spire
+1 The Reaver Cleaver
+1 Deflecting Swat
+1 Domri's Ambush
+1 Xenagos, God of Revels
+1 Unnatural Growth
+1 Rootbound Crag
+1 Surrak and Goreclaw
+1 Roar of Challenge
+1 Hunter's Insight
+1 Hardened Scales
+1 Ruby, Daring Tracker
+1 Akki Battle Squad
+10 Mountain
+1 Vigor
+11 Forest
+1 Temur Battle Rage
+1 Thornspire Verge
+1 Wooded Foothills
+1 Rogue's Passage

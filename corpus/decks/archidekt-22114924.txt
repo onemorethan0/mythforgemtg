@@ -1,0 +1,94 @@
+# Archidekt — SUP Helga, Skittish Seer
+# source: archidekt:22114924
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Helga, Skittish Seer
+
+Deck:
+1 Disciple of Freyalise // Garden of Freyalise
+1 Railway Brawler
+1 Twenty-Toed Toad
+1 Goldvein Hydra
+1 High Fae Trickster
+1 Quilled Greatwurm
+1 Beast Whisperer
+1 Apex Devastator
+1 Surrak and Goreclaw
+1 Voracious Hydra
+1 Kami of Whispered Hopes
+1 Flooded Grove
+1 Chulane, Teller of Tales
+1 Saryth, the Viper's Fang
+1 Ghalta, Primal Hunger
+1 Zimone, Paradox Sculptor
+1 Galadriel, Light of Valinor
+1 Genesis Hydra
+1 Mossborn Hydra
+1 Delighted Halfling
+1 Silverback Elder
+1 Goreclaw, Terror of Qal Sisma
+1 Kogla, the Titan Ape
+1 Koma, Cosmos Serpent
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Lifeblood Hydra
+1 Selvala, Heart of the Wilds
+1 Kalonian Hydra
+1 Benevolent Hydra
+1 Hydroid Krasis
+1 Noble Hierarch
+1 Gwenna, Eyes of Gaea
+1 Season of Gathering
+1 Path to Exile
+1 The Goose Mother
+1 Vaultborn Tyrant
+1 Chakram Retriever
+1 Koma, World-Eater
+1 Forgotten Ancient
+1 Steelbane Hydra
+1 Finale of Devastation
+1 Generous Gift
+1 Inga and Esika
+1 Herald of Secret Streams
+1 Fanatic of Rhonas
+1 Heroic Intervention
+1 Hallowed Fountain
+1 Mana Drain
+1 Flawless Maneuver
+1 Arcane Signet
+1 The Ozolith
+1 Swords to Plowshares
+1 Genesis Wave
+1 Wave Goodbye
+1 Lightning Greaves
+1 Power Fist
+1 Innkeeper's Talent
+1 Three Visits
+1 Beast Within
+1 Counterspell
+6 Island
+1 Up the Beanstalk
+1 Ozolith, the Shattered Spire
+5 Plains
+1 Sol Ring
+1 Breeding Pool
+1 Kiora, Behemoth Beckoner
+1 The Great Henge
+1 Garruk's Uprising
+1 Guardian Project
+1 Hardened Scales
+1 Sea of Clouds
+1 Yavimaya, Cradle of Growth
+1 Intruder Alarm
+1 Rejuvenating Springs
+1 Command Tower
+1 Misty Rainforest
+1 Reliquary Tower
+1 Temple Garden
+1 Flooded Strand
+1 Windswept Heath
+6 Forest
+1 Exotic Orchard
+1 Path of Ancestry
+1 Otawara, Soaring City

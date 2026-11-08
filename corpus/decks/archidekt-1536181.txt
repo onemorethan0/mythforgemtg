@@ -1,0 +1,106 @@
+# Archidekt — Glissa, the Traitor
+# source: archidekt:1536181
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Glissa, the Traitor
+
+Deck:
+1 Lifecrafter's Bestiary
+1 Cranial Plating
+1 Marionette Master
+1 Exotic Orchard
+1 Nevinyrral's Disk
+1 Thran Dynamo
+1 Vault of Whispers
+1 Tree of Tales
+1 Arcane Signet
+1 Deserted Temple
+1 Scorched Ruins
+1 Forbidden Orchard
+1 Guardian Project
+1 Metalworker
+1 Golgari Signet
+1 Mana Confluence
+1 Darksteel Forge
+2 Forest
+1 Urza's Saga
+1 Manifold Key
+1 Hangarback Walker
+1 Memory Jar
+1 Demonic Tutor
+1 Llanowar Wastes
+1 Haywire Mite
+1 Terisiare's Devastation
+1 Viridian Longbow
+1 All Is Dust
+1 Toxic Deluge
+1 Karn, Legacy Reforged
+1 Unwinding Clock
+1 Fellwar Stone
+1 Scrap Trawler
+1 Spire of Industry
+1 Command Tower
+1 Imotekh the Stormlord
+1 Steel Overseer
+2 Swamp
+1 Mycosynth Lattice
+1 Entomb
+1 Bolas's Citadel
+1 Arcbound Crusher
+1 High Market
+1 Phyrexian Tower
+1 Mirrodin's Core
+1 Tarnished Citadel
+1 Demonic Junker
+1 Triskelion
+1 Morbid Opportunist
+1 Noxious Gearhulk
+1 Masticore
+1 Ancient Tomb
+1 Urborg, Tomb of Yawgmoth
+1 Shadowspear
+1 Everflowing Chalice
+1 Talisman of Resilience
+1 Twilight Mire
+1 Reflecting Pool
+1 Bayou
+1 Retrofitter Foundry
+1 Welding Jar
+1 Open the Way
+1 Yavimaya, Cradle of Growth
+1 Greater Good
+1 Mox Opal
+1 Sol Ring
+1 Etched Oracle
+1 Fomori Vault
+1 Walking Ballista
+1 Urza's Power Plant
+1 Urza's Mine
+1 Urza's Workshop
+1 Executioner's Capsule
+1 Kuldotha Forgemaster
+1 Arcbound Ravager
+1 Glaring Fleshraker
+1 Duplicant
+1 Rishkar's Expertise
+1 Heirloom Blade
+1 Ugin, the Spirit Dragon
+1 Pentavus
+1 Marketback Walker
+1 Overgrown Tomb
+1 Scrapyard Recombiner
+1 Basilisk Collar
+1 Mycosynth Golem
+1 Krang, Utrom Warlord
+1 Tri-Sentinel, Act of Vengeance
+1 Age of Ultron
+1 Thespian's Stage
+1 Glimmervoid
+1 Urza's Tower
+1 Wurmcoil Engine
+1 Planar Nexus
+1 Dimension X Pizzasaur
+1 Cloudpost
+1 Dubious Delicacy

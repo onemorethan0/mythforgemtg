@@ -1,0 +1,108 @@
+# Archidekt — Toph lands and metal CEDH
+# source: archidekt:17344723
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Chrome Mox
+1 Eldritch Evolution
+1 Nature's Rhythm
+1 Tezzeret, Cruel Captain
+1 Green Sun's Zenith
+1 Sylvan Library
+1 The One Ring
+1 Esper Sentinel
+1 Birds of Paradise
+1 Ashaya, Soul of the Wild
+1 Blossoming Tortoise
+1 Grim Monolith
+1 Magus of the Candelabra
+1 Mox Opal
+1 Lotus Cobra
+1 Mana Vault
+1 Mana Confluence
+1 Stomping Ground
+1 Boseiju, Who Endures
+1 Walking Ballista
+1 Zirda, the Dawnwaker
+1 Candelabra of Tawnos
+1 Badgermole Cub
+1 Mox Diamond
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Arcane Signet
+1 Sol Ring
+1 Worldly Tutor
+1 Lotus Petal
+1 Archivist of Oghma
+1 Gaea's Cradle
+1 Finale of Devastation
+1 Silence
+1 Agatha's Soul Cauldron
+1 Deflecting Swat
+1 Enlightened Tutor
+1 Staff of Domination
+1 Sacred Foundry
+1 Savannah
+1 Taiga
+1 Plateau
+1 Temple Garden
+1 Scalding Tarn
+1 Misty Rainforest
+1 Windswept Heath
+1 Flooded Strand
+1 Wooded Foothills
+1 Verdant Catacombs
+1 City of Brass
+1 Yavimaya, Cradle of Growth
+1 Ancient Tomb
+1 City of Traitors
+1 Horn of Greed
+1 Urza's Saga
+1 Arid Mesa
+1 Codex Shredder
+1 Goblin Engineer
+1 Shifting Woodland
+1 Inventors' Fair
+1 Eladamri's Call
+1 Red Elemental Blast
+1 Oswald Fiddlebender
+1 Pyroblast
+1 Vexing Bauble
+1 The Cabbage Merchant
+1 Sowing Mycospawn
+1 Gemstone Caverns
+1 Chord of Calling
+1 The Queen of Dale
+1 Ranger-Captain of Eos
+1 Formidable Speaker
+1 Veil of Summer
+1 Marsh Flats
+1 Hexing Squelcher
+1 Delighted Halfling
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Swift Reconfiguration
+1 Devoted Druid
+1 Orim's Chant
+1 Expedition Map
+1 Ragavan, Nimble Pilferer
+1 Mox Amber
+1 Eternal Witness
+1 Simian Spirit Guide
+1 Elvish Spirit Guide
+1 Beastrider Vanguard
+1 Crop Rotation
+1 Swords to Plowshares
+1 Nissa, Resurgent Animist
+1 Gleaming Splendor
+1 Basalt Monolith
+1 Brightglass Gearhulk
+1 Enduring Vitality
+1 Shang-Chi, Master of Kung Fu
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Avacyn's Pilgrim
+1 Voltaic Key
+1 Grand Abolisher
+1 Manifold Key

@@ -1,0 +1,100 @@
+# Archidekt — (Retired) Bring Your +1(/+1 Counters)
+# source: archidekt:4616632
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Ukkima, Stalking Shadow
+1 Cazur, Ruthless Stalker
+
+Deck:
+1 Innkeeper's Talent
+1 Read the Bones
+5 Forest
+2 Island
+1 Path of Ancestry
+1 Deathcap Glade
+1 Command Tower
+1 Zagoth Triome
+1 Hinterland Harbor
+1 Misty Rainforest
+1 Dreamroot Cascade
+1 Tropical Island
+1 Llanowar Wastes
+1 Verdant Catacombs
+1 Bayou
+1 Hall of Oracles
+1 Sunken Hollow
+1 Woodland Cemetery
+1 Watery Grave
+1 Undergrowth Stadium
+1 Breeding Pool
+1 Overgrown Tomb
+1 Temple of Malady
+1 Rejuvenating Springs
+1 Scavenger Grounds
+1 Night's Whisper
+1 Oversimplify
+1 Ponder
+1 Sol Ring
+1 Swiftfoot Boots
+1 The Ozolith
+1 Nature's Lore
+1 The Great Henge
+1 Toothy, Imaginary Friend
+1 Steelbane Hydra
+1 Song of the Dryads
+1 Court of Garenbrig
+1 Hardened Scales
+1 Sylvan Library
+1 Ordeal of Nylea
+1 Astarion's Thirst
+1 Agatha's Soul Cauldron
+1 Deadly Rollick
+1 Inscription of Abundance
+1 Inspiring Call
+1 Quandrix Command
+1 Ruinous Intrusion
+1 Slip Out the Back
+1 Snakeskin Veil
+1 Tyrite Sanctum
+1 Branching Evolution
+1 Teferi's Time Twist
+1 Village Rites
+1 Altered Ego
+1 Biophagus
+1 Defiler of Vigor
+1 Fathom Mage
+1 Forgotten Ancient
+1 Incubation Druid
+1 Pir, Imaginative Rascal
+1 Unnatural Restoration
+1 Reyhan, Last of the Abzan
+1 Scavenging Ooze
+1 Evolution Sage
+1 Wave Goodbye
+1 Danny Pink
+1 Atomize
+1 Master Chef
+1 Tangled Islet
+1 Arcane Signet
+1 Cleopatra, Exiled Pharaoh
+1 Ozolith, the Shattered Spire
+1 Farseek
+1 Corpsejack Menace
+1 Negate
+1 Kami of Whispered Hopes
+4 Swamp
+1 Undercity Sewers
+1 Three Visits
+1 Conclave Sledge-Captain
+1 Rakshasa's Bargain
+1 Auroral Procession
+1 Warden of the Grove
+1 Bone Devourer
+1 Feral Deathgorger // Dusk Sight
+1 Mistrise Village
+1 Avenger of Zendikar
+1 Ripples of Potential
+1 Ouroboroid
+1 Terrasymbiosis

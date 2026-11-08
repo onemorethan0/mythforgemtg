@@ -1,0 +1,94 @@
+# Archidekt — cEDH Draw
+# source: archidekt:7233873
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Arcanis the Omnipotent
+
+Deck:
+1 Opt
+1 Otawara, Soaring City
+1 Minamo, School at Water's Edge
+1 Isochron Scepter
+1 Aphetto Alchemist
+1 Sanctum of Eternity
+1 Thassa's Oracle
+1 Rhystic Study
+1 Brainstorm
+1 Long-Term Plans
+1 Consecrated Sphinx
+1 Mana Drain
+1 Omniscience
+1 Spellseeker
+1 Mystical Tutor
+1 Dramatic Reversal
+1 Jace, Wielder of Mysteries
+1 Laboratory Maniac
+1 Nezahal, Primal Tide
+1 An Offer You Can't Refuse
+1 Windfall
+1 Decanter of Endless Water
+1 Cyclonic Rift
+1 Pact of Negation
+1 Teferi, Mage of Zhalfir
+1 Time Stretch
+1 Riptide Laboratory
+1 Thought Vessel
+1 Reliquary Tower
+1 Wizard Class
+1 Preordain
+1 Triskaidekaphile
+1 Swiftfoot Boots
+1 Terrain Generator
+1 High Tide
+1 Arcane Signet
+1 Crab Umbra
+1 Chrome Mox
+1 Freed from the Real
+1 Gilded Lotus
+1 Propaganda
+1 Ancient Tomb
+1 Arcane Denial
+1 Force of Negation
+1 Swan Song
+1 Throne of Eldraine
+1 Mana Vault
+1 Subtlety
+1 Mystic Remora
+1 Sol Ring
+1 Rivendell
+1 Frantic Search
+1 Mind Over Matter
+1 Sapphire Medallion
+1 Counterspell
+1 The One Ring
+1 Lotus Petal
+1 Mox Opal
+1 Pemmin's Aura
+1 Spellbook
+1 Lightning Greaves
+1 Rapid Hybridization
+1 Ponder
+1 Kozilek, Butcher of Truth
+1 Negate
+1 Fierce Guardianship
+1 Force of Will
+1 Mystic Sanctuary
+5 Island
+4 Island
+5 Island
+4 Island
+1 Flusterstorm
+1 Psychosis Crawler
+1 Pongify
+1 Grim Monolith
+1 Mox Diamond
+1 Resculpt
+1 Muddle the Mixture
+1 Academy Ruins
+1 Enter the Infinite
+1 Sensei's Divining Top
+1 Nykthos, Shrine to Nyx
+1 Hullbreaker Horror
+1 Urza's Saga

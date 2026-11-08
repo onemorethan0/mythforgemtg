@@ -1,0 +1,95 @@
+# Archidekt — Camp Lazlo
+# source: archidekt:14503352
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Sidar Jabari of Zhalfir
+
+Deck:
+1 Acclaimed Contender
+1 Arcane Sanctum
+1 Arcane Signet
+1 Aryel, Knight of Windgrace
+1 Austere Command
+1 Bojuka Bog
+1 Chivalric Alliance
+1 Command Tower
+1 Conjurer's Mantle
+1 Corpse Knight
+1 Damn
+1 Ethersworn Adjudicator
+1 Evolving Wilds
+1 Exotic Orchard
+1 Exsanguinator Cavalry
+1 Fellwar Stone
+1 Haakon, Stromgald Scourge
+1 Herald of Hoofbeats
+1 Herald's Horn
+1 Hero of Bladehold
+4 Island
+1 Knight Exemplar
+1 Valiant Knight
+1 Vona, Butcher of Magan
+1 Worthy Knight
+1 Adeline, Resplendent Cathar
+1 Knight of the White Orchid
+1 Knights of the Black Rose
+1 Knights' Charge
+1 Locthwain Lancer
+1 Midnight Reaper
+1 Murderous Rider // Swift End
+1 Myriad Landscape
+1 Orzhov Signet
+1 Painful Truths
+1 Path of Ancestry
+1 Path to Exile
+7 Plains
+1 Port Town
+1 Prairie Stream
+1 Read the Bones
+1 Return to Dust
+1 Shineshadow Snarl
+1 Silverwing Squadron
+1 Smitten Swordmaster // Curry Favor
+1 Sol Ring
+1 Sunken Hollow
+2 Swamp
+1 Swords to Plowshares
+1 Temple of Deceit
+1 Temple of Enlightenment
+1 Temple of Silence
+1 Terramorphic Expanse
+1 Vanquisher's Banner
+1 Vodalian Wave-Knight
+1 Xerex Strobe-Knight
+1 Summon: Knights of Round
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Tainted Isle
+2 Island
+3 Swamp
+1 Azorius Signet
+1 Benalish Marshal
+1 Cavalier of Dawn
+1 Cavalier of Night
+1 Chromatic Lantern
+1 Dimir Signet
+1 Generous Gift
+1 Glen Elendra Liege
+1 Guardian of Faith
+1 Icon of Ancestry
+1 Invasion of New Capenna // Holy Frazzle-Cannon
+1 Kindred Discovery
+1 Kwende, Pride of Femeref
+1 Marshal of Zhalfir
+1 Nadaar, Selfless Paladin
+1 Secluded Courtyard
+1 Silverblade Paladin
+1 Skyhunter Strike Force
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 The Circle of Loyalty
+1 Thistledown Liege
+1 Triumphant Adventurer
+1 Unclaimed Territory
+1 Wayfarer's Bauble

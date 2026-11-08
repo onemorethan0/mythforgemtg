@@ -1,0 +1,85 @@
+# Archidekt — Nashi: Life is a Resource
+# source: archidekt:6741632
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Nashi, Moon Sage's Scion
+
+Deck:
+1 Agent of the Shadow Thieves
+1 Access Tunnel
+1 Bojuka Bog
+1 Commander's Plate
+1 Dark Ritual
+1 Bloodletter of Aclazotz
+1 Call of the Ring
+1 Basilica Screecher
+1 Defile
+1 Demonic Embrace
+1 Feed the Swarm
+1 Infernal Grasp
+1 Grim Hireling
+1 Dread Presence
+1 Gix, Yawgmoth Praetor
+1 Night's Whisper
+1 Gollum, Obsessed Stalker
+1 Protection Racket
+1 Profane Transfusion
+1 Lightning Greaves
+1 Repay in Kind
+1 Piper of the Swarm
+1 Pontiff of Blight
+1 Fireshrieker
+1 Scroll Rack
+1 Nykthos, Shrine to Nyx
+1 One Ring to Rule Them All
+1 Sanctum of Eternity
+1 Shizo, Death's Storehouse
+1 Strionic Resonator
+1 Swarmyard
+1 Sword of Light and Shadow
+1 Sword of Feast and Famine
+1 Temporal Extortion
+24 Swamp
+1 Toxic Deluge
+1 Witch-king of Angmar
+1 Twilight Prophet
+1 Virtus the Veiled
+1 Sign in Blood
+1 Shard of the Nightbringer
+1 Skull Storm
+1 Damnation
+1 Bitter Triumph
+1 Expedition Map
+1 Make an Example
+1 Murderous Rider // Swift End
+1 Consuming Corruption
+1 Snuff Out
+1 Lashwrithe
+1 Hagra Mauling // Hagra Broodpit
+1 Brotherhood Regalia
+1 Baleful Mastery
+1 Withering Torment
+1 Defiler of Flesh
+1 Cabal Coffers
+1 Fell the Profane // Fell Mire
+1 Minas Morgul, Dark Fortress
+1 Meathook Massacre II
+1 Sensei's Divining Top
+1 Rush of Dread
+1 Unstoppable Slasher
+1 Deserted Temple
+1 Urborg, Tomb of Yawgmoth
+1 Bitterblossom
+1 Quietus Spike
+1 Gonti, Night Minister
+1 Scytheclaw
+1 Turtle Lair
+1 Junji, the Midnight Sky
+1 Realm of Koh
+1 Liliana, Dreadhorde General
+1 Nighthawk Scavenger
+1 Shredder, Shadow Master
+1 Decorum Dissertation
+1 Game Over

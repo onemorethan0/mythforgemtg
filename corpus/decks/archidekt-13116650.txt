@@ -1,0 +1,107 @@
+# Archidekt — Yuna's Final Summoning
+# source: archidekt:13116650
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuna, Grand Summoner
+
+Deck:
+1 Rhystic Study
+1 Mana Drain
+1 Hallowed Fountain
+1 Chrome Mox
+1 Pemmin's Aura
+1 Birds of Paradise
+1 Sol Ring
+1 Walking Ballista
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Swan Song
+1 Swords to Plowshares
+1 Sink into Stupor // Soporific Springs
+1 Idyllic Tutor
+1 Ponder
+1 Sage of Hours
+1 Worldly Tutor
+1 Fierce Guardianship
+1 Recruiter of the Guard
+1 Cyclonic Rift
+1 Sylvan Tutor
+1 Sylvan Library
+1 Esper Sentinel
+1 Eladamri's Call
+1 The One Ring
+1 Moon-Blessed Cleric
+1 Flooded Strand
+1 Windswept Heath
+1 Misty Rainforest
+1 Temple Garden
+1 Sea of Clouds
+1 Arcane Signet
+1 Yavimaya, Cradle of Growth
+1 Preordain
+1 Explore
+1 Gemstone Caverns
+1 Eternal Witness
+1 Enlightened Tutor
+1 Ranger-Captain of Eos
+1 Breeding Pool
+1 Ancient Tomb
+1 Teferi's Protection
+1 Spara's Headquarters
+1 Rejuvenating Springs
+1 Floodfarm Verge
+1 Command Tower
+1 Brushland
+1 Pact of Negation
+1 Silence
+1 Freed from the Real
+1 Delighted Halfling
+1 Hedge Maze
+1 Meticulous Archive
+1 Lush Portico
+1 Starting Town
+1 Noble Hierarch
+1 Lotus Petal
+1 Elvish Spirit Guide
+1 Teferi, Time Raveler
+1 Kinnan, Bonder Prodigy
+1 Faerie Mastermind
+1 Thrasios, Triton Hero
+1 Into the Flood Maw
+1 Smothering Tithe
+1 Mystical Tutor
+1 City of Brass
+1 Mana Confluence
+1 Hushwood Verge
+1 Muddle the Mixture
+1 Tataru Taru
+1 Peerless Recycling
+1 Mana Vault
+1 Open the Armory
+1 Gifts Ungiven
+1 Gretchen Titchwillow
+1 Tolaria West
+1 Agatha's Soul Cauldron
+1 Sanctum Weaver
+1 Sevinne's Reclamation
+1 Hermit Druid
+1 Basalt Monolith
+1 March of Swirling Mist
+1 Nature's Claim
+1 Kenrith's Transformation
+1 Drift of Phantasms
+1 Dress Down
+1 Adarkar Wastes
+1 Fabricate
+1 Mystic Remora
+1 Badgermole Cub
+1 Avacyn's Pilgrim
+1 Force of Negation
+1 Grand Abolisher
+1 Bloom Tender
+1 Stock Up
+1 Heliod, Sun-Crowned
+1 Force of Will
+1 Wan Shi Tong, Librarian

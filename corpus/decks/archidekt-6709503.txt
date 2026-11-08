@@ -1,0 +1,75 @@
+# Archidekt — Slime Against Humanity
+# source: archidekt:6709503
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Umori, the Collector
+
+Deck:
+1 Dina's Guidance
+1 Arcane Signet
+1 Woodland Cemetery
+1 Nature's Lore
+1 Undergrowth Stadium
+1 Command Tower
+1 Llanowar Wastes
+1 Yavimaya, Cradle of Growth
+1 Emerald Medallion
+1 Cloud Key
+1 Primal Amulet // Primal Wellspring
+1 Nurturing Peatland
+1 Tainted Wood
+1 The Ozolith
+1 Temple of Malady
+1 Sol Ring
+1 Doubling Season
+1 Toxic Deluge
+1 Thrumming Stone
+1 Branching Evolution
+1 Primal Vigor
+1 Entomb
+1 Golgari Thug
+1 Golgari Grave-Troll
+1 Greater Good
+1 Dark Deal
+1 Yawgmoth's Will
+1 Secret Salvage
+1 Spellweaver Helix
+1 Deathcap Glade
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Underground Mortuary
+1 Selvala, Heart of the Wilds
+1 Stinkweed Imp
+1 Life from the Loam
+1 Urza's Saga
+1 Hall of Oracles
+1 Locket of Yesterdays
+1 Exotic Orchard
+1 Geier Reach Sanitarium
+1 Oran-Rief, the Vastwood
+1 Golgari Rot Farm
+1 Demonic Bargain
+1 Concordant Crossroads
+1 Semblance Anvil
+1 Emergence Zone
+1 Farseek
+1 Sylvan Library
+1 Overgrown Tomb
+1 Three Visits
+1 Dakmor Salvage
+1 Minas Morgul, Dark Fortress
+1 Verdant Catacombs
+1 Ripples of Undeath
+29 Slime Against Humanity
+1 The Earth Crystal
+1 Midgar, City of Mako // Reactor Raid
+2 Swamp
+1 Loading Zone
+5 Forest
+1 Terrasymbiosis
+1 Susur Secundi, Void Altar
+1 Tezzeret, Cruel Captain
+1 Runadi, Behemoth Caller
+1 Obscuring Haze
+1 Deadly Rollick

@@ -1,0 +1,99 @@
+# Archidekt — Toph, the First Metalbender
+# source: archidekt:5996567
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Stomping Ground
+1 Field of the Dead
+1 Scythecat Cub
+1 Scute Swarm
+1 Toph, Hardheaded Teacher
+1 Bumi, Eclectic Earthbender
+1 Earthbender Ascension
+1 Hour of Revelation
+1 Great Divide Guide
+1 Evolution Sage
+1 Sylvan Safekeeper
+1 Toph, Greatest Earthbender
+1 Ashaya, Soul of the Wild
+1 Valakut, the Molten Pinnacle
+1 Dryad of the Ilysian Grove
+1 Exploration
+1 Misty Rainforest
+1 Cinder Glade
+1 Flooded Strand
+1 Earthshape
+1 Ba Sing Se
+1 Worldly Tutor
+1 Inventors' Fair
+1 Swiftfoot Boots
+1 Temple Garden
+1 Toph, the Blind Bandit
+1 Terrasymbiosis
+1 Lotus Field
+5 Mountain
+1 Plains
+1 Sol Ring
+1 Lotus Cobra
+1 Wrenn and Realmbreaker
+1 Windswept Heath
+1 Zuran Orb
+1 Wooded Foothills
+1 Ichor Wellspring
+1 Amulet of Vigor
+1 Mana Vault
+1 Urza's Saga
+1 Sacred Foundry
+1 Akroma's Will
+1 Planar Engineering
+1 Secret Tunnel
+1 Deflecting Swat
+1 Crop Rotation
+1 Arid Mesa
+1 Yavimaya, Cradle of Growth
+1 Earthbending Student
+1 Haywire Mite
+1 The Earth Crystal
+1 Wasteland
+1 Bumi, Unleashed
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Scapeshift
+1 Roaming Throne
+1 Cavern of Souls
+1 Mycosynth Lattice
+1 Bloodstained Mire
+1 Inkmoth Nexus
+6 Forest
+1 Enlightened Tutor
+1 Green Sun's Zenith
+1 Marsh Flats
+1 Chromatic Lantern
+1 Annie Joins Up
+1 Swords to Plowshares
+1 Brightglass Gearhulk
+1 Tireless Provisioner
+1 Lotus Petal
+1 Mossborn Hydra
+1 Sylvan Library
+1 Farseek
+1 Springheart Nantuko
+1 Jetmir's Garden
+1 Liquimetal Torque
+1 Terra Eternal
+1 Toph, Earthbending Master
+1 Teferi's Protection
+1 Badgermole Cub
+1 Mox Amber
+1 Solemn Simulacrum
+1 The Mind Stone
+1 Urborg, Tomb of Yawgmoth
+1 Esper Sentinel
+1 Bristly Bill, Spine Sower
+1 The One Ring
+1 Arcane Signet

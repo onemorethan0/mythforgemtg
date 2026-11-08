@@ -1,0 +1,108 @@
+# Archidekt — cEDH  Breya Combo
+# source: archidekt:934660
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Breya, Etherium Shaper
+
+Deck:
+1 Gemstone Caverns
+1 Necropotence
+1 Mystical Tutor
+1 Dark Ritual
+1 Flusterstorm
+1 Mana Drain
+1 Chain of Vapor
+1 Flooded Strand
+1 Polluted Delta
+1 Enlightened Tutor
+1 Swords to Plowshares
+1 Windswept Heath
+1 Wooded Foothills
+1 Vampiric Tutor
+1 Brainstorm
+1 Pyroblast
+1 Preordain
+1 Demonic Tutor
+1 Mana Confluence
+1 Swan Song
+1 Wear // Tear
+1 Cyclonic Rift
+1 Mental Misstep
+1 Mox Opal
+1 Dispel
+1 Wheel of Fortune
+1 Arid Mesa
+1 Marsh Flats
+1 Misty Rainforest
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Lotus Petal
+1 Silence
+1 Ad Nauseam
+1 Pact of Negation
+1 Hallowed Fountain
+1 Steam Vents
+1 Watery Grave
+1 Auriok Salvagers
+1 Chrome Mox
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Talisman of Progress
+1 Brain Freeze
+1 Tainted Pact
+1 Lion's Eye Diamond
+1 Demonic Consultation
+1 Scrubland
+1 Tundra
+1 Underground Sea
+1 Volcanic Island
+1 Fellwar Stone
+1 Mana Vault
+1 Arcane Signet
+1 Ponder
+1 Sol Ring
+1 Command Tower
+1 Wishclaw Talisman
+1 Underworld Breach
+1 Thassa's Oracle
+1 Mystic Remora
+1 Mox Diamond
+1 Sensei's Divining Top
+1 Island
+1 Drannith Magistrate
+1 Smothering Tithe
+1 Ranger-Captain of Eos
+1 Esper Sentinel
+1 Imperial Seal
+1 Rite of Flame
+1 An Offer You Can't Refuse
+1 Entomb
+1 Urza's Saga
+1 Intuition
+1 Dimir Signet
+1 Rhystic Study
+1 City of Brass
+1 Sevinne's Reclamation
+1 Ancient Tomb
+1 Timetwister
+1 Ragavan, Nimble Pilferer
+1 Red Elemental Blast
+1 Plateau
+1 Bloodstained Mire
+1 Badlands
+1 Windfall
+1 Gifts Ungiven
+1 Sink into Stupor // Soporific Springs
+1 Counterbalance
+1 Voice of Victory
+1 Grand Abolisher
+1 Undercity Sewers
+1 Force of Will
+1 Simian Spirit Guide
+1 Force of Negation
+1 Gitaxian Probe
+1 Tezzeret, Cruel Captain
+1 Hexing Squelcher
+1 Samut, Tyrant of Naktamun

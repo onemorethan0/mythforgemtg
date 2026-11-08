@@ -1,0 +1,108 @@
+# Archidekt — Phenax, god of deception
+# source: archidekt:10264141
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Phenax, God of Deception
+
+Deck:
+1 Maze of Ith
+1 Mesmeric Orb
+1 Damnation
+1 Tainted Isle
+1 Ioreth of the Healing House
+1 Necropotence
+1 Takenuma, Abandoned Mire
+1 Intruder Alarm
+1 Command Tower
+1 Dark Ritual
+1 Rhystic Study
+1 Pemmin's Aura
+1 Underground River
+1 Minamo, School at Water's Edge
+1 Animate Dead
+1 Otawara, Soaring City
+1 Glacial Chasm
+1 Bruvac the Grandiloquent
+1 Urza's Saga
+1 Darkwater Catacombs
+1 Field of the Dead
+1 Maddening Cacophony
+1 Sunken Hollow
+1 Watery Grave
+1 The Scarab God
+1 Nykthos, Shrine to Nyx
+1 Thousand-Year Elixir
+1 Talisman of Dominance
+1 Bonehoard
+1 Dimir Signet
+1 Undead Alchemist
+1 Mana Drain
+1 Zellix, Sanity Flayer
+1 Vampiric Tutor
+1 Fierce Guardianship
+1 Tale's End
+1 Eater of the Dead
+1 Force of Negation
+1 Tree of Perdition
+1 Cabal Coffers
+1 Screeching Scorchbeast
+1 Ancient Tomb
+1 Urza's Cave
+1 Altar of Dementia
+1 Bloodstained Mire
+1 Island
+1 Charix, the Raging Isle
+1 Swamp
+1 Toxic Deluge
+1 Jidoor, Aristocratic Capital // Overture
+1 Swamp
+1 Snow-Covered Swamp
+1 Urborg, Tomb of Yawgmoth
+1 Clearwater Pathway // Murkwater Pathway
+1 Island
+1 The Mindskinner
+1 Ensnaring Bridge
+1 The Water Crystal
+1 Nuclear Fallout
+1 Mirelurk Queen
+1 Midnight Clock
+1 Reanimate
+1 Singularity Rupture
+1 Dimir Doppelganger
+1 Struggle for Project Purity
+1 The Soul Stone
+1 Chrome Mox
+1 Spider-Sense
+1 The One Ring
+1 Cyclonic Rift
+1 Beseech the Mirror
+1 Demonic Tutor
+1 Snow-Covered Island
+1 Sol Ring
+1 Mind Stone
+1 Verdant Catacombs
+1 Nyx Lotus
+1 Arcane Signet
+1 Sheoldred // The True Scriptures
+1 Grave Researcher // Reanimate
+1 Petrified Hamlet
+1 Undercity Sewers
+1 Jace's Archivist
+1 Aphetto Alchemist
+1 Mind Over Matter
+1 Sphinx's Tutelage
+1 Mindcrank
+1 Bloodchief Ascension
+1 Syr Konrad, the Grim
+1 Thespian's Stage
+1 The Master of Lake-town
+1 Mistvein Borderpost
+1 Duskmantle Guildmage
+1 Echoing Deeps
+1 Sewer Nemesis
+1 Altar of the Brood
+1 Captain N'ghathrod
+1 Windfall
+1 Sunken Ruins

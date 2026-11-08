@@ -1,0 +1,102 @@
+# Archidekt — "Battlecruiser" Magic (Inspirit, Flagship Vessel)
+# source: archidekt:14529919
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Inspirit, Flagship Vessel
+
+Deck:
+1 Dance of the Manse
+1 Everflowing Chalice
+1 Astral Cornucopia
+1 Kilo, Apogee Mind
+1 Sol Ring
+1 Arcane Signet
+1 Pentad Prism
+1 Insight Engine
+1 Titan Forge
+1 Uthros Research Craft
+1 Solar Array
+1 Lux Cannon
+1 Marketback Walker
+1 Coretapper
+1 Hangarback Walker
+1 Enthusiastic Mechanaut
+1 Walking Ballista
+1 Etherium Sculptor
+1 Surge Conductor
+1 Jhoira, Weatherlight Captain
+1 Phyrexian Metamorph
+1 Thought Monitor
+1 Swan Song
+1 Pull from Tomorrow
+1 Power Depot
+1 Chaos Warp
+1 Ripples of Potential
+1 Organic Extinction
+1 Kavaron, Memorial World
+1 Command Tower
+1 Adagia, Windswept Bastion
+1 Uthros, Titanic Godcore
+1 Ancient Den
+1 Glittering Massif
+1 Academy Ruins
+1 Great Furnace
+2 Island
+1 Mountain
+2 Plains
+1 Raugrin Triome
+1 Radiant Summit
+1 Rustvale Bridge
+1 Razortide Bridge
+1 Seat of the Synod
+1 Silverbluff Bridge
+1 Spire of Industry
+1 Steam Vents
+1 Sacred Foundry
+1 Hallowed Fountain
+1 Arid Mesa
+1 Flooded Strand
+1 Scalding Tarn
+1 Nesting Grounds
+1 Reflecting Pool
+1 Inventors' Fair
+1 Esper Sentinel
+1 Culling Dais
+1 Lost Jitte
+1 Torpor Orb
+1 Ethersworn Canonist
+1 Mendicant Core, Guidelight
+1 Power Conduit
+1 Clock of Omens
+1 Dreamtide Whale
+1 The Seriema
+1 Transmogrifying Wand
+1 All Will Be One
+1 Training Center
+1 Urza, Lord Protector
+1 Spectator Seating
+1 Sea of Clouds
+1 Patrolling Peacemaker
+1 Arcbound Ravager
+1 Memnite
+1 Magda, Brazen Outlaw
+1 Tezzeret, Cruel Captain
+1 Ironsoul Enforcer
+1 Mana Confluence
+1 Plaza of Heroes
+1 Illustrious Wanderglyph
+1 Gold-Forged Thopteryx
+1 Thopter Spy Network
+1 Extinguisher Battleship
+1 Starwinder
+1 Dawnsire, Sunstar Dreadnought
+1 The Mightstone and Weakstone
+1 Cryptothrall
+1 Nibelheim Aflame
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Urza, Planeswalker
+1 Weather Maker
+1 Iron Spider, Stark Upgrade
+1 The Mycosynth Gardens

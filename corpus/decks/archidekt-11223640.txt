@@ -1,0 +1,91 @@
+# Archidekt — GRUULGAMEZ
+# source: archidekt:11223640
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Cait, Cage Brawler
+
+Deck:
+1 Mana-Charged Dragon
+1 Thornspire Verge
+1 Combustible Gearhulk
+1 Kessig Wolf Run
+1 Assault Suit
+10 Forest
+1 Grothama, All-Devouring
+9 Mountain
+1 Agitator Ant
+1 Lavabrink Floodgates
+1 Goblin Game
+1 Pit of Offerings
+1 Prisoner's Dilemma
+1 Release the Ants
+1 Emissary Green
+1 Exotic Orchard
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Roots of Life
+1 Ensnared by the Mara
+1 Command Tower
+1 Breaking Point
+1 Wheel of Misfortune
+1 Orchard Elemental
+1 Pendant of Prosperity
+1 Bloodthirsty Blade
+1 Trial of Agony
+1 Share the Spoils
+1 Eye of Doom
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Tangled Florahedron // Tangled Vale
+1 Pinnacle Monk // Mystic Peak
+1 Healing Technique
+1 Travel Through Caradhras
+1 Hunted Wumpus
+1 You Find Some Prisoners
+1 Fraying Line
+1 Collective Voyage
+1 Mossfire Valley
+1 Sheltering Ancient
+1 Rootweaver Druid
+1 Bounty Board
+1 Tempt with Discovery
+1 Explosion of Riches
+1 Font of Mythos
+1 Path of Ancestry
+1 Lightning Storm
+1 Spinerock Knoll
+1 Sheltered Thicket
+1 Ghazbán Ogre
+1 Illicit Auction
+1 Alexios, Deimos of Kosmos
+1 Gruul Turf
+1 Chain of Plasma
+1 Creative Technique
+1 Plargg and Nassari
+1 Stump Stomp // Burnwillow Clearing
+1 Blazing Salvo
+1 Coveted Jewel
+1 Bladegriff Prototype
+1 Sundering Eruption // Volcanic Fissure
+1 Hunted Troll
+1 Hunted Dragon
+1 Brash Taunter
+1 Skullwinder
+1 Browbeat
+1 Skarrg, the Rage Pits
+1 Rootbound Crag
+1 Mob Verdict
+1 Barroom Brawl
+1 Khârn the Betrayer
+1 Chaos Warp
+1 Cheering Crowd
+1 Temple of the False God
+1 Thespian's Stage
+1 Humble Defector
+1 Squee, Goblin Nabob
+1 Tempt with Mayhem
+1 Disorienting Choice
+1 Pumpkin Bombs
+1 Fateful Tempest
+1 Spring Cleaning
+1 Druid of Purification

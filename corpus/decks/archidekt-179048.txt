@@ -1,0 +1,88 @@
+# Archidekt — Unesh, Sphinx Storm
+# source: archidekt:179048
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Unesh, Criosphinx Sovereign
+
+Deck:
+1 Urza's Saga
+1 Scalding Tarn
+1 Chain of Vapor
+1 Moonsilver Key
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Wash Away
+1 Flooded Strand
+1 Misty Rainforest
+1 Counterspell
+1 Decanter of Endless Water
+1 Sakashima's Student
+1 Pact of Negation
+1 Mana Drain
+1 Lightning Greaves
+1 Panharmonicon
+1 Expropriate
+1 Imprisoned in the Moon
+1 Thought Vessel
+1 Reality Shift
+1 Temporal Trespass
+1 Sapphire Medallion
+1 Clever Impersonator
+1 Dig Through Time
+1 Nykthos, Shrine to Nyx
+1 Enter the Infinite
+1 Cyclonic Rift
+1 Phyrexian Metamorph
+1 Expedition Map
+1 Extraplanar Lens
+1 Rhystic Study
+1 Dream Halls
+1 Capsize
+1 Arcane Denial
+1 Force of Will
+1 High Tide
+1 Mystical Tutor
+1 Nexus of Fate
+1 Omniscience
+1 Jace, Wielder of Mysteries
+1 Spark Double
+1 Narset's Reversal
+1 Force of Negation
+1 Leyline of Anticipation
+1 Arcane Signet
+1 Treasure Cruise
+1 Nyx Lotus
+1 Fierce Guardianship
+1 Reliquary Tower
+1 Glasspool Mimic // Glasspool Shore
+1 Sakashima of a Thousand Faces
+1 Universal Automaton
+1 Sphinx of Foresight
+1 Shapesharer
+1 Rescuer Sphinx
+1 Fellwar Stone
+1 Mana Vault
+1 Sol Ring
+21 Snow-Covered Island
+1 Caged Sun
+1 Spellseeker
+1 Master of Winds
+1 Flood of Tears
+1 Castle Vantress
+1 Consecrated Sphinx
+1 Irenicus's Vile Duplication
+1 Mystic Sanctuary
+1 Hullbreaker Horror
+1 Tolaria West
+1 Gemstone Caverns
+1 Sakashima the Impostor
+1 Urza's Cave
+1 Virtue of Knowledge // Vantress Visions
+1 The Irencrag
+1 Cloudstone Curio
+1 Phantasmal Image
+1 Defiler of Dreams
+1 Stoic Sphinx
+1 Three Tree Mascot
+1 Polluted Delta

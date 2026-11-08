@@ -1,0 +1,100 @@
+# Archidekt — Numbers
+# source: archidekt:7408629
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Nine-Fingers Keene
+
+Deck:
+1 Fetid Pools
+1 Djinn of Infinite Deceits
+1 Thousand-Faced Shadow
+1 The Thirteenth Doctor
+1 Pip-Boy 3000
+1 One with Nature
+1 Ring of Three Wishes
+1 Three Visits
+1 K-9, Mark I
+1 Kagemaro, First to Suffer
+1 Second Guess
+1 Rayami, First of the Fallen
+1 The First Iroan Games
+1 Sheoldred, Whispering One
+1 Nine-Tail White Fox
+1 Harold and Bob, First Numens
+1 First Responder
+1 Double Major
+1 Basilisk Gate
+1 Baldur's Gate
+1 Dimir Guildgate
+1 Gond Gate
+1 Temple of Mystery
+1 The Black Gate
+1 Temple of Deceit
+2 Island
+1 Talon Gates of Madara
+1 Sire of Seven Deaths
+1 Think Twice
+1 Mimeoplasm, Revered One
+1 Endless One
+1 Experiment One
+1 HELIOS One
+1 One with the Kami
+1 The Fourth Doctor
+1 Felix Five-Boots
+1 The Five Doctors
+1 Sixth Sense
+1 The Sixth Doctor
+1 Wight of Precinct Six
+1 Wrenn and Seven
+1 The Eleventh Hour
+1 Fifty Feet of Rope
+1 The Third Doctor
+1 Great Unclean One
+1 Borrowing 100,000 Arrows
+1 Vault 87: Forced Evolution
+1 Second Chance
+1 Twincast
+1 Thran Portal
+1 Black Dragon Gate
+1 Manor Gate
+1 Gateway Plaza
+1 Sea Gate
+1 Golgari Guildgate
+1 Simic Guildgate
+1 Heap Gate
+1 Maze's End
+1 Aether Hub
+1 Opulent Palace
+1 Sunken Hollow
+1 Command Tower
+1 Evolving Wilds
+2 Swamp
+7 Forest
+1 Llanowar Wastes
+1 Yavimaya Coast
+1 Infinite Reflection
+1 Hex Parasite
+1 Hex
+1 Foreboding Landscape
+1 Six
+1 Three Tree Rootweaver
+1 Spineseeker Centipede
+1 Tangled Islet
+1 Tam, Mindful First-Year
+1 Delighted Halfling
+1 Hraesvelgr of the First Brood
+1 The Warring Triad
+1 Zero Point Ballad
+1 Twenty-Toed Toad
+1 Spider-Man 2099, Miguel O'Hara
+1 The Ten Rings
+1 Studious First-Year // Rampant Growth
+1 Madame Null, Power Broker
+1 Pain 101
+1 Michelangelo, Weirdness to 11
+1 First Family
+1 The Frightful Four
+1 Donnie & April, Adorkable Duo
+1 MACH-1, Swooping Scoundrel

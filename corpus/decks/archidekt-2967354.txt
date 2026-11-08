@@ -1,0 +1,75 @@
+# Archidekt — Krenko Go Brrrrr V2
+# source: archidekt:2967354
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Krenko, Mob Boss
+
+Deck:
+1 Warren Instigator
+1 Witty Roastmaster
+1 Krenko, Tin Street Kingpin
+1 Rundvelt Hordemaster
+1 Skirk Prospector
+1 Moria Marauder
+1 Goblin Chirurgeon
+1 Pashalik Mons
+1 Goblin Ringleader
+1 Commander's Plate
+1 Goblin Lackey
+1 Illusionist's Bracers
+1 Goblin Recruiter
+1 Bloodmark Mentor
+1 Goblin Warchief
+1 Goblin Battle Jester
+1 Ruby Medallion
+1 Hobgoblin Bandit Lord
+1 Goblin Rabblemaster
+1 Legion Warboss
+1 Goblin Trashmaster
+1 Eldrazi Monument
+1 Vanquisher's Banner
+1 Goblin Chieftain
+1 Goblin King
+1 Throne of the God-Pharaoh
+1 Phyrexian Altar
+1 Arcane Signet
+1 Sol Ring
+1 Thousand-Year Elixir
+1 Hammer of Purphoros
+1 Goblin Motivator
+1 Herald's Horn
+1 Conspicuous Snoop
+1 Goblin Matron
+1 Rings of Brighthearth
+1 Solphim, Mayhem Dominus
+1 Norin the Wary
+1 Cavern of Souls
+34 Mountain
+1 Kiki-Jiki, Mirror Breaker
+1 Last-Ditch Effort
+1 Fireball
+1 Brightstone Ritual
+1 Chandra, Torch of Defiance
+1 Purphoros, God of the Forge
+1 Goblin War Strike
+1 Price of Glory
+1 Goblin Offensive
+1 Deflecting Swat
+1 Goblin Assault
+1 Impact Tremors
+1 Boggart Shenanigans
+1 Fiery Emancipation
+1 Cavalcade of Calamity
+1 Goblin Bombardment
+1 Goblin War Drums
+1 Fervor
+1 Blood Moon
+1 Blood Sun
+1 Shared Animosity
+1 Door of Destinies
+1 Krenko, Baron of Tin Street
+1 Muxus, Goblin Grandee
+1 Helm of the Host
+1 Caged Sun

@@ -1,0 +1,90 @@
+# Archidekt — 🪦 Delina Clones
+# source: archidekt:4490500
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Delina, Wild Mage
+
+Deck:
+1 Stirring Bard
+1 Liquimetal Torque
+1 Fanatic of Mogis
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Aspiring Champion
+1 The Irencrag
+1 Bloodboil Sorcerer
+1 Bolt Bend
+1 Talon Gates of Madara
+1 Caves of Chaos Adventurer
+1 Goblin Chainwhirler
+1 Wrenn's Resolve
+1 Wild Magic Surge
+1 Parapet Thrasher
+1 Pyrogoyf
+1 Sundering Eruption // Volcanic Fissure
+1 Calamity, Galloping Inferno
+1 Trumpeting Carnosaur
+1 Red Dragon
+1 March of Reckless Joy
+1 Radiant Performer
+1 Dragonhawk, Fate's Tempest
+1 Fear of Burning Alive
+1 Untimely Malfunction
+1 Tibalt's Trickery
+1 Mindclaw Shaman
+1 Arcane Signet
+1 Havoc Eater
+1 Fountainport
+1 Plaza of Heroes
+1 Wayfarer's Bauble
+1 Swiftfoot Boots
+1 Light Up the Stage
+1 Ebony Fly
+1 Chaos Warp
+1 Shinka, the Bloodsoaked Keep
+1 Arena of Glory
+1 Nykthos, Shrine to Nyx
+1 Sokenzan, Crucible of Defiance
+1 Diamond City
+1 Kiki-Jiki, Mirror Breaker
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Possibility Technician
+1 Anticausal Vestige
+1 Imperial Recruiter
+1 Flamekin Village
+1 Broadside Bombardiers
+1 Thought Vessel
+1 Jaxis, the Troublemaker
+1 Peter Parker's Camera
+1 Balefire Dragon
+1 Strionic Resonator
+1 Professional Face-Breaker
+1 Hanweir Battlements
+1 Mind Stone
+1 Fury
+19 Mountain
+1 Return the Favor
+1 Scavenger Grounds
+1 Crystal Vein
+1 Markov Enforcer
+1 Sword of Hearth and Home
+1 Summon: Kujata
+1 Ruby Medallion
+1 Prismatic Lens
+1 Knollspine Dragon
+1 Everflowing Chalice
+1 Lightning Greaves
+1 Spinerock Knoll
+1 Flametongue Kavu
+1 War Room
+1 Inferno Titan
+1 Terror of the Peaks
+1 Rogue's Passage
+1 Twinflame Tyrant
+1 Reckless Impulse
+1 Mizzium Mortars
+1 Cursed Mirror
+1 Access Tunnel
+1 Fellwar Stone

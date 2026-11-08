@@ -1,0 +1,98 @@
+# Archidekt — Inalla Wizard Tribal
+# source: archidekt:1766516
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Inalla, Archmage Ritualist
+
+Deck:
+1 Polluted Delta
+1 Sulfurous Springs
+1 Displace
+1 Sage of Fables
+1 Teferi's Veil
+1 Counterspell
+1 Impact Tremors
+1 Bloodline Necromancer
+1 Stonybrook Banneret
+1 Expressive Iteration
+1 Sunken Hollow
+1 Riptide Laboratory
+1 Shivan Reef
+1 Reliquary Tower
+1 Voidmage Prodigy
+1 Sea Gate Stormcaller
+1 Underground River
+1 Path of Ancestry
+1 Blood Crypt
+1 Virtue of Knowledge // Vantress Visions
+1 Stormcarved Coast
+1 Night's Whisper
+1 Rowan's Grim Search
+1 Quick Study
+1 Smirking Spelljacker
+1 Herald's Horn
+1 Ponder
+1 Morphic Pool
+1 Shipwreck Marsh
+1 Training Center
+1 Undercity Sewers
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Blasphemous Act
+1 Thundering Falls
+1 Raucous Theater
+1 Bloodstained Mire
+1 Cavern of Souls
+1 Cyclonic Rift
+1 Terminate
+1 Scalding Tarn
+1 Steam Vents
+1 Command Tower
+1 Watery Grave
+1 Xander's Lounge
+1 Patchwork Banner
+1 Molten Echoes
+1 Harmonic Prodigy
+1 Roaming Throne
+1 Redoubled Stormsinger
+1 Anathemancer
+1 Basalt Ravager
+1 Purphoros, God of the Forge
+1 Archmage of Echoes
+1 Naban, Dean of Iteration
+1 Obeka, Brute Chronologist
+1 Patron Wizard
+1 Docent of Perfection // Final Iteration
+1 Barrin, Tolarian Archmage
+1 Aether Channeler
+1 Watcher for Tomorrow
+1 Aether Adept
+1 Portal Mage
+1 Cloudkin Seer
+1 Dualcaster Mage
+1 Merchant of Secrets
+1 Sea Gate Oracle
+1 Voidmage Husher
+1 Disciple of Bolas
+1 Naru Meha, Master Wizard
+1 Tishana's Tidebinder
+1 Molten Gatekeeper
+1 Snapcaster Mage
+1 Ghostly Flicker
+1 Sundial of the Infinite
+1 Sink into Stupor // Soporific Springs
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+4 Mountain
+1 Warren Soultrader
+1 Serum Visionary
+1 Inspired Skypainter // Maestro's Gift
+1 Curiosity Crafter
+1 Determined Iteration
+1 Naktamun Lorespinner // Wheel of Fortune
+1 Keen Duelist
+1 Dour Port-Mage
+1 Ruthless Technomancer
+1 Sundering Eruption // Volcanic Fissure
+3 Swamp
+6 Island

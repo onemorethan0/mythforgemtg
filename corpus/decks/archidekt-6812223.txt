@@ -1,0 +1,105 @@
+# Archidekt — Songs and Tales from Universes Beyond
+# source: archidekt:6812223
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 The Legend of Kuruk // Avatar Kuruk
+1 Arcane Signet
+1 Birth of the Imperium
+3 Forest
+1 Enchantress's Presence
+1 Exotic Orchard
+1 Fall of the First Civilization
+1 Garnet, Princess of Alexandria
+1 Godless Shrine
+1 Hallowed Fountain
+1 Historian's Boon
+1 Jukai Naturalist
+1 Mountain
+1 Nesting Grounds
+1 One Ring to Rule Them All
+1 Sacred Foundry
+1 Sanctum Weaver
+1 Savage Lands
+1 Setessan Champion
+1 Summon: Fenrir
+1 Temple Garden
+1 The World Tree
+1 There and Back Again
+1 Watery Grave
+1 Wooded Foothills
+1 Xander's Lounge
+1 Zagoth Triome
+1 Summon: Bahamut
+1 Sol Ring
+1 Satsuki, the Living Lore
+1 Reflecting Pool
+1 The Bath Song
+1 The Akroan War
+1 Sterling Grove
+1 Farseek
+1 Nature's Lore
+1 The Legend of Yangchen // Avatar Yangchen
+1 Cultivate
+1 Murmuring Bosk
+1 Goldberry, River-Daughter
+1 Scroll of Isildur
+1 Spara's Headquarters
+1 The Legend of Roku // Avatar Roku
+1 Luxury Suite
+1 Ziatora's Proving Ground
+1 The Horus Heresy
+1 Karn's Bastion
+1 Summon: Titan
+1 Estrid's Invocation
+1 Breeding Pool
+1 Clockspinning
+1 Starting Town
+1 Maximum Carnage
+1 Hex Parasite
+1 Windswept Heath
+1 Resurgent Belief
+1 Moonmist
+1 Faeburrow Elder
+1 The Death of Gwen Stacy
+1 O'aka, Traveling Merchant
+1 The Aesir Escape Valhalla
+1 Three Visits
+1 Starfield of Nyx
+1 In the Darkness Bind Them
+1 Scholar of New Horizons
+1 Raffine's Tower
+1 Command Tower
+1 Jetmir's Garden
+1 Sandsteppe Citadel
+1 City of Death
+1 Power Conduit
+1 Nomad Outpost
+1 Weaver of Harmony
+1 Raugrin Triome
+1 Sythis, Harvest's Hand
+2 Plains
+1 Swamp
+1 Island
+1 Roll-Roll-Roll-Roll
+1 Origin of Thor
+1 Urban Retreat
+1 The Super Hero Civil War
+1 Ketria Triome
+1 Binding the Old Gods
+1 The Clone Saga
+1 The Coming of Galactus
+1 Joshua, Phoenix's Dominant // Phoenix, Warden of Fire
+1 Summon: Knights of Round
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Tom Bombadil
+1 Summon: Yojimbo
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+1 Yuna, Hope of Spira
+1 Summon: Good King Mog XII
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Esper Origins // Summon: Esper Maduin

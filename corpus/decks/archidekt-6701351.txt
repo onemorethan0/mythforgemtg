@@ -1,0 +1,95 @@
+# Archidekt — Golden Triangles
+# source: archidekt:6701351
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Soundwave, Sonic Spy // Soundwave, Superior Captain
+
+Deck:
+1 Study
+1 Secret Passage
+1 Shuri, Wakandan Inventor
+1 Anguished Unmaking
+1 Arcane Sanctum
+1 Cyclonus, the Saboteur // Cyclonus, Cybertronian Fighter
+1 Blitzwing, Cruel Tormentor // Blitzwing, Adaptive Assailant
+1 Time Wipe
+1 K-9, Mark I
+1 Shineshadow Snarl
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Prowl, Stoic Strategist // Prowl, Pursuit Vehicle
+1 Goldbug, Humanity's Ally // Goldbug, Scrappy Scout
+1 Exotic Orchard
+1 Sunken Hollow
+1 Confession Dial
+1 Nanogene Conversion
+1 Quantum Misalignment
+1 Swords to Plowshares
+4 Swamp
+1 Havengul Laboratory // Havengul Mystery
+1 Martha Jones
+1 Sarah Jane Smith
+1 Senator Peacock
+1 Sol Ring
+1 Ballroom
+1 Jetfire, Ingenious Scientist // Jetfire, Air Guardian
+1 Skycloud Expanse
+1 Prairie Stream
+1 Irrigated Farmland
+1 Glacial Fortress
+1 Fetid Pools
+4 Island
+4 Plains
+1 Great Hall of the Citadel
+1 Treasure Vault
+1 Multiversal Recruitment
+1 Command Tower
+1 The Cloning of Shredder
+1 Luck Bobblehead
+1 Perception Bobblehead
+1 Endurance Bobblehead
+1 Charisma Bobblehead
+1 Strength Bobblehead
+1 Hour of Reckoning
+1 Darkwater Catacombs
+1 Desolate Mire
+1 Securitron Squadron
+1 Nick Valentine, Private Eye
+1 Piper Wright, Publick Reporter
+1 Wan Shi Tong, All-Knowing
+1 Auton Soldier
+1 Agility Bobblehead
+1 Dino DNA
+1 Don't Move
+1 Inquisitorial Rosette
+1 Marneus Calgar
+1 Isolated Chapel
+1 Drowned Catacomb
+1 Doomsday Confluence
+1 Genesis of the Daleks
+1 Dalek Squadron
+1 Belisarius Cawl
+1 Birth of the Imperium
+1 Osgood, Operation Double
+1 Elder Owyn Lyons
+1 Ultron the Annihilator
+1 Sokrates, Athenian Teacher
+1 Inventors' Fair
+1 Pippin, Guard of the Citadel
+1 Thespian's Stage
+1 Fabricate
+1 Intelligence Bobblehead
+1 Rogue's Passage
+1 Multiversal Passage
+1 Fabled Passage
+1 Realm of Koh
+1 Fetid Heath
+1 Impostor Syndrome
+1 The Soul Stone
+1 The Mechanist, Aerial Artisan
+1 Hidden Lair
+1 Gleaming Bastion
+1 Open the Armory
+1 Ultron, Artificial Malevolence
+1 Donatello, Mutant Mechanic

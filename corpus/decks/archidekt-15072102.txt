@@ -1,0 +1,99 @@
+# Archidekt — Gwenom, Remorseless- Turbo cEDH
+# source: archidekt:15072102
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Gwenom, Remorseless
+
+Deck:
+1 Dark Ritual
+1 Aetherflux Reservoir
+1 Sensei's Divining Top
+1 Sheoldred, the Apocalypse
+1 Imperial Seal
+1 Reanimate
+1 Diabolic Intent
+1 Toxic Deluge
+1 Dauthi Voidwalker
+1 Vampiric Tutor
+1 Cabal Ritual
+1 Demonic Tutor
+1 Culling the Weak
+1 Orcish Bowmasters
+1 Feed the Swarm
+1 Wishclaw Talisman
+1 Beseech the Mirror
+1 Doomsday
+1 Urborg, Tomb of Yawgmoth
+1 Necropotence
+1 Phyrexian Tower
+1 Mana Vault
+1 Ancient Tomb
+1 Lotus Petal
+1 Arcane Signet
+1 Chrome Mox
+1 Mox Opal
+1 Mox Diamond
+1 Gemstone Caverns
+1 Crystal Vein
+1 Peer into the Abyss
+1 Doom Whisperer
+1 Viscera Seer
+1 Ad Nauseam
+1 Sacrifice
+1 Defense Grid
+1 Village Rites
+1 Dimir House Guard
+1 Blood Pet
+1 Soldevi Adnate
+1 Heartless Summoning
+1 Gray Merchant of Asphodel
+1 Praetor's Grasp
+1 Emergence Zone
+1 Snuff Out
+1 City of Traitors
+1 Opposition Agent
+1 Lion's Eye Diamond
+1 Rain of Filth
+1 Mind Stone
+1 Grim Monolith
+1 Bolas's Citadel
+1 K'rrik, Son of Yawgmoth
+1 Jeweled Amulet
+1 Bubbling Muck
+1 Dismember
+1 Jet Medallion
+1 Yawgmoth's Will
+1 Cavern of Souls
+1 Fellwar Stone
+1 Thought Vessel
+1 Animate Dead
+1 Manifold Key
+1 Basalt Monolith
+1 Necromancy
+1 Urza's Saga
+1 Death Cultist
+1 Hoarding Broodlord
+1 Mortuary
+1 Saw in Half
+1 Lavaspur Boots
+1 Boggart Trawler // Boggart Bog
+1 Malakir Rebirth // Malakir Mire
+1 Fell the Profane // Fell Mire
+10 Swamp
+1 Tendrils of Agony
+1 Damnation
+1 Lightning Greaves
+1 Sol Ring
+1 The One Ring
+1 Lake of the Dead
+1 Ornithopter
+1 Phyrexian Walker
+1 Prismatic Vista
+1 Polluted Delta
+1 Verdant Catacombs
+1 Bloodstained Mire
+1 Marsh Flats
+1 Entomb
+1 Everflowing Chalice

@@ -1,0 +1,65 @@
+# Archidekt — STOMPY
+# source: archidekt:12050936
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Yargle and Multani
+
+Deck:
+1 Yargle, Glutton of Urborg
+25 Forest
+1 Bear Cub
+1 Terrian, World Tyrant
+1 Rotting Mastodon
+20 Swamp
+1 Jibbirik Omnivore
+1 Gutter Skulk
+1 Harrier Naga
+1 Trained Armodon
+1 Centaur Courser
+1 Gnarled Mass
+1 Bane Alley Blackguard
+1 Enormous Baloth
+1 Queen's Bay Soldier
+1 Dune Beetle
+1 Gloom Pangolin
+1 Dross Crocodile
+1 Broodhunter Wurm
+1 Cylian Elf
+1 Kalakscion, Hunger Tyrant
+1 Cabal Evangel
+1 Gigantosaurus
+1 Murasa Brute
+1 Grizzly Bears
+1 Phyrexian Walker
+1 Memnite
+1 Metallic Sliver
+1 Quakestrider Ceratops
+1 Ferocious Zheng
+1 Norwood Ranger
+1 Muck Rats
+1 Walking Corpse
+1 Wandering Tombshell
+1 Nettle Swine
+1 Axebane Beast
+1 Alpine Grizzly
+1 Runeclaw Bear
+1 Leatherback Baloth
+1 Garruk's Gorehorn
+1 Kalonian Tusker
+1 Primordial Wurm
+1 Terrain Elemental
+1 Quilled Slagwurm
+1 Swordwise Centaur
+1 Rumbling Baloth
+1 Nyxborn Colossus
+1 Ancient Brontodon
+1 Vorstclaw
+1 Catacomb Crocodile
+1 Woodland Druid
+1 Nessian Courser
+1 Elvish Warrior
+1 Balduvian Bears
+1 Colossodon Yearling
+1 Highborn Vampire

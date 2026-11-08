@@ -1,0 +1,101 @@
+# Archidekt — 50 Goblins & (hopefully) Dragons
+# source: archidekt:10855330
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Goro-Goro and Satoru
+
+Deck:
+1 Break Through the Line
+1 Tetsuko Umezawa, Fugitive
+1 Subira, Tulzidi Caravanner
+1 Gossip's Talent
+1 Skirk Shaman
+1 Tin Street Dodger
+1 General Kreat, the Boltbringer
+1 Battle Cry Goblin
+1 Ardoz, Cobbler of War
+1 Frogtosser Banneret
+1 Boggart Harbinger
+1 Goblin Warchief
+1 Kyren Legate
+1 Squee, Dubious Monarch
+1 Reckless Lackey
+1 Siege-Gang Lieutenant
+1 Tuktuk the Explorer
+1 Krenko, Tin Street Kingpin
+1 Legion Warboss
+1 Searslicer Goblin
+1 Krenko, Mob Boss
+1 Sling-Gang Lieutenant
+1 Boggart Mob
+1 Prickly Boggart
+1 Putrid Goblin
+1 Grenzo, Havoc Raiser
+1 Goblin Outlander
+1 Grenzo, Dungeon Warden
+1 Goblin Grenade
+1 Muxus, Goblin Grandee
+1 Goblin Matron
+1 Goblin Recruiter
+1 Skirk Prospector
+1 Goblin Piledriver
+1 Goblin Lackey
+1 Rundvelt Hordemaster
+1 Wort, Boggart Auntie
+1 Goblin King
+1 Brightstone Ritual
+1 Goblin Ringleader
+1 Goblin Chirurgeon
+1 Skullclamp
+1 Moggcatcher
+1 Riverglide Pathway // Lavaglide Pathway
+1 Crumbling Necropolis
+1 Stormcarved Coast
+1 Blightstep Pathway // Searstep Pathway
+1 Blazemire Verge
+1 Haunted Ridge
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Command Tower
+1 Path of Ancestry
+1 Secluded Courtyard
+1 Unclaimed Territory
+1 Pashalik Mons
+1 Rakdos Signet
+1 Izzet Signet
+1 Arcane Signet
+1 Cursed Mirror
+1 Sulfurous Springs
+1 Fabled Passage
+1 Bedlam
+1 Thran Quarry
+1 Boggart Trawler // Boggart Bog
+1 Goblins of the Flarg
+1 Sulfur Falls
+1 Shipwreck Marsh
+1 Underground River
+1 Shivan Reef
+1 Ancient Ziggurat
+1 Holdout Settlement
+1 Forbidden Orchard
+2 Swamp
+2 Island
+1 Auntie's Snitch
+1 Dauthi Trapper
+1 Clearwater Pathway // Murkwater Pathway
+6 Mountain
+1 Goro-Goro, Disciple of Ryusei
+1 Underfoot Underdogs
+1 Alora, Merry Thief
+1 Goblin Smuggler
+1 Goblin Tunneler
+1 Goblin Motivator
+1 Keeper of Kookus
+1 Moria Marauder
+1 Shrieking Mogg
+1 Spike Jester
+1 Talisman of Indulgence
+1 Kaito, Cunning Infiltrator
+1 Kiki-Jiki, Mirror Breaker

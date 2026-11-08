@@ -1,0 +1,86 @@
+# Archidekt — Fun Guys
+# source: archidekt:11864340
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Gaea's Cradle, Worldly Tutor); Bracket 1 allows 0
+
+Commander:
+1 Shroofus Sproutsire
+
+Deck:
+1 Gaea's Cradle
+1 Mosswort Bridge
+1 Nesting Grounds
+1 Arch of Orazca
+1 Crawling Barrens
+1 Bonders' Enclave
+1 Witch's Clinic
+1 Evolution Sage
+1 Karn's Bastion
+1 Brightcap Badger // Fungus Frolic
+1 Cankerbloom
+1 Elvish Farmer
+1 Jaheira, Friend of the Forest
+1 Mindbender Spores
+1 Fungal Behemoth
+1 Mold Shambler
+1 Swarm Shambler
+1 Sporesower Thallid
+1 Myconid Spore Tender
+1 Rot Shambler
+1 Nemata, Grove Guardian
+1 Mycoloth
+1 Psychotrope Thallid
+1 Plaguemaw Beast
+1 Sporecrown Thallid
+1 Sowing Mycospawn
+1 Spore Flower
+1 Sporoloth Ancient
+1 Thorn Thallid
+1 Thallid Shell-Dweller
+1 Savage Thallid
+1 Thelonite Hermit
+1 Thallid Devourer
+1 Thallid Germinator
+1 Tendershoot Dryad
+1 Undercellar Myconid
+1 Utopia Mycon
+1 Courage in Crisis
+1 Verdeloth the Ancient
+1 Vitaspore Thallid
+1 Fungal Rebirth
+1 Return of the Wildspeaker
+1 Heroic Intervention
+1 Parallel Lives
+1 Overrun
+1 Preposterous Proportions
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Doubling Season
+1 Primal Vigor
+1 Fungal Plots
+1 Fungal Bloom
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Contagion Engine
+1 Lifecrafter's Bestiary
+1 Sol Ring
+1 Ozolith, the Shattered Spire
+1 The Ozolith
+1 Contagion Clasp
+1 Skullclamp
+1 Insidious Fungus
+1 Surrak, Elusive Hunter
+1 Seedtime
+1 Evendo, Waking Haven
+1 Soulstone Sanctuary
+1 Loading Zone
+1 Green Sun's Zenith
+1 Myriad Landscape
+1 Kamahl, Fist of Krosa
+1 Slimy Piper
+24 Forest
+1 Three Tree City
+1 Worldly Tutor
+1 Descendants' Path
+1 Ferrafor, Young Yew
+1 Triumph of the Hordes
+1 For the Common Good

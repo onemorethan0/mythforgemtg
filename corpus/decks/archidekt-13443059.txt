@@ -1,0 +1,102 @@
+# Archidekt — Lesbians are Statistically Temur
+# source: archidekt:13443059
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Eshki Dragonclaw
+1 Jenny Flint
+1 Bill Potts
+1 Lara Croft, Tomb Raider
+1 Madame Vastra
+1 Yasmin Khan
+1 The Thirteenth Doctor
+
+Deck:
+1 Krosan Grip
+1 Two-Handed Axe // Sweeping Cleave
+1 Ureni, the Song Unending
+1 Counterspell
+1 Spire Garden
+1 Rejuvenating Springs
+1 Shivan Reef
+1 Karplusan Forest
+1 Fabled Passage
+1 Training Center
+1 Genesis Ultimatum
+1 Colossus Hammer
+1 Growth Spiral
+1 Llanowar Elves
+1 Open the Way
+1 Ponder
+1 Defense of the Heart
+1 Chandra's Ignition
+1 City on Fire
+1 Karlach, Fury of Avernus
+1 Sublime Epiphany
+1 Crackle with Power
+1 Prismari Command
+1 Imprisoned in the Moon
+1 Nissa, Who Shakes the World
+1 Errant, Street Artist
+1 Heartbeat of Spring
+1 Animist's Might
+1 Mary Read and Anne Bonny
+1 Halana and Alena, Partners
+1 Full Throttle
+1 Collective Voyage
+1 Dragonclaw Strike
+1 By Force
+1 Veronica, Dissident Scribe
+1 Falkenrath Celebrants
+1 Rowan, Scholar of Sparks // Will, Scholar of Frost
+1 Start the TARDIS
+1 Hearts on Fire
+1 Compulsion
+1 Oviya, Automech Artisan
+4 Mountain
+1 Magic Damper
+1 Ace, Fearless Rebel
+1 Rootbound Crag
+1 Volcanic Island
+1 Tropical Island
+1 Wooded Foothills
+1 Steam Vents
+1 Taiga
+1 Scalding Tarn
+1 Misty Rainforest
+1 Breeding Pool
+1 Stomping Ground
+1 Ketria Triome
+1 Exotic Orchard
+1 Frontier Bivouac
+1 Reflecting Pool
+1 City of Brass
+1 Temple of the False God
+1 Rogue's Passage
+1 Mana Confluence
+1 Sol Ring
+1 Sulfur Falls
+1 Hinterland Harbor
+1 Cultivate
+1 Prismatic Vista
+1 Cascading Cataracts
+1 Swan Song
+1 Huatli, Poet of Unity // Roar of the Fifth People
+1 Roar of Endless Song
+4 Island
+1 Forest
+1 Bonders' Enclave
+1 Waterlogged Grove
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 Birds of Paradise
+1 Vanille, Cheerful l'Cie
+1 Saheeli, Radiant Creator
+1 Gilded Lotus
+1 Temur Charm
+1 Rootha, Mastering the Moment
+1 Chandra, Torch of Defiance
+1 Inga and Esika
+1 Yuriko, Hope from the Shadows
+1 Seven of Nine, Unassimilated
+1 Jett Reno, Problem Solver

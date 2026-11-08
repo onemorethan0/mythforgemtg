@@ -1,0 +1,103 @@
+# Archidekt — Alela Breakfast with Eggs
+# source: archidekt:1335626
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Alela, Artful Provocateur
+
+Deck:
+1 Exsanguinate
+1 Vampiric Tutor
+1 Rings of Brighthearth
+1 Sol Ring
+1 Conjurer's Bauble
+1 Krark-Clan Ironworks
+1 Skullclamp
+1 Marsh Flats
+1 Aetherworks Marvel
+1 Enlightened Tutor
+1 Academy Ruins
+1 Hallowed Fountain
+1 Command Tower
+1 Null Profusion
+1 Sensei's Divining Top
+1 Roar of Reclamation
+1 Vedalken Archmage
+1 Disciple of the Vault
+1 Chromatic Sphere
+1 Scrabbling Claws
+1 Skycloud Egg
+1 Lim-Dûl's Vault
+1 Mana Vault
+1 Urza, Lord High Artificer
+1 Arcane Signet
+1 Chromatic Star
+1 Buried Ruin
+1 Riddlesmith
+1 Manifold Key
+1 Spire of Industry
+1 Scrap Trawler
+1 Paradoxical Outcome
+1 Basalt Monolith
+1 Ghost Quarter
+1 Polluted Delta
+1 Elixir of Immortality
+1 Etherium Sculptor
+1 Godless Shrine
+1 Faith's Reward
+1 Archaeomancer
+1 Nihil Spellbomb
+1 Semblance Anvil
+1 Memory Jar
+1 Goblin Cannon
+1 Salvaging Station
+1 Second Sunrise
+1 Fabricate
+1 Phyrexian Altar
+1 Lotus Petal
+1 Hurkyl's Recall
+1 Mystic Forge
+1 Aether Spellbomb
+1 Codex Shredder
+1 Sculpting Steel
+3 Swamp
+1 Vault of Whispers
+1 Darksteel Citadel
+1 Glimmervoid
+1 Mox Opal
+1 Ichor Wellspring
+1 Flooded Strand
+1 Ancient Den
+1 Inventors' Fair
+1 Phyrexian Furnace
+1 Darkwater Egg
+1 Tendrils of Agony
+1 Fierce Guardianship
+1 Deadly Rollick
+1 Bolas's Citadel
+2 Plains
+1 Seat of the Synod
+1 Ashnod's Altar
+1 Aetherflux Reservoir
+1 The Mightstone and Weakstone
+1 Grand Architect
+1 Urza, Lord Protector
+1 Watery Grave
+1 Urza's Saga
+1 Sai, Master Thopterist
+1 Misty Rainforest
+1 Strip Mine
+1 The Mycosynth Gardens
+1 Azorius Signet
+1 Phyrexian Metamorph
+1 Cyclonic Rift
+1 Archway of Innovation
+1 Commander's Sphere
+1 Mana Drain
+1 Mystical Tutor
+1 Thassa's Oracle
+3 Island
+1 Crystal Skull, Isu Spyglass
+1 Time Sieve
+1 Voltaic Key

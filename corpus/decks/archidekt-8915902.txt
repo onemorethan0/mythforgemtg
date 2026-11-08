@@ -1,0 +1,87 @@
+# Archidekt — Thrun, the Last Troll: Pay the Troll Toll
+# source: archidekt:8915902
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Thrun, the Last Troll
+
+Deck:
+1 Pygmy Troll
+1 Trollbred Guardian
+1 Troll Ascetic
+1 Sporeback Troll
+1 Skyshroud Troll
+1 Old-Growth Troll
+1 Undercity Troll
+1 Tel-Jilad Exile
+1 Thrun, Breaker of Silence
+1 Mark of Sakiko
+1 Song of the Dryads
+1 Lignify
+1 Kenrith's Transformation
+1 Mossbridge Troll
+1 Horned Troll
+1 Feasting Troll King
+1 Cudgel Troll
+1 Challenger Troll
+1 Bonders' Enclave
+1 Demolition Field
+1 Nykthos, Shrine to Nyx
+1 Abstergo Entertainment
+1 War Room
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Scavenger Grounds
+1 Strip Mine
+1 Beast Within
+1 Deglamer
+1 Unravel the Aether
+1 Urza's Cave
+1 Hunter's Insight
+1 Indomitable Might
+1 Unnatural Growth
+1 Blanchwood Armor
+1 Sylvan Library
+1 Epic Proportions
+1 Witch's Clinic
+1 Ancestral Mask
+1 Snake Umbra
+1 Rancor
+1 Thickest in the Thicket
+1 Lion Umbra
+1 Strong Back
+1 Talon Gates of Madara
+1 Archdruid's Charm
+1 Heroic Intervention
+1 Abundance
+1 Super State
+1 Crystalline Armor
+1 Rishkar's Expertise
+1 Return of the Wildspeaker
+1 Hunter's Prowess
+1 Creeping Corrosion
+1 Harmonize
+1 Lifestream's Blessing
+1 Season of Gathering
+1 Soul's Majesty
+1 Seeds of Innocence
+1 A Realm Reborn
+1 Bear Umbra
+1 Nature's Will
+1 Enchantress's Presence
+1 Fertile Ground
+1 Hunter's Talent
+1 Wolfwillow Haven
+1 Wild Growth
+1 Wilderness Reclamation
+1 Overgrowth
+1 Shimmerwilds Growth
+1 Well Rested
+1 Utopia Sprawl
+1 Master's Guidance
+1 Roiling Canopy
+1 Ram Through
+1 Gaea's Touch
+1 Q Continuum
+1 Stable Wormhole
+22 Forest

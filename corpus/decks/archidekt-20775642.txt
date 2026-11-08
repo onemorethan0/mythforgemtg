@@ -1,0 +1,108 @@
+# Archidekt — my halloween costume? cyborg ninja
+# source: archidekt:20775642
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Multiversal Passage
+1 Ninja of the Deep Hours
+1 Splinter, Hamato Yoshi
+1 Gemstone Caverns
+1 Flusterstorm
+1 Undercity Sewers
+1 Bloodstained Mire
+1 Mothdust Changeling
+1 Polluted Delta
+1 Moon-Circuit Hacker
+1 Island
+1 Demonic Tutor
+1 Shizo, Death's Storehouse
+1 City of Brass
+1 Temporal Trespass
+1 Misdirection
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Underground Sea
+1 Otawara, Soaring City
+1 Mystic Remora
+1 Wingcrafter
+1 Mental Misstep
+1 Gran-Gran
+1 Grafdigger's Cage
+1 Chrome Mox
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Lotus Petal
+1 Changeling Outcast
+1 Gitaxian Probe
+1 Ornithopter
+1 Imperial Seal
+1 Irma, Part-Time Mutant
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Fierce Guardianship
+1 Prismatic Vista
+1 Mana Confluence
+1 Flooded Strand
+1 Morphic Pool
+1 Command Tower
+1 Yuriko, Hope from the Shadows
+1 Cover of Darkness
+1 Mausoleum Wanderer
+1 Mystical Tutor
+1 Doomsday
+1 Entomb
+1 Mockingbird
+1 Gush
+1 Kaito, Bane of Nightmares
+1 Sink into Stupor // Soporific Springs
+1 Skullsnatcher
+1 Ingenious Infiltrator
+1 Lim-Dûl's Vault
+1 Street Wraith
+1 Shadow of Mortality
+1 Snuff Out
+1 Thousand-Faced Shadow
+1 Watery Grave
+1 Submerge
+1 Wonder
+1 Rhystic Study
+1 Spectral Sailor
+1 Commandeer
+1 Illvoi Galeblade
+1 Saprazzan Legate
+1 Mistblade Shinobi
+1 Mindbreak Trap
+1 Brainstorm
+1 Boggart Trawler // Boggart Bog
+1 Cursed Totem
+1 Null Rod
+1 Misty Rainforest
+1 Bloodchief Ascension
+1 Weathered Runestone
+1 Verdant Catacombs
+1 Prosperous Thief
+1 Thran Portal
+1 Fell the Profane // Fell Mire
+1 Sol Ring
+1 An Offer You Can't Refuse
+1 Unearth
+1 Swamp
+1 Faerie Dreamthief
+1 Toxic Deluge
+1 Deadly Rollick
+1 Tainted Pact
+1 Sakashima's Student
+1 Mox Amber
+1 Demonic Consultation
+1 Force of Negation
+1 Dark Ritual
+1 Dismember
+1 Samut, Tyrant of Naktamun
+1 Vampiric Tutor
+1 Fblthp, Impossibly Lost
+1 Thassa's Oracle
+1 Subtlety
+1 Force of Will
+1 Fourth Bridge Prowler
+1 Insidious Dreams

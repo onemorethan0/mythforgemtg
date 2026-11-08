@@ -1,0 +1,102 @@
+# Archidekt — The Scarab God: Tactical Zombie Apocalypse
+# source: archidekt:4086823
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 The Scarab God
+
+Deck:
+1 Arcane Signet
+1 Talisman of Dominance
+1 Command Tower
+1 Underground River
+1 Exotic Orchard
+1 Shipwreck Marsh
+1 Resculpt
+1 Training Grounds
+1 Altar of the Brood
+1 Darkness
+1 Sink into Stupor // Soporific Springs
+1 Watery Grave
+1 Fell the Profane // Fell Mire
+1 Toxic Deluge
+1 Reanimate
+1 Phantasmal Image
+1 Animate Dead
+1 River of Tears
+1 Necromancy
+1 Gyruda, Doom of Depths
+1 Gloomlake Verge
+1 Strix Serenade
+1 Morphic Pool
+1 Buried Alive
+1 Clearwater Pathway // Murkwater Pathway
+1 Volatile Stormdrake
+1 Amphibian Downpour
+1 Waterlogged Teachings // Inundated Archive
+1 An Offer You Can't Refuse
+1 Undercity Sewers
+1 Ledger Shredder
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Dark Ritual
+1 Drowned Catacomb
+1 Sheoldred's Edict
+1 Dismember
+1 Phyrexian Metamorph
+1 Sol Ring
+1 Consign to Memory
+1 Frantic Search
+1 Faerie Mastermind
+1 Talion, the Kindly Lord
+1 Windfall
+1 Flare of Denial
+1 Consecrated Sphinx
+1 Mana Drain
+1 Ghostly Pilferer
+1 Dress Down
+1 Cephalid Coliseum
+1 Sphinx of the Second Sun
+1 Psychic Frog
+1 Fellwar Stone
+1 Winternight Stories
+1 Temporal Mastery
+1 Tree of Perdition
+1 Crabomination
+1 Peregrine Drake
+1 Ardyn, the Usurper
+1 Sower of Temptation
+1 Darkwater Catacombs
+1 Sunken Hollow
+1 Hullbreaker Horror
+1 Mockingbird
+1 Hidden Lair
+1 Bojuka Bog
+1 Lórien Revealed
+1 Entomb
+1 Afterlife from the Loam
+1 Emet-Selch, Unsundered // Hades, Sorcerer of Eld
+1 Archaeomancer
+1 Hidden Strings
+1 Ancient Tomb
+1 Into the Flood Maw
+1 Scalding Tarn
+1 Malcolm, Alluring Scoundrel
+1 Tishana's Tidebinder
+1 Superior Spider-Man
+1 Urza's Saga
+1 Agna Qel'a
+3 Swamp
+1 Glasspool Mimic // Glasspool Shore
+1 Undead Alchemist
+1 Dimir Aqueduct
+1 Dauthi Voidwalker
+1 The Master of Lake-town
+5 Island
+1 Underground Sea
+1 Vexing Bauble
+1 Sheoldred, the Apocalypse
+1 Urborg, Tomb of Yawgmoth
+1 Notion Thief
+1 Kederekt Leviathan
+1 Elder Brain

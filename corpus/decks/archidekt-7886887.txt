@@ -1,0 +1,87 @@
+# Archidekt — Drive-By
+# source: archidekt:7886887
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sydri, Galvanic Genius
+
+Deck:
+1 Shorikai, Genesis Engine
+1 Dance of the Manse
+1 Kitsune Ace
+1 Blinkmoth Urn
+7 Swamp
+8 Plains
+1 Tezzeret's Touch
+1 Mech Hangar
+1 Caltrops
+1 Vault of Whispers
+1 The Prydwen, Steel Flagship
+1 Cosima, God of the Voyage // The Omenkeel
+1 Peacewalker Colossus
+1 Mobilizer Mech
+1 Thopter Spy Network
+1 Fleetwheel Cruiser
+1 Thundering Chariot
+1 Aerial Surveyor
+1 Weatherlight
+1 Reckoner Bankbuster
+1 Mighty Servant of Leuk-o
+1 Skysovereign, Consul Flagship
+1 Armed and Armored
+1 Katsumasa, the Animator
+1 Kotori, Pilot Prodigy
+1 Giant Ox
+1 Prodigy's Prototype
+1 Greasefang, Okiba Boss
+1 Thirst for Knowledge
+1 Thoughtcast
+1 One with the Machine
+1 Goldmire Bridge
+1 Mistvault Bridge
+1 Razortide Bridge
+1 Ancient Den
+1 Seat of the Synod
+1 Power Depot
+1 Chief of the Foundry
+1 Etherium Sculptor
+1 Negate
+1 Arcane Sanctum
+1 Dispatch
+1 Sram, Senior Edificer
+1 Darksteel Citadel
+1 Tezzeret the Schemer
+1 The Antiquities War
+1 Nimbus Maze
+1 Command Tower
+1 Mysterious Limousine
+1 Imposter Mech
+1 Cultivator's Caravan
+1 Weatherlight Compleated
+1 Unlicensed Hearse
+1 Leonin Abunas
+1 Ballista Charger
+1 Efficient Construction
+1 Parhelion II
+1 Urza, Chief Artificer
+1 Weathered Wayfarer
+1 Drumbellower
+1 Nautiloid Ship
+1 Cyberdrive Awakener
+1 Colossal Plow
+1 The Indomitable
+1 Unwinding Clock
+1 Possession Engine
+1 Tune Up
+1 Prototype Portal
+9 Island
+1 Demonic Junker
+1 Pactdoll Terror
+1 Back on Track
+1 Fabricate
+1 Voyager Glidecar
+1 Midnight Mangler
+1 Haunt the Network
+1 Guidelight Pathmaker
+1 Organic Extinction

@@ -1,0 +1,107 @@
+# Archidekt — Sephiroth
+# source: archidekt:15473628
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+
+Deck:
+1 Accursed Marauder
+1 Swamp
+1 Grave Pact
+1 Cabal Coffers
+2 Swamp
+1 Bolas's Citadel
+1 The Masamune
+1 Sol Ring
+1 Orcish Bowmasters
+1 Demonic Tutor
+1 High Market
+1 Midgar, City of Mako // Reactor Raid
+1 Reliquary Tower
+1 Jet Medallion
+1 Nykthos, Shrine to Nyx
+1 Urborg, Tomb of Yawgmoth
+1 Phyrexian Tower
+1 Yawgmoth, Thran Physician
+1 Lethal Vapors
+1 Swamp
+1 Swamp
+1 Swamp
+1 Entomb
+1 Bloodghast
+1 Malakir Rebirth // Malakir Mire
+1 Cabal Stronghold
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Phyrexian Obliterator
+1 The Meathook Massacre
+1 Sheoldred, the Apocalypse
+1 Reanimate
+1 Temporal Extortion
+1 Bloodchief Ascension
+1 Pawn of Ulamog
+1 Fell the Profane // Fell Mire
+1 Cabal Ritual
+1 Gravecrawler
+1 Phyrexian Arena
+1 Command Beacon
+1 Bontu's Monument
+1 Swamp
+1 Lake of the Dead
+1 Exquisite Blood
+1 Lotus Vale
+1 Ad Nauseam
+1 Warren Soultrader
+1 Victimize
+1 Flare of Malice
+1 Vito, Thorn of the Dusk Rose
+1 Dark Ritual
+1 Ancient Tomb
+1 Fleshbag Marauder
+1 Sanguine Bond
+1 Snow-Covered Swamp
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Bastion of Remembrance
+1 Urborg
+1 Imp's Mischief
+1 Bitterbloom Bearer
+1 Miren, the Moaning Well
+1 Ophiomancer
+1 Blood Artist
+1 The One Ring
+1 Braids, Arisen Nightmare
+1 Diabolic Intent
+1 Culling the Weak
+1 Opposition Agent
+1 Vampiric Tutor
+1 Sheoldred's Edict
+1 Emeritus of Woe // Demonic Tutor
+1 The Golden Throne
+1 Umbral Collar Zealot
+1 Bitterblossom
+1 The Soul Stone
+1 Phyrexian Altar
+1 Nine-Lives Familiar
+1 Dark Confidant
+1 Black Market
+1 Bloodthirsty Conqueror
+1 Swamp
+1 Zulaport Cutthroat
+1 Dictate of Erebos
+1 Priest of Forgotten Gods
+1 Black Market Connections
+1 My Precious // Allure of Power
+1 Soldevi Adnate
+1 Viscera Seer
+1 Ashnod's Altar

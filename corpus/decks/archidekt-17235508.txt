@@ -1,0 +1,99 @@
+# Archidekt — Toph: Who Needs Metalbending?
+# source: archidekt:17235508
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Toph, Hardheaded Teacher
+
+Deck:
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Baloth Prime
+1 Cinder Glade
+1 Command Tower
+1 Crop Rotation
+1 Enter the Unknown
+1 Evendo Brushrazer
+1 Evolving Wilds
+1 Farseek
+1 Fecundity
+1 Goblin Anarchomancer
+1 Goblin Bombardment
+1 Nature's Claim
+1 Nature's Lore
+1 Rampant Growth
+1 Reap
+1 Revive
+1 Rockfall Vale
+1 Sakura-Tribe Elder
+1 Skullclamp
+1 Sylvan Safekeeper
+1 Titania, Protector of Argoth
+1 Zuran Orb
+1 Urza's Saga
+1 Wooded Foothills
+1 Three Visits
+1 Spire Garden
+1 Valakut Exploration
+1 Tannuk, Memorial Ensign
+1 Wasteland
+1 Sheltered Thicket
+1 Edge of Autumn
+1 Regrowth
+1 Emerald Medallion
+1 Phyrexian Altar
+1 Vesuva
+1 Tiller Engine
+1 Stomping Ground
+1 Talon Gates of Madara
+1 Altar of Dementia
+1 Lotus Cobra
+1 Seismic Sense
+3 Mountain
+5 Forest
+1 Highland Forest
+4 Forest
+1 Explore
+1 Scene of the Crime
+1 Cryptic Caves
+1 Disciple of Freyalise // Garden of Freyalise
+1 Shared Roots
+1 Orcish Lumberjack
+1 Sabotender
+1 Meltstrider Eulogist
+1 Abrade
+1 Horizon Explorer
+1 Aggressive Mining
+1 Spelunking
+1 Pinnacle Monk // Mystic Peak
+1 Commercial District
+1 Crumbling Vestige
+1 Highway Robbery
+1 Rob the Archives
+1 Hickory Woodlot
+1 Sylvan Library
+1 Ashaya, Soul of the Wild
+1 Haywire Mite
+1 Manamorphose
+1 Field of the Dead
+1 Malevolent Rumble
+1 Origin of Metalbending
+1 Abundant Harvest
+1 Ashnod's Altar
+1 Sol Ring
+1 Deflecting Swat
+1 Finale of Devastation
+1 Exploration
+1 Exploration Broodship
+1 Nissa, Resurgent Animist
+1 Horizon of Progress
+1 Springheart Nantuko
+1 Tireless Provisioner
+1 Valakut, the Molten Pinnacle
+1 Lotus Field
+1 Ba Sing Se
+1 Fabled Passage
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Prismatic Vista
+1 Redirect Lightning

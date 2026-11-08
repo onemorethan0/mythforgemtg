@@ -1,0 +1,101 @@
+# Archidekt — Aragorn, King of Gondor - Big Do Nothing Enchantment Pillowfort
+# source: archidekt:162485
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Aragorn, King of Gondor
+
+Deck:
+1 Assemble the Legion
+1 Stormcarved Coast
+1 War's Toll
+1 Luminarch Ascension
+1 Arcane Denial
+1 Thaumatic Compass // Spires of Orazca
+1 Disrupt Decorum
+1 Fractured Identity
+1 Scavenger Grounds
+1 Thought Vessel
+1 Sphere of Safety
+1 Windborn Muse
+1 Reins of Power
+1 Blasphemous Act
+1 Fellwar Stone
+1 Command Tower
+1 Exotic Orchard
+1 Throne of the High City
+1 Whirlwind of Thought
+1 Mind's Dilation
+1 Fevered Visions
+1 Rite of the Raging Storm
+1 Vandalblast
+1 Clever Impersonator
+1 Path of Ancestry
+1 Mystic Confluence
+1 Sea of Clouds
+1 Thespian's Stage
+1 Fact or Fiction
+1 Talisman of Creativity
+1 Talisman of Conviction
+1 Flood of Tears
+1 Bloodthirsty Blade
+1 Court of Grace
+1 Mirrormade
+1 Estrid's Invocation
+1 Propaganda
+1 Raugrin Triome
+1 Training Center
+1 Spectator Seating
+1 Forced Fruition
+1 Court of Vantress
+1 Kher Keep
+1 Three Steps Ahead
+1 Valakut Awakening // Valakut Stoneforge
+1 Ondu Inversion // Ondu Skyruins
+1 Fabled Passage
+1 Demolition Field
+1 Preordain
+1 Kor Haven
+1 Mikokoro, Center of the Sea
+1 Replication Technique
+1 Reconstruct History
+1 Teyo, Geometric Tactician
+1 Guff Rewrites History
+1 Ondu Spiritdancer
+1 Stroke of Midnight
+3 Plains
+1 Suppressor Skyguard
+1 Savor the Moment
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Elegant Parlor
+1 Thundering Falls
+1 Meticulous Archive
+5 Island
+1 Sink into Stupor // Soporific Springs
+1 Shadow of the Second Sun
+2 Mountain
+1 Sol Ring
+1 Reality Shift
+1 Ash Barrens
+1 Redress Fate
+1 Extravagant Replication
+1 Dictate of Kruphix
+1 Arcane Signet
+1 Ghostly Prison
+1 Swords to Plowshares
+1 Unexplained Absence
+1 Misleading Signpost
+1 Brazen Bluff
+1 Sundown Pass
+1 Faerie Mastermind
+1 Pull from Tomorrow
+1 Final Showdown
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 High Fae Trickster
+1 Gleaming Splendor
+1 Decanter of Endless Water
+1 Reliquary Tower
+1 Deserted Beach
+1 Shark Typhoon
+1 Talisman of Progress

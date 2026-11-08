@@ -1,0 +1,84 @@
+# Archidekt — Mr House $25 budget deck
+# source: archidekt:16198986
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Mr. House, President and CEO
+
+Deck:
+3 Plains
+1 Hoarding Ogre
+1 Barbarian Class
+1 Contraband Livestock
+1 Wand of Wonder
+1 Lightfoot Rogue
+1 Wyll, Blade of Frontiers
+1 Alibou, Ancient Witness
+1 Steel Overseer
+1 Nadier's Nightblade
+1 Myrkul's Edict
+1 Jan Jansen, Chaos Crafter
+1 Brazen Dwarf
+1 Earth-Cult Elemental
+1 Chaos Channeler
+1 Securitron Squadron
+1 Mirkwood Bats
+1 Comet, Stellar Pup
+1 Reckless Fireweaver
+1 Crime Novelist
+1 Monoxa, Midway Manager
+1 Quick Fixer
+1 Dispatch
+1 Ingenious Artillerist
+1 Mayhem Devil
+1 Mahadi, Emporium Master
+1 Swords to Plowshares
+1 Discourtesy Clerk
+1 Deadbeat Attendant
+1 Big Score
+1 Circuits Act
+1 Complaints Clerk
+1 "Lifetime" Pass Holder
+1 Xenosquirrels
+1 Six-Sided Die
+1 Critical Hit
+1 Attempted Murder
+1 Inspiring Statuary
+1 Deadly Dispute
+1 Farideh's Fireball
+1 Wear // Tear
+1 Thunderwave
+1 Costly Plunder
+1 Clowning Around
+1 Step Right Up
+1 Intangible Virtue
+1 Priority Boarding
+1 Slight Malfunction
+1 Night Shift of the Living Dead
+1 Treasure Chest
+1 Spiked Pit Trap
+1 Tempered Steel
+1 Goblin Morningstar
+1 Temple of Malice
+1 Temple of Silence
+1 Nomad Outpost
+1 Command Tower
+1 Temple of Triumph
+1 Orzhov Basilica
+1 Myriad Landscape
+1 Arid Archway
+1 Sand Scout
+1 Boros Garrison
+1 Jagged Barrens
+1 Forlorn Flats
+1 Abraded Bluffs
+1 Rakdos Carnarium
+10 Swamp
+14 Mountain
+1 Inspiring Leader
+1 Agent of the Iron Throne
+1 Maddening Hex
+1 Weftstalker Ardent
+1 Iron Mastiff
+1 Curse of Opulence

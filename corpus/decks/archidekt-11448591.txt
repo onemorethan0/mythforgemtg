@@ -1,0 +1,101 @@
+# Archidekt — Cloud Strife: LIMIT BREAK
+# source: archidekt:11448591
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Cloud, Ex-SOLDIER
+
+Deck:
+3 Mountain
+1 Temple Garden
+1 Command Tower
+1 Windswept Heath
+1 Swords to Plowshares
+1 Buried Ruin
+2 Forest
+1 Odric, Lunarch Marshal
+1 The Reaver Cleaver
+1 Nature's Lore
+1 Rhythm of the Wild
+1 Open the Armory
+1 Loran's Escape
+1 Thran Power Suit
+1 Untimely Malfunction
+1 Fomori Vault
+1 Inventors' Fair
+6 Plains
+1 Goro-Goro, Disciple of Ryusei
+1 Power Fist
+1 Arcane Signet
+1 Mithril Coat
+1 Lightning Greaves
+1 Sol Ring
+1 Leyline Axe
+1 Jor Kadeen, First Goldwarden
+1 Boros Charm
+1 Sigarda's Aid
+1 Path to Exile
+1 Sram, Senior Edificer
+1 Danitha Capashen, Paragon
+1 Ardenn, Intrepid Archaeologist
+1 Masterwork of Ingenuity
+1 Akiri, Fearless Voyager
+1 Sword of Feast and Famine
+1 Forge Anew
+1 Dispatch
+1 Thought Vessel
+1 Sunforger
+1 Talisman of Conviction
+1 Boros Signet
+1 Goblin Engineer
+1 Flawless Maneuver
+1 Deflecting Swat
+1 Teferi's Protection
+1 Nettlecyst
+1 Akroma's Will
+1 Strong Back
+1 Enlightened Tutor
+1 Worldly Tutor
+1 Rogue's Passage
+1 Brushland
+1 Heroic Intervention
+1 Inventory Management
+1 Reliquary Tower
+1 Yavimaya, Cradle of Growth
+1 Puresteel Paladin
+1 Steelshaper's Gift
+1 Hammer of Nazahn
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Stoneforge Mystic
+1 Sylvan Tutor
+1 Kediss, Emberclaw Familiar
+1 Brotherhood Regalia
+1 Wyleth, Soul of Steel
+1 Sword of the Animist
+1 Colossus Hammer
+1 Cloud, Planet's Champion
+1 Conqueror's Flail
+1 Buster Sword
+1 Danitha, New Benalia's Light
+1 Cloud, Midgar Mercenary
+1 Commander's Plate
+1 Shadowspear
+1 Akiri, Line-Slinger
+1 Wooded Foothills
+1 Silver Shroud Costume
+1 Arid Mesa
+1 Spectator Seating
+1 Stomping Ground
+1 Ancient Tomb
+1 Kutzil, Malamet Exemplar
+1 Sylvan Library
+1 Three Visits
+1 Kodama of the West Tree
+1 Reyav, Master Smith
+1 Boseiju, Who Endures
+1 Sacred Foundry
+1 Battlefield Forge
+1 Bountiful Promenade
+1 Urza's Saga
+1 The Mycosynth Gardens

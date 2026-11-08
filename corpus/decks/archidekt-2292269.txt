@@ -1,0 +1,104 @@
+# Archidekt — Bilbo Abzan Lifegain
+# source: archidekt:2292269
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Bilbo, Birthday Celebrant
+
+Deck:
+1 Tendershoot Dryad
+1 Arcane Signet
+1 Selesnya Sanctuary
+1 Cliffhaven Vampire
+1 Wolverine Riders
+1 Wooded Bastion
+1 Auriok Champion
+1 Pristine Talisman
+1 Daxos, Blessed by the Sun
+1 Pest Infestation
+1 Lifegift
+1 Accomplished Alchemist
+1 Vito, Thorn of the Dusk Rose
+1 Elas il-Kor, Sadistic Pilgrim
+1 Impassioned Orator
+1 Fetid Heath
+1 Ajani's Welcome
+1 Distinguished Conjurer
+1 Twilight Mire
+1 Dina, Soul Steeper
+1 Brushland
+1 Caves of Koilos
+1 Sunpetal Grove
+1 Ready // Willing
+1 Suture Priest
+1 Soul's Attendant
+1 Regal Bloodlord
+1 Krav, the Unredeemed
+1 Regna, the Redeemer
+1 Sorin, Vengeful Bloodlord
+1 Essence Warden
+1 Soul Warden
+1 Sandsteppe Citadel
+1 Eerie Ultimatum
+1 Blossoming Sands
+1 Scoured Barrens
+1 Rhox Faithmender
+1 Archangel of Thune
+1 Undergrowth Stadium
+1 Crested Sunmare
+1 Alhammarret's Archive
+1 Prosperous Innkeeper
+1 Command Tower
+1 Sol Ring
+1 Lunarch Veteran // Luminous Phantom
+1 Overgrown Tomb
+1 Godless Shrine
+1 Temple Garden
+2 Swamp
+1 Serra Ascendant
+1 Deathgreeter
+1 Jungle Hollow
+1 Orzhov Basilica
+1 Nykthos Paragon
+1 Enduring Tenacity
+1 Lathiel, the Bounteous Dawn
+1 Beledros Witherbloom
+1 Ajani, Strength of the Pride
+1 Graypelt Refuge
+1 The Gaffer
+1 Exotic Orchard
+1 Starscape Cleric
+1 Vault of the Archangel
+1 Lifecreed Duo
+1 Darkstar Augur
+1 Enduring Innocence
+1 Enduring Vitality
+1 Sunscorch Regent
+1 Exemplar of Light
+1 Case of the Uneaten Feast
+1 Isolated Chapel
+1 Murmuring Bosk
+1 Hinterland Sanctifier
+1 Aunt May
+1 Marauding Blight-Priest
+1 Kabira Crossroads
+1 Radiant Fountain
+1 Guide of Souls
+1 Heliod, Sun-Crowned
+2 Forest
+1 Haliya, Guided by Light
+1 Leonin Elder
+1 Doctor Strange, Surgeon
+1 Liliana the Faultless
+1 Virulent Emissary
+1 Indatha Triome
+1 Illegitimate Business
+1 Bogwater Lumaret
+1 Foot Headquarters
+3 Plains
+1 Subterranean Cavern
+1 Fisk Tower
+1 Cauldron of Essence
+1 Birnin Zana Plaza
+1 Moseo, Vein's New Dean

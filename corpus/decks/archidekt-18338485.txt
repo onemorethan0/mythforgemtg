@@ -1,0 +1,90 @@
+# Archidekt — Tifa Time
+# source: archidekt:18338485
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Tifa Lockhart
+
+Deck:
+1 Sutina, Speaker of the Tajuru
+1 Biophagus
+1 Bristly Bill, Spine Sower
+1 Forgotten Ancient
+1 Origin of Metalbending
+1 Heroic Intervention
+1 Chocobo Kick
+1 Kodama's Reach
+1 Guardian Augmenter
+1 Crop Rotation
+1 Command Beacon
+1 Thundering Mightmare
+1 Rogue's Passage
+1 Basilisk Collar
+1 Emerald Medallion
+1 Field of Ruin
+1 Ram Through
+1 Mithril Coat
+1 Cultivate
+1 Snakeskin Veil
+1 Viridian Revel
+1 Ghost Quarter
+1 Sol Ring
+1 Staff of Titania
+1 Birds of Paradise
+1 Delighted Halfling
+1 Misty Rainforest
+1 War Room
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Terrasymbiosis
+1 Ozolith, the Shattered Spire
+1 Nature's Claim
+1 Sylvan Library
+1 The Earth Crystal
+1 Champion's Helm
+1 The Ozolith
+1 Kami of Whispered Hopes
+1 Ouroboroid
+1 Defiler of Vigor
+1 Branching Evolution
+1 Innkeeper's Talent
+1 Ordeal of Nylea
+1 Archdruid's Charm
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Fabled Passage
+1 Shifting Woodland
+1 Springbloom Druid
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Tireless Tracker
+1 Hardened Scales
+1 Evolution Sage
+1 Evolution Witness
+1 The Great Henge
+1 Reclamation Sage
+1 Eternal Witness
+1 Scavenger Grounds
+1 Wasteland
+1 Abstergo Entertainment
+14 Forest
+1 Yavimaya, Cradle of Growth
+1 Dryad Arbor
+1 Witch's Clinic
+1 Windswept Heath
+1 Tyrite Sanctum
+1 Swiftfoot Boots
+1 Inspiring Call
+1 Rishkar's Expertise
+1 Icetill Explorer
+1 Trash the Town
+1 Strength of Will
+1 Slippery Bogbonder
+1 Collective Resistance
+1 Warden of the Grove
+1 Claim the Kingdom
+1 Dancing from Dark to Dawn
+1 Beorn's Hospitality
+1 Necklace of Girion
+1 Harmonize
+1 Boseiju, Who Endures
+1 Roiling Canopy

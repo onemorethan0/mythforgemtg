@@ -1,0 +1,107 @@
+# Archidekt — Aang, Master of the Twinkle Toes
+# source: archidekt:17705392
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Aang, at the Crossroads // Aang, Destined Savior
+
+Deck:
+1 Elvish Mystic
+1 Pentad Prism
+1 Devoted Druid
+1 Llanowar Elves
+1 Delighted Halfling
+1 Birds of Paradise
+1 Thassa, Deep-Dwelling
+1 Airbender Ascension
+1 Naga Fleshcrafter
+1 Glasspool Mimic // Glasspool Shore
+1 Sakashima's Student
+1 Flickerwisp
+1 Roaming Throne
+1 Brenard, Ginger Sculptor
+1 Tropical Island
+1 Tundra
+1 Gaea's Cradle
+1 City of Traitors
+1 Lion's Eye Diamond
+1 Mox Diamond
+1 Birthing Ritual
+1 Boseiju, Who Endures
+1 Altered Ego
+1 Ancient Tomb
+1 Breeding Pool
+1 Badgermole Cub
+1 Avacyn's Pilgrim
+1 Cavern of Souls
+1 Chrome Mox
+1 City of Brass
+1 Restoration Angel
+1 Crop Rotation
+1 Emiel the Blessed
+1 Mirror Image
+1 Lotus Petal
+1 Flesh Duplicate
+1 Mana Vault
+1 Clever Impersonator
+1 Gemstone Caverns
+1 Stunt Double
+1 Phyrexian Metamorph
+1 Marsh Flats
+1 Savannah
+1 Misty Rainforest
+1 Noble Hierarch
+1 Polluted Delta
+1 Preston, the Vanisher
+1 Sakashima the Impostor
+1 Scalding Tarn
+1 Sol Ring
+1 Enlightened Tutor
+1 Elvish Spirit Guide
+1 Verdant Catacombs
+1 Visage Bandit
+1 Wooded Foothills
+1 Windswept Heath
+1 Chameleon, Master of Disguise
+1 Jwari Shapeshifter
+1 Clone
+1 Food Chain
+1 Mana Confluence
+1 Charming Prince
+1 Ennis, Debate Moderator
+1 Vizier of Many Faces
+1 Soulherder
+1 Jackdaw Savior
+1 Supportive Parents
+1 Sakashima of a Thousand Faces
+1 Undercover Operative
+1 Skycloud Expanse
+1 Waxen Shapethief
+1 Phelia, Exuberant Shepherd
+1 Luminous Broodmoth
+1 Diamond Lion
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Wall of Stolen Identity
+1 Copycrook
+1 Grim Monolith
+1 Relic of Legends
+1 The Cabbage Merchant
+1 Flooded Strand
+1 Wild Growth
+1 Spark Double
+1 Arid Mesa
+1 Phantasmal Image
+1 White Plume Adventurer
+1 Command Tower
+1 Temple Garden
+1 Chancellor of the Annex
+1 Grand Arbiter Augustin IV
+1 Chancellor of the Tangle
+1 Starfield Vocalist
+1 Felidar Guardian
+1 Icewind Stalwart
+1 Touch the Spirit Realm
+1 Radagast of Rhosgobel
+1 Fortune, Loyal Steed
+1 Gleaming Splendor

@@ -1,0 +1,74 @@
+# Archidekt — Feywild Visitor//Safana, Calimport Cutthroat (Under $15)
+# source: archidekt:8162856
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Safana, Calimport Cutthroat
+1 Feywild Visitor
+
+Deck:
+1 Cone of Cold
+1 Geistwave
+1 Concerted Defense
+1 Underdark Explorer
+1 Back for Seconds
+1 Skyclave Plunder
+1 Deadly Alliance
+1 Trailblazer's Torch
+1 Dungeoneer's Pack
+1 Venerated Stormsinger
+1 Shadowstorm Vizier
+1 Aarakocra Sneak
+1 Feywild Caretaker
+1 Thieves' Fortune
+1 Inkfathom Witch
+1 Skemfar Shadowsage
+1 Gravelgill Duo
+1 Imoen, Mystic Trickster
+1 Blustersquall
+1 Rowan's Grim Search
+1 You Come to a River
+1 Bastion of Remembrance
+1 Illvoi Galeblade
+1 Fade Away
+1 Vizier of Tumbling Sands
+1 Marauding Blight-Priest
+1 Ravenloft Adventurer
+1 Stonework Packbeast
+1 Wash Out
+1 Vampire Aristocrat
+1 Command Tower
+1 Al Bhed Salvagers
+1 Rilsa Rael, Kingpin
+1 Hammerhead, Maggia Boss
+1 Obyra, Dreaming Duelist
+1 Coveted Prize
+1 Banishing Betrayal
+1 Tetsuko Umezawa, Fugitive
+1 Thwart the Grave
+1 Mind Stone
+1 Malakir Blood-Priest
+18 Swamp
+1 Synthetic Destiny
+1 Echoing Truth
+1 Onyx Mage
+1 Bile Blight
+1 Alchemist's Retrieval
+1 Nadier's Nightblade
+1 Shadowmage Infiltrator
+1 Way of the Cryomancer
+1 Way of the Deathbringer
+1 Way of the Necromancer
+1 Phantom Train
+1 Prismatic Lens
+1 Fractured Powerstone
+18 Island
+1 Tell Me What You See
+1 Tragic Slip
+1 Faerie Seer
+1 Highly Illogical
+1 Consider the Prime Directive
+1 Test of Priorities
+1 Impossible Choice
+1 Clutch of the Undercity

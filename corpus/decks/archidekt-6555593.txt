@@ -1,0 +1,87 @@
+# Archidekt — Land hate (Svella, Ice Shaper)
+# source: archidekt:6555593
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Seeker of Skybreak + Illusionist's Bracers; Bracket 1 allows none
+
+Commander:
+1 Svella, Ice Shaper
+
+Deck:
+1 Gnottvold Slumbermound
+1 Memorial to War
+1 Slagwoods Bridge
+1 Darksteel Citadel
+1 Seize the Spoils
+1 Gruul Signet
+1 Harmonize
+1 Bend or Break
+1 Commune with Lava
+1 Evolving Wilds
+1 Myriad Landscape
+1 Ruination
+1 Tectonic Edge
+1 Sol Ring
+1 Arcane Signet
+1 Thran Dynamo
+1 Llanowar Elves
+1 Terravore
+1 Blasphemous Act
+1 Boom // Bust
+1 Decree of Annihilation
+1 Impending Disaster
+1 Myojin of Infinite Rage
+1 Price of Freedom
+1 Beast Within
+1 Hurloon Shaman
+1 Keldon Firebombers
+1 Fireball
+1 Tectonic Break
+1 Thoughts of Ruin
+1 Cleansing Wildfire
+1 Acidic Slime
+1 Geomancer's Gambit
+14 Mountain
+1 Vandalblast
+1 Second Harvest
+1 Elvish Mystic
+1 Goblin Anarchomancer
+1 Zhur-Taa Druid
+1 Curse of Bounty
+1 Seeker of Skybreak
+1 Thran Turbine
+1 Radha, Heir to Keld
+1 Ornithopter of Paradise
+1 Idol of Oblivion
+1 Fathom Fleet Swordjack
+1 Instill Energy
+1 Nature's Chosen
+1 Brotherhood Vertibird
+1 City of Death
+1 Rootcast Apprenticeship
+1 Sculpting Steel
+1 Up the Beanstalk
+1 Patriar's Seal
+1 Banefire
+1 Comet Storm
+1 Feedback Bolt
+1 Command Tower
+1 Drownyard Temple
+1 Battlemage's Bracers
+1 Illusionist's Bracers
+1 Rime Tender
+1 Hellkite Igniter
+1 Skyclave Relic
+1 Shivan Dragon
+1 The Brothers' War
+1 Lightning Bolt
+1 Rings of Brighthearth
+1 Devastation
+9 Forest
+1 Winter Orb
+1 Roxanne, Starfall Savant
+1 Galvanoth
+1 Agatha of the Vile Cauldron
+1 Well of Knowledge
+1 Mind's Eye
+1 Merchant of the Vale // Haggle

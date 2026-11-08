@@ -1,0 +1,78 @@
+# Archidekt — Urza's Stuff
+# source: archidekt:10177519
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Lotus Bloom
+1 Lotus Blossom
+1 Master of Etherium
+1 Padeem, Consul of Innovation
+1 Trinket Mage
+1 Sai, Master Thopterist
+1 Kefnet's Last Word
+1 Ugin's Insight
+1 Saheeli's Artistry
+1 Tablet of Epityr
+1 Staff of Zegon
+1 Worn Powerstone
+1 Reconstruction
+1 Mystic Forge
+1 Unctus's Retrofitter
+1 Ankh of Mishra
+1 Mishra's War Machine
+1 Mishra's Bauble
+1 Urza's Mine
+1 Mishra's Factory
+1 Sunglasses of Urza
+1 Urza's Armor
+1 Glasses of Urza
+1 Urza's Cave
+1 Urza's Blueprints
+1 Urza, Powerstone Prodigy
+1 Urza's Chalice
+1 Urza's Engine
+1 Urza's Rebuff
+1 Urza's Power Plant
+1 Urza's Tome
+1 Urza's Saga
+1 Ashnod's Altar
+1 Amulet of Kroog
+1 The Antiquities War
+1 Urza's Tower
+1 Urza's Bauble
+1 Ashnod's Transmogrant
+1 Urza's Factory
+1 Akroma's Memorial
+31 Island
+1 Alexi's Cloak
+1 Artificer's Intuition
+1 Artificer's Assistant
+1 Bane's Contingency
+1 Barl's Cage
+1 Delif's Cube
+1 Bumbleflower's Sharepot
+1 Feldon's Cane
+1 Drafna's Restoration
+1 Mishra's Groundbreaker
+1 Inventor's Goggles
+1 Jhoira's Timebug
+1 Jhoira's Toolbox
+1 Jhoira's Familiar
+1 Nevinyrral's Disk
+1 Mishra's Helix
+1 Sisay's Ring
+1 Squee's Toy
+1 Tamiyo's Logbook
+1 Venser's Journal
+1 Tormod's Crypt
+1 Urza's Incubator
+1 Thopter Spy Network
+1 Ornithopter
+1 Steal Artifact
+1 General's Kabuto
+1 Gilded Lotus
+1 Edgar, King of Figaro

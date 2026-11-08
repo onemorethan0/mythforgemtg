@@ -1,0 +1,96 @@
+# Archidekt — Muldrotha, the Gravetide [P:5.5][T:2][cmc:6][c:2.97][b:110][r]
+# source: archidekt:1310761
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Muldrotha, the Gravetide
+
+Deck:
+1 Archaeological Dig
+1 Witch's Oven
+1 Lunar Force
+1 Unholy Indenture
+1 Keskit, the Flesh Sculptor
+1 Kaya's Ghostform
+1 Lampad of Death's Vigil
+1 Willow Geist
+1 The Everflowing Well // The Myriad Pools
+1 Minion's Return
+1 Matzalantli, the Great Door // The Core
+1 Port of Karfell
+1 Promising Vein
+1 Shire Terrace
+1 Grixis Panorama
+1 Lotus Field
+1 Demolition Field
+1 Emry, Lurker of the Loch
+1 Scuttlemutt
+1 Nevinyrral's Disk
+1 Commander's Sphere
+1 Accursed Marauder
+1 Shriekmaw
+1 Greater Good
+1 Perpetual Timepiece
+5 Swamp
+1 Buried Alive
+1 Oriq Loremage
+1 Unmarked Grave
+1 Thran Vigil
+1 Kheru Goldkeeper
+1 Lotuslight Dancers
+1 Tyrite Sanctum
+1 Awaken the Honored Dead
+1 Grim Backwoods
+1 Seal of Primordium
+1 Wayfarer's Bauble
+1 Sinister Concoction
+1 Ornithopter of Paradise
+1 Haywire Mite
+1 Liliana, Waker of the Dead
+1 Demon's Disciple
+1 Foreboding Landscape
+1 Rootcoil Creeper
+1 Fabled Passage
+1 Gravebreaker Lamia
+1 Omen of the Dead
+1 Secrets of the Dead
+1 Rogue's Passage
+1 Brawn
+1 Bonehoard
+1 Timestream Navigator
+1 Nighthowler
+1 Ob Nixilis, the Hate-Twisted
+1 Plaguecrafter
+1 Deadbridge Chant
+1 Syr Konrad, the Grim
+1 Evolving Wilds
+1 Myriad Landscape
+1 Siren Stormtamer
+1 Spore Frog
+1 Meren of Clan Nel Toth
+1 Glen Elendra Archmage
+1 Wonder
+1 Command Tower
+1 Terramorphic Expanse
+5 Forest
+5 Island
+1 Daring Apprentice
+1 Sidisi, Brood Tyrant
+1 Wizard Replica
+1 Glissa, the Traitor
+1 Executioner's Capsule
+1 Crystal Vein
+1 Ravenous Chupacabra
+1 Pernicious Deed
+1 Bant Panorama
+1 Esper Panorama
+1 Jund Panorama
+1 Magistrate's Scepter
+1 Case of the Stashed Skeleton
+1 Coretapper
+1 Cellar Door
+1 Teval's Judgment
+1 Conduit of Worlds
+1 Treasure Vault
+1 Slippery Bogbonder

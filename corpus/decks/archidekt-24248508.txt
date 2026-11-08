@@ -1,0 +1,105 @@
+# Archidekt — Doctor Doom, King of Latavia
+# source: archidekt:24248508
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Ancient Tomb
+1 Arcane Signet
+1 Archfiend of Ifnir
+1 Black Market Connections
+1 Bone Miser
+1 Chrome Mox
+1 Crucible of Worlds
+1 Currency Converter
+1 Doctor Doom, Unrivaled
+1 Flusterstorm
+1 Bloodchief Ascension
+1 Geth's Grimoire
+1 Bottomless Pit
+1 Glint-Horn Buccaneer
+1 Liliana's Caress
+1 Megrim
+1 Lotus Petal
+1 Luxury Suite
+1 Mana Confluence
+1 Words of Waste
+1 Deflecting Swat
+1 Blood Crypt
+1 Badlands
+1 Dragonskull Summit
+1 Xander's Lounge
+1 Bloodstained Mire
+1 Underground Sea
+1 Steam Vents
+1 Wheel of Fortune
+1 Polluted Delta
+1 Scalding Tarn
+1 Watery Grave
+1 Morphic Pool
+1 Relic of Sauron
+1 Volcanic Island
+1 Mox Diamond
+1 Lion's Eye Diamond
+1 Thrill of Possibility
+1 Ad Nauseam
+1 Brainstorm
+1 Syphon Mind
+1 Doomsday
+1 Fierce Guardianship
+1 Miscast
+1 Tendrils of Agony
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+1 Ragavan, Nimble Pilferer
+1 Norman Osborn // Green Goblin
+1 Thoughtseize
+1 City of Brass
+1 Command Tower
+1 Cyclonic Rift
+1 Dark Deal
+1 Dark Ritual
+1 Demonic Consultation
+1 Demonic Tutor
+1 Diabolic Intent
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Feed the Swarm
+1 Fellwar Stone
+1 Force of Will
+1 Frantic Search
+1 Gemstone Caverns
+2 Island
+1 Jeska's Will
+1 Leyline of the Void
+1 Loki's Scepter
+1 Mana Drain
+1 Mana Vault
+1 Monument to Endurance
+2 Mountain
+1 Mystical Tutor
+1 Necrogen Mists
+1 Oppression
+1 Orcish Bowmasters
+1 Rhystic Study
+1 Seething Song
+1 Sol Ring
+1 Stormcarved Coast
+2 Swamp
+1 Tainted Pact
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Thassa's Oracle
+1 The One Ring
+1 Tinybones, Trinket Thief
+1 Training Center
+1 Urborg, Tomb of Yawgmoth
+1 Vampiric Tutor
+1 Vandalblast
+1 Waste Not
+1 Windfall
+1 Deadly Rollick
+1 Otawara, Soaring City
+1 Underworld Breach
+1 Imperial Seal

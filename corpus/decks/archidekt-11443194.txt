@@ -1,0 +1,95 @@
+# Archidekt — Kaalia of the Vast Bracket 4... but budget!
+# source: archidekt:11443194
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kaalia of the Vast
+
+Deck:
+1 Bloodthirster
+1 Balefire Dragon
+1 Arcane Signet
+1 Angel of Despair
+1 Angel of the Ruins
+1 Archfiend of Depravity
+1 Boros Charm
+1 Boros Guildgate
+1 Aurelia, the Warleader
+1 Blazemire Verge
+1 Anguished Unmaking
+1 Boros Signet
+1 Command Tower
+1 Damn
+1 Demonic Counsel
+1 Despark
+1 Dragonskull Summit
+1 Earthquake
+1 Evolving Wilds
+1 Exorcise
+1 Fellwar Stone
+1 Foreboding Ruins
+1 Forlorn Flats
+1 Hellkite Tyrant
+5 Mountain
+1 Herald of Eternal Dawn
+1 Kaalia, Zenith Seeker
+1 Master of Cruelties
+1 Neglected Manor
+1 Nomad Outpost
+1 Orzhov Signet
+1 Path of Ancestry
+6 Plains
+1 Rakdos Signet
+1 Raucous Carnival
+1 Razaketh, the Foulblooded
+1 Razortrap Gorge
+1 Rakdos, Patron of Chaos
+1 Flawless Maneuver
+1 Lightning Greaves
+1 Ruinous Ultimatum
+1 Scoured Barrens
+1 Sephara, Sky's Blade
+1 Serra's Emissary
+1 Shattered Landscape
+1 Shilgengar, Sire of Famine
+1 Shineshadow Snarl
+1 Smoldering Marsh
+5 Swamp
+1 Temple of Triumph
+1 Vile Mutilator
+1 Wind-Scarred Crag
+1 Terramorphic Expanse
+1 Swiftfoot Boots
+1 Valgavoth, Terror Eater
+1 Vilis, Broker of Blood
+1 Skrelv, Defector Mite
+1 Sol Ring
+1 Helm of the Host
+1 Vault of the Archangel
+1 Farewell
+1 Reanimate
+1 Faith's Reward
+1 Swords to Plowshares
+1 Bojuka Bog
+1 Relentless Assault
+1 Talisman of Indulgence
+1 Talisman of Conviction
+1 Voice of Victory
+1 Crashing Drawbridge
+1 Strionic Resonator
+1 Dragon Tempest
+1 All-Out Assault
+1 Razia's Purification
+1 Bloodlust Inciter
+1 Mother of Runes
+1 Stroke of Midnight
+1 Reconnaissance
+1 Rune-Scarred Demon
+1 Resolute Archangel
+1 Liesa, Forgotten Archangel
+1 Rakdos the Defiler
+1 Gisela, Blade of Goldnight
+1 Summon: Brynhildr
+1 Summon: Bahamut
+1 Demon of Loathing

@@ -1,0 +1,78 @@
+# Archidekt — Am I Norman Osborn ? 100% done with Spiderman Set
+# source: archidekt:16432208
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Norman Osborn // Green Goblin
+
+Deck:
+1 Spider-Verse
+1 The Soul Stone
+1 Clever Impersonator
+1 Counterspell
+1 Thrill of Possibility
+1 Unexpected Windfall
+1 Infernal Grasp
+1 Feed the Swarm
+1 Saw in Half
+1 Lyla, Holographic Assistant
+1 Green Goblin, Nemesis
+1 Pumpkin Bombs
+1 Chameleon, Master of Disguise
+1 Impostor Syndrome
+1 Spider-Sense
+1 Unstable Experiment
+1 Spider-Man No More
+1 Whoosh!
+1 Alien Symbiosis
+1 Behold the Sinister Six!
+1 The Death of Gwen Stacy
+1 Venom's Hunger
+1 Tombstone, Career Criminal
+1 Gwenom, Remorseless
+1 Parker Luck
+1 Prison Break
+1 Sandman's Quicksand
+1 The Spot's Portal
+1 Swarm, Being of Bees
+1 Villainous Wrath
+1 Masked Meower
+1 Maximum Carnage
+1 Shadow of the Goblin
+1 Romantic Rendezvous
+1 Wisecrack
+1 Raging Goblinoids
+1 Spider-Gwen, Free Spirit
+1 Spinneret and Spiderling
+1 Spider-Punk
+1 Mob Lookout
+1 Prowler, Clawed Thief
+1 Green Goblin, Revenant
+1 Superior Spider-Man
+1 Pumpkin Bombardment
+1 Spider-Man 2099
+1 Scarlet Spider, Kaine
+1 Shriek, Treblemaker
+1 Symbiote Spider-Man
+1 Ultimate Green Goblin
+1 Carnage, Crimson Chaos
+1 Doctor Octopus, Master Planner
+1 Vulture, Scheming Scavenger
+1 Rocket-Powered Goblin Glider
+1 Daily Bugle Building
+1 Spider-Mobile
+1 Steel Wrecking Ball
+1 Oscorp Industries
+1 The Clone Saga
+1 Spider-Man Noir
+1 Vibrant Cityscape
+1 Agent Venom
+14 Swamp
+10 Mountain
+9 Island
+1 Sol Ring
+1 Savage Beating
+1 Reanimate
+1 Hobgoblin, Mantled Marauder
+1 Multiversal Passage

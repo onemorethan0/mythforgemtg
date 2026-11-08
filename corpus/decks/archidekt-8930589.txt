@@ -1,0 +1,102 @@
+# Archidekt — Dinostorm
+# source: archidekt:8930589
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Zacama, Primal Calamity
+
+Deck:
+3 Forest
+1 Call Forth the Tempest
+1 Ancient Tomb
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Haze of Rage
+1 Regal Behemoth
+1 Mirari's Wake
+1 The Great Henge
+1 Thrasta, Tempest's Roar
+1 Roaming Throne
+1 Ghalta, Primal Hunger
+1 Pantlaza, Sun-Favored
+1 Jeska's Will
+1 Escape to the Wilds
+1 Grapeshot
+1 Weather the Storm
+1 Etali, Primal Storm
+1 Up the Beanstalk
+1 Bonehoard Dracosaur
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Flaming Tyrannosaurus
+1 Three Visits
+1 Aetherflux Reservoir
+1 Annoyed Altisaur
+1 Welcome to . . . // Jurassic Park
+1 Mizzix's Mastery
+1 Vaultborn Tyrant
+1 Rude Awakening
+1 Topiary Stomper
+1 Hulking Raptor
+1 Palani's Hatcher
+1 Hour of Promise
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Explore
+1 Blasphemous Act
+1 Farseek
+1 Tempt with Discovery
+1 Monstrous Vortex
+1 Stomping Ground
+1 Misty Rainforest
+1 Bronzebeak Foragers
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Flare of Duplication
+1 Domri, Anarch of Bolas
+1 Fabled Passage
+1 Rishkar's Expertise
+1 Boseiju, Who Endures
+1 Wooded Foothills
+1 Windswept Heath
+3 Plains
+1 Path of Ancestry
+1 Command Tower
+1 Shifting Woodland
+1 Sacred Foundry
+1 Temple Garden
+1 Spectator Seating
+1 Cavern of Souls
+1 Jetmir's Garden
+1 Mosswort Bridge
+1 Castle Garenbrig
+1 Bonders' Enclave
+1 Horizon of Progress
+1 Quintorius Kand
+1 Bountiful Promenade
+1 Deflecting Swat
+1 Mana Flare
+1 Garruk's Uprising
+1 Prismatic Vista
+1 Arid Mesa
+1 Fight Rigging
+1 Path to Exile
+1 Spinerock Knoll
+1 Creative Technique
+1 Invasion of Ixalan // Belligerent Regisaur
+1 Cori Mountain Monastery
+1 Trumpeting Carnosaur
+1 Pir's Whim
+1 Tempest Technique
+3 Mountain
+1 Regisaur Alpha
+1 Disorienting Choice
+1 Heartbeat of Spring
+1 Krosan Verge
+1 Avatar's Wrath
+1 Volcanic Torrent
+1 Sol Ring
+1 Annie Joins Up
+1 Erode
+1 Temple of the False God
+1 Violent Outburst
+1 Ghalta the Unstoppable
+1 Primal Command
+1 Spire Garden

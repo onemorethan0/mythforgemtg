@@ -1,0 +1,86 @@
+# Archidekt — Monty Python and the Holy Grail
+# source: archidekt:15399776
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Rally the Peasants
+1 Heliod, God of the Sun
+1 Brash Taunter
+1 Catapult Master
+1 Goblin Bombardment
+1 Catapult Squad
+1 Summon: Knights of Round
+1 Sol Grail
+1 Quest for the Holy Relic
+1 Excalibur, Sword of Eden
+1 Birds of Paradise
+1 Buried Alive
+1 Drown in Filth
+1 Treasured Find
+1 Not Dead After All
+1 Presumed Dead
+1 Unlicensed Hearse
+1 Black Knight
+1 Emry, Lurker of the Loch
+1 Mob Verdict
+1 Dismember
+1 Council's Judgment
+1 Ashnod's Altar
+1 Bogbrew Witch
+1 Kill! Maim! Burn!
+1 Festering Newt
+1 The Book of Exalted Deeds
+1 Norin the Wary
+1 Puresteel Paladin
+1 Akroan Horse
+1 Generous Gift
+1 Illustrious Historian
+1 Unexplained Vision
+1 Trapped in the Tower
+1 Youthful Knight
+1 Wicked Guardian
+1 Dramatic Rescue
+1 Insatiable Appetite
+1 Three Visits
+1 Sun Titan
+1 Homicide Investigator
+1 Sol'kanar the Swamp King
+1 Wedding Announcement // Wedding Festivity
+1 All-Out Assault
+1 Beloved Princess
+1 Prodigal Sorcerer
+1 Kezzerdrix
+1 Door to Nothingness
+1 Raiders' Karve
+1 Last Stand
+1 Arrest
+1 Dark Depths
+1 Gargoyle Castle
+1 Castle Vantress
+1 Forest
+1 Eiganjo Castle
+13 Plains
+1 Castle Locthwain
+2 Mountain
+1 Castle Garenbrig
+1 Castle Sengir
+1 Castle Ardenvale
+1 Castle Embereth
+2 Island
+9 Swamp
+1 Finishing Blow
+1 Syr Elenora, the Discerning
+1 Explosive Apparatus
+1 Single Combat
+1 You Cannot Pass!
+1 Banquet Guests
+1 Logic Knot
+1 Loyal Retainers
+1 Trostani Discordant
+1 Northern Paladin
+1 Wandering Troubadour
+1 Words of Wisdom

@@ -1,7 +1,8 @@
 # Archidekt — Shell's Kitchen FULL FLAVOUR - Ragost, Deft Gastronaut by Based Deck Department
 # source: archidekt:14875868
 # fetched: 2026-07-28
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Smothering Tithe); Bracket 2 allows 0
 
 Commander:
 1 Ragost, Deft Gastronaut

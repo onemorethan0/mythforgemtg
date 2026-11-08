@@ -1,0 +1,87 @@
+# Archidekt — Angels: Bracket 3 (Updated)
+# source: archidekt:11650077
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Giada, Font of Hope
+
+Deck:
+1 Karmic Guide
+22 Plains
+1 Emeria Shepherd
+1 Sephara, Sky's Blade
+1 Angel of Indemnity
+1 Adarkar Valkyrie
+1 Serra Paragon
+1 Bruna, the Fading Light
+1 Breathkeeper Seraph
+1 Archangel of Thune
+1 Exemplar of Light
+1 Firemane Commando
+1 Linvala, Keeper of Silence
+1 Angel of the Dire Hour
+1 Sanctuary Warden
+1 Akroma, Angel of Wrath
+1 Sol Ring
+1 Arcane Signet
+1 Endless Atlas
+1 Wayfarer's Bauble
+1 Archivist of Oghma
+1 Land Tax
+1 Archaeomancer's Map
+1 Sword of the Animist
+1 Urza's Cave
+1 Folk Hero
+1 Karoo
+1 Nykthos, Shrine to Nyx
+1 Trouble in Pairs
+1 Conjurer's Mantle
+1 Idyllic Grange
+1 Emeria, the Sky Ruin
+1 Kor Haven
+1 War Room
+1 Seraph Sanctuary
+1 Bonders' Enclave
+1 Minas Tirith
+1 Fabled Passage
+1 Angel of the Ruins
+1 Sunblast Angel
+1 Angel of Destiny
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Serra's Emissary
+1 Avacyn, Guardian Angel
+1 Herald of War
+1 Gisela, the Broken Blade
+1 Herald of Eternal Dawn
+1 Defy Death
+1 Lyra Dawnbringer
+1 Sigarda's Vanguard
+1 Path to Exile
+1 Heliod's Intervention
+1 Urza's Incubator
+1 Generous Gift
+1 Myriad Landscape
+1 Swords to Plowshares
+1 Starnheim Aspirant
+1 Flawless Maneuver
+1 And They Shall Know No Fear
+1 Flare of Fortitude
+1 Throne of Eldraine
+1 Clever Concealment
+1 Smothering Tithe
+1 Commander's Sphere
+1 Pearl Medallion
+1 Righteous Valkyrie
+1 Ephemerate
+1 Ondu Inversion // Ondu Skyruins
+1 Windshaper Planetar
+1 Talon Gates of Madara
+1 Sejiri Shelter // Sejiri Glacier
+1 Angelic Sell-Sword
+1 Battle Angels of Tyr
+1 Inspiring Overseer
+1 Together Forever
+1 Teferi's Protection
+1 Invasion of Dominaria // Serra Faithkeeper
+1 The One Ring

@@ -1,0 +1,108 @@
+# Archidekt — Scrambled Eggs
+# source: archidekt:21268302
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tevesh Szat, Doom of Fools
+1 Rograkh, Son of Rohgahh
+
+Deck:
+1 Chaotic Transformation
+1 Sokenzan, Crucible of Defiance
+1 Tablet of Discovery
+1 Petrified Hamlet
+1 Praetor's Grasp
+1 The Mycosynth Gardens
+1 Jeska's Will
+1 Ancient Tomb
+1 Blazemire Verge
+1 City of Traitors
+1 Bloodstained Mire
+1 Culling the Weak
+1 Blightstep Pathway // Searstep Pathway
+1 Demonic Tutor
+1 Crystal Vein
+1 Blood Crypt
+1 Gamble
+1 Lukka, Coppercoat Outcast
+1 Luxury Suite
+1 Mount Doom
+1 Mox Diamond
+1 Tangle Wire
+1 Swamp
+1 Urza's Saga
+1 Vampiric Tutor
+1 Gemstone Caverns
+1 Lion's Eye Diamond
+1 Command Tower
+1 Damping Sphere
+1 Deadly Rollick
+1 Diabolic Intent
+1 Lotus Petal
+1 Phyrexian Tower
+1 Scalding Tarn
+1 Sulfurous Springs
+1 Toxic Deluge
+1 Springleaf Drum
+1 Dark Ritual
+1 Chrome Mox
+1 Mox Amber
+1 Cabal Ritual
+1 Chalice of the Void
+1 Mountain
+1 Talon Gates of Madara
+1 Blackcleave Cliffs
+1 Burning Inquiry
+1 Meltdown
+1 Disruptor Flute
+1 Dowsing Dagger // Lost Vale
+1 Overmaster
+1 Kher Keep
+1 Cursed Totem
+1 Dystopia
+1 Black Market Connections
+1 Blasphemous Act
+1 Transmogrify
+1 Mana Vault
+1 Rite of Flame
+1 Conqueror's Flail
+1 Vexing Bauble
+1 Trinisphere
+1 Arid Mesa
+1 Pyroblast
+1 Red Elemental Blast
+1 Underworld Breach
+1 Divergent Transformations
+1 Reality Scramble
+1 Claim the Firstborn
+1 Infernal Plunge
+1 Mox Opal
+1 Blood Moon
+1 Sol Ring
+1 Marsh Flats
+1 Seething Song
+1 Splinter's Technique
+1 Massacre
+1 Deflecting Swat
+1 Valgavoth, Terror Eater
+1 Sire of Insanity
+1 Sphere of Resistance
+1 Return the Favor
+1 Karn's Sylex
+1 Mjölnir, Hammer of Thor
+1 Flare of Duplication
+1 Emergence Zone
+1 Aetherflux Reservoir
+1 Karn, the Great Creator
+1 Grinding Station
+1 Redirect Lightning
+1 Badlands
+1 Tezzeret, Cruel Captain
+1 Reanimate
+1 Boseiju, Who Shelters All
+1 Tainted Pact
+1 Snow-Covered Swamp
+1 From the Ashes
+1 Snow-Covered Mountain
+1 Supper for Spiders

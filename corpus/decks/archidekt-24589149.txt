@@ -1,0 +1,100 @@
+# Archidekt — Yshtola, Night's Blessed (B4)
+# source: archidekt:24589149
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Absorb
+1 Dovin's Veto
+1 Lethal Scheme
+1 Swords to Plowshares
+1 Talisman of Progress
+1 Void Rend
+1 Path to Exile
+1 Thought Vessel
+1 Talisman of Hierarchy
+1 Talisman of Dominance
+1 Arcane Signet
+1 Sol Ring
+1 Brainsurge
+1 Frozen in Ice
+1 Talion, the Kindly Lord
+1 Exsanguinate
+1 Papalymo Totolymo
+1 Eye of Nidhogg
+1 Sunken Hollow
+1 Prairie Stream
+1 Exotic Orchard
+1 King T'Challa // Black Panther, Hope Enduring
+1 Command Tower
+1 Shineshadow Snarl
+1 Helm of the Ghastlord
+1 Quantum Misalignment
+1 Dream Harvest
+1 Sphere of Safety
+1 Praetor's Grasp
+1 Propaganda
+1 Snuff Out
+1 Observed Stasis
+1 Port Town
+1 Arcane Sanctum
+1 Isolated Chapel
+1 Sunken Ruins
+1 Flooded Strand
+1 Temple of the False God
+1 Scavenger Grounds
+1 Fetid Heath
+1 Contaminated Aquifer
+1 Demolition Field
+1 Path of Ancestry
+1 Underground River
+1 Evolving Wilds
+1 Choked Estuary
+1 Drowned Catacomb
+1 Glacial Fortress
+3 Island
+4 Plains
+4 Swamp
+1 Parasitic Impetus
+1 Spirit Mantle
+1 Martial Impetus
+1 Darksteel Mutation
+1 Unhallowed Pact
+1 Shielded by Faith
+1 Screams from Within
+1 Redemption Arc
+1 Inkshield
+1 Vindicate
+1 Gift of Immortality
+1 Tataru Taru
+1 Ghostly Prison
+1 Teferi's Protection
+1 Sink into Stupor // Soporific Springs
+1 Baleful Mastery
+1 Grand Arbiter Augustin IV
+1 Rhystic Study
+1 Mystic Remora
+1 Sygg, River Cutthroat
+1 Cyclonic Rift
+1 Decanter of Endless Water
+1 Vito, Thorn of the Dusk Rose
+1 Kambal, Consul of Allocation
+1 Black Market Connections
+1 Idyllic Tutor
+1 Caves of Koilos
+1 Deserted Beach
+1 Lotho, Corrupt Shirriff
+1 An Offer You Can't Refuse
+1 Delney, Streetwise Lookout
+1 Dismember
+1 Adarkar Wastes
+1 Watery Grave
+1 Relic of Legends
+1 Farewell
+1 Painful Quandary
+1 Marsh Flats
+1 Godless Shrine
+1 Impostor Syndrome

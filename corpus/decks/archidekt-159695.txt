@@ -1,0 +1,102 @@
+# Archidekt — Who needs black mana?
+# source: archidekt:159695
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 3 Game Changers (Bolas's Citadel, Grim Monolith, Mana Vault); Bracket 1 allows 0
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Blood Artist
+1 Chromatic Orrery
+1 Sanguine Bond
+1 Arcane Lighthouse
+1 Swiftfoot Boots
+1 Sheoldred, the Apocalypse
+1 Mishra's Factory
+1 Mobilized District
+1 Aetherflux Reservoir
+1 Thaumatic Compass // Spires of Orazca
+1 Kokusho, the Evening Star
+1 Blast Zone
+1 Vraska's Contempt
+1 War Room
+1 Marshland Bloodcaster
+1 Bontu's Monument
+1 Blinkmoth Nexus
+1 Necromantic Selection
+1 Phyrexian Fleshgorger
+1 Gix, Yawgmoth Praetor
+1 Sangromancer
+1 Arch of Orazca
+1 Radiant Fountain
+1 Temple of the False God
+1 High Market
+1 Warping Wail
+1 Victim of Night
+1 Rush of Vitality
+1 Phyrexian Reclamation
+1 Pestilence Demon
+1 Noxious Gearhulk
+1 Harvester of Souls
+1 Gray Merchant of Asphodel
+1 Thrull Parasite
+1 Nevinyrral's Disk
+1 Alhammarret's Archive
+1 Whip of Erebos
+1 Inventors' Fair
+1 Rogue's Passage
+1 Seraph Sanctuary
+1 Darksteel Citadel
+1 Encroaching Wastes
+1 Font of Agonies
+1 Syphon Mind
+1 Exsanguinate
+1 Vilis, Broker of Blood
+1 Pontiff of Blight
+1 Geode Golem
+1 Vito, Thorn of the Dusk Rose
+1 Mana Vault
+1 Sol Ring
+1 Wayfarer's Bauble
+1 Grim Monolith
+1 Mind Stone
+1 Pristine Talisman
+1 Unstable Obelisk
+1 Victory Chimes
+1 Bolas's Citadel
+1 Eternity Vessel
+1 Mind's Eye
+1 Quicksilver Amulet
+1 Ghost Quarter
+1 Urza's Mine
+1 Urza's Power Plant
+1 Urza's Tower
+1 Zhalfirin Void
+1 Phyrexia's Core
+1 Urza's Cave
+1 Null Elemental Blast
+1 Eldrazi Confluence
+1 Urza's Factory
+1 Urza's Workshop
+1 Ugin's Labyrinth
+1 Devourer of Destiny
+1 Vampiric Link
+1 Vampire Nighthawk
+1 Nighthawk Scavenger
+1 Jet Medallion
+1 Muraganda Raceway
+8 Wastes
+1 Amonkhet Raceway
+1 Avishkar Raceway
+1 The Speed Demon
+1 Momentum Breaker
+1 The Meathook Massacre
+1 Curtains' Call
+1 Valgavoth, Terror Eater
+1 Meathook Massacre II
+1 Commander's Plate
+1 Demon of Dark Schemes
+1 Unholy Annex // Ritual Chamber
+1 Zuko's Exile

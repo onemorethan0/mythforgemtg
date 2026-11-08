@@ -1,0 +1,78 @@
+# Archidekt — Toadally Casual
+# source: archidekt:6650900
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Grolnok, the Omnivore
+
+Deck:
+1 Rites of Flourishing
+1 Doc Aurlock, Grizzled Genius
+1 Desecrated Tomb
+1 Dragon Throne of Tarkir
+1 Crown of Ascension
+1 Alpha Status
+1 Alexi's Cloak
+1 Yavimaya Coast
+1 Willow Geist
+1 Laboratory Maniac
+1 Azusa, Lost but Seeking
+1 Command Tower
+1 Druid Class
+1 Jade Avenger
+1 Mystic Subdual
+1 Plaxcaster Frogling
+1 Sapphire Dragon // Psionic Pulse
+1 Talisman of Curiosity
+1 Wayward Swordtooth
+1 Vineglimmer Snarl
+1 Caustic Caterpillar
+1 Frogify
+1 Seal of Primordium
+1 Seal of Removal
+1 Pond Prophet
+1 Dour Port-Mage
+1 Beastmaster Ascension
+1 Sakura-Tribe Elder
+1 Arcane Signet
+1 Sword Coast Serpent // Capsizing Wave
+1 Fear of Impostors
+1 Overcharged Amalgam
+1 Wild Growth
+1 Banner of Kinship
+1 Gigantoad
+1 Stickytongue Sentinel
+1 Chub Toad
+1 Clifftop Lookout
+1 Spring Splasher
+1 Poison Dart Frog
+1 Long River Lurker
+1 Anurid Barkripper
+1 Bellowing Crier
+1 Anurid Swarmsnapper
+1 Haze Frog
+1 Halo Hopper
+1 Burrog Befuddler
+1 Rampant Frogantua
+1 Pollywog Symbiote
+1 Whiptongue Frog
+1 Froghemoth
+1 Three Tree Scribe
+1 Sunshower Druid
+1 Valley Mightcaller
+1 Bloated Toad
+1 Spore Frog
+1 Utopia Sprawl
+1 Amphibian Downpour
+1 Loot, Exuberant Explorer
+1 Communal Brewing
+1 Mystic Snake
+18 Forest
+1 Sol Ring
+1 Herald's Horn
+1 Splash Lasher
+1 Lilypad Village
+14 Island
+1 Exploration Broodship
+1 Emerald Medallion

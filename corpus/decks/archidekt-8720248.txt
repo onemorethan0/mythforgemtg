@@ -1,0 +1,108 @@
+# Archidekt — Lorehold, the Historian
+# source: archidekt:8720248
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lorehold, the Historian
+
+Deck:
+1 Land Tax
+1 Alpine Meadow
+1 Archaeomancer's Map
+1 Aziza, Mage Tower Captain
+1 Brass's Bounty
+1 Call Forth the Tempest
+1 Creative Technique
+1 Dance with Calamity
+1 Path to Exile
+1 Dwarven Mine
+1 Elegant Parlor
+1 Emeria, the Sky Ruin
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Fortune, Loyal Steed
+1 Galadriel's Dismissal
+1 Glittering Massif
+1 Arcane Signet
+1 Hit the Mother Lode
+1 Idyllic Grange
+1 Improvisation Capstone
+1 Inspired Tinkering
+1 Keldon Flamesage
+1 Lorehold Charm
+1 Madblind Mountain
+1 Mizzix's Mastery
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Olórin's Searing Light
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Radiant Summit
+1 Rain of Riches
+1 Reckless Endeavor
+1 Renegade Bull
+1 Restoration Seminar
+1 Sacred Foundry
+1 Sacred Peaks
+1 Season of the Bold
+1 Sensei's Divining Top
+1 Senu, Keen-Eyed Protector
+1 Soulfire Eruption
+1 Storm Herd
+1 Surge to Victory
+1 Suspend Aggression
+1 Turbulent Steppe
+1 Valakut, the Molten Pinnacle
+1 Veronica, Dissident Scribe
+1 Volcanic Vision
+1 Summon: Yojimbo
+1 Ancient Tomb
+1 Snow-Covered Plains
+1 Mistveil Plains
+1 Into the Time Vortex
+1 Chimil, the Inner Sun
+1 Biblioplex Assistant
+1 Snow-Covered Mountain
+1 Unexpected Windfall
+1 Big Score
+1 Dualcaster Mage
+1 Inti, Seneschal of the Sun
+1 Parting Gust
+1 Everything Comes to Dust
+1 Lotus Bloom
+1 Chrome Mox
+1 Sol Ring
+1 Talisman of Conviction
+1 Professional Face-Breaker
+1 Thor, God of Thunder
+1 Banishing Stroke
+1 The Queen of Dale
+1 Esper Sentinel
+1 Sol Talisman
+1 Imperial Oath
+1 Promise of Loyalty
+1 Mox Tantalite
+1 Ragavan, Nimble Pilferer
+1 Mines of Moria
+1 Impulsivity
+1 Smothering Tithe
+1 Wandering Archaic // Explore the Vastlands
+1 Dictate of the Twin Gods
+1 Githzerai Monk
+1 Flamekin Herald
+1 Chaos Warp
+1 Fated Clash
+1 Dual Casting
+1 Pyromancer's Goggles

@@ -1,0 +1,94 @@
+# Archidekt — Ovika: Spellslinger
+# source: archidekt:2385730
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Ovika, Enigma Goliath
+
+Deck:
+1 Myriad Landscape
+1 Izzet Boilerworks
+1 Exotic Orchard
+1 Command Tower
+1 Arcane Signet
+1 Cascade Bluffs
+1 Treasure Cruise
+1 Blasphemous Act
+1 Dig Through Time
+1 Shivan Reef
+1 Counterspell
+1 Scavenger Grounds
+1 Frostboil Snarl
+1 Hall of Oracles
+1 Surge to Victory
+6 Mountain
+1 Resculpt
+1 Izzet Signet
+1 Kira, Great Glass-Spinner
+1 Shared Animosity
+1 City on Fire
+1 Talisman of Creativity
+1 Rousing Refrain
+1 Mana Geyser
+1 Inspiring Refrain
+1 Seething Song
+10 Island
+1 Sol Ring
+1 Mystic Sanctuary
+1 Scalding Tarn
+1 Fact or Fiction
+1 Distant Melody
+1 Impact Tremors
+1 Obelisk of Urd
+1 Wandering Fumarole
+1 Coalition Relic
+1 Reliquary Tower
+1 Magnus the Red
+1 Purphoros, God of the Forge
+1 Reality Shift
+1 Recurring Insight
+1 Goblin Bombardment
+1 Restless Spire
+1 Molten Gatekeeper
+1 Temple of Epiphany
+1 Shark Typhoon
+1 Fellwar Stone
+1 Wayfarer's Bauble
+1 Chaos Warp
+1 Witty Roastmaster
+1 Thundering Falls
+1 Silundi Vision // Silundi Isle
+1 Skyclave Relic
+1 Mystic Confluence
+1 An Offer You Can't Refuse
+1 Drawn from Dreams
+1 Agate Instigator
+1 Weftstalker Ardent
+1 Sundering Eruption // Volcanic Fissure
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Burn Down the House
+1 Sink into Stupor // Soporific Springs
+1 Consuming Tide
+1 Arcane Denial
+1 Curse of the Swine
+1 General Kreat, the Boltbringer
+1 Cryptic Command
+1 Cyclonic Rift
+1 Jeska's Will
+1 Valakut Awakening // Valakut Stoneforge
+1 Three Tree City
+1 Ill-Timed Explosion
+1 Slash, Reptile Rampager
+1 Song of Totentanz
+1 Aminatou's Augury
+1 Swan Song
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Tempt with Vengeance
+1 Coastal Breach
+1 Gamble
+1 Worn Powerstone
+1 Thran Dynamo
+1 Unexpected Windfall
+1 Harmonized Crescendo
+1 Big Score

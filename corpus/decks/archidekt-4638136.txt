@@ -1,0 +1,105 @@
+# Archidekt — Oloro LifeStorm
+# source: archidekt:4638136
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Oloro, Ageless Ascetic
+
+Deck:
+1 Underground Sea
+1 Polluted Delta
+1 Vault of Champions
+1 The One Ring
+1 Ghostly Prison
+1 Mana Drain
+1 Heliod, Sun-Crowned
+1 Exotic Orchard
+1 Raffine's Tower
+1 Void Rend
+1 Hall of Heliod's Generosity
+1 Beacon of Immortality
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Isolated Chapel
+1 Rhox Faithmender
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Soul Warden
+1 Godless Shrine
+1 Swords to Plowshares
+1 Serra Ascendant
+1 Anguished Unmaking
+1 Smothering Tithe
+1 Sol Ring
+1 Command Tower
+1 City of Brass
+1 Flooded Strand
+1 Hallowed Fountain
+1 Propaganda
+1 Path to Exile
+1 Shipwreck Marsh
+1 Otawara, Soaring City
+1 Deserted Beach
+1 Tundra
+1 Scrubland
+1 Alhammarret's Archive
+1 Arcane Signet
+1 Sensei's Divining Top
+1 Aetherflux Reservoir
+1 Black Market Connections
+1 Will, Scion of Peace
+1 Vito, Thorn of the Dusk Rose
+1 Queza, Augur of Agonies
+1 Kambal, Profiteering Mayor
+1 Kambal, Consul of Allocation
+1 Marauding Blight-Priest
+1 Drannith Magistrate
+1 Soul's Attendant
+1 Esper Sentinel
+1 Urza's Saga
+1 Shattered Sanctum
+1 Horizon of Progress
+1 Toxic Deluge
+1 Elenda, Saint of Dusk
+1 Felidar Sovereign
+1 Grand Abolisher
+1 Cliffhaven Vampire
+1 Fellwar Stone
+1 Cyclonic Rift
+1 Multiversal Passage
+1 Mana Confluence
+3 Plains
+1 Marsh Flats
+1 Morphic Pool
+1 Sanguine Bond
+1 Crawlspace
+1 Walking Ballista
+1 Well of Lost Dreams
+1 Exquisite Blood
+1 Reliquary Tower
+1 Enlightened Tutor
+1 Watery Grave
+1 Urborg, Tomb of Yawgmoth
+1 Sea of Clouds
+2 Swamp
+1 Phyrexian Arena
+1 Karlov of the Ghost Council
+1 Bloodthirsty Conqueror
+1 Vizkopa Guildmage
+1 Wan Shi Tong, Librarian
+1 Teferi's Protection
+1 Bolas's Citadel
+1 Archivist of Oghma
+1 Rhystic Study
+1 Trouble in Pairs
+1 Ancient Tomb
+1 Generous Gift
+1 Island
+1 Fumigate
+1 Blind Obedience
+1 Grand Arbiter Augustin IV
+1 Authority of the Consuls
+1 Enduring Tenacity
+1 Archangel of Thune
+1 Sheoldred, the Apocalypse

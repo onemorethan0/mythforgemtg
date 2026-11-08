@@ -1,0 +1,88 @@
+# Archidekt — Sleeves are for the WEAK!
+# source: archidekt:7997969
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Brenard, Ginger Sculptor
+
+Deck:
+1 Tranquil Landscape
+1 Arcane Signet
+1 Austere Command
+1 Azorius Signet
+1 Beast Whisperer
+1 Beast Within
+1 Blade Splicer
+1 Botanical Sanctum
+1 Brokers Hideout
+1 Bronze Guardian
+1 Cathar Commando
+1 Command Tower
+1 Cultivate
+1 Dauntless Escort
+1 Day of Judgment
+1 Dread Statuary
+1 Evolutionary Leap
+1 Fanatical Devotion
+8 Forest
+1 Abuelo, Ancestral Echo
+1 Darksteel Splicer
+1 Blacksmith's Skill
+1 Fortified Village
+1 Generous Gift
+1 Glacial Fortress
+1 Growing Ranks
+1 Hinterland Harbor
+1 Hour of Reckoning
+1 Ich-Tekik, Salvage Splicer
+1 Idol of Oblivion
+1 Irrigated Farmland
+8 Island
+1 Kutzil, Malamet Exemplar
+1 Losheel, Clockwork Scholar
+1 Master Splicer
+1 Meteor Golem
+1 Mind Stone
+1 Mistmeadow Witch
+1 Mulldrifter
+1 Neoform
+1 Organic Extinction
+1 Padeem, Consul of Innovation
+1 Perplexing Test
+7 Plains
+1 Pongify
+1 Prairie Stream
+1 Qasali Pridemage
+1 Rootborn Defenses
+1 Sakura-Tribe Elder
+1 Selesnya Signet
+1 Sensor Splicer
+1 Shimmer Dragon
+1 Sol Ring
+1 Solemn Simulacrum
+1 Sower of Temptation
+1 Spore Frog
+1 Sundering Growth
+1 Sunpetal Grove
+1 Swiftfoot Boots
+1 Swords to Plowshares
+1 Talisman of Curiosity
+1 Temple of Enlightenment
+1 Temple of Mystery
+1 Temple of Plenty
+1 Tough Cookie
+1 Vital Splicer
+1 Whirler Rogue
+1 Wing Splicer
+1 Witch's Oven
+1 Masterful Replication
+1 King Darien XLVIII
+1 Urza, Prince of Kroog
+1 March of Progress
+1 Selfless Savior
+1 Hot Dog Cart
+1 Syr Ginger, the Meal Ender
+1 Instant Ramen
+1 Gingerbrute
+1 Nutrient Block

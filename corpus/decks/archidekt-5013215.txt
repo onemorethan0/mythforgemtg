@@ -1,0 +1,108 @@
+# Archidekt — The Ur-Dragonstorm [cEDH]
+# source: archidekt:5013215
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Scion of the Ur-Dragon
+
+Deck:
+1 Flusterstorm
+1 Phantasmal Image
+1 Sol Ring
+1 Scourge of Valkas
+1 Dragonlord Dromoka
+1 Enlightened Tutor
+1 Force of Negation
+1 Force of Will
+1 Arcane Signet
+1 Boseiju, Who Endures
+1 Chrome Mox
+1 City of Brass
+1 Command Tower
+1 Exotic Orchard
+1 Gemstone Caverns
+1 Arid Mesa
+1 Bloodstained Mire
+1 Flooded Strand
+1 Marsh Flats
+1 Misty Rainforest
+1 Polluted Delta
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Mana Confluence
+1 Mystical Tutor
+1 Mox Diamond
+1 Demonic Tutor
+1 Diabolic Intent
+1 An Offer You Can't Refuse
+1 Chain of Vapor
+1 Cyclonic Rift
+1 Deflecting Swat
+1 Fierce Guardianship
+1 Survival of the Fittest
+1 Vampiric Tutor
+1 Carpet of Flowers
+1 Necromancy
+1 Mental Misstep
+1 Pact of Negation
+1 Swan Song
+1 Toxic Deluge
+1 Veil of Summer
+1 Otawara, Soaring City
+1 Entomb
+1 Animate Dead
+1 Dance of the Dead
+1 Badlands
+1 Bayou
+1 Plateau
+1 Savannah
+1 Imperial Seal
+1 Scrubland
+1 Taiga
+1 Tropical Island
+1 Tundra
+1 Underground Sea
+1 Volcanic Island
+1 Birds of Paradise
+1 Avacyn's Pilgrim
+1 Bloom Tender
+1 Ragavan, Nimble Pilferer
+1 Elves of Deep Shadow
+1 Noble Hierarch
+1 Ignoble Hierarch
+1 Cavern of Souls
+1 Burnt Offering
+1 Magda, Brazen Outlaw
+1 Saw in Half
+1 Moritte of the Frost
+1 Dragonstorm
+1 Worldgorger Dragon
+1 Hoarding Broodlord
+1 Korvold, Fae-Cursed King
+1 Mystic Remora
+1 Silumgar, the Drifting Death
+1 Realm-Scorcher Hellkite
+1 Smothering Tithe
+1 Bladewing the Risen
+1 Rhystic Study
+1 Reanimate
+1 Ancient Silver Dragon
+1 The One Ring
+1 Lotho, Corrupt Shirriff
+1 Deathrite Shaman
+1 Mount Doom
+1 Dragon Tempest
+1 Old Gnawbone
+1 Ancient Copper Dragon
+1 Trailtracker Scout
+1 Colossal Skyturtle
+1 Colossal Grave-Reaver
+1 Phyrexian Metamorph
+1 Sneak Attack
+1 Esper Sentinel
+1 Mindbreak Trap
+1 Fellwar Stone
+1 Delighted Halfling

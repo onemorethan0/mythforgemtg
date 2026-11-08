@@ -1,0 +1,101 @@
+# Archidekt — Betor, 4ncestors Voice
+# source: archidekt:12024827
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Betor, Ancestor's Voice
+
+Deck:
+2 Swamp
+1 Soul Warden
+4 Forest
+4 Plains
+1 Accomplished Alchemist
+1 Aetherflux Reservoir
+1 Ajani, the Greathearted
+1 Alhammarret's Archive
+1 Ancient Cornucopia
+1 Armadillo Cloak
+1 Bilbo, Birthday Celebrant
+1 Blossoming Bogbeast
+1 Boon Reflection
+1 Consecrate // Consume
+1 Cosmos Elixir
+1 Congregate
+1 Cramped Vents // Access Maze
+1 Creeping Bloodsucker
+1 Dazzling Reflection
+1 Death Frenzy
+1 Essence Warden
+1 Faith's Fetters
+1 Feed the Clan
+1 Fell Beast of Mordor
+1 Graypelt Refuge
+1 Staff of Compleation
+1 Invoke the Divine
+1 Lathiel, the Bounteous Dawn
+1 Natural End
+1 Nykthos Paragon
+1 Ready // Willing
+1 Rhox Faithmender
+1 Scoured Barrens
+1 Shadows of the Past
+1 Sheltering Word
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Soul's Attendant
+1 Spirit Loop
+1 Spirit Link
+1 Tamiyo's Safekeeping
+1 Trelasarra, Moon Dancer
+1 Vault of the Archangel
+1 Venser's Journal
+1 Well of Lost Dreams
+1 Defiler of Vigor
+1 Defiler of Faith
+1 Doom Whisperer
+1 Sylvan Library
+1 Wall of Blood
+1 Farseek
+1 Arcane Signet
+1 Sol Ring
+1 Kodama's Reach
+1 Byrke, Long Ear of the Law
+1 Solidarity of Heroes
+1 Exotic Orchard
+1 Command Tower
+1 Blind Obedience
+1 Kingpin's Pet
+1 Basilica Screecher
+1 Pontiff of Blight
+1 Crypt Ghast
+1 Cultivate
+1 Rampant Growth
+1 Noble Purpose
+1 Pristine Talisman
+1 Valentin, Dean of the Vein // Lisette, Dean of the Root
+1 Sunpetal Grove
+1 Woodland Cemetery
+1 Sandsteppe Citadel
+1 Haunted Mire
+1 Radiant Grove
+1 Overgrown Tomb
+1 Indatha Triome
+1 Murmuring Bosk
+1 Blossoming Sands
+1 Jungle Hollow
+1 Nature's Lore
+1 Brushland
+1 Caves of Koilos
+1 Shadowy Backstreet
+1 Llanowar Wastes
+1 Sunlit Marsh
+1 Temple of Silence
+1 Lush Portico
+1 Temple of Plenty
+1 Underground Mortuary
+1 Temple of Malady
+1 Temple Garden
+1 Godless Shrine
+1 Isolated Chapel
+1 Prize Pig

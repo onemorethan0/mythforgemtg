@@ -1,0 +1,98 @@
+# Archidekt — Death Strike
+# source: archidekt:18158786
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ramses, Assassin Lord
+
+Deck:
+1 Volrath's Stronghold
+1 Urza's Saga
+1 Auton Soldier
+1 Followed Footsteps
+1 Maze of Ith
+1 Shadowspear
+1 Command Tower
+1 Hermetic Study
+1 Viridian Longbow
+1 Path of Ancestry
+1 Arcane Signet
+1 Secret Tunnel
+1 Mana Drain
+1 Cavern of Souls
+1 Thornbite Staff
+1 Psionic Gift
+1 Underground Sea
+1 Swiftfoot Boots
+1 Urborg, Tomb of Yawgmoth
+1 Uthros, Titanic Godcore
+1 Sword of the Animist
+1 Plaza of Heroes
+1 Bladed Pinions
+1 Cabal Coffers
+1 Rogue's Passage
+1 Shizo, Death's Storehouse
+1 Arcane Lighthouse
+1 Bitterthorn, Nissa's Animus
+1 Hammer of Nazahn
+1 Tyrite Sanctum
+1 Adaptive Omnitool
+1 Spark Double
+1 Urborg
+1 Mithril Coat
+1 Sol Ring
+1 Changeling Outcast
+1 Irenicus's Vile Duplication
+1 Helm of the Host
+1 Urza's Cave
+1 Sorcerer's Wand
+1 Dark Ritual
+1 Dimir Aqueduct
+1 Otawara, Soaring City
+1 Chariot of Victory
+1 Sword of Kaldra
+1 Shield of Kaldra
+1 Helm of Kaldra
+1 Leyline Axe
+1 Barad-dûr
+1 The Black Gate
+1 Barrow-Blade
+1 The Soul Stone
+1 Endless Evil
+1 Quantum Misalignment
+1 Extravagant Replication
+1 Ember Island Production
+1 Sakashima of a Thousand Faces
+1 Mirror Box
+1 Scythe of the Wretched
+1 Maskwood Nexus
+1 Fomori Vault
+1 Yuriko, the Tiger's Shadow
+1 Impostor Syndrome
+1 Multiversal Recruitment
+8 Island
+1 The Great Mound
+1 Urza, Lord High Artificer
+1 Imprisoned in the Moon
+1 Web of Inertia
+1 Akroma's Memorial
+1 Dauthi Voidwalker
+1 Energy Field
+1 Chronicle of Victory
+1 Three Steps Ahead
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Stolen Identity
+1 Echocasting Symposium
+1 Council of Reeds
+1 Artificer Class
+1 Court of Vantress
+1 Detection Tower
+1 Soul Foundry
+1 Blade of Selves
+1 Simulacrum Synthesizer
+4 Swamp
+1 Minas Morgul, Dark Fortress
+1 Unstable Molecule Suit
+1 Sapphire Medallion
+1 The Fire Nation Drill

@@ -1,0 +1,91 @@
+# Archidekt — "I don't get it..."
+# source: archidekt:19357375
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Orcish Bowmasters, Vampiric Tutor); Bracket 1 allows 0
+
+Commander:
+1 Deadpool, Trading Card
+1 Barktooth Warbeard
+
+Deck:
+1 Barad-dûr
+1 Dark Depths
+1 Command Tower
+1 Chaos Warp
+1 Kardur, Doomscourge
+1 Deflecting Swat
+1 Mind Stone
+1 Lightning Greaves
+1 Lightning Bolt
+1 Blasphemous Act
+1 Vandalblast
+1 Bedevil
+1 Void Winnower
+1 Raging River
+1 Dwarven Confluencer
+1 Magus of the Chains
+1 Baron Von Count
+1 Static Orb
+1 Chains of Mephistopheles
+1 Runed Terror
+1 The Millennium Calendar
+1 Chalice of the Void
+1 Vexing Bauble
+1 Memory Jar
+1 Helm of Obedience
+1 Memory Vessel
+1 Torpor Orb
+1 Contamination
+1 Painful Quandary
+1 Winter Orb
+1 Saw in Half
+1 Urborg, Tomb of Yawgmoth
+1 The Lord of Pain
+10 Mountain
+1 Mogis, God of Slaughter
+1 The Soul Stone
+10 Swamp
+1 Bitter Ordeal
+1 Warp World
+1 Profane Tutor
+1 Wish
+1 Mind Twist
+1 Scrambleverse
+1 Wheel of Fortune
+1 B.F.M. (Big Furry Monster)
+1 Karn Liberated
+1 B.F.M. (Big Furry Monster)
+1 Goblin Game
+1 Dead Ringers
+1 Chaos Orb
+1 Chimil, the Inner Sun
+1 Takklemaggot
+1 Stranglehold
+1 The Infamous Cruelclaw
+1 Word of Command
+1 Arcane Signet
+1 Graven Cairns
+1 Dark Ritual
+1 Cruel Tutor
+1 Temple of Malice
+1 Diabolic Tutor
+1 Grim Tutor
+1 Infernal Tutor
+1 Tainted Peak
+1 Sign in Blood
+1 Exotic Orchard
+1 Blazemire Verge
+1 Rogue's Passage
+1 Night's Whisper
+1 Abrade
+1 Thrill of Possibility
+1 Kaervek the Merciless
+1 Vampiric Tutor
+1 Unexpected Windfall
+1 Orcish Bowmasters
+1 Cabal Ritual
+1 Guff Rewrites History
+1 Hexing Squelcher
+1 Magus of the Moon
+1 Kormus Bell

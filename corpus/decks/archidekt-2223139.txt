@@ -1,0 +1,96 @@
+# Archidekt — Come to Blows
+# source: archidekt:2223139
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Drannith Magistrate, Opposition Agent); Bracket 1 allows 0
+
+Commander:
+1 Jodah, Archmage Eternal
+
+Deck:
+1 Sentry Oak
+1 Broken Ambitions
+1 Arcane Signet
+1 Bringer of the Black Dawn
+1 Recross the Paths
+1 Citywide Bust
+1 Inspired Ultimatum
+1 Primeval Spawn
+1 Elsha of the Infinite
+1 Captivating Glance
+1 Fistful of Force
+1 Hoarder's Greed
+1 Redeem the Lost
+1 Research the Deep
+1 Cruel Ultimatum
+1 All Suns' Dawn
+1 Revive the Fallen
+1 Scattering Stroke
+1 Spring Cleaning
+1 Titan's Revenge
+1 Woodland Guidance
+1 Whirlpool Whelm
+1 Command Tower
+1 Path of Ancestry
+1 Firemind Vessel
+1 Riptide Laboratory
+7 Forest
+3 Island
+1 Cultivate
+1 Exotic Orchard
+1 Harness Infinity
+1 Gilt-Leaf Ambush
+1 Sylvan Echoes
+1 Rebellion of the Flamekin
+1 Ignoble Hierarch
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Mythos of Nethroi
+1 Cyclone Summoner
+1 Decree of Pain
+1 General's Enforcer
+1 Tamiyo's Safekeeping
+1 Misty Rainforest
+1 Raugrin Triome
+1 Zagoth Triome
+1 Overflowing Insight
+1 Emergent Ultimatum
+1 Razorverge Thicket
+2 Plains
+3 Swamp
+1 Migration Path
+1 Lens of Clarity
+1 Jin-Gitaxias, Progress Tyrant
+1 Evolving Wilds
+1 Brainsurge
+1 Opposition Agent
+1 Stump Stomp // Burnwillow Clearing
+1 Rimewood Falls
+3 Mountain
+1 Gateway Plaza
+1 Aminatou's Augury
+1 Toxrill, the Corrosive
+1 Drannith Magistrate
+1 Brainstorm
+1 Johann, Apprentice Sorcerer
+1 Nature's Lore
+1 Moonsilver Key
+1 Tyvar's Stand
+1 Highland Forest
+1 Haunted Mire
+1 Terramorphic Expanse
+1 Woodland Chasm
+1 Augur of Autumn
+1 Pollen Lullaby
+1 Release the Ants
+1 Sylvan Reclamation
+1 Violent Ultimatum
+1 Lash Out
+1 Wooded Ridgeline
+1 Farseek
+1 The Temporal Anchor
+1 Sundering Eruption // Volcanic Fissure
+1 Public Thoroughfare
+1 Elesh Norn, Grand Cenobite
+1 Radha, Heart of Keld
+1 Escape to the Wilds
+1 Sea Gate Restoration // Sea Gate, Reborn

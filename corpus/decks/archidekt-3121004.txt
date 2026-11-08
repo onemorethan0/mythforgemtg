@@ -1,0 +1,99 @@
+# Archidekt — Omelette du Fromage
+# source: archidekt:3121004
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Atla Palani, Nest Tender
+
+Deck:
+1 Plaza of Heroes
+1 Elesh Norn, Grand Cenobite
+1 Akroma's Will
+1 Avacyn, Angel of Hope
+1 Vandalblast
+1 Ashnod's Altar
+1 Smothering Tithe
+1 Selvala's Stampede
+1 Decimate
+1 Boros Charm
+1 Prismatic Vista
+1 Command Tower
+1 Skullclamp
+1 Generous Gift
+1 Kodama's Reach
+1 Phyrexian Altar
+1 Sundering Growth
+1 It That Betrays
+1 Beast Within
+1 Gisela, Blade of Goldnight
+1 Kozilek, Butcher of Truth
+1 High Market
+1 Asceticism
+1 Swords to Plowshares
+1 Terramorphic Expanse
+1 Ulamog, the Infinite Gyre
+3 Plains
+1 Barrage of Expendables
+1 Sol Ring
+1 Void Winnower
+1 Goblin Bombardment
+1 Stomping Ground
+1 Thornbite Staff
+1 Swiftfoot Boots
+4 Mountain
+1 Mirror Entity
+1 Chaos Warp
+1 Cultivate
+1 Seedborn Muse
+1 Jungle Shrine
+1 Explore
+1 Lightning Greaves
+1 Vorinclex, Voice of Hunger
+1 Kessig Wolf Run
+1 Darksteel Mutation
+1 Magewright's Stone
+1 Strionic Resonator
+1 Farseek
+1 Thrill of Possibility
+1 Faithless Looting
+1 Fertile Ground
+1 Wild Growth
+1 Altar of Dementia
+1 Blasting Station
+1 Cinder Glade
+1 Sungrass Prairie
+1 Arid Mesa
+1 Bountiful Promenade
+1 Plateau
+1 Sacred Foundry
+1 Savannah
+1 Spectator Seating
+1 Spire Garden
+1 Taiga
+1 Temple Garden
+1 Windswept Heath
+1 Wooded Foothills
+1 Heroic Intervention
+1 Mutavault
+1 Ancient Gold Dragon
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Life Finds a Way
+1 Blazing Archon
+1 Shields of Velis Vel
+1 Boseiju, Who Endures
+1 Tamiyo's Safekeeping
+1 Maskwood Nexus
+1 Surge of Salvation
+1 Rebuff the Wicked
+1 Jetmir's Garden
+5 Forest
+1 Defense of the Heart
+1 Palani's Hatcher
+1 Lurking Predators
+1 Thunderous Debut
+1 Sylvan Library
+1 Nature's Lore
+1 Oath of Druids
+1 Lazotep Quarry
+1 Spawning Pit

@@ -1,0 +1,104 @@
+# Archidekt — Sophia, Dogged Detective - DOGS! ($300)
+# source: archidekt:6565176
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sophia, Dogged Detective
+
+Deck:
+1 Astrid Peth
+1 Exotic Orchard
+1 Karvanista, Loyal Lupari // Lupari Shield
+1 Reliquary Tower
+1 Mowu, Loyal Companion
+1 Loyal Warhound
+3 Forest
+1 Command Tower
+1 Overgrown Farmland
+1 Dreamroot Cascade
+1 Deserted Beach
+1 Path of Ancestry
+1 Thought Vessel
+1 Arcane Signet
+1 Many Partings
+1 Nature's Lore
+1 Farseek
+1 Sol Ring
+1 Pack Leader
+1 Colossification
+1 Selfless Savior
+1 Krosan Verge
+1 Three Visits
+1 Inspiring Statuary
+1 Skycloud Expanse
+1 Sungrass Prairie
+1 Idol of Oblivion
+1 Release the Dogs
+1 Jaheira, Friend of the Forest
+1 Bident of Thassa
+1 Aqueous Form
+1 Trail of Crumbs
+1 Martha Jones
+1 Gilded Goose
+1 Toski, Bearer of Secrets
+1 Ohran Frostfang
+1 Overflowing Basin
+1 Endless Detour
+1 Faithful Watchdog
+1 Generous Pup
+1 District Mascot
+1 Open into Wonder
+1 Blink Dog
+1 Into the Flood Maw
+2 Island
+1 Sink into Stupor // Soporific Springs
+1 Rambunctious Mutt
+1 Phelia, Exuberant Shepherd
+1 K-9, Mark I
+1 Danny Pink
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Struggle for Project Purity
+1 Chrome Companion
+1 Wary Watchdog
+1 Floodhound
+1 Spirited Companion
+1 Hunter's Prowess
+1 Sigarda's Summons
+1 Sejiri Shelter // Sejiri Glacier
+1 Winged Boots
+1 Guardian of Faith
+1 Leyline Immersion
+1 Simic Charm
+1 Hunter's Insight
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Strength of the Harvest // Haven of the Harvest
+1 Suppression Ray // Orderly Plaza
+1 Biorganic Carapace
+1 Noble Hierarch
+1 Tower Winder
+1 Hidden Hideout
+1 Lockjaw, Slobbering Teleporter
+1 Lucky the Pizza Dog
+1 Winnowing
+1 Polymorphist's Jest
+1 Belladonna Took
+1 Vigorbloom Charm
+1 Yoshimaru, Beloved Companion
+1 Turbulent Shore
+1 Turbulent Wilderness
+1 Yavimaya Coast
+1 Adarkar Wastes
+1 Brushland
+1 Whirler Rogue
+2 Plains
+1 Hallowed Fountain
+1 Breeding Pool
+1 Temple Garden
+1 Alpine Watchdog
+1 Nuka-Cola Vending Machine
+1 Spara's Headquarters
+1 Campsite Cuisine
+1 Party Dude
+1 Lightning Greaves
+1 Sejiri Steppe

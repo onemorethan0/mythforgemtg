@@ -1,0 +1,106 @@
+# Archidekt — Cosmic Spiderman // Into the Spider-Verse ; Spider Tribal
+# source: archidekt:15733647
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Cosmic Spider-Man
+
+Deck:
+1 Multiversal Passage
+3 Forest
+1 Harmonize
+1 Urban Retreat
+1 Adarkar Wastes
+1 Spectacular Spider-Man
+1 Shelob, Child of Ungoliant
+1 Spider-Man 2099
+1 The Soul Stone
+1 Symbiote Spider-Man
+1 Spider-Byte, Web Warden
+1 Spectacular Tactics
+1 Breeding Pool
+1 Swamp
+1 Shivan Reef
+1 Aunt May
+1 Araña, Heart of the Spider
+1 Herald's Horn
+1 Spider Manifestation
+1 Villainous Wrath
+1 Spider-Man, Miles Morales
+1 Parker Luck
+1 Stomping Ground
+1 Reflecting Pool
+1 Fabled Passage
+1 Cultivate
+1 Ketria Triome
+1 Three Tree City
+1 Beast Within
+1 Spider-Verse
+1 Daily Bugle Building
+1 Plains
+1 Descendants' Path
+1 Behold the Sinister Six!
+1 Exotic Orchard
+1 The World Tree
+1 Unclaimed Territory
+1 Impostor Syndrome
+2 Island
+1 Spider-Man 2099, Miguel O'Hara
+1 Iron Spider, Stark Upgrade
+1 Gwenom, Remorseless
+1 Spider-Man India
+1 Adagia, Windswept Bastion
+1 Heroic Intervention
+1 Swarmyard Massacre
+1 Nature's Lore
+1 Peter Parker // Amazing Spider-Man
+1 Arasta of the Endless Web
+1 Chromatic Lantern
+1 SP//dr, Piloted by Peni
+1 Secluded Courtyard
+1 Gwen Stacy // Ghost-Spider
+1 Spider-Punk
+1 Great Hall of the Citadel
+1 Mountain
+1 Fellwar Stone
+1 Patchwork Banner
+1 Farseek
+1 Spider-Man, Brooklyn Visionary
+1 Windswept Heath
+1 Misty Rainforest
+1 Wooded Foothills
+1 Spider-Ham, Peter Porker
+1 Arachnogenesis
+1 Kodama's Reach
+1 Relic of Legends
+1 Verdant Catacombs
+1 Arcane Signet
+1 Web of Life and Destiny
+1 Mary Jane Watson
+1 Superior Spider-Man
+1 Spider-Sense
+1 Command Tower
+1 Swarmyard
+1 Temple Garden
+1 Overgrown Tomb
+1 Underground River
+1 Counterspell
+1 Twitching Doll
+1 Path of Ancestry
+1 Lightning Greaves
+1 Three Visits
+1 Path to Exile
+1 Feed the Swarm
+1 Spider-Woman, Stunning Savior
+1 Miles Morales // Ultimate Spider-Man
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Sol Ring
+1 Collective Inferno
+1 Spinner of Souls
+1 Radioactive Spider
+1 Celestial Reunion
+1 Brainstorm
+1 Realmwalker
+1 Spider-Man, Web-Spinner
+1 Blech, Loafing Pest

@@ -1,0 +1,92 @@
+# Archidekt — Jumping frogs
+# source: archidekt:8562356
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Clement, the Worrywort
+
+Deck:
+1 Treeguard Duo
+1 Midnight Clock
+1 Command Tower
+1 Beast Within
+1 Clifftop Lookout
+1 Waterspout Warden
+1 Oakhollow Village
+1 Jade Avenger
+1 Leapfrog
+1 Dreamdew Entrancer
+1 Papercraft Decoy
+1 Pond Prophet
+1 Long River Lurker
+1 Spore Frog
+1 Spring Splasher
+1 Frogify
+1 Reflections of Littjara
+1 Harmonize
+1 Cloud Key
+1 Vineglimmer Snarl
+1 Misleading Signpost
+1 Unclaimed Territory
+1 Vanquisher's Banner
+1 Mystic Sanctuary
+1 Scavenger Grounds
+1 Lilypad Village
+1 Return to Nature
+1 Myriad Landscape
+1 Herald's Horn
+1 Secluded Courtyard
+1 Simic Growth Chamber
+1 Path of Ancestry
+1 Plaxcaster Frogling
+1 Patchwork Banner
+1 Rhonas's Monument
+1 Tangled Islet
+1 Ghost Quarter
+1 Froghemoth
+1 Steeple Creeper
+1 Sapphire Medallion
+1 Whiptongue Frog
+1 Field of Ruin
+1 Deep Analysis
+1 Treasure Cruise
+1 Decanter of Endless Water
+1 Reliquary Tower
+9 Forest
+1 Long-Term Plans
+1 Ring of Three Wishes
+1 Day of the Dragons
+1 Concordant Crossroads
+1 Quick Study
+1 Dour Port-Mage
+11 Island
+1 Tomorrow, Azami's Familiar
+1 Parallel Thoughts
+1 Netherese Puzzle-Ward
+1 Gush
+1 Brainstorm
+1 Stroke of Genius
+1 Rampant Frogantua
+1 Twenty-Toed Toad
+1 Into the Story
+1 Soothsaying
+1 Didn't Say Please
+1 It'll Quench Ya!
+1 Sunshower Druid
+1 Negate
+1 Muddle the Mixture
+1 Counterspell
+1 Mana Drain
+1 An Offer You Can't Refuse
+1 Oversimplify
+1 Nevinyrral's Disk
+1 Kindred Discovery
+1 Three Tree Scribe
+1 Valley Mightcaller
+1 Equilibrium
+1 Mistbreath Elder
+1 Stickytongue Sentinel
+1 Species Gorger
+1 Door of Destinies
+1 Preordain

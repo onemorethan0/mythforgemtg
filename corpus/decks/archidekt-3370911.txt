@@ -1,0 +1,92 @@
+# Archidekt — Giada Rocks the Spaghetti
+# source: archidekt:3370911
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Giada, Font of Hope
+
+Deck:
+1 Valkyrie Harbinger
+1 Cavern of Souls
+1 Clever Concealment
+1 Bruna, the Fading Light
+1 Righteous Valkyrie
+1 Flagstones of Trokair
+1 Archaeomancer's Map
+1 Lotus Field
+1 Weathered Wayfarer
+1 Flare of Fortitude
+1 Teferi's Protection
+1 Flawless Maneuver
+1 Esper Sentinel
+1 War Room
+1 Generous Gift
+1 Ancient Tomb
+1 Sigarda's Vanguard
+1 Eiganjo, Seat of the Empire
+1 Swords to Plowshares
+1 Path to Exile
+1 Nykthos, Shrine to Nyx
+1 Pearl Medallion
+1 Seraph Sanctuary
+1 Archangel of Thune
+1 Lyra Dawnbringer
+1 Avacyn, Angel of Hope
+1 Resplendent Angel
+1 Metropolis Reformer
+1 Gisela, the Broken Blade
+1 Archangel of Tithes
+1 Battle Angels of Tyr
+1 Lightning Greaves
+1 Luminarch Ascension
+1 Firemane Commando
+1 Minas Tirith
+1 Arid Mesa
+1 Hour of Revelation
+1 Chivalric Alliance
+1 Angelic Skirmisher
+1 Serra Paragon
+1 Angel of Indemnity
+1 Galadriel's Dismissal
+1 Lost Jitte
+1 Mask of Memory
+1 Land Tax
+1 Mother of Runes
+1 Trouble in Pairs
+1 Serra's Emissary
+1 Throne of Eldraine
+1 Vanquish the Horde
+1 Sword of Hearth and Home
+1 Stoneforge Mystic
+1 Folk Hero
+1 Mox Amber
+1 Akroma's Will
+1 Herald of War
+1 Norn's Choirmaster
+1 Abandoned Air Temple
+1 Exemplar of Light
+1 Winnowing
+1 Windswept Heath
+1 Flooded Strand
+1 Prismatic Vista
+1 Momo, Friendly Flier
+1 Starfield Shepherd
+1 Angel of Jubilation
+1 Authority of the Consuls
+1 Enlightened Tutor
+1 Linvala, Keeper of Silence
+1 Grand Abolisher
+1 Angel of the Ruins
+1 Sol Ring
+1 Angelic Field Marshal
+1 Pyre of Heroes
+1 Inspiring Overseer
+1 Amonkhet Raceway
+1 Dowsing Dagger // Lost Vale
+1 Ob Nixilis, the Ascended
+1 Homeward Path
+17 Plains
+1 Brave the Elements
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Lyra, Archangel of Dawn

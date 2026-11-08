@@ -1,0 +1,87 @@
+# Archidekt — How The Grinch Stole Christmas 🎄
+# source: archidekt:15807106
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jackal, Genius Geneticist
+
+Deck:
+1 Edric, Spymaster of Trest
+1 Cryptoplasm
+1 Cytoplast Manipulator
+1 Nesting Grounds
+1 Misty Rainforest
+1 Evendo, Waking Haven
+1 Flooded Grove
+14 Forest
+1 Exotic Orchard
+1 Dreamroot Cascade
+1 Hinterland Harbor
+1 Temple of Mystery
+1 Thornwood Falls
+1 Botanical Sanctum
+1 Overflowing Basin
+1 Simic Guildgate
+1 Simic Growth Chamber
+1 Command Tower
+1 Rejuvenating Springs
+1 Toski, Bearer of Secrets
+1 Identity Thief
+1 Sower of Temptation
+1 Genestealer Patriarch
+1 Howling Golem
+1 Zenith Chronicler
+1 Beast Whisperer
+1 Braids, Conjurer Adept
+1 Kiora's Follower
+1 Silent Hallcreeper
+1 Marcus, Mutant Mayor
+1 Cursecatcher
+1 Elusive Otter // Grove's Bounty
+1 Hunted Wumpus
+1 Iwamori of the Open Fist
+1 Lonis, Cryptozoologist
+1 Phyrexian Metamorph
+1 Beguiler of Wills
+1 Veteran Explorer
+1 Octomancer
+1 Sheltering Ancient
+1 Cultural Exchange
+1 Keruga, the Macrosage
+1 Mockingbird
+1 Noble Benefactor
+1 Sakura-Tribe Elder
+1 Magus of the Vineyard
+1 Callous Oppressor
+1 Elemental Bond
+1 Gala Greeters
+1 Naga Fleshcrafter
+1 Tree Monkey
+1 Perplexing Chimera
+1 Daring Thief
+1 Heartwood Storyteller
+1 Clifftop Lookout
+9 Island
+1 Marching Duodrone
+1 Reins of Power
+1 Illusionist's Gambit
+1 Arbor Elf
+1 Gor Muldrak, Amphinologist
+1 Zameck Guildmage
+1 Goldberry, River-Daughter
+1 Elvish Mystic
+1 Insidious Fungus
+1 Llanowar Elves
+1 Spawnbroker
+1 Faerie Artisans
+1 Eon Frolicker
+1 Spark Double
+1 Mind Flayer
+1 Progenitor Mimic
+1 Shield Broker
+1 Coveted Jewel
+1 Mistbreath Elder
+1 Rootweaver Druid
+1 Tender Wildguide
+1 Nascent Metamorph

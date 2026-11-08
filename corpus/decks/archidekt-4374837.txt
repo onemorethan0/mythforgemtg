@@ -1,0 +1,106 @@
+# Archidekt — Winota, Joiner of Forces
+# source: archidekt:4374837
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Winota, Joiner of Forces
+
+Deck:
+1 Angrath's Marauders
+1 Auratouched Mage
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Alseid of Life's Bounty
+1 Archivist of Oghma
+1 Archon of Emeria
+1 Avalanche of Sector 7
+1 Aven Interrupter
+1 Aven Mindcensor
+1 Ancient Tomb
+1 Arid Mesa
+1 Battlefield Forge
+1 Breath of Fury
+1 Boromir, Warden of the Tower
+1 Bloodstained Mire
+1 City of Brass
+1 City of Traitors
+1 Dauntless Dismantler
+1 Eidolon of Rhetoric
+1 Drannith Magistrate
+1 Esper Sentinel
+1 Gingerbrute
+1 Gemstone Caverns
+1 Goblin Rabblemaster
+1 High Noon
+1 Hope of Ghirapur
+1 Legion Warboss
+1 Jet, Rebel Leader
+1 Inkmoth Nexus
+1 Loyal Apprentice
+1 Mana Confluence
+1 Mishra's Factory
+1 Ocelot Pride
+1 Ornithopter
+1 Phyrexian Walker
+1 Phelia, Exuberant Shepherd
+1 Plateau
+1 Professional Face-Breaker
+1 Razorkin Needlehead
+1 Red Elemental Blast
+1 Rionya, Fire Dancer
+1 Sacred Foundry
+1 Signal Pest
+1 Skyclave Apparition
+1 Sokenzan, Crucible of Defiance
+1 Sunbaked Canyon
+1 The Wandering Rescuer
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Windswept Heath
+1 Arcane Signet
+1 Ranger-Captain of Eos
+1 Greymond, Avacyn's Stalwart
+1 Chrome Mox
+1 Sol Ring
+1 Blade Historian
+1 Charismatic Conqueror
+1 Hushbringer
+1 Clarion Conqueror
+1 Combat Celebrant
+1 Delney, Streetwise Lookout
+1 Eidolon of the Great Revel
+1 Ethersworn Canonist
+1 Giver of Runes
+1 Grand Abolisher
+1 Howlsquad Heavy
+1 Mana Vault
+1 Lotus Petal
+1 Mox Diamond
+1 Lightning, Army of One
+1 Imperial Recruiter
+1 Magus of the Moon
+1 Myrel, Shield of Argive
+1 Ornithopter of Paradise
+1 Deafening Silence
+1 Ragavan, Nimble Pilferer
+1 Rograkh, Son of Rohgahh
+1 Simian Spirit Guide
+1 Soulless Jailer
+1 Smellerbee, Rebel Fighter
+1 Tataru Taru
+1 Thalia, Guardian of Thraben
+1 Deflecting Swat
+1 Redirect Lightning
+1 Silence
+1 Arena of Glory
+1 Cavern of Souls
+1 Command Tower
+1 Marsh Flats
+3 Plains
+1 Scalding Tarn
+1 Spectator Seating
+1 Eiganjo, Seat of the Empire
+1 Wooded Foothills
+1 Urza's Saga
+1 Enlightened Tutor
+1 Smothering Tithe
+1 Pyroblast

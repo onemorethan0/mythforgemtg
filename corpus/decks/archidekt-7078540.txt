@@ -1,0 +1,99 @@
+# Archidekt — 🪦 Caesar Tokens
+# source: archidekt:7078540
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Caesar, Legion's Emperor
+
+Deck:
+1 Selfless Spirit
+1 Ruinous Ultimatum
+1 Shineshadow Snarl
+1 Krenko, Tin Street Kingpin
+1 Impulsive Pilferer
+1 Ria Ivor, Bane of Bladehold
+1 Carrion Feeder
+1 Hanweir Battlements
+1 Bastion of Remembrance
+1 Weathered Wayfarer
+1 Shefet Dunes
+1 Skyknight Vanguard
+1 Hanweir Garrison
+1 Anim Pakal, Thousandth Moon
+1 Desolate Mire
+1 Kambal, Profiteering Mayor
+1 Isshin, Two Heavens as One
+1 Wyrm's Crossing Patrol
+1 Shattered Landscape
+1 Sundering Eruption // Volcanic Fissure
+1 Warleader's Call
+1 Rabble Rousing
+1 Dollmaker's Shop // Porcelain Gallery
+1 Flare of Fortitude
+1 Tibalt's Trickery
+1 Lightning Greaves
+1 Grim Reaper's Sprint
+1 Mardu Ascendancy
+1 Kabira Takedown // Kabira Plateau
+1 Goldnight Commander
+6 Plains
+1 Reconnaissance
+1 Mishra, Claimed by Gix
+1 Call the Coppercoats
+1 Adeline, Resplendent Cathar
+1 Ascend from Avernus
+1 Clifftop Retreat
+1 Sunscorched Divide
+1 Swords to Plowshares
+3 Mountain
+1 Alesha, Who Laughs at Fate
+1 Arabella, Abandoned Doll
+1 Commissar Severina Raine
+1 Hero of Bladehold
+1 Professional Face-Breaker
+1 Legion's Landing // Adanto, the First Fort
+1 Fetid Heath
+1 Zulaport Cutthroat
+1 Bloodlust Inciter
+1 Furycalm Snarl
+1 Marionette Apprentice
+1 Launch the Fleet
+1 Goblin Bombardment
+1 Wildfire Awakener
+1 Abdel Adrian, Gorion's Ward
+1 Rugged Prairie
+1 Boggart Trawler // Boggart Bog
+1 Season of the Burrow
+1 Syr Konrad, the Grim
+1 Company Commander
+1 Teysa, Orzhov Scion
+1 Pitiless Plunderer
+1 Corpse Knight
+1 Signal Pest
+1 Windbrisk Heights
+1 Exotic Orchard
+3 Swamp
+1 Austere Command
+1 Sulfurous Springs
+1 Isolated Chapel
+1 Caves of Koilos
+1 Ash Barrens
+1 Command Tower
+1 Battlefield Forge
+1 Living Death
+1 Lazotep Quarry
+1 Nomad Outpost
+1 Vault of the Archangel
+1 Path of Ancestry
+1 Skullclamp
+1 Winds of Abandon
+1 Loyal Apprentice
+1 Lethal Scheme
+1 Kari Zev, Skyship Raider
+1 Nested Shambler
+1 MacCready, Lamplight Mayor
+1 Craig Boone, Novac Guard
+1 Kellogg, Dangerous Mind
+1 Afterlife Insurance
+1 Searslicer Goblin

@@ -1,0 +1,95 @@
+# Archidekt — Kess, Dissident Mage | Grixis Combo | Doomsday
+# source: archidekt:4640818
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kess, Dissident Mage
+
+Deck:
+1 Chart a Course
+1 Darkwater Catacombs
+1 Mystical Tutor
+1 Blood Crypt
+1 Dispel
+1 Boseiju, Who Shelters All
+1 Preordain
+1 Exotic Orchard
+1 Rakdos Signet
+1 Sign in Blood
+1 Mystic Confluence
+1 Fact or Fiction
+1 Dimir Signet
+1 Polluted Delta
+1 Flooded Strand
+1 Shivan Reef
+1 Drowned Catacomb
+1 Canyon Slough
+1 Izzet Charm
+1 Rewind
+1 Gush
+1 Forbidden Alchemy
+1 Lim-Dûl's Vault
+1 Frantic Search
+1 Watery Grave
+1 Cascade Bluffs
+1 Force of Will
+1 Sinister Sabotage
+1 Swan Song
+1 Pact of Negation
+1 Counterspell
+1 Thassa's Oracle
+1 Solve the Equation
+1 Demonic Tutor
+1 Dark Ritual
+1 Beseech the Queen
+1 Murderous Cut
+1 Mission Briefing
+1 Steam Vents
+1 Faithless Looting
+1 Talisman of Creativity
+1 Impulse
+1 Dark Petition
+1 Command Tower
+1 Doomsday
+1 Unwind
+1 Ponder
+1 Night's Whisper
+1 Notion Rain
+1 Laboratory Maniac
+1 Dig Through Time
+1 Brainstorm
+1 Increasing Ambition
+1 Fellwar Stone
+1 Diabolic Tutor
+1 Gitaxian Probe
+1 Arcane Signet
+1 Baral, Chief of Compliance
+1 Careful Study
+1 Vandalblast
+1 Pyroblast
+1 See the Truth
+1 Opt
+1 Sunken Hollow
+1 Goblin Electromancer
+1 Chemister's Insight
+1 Serum Visions
+1 Negate
+1 Treasure Cruise
+1 Izzet Signet
+1 Fetid Pools
+1 Foreboding Ruins
+1 Prismari Command
+1 Bloodstained Mire
+2 Mountain
+8 Island
+6 Swamp
+1 Graven Cairns
+1 Vampiric Tutor
+1 Sol Ring
+1 Hero's Downfall
+1 Thought Scour
+1 Disallow
+1 Choked Estuary
+1 Cyclonic Rift
+1 Wizard's Retort

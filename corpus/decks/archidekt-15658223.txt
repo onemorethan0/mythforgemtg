@@ -1,0 +1,107 @@
+# Archidekt — Chatterfang
+# source: archidekt:15658223
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 The Meathook Massacre
+1 Woodland Cemetery
+1 Deep Forest Hermit
+1 Black Market Connections
+1 Twilight Mire
+1 Fountainport
+1 Marionette Apprentice
+1 Gaea's Cradle
+1 Sol Ring
+1 Blood Artist
+1 Zulaport Cutthroat
+1 Peregrin Took
+1 Heroic Intervention
+1 Diabolic Intent
+1 Yavimaya, Cradle of Growth
+1 Assassin's Trophy
+1 Bastion of Remembrance
+1 Ygra, Eater of All
+1 Finale of Devastation
+1 War Room
+1 Dark Ritual
+1 Gilded Goose
+1 Pitiless Plunderer
+1 Bitterblossom
+1 Llanowar Wastes
+1 Overgrown Tomb
+1 Darkbore Pathway // Slitherbore Pathway
+1 Veil of Summer
+1 Birds of Paradise
+1 Abrupt Decay
+1 Camellia, the Seedmiser
+1 Autumn's Veil
+1 Windswept Heath
+1 Noxious Revival
+1 Nurturing Peatland
+1 Deathrite Shaman
+1 Swamp
+1 Forest
+1 Deranged Hermit
+1 Chitterspitter
+1 Nature's Lore
+1 Arcane Signet
+1 Disciple of the Vault
+1 Protean Hulk
+1 Culling the Weak
+1 Delighted Halfling
+1 High Market
+1 Bitterbloom Bearer
+1 Squirrel Nest
+1 Fabled Passage
+1 Crop Rotation
+1 Command Tower
+1 Viridescent Bog
+1 Chrome Mox
+1 Boseiju, Who Endures
+1 City of Brass
+1 Undergrowth Stadium
+1 The Shire
+1 Bojuka Bog
+1 Force of Vigor
+1 Orcish Bowmasters
+1 Vampiric Tutor
+1 The Unbeatable Squirrel Girl
+1 Chord of Calling
+1 Cabal Ritual
+1 Polluted Delta
+1 Ruthless Knave
+1 Saw in Half
+1 Entomb
+1 Three Visits
+1 Elvish Spirit Guide
+1 Bloodstained Mire
+1 Eternal Witness
+1 Fiend Artisan
+1 Royal Treatment
+1 Mana Confluence
+1 Reanimate
+1 Wooded Foothills
+1 Hazel's Brewmaster
+1 Devoted Druid
+1 Nature's Rhythm
+1 Swarmyard
+1 Eldritch Evolution
+1 Llanowar Elves
+1 Elves of Deep Shadow
+1 Elvish Mystic
+1 Reliquary Tower
+1 Necropotence
+1 Dina's Guidance
+1 Worldly Tutor
+1 Wastewood Verge
+1 Snow-Covered Forest
+1 Sylvan Tutor
+1 Snow-Covered Swamp
+1 Parallel Lives
+1 Warren Soultrader
+1 Skullclamp
+1 Verdant Catacombs

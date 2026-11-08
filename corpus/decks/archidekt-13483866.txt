@@ -1,0 +1,109 @@
+# Archidekt — Kefka, Court Mage [A TRUE DISPLAY OF CLOWNERY] [Turbo]
+# source: archidekt:13483866
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Toxic Deluge
+1 Undercity Sewers
+1 Watery Grave
+1 Bloodstained Mire
+1 Morphic Pool
+1 Arcane Signet
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Fellwar Stone
+1 Ancient Tomb
+1 Mindbreak Trap
+1 Flusterstorm
+1 Thassa's Oracle
+1 Rhystic Study
+1 Mox Opal
+1 Mana Vault
+1 Mox Diamond
+1 Valley Floodcaller
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Brain Freeze
+1 Gamble
+1 Tainted Pact
+1 Gemstone Caverns
+1 Mana Confluence
+1 Pact of Negation
+1 Chrome Mox
+1 Mnemonic Betrayal
+1 Swan Song
+1 Force of Will
+1 Force of Negation
+1 Deflecting Swat
+1 Simian Spirit Guide
+1 Wheel of Fortune
+1 Cyclonic Rift
+1 City of Brass
+1 Orcish Bowmasters
+1 Dark Ritual
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Imperial Seal
+1 Underworld Breach
+1 Volatile Stormdrake
+1 Rite of Flame
+1 Cabal Ritual
+1 Wishclaw Talisman
+1 Flooded Strand
+1 Otawara, Soaring City
+1 Arid Mesa
+1 Sol Ring
+1 Steam Vents
+1 Polluted Delta
+1 Misty Rainforest
+1 Luxury Suite
+1 Blood Crypt
+1 Training Center
+1 Scalding Tarn
+1 Exotic Orchard
+1 Thundering Falls
+1 Mystical Tutor
+1 Mystic Remora
+1 Ragavan, Nimble Pilferer
+1 Fierce Guardianship
+1 An Offer You Can't Refuse
+1 The One Ring
+1 Professional Face-Breaker
+1 Mental Misstep
+1 Marsh Flats
+1 Dragon's Rage Channeler
+1 Volcanic Island
+1 Underground Sea
+1 Badlands
+1 Reanimate
+1 Necropotence
+1 Arena of Glory
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Command Tower
+1 Into the Flood Maw
+1 Lotus Petal
+1 Redirect Lightning
+1 Demonic Consultation
+1 Grim Monolith
+1 Beseech the Mirror
+1 Diabolic Intent
+1 Gilded Drake
+1 Storm-Kiln Artist
+1 Dispel
+1 Ad Nauseam
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 Flare of Duplication
+1 Gitaxian Probe
+1 Rograkh, Son of Rohgahh
+1 Daze
+1 Defense Grid
+1 Final Fortune
+1 Jeweled Amulet
+1 Snapcaster Mage
+1 Red Elemental Blast
+1 Lion's Eye Diamond
+1 Displacer Kitten

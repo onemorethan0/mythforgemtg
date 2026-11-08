@@ -1,0 +1,108 @@
+# Archidekt — Kenny's Friendly Comrades (KFC)
+# source: archidekt:6029257
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Birthing Pod
+1 Noble Hierarch
+1 Pollywog Prodigy
+1 Mox Diamond
+1 Spore Frog
+1 Esper Sentinel
+1 Windswept Heath
+1 Selvala, Heart of the Wilds
+1 Biomancer's Familiar
+1 Snow-Covered Swamp
+1 Boromir, Warden of the Tower
+1 Plains
+1 Displacer Kitten
+1 Sacred Foundry
+1 Leyline of Anticipation
+1 Linvala, Keeper of Silence
+1 Phantasmal Image
+1 Mother of Runes
+1 Seedborn Muse
+1 The One Ring
+1 Demonic Tutor
+1 Zirda, the Dawnwaker
+1 Training Grounds
+1 Vampiric Tutor
+1 Wheel of Fortune
+1 Tropical Island
+1 Laboratory Maniac
+1 Overgrown Tomb
+1 Reflecting Pool
+1 Strip Mine
+1 Glen Elendra Archmage
+1 Lotho, Corrupt Shirriff
+1 Mystical Tutor
+1 Mental Misstep
+1 Derevi, Empyrial Tactician
+1 Sun Titan
+1 Cavern of Souls
+1 Bloodstained Mire
+1 Carpet of Flowers
+1 Mystic Remora
+1 Birds of Paradise
+1 Eternal Witness
+1 Command Tower
+1 Arcane Signet
+1 Ignoble Hierarch
+1 Snow-Covered Forest
+1 Island
+1 Snow-Covered Island
+1 Mountain
+1 Snow-Covered Mountain
+1 Plains
+1 Snow-Covered Plains
+1 Swamp
+1 Bloom Tender
+1 Cyclonic Rift
+1 Emiel the Blessed
+1 Fellwar Stone
+1 Force of Will
+1 Imperial Recruiter
+1 Ketria Triome
+1 Kinnan, Bonder Prodigy
+1 Entomb
+1 Force of Negation
+1 Moria Scavenger
+1 Orcish Bowmasters
+1 Raffine's Tower
+1 Smothering Tithe
+1 Sol Ring
+1 Swords to Plowshares
+1 The World Tree
+1 Swan Song
+1 Reliquary Tower
+1 Otawara, Soaring City
+1 Minamo, School at Water's Edge
+1 Boseiju, Who Endures
+1 Drannith Magistrate
+1 Mindbreak Trap
+1 Oko, Thief of Crowns
+1 Thrasios, Triton Hero
+1 Teferi, Time Raveler
+1 Agatha's Soul Cauldron
+1 Rhystic Study
+1 Savannah
+1 Chaos Warp
+1 Heroic Intervention
+1 Deathrite Shaman
+1 Underground Sea
+1 Ancient Tomb
+1 Fierce Guardianship
+1 Delney, Streetwise Lookout
+1 Gamble
+1 Talion, the Kindly Lord
+1 Ranger-Captain of Eos
+1 Viscera Seer
+1 Agent of Treachery
+1 Deflecting Swat
+1 Lotus Petal
+1 Opposition Agent
+1 Blood Crypt

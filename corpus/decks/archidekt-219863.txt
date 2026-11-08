@@ -1,0 +1,84 @@
+# Archidekt — This is Fine
+# source: archidekt:219863
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Torbran, Thane of Red Fell
+
+Deck:
+1 Smoldering Crater
+1 Forgotten Cave
+1 Combustible Gearhulk
+1 Sulfuric Vortex
+1 Lightning Greaves
+1 Runaway Steam-Kin
+1 Darksteel Plate
+1 Myriad Landscape
+1 Thrill of Possibility
+1 Sol Ring
+1 Ox of Agonas
+1 Ignite the Future
+1 Nyx Lotus
+1 Unexpected Windfall
+1 Pyrohemia
+1 Valakut Awakening // Valakut Stoneforge
+1 Bitter Reunion
+1 Abrade
+1 Reckless Impulse
+1 Valakut, the Molten Pinnacle
+1 Burnished Hart
+1 Laelia, the Blade Reforged
+1 Fiery Confluence
+1 Ruby Medallion
+1 Wrenn's Resolve
+1 Den of the Bugbear
+1 Inferno Titan
+1 Rampaging Ferocidon
+1 Wayfarer's Bauble
+1 Cursed Mirror
+1 Professional Face-Breaker
+1 Fire Diamond
+1 Liquimetal Torque
+1 Tectonic Giant
+1 Cemetery Gatekeeper
+1 Demolition Field
+1 Breeches, Eager Pillager
+1 Scytheclaw Raptor
+1 Legion Warboss
+1 Castle Embereth
+1 Sunspine Lynx
+1 Untimely Malfunction
+1 Razorkin Needlehead
+1 War Room
+1 Descent into Avernus
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Chaos Warp
+1 Roiling Vortex
+1 Bonecrusher Giant // Stomp
+1 Count on Luck
+1 Blasphemous Act
+1 Wild Wasteland
+1 Overlord of the Boilerbilges
+1 Faithless Looting
+1 Flametongue Kavu
+1 Sunset Strikemaster
+1 Snort
+1 The Fire Crystal
+1 Hearthborn Battler
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Zookeeper Mechan
+1 Sundering Eruption // Volcanic Fissure
+25 Mountain
+1 Daredevil, Fearless Fighter
+1 Knuckles the Echidna
+1 Manabarbs
+1 Deflecting Swat
+1 Zo-Zu the Punisher
+1 Solemn Simulacrum
+1 Arcane Signet
+1 Urabrask, Heretic Praetor
+1 Vandalblast
+1 Chain Reaction
+1 Throne of Eldraine
+1 Kamahl, Pit Fighter

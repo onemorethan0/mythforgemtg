@@ -1,0 +1,108 @@
+# Archidekt — Stuck on Repeat
+# source: archidekt:21326316
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Sami, Wildcat Captain
+
+Deck:
+1 Rugged Prairie
+1 Spectator Seating
+1 Electrostatic Field
+1 Abraded Bluffs
+1 Mithril Coat
+1 Inspired Tinkering
+1 Ashling, Flame Dancer
+1 Ancient Den
+1 Avatar's Wrath
+1 Anoint
+1 Change of Heart
+1 Haze of Rage
+1 Invulnerability
+1 Recruit the Worthy
+1 Searing Touch
+1 Seething Anger
+1 Bothersome Quasit
+1 Caldera Pyremaw
+1 Cori-Steel Cutter
+1 Coruscation Mage
+1 Fiery Inscription
+1 Gandalf, White Rider
+1 Guttersnipe
+1 Kessig Flamebreather
+1 Labyrinth Champion
+1 Leonin Lightscribe
+1 Longshot, Rebel Bowman
+1 Monastery Mentor
+1 Pinnacle Monk // Mystic Peak
+1 Rite of the Dragoncaller
+1 Sphinx-Bone Wand
+1 Stormsplitter
+1 Young Pyromancer
+1 Arcane Signet
+1 Ornithopter of Paradise
+1 Rustvale Bridge
+1 Great Furnace
+1 Séance Board
+1 Astral Cornucopia
+1 Gilded Lotus
+1 Bender's Waterskin
+1 Skyclave Relic
+1 Radiant Summit
+1 Command Tower
+1 Plains
+1 Clifftop Retreat
+1 Sundown Pass
+1 Battlefield Forge
+1 Temple of Triumph
+1 Darksteel Citadel
+1 Sacred Foundry
+1 Furycalm Snarl
+1 Elegant Parlor
+1 Path of Ancestry
+1 Reflecting Pool
+1 Turbulent Steppe
+1 Inspiring Vantage
+1 Glittering Massif
+1 Lindblum, Industrial Regency // Mage Siege
+1 Sunbillow Verge
+1 Sacred Peaks
+1 Wind-Scarred Crag
+1 Dimension X
+1 All-Fates Scroll
+1 Big Score
+1 Unexpected Windfall
+1 Brass's Bounty
+1 Illustrious Wanderglyph
+1 Pirate's Pillage
+1 Chromatic Orrery
+1 Sentinel Tower
+1 Shellshock
+1 Sunforger
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Plaza of Heroes
+1 Legion Leadership // Legion Stronghold
+1 Alpine Meadow
+1 Restless Bivouac
+1 Needle Spires
+1 Lorehold Campus
+1 Raucous Carnival
+1 Darksteel Ingot
+1 Hot Dog Cart
+1 Sonic Screwdriver
+1 Agility Bobblehead
+1 Fields of Strife
+1 Improvisation Capstone
+1 Stirring Hopesinger
+1 Thunderdrum Soloist
+1 Wojek Investigator
+1 Mountain
+1 Snort
+1 Valakut Awakening // Valakut Stoneforge
+1 Decaying Time Loop
+1 Allay
+1 Shattering Pulse
+1 Talisman of Conviction
+1 Memory Crystal

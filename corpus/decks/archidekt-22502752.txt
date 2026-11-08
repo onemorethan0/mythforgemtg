@@ -1,0 +1,88 @@
+# Archidekt — Gev
+# source: archidekt:22502752
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Gev, Scaled Scorch
+
+Deck:
+1 Puppeteer Clique
+1 Goblin Bombardment
+1 Murderous Redcap
+1 Lingering Tormentor
+1 Viscera Seer
+1 Impact Tremors
+1 Taurean Mauler
+1 Terramorphic Expanse
+1 Chandra, Dressed to Kill
+1 Witty Roastmaster
+1 Molten Gatekeeper
+1 Lesser Masticore
+1 Arguel's Blood Fast // Temple of Aclazotz
+1 Sign in Blood
+1 Syphon Mind
+1 Shocking Sharpshooter
+1 Abrade
+1 Doom Blade
+1 Evolving Wilds
+1 Chaos Warp
+1 Faithless Looting
+1 Return the Favor
+1 Cathartic Reunion
+1 Rakdos Signet
+1 Sol Ring
+1 Thunderblust
+1 Ricochet Trap
+1 Putrid Goblin
+1 Infernal Plunge
+1 Blazing Firesinger // Seething Song
+1 Lightning Bolt
+1 Bloodthrone Vampire
+1 Coercive Impetus
+1 Screams from Within
+1 Smoldering Marsh
+1 Command Tower
+1 Canyon Slough
+1 Molten Slagheap
+1 Mortuary Mire
+1 Riveteers Overlook
+1 Polluted Mire
+1 Smoldering Crater
+1 Arcane Signet
+1 Spikefield Hazard // Spikefield Cave
+1 Pelakka Predation // Pelakka Caverns
+1 Foreboding Ruins
+1 Blasphemous Act
+1 Chain Reaction
+1 Demonic Bargain
+1 Final Parting
+1 Myriad Landscape
+11 Mountain
+11 Swamp
+1 Flamecache Gecko
+1 Party Thrasher
+1 Magebane Lizard
+1 Marionette Apprentice
+1 Stormfist Crusader
+1 Fiery Confluence
+1 Dreadbore
+1 Feed the Swarm
+1 Demand Answers
+1 Altar's Reap
+1 Woe Strider
+1 Kolaghan's Command
+1 Yahenni, Undying Partisan
+1 Terminate
+1 Thrill of Possibility
+1 Judith, the Scourge Diva
+1 Mausoleum Secrets
+1 First Day of Class
+1 Mind Stone
+1 Exotic Orchard
+1 Coruscation Mage
+1 Immolating Souleater
+1 Lagomos, Hand of Hatred
+1 Totentanz, Swarm Piper
+1 Garna, Bloodfist of Keld
+1 Juri, Master of the Revue

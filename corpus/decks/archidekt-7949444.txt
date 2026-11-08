@@ -1,0 +1,108 @@
+# Archidekt — Atraxa cEDH
+# source: archidekt:7949444
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Atraxa, Grand Unifier
+
+Deck:
+1 Gemstone Caverns
+1 Bayou
+1 Tropical Island
+1 Walking Ballista
+1 Delighted Halfling
+1 Command Tower
+1 Mana Drain
+1 Tainted Pact
+1 Counterspell
+1 Enduring Vitality
+1 Cryptolith Rite
+1 Demonic Tutor
+1 Underground Sea
+1 City of Brass
+1 Mana Confluence
+1 Force of Will
+1 Rhystic Study
+1 Swan Song
+1 Ancient Tomb
+1 Dark Ritual
+1 Birds of Paradise
+1 Worldly Tutor
+1 Misthollow Griffin
+1 Pact of Negation
+1 Swords to Plowshares
+1 Smothering Tithe
+1 Cyclonic Rift
+1 Sol Ring
+1 Arcane Signet
+1 Morphic Pool
+1 Sea of Clouds
+1 Undergrowth Stadium
+1 Hallowed Fountain
+1 Breeding Pool
+1 Flooded Strand
+1 Polluted Delta
+1 Windswept Heath
+1 Godless Shrine
+1 Voice of Victory
+1 Flusterstorm
+1 Mana Vault
+1 Silence
+1 Mox Diamond
+1 Chrome Mox
+1 Toxic Deluge
+1 An Offer You Can't Refuse
+1 Mental Misstep
+1 Esper Sentinel
+1 Mystic Remora
+1 Vampiric Tutor
+1 Lotho, Corrupt Shirriff
+1 Noble Hierarch
+1 Peregrine Drake
+1 Food Chain
+1 Emiel the Blessed
+1 Misty Rainforest
+1 Rejuvenating Springs
+1 Verdant Catacombs
+1 Temple Garden
+1 Marsh Flats
+1 Watery Grave
+1 Overgrown Tomb
+1 Assassin's Trophy
+1 Finale of Devastation
+1 Faerie Mastermind
+1 Wan Shi Tong, Librarian
+1 Cavern of Souls
+1 Enlightened Tutor
+1 Thassa's Oracle
+1 Drannith Magistrate
+1 Imperial Seal
+1 Lion's Eye Diamond
+1 Mox Amber
+1 Lotus Petal
+1 Tataru Taru
+1 Gaea's Cradle
+1 Tundra
+1 Into the Flood Maw
+1 Orcish Bowmasters
+1 Beseech the Mirror
+1 Bloom Tender
+1 Ranger-Captain of Eos
+1 Badgermole Cub
+1 Kinnan, Bonder Prodigy
+1 Boseiju, Who Endures
+1 Culling Ritual
+1 Ghostly Flicker
+1 Snap
+1 Grand Arbiter Augustin IV
+1 Eldritch Evolution
+1 Eternal Witness
+1 Opposition Agent
+1 Grafdigger's Cage
+1 Archivist of Oghma
+1 The One Ring
+1 Notion Thief
+1 Narset, Parter of Veils
+1 Sheoldred, the Apocalypse
+1 Deathrite Shaman

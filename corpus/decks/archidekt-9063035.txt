@@ -1,0 +1,99 @@
+# Archidekt — Rainbow Dash-Equine Typal v.4.0
+# source: archidekt:9063035
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Rainbow Dash
+
+Deck:
+1 Spara's Headquarters
+1 Command Tower
+1 Path to Exile
+1 Chromatic Lantern
+1 Ketria Triome
+1 Bill the Pony
+1 Raugrin Triome
+1 Swords to Plowshares
+1 Counterspell
+1 Vine Mare
+1 Akroma's Will
+1 Colossal Majesty
+1 Pristine Talisman
+1 Moonshaker Cavalry
+1 The World Tree
+1 Storm Herd
+1 Maze of Ith
+1 Jetmir's Garden
+1 Chaos Warp
+1 Beastmaster Ascension
+1 Guardian Project
+1 Path of Ancestry
+1 Eiganjo, Seat of the Empire
+1 Exotic Orchard
+1 Boseiju, Who Endures
+1 Split Up
+1 Minas Tirith
+1 Lathiel, the Bounteous Dawn
+1 Hushwood Verge
+1 Loyal Unicorn
+1 Spelunking
+1 Lunar Insight
+1 Lórien Revealed
+1 Riverpyre Verge
+1 Sunbillow Verge
+1 Guardian Sunmare
+1 Bear Umbra
+1 Crested Sunmare
+1 Thurid, Mare of Destiny
+1 Lightning Greaves
+1 Applejack
+1 Phantom Steed
+1 Emiel the Blessed
+1 Diamond Mare
+1 Keleth, Sunmane Familiar
+1 Princess Twilight Sparkle
+1 Rarity
+1 Thundermare
+1 Heroic Intervention
+1 Summon: Ixion
+1 Surge Mare
+1 Sun Quan, Lord of Wu
+1 Regal Bunnicorn
+1 Arcane Denial
+1 Shield Mare
+1 Shadowfax, Lord of Horses
+1 Fabled Passage
+1 Hallowed Fountain
+1 Ba Sing Se
+1 Xander's Lounge
+1 Steam Vents
+1 Otawara, Soaring City
+1 Yavimaya, Cradle of Growth
+1 Temple Garden
+1 Akroma's Memorial
+1 Loch Mare
+1 Brokers Ascendancy
+1 Colorstorm Stallion
+1 Blessed Sanctuary
+1 Fluttershy
+1 Excava, the Risen Past
+1 Pinkie Pie
+1 Deadly Rollick
+1 Mystic Remora
+1 Arcane Signet
+1 Sol Ring
+1 Generous Gift
+1 Radiate
+1 Reconnaissance Mission
+1 Defense of the Heart
+1 Relic of Legends
+4 Plains
+4 Forest
+2 Mountain
+3 Island
+1 Ronom Unicorn
+1 City of Brass
+1 Farseek
+1 Nature's Lore
+1 Fact or Fiction

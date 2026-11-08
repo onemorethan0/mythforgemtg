@@ -1,0 +1,96 @@
+# Archidekt — 🪦 Raffine Budget Reanimator
+# source: archidekt:16489002
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Raffine, Scheming Seer
+
+Deck:
+1 Arcane Denial
+1 Caves of Koilos
+1 Concealed Courtyard
+1 Fetid Heath
+5 Plains
+1 Drowned Catacomb
+1 Stitch Together
+1 Thraben Watcher
+1 Mirko, Obsessive Theorist
+1 Split Up
+1 Duelist of the Mind
+1 Angelic Skirmisher
+1 Ardyn, the Usurper
+1 Avenger of the Fallen
+1 Contaminated Landscape
+1 Darkslick Shores
+1 Diversion Unit
+1 Emperor of Bones
+1 Emrakul's Messenger
+1 From the Catacombs
+1 Gold-Forged Thopteryx
+1 Hashaton, Scarab's Fist
+1 Hollow Marauder
+1 Mischievous Mystic
+1 Naga Fleshcrafter
+1 Pippin, Guard of the Citadel
+1 Eye Collector
+1 Priest of Fell Rites
+1 Profaner of the Dead
+1 Shoreline Looter
+1 Snarling Gorehound
+1 Starving Revenant
+1 Troll of Khazad-dûm
+1 Ultimecia, Temporal Threat
+1 Veteran Soldier
+1 Wyrm's Crossing Patrol
+1 Writ of Return
+1 Dread Return
+1 Boggart Trawler // Boggart Bog
+1 Elenda and Azor
+1 Drogskol Reaver
+1 Dream Trawler
+1 Mausoleum Wanderer
+1 Overwhelming Remorse
+1 Ainok Strike Leader
+1 Restart Sequence
+1 Valgavoth's Faithful
+1 Sun Titan
+1 Azure Beastbinder
+1 Emet-Selch of the Third Seat
+1 Syr Konrad, the Grim
+1 Psychosis Crawler
+1 Flitterwing Nuisance
+1 Cryptcaller Chariot
+1 Siren Stormtamer
+1 Alseid of Life's Bounty
+1 Ash Barrens
+1 Prairie Stream
+1 Seachrome Coast
+1 Victimize
+1 Self-Reflection
+1 Sunken Hollow
+1 Skycloud Expanse
+1 Isolated Chapel
+5 Island
+1 Glacial Fortress
+1 Caustic Bronco
+1 An Offer You Can't Refuse
+1 Archfiend of Ifnir
+1 Big Game Hunter
+1 Command Tower
+1 Shineshadow Snarl
+1 Path of Ancestry
+1 Angel of the Ruins
+1 Lethal Scheme
+1 Exotic Orchard
+1 Adarkar Wastes
+1 Massacre Wurm
+1 Sygg, Wanderwine Wisdom // Sygg, Wanderbrine Shield
+1 Negate
+5 Swamp
+1 Unburial Rites
+1 Ashen Rider
+1 Underground River
+1 Darkwater Catacombs
+1 Selfless Spirit
+1 Champions from Beyond

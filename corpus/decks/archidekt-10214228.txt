@@ -1,0 +1,48 @@
+# Archidekt — One Million Trees
+# source: archidekt:10214228
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sasaya, Orochi Ascendant // Sasaya's Essence
+
+Deck:
+1 Soul of Zendikar
+1 Mossborn Hydra
+61 Forest
+1 Concordant Crossroads
+1 Genesis Hydra
+1 Spelunking
+1 Ant Queen
+1 Carven Caryatid
+1 Centaur Glade
+1 Cranial Archive
+1 Elixir of Immortality
+1 Evolution Charm
+1 Fa'adiyah Seer
+1 Harmonize
+1 Hedron Archive
+1 Hooded Hydra
+1 Horn of Greed
+1 Howling Mine
+1 Library of Leng
+1 Magnifying Glass
+1 Mercadian Atlas
+1 Mind Stone
+1 Nature's Spiral
+1 Nemata, Grove Guardian
+1 Nissa, Who Shakes the World
+1 Reliquary Tower
+1 Reviving Melody
+1 Rites of Spring
+1 Rowen
+1 Seer's Sundial
+1 Sprout Swarm
+1 Thaumatic Compass // Spires of Orazca
+1 Tower of Fortunes
+1 Wildwood Rebirth
+1 Regrowth
+1 Doubling Season
+1 Cultivator Colossus
+1 Spellbook
+1 Abundance

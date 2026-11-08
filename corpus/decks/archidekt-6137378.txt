@@ -1,0 +1,88 @@
+# Archidekt — Bill Kills
+# source: archidekt:6137378
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Bill the Pony
+
+Deck:
+21 Plains
+1 Academy Manufactor
+1 Daxos, Blessed by the Sun
+1 Knight of the White Orchid
+1 Loyal Warhound
+1 Mentor of the Meek
+1 Palace Jailer
+1 Rasaad yn Bashir
+1 Samwise the Stouthearted
+1 Rosie Cotton of South Lane
+1 Palace Sentinels
+1 Welcoming Vampire
+1 Lae'zel's Acrobatics
+1 Generous Gift
+1 Fell the Mighty
+1 Slaughter the Strong
+1 Justiciar's Portal
+1 Ephemerate
+1 Conjurer's Closet
+1 Cloudshift
+1 Cloak of the Bat
+1 Field-Tested Frying Pan
+1 Oblation
+1 Swords to Plowshares
+1 Slip On the Ring
+1 Lapse of Certainty
+1 Dusk // Dawn
+1 Cathar's Shield
+1 Eerie Interlude
+1 Ondu Inversion // Ondu Skyruins
+1 The Battle of Bywater
+1 Refuse to Yield
+1 Accorder's Shield
+1 Far Traveler
+1 Fleetfeather Sandals
+1 Of Herbs and Stewed Rabbit
+1 Brave the Sands
+1 Teleportation Circle
+1 Eland Umbra
+1 Robe of Stars
+1 Slagwurm Armor
+1 Throne of the High City
+1 Swiftfoot Boots
+1 Stoneskin
+1 Reliquary Tower
+1 Terrain Generator
+1 Scavenger Grounds
+1 Forbidding Watchtower
+1 Demolition Field
+1 Rogue's Passage
+1 Myriad Landscape
+1 Buried Ruin
+1 Blast Zone
+1 Liquimetal Torque
+1 Pearl Medallion
+1 Mind Stone
+1 Sol Ring
+1 Well of Lost Dreams
+1 Thought Vessel
+1 Everflowing Chalice
+1 Arcane Signet
+1 Inherited Envelope
+1 Access Tunnel
+1 The Gaffer
+1 Parting Gust
+1 Mother of Runes
+1 Loran of the Third Path
+1 Eastfarthing Farmer
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Eldrazi Displacer
+1 Semester's End
+1 Gilraen, Dúnedain Protector
+1 Distinguished Conjurer
+1 The Eternal Wanderer
+1 Baldin, Century Herdmaster
+1 Enduring Innocence
+1 Esper Sentinel
+1 War Room
+1 Inventors' Fair

@@ -1,0 +1,103 @@
+# Archidekt — Fae's Domain
+# source: archidekt:7479905
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Alela, Artful Provocateur
+
+Deck:
+1 Ancient Gold Dragon
+1 Intangible Virtue
+1 Moonsnare Prototype
+1 Springleaf Drum
+1 Reliquary Tower
+1 Everflowing Chalice
+1 Thought Vessel
+1 Floodfarm Verge
+1 Etherium Sculptor
+1 Foundry Inspector
+1 Distant Melody
+1 Swords to Plowshares
+1 Esper Sentinel
+1 Void Rend
+1 Marsh Flats
+1 Fierce Guardianship
+1 Path to Exile
+1 Fetid Heath
+1 Adarkar Wastes
+1 Ornithopter of Paradise
+1 Obyra, Dreaming Duelist
+1 Sunken Ruins
+1 Hallowed Fountain
+1 Glacial Fortress
+1 Underground River
+1 Command Tower
+1 Arcane Signet
+1 Drowned Catacomb
+1 Reconnaissance Mission
+1 Patchwork Banner
+1 Faerie Mastermind
+1 Tegwyll, Duke of Splendor
+1 Three Tree City
+1 Dawn's Truce
+3 Island
+3 Plains
+1 Smothering Tithe
+1 Overlord of the Floodpits
+1 Dimir Signet
+1 Talisman of Dominance
+1 Winds of Abandon
+1 Konda's Banner
+1 Coastal Piracy
+1 Arcane Denial
+1 Orzhov Signet
+1 Inspiring Leader
+1 The Indomitable
+1 Rite of Oblivion
+1 Raffine's Tower
+1 Polluted Delta
+1 Swiftfoot Boots
+1 Rally the Ranks
+1 Teferi's Protection
+1 Rhystic Study
+1 Mana Drain
+1 Sol Ring
+1 Isolated Chapel
+1 Vault of Champions
+1 Phyrexian Arena
+1 Fountainport
+1 Mystic Gate
+1 Likeness Looter
+1 Favorable Winds
+1 Caretaker's Talent
+1 Witness Protection
+1 Enduring Curiosity
+1 Morphic Pool
+1 Bident of Thassa
+1 Eaten by Piranhas
+1 Godless Shrine
+1 Caves of Koilos
+1 Lightning Greaves
+1 Etchings of the Chosen
+1 Scion of Oona
+1 Sea of Clouds
+1 Watery Grave
+2 Swamp
+1 Azorius Signet
+1 Talisman of Progress
+1 Talion, the Kindly Lord
+1 Temple of the False God
+1 Gloomlake Verge
+1 Spell Stutter
+1 Coat of Arms
+1 Banner of Kinship
+1 The One Ring
+1 Dollmaker's Shop // Porcelain Gallery
+1 Swan Song
+1 Counterspell
+1 Cyclonic Rift
+1 Crashing Drawbridge
+1 Bitterbloom Bearer
+1 Bitterblossom
+1 Abjure

@@ -1,0 +1,103 @@
+# Archidekt — 💎Geodude: The Dork Lord🤓
+# source: archidekt:4889776
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kinnan, Bonder Prodigy
+
+Deck:
+1 Minamo, School at Water's Edge
+1 Basalt Monolith
+1 Springleaf Drum
+1 Island
+1 Tropical Island
+1 Boseiju, Who Endures
+1 Koma, Cosmos Serpent
+1 Otawara, Soaring City
+1 Mox Opal
+1 Nyxbloom Ancient
+1 Consecrated Sphinx
+1 Perplexing Chimera
+1 Tezzeret the Seeker
+1 Treasure Vault
+1 Fellwar Stone
+1 Mana Vault
+1 Delighted Halfling
+1 Cyclonic Rift
+1 Yavimaya, Cradle of Growth
+1 Urza's Saga
+1 Cephalid Coliseum
+1 Simic Signet
+1 City of Brass
+1 Emergence Zone
+1 Homeward Path
+1 Mindbreak Trap
+1 Elvish Spirit Guide
+1 Mana Confluence
+1 Wandering Archaic // Explore the Vastlands
+1 Force of Will
+1 Sink into Stupor // Soporific Springs
+1 Void Winnower
+1 Colossal Skyturtle
+1 Walking Ballista
+1 Yavimaya Coast
+1 Talisman of Curiosity
+1 Moonsilver Key
+1 Thrasios, Triton Hero
+1 Command Tower
+1 Transmute Artifact
+1 Sol Ring
+1 Breeding Pool
+1 Rhystic Study
+1 Mirrormade
+1 Shifting Woodland
+1 Talon Gates of Madara
+1 Seedborn Muse
+1 The Cabbage Merchant
+1 Glen Elendra Archmage
+1 Fierce Guardianship
+1 Valley Floodcaller
+1 Tam, Mindful First-Year
+1 Ancient Tomb
+1 Worldly Tutor
+1 Rejuvenating Springs
+1 Scalding Tarn
+1 Mystic Remora
+1 Flooded Strand
+1 Nature's Rhythm
+1 Mental Misstep
+1 Misty Rainforest
+1 Mana Drain
+1 Lotus Petal
+1 Green Sun's Zenith
+1 Gaea's Cradle
+1 Clever Impersonator
+1 Force of Negation
+1 Chord of Calling
+1 Apple of Eden, Isu Relic
+1 Enduring Vitality
+1 Hullbreaker Horror
+1 Nezahal, Primal Tide
+1 Finale of Devastation
+1 Mistrise Village
+1 Spellskite
+1 Swan Song
+1 Tidal Barracuda
+1 Endurance
+1 Grim Monolith
+1 Chrome Mox
+1 Llanowar Elves
+1 Phyrexian Metamorph
+1 Crop Rotation
+1 Gemstone Caverns
+1 Pact of Negation
+1 Birds of Paradise
+1 Flusterstorm
+1 Arcane Signet
+1 The One Ring
+1 Mox Diamond
+1 Resculpt
+1 Seat of the Synod
+1 Mox Amber
+1 Into the Flood Maw

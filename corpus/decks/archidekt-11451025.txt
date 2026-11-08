@@ -1,0 +1,88 @@
+# Archidekt — Y'shtola's Goaded Brawl
+# source: archidekt:11451025
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Copy Enchantment
+1 Ghoulish Impetus
+1 Martial Impetus
+1 Sol Ring
+1 Public Enemy
+1 Command Tower
+1 Redemption Arc
+1 Gonti, Night Minister
+1 Kaito, Bane of Nightmares
+1 Adarkar Wastes
+1 Arcane Sanctum
+1 Caves of Koilos
+1 Underground River
+1 Sunken Hollow
+1 Exotic Orchard
+1 Duelist's Heritage
+1 Estrid's Invocation
+1 Sygg, River Cutthroat
+1 Path of Ancestry
+1 Contaminated Landscape
+1 Frantic Search
+1 Eye of Nidhogg
+1 Inkshield
+1 Eriette of the Charmed Apple
+1 Killian, Ink Duelist
+1 Horizon of Progress
+1 Breena, the Demagogue
+1 Parasitic Impetus
+1 Sublime Epiphany
+1 Reaper's Scythe
+1 Mirrormade
+10 Swamp
+8 Plains
+1 Void Rend
+1 Ishgard, the Holy See // Faith & Grief
+1 Watery Grave
+1 Split Up
+1 The Wandering Emperor
+1 Demonic Bargain
+1 Psychic Impetus
+1 Arcane Signet
+1 Glacial Fortress
+1 Prairie Stream
+1 Wound Reflection
+1 Swords to Plowshares
+1 Yahenni's Expertise
+4 Island
+1 The Death of Gwen Stacy
+1 Stock Up
+1 Court of Locthwain
+1 Vow of Malice
+1 Coercive Impetus
+1 Sleight of Hand
+1 Endless Foot Assault
+1 Killian, Decisive Mentor
+1 Scriv, the Obligator
+1 Entity Tracker
+1 Mesa Enchantress
+1 Starfield Mystic
+1 Cloud Key
+1 Herald of Amity
+1 Tenuous Truce
+1 Kor Spiritdancer
+1 Pearl-Ear, Imperial Advisor
+1 Sheltered by Ghosts
+1 Combat Calligrapher
+1 Curse of Disturbance
+1 Curse of Verbosity
+1 Grasp of Fate
+1 Baleful Strix
+1 Court of Vantress
+1 Court of Ardenvale
+1 Sram, Senior Edificer
+1 Shielded by Faith
+1 Changing Loyalty
+1 Dovin's Veto
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Talisman of Hierarchy

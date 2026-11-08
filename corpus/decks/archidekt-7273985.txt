@@ -1,0 +1,83 @@
+# Archidekt — Bearly Functional
+# source: archidekt:7273985
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Doc Aurlock, Grizzled Genius
+
+Deck:
+14 Island
+1 Dryad's Revival
+1 Sol Ring
+1 Moment's Peace
+1 Lier, Disciple of the Drowned
+1 Increasing Savagery
+1 Jace, Vryn's Prodigy // Jace, Telepath Unbound
+1 Tracker's Instincts
+1 Otherworldly Gaze
+1 Dream Twist
+1 Rootcoil Creeper
+1 Hedge Maze
+1 Careful Study
+1 Mulch
+1 Tamiyo, Collector of Tales
+1 Consider
+1 Growth Spiral
+1 Utopia Sprawl
+1 Nature's Lore
+1 Frantic Search
+1 Sword of Forge and Frontier
+1 Chemister's Insight
+1 Beast Within
+1 Catalyst Stone
+1 Waterlogged Grove
+1 Hinterland Harbor
+1 Mystic Sanctuary
+1 Yavimaya Coast
+1 Dreamroot Cascade
+1 Breeding Pool
+1 Railway Brawler
+1 Resculpt
+1 Command Tower
+1 Uba Mask
+1 Gale, Waterdeep Prodigy
+1 Thought Scour
+1 Virtue of Strength // Garenbrig Growth
+1 Eternal Witness
+1 Grolnok, the Omnivore
+1 Mental Note
+1 Gamekeeper
+1 Malevolent Rumble
+1 River Kelpie
+1 Talrand, Sky Summoner
+1 Docent of Perfection // Final Iteration
+1 Nature's Rhythm
+1 Croaking Counterpart
+1 Grizzly Fate
+1 Crush of Wurms
+1 Misty Rainforest
+1 Silent Departure
+13 Forest
+1 Auroral Procession
+1 Octavia, Living Thesis
+1 Rampant Frogantua
+1 Stormkeld Vanguard // Bear Down
+1 Slickshot Lockpicker
+1 Oona's Grace
+1 Kishla Skimmer
+1 Exhibition Tidecaller
+1 Kodama's Reach
+1 Grapple with the Past
+1 Willowrush Verge
+1 Walk-In Closet // Forgotten Cellar
+1 Diviner of Mist
+1 Rampant Growth
+1 Shared Roots
+1 Quandrix Charm
+1 Archmage Emeritus
+1 Sodden Verdure
+1 Rapid Hybridization
+1 Quiet Speculation
+1 Rewind
+1 Deep Analysis

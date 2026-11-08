@@ -1,0 +1,98 @@
+# Archidekt — Goro Goro SUP ORB
+# source: archidekt:17644102
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Goro-Goro and Satoru
+
+Deck:
+1 Alora, Merry Thief
+1 Arcane Denial
+1 Arcane Signet
+1 Baleful Strix
+1 Barrin, Tolarian Archmage
+1 Bedevil
+1 Bident of Thassa
+1 Biting-Palm Ninja
+1 Blood Crypt
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Changeling Outcast
+1 Chaos Warp
+1 Chart a Course
+1 Choked Estuary
+1 Command Tower
+1 Counterspell
+1 Crumbling Necropolis
+1 Crux of Fate
+1 Curse of the Swine
+1 Darkwater Catacombs
+1 Dimir Signet
+1 Exotic Orchard
+1 Fallen Shinobi
+1 Familiar's Ruse
+1 Fellwar Stone
+1 Fevered Visions
+1 Firkraag, Cunning Instigator
+1 Foreboding Ruins
+1 Gingerbrute
+1 Grazilaxx, Illithid Scholar
+1 Gudul Lurker
+1 Idol of Oblivion
+1 Ingenious Infiltrator
+5 Island
+1 Izzet Signet
+1 Kaito Shizuki
+1 Kolaghan, the Storm's Fury
+1 Lagomos, Hand of Hatred
+1 Loyal Apprentice
+1 Mist-Syndicate Naga
+1 Mistblade Shinobi
+1 Moon-Circuit Hacker
+1 Moonsnare Specialist
+4 Mountain
+1 Nashi, Moon Sage's Scion
+1 Nezumi Prowler
+1 Night's Whisper
+1 Ninja of the Deep Hours
+1 Of One Mind
+1 Omen Hawker
+1 Orochi Soul-Reaver
+1 Painful Truths
+1 Phoenix Chick
+1 Polluted Delta
+1 Prosperous Thief
+1 Rakdos Signet
+1 Reality Shift
+1 Reconnaissance Mission
+1 Reinforced Ronin
+1 Rite of the Raging Storm
+1 Satoru Umezawa
+1 Satoru, the Infiltrator
+1 Scalding Tarn
+1 Shadowblood Ridge
+1 Shipwreck Marsh
+1 Shivan Reef
+1 Silent-Blade Oni
+1 Silver-Fur Master
+1 Slither Blade
+1 Smoldering Marsh
+1 Sol Ring
+1 Steam Vents
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Sunken Hollow
+4 Swamp
+1 Tainted Peak
+1 Talisman of Creativity
+1 Talisman of Indulgence
+1 Terminate
+1 Thousand-Faced Shadow
+1 Toxic Deluge
+1 Training Center
+1 Triton Shorestalker
+1 Vandalblast
+1 Watery Grave
+1 Xander's Lounge
+1 Yuriko, the Tiger's Shadow

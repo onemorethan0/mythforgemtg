@@ -1,0 +1,108 @@
+# Archidekt — Faster than the Blue Guy - Shadow in CEDH
+# source: archidekt:21399423
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Shadow the Hedgehog
+
+Deck:
+1 Chrome Mox
+1 Ragavan, Nimble Pilferer
+1 Luxury Suite
+1 Mountain
+1 Orcish Bowmasters
+1 Ad Nauseam
+1 Dragon's Rage Channeler
+1 Praetor's Grasp
+1 Rograkh, Son of Rohgahh
+1 Treasure Vault
+1 Sol Ring
+1 Simian Spirit Guide
+1 Vexing Bauble
+1 Ancient Tomb
+1 Dark Ritual
+1 Fellwar Stone
+1 Grapeshot
+1 Springleaf Drum
+1 Exotic Orchard
+1 Blazemire Verge
+1 Diabolic Intent
+1 Spire of Industry
+1 Deflecting Swat
+1 Darksteel Citadel
+1 Professional Face-Breaker
+1 Anger
+1 Knuckles the Echidna
+1 Lotus Petal
+1 Black Market Connections
+1 Tibalt's Trickery
+1 Command Tower
+1 Sulfurous Springs
+1 Raucous Theater
+1 Urborg, Tomb of Yawgmoth
+1 Phyrexian Tower
+1 The One Ring
+1 Vandalblast
+1 Jeska's Will
+1 Mox Amber
+1 Mana Vault
+1 Gamble
+1 Imp's Mischief
+1 Final Fortune
+1 Grinding Station
+1 Emergence Zone
+1 Blood Crypt
+1 Dualcaster Mage
+1 Vampiric Tutor
+1 Lion's Eye Diamond
+1 Demonic Tutor
+1 Beseech the Mirror
+1 Vault of Whispers
+1 Deadly Rollick
+1 Opposition Agent
+1 Great Furnace
+1 Bloodstained Mire
+1 Deadly Dispute
+1 Urza's Saga
+1 Faithless Looting
+1 Red Elemental Blast
+1 Wheel of Fortune
+1 Underworld Breach
+1 Redirect Lightning
+1 Hexing Squelcher
+1 Molten Duplication
+1 Swamp
+1 Rite of Flame
+1 Blood Moon
+1 Twinflame
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Gemstone Caverns
+1 Necropotence
+1 Tainted Pact
+1 Dauthi Voidwalker
+1 Culling the Weak
+1 Cool but Rude
+1 Pyroblast
+1 Last Chance
+1 Big Score
+1 Lightning Bolt
+1 Flashback
+1 Entomb
+1 Rain of Filth
+1 Scalding Tarn
+1 Cabal Ritual
+1 Tezzeret, Cruel Captain
+1 Jeweled Amulet
+1 Talisman of Indulgence
+1 Mox Diamond
+1 Badlands
+1 Imperial Seal
+1 Strike It Rich
+1 Mox Opal
+1 Flare of Duplication
+1 Arcane Signet
+1 Grim Monolith
+1 Crystal Vein
+1 Feed the Swarm
+1 Return the Favor

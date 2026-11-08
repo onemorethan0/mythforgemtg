@@ -1,0 +1,80 @@
+# Archidekt — Firja's Unresting Army
+# source: archidekt:4949966
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Firja, Judge of Valor
+
+Deck:
+1 Selfless Spirit
+1 Batwing Brume
+1 Sunlit Marsh
+1 Arcane Signet
+1 Orzhov Signet
+1 Sun Titan
+1 Takenuma, Abandoned Mire
+1 Command Tower
+1 Snowfield Sinkhole
+15 Swamp
+1 Mind Stone
+1 Angel of Suffering
+1 Breach the Multiverse
+1 Magister of Worth
+1 Ornithopter of Paradise
+1 Living Death
+1 Akroma, Angel of Wrath
+1 Mire Triton
+1 Keen Duelist
+1 Murderous Rider // Swift End
+1 Valorous Stance
+1 Scoured Barrens
+1 Thriving Moor
+1 Commander's Sphere
+1 Noxious Gearhulk
+1 New Benalia
+1 Thriving Heath
+1 Corpse Churn
+1 Sol Ring
+1 Wayfarer's Bauble
+1 Coldsteel Heart
+1 Archpriest of Shadows
+1 Cemetery Tampering
+1 Sepulchral Primordial
+1 Dark Ritual
+1 Dawnbreak Reclaimer
+1 Scion of Halaster
+1 Doomed Necromancer
+1 Vendetta
+1 Finale of Eternity
+1 Vile Entomber
+1 Gray Merchant of Asphodel
+1 Price of Fame
+1 Millikin
+1 Daring Fiendbonder
+1 Stinkweed Imp
+10 Plains
+1 Atrocious Experiment
+1 Unburial Rites
+1 Ransack the Lab
+1 Swords to Plowshares
+1 Callous Bloodmage
+1 Generous Gift
+1 Collector's Vault
+1 Mask of Memory
+1 Tainted Field
+1 Temple of Silence
+1 Gray Slaad // Entropic Decay
+1 Caves of Koilos
+1 Ascend from Avernus
+1 Lotho, Corrupt Shirriff
+1 Overwhelming Remorse
+1 Gravelighter
+1 Syphon Mind
+1 Funeral Rites
+1 Angel of Finality
+1 Yahenni's Expertise
+1 Final Parting
+1 Angel of Despair
+1 Criminal Past
+1 Kutzil's Flanker

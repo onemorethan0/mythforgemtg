@@ -1,0 +1,100 @@
+# Archidekt — Queza's Platinum Chrome Wheels
+# source: archidekt:4862693
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Queza, Augur of Agonies
+
+Deck:
+1 Dark Ritual
+1 Adarkar Wastes
+1 Arcane Denial
+1 Arcane Sanctum
+1 Arcane Signet
+1 Brainstorm
+1 Careful Study
+1 Choked Estuary
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 Compulsive Research
+1 Consecrated Sphinx
+1 Counterspell
+1 Cut a Deal
+1 Cyclonic Rift
+1 Darksteel Mutation
+1 Dictate of Kruphix
+1 Drowned Catacomb
+1 Esper Sentinel
+1 Fierce Guardianship
+1 Flooded Strand
+1 Geier Reach Sanitarium
+1 Ghostly Prison
+1 Glacial Fortress
+1 Gloomlake Verge
+1 Hengegate Pathway // Mistgate Pathway
+1 Howling Mine
+1 Ice Tunnel
+1 Inkshield
+1 Insatiable Avarice
+6 Island
+1 Jace's Archivist
+1 Kami of the Crescent Moon
+1 Laboratory Maniac
+1 Marauding Blight-Priest
+1 Merfolk Looter
+1 Mikokoro, Center of the Sea
+1 Minds Aglow
+1 Night's Whisper
+1 Obscura Storefront
+1 Orcish Bowmasters
+1 Path to Exile
+1 Phyrexian Arena
+2 Plains
+1 Polluted Delta
+1 Propaganda
+1 Prosperity
+1 Psychosis Crawler
+1 Morphic Pool
+1 Raffine's Tower
+1 Reflecting Pool
+1 Reliquary Tower
+1 Rhystic Study
+1 Sapphire Medallion
+1 Scrawling Crawler
+1 Secret Rendezvous
+1 Sheoldred, the Apocalypse
+1 Shipwreck Marsh
+1 Sign in Blood
+1 Silver Scrutiny
+1 Sink into Stupor // Soporific Springs
+1 Smothering Tithe
+1 Starscape Cleric
+1 Sunken Hollow
+3 Swamp
+1 Swords to Plowshares
+1 Sygg, River Cutthroat
+1 Teferi's Ageless Insight
+1 Teferi's Protection
+1 Teferi's Puzzle Box
+1 Hallowed Fountain
+1 The One Ring
+1 Thought Vessel
+1 Three Steps Ahead
+1 Tolarian Winds
+1 Trouble in Pairs
+1 Underground River
+1 Vault of Champions
+1 Watery Grave
+1 Whirlpool Rider
+1 Whispering Madness
+1 Windfall
+1 Lotus Petal
+1 Black Market Connections
+1 Sol Ring
+1 Well of Lost Dreams
+1 Library of Leng
+1 Notion Thief
+1 Faerie Mastermind
+1 Shattered Sanctum
+1 Tundra

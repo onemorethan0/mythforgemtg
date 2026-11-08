@@ -1,0 +1,108 @@
+# Archidekt — Whose Trap is it Anyway?
+# source: archidekt:5235846
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Kyodai, Soul of Kamigawa
+1 Chromatic Lantern
+1 Arcane Signet
+1 Sol Ring
+1 Prophetic Prism
+1 Commander's Sphere
+1 Wind-Scarred Crag
+1 Everflowing Chalice
+1 Reliquary Tower
+1 Rogue's Passage
+1 Graypelt Refuge
+1 Lavaclaw Reaches
+1 Celestial Colonnade
+1 Tangled Islet
+1 Waterfront District
+1 Aven Trailblazer
+1 Broodstar
+1 Nomad Outpost
+1 Jungle Shrine
+1 Thriving Isle
+1 Plains
+1 Psychosis Crawler
+1 Halimar Depths
+1 Smoldering Spires
+1 Swamp
+1 Nemesis Trap
+1 Forest
+1 Stone Idol Trap
+1 Island
+1 Needlebite Trap
+1 Inferno Trap
+1 Ricochet Trap
+1 Runeflare Trap
+1 Lethargy Trap
+1 Bag End Porter
+1 Nael, Avizoa Aeronaut
+1 Renegade Doppelganger
+1 World Queller
+1 Najal, the Storm Runner
+1 Tolarian Contempt
+1 Disturbing Conversion
+1 Borne Upon a Wind
+1 Soul Shatter
+1 Taigam, Ojutai Master
+1 Gomazoa
+1 Cast Through Time
+1 Smite
+1 Riddle of Lightning
+1 Drag Down
+1 Might of Alara
+1 Artillery Blast
+1 Dead Reckoning
+1 Polymorph
+1 Dromar's Cavern
+1 Erratic Explosion
+1 Gandalf's Sanction
+1 Treasure Hunt
+1 Serpentine Curve
+1 Arcane Bombardment
+1 Mountain
+1 Summoning Trap
+1 Arrow Volley Trap
+1 Pitfall Trap
+1 Cobra Trap
+1 Lavaball Trap
+1 Serra Avatar
+1 Invasion of Xerex // Vertex Paladin
+1 Crosis's Catacombs
+1 Darigaaz's Caldera
+1 Treva's Ruins
+1 Rith's Grove
+1 Archive Trap
+1 Baloth Cage Trap
+1 Permafrost Trap
+1 Ravenous Trap
+1 Refraction Trap
+1 Slingbow Trap
+1 Trapmaker's Snare
+1 Whiplash Trap
+1 Altar Golem
+1 Beast of Burden
+1 Daxos, Blessed by the Sun
+1 Body of Knowledge
+1 Horde of Boggarts
+1 Lord of Extinction
+1 Traproot Kami
+1 Serpent of the Endless Sea
+1 Soulsurge Elemental
+1 Command Tower
+1 Forest
+1 Mountain
+1 Swamp
+1 Forest
+1 Island
+1 Plains
+1 Plains
+1 Mountain
+1 Swamp
+1 Island

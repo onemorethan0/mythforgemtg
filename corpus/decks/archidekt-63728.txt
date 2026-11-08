@@ -1,0 +1,108 @@
+# Archidekt — Gishath, Big Boi's
+# source: archidekt:63728
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Gishath, Sun's Avatar
+
+Deck:
+1 Defense of the Heart
+1 Mana Vault
+1 Fabled Passage
+1 Windswept Heath
+1 Nature's Lore
+1 Aura Shards
+1 Urza's Saga
+1 Arid Mesa
+1 Bloodstained Mire
+1 Flooded Strand
+1 Scalding Tarn
+1 Temple Garden
+1 Sacred Foundry
+1 Strionic Resonator
+1 Temple Altisaur
+1 Zetalpa, Primal Dawn
+1 Etali, Primal Storm
+1 Zacama, Primal Calamity
+1 Goring Ceratops
+1 Wakening Sun's Avatar
+1 Rootbound Crag
+1 Regisaur Alpha
+1 Teferi's Protection
+1 Scattered Groves
+1 Sheltered Thicket
+1 Heroic Intervention
+1 Regal Behemoth
+1 Beast Within
+1 Zendikar Resurgent
+1 Urza's Incubator
+1 Rogue's Passage
+1 Wooded Foothills
+1 Mana Confluence
+1 Xenagos, God of Revels
+1 Krosan Grip
+1 Stomping Ground
+1 Mana Reflection
+1 Savage Beating
+1 Worldly Tutor
+1 Chaos Warp
+1 Spire Garden
+1 Bountiful Promenade
+1 Rampaging Brontodon
+1 God-Eternal Rhonas
+1 Finale of Devastation
+1 Prismatic Vista
+1 Sol Ring
+1 Arcane Signet
+1 Apex Altisaur
+1 Embercleave
+1 The Great Henge
+1 Quartzwood Crasher
+1 Lightning Greaves
+1 Command Tower
+1 Marsh Flats
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Farseek
+1 Congregation at Dawn
+1 Whispersilk Cloak
+1 Mirari's Wake
+1 Seize the Day
+1 Sylvan Library
+1 Chromatic Lantern
+1 Smothering Tithe
+1 Moonsilver Key
+1 Thrashing Brontodon
+1 Jetmir's Garden
+1 Plains
+1 Mountain
+1 Seismic Monstrosaur
+1 Delighted Halfling
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Earthshaker Dreadmaw
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Trumpeting Carnosaur
+1 Ghalta and Mavren
+1 Three Visits
+1 Forest
+1 Roaming Throne
+1 Carnage Tyrant
+1 Bonehoard Dracosaur
+1 Ghalta, Primal Hunger
+1 Intrepid Paleontologist
+1 Soaring Sandwing
+1 Zog, Triceraton Castaway
+1 Boseiju, Who Endures
+1 Cavern of Souls
+1 Nurturing Bristleback
+1 Pantlaza, Sun-Favored
+1 Hulking Raptor
+1 Ghalta, Stampede Tyrant
+1 Annie Joins Up
+1 Palani's Hatcher
+1 Welcome to . . . // Jurassic Park
+1 Savage Land Dinosaur
+1 World War Hulk
+1 Devil Dinosaur
+1 Verdant Sun's Avatar

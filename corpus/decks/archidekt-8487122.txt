@@ -1,0 +1,100 @@
+# Archidekt — p1. you did what now?
+# source: archidekt:8487122
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Fathom Mage + Wizard Class; Bracket 2 allows none
+
+Commander:
+1 Ms. Bumbleflower
+
+Deck:
+1 Faerie Artisans
+1 Command Tower
+4 Island
+1 Tempt with Discovery
+1 Beast Within
+1 Demolition Field
+1 Terramorphic Expanse
+1 Flooded Grove
+1 Glacial Fortress
+1 Hinterland Harbor
+1 Arcane Signet
+1 Wizard Class
+1 Swords to Plowshares
+1 Exotic Orchard
+1 Communal Brewing
+1 Seaside Citadel
+1 Prairie Stream
+1 Mangara, the Diplomat
+1 Canopy Vista
+1 Reliquary Tower
+1 Sunpetal Grove
+1 Riot Control
+1 Managorger Hydra
+1 Promise of Loyalty
+1 Generous Gift
+1 Eladamri's Vineyard
+1 Orzhov Advokist
+1 Faerie Mastermind
+1 Duelist's Heritage
+1 Aboleth Spawn
+1 Deep Gnome Terramancer
+1 Pollywog Prodigy
+1 Ghostly Prison
+1 Fathom Mage
+1 Dreamtide Whale
+1 Smuggler's Share
+1 Ishai, Ojutai Dragonspeaker
+1 Heartwood Storyteller
+1 Kodama of the West Tree
+1 Kwain, Itinerant Meddler
+1 Howling Mine
+1 Dictate of Kruphix
+1 Selesnya Sanctuary
+1 Simic Growth Chamber
+1 Azorius Chancery
+1 Rootweaver Druid
+1 Archivist of Oghma
+1 Disorienting Choice
+1 Dismantling Wave
+1 Patrolling Peacemaker
+1 The Unagi of Kyoshi Island
+1 Urban Retreat
+1 Selvala, Explorer Returned
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Rites of Flourishing
+1 Avatar of Growth
+1 Burgeoning
+1 Ledger Shredder
+3 Plains
+5 Forest
+1 Capricopian
+1 Berserk
+1 Tundra
+1 Sakura-Tribe Elder
+1 King T'Challa // Black Panther, Hope Enduring
+1 Misty Rainforest
+1 Savannah
+1 Breeding Pool
+1 Spara's Headquarters
+1 Hallowed Fountain
+1 Temple Garden
+1 Flooded Strand
+1 Tropical Island
+1 Windswept Heath
+1 Pensive Professor
+1 The Queen of Dale
+1 Druid of Purification
+1 Gleaming Splendor
+1 Trouble in Pairs
+1 Nature's Lore
+1 Arcane Denial
+1 Three Visits
+1 Danny Pink
+1 Dusk Legion Duelist
+1 Speaker of the Heavens
+1 Generous Pup
+1 Loran of the Third Path
+1 Kami of the Crescent Moon
+1 Giggling Skitterspike
+1 The Council of Four

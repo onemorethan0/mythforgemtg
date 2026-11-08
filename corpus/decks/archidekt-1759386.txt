@@ -1,0 +1,105 @@
+# Archidekt — [B4] Abzan Lifegain
+# source: archidekt:1759386
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ikra Shidiqi, the Usurper
+1 Tymna the Weaver
+
+Deck:
+1 Talisman of Resilience
+1 Exquisite Blood
+1 Bolas's Citadel
+1 Trelasarra, Moon Dancer
+1 Vito, Thorn of the Dusk Rose
+1 Vizkopa Guildmage
+1 Caves of Koilos
+1 Llanowar Wastes
+1 Mana Confluence
+1 Deathcap Glade
+1 Shattered Sanctum
+1 Overgrown Farmland
+1 Dauthi Voidwalker
+1 Teferi's Protection
+1 Assassin's Trophy
+1 Toxic Deluge
+1 Nature's Claim
+1 Heliod, Sun-Crowned
+1 Birds of Paradise
+1 Heroic Intervention
+1 Swords to Plowshares
+1 Kambal, Consul of Allocation
+1 Talisman of Unity
+1 Talisman of Hierarchy
+1 Bountiful Promenade
+1 Sylvan Library
+1 Sorin, Vengeful Bloodlord
+1 Vampiric Tutor
+1 Elas il-Kor, Sadistic Pilgrim
+1 Noxious Revival
+1 Essence Warden
+1 Sensei's Divining Top
+1 Aetherflux Reservoir
+1 Authority of the Consuls
+1 Arcane Signet
+1 Beast Within
+1 City of Brass
+1 Anguished Unmaking
+1 Dina, Soul Steeper
+1 Sheoldred, the Apocalypse
+1 Deathrite Shaman
+1 Amalia Benavides Aguirre
+1 Blind Obedience
+1 Smothering Tithe
+1 Vault of Champions
+1 Undergrowth Stadium
+1 Flawless Maneuver
+1 Deadly Rollick
+1 Sanguine Bond
+1 Soul's Attendant
+1 Forest
+1 Command Tower
+1 Sol Ring
+1 Necropotence
+1 Windswept Heath
+1 Path to Exile
+1 Lotho, Corrupt Shirriff
+1 Enduring Tenacity
+1 Godless Shrine
+1 Marsh Flats
+1 Verdant Catacombs
+1 Temple Garden
+1 Overgrown Tomb
+3 Swamp
+2 Plains
+1 Walking Ballista
+1 Dark Confidant
+1 Soul Warden
+1 Bloodthirsty Conqueror
+1 Avacyn's Pilgrim
+1 Llanowar Elves
+1 Demonic Tutor
+1 The One Ring
+1 Urza's Saga
+1 Cavern of Souls
+1 Gleaming Splendor
+1 Enlightened Tutor
+1 South Wind Avatar
+1 Ancient Tomb
+1 Worldly Tutor
+1 Phyrexian Tower
+1 Bayou
+1 Savannah
+1 Scrubland
+1 Shadowy Backstreet
+1 Underground Mortuary
+1 Dark Ritual
+1 Wishclaw Talisman
+1 Esper Sentinel
+1 Utopia Sprawl
+1 Horizon of Progress
+1 Fumigate
+1 Ranger-Captain of Eos
+1 Delighted Halfling
+1 Indatha Triome

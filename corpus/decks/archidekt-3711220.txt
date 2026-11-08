@@ -1,0 +1,90 @@
+# Archidekt — Naeled It! - Nael Simic Domain [B1]
+# source: archidekt:3711220
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Nael, Avizoa Aeronaut
+
+Deck:
+1 Nature's Cloak
+1 Briar Hydra
+1 Sphinx of Clear Skies
+1 Traveler's Cloak
+1 Woodland Wanderer
+1 Territorial Maro
+1 Springmantle Cleric
+1 Reef Shaman
+1 Tideshaper Mystic
+1 Spectral Shift
+1 Mind Bend
+1 Navigator's Compass
+1 Expedition Map
+1 Dryad of the Ilysian Grove
+1 Omo, Queen of Vesuva
+1 Reality Shift
+1 Exert Influence
+1 Rapid Hybridization
+1 Pongify
+1 Chart a Course
+1 Holistic Wisdom
+1 Rimewood Falls
+1 Tangled Islet
+1 Thespian's Stage
+1 Unstable Frontier
+1 Urborg, Tomb of Yawgmoth
+1 Yavimaya Coast
+1 Growth Spiral
+1 Copy Land
+1 Command Tower
+1 Dream Thrush
+1 Prismatic Omen
+1 Sweep the Skies
+1 Glinting Creeper
+1 Chasm Skulker
+1 Skyrider Elf
+1 Mystic Compass
+1 Yavimaya, Cradle of Growth
+1 Pixie Illusionist
+1 Thran Portal
+1 Winged Words
+1 Mirkwood Channeler
+1 Vesuva
+1 Negate
+1 Curse of the Swine
+1 Ulvenwald Hydra
+1 Star Compass
+1 Urza's Cave
+1 Overlord of the Hauntwoods
+1 Seasinger
+1 Herd Migration
+1 Eagle Vision
+1 Staff of Titania
+1 Manaforce Mace
+1 Farseek
+1 Infuse with the Elements
+1 World Map
+1 Slimefoot's Survey
+1 The Weatherseed Treaty
+1 Nature's Lore
+1 Multiversal Passage
+1 Breeding Pool
+1 Swiftfoot Boots
+1 Heroic Intervention
+1 Stormtide Leviathan
+1 Swampbenders
+1 Explore
+1 Joint Exploration
+1 Heart of Yavimaya
+1 Explorer's Scope
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Glowcap Lantern
+9 Forest
+1 Baleful Stare
+1 Magical Hack
+1 Sodden Verdure
+1 Rain-Slicked Copse
+11 Island
+1 Withering Gaze
+1 Insight
+1 Elvish Scout

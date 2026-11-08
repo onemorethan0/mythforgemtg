@@ -1,0 +1,87 @@
+# Archidekt — The Black Parade
+# source: archidekt:21277764
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Grand Marshal Macie
+
+Deck:
+1 Army of the Damned
+1 Enduring Tenacity
+1 Doom Foretold
+1 Hideous Visage
+1 Circle of Despair
+1 Temple of Silence
+1 Haunted Screen
+1 Overseer of the Damned
+1 Requiem Angel
+1 Mourning
+1 Heartless Act
+1 The End
+1 Disenchant
+1 Mother of Runes
+1 Cloistered Youth // Unholy Fiend
+1 Mirage Mirror
+1 Welcome the Dead
+1 Blood Bairn
+1 Savior of the Small
+1 Selfless Savior
+1 Sigardian Savior
+1 Festive Funeral
+1 Ghostly Dancers
+1 Hateful Eidolon
+1 Ashes to Ashes
+1 Great Arashin City
+1 Lively Dirge
+1 Vibrant Cityscape
+1 Isolated Chapel
+12 Plains
+13 Swamp
+1 Curse of Conformity
+1 March of Wretched Sorrow
+1 Path of Bravery
+1 Bereaved Survivor // Dauntless Avenger
+1 Dramatic Finale
+1 Thespian's Stage
+1 Accursed Duneyard
+1 Toby, Beastie Befriender
+1 Angel of Despair
+1 Inner Demon
+1 Grief
+1 Lamentation
+1 Dazzling Theater // Prop Room
+1 Usher of the Fallen
+1 Bastion of Remembrance
+1 Funeral Room // Awakening Hall
+1 Grim Guardian
+1 Blood Artist
+1 Neva, Stalked by Nightmares
+1 Surgical Suite // Hospital Room
+1 Ghoulish Procession
+1 Coldsteel Heart
+1 Insomnia, Crown City
+1 Forlorn Flats
+1 Mortuary Mire
+1 Forsaken Sanctuary
+1 Damn
+1 Lampad of Death's Vigil
+1 Tormented Hero
+1 Aphemia, the Cacophony
+1 Doomwake Giant
+1 Archetype of Courage
+1 Nightmare Shepherd
+1 Syr Konrad, the Grim
+1 Despondency
+1 City of Brass
+1 Capital City
+1 Nighthowler
+1 Redemption Arc
+1 Blasphemous Edict
+1 Woe Strider
+1 Requiem Monolith
+1 Champion of Stray Souls
+1 True Conviction
+1 Angelic Destiny
+1 Fabled Hero
+1 Homeward Path

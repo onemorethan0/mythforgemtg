@@ -1,0 +1,91 @@
+# Archidekt — CEDH - Eluge Deluge
+# source: archidekt:8603083
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Eluge, the Shoreless Sea
+
+Deck:
+1 Otawara, Soaring City
+1 Essence Flux
+1 Displacer Kitten
+1 Spellseeker
+1 Nexus of Fate
+1 Mindbreak Trap
+1 Cyclonic Rift
+1 Timetwister
+1 Phantasmal Image
+1 Chain of Vapor
+1 Mystic Sanctuary
+1 Force of Will
+1 Force of Negation
+1 Ledger Shredder
+1 Sol Ring
+1 Snap
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Enter the Infinite
+1 Mystical Tutor
+1 Fierce Guardianship
+1 Sapphire Medallion
+1 Arcane Signet
+1 Rhystic Study
+1 Swan Song
+1 Delay
+1 Flooded Strand
+1 Lórien Revealed
+1 Dig Through Time
+1 Turnabout
+1 Faerie Mastermind
+1 Time Spiral
+1 Frantic Search
+1 High Tide
+1 Baral, Chief of Compliance
+1 Mystic Remora
+1 Mox Diamond
+1 The One Ring
+1 Chrome Mox
+1 Scalding Tarn
+1 Windfall
+1 Polluted Delta
+1 Misty Rainforest
+1 Thassa's Oracle
+1 An Offer You Can't Refuse
+1 Mana Vault
+1 Flusterstorm
+1 Narset, Parter of Veils
+1 Merchant Scroll
+1 Prismatic Vista
+1 Lotus Petal
+1 Ancient Tomb
+1 Archaeomancer
+1 Reenact the Crime
+1 Intuition
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Sink into Stupor // Soporific Springs
+1 Phyrexian Metamorph
+1 Ghostly Flicker
+1 Urza's Saga
+1 Time Warp
+1 Gemstone Caverns
+1 Emergence Zone
+1 Mirrormade
+1 Fellwar Stone
+1 Arcum's Astrolabe
+1 Prismatic Lens
+1 Gifts Ungiven
+1 Flesh Duplicate
+1 Valley Floodcaller
+1 Steal Enchantment
+1 Retraction Helix
+1 Stock Up
+1 Ghostly Pilferer
+1 Mana Drain
+1 Into the Flood Maw
+1 Wan Shi Tong, Librarian
+1 Pulse of the Grid
+1 Temporal Mastery
+1 Nykthos, Shrine to Nyx
+18 Snow-Covered Island
+1 Mind's Desire
+1 Flash Photography

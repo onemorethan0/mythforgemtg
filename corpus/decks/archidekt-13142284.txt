@@ -1,0 +1,100 @@
+# Archidekt — It's a Froj!!
+# source: archidekt:13142284
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tatsunari, Toad Rider
+
+Deck:
+1 Rapid Hybridization
+1 Pollywog Prodigy
+1 Dour Port-Mage
+1 Polliwallop
+1 Turn to Frog
+1 Run Away Together
+1 Harmonize
+1 Swamp
+2 Island
+1 Fertile Ground
+1 Gathering Stone
+1 Swamp
+1 Command Tower
+1 Reflections of Littjara
+1 Oakhollow Village
+1 Croaking Counterpart
+1 Exotic Orchard
+1 Secluded Courtyard
+1 Three Tree Scribe
+1 Lilypad Village
+1 Wild Growth
+1 Clifftop Lookout
+1 Long River's Pull
+2 Island
+1 Swamp
+1 Swamp
+1 Clement, the Worrywort
+1 Dreamdew Entrancer
+1 Sunshower Druid
+1 Patchwork Banner
+2 Island
+1 Utopia Sprawl
+1 Forest
+1 Forest
+1 Breeding Pool
+1 Overgrown Tomb
+1 Splash Portal
+1 Lilysplash Mentor
+1 Mistbreath Elder
+1 Commander's Sphere
+1 Papercraft Decoy
+1 Poison Dart Frog
+1 Frog Tongue
+1 Fabled Passage
+1 Forest
+1 Nissa, Who Shakes the World
+1 Forest
+1 Amphibian Downpour
+1 Frogify
+1 Communal Brewing
+1 Case of the Locked Hothouse
+1 Portent of Calamity
+1 Druidic Ritual
+1 Hedge Maze
+1 Underground Mortuary
+1 Kasmina's Transmutation
+1 Cloudstone Curio
+1 Halo Hopper
+1 Spore Frog
+2 Island
+1 Three Tree City
+1 Rampant Frogantua
+1 Rites of Flourishing
+1 Frogmite
+1 Burrog Barrage
+1 Plaxcaster Frogling
+1 Vernal Fen
+1 Festering Thicket
+1 Shimmerwilds Growth
+1 Haze Frog
+1 Sodden Verdure
+1 Rain-Slicked Copse
+1 Door of Destinies
+1 Case of the Trampled Garden
+1 Polymorphist's Jest
+1 Overprotect
+1 Shimmering Wings
+1 Visions of Dominance
+1 Rancor
+1 Valley Mightcaller
+1 Bogwater Lumaret
+1 Turbulent Wilderness
+1 Into the Flood Maw
+1 Psychic Frog
+1 Turbulent Fen
+1 Blor the Impervious
+1 Zagoth Triome
+1 Yavimaya, Cradle of Growth
+1 Treeguard Duo
+1 Jade Avenger
+1 Pond Prophet

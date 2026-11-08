@@ -1,0 +1,88 @@
+# Archidekt — Kestia Curiosity Tribal
+# source: archidekt:340592
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kestia, the Cultivator
+
+Deck:
+1 Sanctum Weaver
+1 Fertile Ground
+1 Auramancer
+1 Curious Obsession
+1 One With the Wind
+1 Control Magic
+1 Sixth Sense
+1 Gryff's Boon
+6 Plains
+1 Evolving Wilds
+1 Hypnotic Siren
+1 Flitterstep Eidolon
+1 Temple of Enlightenment
+1 Aqueous Form
+1 Thassa, God of the Sea
+1 Gladecover Scout
+1 Ethereal Armor
+1 Invisible Stalker
+1 Spectral Flight
+1 Gavony Township
+1 Rampant Growth
+8 Forest
+1 Persuasion
+1 Confiscate
+1 Launch
+1 Arcane Flight
+1 Satyr Enchanter
+1 Kor Spiritdancer
+1 Blighted Woodland
+1 Whitewater Naiads
+1 Winds of Rath
+1 Unquestioned Authority
+1 Sage's Reverie
+1 Ajani's Chosen
+1 Slippery Bogle
+1 Hero of Iroas
+1 Heliod's Pilgrim
+1 Springbloom Druid
+1 Segovian Angel
+1 Season of Growth
+1 Sunpetal Grove
+1 All That Glitters
+1 Command Tower
+1 Rogue's Passage
+1 Snake Umbra
+1 Rancor
+1 Aura Gnarlid
+1 Curiosity
+1 Corrupted Conscience
+1 Archetype of Imagination
+1 Staggering Insight
+1 Siona, Captain of the Pyleas
+1 Wolfwillow Haven
+1 Bronzehide Lion
+1 Transcendent Envoy
+1 Cold-Eyed Selkie
+1 Arbor Elf
+1 Spectral Steel
+1 Starnheim Courser
+1 Elvish Mystic
+1 Wild Growth
+1 Enigmatic Incarnation
+1 Mischievous Catgeist // Catlike Curiosity
+1 Tangled Florahedron // Tangled Vale
+1 Prairie Stream
+1 Utopia Sprawl
+1 Tangled Islet
+1 Idyllic Beachfront
+1 Eidolon of Blossoms
+1 Silhana Ledgewalker
+1 Sigil of the Empty Throne
+1 Krosan Verge
+1 Trickster's Elk
+9 Island
+1 Strength of the Harvest // Haven of the Harvest
+1 Dog Umbra
+1 Inquisitive Glimmer
+1 Bottomless Pool // Locker Room
+1 Lantern Bearer // Lanterns' Lift

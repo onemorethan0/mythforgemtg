@@ -1,7 +1,8 @@
 # Archidekt — Witherbloom, the Balancer - Spell Affinity
 # source: archidekt:24779243
 # fetched: 2026-07-28
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Chatterfang, Squirrel General + Pitiless Plunderer; Bracket 2 allows none
 
 Commander:
 1 Witherbloom, the Balancer

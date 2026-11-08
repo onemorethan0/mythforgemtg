@@ -1,0 +1,100 @@
+# Archidekt — Wilhelt, the Rotcleaver Zombies
+# source: archidekt:4394144
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Gravecrawler + Phyrexian Altar; Bracket 2 allows none
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Ayara, First of Locthwain
+1 Darkslick Shores
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Ashnod's Altar
+1 Shipwreck Marsh
+1 Accursed Marauder
+1 Warren Soultrader
+1 Temple of Deceit
+1 Feed the Swarm
+1 Morphic Pool
+1 Sol Ring
+1 Black Market Connections
+1 Undead Augur
+1 Phyrexian Tower
+1 Necroduality
+1 Headless Rider
+1 Gray Merchant of Asphodel
+1 Cryptbreaker
+1 Command Tower
+1 Counterspell
+1 Diregraf Colossus
+1 Diregraf Captain
+1 Plague Belcher
+1 Clearwater Pathway // Murkwater Pathway
+1 Relentless Dead
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Underground River
+1 Fetid Pools
+1 Wayfarer's Bauble
+1 Undercity Sewers
+1 Kindred Discovery
+1 Dreadhorde Invasion
+1 Polluted Delta
+1 Sink into Stupor // Soporific Springs
+1 Gloomlake Verge
+1 Exotic Orchard
+1 Jet Medallion
+1 Gleaming Overseer
+1 Fell the Profane // Fell Mire
+1 Shepherd of Rot
+1 Hagra Mauling // Hagra Broodpit
+1 Lazotep Reaver
+1 High Market
+1 The Meathook Massacre
+1 Vizier of the Scorpion
+1 Crowded Crypt
+1 Withering Torment
+1 Midgar, City of Mako // Reactor Raid
+1 Arcane Denial
+1 Waterlogged Teachings // Inundated Archive
+1 Tainted Isle
+1 Shambling Ghast
+1 Talisman of Dominance
+1 Arcane Signet
+1 Skullclamp
+1 Unholy Grotto
+1 Island
+1 Malakir Rebirth // Malakir Mire
+1 Carrion Feeder
+1 Kindred Dominance
+1 Midnight Reaper
+1 Bladestitched Skaab
+1 Bloodline Bidding
+1 Noxious Ghoul
+1 Gravecrawler
+1 Overcharged Amalgam
+1 Dimir Signet
+1 Deadly Dispute
+1 Watery Grave
+1 The Scarab God
+1 Zombie Apocalypse
+1 Vengeful Dead
+1 Gisa and Geralf
+1 Lord of the Undead
+1 Putrid Goblin
+10 Swamp
+1 Turbulent Wetlands
+1 Fell Stinger
+1 Rooftop Storm
+1 Undead Warchief
+1 Imprisoned in the Moon
+1 Bontu's Monument
+1 Phyrexian Altar
+1 Archghoul of Thraben
+1 Butcher Ghoul
+1 Unstoppable Slasher
+1 The Darkness Crystal
+1 Zul Ashur, Lich Lord
+1 Delay
+1 Species Specialist

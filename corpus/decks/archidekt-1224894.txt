@@ -1,0 +1,79 @@
+# Archidekt — I Hold You
+# source: archidekt:1224894
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Farewell); Bracket 1 allows 0
+
+Commander:
+1 Aminatou, the Fateshifter
+
+Deck:
+1 Hubris
+1 Baleful Ammit
+1 Wander in Death
+1 Parting Thoughts
+1 Essence Flux
+1 Displacement Wave
+1 Dragonlord's Prerogative
+1 Soulflayer
+1 Farewell
+1 Springleaf Drum
+14 Swamp
+1 Grim Haruspex
+10 Island
+9 Plains
+1 Dirge of Dread
+1 Twilight Prophet
+1 Sandblast
+1 Selfless Spirit
+1 Fogwalker
+1 Noosegraf Mob
+1 Topplegeist
+1 Compelling Deterrence
+1 Rakshasa's Disdain
+1 Suspension Field
+1 Dutiful Return
+1 Necropolis Fiend
+1 Chronostutter
+1 Nighthowler
+1 Grim Return
+1 Immortal Servitude
+1 Rite of Belzenlok
+1 Game Plan
+1 Aminatou's Augury
+1 Grasping Thrull
+1 Martyr's Bond
+1 Force of Despair
+1 Soulherder
+1 Unholy Indenture
+1 Order of Midnight // Alter Fate
+1 Mire Triton
+1 Medomai's Prophecy
+1 Essence Scatter
+1 Promise of Tomorrow
+1 Cuombajj Witches
+1 Damnation
+1 Swamp
+1 Svyelun of Sea and Sky
+1 Archfiend of Ifnir
+1 Akroan Horse
+1 Unknown Shores
+1 Silent Clearing
+1 Giver of Runes
+1 Nagging Thoughts
+1 Pale Rider of Trostad
+1 Pontiff of Blight
+1 Debt to the Deathless
+1 Blind Obedience
+1 Conclave Tribunal
+1 Deliver Unto Evil
+1 String of Disappearances
+1 Answered Prayers
+1 Scheming Symmetry
+1 Blood for Bones
+1 Feast of Succession
+1 Sower of Temptation
+1 Rite of the Serpent
+1 Covenant of Blood
+1 Terramorphic Expanse
+1 Swamp

@@ -1,0 +1,104 @@
+# Archidekt — Inalla, Archmage Ritualist
+# source: archidekt:2040647
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Inalla, Archmage Ritualist
+
+Deck:
+1 Aether Channeler
+1 Otawara, Soaring City
+1 Determined Iteration
+1 Bloodstained Mire
+1 Shipwreck Marsh
+1 City of Brass
+1 Mana Echoes
+1 Xander's Lounge
+1 Fellwar Stone
+1 Luxury Suite
+1 Damnation
+1 Haunted Ridge
+1 Ashnod's Altar
+1 Watcher for Tomorrow
+1 Azami, Lady of Scrolls
+1 Sol Ring
+1 Strip Mine
+1 Ponder
+1 Force of Negation
+1 Stormcarved Coast
+1 Thassa's Oracle
+1 Riptide Laboratory
+1 Harmonic Prodigy
+1 Naban, Dean of Iteration
+1 Flame of Anor
+1 Step Through
+1 Prismatic Vista
+1 Black Market Connections
+1 Bloodline Necromancer
+1 Ruthless Technomancer
+1 Arcane Signet
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Talisman of Creativity
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Phyrexian Altar
+1 Morphic Pool
+1 Blasphemous Edict
+1 Fact or Fiction
+1 Wasteland
+1 Command Tower
+1 Scalding Tarn
+1 Polluted Delta
+1 Arid Mesa
+1 Marsh Flats
+1 Mana Drain
+1 Watery Grave
+1 Toxic Deluge
+1 Blood Crypt
+1 Training Center
+1 Thundering Falls
+1 Misty Rainforest
+1 Steam Vents
+1 Undercity Sewers
+1 Flooded Strand
+1 Cavern of Souls
+1 Flare of Denial
+1 Serum Visionary
+1 Three Tree City
+1 Mystic Remora
+1 Warren Soultrader
+1 Blasphemous Act
+1 Vedalken Aethermage
+1 Stock Up
+1 Force of Will
+1 Cyclonic Rift
+1 Consult the Star Charts
+1 Brainstorm
+1 Mountain
+1 Counterspell
+1 Sink into Stupor // Soporific Springs
+1 Expressive Iteration
+1 An Offer You Can't Refuse
+1 Swan Song
+1 Sea Gate Oracle
+1 Dour Port-Mage
+1 Thundertrap Trainer
+1 Dismember
+1 Preordain
+1 Culling the Weak
+1 Dualcaster Mage
+1 Basalt Ravager
+1 Molten Duplication
+1 Snapcaster Mage
+1 Evacuation
+1 Reanimate
+1 Flusterstorm
+2 Swamp
+4 Island
+1 Pact of Negation
+1 Archaeomancer
+1 Saw in Half
+1 Dark Ritual
+1 Unearth
+1 Seasoned Cryomancer

@@ -1,0 +1,107 @@
+# Archidekt — Mardu Vampires
+# source: archidekt:3215392
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Akroma's Will
+1 Captivating Vampire
+1 Invasion of Gobakhan // Lightshield Array
+1 Urborg, Tomb of Yawgmoth
+1 City of Brass
+1 Purphoros, God of the Forge
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Graven Cairns
+1 Blood Crypt
+1 Godless Shrine
+1 Sacred Foundry
+1 Marsh Flats
+1 Bloodstained Mire
+1 Diabolic Intent
+1 Vault of the Archangel
+1 Vampire Nocturnus
+1 Order of Sacred Dusk
+1 Swords to Plowshares
+1 Secluded Courtyard
+1 Vito, Thorn of the Dusk Rose
+1 Drana, Liberator of Malakir
+1 Indulgent Aristocrat
+1 Legion's Landing // Adanto, the First Fort
+1 Skullclamp
+1 Command Tower
+1 Path of Ancestry
+1 Cordial Vampire
+1 Cruel Celebrant
+1 Legion Lieutenant
+1 Nullpriest of Oblivion
+1 Voldaren Estate
+1 Caves of Koilos
+1 Nighthawk Scavenger
+1 Pact of the Serpent
+1 Shared Animosity
+1 Stromkirk Captain
+1 Mountain
+1 Yahenni, Undying Partisan
+1 Bloodline Keeper // Lord of Lineage
+1 Sanctum Seeker
+1 Champion of Dusk
+1 Malakir Bloodwitch
+1 Mirror Entity
+1 Sulfurous Springs
+1 Bolas's Citadel
+1 Vault of Champions
+1 Luxury Suite
+1 Arid Mesa
+1 Vampire Socialite
+1 Cemetery Gatekeeper
+1 Fire Covenant
+1 Reflecting Pool
+1 Blightstep Pathway // Searstep Pathway
+1 Plains
+1 Strip Mine
+1 Exotic Orchard
+1 Silent Clearing
+1 Markov Baron
+1 Phyrexian Tower
+1 Descendants' Fury
+1 Master of Dark Rites
+1 Eiganjo, Seat of the Empire
+1 Elenda, the Dusk Rose
+1 Ruthless Lawbringer
+1 Savai Triome
+1 Shadowblood Ridge
+1 Bloodletter of Aclazotz
+1 Roaming Throne
+1 Charismatic Conqueror
+1 Wispdrinker Vampire
+1 Fetid Heath
+1 Warleader's Call
+1 Reconnaissance
+1 Necropotence
+1 Cavern of Souls
+1 Boggart Trawler // Boggart Bog
+1 Necrodominance
+1 Bloodthirsty Conqueror
+1 Three Tree City
+1 Blood Artist
+1 Vampire Gourmand
+1 Sorin, Imperious Bloodlord
+1 Welcoming Vampire
+1 Preacher of the Schism
+1 Winds of Abandon
+1 Clavileño, First of the Blessed
+1 Shadowy Backstreet
+1 Connecting the Dots
+2 Swamp
+1 Anje's Ravager
+1 Florian, Voldaren Scion
+1 Viscera Seer
+1 Ripples of Undeath
+1 Insatiable Avarice
+1 Lethal Scheme
+1 Braids, Arisen Nightmare
+1 Ivora, Insatiable Heir
+1 Mercadia's Downfall

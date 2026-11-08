@@ -1,0 +1,108 @@
+# Archidekt — Chitty hulk
+# source: archidekt:18470842
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Survival of the Fittest
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Agatha's Soul Cauldron
+1 Dryad Arbor
+1 Formidable Speaker
+1 Windswept Heath
+1 Activated Sleeper
+1 Dark Ritual
+1 Veil of Summer
+1 Cabal Ritual
+1 Birds of Paradise
+1 Pitiless Plunderer
+1 Warren Soultrader
+1 Marionette Apprentice
+1 The Cabbage Merchant
+1 Llanowar Elves
+1 Academy Manufactor
+1 Gilded Goose
+1 Elvish Mystic
+1 Elves of Deep Shadow
+1 Necropotence
+1 Endurance
+1 Delighted Halfling
+1 Demonic Tutor
+1 Finale of Devastation
+1 Vampiric Tutor
+1 Eldritch Evolution
+1 Deadly Rollick
+1 Nature's Rhythm
+1 Crop Rotation
+1 Chord of Calling
+1 Sol Ring
+1 Savage Summoning
+1 Force of Vigor
+1 Chrome Mox
+1 Tainted Pact
+1 Lotus Petal
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Mana Vault
+1 Gaea's Cradle
+1 The One Ring
+1 Phyrexian Tower
+1 Command Tower
+1 Bayou
+1 Underground Mortuary
+1 Boseiju, Who Endures
+1 Verdant Catacombs
+1 Marsh Flats
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Cavern of Souls
+1 Snow-Covered Forest
+1 Forest
+1 Snow-Covered Swamp
+1 Wooded Foothills
+1 Vexing Bauble
+1 Gemstone Caverns
+1 Experimental Confectioner
+1 Yawgmoth, Thran Physician
+1 Village Rites
+1 Blood Artist
+1 Return to Nature
+1 Black Market Connections
+1 Protean Hulk
+1 Entomb
+1 Ruthless Knave
+1 Earthcraft
+1 Animate Dead
+1 June, Bounty Hunter
+1 Grim Hireling
+1 Skullclamp
+1 Braids, Arisen Nightmare
+1 Badgermole Cub
+1 Deathrite Shaman
+1 Devoted Druid
+1 Hazel's Brewmaster
+1 Orcish Bowmasters
+1 Peregrin Took
+1 Abrupt Decay
+1 Culling the Weak
+1 Worldly Tutor
+1 Ancient Tomb
+1 Polluted Delta
+1 Overgrown Tomb
+1 Yavimaya, Cradle of Growth
+1 Swamp
+1 Undergrowth Stadium
+1 Diabolic Intent
+1 Reanimate
+1 Assassin's Trophy
+1 Opposition Agent
+1 Witherbloom Charm
+1 Runic Armasaur
+1 Dosan the Falling Leaf
+1 Cauldron Familiar
+1 Carpet of Flowers
+1 Fyndhorn Elves
+1 Natural Order
+1 Grim Tutor

@@ -1,0 +1,96 @@
+# Archidekt — All the "fish" in the sea (and other bodies of water)
+# source: archidekt:10976485
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Xolatoyac, the Smiling Flood
+
+Deck:
+1 Coral Reef
+1 Reef Worm
+1 Arixmethes, Slumbering Isle
+1 Into the Flood Maw
+1 Overflowing Basin
+1 Coral Atoll
+1 Sigiled Starfish
+1 Angler Drake
+1 Fishliver Oil
+1 Bounty of the Luxa
+1 Eluge, the Shoreless Sea
+1 Manta Ray
+1 Coral Barrier
+1 Inkwell Leviathan
+1 Dandân
+1 Mystic Sanctuary
+1 Vineglimmer Snarl
+1 Scourge of Fleets
+1 Flow of Ideas
+1 Grayscaled Gharial
+1 Hammerhead Shark
+1 Flow of Knowledge
+1 Charix, the Raging Isle
+1 Sea's Claim
+1 Simic Growth Chamber
+10 Island
+1 Evolving Wilds
+1 Flooded Grove
+1 Halimar Depths
+1 Hinterland Harbor
+1 Rimewood Falls
+1 Tangled Islet
+1 Hedge Maze
+1 Breeding Pool
+1 Purple-Crystal Crab
+1 Bronze Walrus
+1 Guard Gomazoa
+1 Voracious Greatshark
+1 Lorthos, the Tidemaker
+1 Nezahal, Primal Tide
+1 Dragon Turtle
+1 Thunderous Snapper
+1 Harbor Serpent
+1 Ichthyomorphosis
+1 Sol Ring
+1 Giant Oyster
+1 Hermitic Nautilus
+1 Yavimaya Coast
+1 Decanter of Endless Water
+1 Waterlogged Grove
+1 Thieving Otter
+1 Spreading Seas
+1 Sunken Palace
+1 Fishing Gear
+1 Auspicious Aquarium
+1 Fishing Pole
+1 Phase Dolphin
+1 Piracy Charm
+1 River Boa
+1 Turtle-Seals
+1 Calamitous Tide
+1 Growth Spiral
+1 Nylea's Presence
+1 Consuming Tide
+1 Chasm Skulker
+1 Colossal Whale
+1 Sleep with the Fishes
+1 Bounding Krasis
+1 Breaching Hippocamp
+1 Cryptic Trilobite
+1 Walking Sponge
+1 Fisher's Talent
+1 Water Wurm
+1 Marauding Brinefang
+1 Lurking Crocodile
+1 Aesi, Tyrant of Gyre Strait
+1 Lórien Revealed
+1 Urban Evolution
+1 Mikokoro, Center of the Sea
+1 Myriad Landscape
+1 Escape Tunnel
+1 Rain-Slicked Copse
+1 Sodden Verdure
+4 Forest
+1 Thornwood Falls
+1 Turbulent Wilderness
+1 Rejuvenating Springs

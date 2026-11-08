@@ -1,0 +1,91 @@
+# Archidekt — Jhoira's Innovative Bullshit Factory
+# source: archidekt:13530021
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Jhoira, Ageless Innovator
+
+Deck:
+1 Soul Foundry
+1 Swiftfoot Boots
+1 Sting, the Glinting Dagger
+1 Etherium Sculptor
+1 Foundry Inspector
+1 The Reality Chip
+1 Jhoira's Familiar
+1 God-Pharaoh's Statue
+1 Nexus of Becoming
+1 Hedron Archive
+1 Shore Up
+1 Magic Damper
+1 Fleeting Reflection
+1 Lightning Greaves
+1 Dreamstone Hedron
+1 Phyrexian Metamorph
+1 False Floor
+1 Rite of Replication
+1 Thought Monitor
+1 Combustible Gearhulk
+1 Mind's Eye
+1 The Mightstone and Weakstone
+1 Stonespeaker Crystal
+1 Research Thief
+1 Sandstone Oracle
+1 Braided Net // Braided Quipu
+1 Talisman of Creativity
+1 Fellwar Stone
+1 Arcane Signet
+1 Izzet Signet
+1 Sol Ring
+1 Wizard's Spellbook
+1 Sky Diamond
+1 Fire Diamond
+1 Thran Dynamo
+1 Conjurer's Closet
+1 Transit Mage
+1 Seat of the Synod
+1 Silverbluff Bridge
+1 Great Furnace
+1 Meteor Golem
+1 Lavaspur Boots
+1 Enthusiastic Mechanaut
+1 Kuldotha Forgemaster
+1 Crystal Skull, Isu Spyglass
+1 Dowsing Device // Geode Grotto
+1 Lodestone Golem
+1 Bladegriff Prototype
+1 Scrapyard Recombiner
+1 The Temporal Anchor
+1 Memnarch
+1 Proteus Staff
+1 Prototype Portal
+1 Karn's Sylex
+1 Monkey Cage
+1 Citanul Flute
+1 Buried Ruin
+1 The Mycosynth Gardens
+1 Shivan Reef
+1 Mirrex
+1 Cascade Bluffs
+1 Mystic Confluence
+1 Insidious Will
+1 Midnight Clock
+1 Fiery Islet
+1 Command Tower
+1 Ferrous Lake
+1 Stormcarved Coast
+1 Riverglide Pathway // Lavaglide Pathway
+1 Rush of Inspiration // Crackling Falls
+1 Spirebluff Canal
+13 Island
+6 Mountain
+1 Exotic Orchard
+1 Treasure Mage
+1 Shadow of the Second Sun
+1 Wand of Wonder
+1 Soul of New Phyrexia
+1 Foil
+1 Spell Swindle
+1 Access Denied
+1 The Brothers' War

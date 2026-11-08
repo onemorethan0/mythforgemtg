@@ -1,0 +1,108 @@
+# Archidekt — muldrotha 2024
+# source: archidekt:7960766
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Muldrotha, the Gravetide
+
+Deck:
+1 Narset, Parter of Veils
+1 Breeding Pool
+1 Crop Rotation
+1 Journey to Eternity // Atzal, Cave of Eternity
+1 Aether Spellbomb
+1 Seal of Removal
+1 Braids, Arisen Nightmare
+1 Undergrowth Stadium
+1 Carpet of Flowers
+1 Haywire Mite
+1 Rejuvenating Springs
+1 Hinterland Harbor
+1 Seal of Primordium
+1 Mulldrifter
+1 Lightning Greaves
+1 Cyclonic Rift
+1 Rhystic Study
+1 Mystic Remora
+1 Misty Rainforest
+1 Altar of Dementia
+1 Gaea's Cradle
+1 Underground Sea
+1 The Gitrog Monster
+1 Opposition Agent
+1 Glacial Chasm
+1 Deadly Rollick
+1 Phantasmal Image
+1 Baleful Strix
+1 Delay
+1 Urborg, Tomb of Yawgmoth
+1 Urza's Saga
+1 Mox Diamond
+1 Sylvan Safekeeper
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Tropical Island
+1 Birds of Paradise
+1 Bayou
+1 Animate Dead
+1 Ashiok, Dream Render
+1 Swamp
+1 Overgrown Tomb
+1 Plaguecrafter
+1 Sylvan Library
+1 Mana Drain
+1 Yavimaya, Cradle of Growth
+1 Protean Hulk
+1 Intuition
+1 Satyr Wayfinder
+1 Assassin's Trophy
+1 Polluted Delta
+1 Verdant Catacombs
+1 Watery Grave
+1 Necromancy
+1 Exotic Orchard
+1 Orcish Bowmasters
+1 Underrealm Lich
+1 Fierce Guardianship
+1 Command Beacon
+1 Spellskite
+1 Kaya's Ghostform
+1 Cavern of Souls
+1 Demonic Tutor
+1 Living Death
+1 Deadeye Navigator
+1 Peregrine Drake
+1 Tangle Wire
+1 World Shaper
+1 Zulaport Cutthroat
+1 Treachery
+1 Eternal Witness
+1 Volatile Stormdrake
+1 Zagoth Triome
+1 Vampiric Tutor
+1 Spore Frog
+1 Windfall
+1 Llanowar Elves
+1 Ancient Tomb
+1 Geralf, the Fleshwright
+1 Warren Soultrader
+1 Wight of the Reliquary
+1 Phyrexian Altar
+1 Sol Ring
+1 Soul-Guide Lantern
+1 Mesmeric Orb
+1 Six
+1 Phyrexian Tower
+1 Cabal Coffers
+1 Swamp
+1 Island
+1 Island
+1 Forest
+1 Forest
+1 Command Tower
+1 Displacer Kitten
+1 Sakura-Tribe Elder
+1 Woodland Cemetery
+1 Deathrite Shaman
+1 Bojuka Bog

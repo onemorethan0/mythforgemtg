@@ -1,0 +1,89 @@
+# Archidekt — Stella, Rail Gun Enthusiast
+# source: archidekt:7661149
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Stella Lee, Wild Card
+
+Deck:
+1 Impulse
+6 Mountain
+1 Thriving Bluff
+15 Island
+1 Twiddle
+1 Traitorous Greed
+1 Dramatic Reversal
+1 Twitch
+1 Involuntary Employment
+1 Unexpected Windfall
+1 Serum Visions
+1 Shore Up
+1 Deliberate
+1 Molten Tributary
+1 Thought Scour
+1 Dispel
+1 Bane's Contingency
+1 Fleeting Reflection
+1 Reality Spasm
+1 Commune with Lava
+1 Telepathy
+1 Frantic Search
+1 Opt
+1 Arcane Denial
+1 Tablet of Compleation
+1 Faithless Looting
+1 Slip Out the Back
+1 Negate
+1 Frostboil Snarl
+1 Talisman of Creativity
+1 Bonder's Ornament
+1 Consider
+1 Shivan Reef
+1 Blasphemous Act
+1 Command Tower
+1 Arcane Signet
+1 Chaos Warp
+1 Spell Pierce
+1 Izzet Boilerworks
+1 Preordain
+1 Mystic Sanctuary
+1 Fellwar Stone
+1 Curate
+1 Pull from Tomorrow
+1 Big Score
+1 Chart a Course
+1 Izzet Signet
+1 Sol Ring
+1 Ponder
+1 Temple of Epiphany
+1 Brainstorm
+1 Expressive Iteration
+1 Sulfur Falls
+1 Reckless Barbarian
+1 Twinning Staff
+1 Leyline of Anticipation
+1 Sunset Strikemaster
+1 Lightning Bolt
+1 Swiftfoot Boots
+1 Cascade Bluffs
+1 Comet Storm
+1 Sky Diamond
+1 Hidden Strings
+1 Gut Shot
+1 High Tide
+1 Cerulean Wisps
+1 Twisted Fealty
+1 Anticipate
+1 Storm-Kiln Artist
+1 Fire Diamond
+1 Flusterstorm
+1 Valakut Invoker
+1 Spellskite
+1 Zookeeper Mechan
+1 Refocus
+1 Miscast
+1 Counterspell
+1 Simian Spirit Guide
+1 Flow State
+1 Hydro-Channeler

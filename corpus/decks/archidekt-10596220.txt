@@ -1,0 +1,84 @@
+# Archidekt — EXTORT THEM TO DEATH
+# source: archidekt:10596220
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Vito, Thorn of the Dusk Rose
+
+Deck:
+1 Infestation Sage
+1 Myriad Landscape
+1 Expedition Map
+1 Heirloom Epic
+1 Bojuka Bog
+1 Wayfarer's Bauble
+1 Necrotic Wound
+1 Cabal Stronghold
+1 Crypt Ghast
+1 Basilica Screecher
+23 Swamp
+1 Syndicate Enforcer
+1 Thrull Parasite
+1 Mortuary Mire
+1 Pontiff of Blight
+1 Gutterbones
+1 Serrated Scorpion
+1 Dockside Chef
+1 Deathgreeter
+1 Cruel Sadist
+1 Eyetwitch
+1 Carrion Feeder
+1 Greedy Freebooter
+1 Gravecrawler
+1 Merrow Bonegnawer
+1 Mortician Beetle
+1 Scorn-Blade Berserker
+1 Plagued Rusalka
+1 Snarling Gorehound
+1 Stitcher's Supplier
+1 Stalactite Stalker
+1 Qarsi High Priest
+1 Haunt of the Dead Marshes
+1 Gnawing Vermin
+1 Bubbling Muck
+1 Culling the Weak
+1 Castle Locthwain
+1 Eaten Alive
+1 Foul-Tongue Shriek
+1 Ghost Lantern // Bind Spirit
+1 Innocent Blood
+1 Insatiable Avarice
+1 Crypt of Agadeem
+1 Songs of the Damned
+1 Spymaster's Vault
+1 Witch's Cottage
+1 Executioner's Capsule
+1 Tragic Slip
+1 Village Rites
+1 You Are Already Dead
+1 Gonti's Machinations
+1 Death Watch
+1 Phyrexian Reclamation
+1 Tortured Existence
+1 Vat of Rebirth
+1 Scavenger's Talent
+1 Sadistic Glee
+1 Valgavoth's Faithful
+1 Viscera Seer
+1 Tenacious Dead
+1 Corrupted Conviction
+1 Skullclamp
+1 Leather Armor
+1 Gas Guzzler
+1 Elixir
+3 Swamp
+1 Undying Malice
+1 Malakir Rebirth // Malakir Mire
+1 Ashnod's Intervention
+1 Vampiric Link
+1 Reaper's Talisman
+1 World Map
+1 Ashnod, Flesh Mechanist
+1 Blackmail
+1 Desperate Measures

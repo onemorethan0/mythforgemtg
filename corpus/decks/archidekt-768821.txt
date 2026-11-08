@@ -1,0 +1,97 @@
+# Archidekt — Kaza, Wizard Chaser
+# source: archidekt:768821
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kaza, Roil Chaser
+
+Deck:
+1 Stonybrook Banneret
+1 Sulfur Falls
+1 Reliquary Tower
+1 Archmage of Echoes
+1 Cyclonic Rift
+1 Arcane Signet
+1 Step Through
+1 Crackle with Power
+1 Command Tower
+1 Naru Meha, Master Wizard
+1 Vandalblast
+1 Curse of the Swine
+1 Mystic Sanctuary
+1 Malevolent Hermit // Benevolent Geist
+1 Ral Zarek
+1 Goblin Wizardry
+1 Archmage Emeritus
+1 Docent of Perfection // Final Iteration
+1 Wizard's Retort
+1 Cascade Bluffs
+1 Chaos Warp
+1 Comet Storm
+1 Counterspell
+1 Mystical Tutor
+1 Sol Ring
+1 Reality Shift
+1 Vedalken Aethermage
+1 Azami, Lady of Scrolls
+1 Minamo, School at Water's Edge
+1 Riptide Laboratory
+1 Banefire
+1 Spellseeker
+1 Expansion // Explosion
+1 Electrodominance
+1 Finale of Revelation
+1 Cyclone Summoner
+1 Fabled Passage
+1 Mana Echoes
+1 Scalding Tarn
+1 Plaza of Heroes
+1 Pongify
+1 Rapid Hybridization
+1 Blue Sun's Twilight
+1 Temporal Mastery
+1 Pull from Tomorrow
+1 March of Swirling Mist
+1 Otawara, Soaring City
+1 Izzet Signet
+1 Blasphemous Act
+1 Galecaster Colossus
+1 Three Tree City
+1 Mystic Retrieval
+1 Stormcarved Coast
+1 Storm-Kiln Artist
+1 Patron Wizard
+1 Pemmin's Aura
+1 Coruscation Mage
+1 Archmage of Runes
+1 Ferrous Lake
+1 Flooded Strand
+1 Riverglide Pathway // Lavaglide Pathway
+1 Riverpyre Verge
+1 Harmonic Prodigy
+1 Ral, Crackling Wit
+1 Jeska's Will
+1 Insurrection
+1 Mistrise Village
+1 Hexing Squelcher
+1 Shadow of the Second Sun
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Fanning the Flames
+1 Command the Stage
+1 Solve the Equation
+1 Steam Vents
+1 Cavern of Souls
+6 Mountain
+1 Scorched Geyser
+1 Resonating Lute
+1 Mana Sculpt
+1 Arcane Epiphany
+1 Inspired Skypainter // Maestro's Gift
+1 Rite of Replication
+1 Echocasting Symposium
+1 Owlin Spiralmancer
+1 Firdoch Core
+7 Island
+1 Ajani Unrelenting
+1 Wizard's Staff

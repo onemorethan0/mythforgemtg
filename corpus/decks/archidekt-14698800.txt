@@ -1,0 +1,98 @@
+# Archidekt — Peter Parker, Amazing Spider-Man
+# source: archidekt:14698800
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Chulane, Teller of Tales + Intruder Alarm; Bracket 2 allows none
+
+Commander:
+1 Peter Parker // Amazing Spider-Man
+
+Deck:
+1 Aesi, Tyrant of Gyre Strait
+1 Primal Surge
+1 Ghalta, Stampede Tyrant
+1 Avacyn's Pilgrim
+1 Intruder Alarm
+1 Kogla, the Titan Ape
+1 Spider-Man, Web-Slinger
+1 Arachne, Psionic Weaver
+1 Captain Sisay
+1 Yavimaya Coast
+1 Urza's Ruinous Blast
+1 Concordant Crossroads
+1 Dragonlord Dromoka
+5 Forest
+1 Prime Speaker Zegana
+4 Plains
+1 Hinterland Harbor
+1 Glacial Fortress
+1 Exotic Orchard
+1 Noble Hierarch
+1 Deserted Beach
+1 Floodfarm Verge
+1 Adarkar Wastes
+1 Hushwood Verge
+1 Ghalta and Mavren
+1 Storvald, Frost Giant Jarl
+1 Anti-Venom, Horrifying Healer
+1 Koma, Cosmos Serpent
+1 Delighted Halfling
+1 Chulane, Teller of Tales
+1 Faeburrow Elder
+1 Absolute Virtue
+1 Birds of Paradise
+1 The Seriema
+1 Gandalf the White
+1 Inga and Esika
+1 Loran of the Third Path
+1 Karn's Temporal Sundering
+1 Avacyn's Memorial
+1 Myojin of Seeing Winds
+1 Canopy Vista
+1 Ornithopter
+1 Cryptolith Rite
+1 Tishana, Voice of Thunder
+1 Relic of Legends
+1 God-Eternal Oketra
+1 Dreamroot Cascade
+1 Brushland
+1 Kodama of the East Tree
+1 Sunpetal Grove
+1 Surrak and Goreclaw
+1 Urban Retreat
+1 Survivors' Encampment
+1 Sigarda, Font of Blessings
+1 Elesh Norn, Grand Cenobite
+1 The Tarrasque
+1 In Bolas's Clutches
+1 Adagia, Windswept Bastion
+1 Willowrush Verge
+1 The Sixth Doctor
+1 Reki, the History of Kamigawa
+1 Austere Command
+1 Command Tower
+1 Prairie Stream
+1 Garruk's Uprising
+1 Karametra, God of Harvests
+1 Overgrown Farmland
+1 Selvala, Heart of the Wilds
+1 Plaza of Heroes
+1 Holdout Settlement
+1 Opposition
+1 Myojin of Blooming Dawn
+1 Three Visits
+1 Temple Garden
+1 Llanowar Elves
+1 Silk, Web Weaver
+1 Spider-Sense
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Sol Ring
+1 Multiversal Passage
+1 Bloom Tender
+1 Shang-Chi, Master of Kung Fu
+1 Flawless Maneuver
+1 Stubborn Denial
+1 Skrelv, Defector Mite
+1 Omega, Heartless Evolution
+1 Thassa, Deep-Dwelling
+3 Island

@@ -1,0 +1,99 @@
+# Archidekt — best MTG deck ever
+# source: archidekt:7902833
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Cecily, Haunted Mage
+1 Othelm, Sigardian Outcast
+
+Deck:
+1 Grapeshot
+1 The Most Dangerous Gamer
+1 Myra the Magnificent
+1 _____ Goblin
+1 Adventurers' Guildhouse
+1 Step Right Up
+1 Mind's Desire
+1 Command Performance
+1 Squirrel Squatters
+1 Questing Beast
+1 Space Beleren
+1 Camel
+1 Tendrils of Agony
+1 Vadrok, Apex of Thunder
+1 Formation
+1 Necropanther
+1 Nethroi, Apex of Death
+1 Brokkos, Apex of Forever
+1 Animate Dead
+1 Volcanic Awakening
+1 Ice Cauldron
+1 Dance of the Dead
+1 Chains of Mephistopheles
+1 Takklemaggot
+1 Sol Ring
+2 Forest
+2 Island
+1 Exotic Orchard
+1 Mountain
+1 Illuna, Apex of Wishes
+1 Inherited Envelope
+1 Call of the Ring
+1 Comet, Stellar Pup
+1 Frodo Baggins
+1 Wandering Troubadour
+1 Undermountain Adventurer
+1 Ocelot Pride
+1 Jared Carthalion, True Heir
+1 Loot Dispute
+1 Court of Ardenvale
+1 Queen Marchesa
+1 Orazca Relic
+1 Sarevok's Tome
+1 Arch of Orazca
+1 Detective of the Month
+6 Swamp
+1 The World Tree
+1 Ketria Triome
+1 Breeding Pool
+3 Plains
+1 Watery Grave
+1 Verdant Catacombs
+1 Hallowed Fountain
+1 Steam Vents
+1 Indatha Triome
+1 Raugrin Triome
+1 Overgrown Tomb
+1 Stomping Ground
+1 Temple Garden
+1 Raging River
+1 Misty Rainforest
+1 Jetmir's Garden
+1 Savai Triome
+1 Raffine's Tower
+1 Mana Confluence
+1 Marsh Flats
+1 Spara's Headquarters
+1 Xander's Lounge
+1 Zagoth Triome
+1 Ziatora's Proving Ground
+1 City of Brass
+1 Sauron, Lord of the Rings
+1 Curse of Leeches // Leeching Lurker
+1 Acererak the Archlich
+1 Andúril, Narsil Reforged
+1 Illusionary Mask
+1 Chromatic Lantern
+1 Arlinn, the Pack's Hope // Arlinn, the Moon's Fury
+1 The Celestus
+1 Arcane Signet
+1 Path of Ancestry
+1 Wooded Foothills
+1 Windswept Heath
+1 Scalding Tarn
+1 Polluted Delta
+1 Flooded Strand
+1 Bloodstained Mire
+1 Arid Mesa
+1 Command Tower

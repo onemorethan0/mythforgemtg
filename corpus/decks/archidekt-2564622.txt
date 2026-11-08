@@ -1,0 +1,108 @@
+# Archidekt — Raffine, Tiny-Tribal Stax
+# source: archidekt:2564622
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Raffine, Scheming Seer
+
+Deck:
+1 Godless Shrine
+1 Tymna the Weaver
+1 Vault of Champions
+1 Galadriel's Dismissal
+1 Stubborn Denial
+1 Swan Song
+1 Sage of Hours
+1 Marsh Flats
+1 Command Tower
+1 Watery Grave
+1 Faerie Mastermind
+1 Lively Dirge
+1 Delney, Streetwise Lookout
+1 Doorkeeper Thrull
+1 Winds of Abandon
+1 Polluted Delta
+1 Orim's Chant
+1 Legion's Landing // Adanto, the First Fort
+1 Fierce Guardianship
+1 March of Swirling Mist
+1 Flooded Strand
+1 Ranger-Captain of Eos
+1 Abhorrent Oculus
+1 Snapcaster Mage
+1 Mausoleum Wanderer
+1 Dauthi Voidwalker
+1 Razorgrass Ambush // Razorgrass Field
+1 Orcish Bowmasters
+1 Voice of Victory
+1 Cyclonic Rift
+1 Drannith Magistrate
+1 Path to Exile
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Unearth
+1 Deep Gnome Terramancer
+1 Helping Hand
+1 Reanimate
+1 Sevinne's Reclamation
+1 Dollmaker's Shop // Porcelain Gallery
+1 Clarion Conqueror
+1 The Queen of Dale
+1 Archon of Emeria
+1 Wan Shi Tong, Librarian
+1 Hallowed Fountain
+1 Esper Sentinel
+1 Gilded Drake
+1 An Offer You Can't Refuse
+1 Flitterwing Nuisance
+1 Volatile Stormdrake
+1 Grave Strength
+1 Scrubland
+1 Underground Sea
+1 Tundra
+1 Abigale, Eloquent First-Year
+1 Sygg, River Cutthroat
+1 Ledger Shredder
+1 Erode
+1 Spell Pierce
+1 Inkmoth Nexus
+1 Windswept Heath
+1 Arid Mesa
+1 Hengegate Pathway // Mistgate Pathway
+1 Amonkhet Raceway
+1 Swamp
+1 Opposition Agent
+1 Vampiric Tutor
+1 Imperial Seal
+1 Demonic Tutor
+1 Kinscaer Sentry
+1 Kataki, War's Wage
+1 Pollywog Prodigy
+1 Breena, the Demagogue
+1 Victimize
+1 Aven Mindcensor
+1 Retribution of the Ancients
+1 Dewdrop Cure
+1 Emrakul's Messenger
+1 Ghostly Pilferer
+1 Lazav, the Multifarious
+1 King T'Challa // Black Panther, Hope Enduring
+1 Likeness Looter
+1 Silence
+1 Phantasmal Image
+1 Knight of the White Orchid
+1 Mockingbird
+1 Flare of Denial
+1 Miscast
+1 Muraganda Raceway
+1 Fblthp, Impossibly Lost
+1 Vnwxt, Verbose Host
+1 Tainted Pact
+1 Demonic Consultation
+1 Island
+1 Snow-Covered Swamp
+1 Snow-Covered Plains
+1 Plains
+1 Snow-Covered Island
+1 Vohar, Vodalian Desecrator
+1 Strict Proctor

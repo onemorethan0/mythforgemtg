@@ -1,0 +1,108 @@
+# Archidekt — Tawnos, Solemn Survivor
+# source: archidekt:4980247
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tawnos, Solemn Survivor
+
+Deck:
+1 Command Tower
+1 Seat of the Synod
+1 Underground River
+1 Ancient Den
+1 Arcane Signet
+1 River of Tears
+1 Skycloud Expanse
+1 Thousand-Year Elixir
+1 Caves of Koilos
+1 Sol Ring
+1 Vault of Whispers
+1 Spire of Industry
+1 Lotho, Corrupt Shirriff
+1 Hengegate Pathway // Mistgate Pathway
+1 Hallowed Fountain
+1 Sea of Clouds
+1 Adarkar Wastes
+1 City of Brass
+1 Godless Shrine
+1 Vault of Champions
+1 Teferi's Protection
+1 Watery Grave
+1 Patriar's Seal
+1 Frantic Search
+1 Smothering Tithe
+1 Pemmin's Aura
+1 Plains
+1 The Underworld Cookbook
+1 Swamp
+1 Minamo, School at Water's Edge
+1 Sejiri Shelter // Sejiri Glacier
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Mana Vault
+1 Omen Hawker
+1 Talisman of Progress
+1 Marsh Flats
+1 Urza's Saga
+1 Three Steps Ahead
+1 Mana Drain
+1 Shadowy Backstreet
+1 Fierce Guardianship
+1 Rhystic Study
+1 Stern Lesson
+1 Mana Confluence
+1 Morphic Pool
+1 Force of Negation
+1 Ancient Tomb
+1 Island
+1 Nexus of Becoming
+1 Sink into Stupor // Soporific Springs
+1 Cyclonic Rift
+1 Collector's Vault
+1 Undercity Sewers
+1 Polluted Delta
+1 Mox Opal
+1 Meticulous Archive
+1 Flooded Strand
+1 Tezzeret, Cruel Captain
+1 Angel of Indemnity
+1 Persist
+1 Animate Dead
+1 Lightning Greaves
+1 Giver of Runes
+1 Portal to Phyrexia
+1 Saw in Half
+1 Hoarding Broodlord
+1 Mirrex
+1 Tamiyo Meets the Story Circle
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Talisman of Hierarchy
+1 Unmarked Grave
+1 Entomb
+1 Sphinx of the Second Sun
+1 Emergence Zone
+1 Mondrak, Glory Dominus
+1 Muddle the Mixture
+1 Tataru Taru
+1 Mystic Remora
+1 Flawless Maneuver
+1 Esper Sentinel
+1 An Offer You Can't Refuse
+1 Peter Parker's Camera
+1 Mox Amber
+1 Hullbreaker Horror
+1 Tivit, Seller of Secrets
+1 Palinchron
+1 Time Sieve
+1 Isochron Scepter
+1 Dramatic Reversal
+1 Consecrated Sphinx
+1 Urza, Lord High Artificer
+1 Scholar of the Lost Trove
+1 Tezzeret the Seeker
+1 Reanimate
+1 Gleaming Splendor
+1 Exalted Sunborn
+1 Liliana the Faultless
+1 Replicator

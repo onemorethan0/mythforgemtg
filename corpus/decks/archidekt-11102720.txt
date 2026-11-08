@@ -1,0 +1,107 @@
+# Archidekt — Hashaton, Scarab's Fist  CEDH MONSTER
+# source: archidekt:11102720
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Hashaton, Scarab's Fist
+
+Deck:
+1 Ancient Tomb
+1 Force of Negation
+1 Mox Opal
+1 Mox Diamond
+1 Command Tower
+1 Esper Sentinel
+1 Silence
+1 Permission Denied
+1 Talion, the Kindly Lord
+1 Tainted Pact
+1 Demonic Consultation
+1 Mnemonic Betrayal
+1 Cyclonic Rift
+1 Deadly Rollick
+1 Fellwar Stone
+1 Mox Amber
+1 Necropotence
+1 City of Brass
+1 Flooded Strand
+1 Mana Confluence
+1 Godless Shrine
+1 Morphic Pool
+1 Polluted Delta
+1 Scrubland
+1 Tundra
+1 Underground Sea
+1 Consecrated Sphinx
+1 Razaketh, the Foulblooded
+1 Sink into Stupor // Soporific Springs
+1 Psychic Frog
+1 Putrid Imp
+1 Clever Impersonator
+1 Ledger Shredder
+1 Plains
+1 Displacer Kitten
+1 Teferi, Time Raveler
+1 Mental Misstep
+1 Rhystic Study
+1 Sevinne's Reclamation
+1 Wishclaw Talisman
+1 Swords to Plowshares
+1 Tinybones Joins Up
+1 Opposition Agent
+1 Sharuum the Hegemon
+1 Time Sieve
+1 Tivit, Seller of Secrets
+1 Ghostly Pilferer
+1 Smothering Tithe
+1 Lotus Petal
+1 Chrome Mox
+1 Mana Vault
+1 Arcane Signet
+1 The One Ring
+1 Otawara, Soaring City
+1 Orcish Bowmasters
+1 Talisman of Progress
+1 Sol Ring
+1 Force of Will
+1 An Offer You Can't Refuse
+1 Swan Song
+1 Mystic Remora
+1 Mindbreak Trap
+1 Marsh Flats
+1 Windswept Heath
+1 Watery Grave
+1 Urza's Saga
+1 Undercity Sewers
+1 Enlightened Tutor
+1 Gemstone Caverns
+1 Verdant Catacombs
+1 Sea of Clouds
+1 Cavern of Souls
+1 Exotic Orchard
+1 Hallowed Fountain
+1 Imperial Seal
+1 Reanimate
+1 Demonic Tutor
+1 Kitsa, Otterball Elite
+1 Lotho, Corrupt Shirriff
+1 Flusterstorm
+1 Frantic Search
+1 Mana Drain
+1 Vampiric Tutor
+1 Thassa's Oracle
+1 Dark Ritual
+1 Tortured Existence
+1 Talisman of Dominance
+1 Grand Abolisher
+1 Ranger-Captain of Eos
+1 Windfall
+1 Fierce Guardianship
+1 Hullbreaker Horror
+1 Emergence Zone
+1 Cephalid Coliseum
+1 Astral Dragon
+1 Zur the Enchanter
+1 Elesh Norn, Grand Cenobite
+1 Archivist of Oghma

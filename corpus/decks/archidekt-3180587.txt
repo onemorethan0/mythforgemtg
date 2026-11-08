@@ -1,0 +1,83 @@
+# Archidekt — Willowdusk Life
+# source: archidekt:3180587
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Willowdusk, Essence Seer
+
+Deck:
+1 Gonti's Machinations
+1 K'rrik, Son of Yawgmoth
+1 Twilight Prophet
+1 Sensei's Divining Top
+1 Nullpriest of Oblivion
+1 Radiant Fountain
+1 Shard of the Nightbringer
+1 Nightmare's Thirst
+1 Beledros Witherbloom
+1 Command the Dreadhorde
+1 Pain's Reward
+6 Forest
+1 Tivash, Gloom Summoner
+1 Valentin, Dean of the Vein // Lisette, Dean of the Root
+1 Elves of Deep Shadow
+1 Vault Skirge
+1 Inscription of Abundance
+1 Whip of Erebos
+1 Spike Feeder
+1 Keen Duelist
+1 Exotic Orchard
+1 Golgari Rot Farm
+1 Tainted Wood
+1 Talisman of Resilience
+1 Accomplished Alchemist
+1 Banehound
+1 Pact Weapon
+1 Vampire of the Dire Moon
+1 Leyline Prowler
+1 Temple of Malady
+1 Arcane Signet
+1 Feed the Swarm
+1 Gray Merchant of Asphodel
+1 Bolas's Citadel
+1 Lightning Greaves
+1 Sanguine Bond
+1 Creeping Bloodsucker
+1 Phial of Galadriel
+1 Staff of Compleation
+1 Gollum, Obsessed Stalker
+1 Murderous Rider // Swift End
+1 Exsanguinate
+1 Imp's Mischief
+1 Sol Ring
+1 Gumdrop Poisoner // Tempt with Treats
+1 Deep-Cavern Bat
+1 Bloodletter of Aclazotz
+1 Necropotence
+1 Vampiric Tutor
+1 Hall of the Bandit Lord
+1 Damnation
+1 Toxic Deluge
+1 Aetherflux Reservoir
+1 Faerie Bladecrafter
+1 Predator's Rapport
+1 Llanowar Wastes
+1 Command Tower
+1 Putrefy
+1 Mortality Spear
+1 Tear Asunder
+1 Find // Finality
+1 Necroblossom Snarl
+1 Deathcap Cultivator
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Sylvan Library
+1 Culling Ritual
+1 Devoted Druid
+1 Tavern Swindler
+1 Shadowspear
+1 Black Market Connections
+1 Exquisite Blood
+1 Vito, Thorn of the Dusk Rose
+21 Swamp
+1 Profane Transfusion

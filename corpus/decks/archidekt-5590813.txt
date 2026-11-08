@@ -1,0 +1,93 @@
+# Archidekt — **KP OP (mothballed)
+# source: archidekt:5590813
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Prava of the Steel Legion
+1 Katerina of Myra's Marvels
+
+Deck:
+1 Palantír of Orthanc
+1 Karmic Guide
+1 Kaldra Compleat
+1 Kemba, Kha Regent
+1 Kemba, Kha Enduring
+1 Kinjalli's Sunwing
+1 Palace Jailer
+1 Konda's Banner
+1 Kor Outfitter
+1 Paragon of New Dawns
+1 Paladin's Shield
+1 Path of Bravery
+1 Pilgrim's Eye
+1 Planar Cleansing
+1 Prismatic Strands
+1 Priest of Ancient Lore
+1 Promise of Tomorrow
+1 Pursuit of Knowledge
+1 Kor Halberd
+1 Prying Blade
+1 Pearl Medallion
+1 Plate Armor
+1 Kami of False Hope
+1 Plague Myr
+1 King of the Pride
+1 Puresteel Paladin
+1 Paladin Class
+1 Knight-Captain of Eos
+1 Platoon Dispenser
+1 Prison Realm
+1 Protector of the Crown
+1 Planar Disruption
+1 Kabira Takedown // Kabira Plateau
+1 Kayla's Command
+1 The Mycosynth Gardens
+1 Buried Ruin
+1 Emeria, the Sky Ruin
+1 Myriad Landscape
+1 Fabled Passage
+1 Prismatic Vista
+1 Kayla's Reconstruction
+1 Minas Tirith
+1 Pilgrim of the Ages
+1 Secluded Steppe
+1 Prison Term
+1 Karn's Sylex
+1 Pip-Boy 3000
+1 Path of the Ghosthunter
+1 Kayla's Music Box
+1 Phelia, Exuberant Shepherd
+1 Kutzil's Flanker
+1 Pit of Offerings
+1 Pulsemage Advocate
+1 Arid Archway
+1 Desert of the True
+16 Plains
+1 Lazotep Quarry
+1 Planar Atlas
+1 Perilous Snare
+1 Promise of Loyalty
+1 Karn, Scion of Urza
+1 Keeper of the Accord
+1 Kemba's Banner
+1 Knight of the White Orchid
+1 Kor Cartographer
+1 Palladium Myr
+1 Paradise Mantle
+1 Path to Exile
+1 Phantom General
+1 Phyrexian Rebirth
+1 Portal to Phyrexia
+1 Priest of the Blessed Graf
+1 Promise of Bunrei
+1 War Room
+1 Hall of Heliod's Generosity
+1 Tectonic Edge
+1 Demolition Field
+1 Windbrisk Heights
+1 Roadside Reliquary
+1 Scavenger Grounds
+1 Protector of the Wastes
+1 Parting Gust
+1 Pegasus Guardian // Rescue the Foal

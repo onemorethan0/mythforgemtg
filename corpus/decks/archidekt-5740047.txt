@@ -1,0 +1,92 @@
+# Archidekt — Dreadmaw's All Along
+# source: archidekt:5740047
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Momir Vig, Simic Visionary
+
+Deck:
+1 Earthshaker Dreadmaw
+1 Dreamroot Cascade
+1 Temple of Mystery
+1 Thriving Grove
+1 Colossal Dreadmask
+1 Springbloom Druid
+1 Wood Elves
+1 Pathbreaker Ibex
+1 Paleoloth
+1 Mirror Image
+1 Primeval Herald
+1 Phantasmal Dreadmaw
+1 Kodama's Reach
+1 Cultivate
+1 Harrow
+1 Rimewood Falls
+1 Tangled Islet
+1 Mystic Sanctuary
+1 Greater Good
+11 Forest
+1 Garruk's Uprising
+1 Tranquil Frillback
+1 Filter Out
+1 Undercover Operative
+7 Island
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Repudiate // Replicate
+1 Exotic Orchard
+1 Command Tower
+1 Simic Growth Chamber
+1 Terramorphic Expanse
+1 Helm of the Host
+1 Eternal Witness
+1 Glasspool Mimic // Glasspool Shore
+1 See Double
+1 Migration Path
+1 Soul of the Harvest
+1 Gwenna, Eyes of Gaea
+1 Topiary Stomper
+1 Midnight Clock
+1 Return of the Wildspeaker
+1 Sublime Epiphany
+1 Vastwood Surge
+1 Fierce Empath
+1 Wonder
+1 Pulse of Murasa
+1 Disallow
+1 Beast Within
+1 Obscuring Haze
+1 Skyshroud Claim
+1 Spark Double
+1 Sakashima the Impostor
+1 Tanglepool Bridge
+1 Sakashima's Will
+1 Sakashima's Protege
+1 Llanowar Visionary
+1 Urban Evolution
+1 Clever Impersonator
+1 Gyre Engineer
+1 Progenitor Mimic
+1 Rite of Replication
+1 Inga and Esika
+1 Yavimaya Coast
+1 Castle Vantress
+1 Lumbering Falls
+1 Flooded Grove
+1 Littjara Mirrorlake
+1 You Happen On a Glade
+1 Quasiduplicate
+1 Bonny Pall, Clearcutter
+1 Step Between Worlds
+1 Colossal Dreadmaw
+1 Tatyova, Benthic Druid
+1 Outcaster Trailblazer
+1 Entish Restoration
+1 Embrace the Paradox
+1 Generous Ent
+1 Bounty of the Luxa
+1 Kiora, Behemoth Beckoner
+1 Temple of the False God
+1 Guildless Commons
+1 Unnatural Growth
+1 Earthshaker Giant

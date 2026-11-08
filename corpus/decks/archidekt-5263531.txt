@@ -1,0 +1,95 @@
+# Archidekt — 2 Fast 2 Furious
+# source: archidekt:5263531
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Urabrask // The Great Work
+
+Deck:
+1 Last Chance
+1 Grab the Prize
+1 Sazacap's Brew
+1 Ancestral Anger
+1 Arid Mesa
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Bloodstained Mire
+1 Demand Answers
+1 Desperate Ritual
+1 Expedite
+1 Gamble
+1 Grapeshot
+1 Highway Robbery
+1 Jeska's Will
+1 Faithless Looting
+1 Lotus Petal
+1 Magmatic Insight
+1 Mana Vault
+1 Might of the Meek
+14 Mountain
+1 Needle Drop
+1 Overmaster
+1 Prismatic Vista
+1 Pyretic Ritual
+1 Reckless Impulse
+1 Red Elemental Blast
+1 Renegade Tactics
+1 Ruby Medallion
+1 Runaway Steam-Kin
+1 Rile
+1 Scalding Tarn
+1 Seething Song
+1 Staff of Compleation
+1 Stormsplitter
+1 Thrill of Possibility
+1 Tibalt's Trickery
+1 Underworld Breach
+1 Virtue of Courage // Embereth Blaze
+1 War Room
+1 Wooded Foothills
+1 Wrenn's Resolve
+1 Simian Spirit Guide
+1 Warrior's Oath
+1 Sol Ring
+1 Wild Slash
+1 _____ Goblin
+1 Ricochet Trap
+1 Untimely Malfunction
+1 Final Fortune
+1 Strike It Rich
+1 Vision of Love
+1 Deflecting Swat
+1 Gemstone Caverns
+1 Wheel of Fortune
+1 Lightning Bolt
+1 Sentinel Tower
+1 Ancient Tomb
+1 Pyroblast
+1 Meltdown
+1 Crimson Wisps
+1 Throne of Geth
+1 Heroes' Hangout
+1 Electro, Assaulting Battery
+1 Opera Love Song
+1 Mogg Salvage
+1 Rob the Archives
+1 Storm-Kiln Artist
+1 Chrome Mox
+1 Crash Through
+1 Dragon's Rage Channeler
+1 Spark of Creativity
+1 Warlord's Fury
+1 Ragavan, Nimble Pilferer
+1 Impolite Entrance
+1 Light Up the Stage
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Reiterate
+1 Rite of Flame
+1 Flashback
+1 Sandstone Needle
+1 Cave-In
+1 Ghostfire Slice
+1 Sundering Eruption // Volcanic Fissure
+1 Redirect Lightning
+1 Asgardian Inspiration
+1 Pinnacle Monk // Mystic Peak

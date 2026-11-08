@@ -1,0 +1,94 @@
+# Archidekt — Sheoldred, the Apocalypse
+# source: archidekt:6599127
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sheoldred, the Apocalypse
+
+Deck:
+1 Cabal Coffers
+1 Fell the Profane // Fell Mire
+1 Bojuka Bog
+1 Memory Jar
+1 Jet Medallion
+1 Mind Stone
+1 Orcish Bowmasters
+1 Nykthos, Shrine to Nyx
+1 Pain's Reward
+1 Marsh Flats
+1 Dark Ritual
+1 Night's Whisper
+1 Mana Vault
+1 Imp's Mischief
+1 Reliquary Tower
+1 Sol Ring
+1 Arcane Signet
+1 Thought Vessel
+1 Lotus Petal
+1 Bubbling Muck
+1 Demonic Tutor
+1 Exquisite Blood
+1 Peer into the Abyss
+1 Deadly Rollick
+1 Baleful Mastery
+1 Toxic Deluge
+1 Damnation
+1 Marauding Blight-Priest
+1 Mikokoro, Center of the Sea
+1 Vito, Thorn of the Dusk Rose
+1 Kaya's Ghostform
+1 Geier Reach Sanitarium
+1 War Room
+1 Strip Mine
+1 Verdant Catacombs
+1 Prismatic Vista
+1 Snuff Out
+1 Lightning Greaves
+1 Darkness
+1 Command Beacon
+1 Temple Bell
+1 Feign Death
+1 Necrodominance
+1 Imperial Seal
+1 Wishclaw Talisman
+1 Grim Tutor
+1 Vampiric Tutor
+1 Bloodthirsty Conqueror
+1 Boggart Trawler // Boggart Bog
+1 The One Ring
+1 Not Dead After All
+1 Sheoldred's Edict
+1 Ad Nauseam
+15 Swamp
+1 Chrome Mox
+1 Mox Opal
+1 Mox Diamond
+1 Urborg, Tomb of Yawgmoth
+1 Crypt Ghast
+1 Expedition Map
+1 Dark Deal
+1 Opposition Agent
+1 Blessing of Leeches
+1 Starscape Cleric
+1 Ancient Tomb
+1 Teferi's Puzzle Box
+1 Bolas's Citadel
+1 Oubliette
+1 Vault of Whispers
+1 Spellbook
+1 Gemstone Caverns
+1 Black Market Connections
+1 Malakir Rebirth // Malakir Mire
+1 Coveted Jewel
+1 Fellwar Stone
+1 Commander's Plate
+1 Sign in Blood
+1 Bitter Triumph
+1 Dismember
+1 Withering Curse
+1 Urza's Saga
+1 Morbid Opportunist
+1 Gray Merchant of Asphodel
+1 Sensei's Divining Top
+1 Soul Shatter

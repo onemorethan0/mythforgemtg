@@ -1,0 +1,98 @@
+# Archidekt — Decision Paralysis | The Celestial Toymaker
+# source: archidekt:8395877
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Celestial Toymaker
+
+Deck:
+1 Jace, Architect of Thought
+1 Fortune's Favor
+1 Generous Gift
+1 Cut a Deal
+1 Propaganda
+1 Arcane Signet
+1 Sol Ring
+1 Command Tower
+1 Darkwater Catacombs
+1 Glacial Fortress
+1 Skycloud Expanse
+1 Feed the Swarm
+1 Reliquary Tower
+1 Shipwreck Marsh
+1 Talisman of Dominance
+1 Drowned Catacomb
+1 Desolate Mire
+1 Fetid Heath
+1 Isolated Chapel
+1 Stroke of Midnight
+1 Caves of Koilos
+1 Shattered Sanctum
+1 Deserted Beach
+1 The Toymaker's Trap
+1 Myriad Landscape
+1 Inkshield
+1 Brilliant Ultimatum
+1 Ringsight
+1 Painful Truths
+1 Darkness
+1 Counterspell
+1 Amphibian Downpour
+1 Adarkar Wastes
+1 Underground River
+1 Sunken Hollow
+1 Exotic Orchard
+1 Temple of Deceit
+1 Orzhov Signet
+1 Decanter of Endless Water
+1 Go for the Throat
+1 Fetid Pools
+1 Bastion Protector
+1 Truth or Tale
+1 Sauron's Ransom
+1 Gollum, Scheming Guide
+1 Sphinx of Clear Skies
+1 Make an Example
+1 Intrude on the Mind
+1 Dimir Signet
+1 Epiphany at the Drownyard
+1 Atris, Oracle of Half-Truths
+1 Boneyard Parley
+1 Sphinx of Uthuun
+1 Master of Predicaments
+1 Liar's Pendulum
+1 Darksteel Mutation
+1 Hedron Archive
+1 Prairie Stream
+1 Temple of Enlightenment
+1 Fact or Fiction
+1 Hostile Negotiations
+1 Feed the Cycle
+1 Bojuka Bog
+1 Ghostly Prison
+1 Commander's Sphere
+1 The Seventh Doctor
+1 Thought Vessel
+1 Curator of Destinies
+1 Fight or Flight
+1 Rogue's Passage
+6 Island
+3 Swamp
+4 Plains
+1 Sudden Spoiling
+1 Chromatic Lantern
+1 Keen Duelist
+1 Starfall Invocation
+1 Swords to Plowshares
+1 Wishclaw Talisman
+1 Requisition Raid
+1 Solemn Simulacrum
+1 Deadly Dispute
+1 Lightning Greaves
+1 Azorius Signet
+1 Blood Money
+1 Despark
+1 Time Wipe
+1 Void Rend
+1 Winged Boots

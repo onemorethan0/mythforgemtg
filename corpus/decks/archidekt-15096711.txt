@@ -1,0 +1,94 @@
+# Archidekt — Chaos 2026
+# source: archidekt:15096711
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ian Malcolm, Chaotician
+1 Cmdr. Troi, Outgoing Empath
+
+Deck:
+1 Radiant Performer
+1 Radiate
+1 Red Death, Shipwrecker
+1 Eye of the Storm
+1 Windfall
+1 Howling Mine
+1 Kami of the Crescent Moon
+1 Izzet Signet
+1 Decanter of Endless Water
+1 Thought Vessel
+1 Talisman of Creativity
+1 Mind Stone
+1 Fellwar Stone
+1 Arcane Signet
+1 Sol Ring
+1 Liquimetal Torque
+1 Everflowing Chalice
+1 Steam Vents
+8 Island
+1 Izzet Boilerworks
+1 Spirebluff Canal
+8 Mountain
+1 Rush of Inspiration // Crackling Falls
+1 Stormcarved Coast
+1 Training Center
+1 Forbidden Orchard
+1 Intellectual Offering
+1 Struggle for Project Purity
+1 Fevered Visions
+1 Bloodthirsty Blade
+1 Bubble Matrix
+1 Confusion in the Ranks
+1 Shifting Grift
+1 Hive Mind
+1 Wild Magic Surge
+1 Eon Frolicker
+1 Homeward Path
+1 Risky Move
+1 Turf War
+1 Order of Succession
+1 Spectral Searchlight
+1 Wild Evocation
+1 Victory Chimes
+1 Gate to the Aether
+1 Minds Aglow
+1 Well of Ideas
+1 Font of Mythos
+1 Command Tower
+1 Dictate of Kruphix
+1 Coveted Jewel
+1 Perplexing Chimera
+1 Mass Hysteria
+1 Throne of the High City
+1 Fealty to the Realm
+1 Bounty Board
+1 Knowledge Pool
+1 Lifeline
+1 Mana Flare
+1 Reliquary Tower
+1 Field of Ruin
+1 Arcane Lighthouse
+1 Detection Tower
+1 Rainbow Vale
+1 Contested War Zone
+1 Inventors' Fair
+1 Madblind Mountain
+1 Mistrise Village
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Volcanic Island
+1 Tempt with Mayhem
+1 Goblin Spymaster
+1 Captivating Glance
+1 Wrong Turn
+1 Reins of Power
+1 Scalding Tarn
+1 Wheel of Fortune
+1 Tibalt's Trickery
+1 Wild Ricochet
+1 Return the Favor
+1 Share the Spoils
+1 Chef's Kiss
+1 Otherworld Atlas
+1 Lavaleaper

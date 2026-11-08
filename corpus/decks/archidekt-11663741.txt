@@ -1,0 +1,90 @@
+# Archidekt — Budget Y'shtola
+# source: archidekt:11663741
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Controvert
+1 Thought Vessel
+1 Ertai's Scorn
+1 Bane's Contingency
+1 Azorius Signet
+1 Talisman of Progress
+1 Propaganda
+8 Swamp
+1 Glacial Fortress
+1 Darkwater Catacombs
+1 Contaminated Landscape
+1 Skycloud Expanse
+1 Arcane Sanctum
+1 Command Tower
+1 Arcane Signet
+1 Exotic Orchard
+1 Terramorphic Expanse
+1 Dimir Signet
+1 Curiosity
+1 Sword-Point Diplomacy
+1 Murderous Rider // Swift End
+1 Unwind
+1 Rewind
+1 Baleful Mastery
+1 Soul Shatter
+1 Phyresis
+1 Mortify
+1 Absorb
+1 Painful Truths
+1 Imprisoned in the Moon
+1 Parasitic Impetus
+1 Starscape Cleric
+1 Frantic Search
+1 Stroke of Midnight
+1 Windborn Muse
+1 Loyal Subordinate
+1 Chaos Wand
+1 Disallow
+1 Orzhov Signet
+1 Dazzling Sphinx
+1 Hushbringer
+1 Norn's Annex
+1 Vile Consumption
+1 Promise of Loyalty
+1 Fellwar Stone
+1 Dragonfire Blade
+1 Curator's Ward
+1 Diabolic Tutor
+1 Drowned Catacomb
+1 Caves of Koilos
+1 Underground River
+1 Sunken Hollow
+1 Tainted Field
+1 Talisman of Dominance
+1 Dismember
+1 Dusk // Dawn
+1 The Battle of Bywater
+1 Deep Analysis
+1 Hourglass of the Lost
+1 Auramancer
+1 Crystal Chimes
+1 Hall of Heliod's Generosity
+1 Krile Baldesion
+1 Flicker of Fate
+1 Hypnotic Sprite // Mesmeric Glare
+1 Dimir Infiltrator
+1 Dark Petition
+1 Muddle the Mixture
+1 Eye of Nidhogg
+1 Talisman of Hierarchy
+1 Glistening Oil
+1 Transpose
+1 Counterspell
+1 Ghostly Prison
+1 An Offer You Can't Refuse
+1 Supreme Verdict
+1 Ash Barrens
+1 Risky Shortcut
+1 Snuff Out
+8 Island
+5 Plains

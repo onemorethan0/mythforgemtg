@@ -1,0 +1,99 @@
+# Archidekt — Marneus Calgar Imperium
+# source: archidekt:3738416
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Marneus Calgar
+
+Deck:
+4 Island
+1 Skycloud Expanse
+1 Choked Estuary
+1 Shorikai, Genesis Engine
+1 Nadir Kraken
+1 Counterspell
+1 Generous Gift
+1 Talisman of Dominance
+1 Sicarian Infiltrator
+1 Sol Ring
+1 Talisman of Progress
+1 Arcane Signet
+1 Sunken Hollow
+1 Scoured Barrens
+1 Prairie Stream
+1 Port Town
+1 Path of Ancestry
+1 Exotic Orchard
+1 Darkwater Catacombs
+1 Command Tower
+1 Arcane Sanctum
+1 Swords to Plowshares
+1 Temple of Silence
+1 Bojuka Bog
+1 The Council of Four
+1 Adeline, Resplendent Cathar
+1 Mondrak, Glory Dominus
+1 Warren Soultrader
+1 Prince Imrahil the Fair
+1 Ashnod's Altar
+1 Training Grounds
+1 Flawless Maneuver
+1 Elas il-Kor, Sadistic Pilgrim
+1 Skullclamp
+1 Mirkwood Bats
+1 Felidar Retreat
+1 Hallowed Fountain
+1 Path to Exile
+1 Sea of Clouds
+2 Swamp
+1 Lotho, Corrupt Shirriff
+1 Smothering Tithe
+1 Vexilus Praetor
+1 Grand Crescendo
+1 Inkshield
+1 Flooded Strand
+1 Temple of Deceit
+1 Temple of Enlightenment
+1 Stroke of Midnight
+1 Illustrious Wanderglyph
+1 Fell the Profane // Fell Mire
+1 Kambal, Profiteering Mayor
+1 Inquisitor Greyfax
+1 Nadier's Nightblade
+1 Black Market Connections
+1 Staff of the Storyteller
+1 Elspeth, Storm Slayer
+1 Secure the Wastes
+1 Will of the Mardu
+1 Arcane Denial
+1 Charismatic Conqueror
+1 Hardened Tactician
+1 Farewell
+1 The Eternal Wanderer
+1 Commissar Severina Raine
+1 Fetid Heath
+1 Fellwar Stone
+1 Exalted Sunborn
+1 Watery Grave
+1 Teferi's Protection
+1 Midgar, City of Mako // Reactor Raid
+1 Starting Town
+1 Phyrexian Altar
+1 Deadly Rollick
+1 Akroma's Will
+1 Bitterbloom Bearer
+1 Bastion of Remembrance
+1 Vanguard Suppressor
+5 Plains
+1 Enlightened Tutor
+1 Waterlogged Teachings // Inundated Archive
+1 Faerie Mastermind
+1 Zulaport Cutthroat
+1 Ishgard, the Holy See // Faith & Grief
+1 Talisman of Hierarchy
+1 The Queen of Dale
+1 Adagia, Windswept Bastion
+1 Demonic Tutor
+1 Gleaming Splendor
+1 Pitiless Plunderer

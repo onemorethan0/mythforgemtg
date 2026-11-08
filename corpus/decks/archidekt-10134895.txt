@@ -1,0 +1,106 @@
+# Archidekt — Marath's Toolbox
+# source: archidekt:10134895
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Marath, Will of the Wild
+
+Deck:
+1 Temple Garden
+1 Imperial Recruiter
+1 Command Tower
+1 Stomping Ground
+1 Skullclamp
+1 Branching Evolution
+1 Birds of Paradise
+1 Copperline Gorge
+1 Grand Abolisher
+1 Wear // Tear
+1 Eladamri's Call
+1 Gamble
+1 Recruiter of the Guard
+1 Force of Vigor
+1 City of Solitude
+1 Regrowth
+1 Esper Sentinel
+1 Hardened Scales
+1 Sunbaked Canyon
+1 Razorverge Thicket
+1 Generous Gift
+1 Ashnod's Altar
+1 Lightning Greaves
+1 Aura Shards
+1 Unbound Flourishing
+1 Arid Mesa
+1 Rootbound Crag
+1 Jetmir's Garden
+1 Clifftop Retreat
+1 Mana Echoes
+1 Fabled Passage
+1 Enlightened Tutor
+1 Ozolith, the Shattered Spire
+1 Cryptolith Rite
+1 Brushland
+1 Worldly Tutor
+1 Chrome Mox
+1 Conclave Mentor
+1 Eternal Witness
+1 Faithless Looting
+1 Sacred Foundry
+1 Sunpetal Grove
+1 Cryptic Trilobite
+1 Arcane Signet
+1 Wooded Foothills
+1 Sterling Grove
+1 Prismatic Vista
+1 Teferi's Protection
+1 Three Visits
+1 Greater Auramancy
+1 Nature's Lore
+2 Plains
+1 Ancient Tomb
+1 Simian Spirit Guide
+1 Allosaurus Shepherd
+1 Talisman of Unity
+1 Llanowar Elves
+2 Forest
+1 Elvish Mystic
+1 Fyndhorn Elves
+1 Elvish Spirit Guide
+1 Farseek
+1 The Ozolith
+1 Sensei's Divining Top
+1 Hall of Heliod's Generosity
+1 Sol Ring
+1 Windswept Heath
+1 Congregation at Dawn
+1 Swiftfoot Boots
+1 Savannah
+1 Voice of Victory
+1 Karplusan Forest
+1 Deafening Silence
+1 Manamorphose
+1 Agatha's Soul Cauldron
+1 Taiga
+1 Wild Growth
+1 Plateau
+1 Tamiyo's Safekeeping
+1 Brightglass Gearhulk
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Swords to Plowshares
+1 Devoted Druid
+1 Mass Hysteria
+1 Innkeeper's Talent
+1 Beast Within
+1 Birthing Pod
+1 Kami of Whispered Hopes
+1 Defense of the Heart
+1 Avacyn's Pilgrim
+1 Mountain
+1 Talisman of Impulse
+1 Summoner's Pact
+1 Silence
+1 Apostle's Blessing
+1 Blacksmith's Skill

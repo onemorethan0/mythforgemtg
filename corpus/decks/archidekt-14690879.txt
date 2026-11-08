@@ -1,0 +1,94 @@
+# Archidekt — Codename: Kids Next Door
+# source: archidekt:14690879
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Bello, Bard of the Brambles
+
+Deck:
+1 Abrade
+1 Beast Within
+1 Chaos Warp
+1 Decimate
+1 Game Trail
+1 Hedron Archive
+1 Mosswort Bridge
+4 Mountain
+1 Reliquary Tower
+1 Sol Ring
+1 Unnatural Growth
+1 Utopia Sprawl
+1 Wandertale Mentor
+1 Wildsear, Scouring Maw
+1 Wooded Ridgeline
+1 Arcane Signet
+1 Berserkers' Onslaught
+1 Blasphemous Act
+1 Bootleggers' Stash
+1 Cinder Glade
+1 Command Tower
+1 Copperline Gorge
+1 Esika's Chariot
+1 Evolving Wilds
+1 Exotic Orchard
+1 Farseek
+1 Arcbound Reclaimer
+1 Hexavus
+1 Solemn Simulacrum
+5 Forest
+5 Forest
+1 Garruk's Uprising
+1 Gilded Lotus
+1 Goreclaw, Terror of Qal Sisma
+1 Gratuitous Violence
+1 Greater Good
+1 Grothama, All-Devouring
+1 Grumgully, the Generous
+1 Gruul Turf
+1 Harmonize
+1 Karplusan Forest
+1 Mossfire Valley
+4 Mountain
+1 Outpost Siege
+1 Path of Discovery
+1 Primeval Bounty
+1 Pyreswipe Hawk
+1 Raging Ravine
+1 Rolling Hamsphere
+1 Rootbound Crag
+1 Sheltered Thicket
+1 Sunbird's Invocation
+1 Temple of Abandon
+1 Tendershoot Dryad
+1 Terramorphic Expanse
+1 Thickest in the Thicket
+1 Thran Dynamo
+1 Trailtracker Scout
+1 Recon Craft Theta
+1 Giggling Skitterspike
+1 Arcbound Bruiser
+1 Arcbound Crusher
+1 Arcbound Fiend
+1 Arcbound Hybrid
+1 Arcbound Lancer
+1 Arcbound Overseer
+1 Arcbound Slasher
+1 Arcbound Whelp
+1 Aspect of Mongoose
+1 Case of the Locked Hothouse
+1 Elvish Mystic
+1 Frontier Siege
+1 Fyndhorn Elves
+1 Gaea's Gift
+1 Glorious Sunrise
+1 Gruul War Chant
+1 Hoard Hauler
+1 Llanowar Elves
+1 Obscuring Haze
+1 Royal Treatment
+1 Threefold Thunderhulk
+1 Wild Growth
+1 Wondrous Crucible
+1 Wrap in Vigor
+1 Wyll's Reversal

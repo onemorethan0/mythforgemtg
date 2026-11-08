@@ -1,0 +1,108 @@
+# Archidekt — Kefka, Court Mage
+# source: archidekt:13633290
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Misty Rainforest
+1 Lively Dirge
+1 Brain Freeze
+1 Mana Vault
+1 Fierce Guardianship
+1 Imperial Seal
+1 Demonic Tutor
+1 Mystical Tutor
+1 Chrome Mox
+1 Cabal Ritual
+1 Lotus Petal
+1 Arcane Signet
+1 Fellwar Stone
+1 Dimir Signet
+1 Izzet Signet
+1 The One Ring
+1 Force of Negation
+1 Ragavan, Nimble Pilferer
+1 An Offer You Can't Refuse
+1 Simian Spirit Guide
+1 Rite of Flame
+1 Reanimate
+1 Badlands
+1 Ancient Tomb
+1 Blood Crypt
+1 Bloodstained Mire
+1 City of Brass
+1 Command Tower
+1 Exotic Orchard
+1 Reflecting Pool
+1 Watery Grave
+1 Swamp
+1 Scalding Tarn
+1 Steam Vents
+1 Cavern of Souls
+1 Luxury Suite
+1 Mana Confluence
+1 Morphic Pool
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Training Center
+1 Undercity Sewers
+1 Underground Sea
+1 Urborg, Tomb of Yawgmoth
+1 Volcanic Island
+1 Shizo, Death's Storehouse
+1 Pyroblast
+1 Arena of Glory
+1 Wheel of Fortune
+1 Yawgmoth's Will
+1 Molten Duplication
+1 Island
+1 Entomb
+1 Necromancy
+1 Worldgorger Dragon
+1 Gamble
+1 Exsanguinate
+1 Hullbreaker Horror
+1 Twinflame
+1 Mountain
+1 Essence Flux
+1 Deadly Rollick
+1 Animate Dead
+1 Ghostly Flicker
+1 Torment of Hailfire
+1 Talisman of Dominance
+1 Talisman of Creativity
+1 Nezahal, Primal Tide
+1 Valgavoth, Terror Eater
+1 Opposition Agent
+1 Ghostly Pilferer
+1 Dance of the Dead
+1 Talisman of Indulgence
+1 Underworld Breach
+1 Hexing Squelcher
+1 Phyrexian Metamorph
+1 Dauthi Voidwalker
+1 Grim Monolith
+1 Mnemonic Betrayal
+1 Dismember
+1 Orcish Bowmasters
+1 Consecrated Sphinx
+1 Harmonic Prodigy
+1 Deadpool, Trading Card
+1 Toxic Deluge
+1 Deflecting Swat
+1 Mystic Remora
+1 Dualcaster Mage
+1 Flusterstorm
+1 Pyretic Ritual
+1 Rhystic Study
+1 Displacer Kitten
+1 Dark Ritual
+1 Vampiric Tutor
+1 Cyclonic Rift
+1 Force of Will
+1 Jeska's Will
+1 Sol Ring
+1 Waste Not

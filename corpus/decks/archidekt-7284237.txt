@@ -1,0 +1,108 @@
+# Archidekt — The Platinum Chip
+# source: archidekt:7284237
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Mr. House, President and CEO
+
+Deck:
+1 Barbarian Class
+1 Comet, Stellar Pup
+1 Component Pouch
+1 Lightfoot Rogue
+1 Losheel, Clockwork Scholar
+1 Lotho, Corrupt Shirriff
+1 Myrkul's Edict
+1 Vexing Puzzlebox
+1 Wyll, Blade of Frontiers
+1 Clown Car
+1 Deadly Dispute
+1 Maddening Hex
+1 Lae'zel's Acrobatics
+1 Sacred Foundry
+1 Xorn
+1 Steel Overseer
+1 Inventors' Fair
+1 Glittering Stockpile
+1 Goldspan Dragon
+1 Celebr-8000
+1 Mines of Moria
+1 Caves of Koilos
+1 Sulfurous Springs
+1 Ancient Copper Dragon
+1 Reckless Endeavor
+1 Blood Crypt
+1 The Deck of Many Things
+1 Ancient Brass Dragon
+1 Contraband Livestock
+1 Big Score
+1 Alchemist's Talent
+1 Vandalblast
+1 Graven Cairns
+1 Plains
+1 Battlefield Forge
+1 Blightstep Pathway // Searstep Pathway
+1 Bleachbone Verge
+1 Generous Plunderer
+1 Professional Face-Breaker
+1 Sunbillow Verge
+1 Weftstalker Ardent
+1 Ebony Fly
+1 Unexpected Windfall
+1 Clowning Around
+1 Sundown Pass
+1 Danse Macabre
+1 Rugged Prairie
+1 Fetid Heath
+1 Kambal, Profiteering Mayor
+1 Master of Ceremonies
+1 Needleverge Pathway // Pillarverge Pathway
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Academy Manufactor
+1 Command Tower
+1 Wyll's Reversal
+1 Reckless Fireweaver
+1 Ancient Gold Dragon
+1 Dawn's Truce
+1 Blazemire Verge
+1 Black Market Connections
+1 Shattered Sanctum
+1 Path to Exile
+1 Seize the Spoils
+1 Ruinous Ultimatum
+1 Sol Ring
+1 Arcane Signet
+1 Brazen Dwarf
+1 Krang, Utrom Warlord
+1 Cyberman Patrol
+1 Belladonna Took
+1 Sunscorched Divide
+1 Savai Triome
+1 City of Brass
+1 Gleaming Splendor
+1 Desolate Mire
+1 Magda, Brazen Outlaw
+1 Smaug the Magnificent
+1 Luxury Suite
+1 Knuckles the Echidna
+1 Smaug, Wicked Worm
+1 Smothering Tithe
+1 Mirkwood Bats
+1 Swamp
+1 Godless Shrine
+1 Shadowblood Ridge
+1 Delina, Wild Mage
+1 Elegant Parlor
+1 Shadowy Backstreet
+1 Flawless Maneuver
+1 Turbulent Crater
+1 Mountain
+1 Ancient Den
+1 Great Furnace
+1 Vault of Whispers
+1 Inspired Tinkering
+1 Anointed Procession
+1 Chaos Dragon
+1 Haunted Ridge
+1 Gamble

@@ -1,0 +1,96 @@
+# Archidekt — Commander Mustard EDH
+# source: archidekt:6071132
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Teferi's Protection); Bracket 2 allows 0
+
+Commander:
+1 Commander Mustard
+
+Deck:
+1 Mentor of the Meek
+1 Horn of Gondor
+1 Sophina, Spearsage Deserter
+1 Aegis of the Gods
+4 Mountain
+1 Myriad Landscape
+1 Darien, King of Kjeldor
+1 Sol Ring
+1 Sunbaked Canyon
+1 Esper Sentinel
+1 Conqueror's Pledge
+1 Kjeldoran Outpost
+1 Legion Loyalist
+1 Tajic, Blade of the Legion
+1 Captain of the Watch
+1 Arid Mesa
+1 Akroma's Memorial
+1 Archetype of Courage
+1 Assemble the Legion
+1 Aurelia, the Warleader
+1 Avacyn, Angel of Hope
+1 Basri Ket
+1 Battlefield Forge
+1 Blade Historian
+1 Boros Charm
+1 Boros Garrison
+1 Boros Signet
+1 Call the Coppercoats
+1 Catapult Master
+1 Cathars' Crusade
+1 Clifftop Retreat
+1 Command Tower
+1 Daru Warchief
+1 Decree of Justice
+1 Divine Visitation
+1 Eiganjo, Seat of the Empire
+1 Elspeth, Sun's Champion
+1 Embercleave
+1 Evolving Wilds
+1 Finale of Glory
+1 Flawless Maneuver
+1 Frontline Medic
+1 Hero of Bladehold
+1 Horn of Valhalla // Ysgard's Call
+1 Inspiring Vantage
+1 Intangible Virtue
+1 Keeper of the Accord
+1 Land Tax
+1 Martial Coup
+1 Nomads' Assembly
+1 Odric, Lunarch Marshal
+1 Path of Ancestry
+1 Path to Exile
+11 Plains
+1 Prava of the Steel Legion
+1 Purphoros, God of the Forge
+1 Reforge the Soul
+1 Rogue's Passage
+1 Sacred Foundry
+1 Settle the Wreckage
+1 Shadowspear
+1 Shared Animosity
+1 Skullclamp
+1 Spectator Seating
+1 Strip Mine
+1 Sun Titan
+1 Swiftfoot Boots
+1 Sword of the Animist
+1 Swords to Plowshares
+1 Tajic, Legion's Edge
+1 Teferi's Protection
+1 Temple of Triumph
+1 Terramorphic Expanse
+1 Thalia, Heretic Cathar
+1 Throne of the High City
+1 Tome of Legends
+1 Unbreakable Formation
+1 Vanquisher's Banner
+1 War Room
+1 Aurelia, the Law Above
+1 Ojer Taq, Deepest Foundation // Temple of Civilization
+1 Myrel, Shield of Argive
+1 Firemane Commando
+1 Legion Loyalty
+1 Brazen Cannonade
+1 Wheel of Misfortune

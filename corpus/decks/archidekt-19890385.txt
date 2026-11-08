@@ -1,0 +1,71 @@
+# Archidekt — Colorless Five-Color Mono-Color
+# source: archidekt:19890385
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Hei Bai, Forest Guardian
+
+Deck:
+1 Sanctum of All
+1 The Spirit Oasis
+1 Crescent Island Temple
+38 Wastes
+1 Sanctum of Calm Waters
+1 Sanctum of Fruitful Harvest
+1 Southern Air Temple
+1 Honden of Cleansing Fire
+1 Sanctum of Stone Fangs
+1 Honden of Seeing Winds
+1 Northern Air Temple
+1 Go-Shintai of Shared Purpose
+1 Personify
+1 Go-Shintai of Ancient Wars
+1 Go-Shintai of Hidden Cruelty
+1 Honden of Infinite Rage
+1 Go-Shintai of Boundless Vigor
+1 Path to Exile
+1 Ephemerate
+1 Teleportation Circle
+1 Flicker of Fate
+1 Momentary Blink
+1 Swords to Plowshares
+1 Skybind
+1 Airbender Ascension
+1 Touch the Spirit Realm
+1 Appa, Steadfast Guardian
+1 Cloudshift
+1 Eerie Interlude
+1 Chromatic Lantern
+1 Galepowder Mage
+1 Decanter of Endless Water
+1 Otherworldly Journey
+1 Honden of Life's Web
+1 Noble's Purse
+1 Commander's Sphere
+1 Avatar's Wrath
+1 Conjurer's Closet
+1 Patchwork Banner
+1 Shire Scarecrow
+1 Aang's Iceberg
+1 Starfall Invocation
+1 Scarecrow Guide
+1 Blitzball
+1 Salvaged Manaworker
+1 Foraging Wickermaw
+1 Bender's Waterskin
+1 Letter of Acceptance
+1 Arcane Signet
+1 Collector's Vault
+1 Barrels of Blasting Jelly
+1 Coalition Relic
+1 Mana Geode
+1 Long Road Home
+1 Prismatic Lens
+1 Ornithopter of Paradise
+1 Relic of Legends
+1 Turn to Mist
+1 Static Prison
+1 Parting Gust
+1 Justiciar's Portal
+1 The Legend of Yangchen // Avatar Yangchen

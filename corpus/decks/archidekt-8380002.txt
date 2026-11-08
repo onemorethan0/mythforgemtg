@@ -1,0 +1,105 @@
+# Archidekt — Helga's Helpful House of Healthy Hugebois
+# source: archidekt:8380002
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Helga, Skittish Seer
+
+Deck:
+1 Noble Hierarch
+1 Ancient Bronze Dragon
+1 Farseek
+1 Nature's Lore
+1 Three Visits
+1 Swords to Plowshares
+1 Path to Exile
+1 Negate
+1 Farewell
+1 Heroic Intervention
+1 Swiftfoot Boots
+1 Sol Ring
+2 Plains
+1 Beast Whisperer
+1 Command Tower
+1 Reflecting Pool
+1 Path of Ancestry
+1 Reliquary Tower
+1 Exotic Orchard
+1 Seaside Citadel
+1 Vineglimmer Snarl
+1 Flooded Grove
+1 Hinterland Harbor
+1 Rejuvenating Springs
+1 Yavimaya Coast
+1 Waterlogged Grove
+1 Dreamroot Cascade
+1 Canopy Vista
+1 Horizon Canopy
+1 Overgrown Farmland
+1 Hardened Scales
+1 Kalonian Hydra
+1 Forgotten Ancient
+1 Defiler of Vigor
+1 Railway Brawler
+1 Sovereign Okinec Ahau
+1 Toski, Bearer of Secrets
+1 Mangara, the Diplomat
+1 Silverback Elder
+1 Karametra, God of Harvests
+1 Kami of Whispered Hopes
+1 Foundation Breaker
+1 Timeless Witness
+1 Avacyn's Pilgrim
+1 Eladamri's Call
+3 Forest
+1 Brightglass Gearhulk
+1 Danny Pink
+1 Brushland
+1 Flooded Strand
+1 Windswept Heath
+1 Tangled Islet
+1 Sink into Stupor // Soporific Springs
+1 Dragonlord Dromoka
+1 Craterhoof Behemoth
+1 Island
+1 Sunpetal Grove
+1 Mistrise Village
+1 Bountiful Promenade
+1 Sea of Clouds
+1 Hallowed Fountain
+1 Tundra
+1 Savannah
+1 Temple Garden
+1 Spara's Headquarters
+1 Ancient Gold Dragon
+1 Ancient Silver Dragon
+1 Lightning Greaves
+1 Avacyn, Angel of Hope
+1 Nezahal, Primal Tide
+1 Bronzebeak Foragers
+1 Apex Devastator
+1 Nulldrifter
+1 Goreclaw, Terror of Qal Sisma
+1 Legolas's Quick Reflexes
+1 Innkeeper's Talent
+1 Surrak and Goreclaw
+1 Kozilek's Unsealing
+1 Inga and Esika
+1 Stubborn Denial
+1 Shalai, Voice of Plenty
+1 Sigarda, Font of Blessings
+1 Counterspell
+1 Koma, Cosmos Serpent
+1 Chulane, Teller of Tales
+1 Akroma's Will
+1 Garruk's Uprising
+1 Branching Evolution
+1 Minamo, School at Water's Edge
+1 Simic Charm
+1 Fangs of Kalonia
+1 Kiora, Behemoth Beckoner
+1 Intruder Alarm
+1 Chakram Retriever
+1 Magic Damper
+1 Wistfulness

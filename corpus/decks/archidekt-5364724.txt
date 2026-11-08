@@ -1,0 +1,99 @@
+# Archidekt — Shire... Baggins...
+# source: archidekt:5364724
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Lord of the Nazgûl
+
+Deck:
+1 Rite of Replication
+1 Drowned Catacomb
+1 Shipwreck Marsh
+1 Sunken Hollow
+1 Underground River
+1 Urborg, Tomb of Yawgmoth
+1 Choked Estuary
+1 Clearwater Pathway // Murkwater Pathway
+1 Bojuka Bog
+1 Raise the Palisade
+1 Cyclonic Rift
+1 Snap
+1 The Black Gate
+1 Wasteland
+1 Minas Morgul, Dark Fortress
+1 Swan Song
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Mutavault
+1 Darkslick Shores
+1 Nazgûl
+1 Nazgûl
+1 Roaming Throne
+1 Nazgûl
+1 Nazgûl
+1 Night's Whisper
+1 Urborg
+1 Eluge, the Shoreless Sea
+1 Nazgûl
+2 Swamp
+1 Watery Grave
+1 Soul Shatter
+1 Malakir Rebirth // Malakir Mire
+1 Corrupted Conviction
+1 Frantic Search
+1 Village Rites
+1 Archmage Emeritus
+1 Season of Weaving
+1 Command Tower
+1 Nanogene Conversion
+1 Borne Upon a Wind
+1 Lórien Revealed
+1 Case of the Ransacked Lab
+1 Dig Through Time
+1 Gitaxian Probe
+1 Arcane Denial
+1 Cremate
+1 Preordain
+1 Ponder
+1 Go for the Throat
+1 Talisman of Dominance
+1 Stock Up
+1 Flow State
+1 Harmonized Trio // Brainstorm
+1 Oboro, Palace in the Clouds
+1 Arcane Signet
+1 Sol Ring
+1 Mystic Sanctuary
+1 Deadly Dispute
+1 The One Ring
+1 Not Dead After All
+1 Kindred Discovery
+1 Cabal Coffers
+9 Island
+1 Archmage of Runes
+1 Bender's Waterskin
+1 Talion, the Kindly Lord
+1 Fell the Profane // Fell Mire
+1 Unearth
+1 Path of Ancestry
+1 Dark Ritual
+1 Mana Drain
+1 Slip Out the Back
+1 Mystical Tutor
+1 Decorum Dissertation
+1 Diary of Dreams
+1 Consult the Star Charts
+1 Delay
+1 Harmonized Crescendo
+1 Brainstorm
+1 River Song's Diary
+1 Pongify
+1 Counterspell
+1 Chthonian Nightmare
+1 Diabolic Intent
+1 Shadowheart, Dark Justiciar
+1 Samut, Tyrant of Naktamun
+1 Geist of Saint Thalia

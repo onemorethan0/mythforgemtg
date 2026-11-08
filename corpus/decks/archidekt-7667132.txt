@@ -1,0 +1,77 @@
+# Archidekt — $50 Galazeth Prismari Control B3
+# source: archidekt:7667132
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Galazeth Prismari
+
+Deck:
+1 Gadrak, the Crown-Scourge
+1 Galvanic Iteration
+1 Giant's Amulet
+1 Access Denied
+1 Arcane Infusion
+1 Bane's Contingency
+1 Big Score
+1 Bottle-Cap Blast
+1 Collector's Vault
+1 Complete the Circuit
+1 Compulsive Research
+1 Deep Analysis
+1 Demand Answers
+1 Depths of Desire
+1 Detective's Satchel
+1 Dig Through Time
+1 Dream Fracture
+1 Earthquake
+1 Expansion // Explosion
+1 Fact or Fiction
+1 Heaven Sent
+1 Hit the Mother Lode
+1 Increasing Vengeance
+1 Inspired Tinkering
+1 James, Wandering Dad // Follow Him
+1 Jaya's Immolating Inferno
+1 Negate
+1 Nimblewright Schematic
+1 Noble's Purse
+1 Out Cold
+1 Pirate's Pillage
+1 Pirate's Prize
+1 Prized Statue
+1 Seize the Spoils
+1 Tamiyo's Logbook
+1 Third Path Iconoclast
+1 Thirst for Discovery
+1 Thought Monitor
+1 Thrill of Possibility
+1 Trail of Evidence
+1 Turn into a Pumpkin
+1 Unexpected Windfall
+1 You Find the Villains' Lair
+1 Finale of Revelation
+1 Gale, Waterdeep Prodigy
+1 Confirm Suspicions
+1 Academy Manufactor
+1 Comet Storm
+1 Command Tower
+1 Idol of Oblivion
+19 Island
+1 Mindsplice Apparatus
+1 Molten Disaster
+14 Mountain
+1 Muddle the Mixture
+1 Spell Swindle
+1 Spiteful Banditry
+1 Treasure Cruise
+1 Treasure Map // Treasure Cove
+1 Sanar, Unfinished Genius // Wild Idea
+1 Resonating Lute
+1 April O'Neil, Human Element
+1 The Mechanist, Aerial Artisan
+1 Storm-Kiln Artist
+1 Mister Fantastic, Reed Richards
+1 Spirit Water Revival
+1 Donatello, the Brains
+1 Mica, Reader of Ruins

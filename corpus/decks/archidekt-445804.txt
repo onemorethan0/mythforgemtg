@@ -1,0 +1,101 @@
+# Archidekt — Damia, Sage of Stone
+# source: archidekt:445804
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Damia, Sage of Stone
+
+Deck:
+1 Golden Demise
+1 Vraska, Scheming Gorgon
+1 Vraska's Contempt
+1 Vraska, Relic Seeker
+1 Path of Ancestry
+1 Burgeoning
+1 Night's Whisper
+1 Exploration
+1 Vedalken Orrery
+1 Worst Fears
+1 Pharika, God of Affliction
+1 Rogue's Passage
+1 Swiftfoot Boots
+1 Hythonia the Cruel
+1 Keepsake Gorgon
+1 Pharika's Mender
+1 Reaper of the Wilds
+1 Gaze of Granite
+1 Breeding Pool
+1 Watery Grave
+1 Treasured Find
+1 Vraska the Unseen
+1 Overgrown Tomb
+1 Xathrid Gorgon
+1 Farseek
+1 Ranger's Path
+1 Alchemist's Refuge
+1 Cavern of Souls
+1 Deadly Allure
+1 Hinterland Harbor
+1 Woodland Cemetery
+1 Visara the Dreadful
+1 Drowned Catacomb
+1 Lightning Greaves
+1 Command Tower
+1 Cultivate
+1 Gorgon Recluse
+1 Sisters of Stone Death
+1 Kodama's Reach
+1 Snake Pit
+1 Infernal Medusa
+1 Status // Statue
+1 Vraska, Regal Gorgon
+1 Find // Finality
+1 Vraska, Golgari Queen
+1 Rampant Growth
+1 Pharika's Spawn
+1 Vraska, Swarm's Eminence
+1 Zagoth Triome
+1 Sunken Ruins
+1 Sol Ring
+1 Twilight Mire
+1 Flooded Grove
+1 Migration Path
+1 Exotic Orchard
+1 Nature's Lore
+1 Vraska, Betrayal's Sting
+1 Phyrexian Arena
+1 Verdant Catacombs
+1 Grappling Hook
+3 Swamp
+6 Forest
+1 Rejuvenating Springs
+1 Morphic Pool
+1 Undergrowth Stadium
+1 Nemesis Mask
+1 Island
+1 Polluted Delta
+1 Misty Rainforest
+1 Assassin's Trophy
+1 Mastermind's Acquisition
+1 Extinguish All Hope
+1 Archetype of Finality
+1 Undercity Eliminator
+1 Skyshroud Claim
+1 Vraska, the Silencer
+1 Doubling Season
+1 Banishing Betrayal
+1 Omenpath Journey
+1 Open the Way
+1 Llanowar Wastes
+1 Underground River
+1 Yavimaya Coast
+1 Shipwreck Marsh
+1 Tam, Mindful First-Year
+1 Deathcap Glade
+1 Tam, Observant Sequencer // Deep Sight
+1 Dreamroot Cascade
+1 Snakeskin Veil
+1 Shared Roots
+1 Vastwood Surge
+1 Rattleback Apothecary

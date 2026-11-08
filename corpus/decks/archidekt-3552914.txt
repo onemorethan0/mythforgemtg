@@ -1,0 +1,105 @@
+# Archidekt — Shorikai - UltraBot
+# source: archidekt:3552914
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Shorikai, Genesis Engine
+
+Deck:
+1 Mystical Tutor
+1 Sonic Screwdriver
+1 Razortide Bridge
+1 Treasure Vault
+1 Deserted Beach
+1 Sea of Clouds
+1 Hallowed Fountain
+1 Academy Ruins
+1 Minamo, School at Water's Edge
+4 Island
+1 Wonder
+1 Seat of the Synod
+1 Ancient Den
+1 Buried Ruin
+1 Command Tower
+1 Slaughter the Strong
+1 Arcum Dagsson
+1 Mobilizer Mech
+1 Master Transmuter
+1 Ashnod's Altar
+1 Weatherlight
+1 The Mycosynth Gardens
+1 Monumental Henge
+1 Anchor to Reality
+1 Mox Opal
+1 Unlicensed Hearse
+1 Nautiloid Ship
+1 Reaver Titan
+1 Kotori, Pilot Prodigy
+1 Urza, Prince of Kroog
+1 Mana Drain
+1 Elesh Norn, Grand Cenobite
+1 Skysovereign, Consul Flagship
+1 Urza's Saga
+1 Reprieve
+1 Scaretiller
+1 Smuggler's Copter
+1 Windfall
+1 Skullclamp
+1 Ancient Tomb
+1 Mech Hangar
+1 Otawara, Soaring City
+1 Dramatic Reversal
+1 Arcane Signet
+1 Narset's Reversal
+1 The Indomitable
+1 Horizon of Progress
+1 Lita, Mechanical Engineer
+1 Jace's Archivist
+1 Swords to Plowshares
+1 Peacewalker Colossus
+1 Sevinne's Reclamation
+1 Anointed Procession
+1 Mondrak, Glory Dominus
+1 Synthetic Destiny
+1 Mass Polymorph
+1 Smothering Tithe
+1 Copy Artifact
+1 Simulacrum Synthesizer
+1 Recommission
+1 Tundra
+1 Unwinding Clock
+1 Sai, Master Thopterist
+1 Supreme Verdict
+1 Cyberdrive Awakener
+1 Isochron Scepter
+1 Darksteel Citadel
+1 Illustrious Wanderglyph
+1 Reckoner Bankbuster
+1 Inventors' Fair
+1 Floodfarm Verge
+1 Reef Roads
+1 Country Roads
+1 Tune Up
+1 Fomori Vault
+1 Reality Shift
+1 Stridehangar Automaton
+1 Counterspell
+1 Farewell
+1 Unstoppable Plan
+3 Plains
+1 Snap
+1 Possession Engine
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Thopter Fabricator
+1 Teferi's Ageless Insight
+1 Meticulous Archive
+1 Salvation Engine
+1 Gift of Estates
+1 Sol Ring
+1 Karn, Legacy Reforged
+1 Repurposing Bay
+1 Prismatic Vista
+1 Cultivator's Caravan
+1 Padeem, Consul of Innovation
+1 Aerial Surveyor

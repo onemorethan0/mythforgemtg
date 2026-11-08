@@ -1,0 +1,99 @@
+# Archidekt — Valgavoth Life Stax
+# source: archidekt:9277180
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Valgavoth, Harrower of Souls
+
+Deck:
+1 Mindcrank
+1 Bloodchief Ascension
+4 Mountain
+1 Séance Board
+1 Rakdos Charm
+1 Kederekt Parasite
+1 Dragonskull Summit
+1 Command Tower
+1 Graven Cairns
+1 Sol Ring
+1 Lightning Greaves
+1 Bojuka Bog
+1 Haunted Ridge
+1 Underworld Dreams
+1 Manabarbs
+1 Zo-Zu the Punisher
+1 Rug of Smothering
+1 Roiling Vortex
+1 Arcane Signet
+1 Kaya's Ghostform
+1 Dark Ritual
+1 Forsaken Wastes
+1 Blazemire Verge
+1 Sokenzan, Crucible of Defiance
+1 Plaza of Heroes
+1 Withering Torment
+1 Talisman of Indulgence
+1 Witch's Clinic
+1 Polluted Delta
+1 Scalding Tarn
+1 Bloodstained Mire
+1 Untimely Malfunction
+1 Raucous Theater
+1 Luxury Suite
+1 Malakir Rebirth // Malakir Mire
+1 Blightstep Pathway // Searstep Pathway
+1 Wishclaw Talisman
+1 Leechridden Swamp
+1 Solphim, Mayhem Dominus
+1 Vandalblast
+1 Boggart Trawler // Boggart Bog
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Orcish Bowmasters
+1 Jeska's Will
+1 Spellshock
+1 Dismember
+1 Razorkin Needlehead
+1 Ob Nixilis, Captive Kingpin
+1 Blasphemous Edict
+1 Jeska, Thrice Reborn
+1 Kediss, Emberclaw Familiar
+1 Bitter Triumph
+1 Black Market Connections
+1 Chaos Warp
+1 Demonic Tutor
+1 Scrawling Crawler
+1 Mount Doom
+1 Fell the Profane // Fell Mire
+1 Fabled Passage
+1 Mayhem Devil
+1 Sheoldred, the Apocalypse
+1 Smoldering Marsh
+1 Gamble
+1 Blasphemous Act
+1 Basilisk Collar
+1 Vito, Thorn of the Dusk Rose
+1 Unholy Annex // Ritual Chamber
+1 Rakdos Signet
+1 Winds of Change
+1 Hexing Squelcher
+1 Screaming Nemesis
+1 Multiply by Zero
+1 Blood Crypt
+1 Blood Artist
+1 Sulfurous Springs
+1 Hearthborn Battler
+1 Gleeful Arsonist
+1 Not Dead After All
+1 Fate Unraveler
+1 Sundering Eruption // Volcanic Fissure
+1 The One Ring
+1 The Meathook Massacre
+1 Tibalt's Trickery
+1 Toxic Deluge
+1 Chandra's Ignition
+1 Hidden Hideout
+1 Lich's Relic
+1 Curse-Marred Demon
+7 Swamp
+1 Blood Seeker

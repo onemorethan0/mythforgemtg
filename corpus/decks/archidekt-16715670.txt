@@ -1,0 +1,108 @@
+# Archidekt — Flubby Cheerios
+# source: archidekt:16715670
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Flubs, the Fool
+
+Deck:
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Crimson Kobolds
+1 Crookshank Kobolds
+1 Hexing Squelcher
+1 Memnite
+1 Rograkh, Son of Rohgahh
+1 Tinder Wall
+1 Valley Floodcaller
+1 Crop Rotation
+1 Gut Shot
+1 Birds of Paradise
+1 Inti, Seneschal of the Sun
+1 Worldly Tutor
+1 Infernal Plunge
+1 Jeska's Will
+1 Rite of Flame
+1 Cloudstone Curio
+1 Lion's Eye Diamond
+1 Mox Diamond
+1 Paradise Mantle
+1 Urza's Bauble
+1 Mystic Remora
+1 Song of Creation
+1 Survival of the Fittest
+1 Boseiju, Who Endures
+1 City of Brass
+1 Emergence Zone
+1 Gaea's Cradle
+1 Otawara, Soaring City
+1 Nature's Claim
+1 Cloud of Faeries
+1 Delighted Halfling
+1 Ornithopter
+1 Phyrexian Walker
+1 Six
+1 Sylvan Safekeeper
+1 Walking Ballista
+1 Noxious Revival
+1 Snap
+1 Flame Jab
+1 Gitaxian Probe
+1 Chrome Mox
+1 Defense Grid
+1 Lotus Petal
+1 Mishra's Bauble
+1 Mox Amber
+1 Mox Opal
+1 Sol Ring
+1 Springleaf Drum
+1 Tormod's Crypt
+1 Food Chain
+1 Underworld Breach
+1 Ancient Tomb
+1 Arid Mesa
+1 Breeding Pool
+1 Command Tower
+1 Flooded Strand
+1 Gemstone Caverns
+1 Mana Confluence
+1 Misty Rainforest
+1 Rejuvenating Springs
+1 Scalding Tarn
+1 Spire Garden
+1 Steam Vents
+1 Stomping Ground
+1 Taiga
+1 Training Center
+1 Tropical Island
+1 Verdant Catacombs
+1 Volcanic Island
+1 Wooded Foothills
+1 Brain Freeze
+1 Manabond
+1 Kobolds of Kher Keep
+1 Fauna Shaman
+1 Simian Spirit Guide
+1 Containment Construct
+1 Elvish Spirit Guide
+1 Squee, the Immortal
+1 Basking Rootwalla
+1 Summer Bloom
+1 Blazing Rootwalla
+1 Rhystic Study
+1 Eruth, Tormented Prophet
+1 Gustha's Scepter
+1 Everflowing Chalice
+1 Pia, Aether Ascetic
+1 Abundant Harvest
+1 Autumn's Veil
+1 Wild Cantor
+1 Urza's Saga
+1 Haywire Mite
+1 Dryad Arbor
+1 Herbal Poultice
+1 Shield Sphere
+1 Jeweled Amulet
+1 Mana Vault
+1 Strike It Rich
+1 Vexing Shusher

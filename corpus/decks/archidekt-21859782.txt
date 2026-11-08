@@ -1,0 +1,99 @@
+# Archidekt — My Wife’s Boyfriend Says It’s Time To Come Home (B5)
+# source: archidekt:21859782
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Heartless Hidetsugu
+
+Deck:
+1 Naktamun Lorespinner // Wheel of Fortune
+1 Torch Courier
+1 Bolt Bend
+1 Liquimetal Torque
+1 Ruby Medallion
+1 Treasonous Ogre
+1 Red Elemental Blast
+1 Mana Vault
+1 Reckless Handling
+1 Uncivil Unrest
+1 Overblaze
+1 Big Score
+1 Bloodlust Inciter
+1 Ancient Tomb
+1 Arena of Glory
+1 Arid Mesa
+1 Bloodstained Mire
+1 City of Traitors
+1 Arcane Signet
+1 Chrome Mox
+1 Blazing Firesinger // Seething Song
+1 Cavern of Souls
+1 Fiendish Duo
+1 Dictate of the Twin Gods
+1 Expedite
+1 Dwarven Ruins
+1 Gemstone Caverns
+1 Generator Servant
+1 Grim Monolith
+1 Hanweir Battlements
+1 Insult // Injury
+1 Lightning Mauler
+1 Lightning Greaves
+1 Magewright's Stone
+1 Reckless Barbarian
+1 Shadowspear
+1 Solphim, Mayhem Dominus
+1 Unexpected Windfall
+1 Urza's Saga
+1 Impolite Entrance
+1 Collective Inferno
+1 Fervent Mastery
+1 Wild Wasteland
+1 Sawhorn Nemesis
+1 Wheel of Fortune
+1 Crimson Wisps
+1 Crystal Vein
+1 Fellwar Stone
+1 Hexing Squelcher
+1 Twinflame Tyrant
+1 Furnace of Rath
+1 Valakut Awakening // Valakut Stoneforge
+1 The One Ring
+1 Mass Hysteria
+1 Lotus Petal
+1 Spinerock Knoll
+1 Swiftfoot Boots
+1 Gamble
+1 Witch's Clinic
+1 Wooded Foothills
+1 Hall of the Bandit Lord
+1 Scalding Tarn
+1 Redirect Lightning
+1 Mind Stone
+1 Sol Ring
+1 Thought Vessel
+1 Thran Dynamo
+1 Seething Song
+1 Pyroblast
+1 Imperial Recruiter
+1 Thousand-Year Elixir
+1 Jeska's Will
+1 Rite of Flame
+1 Boltwave
+1 Sawblade Scamp
+1 Mox Diamond
+1 Faithless Looting
+1 Gratuitous Violence
+1 Shivan Gorge
+1 Lindblum, Industrial Regency // Mage Siege
+1 Helm of Awakening
+1 Goblin Motivator
+1 Skateboard
+1 Goblin Welder
+1 Lavaspur Boots
+1 Deflecting Swat
+1 Isengard Unleashed
+1 Marvin, Murderous Mimic
+1 Simian Spirit Guide
+10 Mountain

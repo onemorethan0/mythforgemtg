@@ -1,0 +1,101 @@
+# Archidekt — Redbull
+# source: archidekt:17738655
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tibor and Lumia
+
+Deck:
+1 Archetype of Imagination
+1 Coalition Warbrute
+1 Thriving Bluff
+1 Command Tower
+1 Magma Opus
+1 Flurry of Horns
+1 Silverbluff Bridge
+1 Labyrinth Minotaur
+1 Desolate Lighthouse
+1 Arcane Signet
+1 Sol Ring
+1 Cobbled Wings
+1 Izzet Boilerworks
+1 Electrosiphon
+4 Island
+1 Minotaur Aggressor
+1 Warfire Javelineer
+1 Swiftwater Cliffs
+1 Izzet Charm
+1 Deathbellow War Cry
+1 Arcane Flight
+1 Prismari Command
+1 Onslaught
+1 Gorehorn Minotaurs
+1 Earthquake
+1 Etherium-Horn Sorcerer
+1 Cliffhaven Kitesail
+1 Path of Ancestry
+5 Mountain
+1 Barging Sergeant
+1 Spinehorn Minotaur
+1 Minotaur Skullcleaver
+1 Rageblood Shaman
+1 Riptide Laboratory
+1 Ahn-Crop Crasher
+1 Take Flight
+1 Quicksand
+1 Soaring Seacliff
+1 Favorable Winds
+1 Illuminated Wings
+1 Adrenaline Jockey
+1 Abrade
+1 Run for Your Life
+1 Nivix, Aerie of the Firemind
+1 Frostboil Snarl
+1 Hurloon Shaman
+1 Phantom Wings
+1 The Biblioplex
+1 One With the Wind
+1 Izzet Signet
+1 Slick Sequence
+1 Hellspur Brute
+1 Neheb, the Eternal
+1 Arcanum Wings
+1 Sand Silos
+1 Lightning Visionary
+1 Spinerock Knoll
+1 Counterspell
+1 Taurean Mauler
+1 Electrolyze
+1 Neurok Hoversail
+1 Zealot of the God-Pharaoh
+1 Highland Lake
+1 Sandstorm Crasher
+1 Wandering Fumarole
+1 Blast Zone
+1 Ghostly Wings
+1 Vivid Creek
+1 Sulfur Falls
+1 Bull-Rush Bruiser
+1 Prophetic Bolt
+1 Flame of Anor
+1 Ionize
+1 Eroded Canyon
+1 Magefire Wings
+1 Shimmering Wings
+1 Minotaur Illusionist
+1 Wonder
+1 Frontline Devastator
+1 Inside Out
+1 Sonic Assault
+1 Temple of Epiphany
+1 Sunken Palace
+1 Hazoret's Monument
+1 Peculiar Lighthouse
+1 Gandalf's Sanction
+1 Mechanical Glider
+1 Maelstrom Artisan // Rocket Volley
+1 Chemister's Trick
+1 Stress Dream
+1 Longhorn Sharpshooter
+1 Ashling's Command

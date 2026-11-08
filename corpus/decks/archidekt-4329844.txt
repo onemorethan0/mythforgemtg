@@ -1,0 +1,94 @@
+# Archidekt — Acererak the Rizzard (cEDH)
+# source: archidekt:4329844
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Acererak the Archlich
+
+Deck:
+1 Snuff Out
+1 Urza's Incubator
+1 Defiler of Flesh
+1 Saw in Half
+1 Reanimate
+1 Winding Canyons
+1 Dark Petition
+1 Overeager Apprentice
+1 Blood Pet
+1 Emergence Zone
+1 Dismember
+1 Dark Ritual
+1 Grim Tutor
+1 Chrome Mox
+1 Culling the Weak
+1 Priest of Gix
+1 Bontu's Monument
+1 Arcane Signet
+1 Heartless Summoning
+1 Sol Ring
+1 Relic of Legends
+1 Beseech the Queen
+1 Carnival of Souls
+1 Cabal Ritual
+1 Urborg, Tomb of Yawgmoth
+1 Gemstone Caverns
+1 Lake of the Dead
+1 Imperial Seal
+1 Semblance Anvil
+1 Activated Sleeper
+1 Extirpate
+1 Beseech the Mirror
+1 Lotus Petal
+1 Command Beacon
+1 Sacrifice
+1 Shambling Ghast
+1 Eyetwitch
+1 Orcish Bowmasters
+1 Surgical Extraction
+1 Phyrexian Tower
+1 Ayara, First of Locthwain
+1 Opposition Agent
+1 Demonic Tutor
+1 Ancient Tomb
+1 Mana Vault
+1 Jet Medallion
+1 Vampiric Tutor
+1 Plunge into Darkness
+1 Tainted Pact
+1 Spectrum Sentinel
+1 Polluted Delta
+1 Prismatic Vista
+1 Mox Diamond
+1 Greedy Freebooter
+1 K'rrik, Son of Yawgmoth
+1 Marsh Flats
+1 Verdant Catacombs
+1 Bloodstained Mire
+1 Mishra's Workshop
+1 Warren Soultrader
+8 Snow-Covered Swamp
+1 Diamond Mare
+1 Dauthi Voidwalker
+1 Sarevok's Tome
+1 Diabolic Intent
+1 Necropotence
+1 Animate Dead
+1 Faerie Macabre
+1 Scroll Rack
+1 Sheoldred, the Apocalypse
+1 Agatha's Soul Cauldron
+1 Hoarding Broodlord
+1 Entomb
+1 Gravecrawler
+1 Dance of the Dead
+1 Shallow Grave
+1 Aetherflux Reservoir
+1 Peter Parker's Camera
+8 Swamp
+1 Bubbling Muck
+1 PuPu UFO
+1 Vexing Bauble
+1 Winter Moon
+1 Lotus Bloom
+1 The Soul Stone

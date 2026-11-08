@@ -1,0 +1,88 @@
+# Archidekt — Arcum Dagsson "Tick-tock"
+# source: archidekt:7733473
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Arcum Dagsson
+
+Deck:
+1 Memnite
+1 Phyrexian Walker
+1 Propaganda
+1 Mycosynth Lattice
+1 Myr Moonvessel
+1 Malcator's Watcher
+1 Junk Diver
+1 Darksteel Forge
+1 Sai, Master Thopterist
+1 Emry, Lurker of the Loch
+1 Myr Sire
+1 Silver Myr
+1 Etherium Sculptor
+1 Solemn Simulacrum
+1 Hedron Crawler
+1 Scrap Trawler
+1 Thought Monitor
+1 Counterspell
+1 Karn, Legacy Reforged
+1 Palladium Myr
+1 Corridor Monitor
+1 Negate
+1 Cathodion
+21 Island
+1 Spell Pierce
+1 Access Denied
+1 Sculpting Steel
+1 The Millennium Calendar
+1 Three Steps Ahead
+1 Thoughtcast
+1 Dispel
+1 Stoic Rebuttal
+1 High Tide
+1 Voltaic Key
+1 Retrofitter Foundry
+1 Efficient Construction
+1 Seat of the Synod
+1 Mirrodin Besieged
+1 Artificer Class
+1 Reliquary Tower
+1 Sol Ring
+1 Temple of the False God
+1 Shrine of the Forsaken Gods
+1 Rings of Brighthearth
+1 Mirrorworks
+1 Arcane Signet
+1 Chromatic Orrery
+1 Scene of the Crime
+1 Thought Vessel
+1 Gilded Lotus
+1 Sonic Screwdriver
+1 Thran Dynamo
+1 Mirage Mirror
+1 Manifold Key
+1 Mechanized Production
+1 Foundry Inspector
+1 An Offer You Can't Refuse
+1 Urza's Mine
+1 Darksteel Citadel
+1 Urza's Power Plant
+1 Urza's Tower
+1 Nevinyrral's Disk
+1 Urza's Factory
+1 Urza's Workshop
+1 Urza's Command
+1 Galvanic Key
+1 Voltaic Servant
+1 Prismatic Lens
+1 Opt
+1 Ornithopter
+1 Thopter Spy Network
+1 Portal to Phyrexia
+1 Myr Retriever
+1 Octopus Form
+1 Shore Up
+1 Snap
+1 Peter Parker's Camera
+1 Ravenform
+1 North Pole Patrol

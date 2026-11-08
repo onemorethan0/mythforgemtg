@@ -1,0 +1,84 @@
+# Archidekt — Lathril EDH (180€ Budget - Bracket 2)
+# source: archidekt:8276301
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Lathril, Blade of the Elves
+
+Deck:
+1 Galadhrim Ambush
+1 Dionus, Elvish Archdruid
+1 Gnarlroot Trapper
+1 Alpha Authority
+1 Vitalize
+1 Deathcap Glade
+1 Glissa Sunslayer
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Poison-Tip Archer
+1 Leaf-Crowned Visionary
+1 Selfless Safewright
+1 Putrefy
+1 Champions of the Perfect
+1 Boreal Druid
+1 Elvish Visionary
+1 Wirewood Lodge
+1 Harald, King of Skemfar
+1 Eclipsed Elf
+1 Abrupt Decay
+1 Sol Ring
+1 Vernal Fen
+1 Pact of the Serpent
+1 Bounty of Skemfar
+1 Swiftfoot Boots
+1 Skullclamp
+1 Elvish Harbinger
+1 Golgari Charm
+1 Assassin's Trophy
+1 Priest of Titania
+1 Skemfar Shadowsage
+1 Beast Within
+1 Circle of Dreams Druid
+1 Dwynen's Elite
+1 Elves of Deep Shadow
+1 Elvish Archdruid
+1 Elvish Champion
+1 Elvish Mystic
+1 Elvish Promenade
+1 Heroic Intervention
+1 Galadhrim Brigade
+1 Elvish Warmaster
+1 Ezuri, Renegade Leader
+1 Fauna Shaman
+14 Forest
+1 Fyndhorn Elves
+1 Lightning Greaves
+1 Llanowar Elves
+1 Llanowar Wastes
+1 Nature's Claim
+1 Realmwalker
+1 Reclamation Sage
+1 Secluded Courtyard
+12 Swamp
+1 Tainted Wood
+1 Wirewood Symbiote
+1 Kenrith's Transformation
+1 Exsanguinate
+1 Formidable Speaker
+1 Night's Whisper
+1 Marwyn, the Nurturer
+1 Trystan's Command
+1 Craterhoof Behemoth
+1 Beast Whisperer
+1 Eladamri, Korvecdal
+1 Woodland Cemetery
+1 Arbor Elf
+1 Arcane Signet
+1 Elven Ambush
+1 Wrap in Vigor
+1 Command Tower
+1 Llanowar Tribe
+1 Kindred Dominance
+1 Imperious Perfect
+1 Exotic Orchard
+1 Mobilize

@@ -1,0 +1,85 @@
+# Archidekt — 'Till the Cows Come Home
+# source: archidekt:8982771
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Crop Rotation); Bracket 1 allows 0
+
+Commander:
+1 Bruse Tarl, Boorish Herder
+1 Kamahl, Heart of Krosa
+
+Deck:
+1 Charging Cinderhorn
+1 Makindi Ox
+1 Longhorn Firebeast
+1 Purphoros's Emissary
+1 Bruse Tarl, Roving Rancher
+1 Earth-Origin Yak
+1 Ironhoof Ox
+1 Ox Drover
+1 Giant Ox
+1 Holy Cow
+1 Bartered Cow
+1 Goldenhide Ox
+1 Arc Runner
+1 Inquisitor's Ox
+1 Zodiac Ox
+1 Raging Bull
+1 Bovine Intervention
+1 Ox of Agonas
+1 Wild Ox
+1 Pillarfield Ox
+1 Yoked Ox
+1 Stampede Driver
+1 Taurean Mauler
+1 Overrun
+1 Lead the Stampede
+1 Stampede
+1 Overwhelming Stampede
+1 Makindi Stampede // Makindi Mesas
+1 Migration Path
+7 Mountain
+1 Animal Sanctuary
+13 Forest
+1 Farmstead
+1 Bulwark Ox
+1 Bucolic Ranch
+1 Colossal Plow
+1 Overgrown Farmland
+1 Tinder Farm
+1 Remote Farm
+7 Plains
+1 Restless Bivouac
+1 Crash Through
+1 Steer Clear
+1 Ram Through
+1 Diligent Farmhand
+1 Crop Rotation
+1 Harvest Season
+1 Heaped Harvest
+1 Stoic Farmer
+1 Swords to Plowshares
+1 Shu Farmer
+1 Trading Post
+1 Baldin, Century Herdmaster
+1 Aid from the Cowl
+1 Descendants' Path
+1 Reap What Is Sown
+1 Shire Terrace
+1 Rustler Rampage
+1 Strength in Numbers
+1 Market Festival
+1 Liberated Livestock
+1 Celebrate the Harvest
+1 Kindred Charge
+1 Fertile Ground
+1 Abundant Harvest
+1 Early Harvest
+1 Soul of the Harvest
+1 High Market
+1 Night Market
+1 Contraband Livestock
+1 Rocco, Street Chef
+1 Tireless Provisioner
+1 Harvest Hand // Scrounged Scythe
+1 Cultivate

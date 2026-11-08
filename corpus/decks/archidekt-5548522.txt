@@ -1,0 +1,106 @@
+# Archidekt — Galadriel, Light of Valinor
+# source: archidekt:5548522
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Galadriel, Light of Valinor
+
+Deck:
+1 Rejuvenating Springs
+1 Exotic Pets
+1 Spara's Headquarters
+1 Sol Ring
+1 Aura Shards
+1 Three Steps Ahead
+1 Brushland
+1 Caretaker's Talent
+1 Castle Ardenvale
+1 Birds of Paradise
+1 Aura Mutation
+1 Heroic Intervention
+1 Lightning Greaves
+1 Smothering Tithe
+1 Arachnogenesis
+1 Temple Garden
+1 Minas Tirith
+1 Field of the Dead
+1 Command Tower
+1 Seedborn Muse
+1 Farewell
+1 Adeline, Resplendent Cathar
+1 Akroma's Will
+1 Raise the Alarm
+1 Vitu-Ghazi, the City-Tree
+1 Path of Ancestry
+1 The One Ring
+1 Rhystic Study
+1 Everybody Lives!
+1 Teferi's Protection
+1 Irrigated Farmland
+1 Gala Greeters
+1 Faerie Mastermind
+1 Danny Pink
+1 Cyclonic Rift
+1 Noble Hierarch
+1 Flawless Maneuver
+1 Galadhrim Ambush
+1 Breeding Pool
+1 Deserted Beach
+1 Legolas's Quick Reflexes
+1 Doubling Season
+1 Swords to Plowshares
+1 Hallowed Fountain
+2 Plains
+1 Flooded Strand
+1 Fierce Guardianship
+1 Floodfarm Verge
+1 Nesting Dovehawk
+1 Adarkar Wastes
+1 Perch Protection
+1 Enduring Vitality
+1 Loran of the Third Path
+1 Esika's Chariot
+1 Tendershoot Dryad
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Plaza of Heroes
+1 Avacyn's Pilgrim
+1 Fountainport
+1 Secure the Wastes
+1 Hushwood Verge
+1 Adrix and Nev, Twincasters
+1 Giver of Runes
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Pact of Negation
+1 Strength of the Harvest // Haven of the Harvest
+1 Pollywog Prodigy
+1 Rammas Echor, Ancient Shield
+1 Delighted Halfling
+1 Lush Portico
+1 Meticulous Archive
+1 Hedge Maze
+1 Twenty-Toed Toad
+1 Clever Concealment
+1 Misty Rainforest
+2 Forest
+1 Tangled Florahedron // Tangled Vale
+1 Esper Sentinel
+1 Arcane Signet
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Selesnya Charm
+1 Inquisitive Puppet
+1 Tender Wildguide
+1 Windswept Heath
+1 Abundant Countryside
+1 Urza's Saga
+1 Retrofitter Foundry
+1 Urban Retreat
+1 Kutzil, Malamet Exemplar
+1 Hidden Hideout
+1 Exalted Sunborn
+1 Guardian Augmenter
+1 Kami of Whispered Hopes
+1 The Queen of Dale
+1 Gleaming Splendor
+1 Bard, King of Dale
+1 Galadriel's Dismissal

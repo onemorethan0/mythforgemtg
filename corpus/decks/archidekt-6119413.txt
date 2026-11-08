@@ -1,0 +1,108 @@
+# Archidekt — Atraxa Grand Unifier CEDH
+# source: archidekt:6119413
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Atraxa, Grand Unifier
+
+Deck:
+1 The One Ring
+1 Birds of Paradise
+1 Demonic Consultation
+1 Ancient Tomb
+1 Deathrite Shaman
+1 An Offer You Can't Refuse
+1 Delighted Halfling
+1 Food Chain
+1 Karn, the Great Creator
+1 Misthollow Griffin
+1 Cavern of Souls
+1 Dark Ritual
+1 Culling Ritual
+1 Finale of Devastation
+1 Lotho, Corrupt Shirriff
+1 Demonic Tutor
+1 Emrakul, the Promised End
+1 Forbidden Orchard
+1 Exotic Orchard
+1 March of Swirling Mist
+1 Forest
+1 Endurance
+1 Mystic Remora
+1 Lotus Petal
+1 Arcane Signet
+1 Island
+1 Angel's Grace
+1 Ertai Resurrected
+1 Command Tower
+1 Damn
+1 Esper Sentinel
+1 Eternal Witness
+1 Abrupt Decay
+1 Borne Upon a Wind
+1 Mental Misstep
+1 Eternal Scourge
+1 Flusterstorm
+1 Ledger Shredder
+1 Force of Vigor
+1 Displacer Kitten
+1 Gemstone Caverns
+1 Grand Abolisher
+1 Horizon Canopy
+1 Enlightened Tutor
+1 Bountiful Promenade
+1 Flooded Strand
+1 Marsh Flats
+1 Force of Negation
+1 Force of Will
+1 Bayou
+1 City of Brass
+1 Mana Confluence
+1 Drannith Magistrate
+1 Mnemonic Betrayal
+1 Boseiju, Who Endures
+1 Thassa's Oracle
+1 Savannah
+1 Tropical Island
+1 Walking Ballista
+1 Sevinne's Reclamation
+1 Smothering Tithe
+1 Toxic Deluge
+1 Saw in Half
+1 Neoform
+1 Spellseeker
+1 Noble Hierarch
+1 Veil of Summer
+1 Pact of Negation
+1 Mystical Tutor
+1 Teferi, Time Raveler
+1 Stern Scolding
+1 Venser, Shaper Savant
+1 Opposition Agent
+1 Vampiric Tutor
+1 Sea of Clouds
+1 Tundra
+1 Prismatic Vista
+1 Rhystic Study
+1 Recruiter of the Guard
+1 Phyrexian Metamorph
+1 Sol Ring
+1 Plains
+1 Spara's Headquarters
+1 Swamp
+1 Noxious Revival
+1 Urza's Saga
+1 Orcish Bowmasters
+1 Silence
+1 Tainted Pact
+1 Underground Sea
+1 Polluted Delta
+1 Otawara, Soaring City
+1 Ranger-Captain of Eos
+1 Mana Vault
+1 Windswept Heath
+1 Chrome Mox
+1 Mox Opal
+1 Bloom Tender
+1 Grand Arbiter Augustin IV

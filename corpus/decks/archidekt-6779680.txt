@@ -1,0 +1,108 @@
+# Archidekt — Wise Mothdaddy goes rad - but make it cEDH!
+# source: archidekt:6779680
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Sol Ring
+1 Bruvac the Grandiloquent
+1 Mox Diamond
+1 Fierce Guardianship
+1 Ancient Tomb
+1 Mana Drain
+1 Boseiju, Who Endures
+1 Bloodstained Mire
+1 Marsh Flats
+1 Misty Rainforest
+1 Demonic Tutor
+1 Necropotence
+1 City of Brass
+1 Mana Confluence
+1 Vampiric Tutor
+1 Watery Grave
+1 Thassa's Oracle
+1 Breeding Pool
+1 Scalding Tarn
+1 Overgrown Tomb
+1 Dauthi Voidwalker
+1 Orcish Bowmasters
+1 Verdant Catacombs
+1 Opposition Agent
+1 Worldly Tutor
+1 Mox Amber
+1 Carpet of Flowers
+1 Flusterstorm
+1 Minamo, School at Water's Edge
+1 Nuclear Fallout
+1 Tainted Pact
+1 Gemstone Caverns
+1 Demonic Consultation
+1 Pact of Negation
+1 Dark Ritual
+1 An Offer You Can't Refuse
+1 Mystical Tutor
+1 Wishclaw Talisman
+1 Talion, the Kindly Lord
+1 Flooded Strand
+1 Rhystic Study
+1 Mystic Remora
+1 Lotus Petal
+1 Mox Opal
+1 Imperial Seal
+1 Phantasmal Image
+1 Cyclonic Rift
+1 Command Tower
+1 Rejuvenating Springs
+1 Morphic Pool
+1 Otawara, Soaring City
+1 Wooded Foothills
+1 Deadly Rollick
+1 Urza's Saga
+1 Mental Misstep
+1 Force of Negation
+1 Mindbreak Trap
+1 Shifting Woodland
+1 Survival of the Fittest
+1 Abrupt Decay
+1 Chain of Vapor
+1 Finale of Devastation
+1 Delighted Halfling
+1 Undercity Sewers
+1 Polluted Delta
+1 Gaea's Cradle
+1 Dispel
+1 Noxious Revival
+1 Eldritch Evolution
+1 Pollywog Prodigy
+1 Chrome Mox
+1 Hermit Druid
+1 Valley Floodcaller
+1 Six
+1 Birds of Paradise
+1 Mockingbird
+1 Swan Song
+1 Culling Ritual
+1 Gilded Drake
+1 Animate Dead
+1 Beseech the Mirror
+1 Misthollow Griffin
+1 Food Chain
+1 Bloom Tender
+1 Eternal Scourge
+1 Elvish Spirit Guide
+1 Assassin's Trophy
+1 Hoarding Broodlord
+1 Diabolic Intent
+1 Legolas's Quick Reflexes
+1 Veil of Summer
+1 Maddening Cacophony
+1 The One Ring
+1 Bayou
+1 Tropical Island
+1 Underground Sea
+1 Force of Will
+1 Saw in Half
+1 Mana Vault

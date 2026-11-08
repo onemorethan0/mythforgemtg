@@ -1,0 +1,101 @@
+# Archidekt — From the Womb to the Tomb
+# source: archidekt:2003852
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Seedborn Muse
+1 Hancock, Ghoulish Mayor
+1 Thalia and The Gitrog Monster
+1 Final Showdown
+1 Acererak the Archlich
+1 Polukranos, Unchained
+1 The World Tree
+1 Maskwood Nexus
+1 Biomancer's Familiar
+1 Agatha of the Vile Cauldron
+1 Undead Warchief
+1 Agatha's Soul Cauldron
+1 Wilhelt, the Rotcleaver
+1 Zirda, the Dawnwaker
+1 Aragorn, the Uniter
+1 Vampiric Tutor
+1 Cryptbreaker
+1 Death Baron
+1 Inga and Esika
+1 Ratadrabik of Urborg
+1 Opulent Palace
+1 Mistveil Plains
+1 Illusionist's Bracers
+1 Gaea's Cradle
+1 Wand of Orcus
+1 Lightning Greaves
+1 Winota, Joiner of Forces
+1 Intrepid Adversary
+1 Geralf, Visionary Stitcher
+1 Gisa, the Hellraiser
+1 General Kudro of Drannith
+1 Cyclonic Rift
+1 Captain Kathryn Janeway
+1 Mirror Entity
+1 Spectacular Spider-Man
+1 The Scarab God
+1 God-Eternal Oketra
+1 Greymond, Avacyn's Stalwart
+1 Bard, King of Dale
+1 Iron Man, Armored Avenger
+1 Sublime Exhalation
+1 Field of the Dead
+1 Meticulous Archive
+1 Diregraf Colossus
+1 On Wings of Gold
+1 Xenograft
+1 Mirari's Wake
+1 Training Grounds
+1 Arcane Adaptation
+1 Rooftop Storm
+1 Farewell
+1 Shadowy Backstreet
+1 Willbreaker
+1 Cursed Mirror
+1 Mox Diamond
+3 Island
+1 Sol Ring
+1 Beast Within
+1 Unstoppable Slasher
+1 Wilderness Reclamation
+1 Dr. Joseph M'Benga
+1 Overgrown Tomb
+1 Lush Portico
+3 Swamp
+4 Plains
+1 Command Tower
+1 Zombie Master
+1 Liliana, Death's Majesty
+1 Chromatic Lantern
+1 Mana Vault
+1 Raffine's Tower
+1 Conspiracy
+1 Arcane Sanctum
+1 Indatha Triome
+1 Urban Retreat
+1 Godless Shrine
+1 Zagoth Triome
+1 Mutable Explorer
+1 Pia, Aether Ascetic
+1 Barkform Harvester
+1 Castle Ardenvale
+1 Get Lost
+1 Beseech the Queen
+1 Shizo, Death's Storehouse
+1 Vault of Champions
+1 Abandoned Air Temple
+1 Bountiful Promenade
+1 Sandsteppe Citadel
+1 Bleachbone Verge
+1 Breeding Pool
+1 Hedge Maze
+1 Eiganjo Castle

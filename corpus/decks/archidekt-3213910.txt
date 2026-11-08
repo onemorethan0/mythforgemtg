@@ -1,0 +1,95 @@
+# Archidekt — "Off the Dome" (Maelstrom Wanderer - Temur Cascade)
+# source: archidekt:3213910
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Maelstrom Wanderer
+
+Deck:
+1 Moraug, Fury of Akoum
+1 Ilharg, the Raze-Boar
+1 Reliquary Tower
+1 Yavimaya Coast
+1 Pathbreaker Ibex
+1 Splinter Twin
+1 Wooded Foothills
+1 Kodama of the East Tree
+1 Consecrated Sphinx
+1 Kodama's Reach
+1 Thunderfoot Baloth
+1 Pestermite
+1 Kiki-Jiki, Mirror Breaker
+1 Twinflame Tyrant
+1 Scalding Tarn
+1 Worldly Tutor
+1 Misty Rainforest
+1 Augur of Autumn
+1 Rhystic Study
+1 Command Beacon
+1 Song of the Dryads
+1 Vizier of the Menagerie
+1 Goreclaw, Terror of Qal Sisma
+1 Sensei's Divining Top
+1 Fabled Passage
+1 Selvala, Heart of the Wilds
+1 Full Throttle
+1 Command Tower
+1 Koma, World-Eater
+1 Sylvan Library
+1 Stomping Ground
+1 Balefire Dragon
+1 Zopandrel, Hunger Dominus
+1 Steam Vents
+1 Breeding Pool
+1 Bounding Krasis
+1 Cinder Glade
+1 Map the Frontier
+1 Sol Ring
+1 Rampant Growth
+1 Shifting Woodland
+1 Sneak Attack
+1 Karplusan Forest
+1 City of Brass
+1 Lotus Cobra
+1 Oracle of Mul Daya
+1 Shivan Reef
+1 Koma, Cosmos Serpent
+1 Tireless Provisioner
+3 Island
+1 Reach the Horizon
+4 Mountain
+9 Forest
+1 Lotus Bloom
+1 Gilded Lotus
+1 Harmonize
+1 Somberwald Sage
+1 Cultivate
+1 Food Chain
+1 Starwinder
+1 Viewpoint Synchronization
+1 Decanter of Endless Water
+1 Delighted Halfling
+1 Explosive Vegetation
+1 Rootbound Crag
+1 Coalition Relic
+1 Ancestral Vision
+1 Courser of Kruphix
+1 Zealous Conscripts
+1 Deceiver Exarch
+1 Hinterland Harbor
+1 Birds of Paradise
+1 Reflecting Pool
+1 Rockfall Vale
+1 Thryx, the Sudden Storm
+1 Terror of the Peaks
+1 Temur Sabertooth
+1 Nature's Lore
+1 Gwenna, Eyes of Gaea
+1 Surrak Dragonclaw
+1 Inevitable Betrayal
+1 Karlach, Fury of Avernus
+1 Old Gnawbone
+1 Hexing Squelcher
+1 Rhythm of the Wild
+1 Etali, Primal Conqueror // Etali, Primal Sickness

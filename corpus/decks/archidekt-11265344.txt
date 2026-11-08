@@ -1,0 +1,97 @@
+# Archidekt — Yeva Flash AF - Real Cardboard Edition
+# source: archidekt:11265344
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yeva, Nature's Herald
+
+Deck:
+1 Mana Vault
+1 Gemstone Caverns
+1 Dryad Arbor
+1 Deserted Temple
+1 Nykthos, Shrine to Nyx
+1 Geier Reach Sanitarium
+1 Worldly Tutor
+1 Delighted Halfling
+1 Llanowar Elves
+1 Collector Ouphe
+1 Fyndhorn Elves
+1 Green Sun's Zenith
+1 Yavimaya, Cradle of Growth
+1 Force of Vigor
+1 Boseiju, Who Endures
+1 Glademuse
+1 Arbor Elf
+1 Archdruid's Charm
+1 Karametra's Acolyte
+1 Fanatic of Rhonas
+1 Eladamri, Korvecdal
+1 Elvish Archdruid
+1 Endurance
+1 Allosaurus Shepherd
+1 Scryb Ranger
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Wirewood Symbiote
+1 Wild Growth
+1 Argothian Elder
+1 Heartwood Storyteller
+1 Seedborn Muse
+1 Circle of Dreams Druid
+1 Priest of Titania
+1 Woodland Bellower
+1 Wirewood Lodge
+1 Disciple of Freyalise // Garden of Freyalise
+1 Legolas's Quick Reflexes
+1 Talon Gates of Madara
+1 Elvish Spirit Guide
+1 Emerald Charm
+1 Elvish Mystic
+1 Birds of Paradise
+1 Eternal Witness
+1 Crop Rotation
+1 Fierce Empath
+1 Chord of Calling
+1 Shared Summons
+1 Beast Within
+1 Sol Ring
+1 Ashaya, Soul of the Wild
+1 Temur Sabertooth
+1 Windswept Heath
+1 Quirion Ranger
+1 Utopia Sprawl
+1 Beast Whisperer
+1 Urza's Cave
+1 Verdant Catacombs
+1 Urban Burgeoning
+1 Elvish Reclaimer
+1 Survival of the Fittest
+1 Fauna Shaman
+1 Earthcraft
+1 Badgermole Cub
+1 Formidable Speaker
+1 Chomping Changeling
+1 Skyshroud Poacher
+1 Summoner's Pact
+1 Destiny Spinner
+1 Expedition Map
+1 Urza's Saga
+1 Magus of the Order
+1 Elvish Harbinger
+1 Shang-Chi, Master of Kung Fu
+1 Gaea's Cradle
+1 Chrome Mox
+1 Magus of the Candelabra
+1 Ancient Tomb
+1 Sowing Mycospawn
+1 Joraga Treespeaker
+1 Lotus Petal
+1 Mox Diamond
+1 Hope Tender
+1 Woodcaller Automaton
+1 Yisan, the Wanderer Bard
+1 Chancellor of the Tangle
+1 Boreal Druid
+12 Forest
+1 Leyline of Abundance

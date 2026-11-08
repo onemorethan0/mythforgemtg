@@ -1,0 +1,92 @@
+# Archidekt — Talion - Lord of Clones
+# source: archidekt:5258986
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Talion, the Kindly Lord
+
+Deck:
+1 Arcane Signet
+1 Sunken Ruins
+1 Drowned Catacomb
+1 Underground River
+1 Bojuka Bog
+1 Darkwater Catacombs
+1 Thought Vessel
+1 Talion's Messenger
+1 Decanter of Endless Water
+1 Sakashima the Impostor
+1 Sword of Feast and Famine
+1 Spellstutter Sprite
+1 Watery Grave
+1 Rhystic Study
+1 An Offer You Can't Refuse
+1 Negate
+1 Strix Serenade
+1 Polluted Delta
+1 Sakashima of a Thousand Faces
+1 Spellskite
+1 Mana Drain
+1 Scion of Oona
+1 Arcane Denial
+1 Brazen Borrower // Petty Theft
+1 Command Tower
+1 Exotic Orchard
+1 Glen Elendra Archmage
+1 Misleading Signpost
+1 Path of Ancestry
+1 Reality Shift
+1 Sunken Hollow
+1 Tainted Isle
+1 Faerie Mastermind
+1 Morphic Pool
+1 Shipwreck Marsh
+10 Island
+8 Swamp
+1 Deadly Rollick
+1 Drown in the Loch
+1 Black Market Connections
+1 Clearwater Pathway // Murkwater Pathway
+1 Reliquary Tower
+1 Swan Song
+1 Plaza of Heroes
+1 Muddle the Mixture
+1 Bloodchief Ascension
+1 Spark Double
+1 Irenicus's Vile Duplication
+1 Auton Soldier
+1 Quantum Misalignment
+1 Roaming Throne
+1 Faerie Fencing
+1 Fierce Guardianship
+1 Supernatural Stamina
+1 Gollum, Riddle Master
+1 Swiftfoot Boots
+1 Malakir Rebirth // Malakir Mire
+1 Gloomlake Verge
+1 The One Ring
+1 Orcish Bowmasters
+1 Vendilion Clique
+1 Silent Hallcreeper
+1 Fresh Start
+1 Clone
+1 The Meathook Massacre
+1 Clever Impersonator
+1 Counterspell
+1 Pongify
+1 Feed the Swarm
+1 Echocasting Symposium
+1 Kindred Dominance
+1 Impostor Syndrome
+1 Otawara, Soaring City
+1 Starfield Vocalist
+1 Undercity Sewers
+1 Sol Ring
+1 Flusterstorm
+1 Cyclonic Rift
+1 Multiversal Incursion
+1 Multiversal Recruitment
+1 Council of Reeds
+1 Taskmaster, Mercenary Mimic
+1 Samut, Tyrant of Naktamun

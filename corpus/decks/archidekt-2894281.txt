@@ -1,0 +1,93 @@
+# Archidekt — [Primer] Emotional Damage (Mill/Aristocrat)
+# source: archidekt:2894281
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zellix, Sanity Flayer
+1 Haunted One
+
+Deck:
+1 Talisman of Dominance
+1 Lightning Greaves
+1 Mindcrank
+1 Grell Philosopher
+1 Arcane Signet
+1 Raise the Palisade
+1 Pile On
+1 Sol Ring
+1 Altar of the Brood
+1 Ruin Crab
+1 Thought Scour
+1 Malakir Rebirth // Malakir Mire
+1 Ayara, First of Locthwain
+1 Feed the Swarm
+1 Drown in the Loch
+1 Brainstorm
+1 Altar of Dementia
+1 Skullclamp
+1 Fellwar Stone
+1 Mesmeric Orb
+1 Darkwater Catacombs
+1 Syr Konrad, the Grim
+1 Spellskite
+1 Underground River
+1 Ashnod's Altar
+1 Meeting of Minds
+1 Blood Artist
+1 Drowned Catacomb
+1 Zulaport Cutthroat
+1 Ghoulcaller's Bell
+1 Bloodchief Ascension
+1 Psychic Corrosion
+1 Lazotep Quarry
+1 Mystic Sanctuary
+1 Arcane Denial
+1 Spymaster's Vault
+1 Clearwater Pathway // Murkwater Pathway
+1 Shipwreck Marsh
+1 Exotic Orchard
+1 Pitiless Plunderer
+1 Lethal Scheme
+1 Toxic Deluge
+1 Carrion Feeder
+1 Visions of Beyond
+1 Winds of Rebuke
+1 Profane Memento
+1 Morbid Opportunist
+1 Undead Alchemist
+1 Viscera Seer
+1 Command Beacon
+1 Baleful Mastery
+1 Yawgmoth, Thran Physician
+1 Watery Grave
+8 Swamp
+1 Warren Soultrader
+1 Maddening Cacophony
+1 Ripples of Undeath
+1 Vantress Gargoyle
+1 Boggart Trawler // Boggart Bog
+1 Manic Scribe
+1 Marionette Apprentice
+1 Dimir Signet
+1 Drown in Dreams
+1 Command Tower
+1 Polluted Delta
+1 Morphic Pool
+8 Island
+1 Sink into Stupor // Soporific Springs
+1 The Mindskinner
+1 An Offer You Can't Refuse
+1 Sphinx's Tutelage
+1 Three Tree City
+1 Relic of Progenitus
+1 Priest of Forgotten Gods
+1 Sunken Ruins
+1 Chthonian Nightmare
+1 The Water Crystal
+1 Tolaria West
+1 Bojuka Bog
+1 High Market
+1 Duskmantle Guildmage
+1 Cruel Somnophage // Can't Wake Up
+1 Kindred Discovery

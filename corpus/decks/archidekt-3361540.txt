@@ -1,0 +1,105 @@
+# Archidekt — Jodah the Unifier 5-Color Legendary Human Kindred High Power EDH
+# source: archidekt:3361540
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Samut, Voice of Dissent
+1 Urza's Ruinous Blast
+1 Saskia the Unyielding
+1 Reki, the History of Kamigawa
+1 Goldbug, Humanity's Ally // Goldbug, Scrappy Scout
+1 Loran of the Third Path
+1 Mox Amber
+1 Fierce Guardianship
+1 City of Brass
+1 Thalia, Heretic Cathar
+1 Deflecting Swat
+1 Flowering of the White Tree
+1 Delighted Halfling
+1 Chrome Mox
+1 Mana Confluence
+1 Great Hall of the Citadel
+1 Lightning, Army of One
+1 River Song
+1 Godless Shrine
+1 Lavinia, Azorius Renegade
+1 Secluded Courtyard
+1 Temple Garden
+1 Reflecting Pool
+1 Jhoira, Weatherlight Captain
+1 Command Tower
+1 Dihada, Binder of Wills
+1 Vault of Champions
+1 Eiganjo, Seat of the Empire
+1 Katilda, Dawnhart Prime
+1 Rona, Herald of Invasion // Rona, Tolarian Obliterator
+1 Jirina, Dauntless General
+1 Ignoble Hierarch
+1 Plaza of Heroes
+1 Sol Ring
+1 Time of Need
+1 Unclaimed Territory
+1 Windswept Heath
+1 Snow-Covered Plains
+1 Forbidden Orchard
+1 Sisay, Weatherlight Captain
+1 Satoru, the Infiltrator
+1 Gemstone Mine
+1 Relic of Legends
+1 Thran Quarry
+1 Arcane Signet
+1 Exotic Orchard
+1 Hajar, Loyal Bodyguard
+1 Snow-Covered Forest
+1 Stomping Ground
+1 Hallowed Fountain
+1 Paladin Elizabeth Taggerdy
+1 Ertai Resurrected
+1 Professional Face-Breaker
+1 Basim Ibn Ishaq
+1 Bugenhagen, Wise Elder
+1 Torgal, A Fine Hound
+1 Ruby, Daring Tracker
+1 Aerith Gainsborough
+1 Serah Farron // Crystallized Serah
+1 Meren of Clan Nel Toth
+1 Desynchronization
+1 An Offer You Can't Refuse
+1 Vampiric Tutor
+1 Starting Town
+1 Abundant Countryside
+1 Spectacular Spider-Man
+1 Garruk's Uprising
+1 Ranger-Captain of Eos
+1 Grand Abolisher
+1 Bloom Tender
+1 Opposition Agent
+1 Sacred Foundry
+1 Angel's Grace
+1 Shattered Sanctum
+1 Tinybones Joins Up
+1 Gandalf the White
+1 Raff Capashen, Ship's Mage
+1 Shanid, Sleepers' Scourge
+1 Great Divide Guide
+1 Adeline, Resplendent Cathar
+1 Mai, Scornful Striker
+1 Stone of Erech
+1 Teferi's Protection
+1 Brushland
+1 Battlefield Forge
+1 Rejuvenating Springs
+1 Adarkar Wastes
+1 Watery Grave
+1 Sea of Clouds
+1 Rockfall Vale
+1 Voice of Victory
+1 Birds of Paradise
+1 Smellerbee, Rebel Fighter
+1 Dreamroot Cascade
+1 Bilbo's Gambit
+1 Taskmaster, Mercenary Mimic

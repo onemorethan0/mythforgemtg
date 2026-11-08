@@ -1,0 +1,95 @@
+# Archidekt — Boros Big Butts
+# source: archidekt:2999284
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Rasaad yn Bashir
+1 Guild Artisan
+
+Deck:
+1 Scavenger Grounds
+1 Arcane Signet
+1 Battlefield Forge
+1 Command Tower
+1 Sol Ring
+1 Sarevok's Tome
+1 Welcoming Vampire
+1 Plargg, Dean of Chaos // Augusta, Dean of Order
+1 Seasoned Dungeoneer
+1 Bar the Door
+1 Eerie Interlude
+1 Access Tunnel
+1 Bloodboil Sorcerer
+1 Chivalric Alliance
+1 Minas Tirith
+1 Sunscorched Divide
+1 Ghalta the Immovable
+1 Clifftop Retreat
+1 Fabled Passage
+1 Blade Historian
+1 Caves of Chaos Adventurer
+1 Exotic Orchard
+1 Sunbaked Canyon
+1 Wave of Reckoning
+1 Needleverge Pathway // Pillarverge Pathway
+1 Furycalm Snarl
+1 Stirring Bard
+6 Mountain
+1 Sundown Pass
+1 Boros Charm
+1 Talisman of Conviction
+1 Swords to Plowshares
+1 Path to Exile
+1 Stroke of Midnight
+1 Agrus Kos, Spirit of Justice
+1 The Jolly Balloon Man
+1 Boros Signet
+1 Delney, Streetwise Lookout
+1 Aurelia, the Warleader
+1 Dauntless Dismantler
+1 Nelly Borca, Impulsive Accuser
+1 Mangara, the Diplomat
+1 Goliath Paladin
+1 Imperial Recruiter
+1 Witch Enchanter // Witch-Blessed Meadow
+1 White Plume Adventurer
+1 Loot Dispute
+1 Dawn's Truce
+1 Generous Gift
+1 Field of Ruin
+1 Solar Blaze
+1 Your Temple Is Under Attack
+1 Sundering Eruption // Volcanic Fissure
+1 Wheel of Misfortune
+1 Akroma's Will
+1 Windcrag Siege
+1 Will of the Jeskai
+1 Cori Mountain Monastery
+1 Twinflame Tyrant
+1 Tannuk, Steadfast Second
+1 Professional Face-Breaker
+1 Radiant Summit
+1 Cosmogrand Zenith
+1 Magebane Lizard
+1 Arabella, Abandoned Doll
+1 Knuckles the Echidna
+1 Sacred Foundry
+1 Flooded Strand
+1 Hakoda, Selfless Commander
+1 Firebender Ascension
+1 Great Train Heist
+1 Raph & Leo, Sibling Rivals
+1 Prophetic Flamespeaker
+1 Subira, Tulzidi Caravanner
+1 Ghostway
+1 Soul Immolation
+1 Tempestra, Dame of Games
+1 Response // Resurgence
+1 Cut a Deal
+1 Break Through the Line
+1 Raphael, the Nightwatcher
+1 Wojek Investigator
+1 Borrowed Knowledge
+9 Plains
+1 Rugged Prairie

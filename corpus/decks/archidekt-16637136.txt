@@ -1,0 +1,108 @@
+# Archidekt — The Basics: Ramp
+# source: archidekt:16637136
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Progenitus
+
+Deck:
+1 Island
+1 Swamp
+1 Plains
+1 Mountain
+1 Invasion of Kaldheim // Pyre of the World Tree
+1 Forest
+1 Prismatic Omen
+1 Thalia and The Gitrog Monster
+1 Oracle of Mul Daya
+1 Flubs, the Fool
+1 The Gitrog Monster
+1 Leyline of the Guildpact
+1 Loot, Exuberant Explorer
+1 Plains
+1 Forest
+1 Mountain
+1 Mountain
+1 Swamp
+1 Island
+1 Plains
+1 Island
+1 Case of the Locked Hothouse
+1 Exploration Broodship
+1 Snow-Covered Forest
+1 Snow-Covered Plains
+1 Valakut Exploration
+1 Song of Creation
+1 Eerie Ultimatum
+1 Exploration
+1 Mountain
+1 Forest
+1 Island
+1 Aesi, Tyrant of Gyre Strait
+1 Plains
+1 Virtue of Strength // Garenbrig Growth
+1 Mountain
+1 Forest
+1 Swamp
+1 Swamp
+1 Hugs, Grisly Guardian
+1 Wayward Swordtooth
+1 Mountain
+1 Forest
+1 Swamp
+1 Island
+1 Plains
+1 Swamp
+1 Swamp
+1 Forest
+1 Mountain
+1 Mountain
+1 Plains
+1 Island
+1 Island
+1 Plains
+1 Swamp
+1 Prismatic Undercurrents
+1 Rites of Flourishing
+1 Island
+1 Island
+1 Plains
+1 Icetill Explorer
+1 Dryad of the Ilysian Grove
+1 Naked Singularity
+1 Horn of Greed
+1 Forest
+1 Traveling Chocobo
+1 Plains
+1 Azusa, Lost but Seeking
+1 Swamp
+1 Forest
+1 Hearthhull, the Worldseed
+1 The Endstone
+1 Omnath, Locus of the Roil
+1 Ancient Greenwarden
+1 Ramos, Dragon Engine
+1 Mountain
+1 Moraug, Fury of Akoum
+1 Scouting Trek
+1 Scion of Draco
+1 Mina and Denn, Wildborn
+1 Collective Restraint
+1 Finest Hour
+1 Earthcraft
+1 Ghirapur Orrery
+1 Rafiq of the Many
+1 Planar Birth
+1 Druid Class
+1 Early Harvest
+1 Tatyova, Benthic Druid
+1 Lavaleaper
+1 Phyrexian Vindicator
+1 Hexhaven Invigorator
+1 Phyrexian Obliterator
+1 Captain Kathryn Janeway
+1 Forest
+1 Snow-Covered Swamp
+1 Snow-Covered Island
+1 Snow-Covered Mountain

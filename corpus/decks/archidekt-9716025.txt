@@ -1,0 +1,105 @@
+# Archidekt — I can do this all day 💫
+# source: archidekt:9716025
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Captain America, First Avenger
+
+Deck:
+1 Academy Ruins
+1 Adarkar Wastes
+1 Akiri, Fearless Voyager
+1 Arcane Signet
+1 Basalt Monolith
+1 Basilisk Collar
+1 Battlefield Forge
+1 Buster Sword
+1 Chaos Warp
+1 City of Brass
+1 Cloud, Midgar Mercenary
+1 Codsworth, Handy Helper
+1 Comeuppance
+1 Command Beacon
+1 Command Tower
+1 Consecrated Sphinx
+1 Cosmic Intervention
+1 Coveted Jewel
+1 Cyclonic Rift
+1 Dawn Charm
+1 Deflecting Palm
+1 Deserted Beach
+1 Eerie Interlude
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Excalibur, Sword of Eden
+1 Exotic Orchard
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Fighter Class
+1 Flawless Maneuver
+1 Fomori Vault
+1 Forbidden Orchard
+1 Forensic Gadgeteer
+1 Forge Anew
+1 Ghostway
+1 Glimmervoid
+1 Godo, Bandit Warlord
+1 Hallowed Fountain
+1 Hammer of Nazahn
+1 Hengegate Pathway // Mistgate Pathway
+1 Illusionist's Bracers
+1 Imperial Recruiter
+1 Inventors' Fair
+1 Iron Man, Titan of Innovation
+2 Island
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Lotus Petal
+1 Mana Drain
+1 Mana Vault
+1 Mjölnir, Storm Hammer
+2 Mountain
+1 Mystic Monastery
+1 Needleverge Pathway // Pillarverge Pathway
+1 Neko-Te
+1 Olórin's Searing Light
+1 Otawara, Soaring City
+1 Path of Ancestry
+2 Plains
+1 Plaza of Heroes
+1 Puresteel Paladin
+1 Recruiter of the Guard
+1 Reinterpret
+1 Rhystic Study
+1 Rings of Brighthearth
+1 Riverglide Pathway // Lavaglide Pathway
+1 Sacred Foundry
+1 Sea of Clouds
+1 Settle the Wreckage
+1 Shadowspear
+1 Shivan Reef
+1 Smothering Tithe
+1 Sol Ring
+1 Spectator Seating
+1 Spire of Industry
+1 Sram, Senior Edificer
+1 Stock Up
+1 Stoneforge Mystic
+1 Stormcarved Coast
+1 Sundown Pass
+1 Sunforger
+1 Sword of Feast and Famine
+1 Sword of Fire and Ice
+1 Sword of Hearth and Home
+1 Taii Wakeen, Perfect Shot
+1 Take the Bait
+1 Talon Gates of Madara
+1 Teferi's Protection
+1 The Aetherspark
+1 The One Ring
+1 The Reality Chip
+1 Three Steps Ahead
+1 Training Center
+1 Trouble in Pairs
+1 Urza, Lord High Artificer
+1 Zirda, the Dawnwaker

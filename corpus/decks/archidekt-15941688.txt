@@ -1,0 +1,93 @@
+# Archidekt — Towers of Imposition
+# source: archidekt:15941688
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Arcades, the Strategist
+
+Deck:
+1 Access Tunnel
+1 Act of Authority
+1 Amaranthine Wall
+1 Angelic Wall
+1 Annex
+1 Arrest
+1 Arrester's Admonition
+1 Azorius Signet
+1 Bring to Trial
+1 Cage of Hands
+1 Capital City
+1 Chains of Custody
+1 Command Tower
+1 Compulsory Rest
+1 Consulate Skygate
+1 Crashing Drawbridge
+1 Defense Grid
+1 Edifice of Authority
+1 Edric, Spymaster of Trest
+1 Flagstones of Trokair
+1 Flood Plain
+1 Fog Bank
+6 Forest
+1 Glacial Floodplain
+1 Gleaming Barrier
+1 Gomazoa
+1 Grasslands
+1 Guard Gomazoa
+1 Heliod's Punishment
+1 Hinterland Harbor
+1 Imposing Sovereign
+1 Inaction Injunction
+1 Irrigated Farmland
+6 Island
+1 Isolation Cell
+1 Jeskai Barricade
+1 Jidoor, Aristocratic Capital // Overture
+1 Law-Rune Enforcer
+1 Lawmage's Binding
+1 Loxodon Gatekeeper
+1 Luminous Bonds
+1 Mana Tithe
+1 Meekstone
+1 Mentor of the Meek
+1 Minister of Impediments
+1 Monastery Flock
+1 Moss Diamond
+1 Oppressive Rays
+1 Overflowing Basin
+1 Overrule
+6 Plains
+1 Prairie Stream
+1 Priests of Norn
+1 Psychic Membrane
+1 Rampant Growth
+1 Rampart Architect
+1 Revoke Existence
+1 Riot Control
+1 Sanctuary Wall
+1 Secluded Courtyard
+1 Secret Door
+1 Sejiri Shelter // Sejiri Glacier
+1 Sky Diamond
+1 Stalwart Shield-Bearers
+1 Stonehorn Dignitary
+1 Suspicious Bookcase
+1 Temple of Mystery
+1 Temporal Isolation
+1 Tetsuko Umezawa, Fugitive
+1 The Pride of Hull Clade
+1 Visions of Duplicity
+1 Vow of Duty
+1 Wall of Frost
+1 Wall of Omens
+1 Wall of Roots
+1 Wall of Runes
+1 Wall of Stolen Identity
+1 Wall of Tanglecord
+1 Warped Landscape
+1 Wave of Reckoning
+1 Weathered Sentinels
+1 Willbreaker
+1 Woodland Stream
+1 Writ of Passage

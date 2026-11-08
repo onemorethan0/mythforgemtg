@@ -1,0 +1,94 @@
+# Archidekt — Lynde's Torment
+# source: archidekt:1848448
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lynde, Cheerful Tormentor
+
+Deck:
+1 Curse of Fool's Wisdom
+1 Cruel Reality
+1 Estrid's Invocation
+1 Disrupt Decorum
+1 Curse of the Restless Dead
+1 Command Tower
+1 Crumbling Necropolis
+1 Chaos Warp
+1 Kardur, Doomscourge
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Shivan Reef
+1 Shiny Impetus
+1 Imprisoned in the Moon
+1 Curse of Disturbance
+1 Curse of Bloodletting
+1 Curse of Misfortunes
+1 Maddening Hex
+1 Nightscape Familiar
+1 Propaganda
+1 Rakdos Charm
+1 Counterspell
+1 Feed the Swarm
+1 Sol Ring
+1 Arcane Signet
+1 Talisman of Indulgence
+1 Talisman of Creativity
+1 Curse of Surveillance
+1 Trespasser's Curse
+1 Curse of Shaken Faith
+1 Curse of Opulence
+1 Curse of Verbosity
+1 Grim Guardian
+1 Training Center
+1 Exotic Orchard
+1 Sunken Ruins
+1 Stormcarved Coast
+1 Clever Impersonator
+1 Mirrormade
+1 Mystic Remora
+1 Rhystic Study
+1 Mana Drain
+1 Fevered Visions
+1 Kumena's Awakening
+1 Xander's Lounge
+1 Maestros Theater
+1 Gray Merchant of Asphodel
+1 Black Market Connections
+1 Cyclonic Rift
+1 Talisman of Dominance
+1 Bojuka Bog
+1 Parasitic Impetus
+1 Fate Unraveler
+1 Xantcha, Sleeper Agent
+1 Stuffy Doll
+1 Curse of Thirst
+1 Fabled Passage
+1 Bedevil
+1 Public Enemy
+1 Cloud Key
+1 Detection Tower
+1 Arcane Lighthouse
+1 Phyrexian Arena
+9 Swamp
+4 Island
+1 Asinine Antics
+1 Copy Enchantment
+1 Seething Landscape
+1 Lunar Insight
+1 Grim Tutor
+1 Final Parting
+1 Acererak the Archlich
+1 Phyrexian Altar
+1 Gravecrawler
+1 Torment of Hailfire
+1 Amphibian Downpour
+1 Paradox Haze
+1 Utter Insignificance
+1 No Mercy
+1 Shipwreck Marsh
+1 Hexing Squelcher
+4 Mountain
+1 Rooftop Storm
+1 Coercive Impetus
+1 Scorched Geyser

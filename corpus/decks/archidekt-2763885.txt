@@ -1,0 +1,104 @@
+# Archidekt — Go-Shintai of Life's Origin
+# source: archidekt:2763885
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Go-Shintai of Life's Origin
+
+Deck:
+1 Weaver of Harmony
+1 Herald of the Pantheon
+1 Eidolon of Blossoms
+1 Solitary Confinement
+1 Sisay, Weatherlight Captain
+1 Chromatic Lantern
+1 Sol Ring
+1 Go-Shintai of Ancient Wars
+1 Go-Shintai of Boundless Vigor
+1 Go-Shintai of Hidden Cruelty
+1 Go-Shintai of Lost Wisdom
+1 Go-Shintai of Shared Purpose
+1 Exotic Orchard
+1 Forest
+1 Raffine's Tower
+1 Honden of Cleansing Fire
+1 Honden of Infinite Rage
+1 Honden of Life's Web
+1 Honden of Night's Reach
+1 Honden of Seeing Winds
+1 Urza's Ruinous Blast
+1 Reki, the History of Kamigawa
+1 Starfield Mystic
+1 Dragonskull Summit
+1 Forest
+1 Skyshroud Claim
+1 Starfield of Nyx
+1 Reflecting Pool
+1 Wrath of God
+1 Sunpetal Grove
+1 Sphere of Safety
+1 Sanctum of Tranquil Light
+1 Savai Triome
+1 Zagoth Triome
+1 Xander's Lounge
+1 Ketria Triome
+1 Indatha Triome
+1 Spara's Headquarters
+1 Raugrin Triome
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Oracle of Mul Daya
+1 Eerie Ultimatum
+1 Farseek
+1 Nature's Lore
+1 Primevals' Glorious Rebirth
+1 Arcane Signet
+1 Fellwar Stone
+1 Honor-Worn Shaku
+1 Ruinous Ultimatum
+1 Three Visits
+1 Darksteel Ingot
+1 Vanquish the Horde
+1 Birds of Paradise
+1 Bloom Tender
+1 Destiny Spinner
+1 Dryad of the Ilysian Grove
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Jukai Naturalist
+1 Sythis, Harvest's Hand
+1 Nyxbloom Ancient
+1 Sanctum Weaver
+1 Shrine Steward
+1 Sanctum of Stone Fangs
+1 Sanctum of All
+1 Maelstrom Nexus
+1 Sanctum of Calm Waters
+1 Sanctum of Fruitful Harvest
+1 Sanctum of Shattered Heights
+1 Glacial Fortress
+1 Command Tower
+1 Arid Mesa
+1 City of Brass
+1 Drowned Catacomb
+1 Hall of Heliod's Generosity
+1 Marsh Flats
+1 Misty Rainforest
+1 Mountain
+1 Path of Ancestry
+1 Island
+1 Jetmir's Garden
+1 Island
+1 Plains
+1 Plains
+1 Swamp
+1 Swamp
+1 Ziatora's Proving Ground
+1 Rootbound Crag
+1 Calix, Destiny's Hand
+1 Replenish
+1 Cryptolith Rite
+1 Skyclave Relic
+1 Overlord of the Hauntwoods
+1 Crescent Island Temple
+1 Damn

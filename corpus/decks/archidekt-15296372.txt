@@ -1,0 +1,98 @@
+# Archidekt — Heavy Metal Toph
+# source: archidekt:15296372
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Yavimaya, Cradle of Growth
+1 Liquimetal Torque
+1 Roaming Throne
+1 Moraug, Fury of Akoum
+1 Earthshape
+1 Solemn Simulacrum
+1 Heroic Intervention
+1 Fellwar Stone
+1 Chromatic Lantern
+1 Arcane Signet
+1 Sol Ring
+1 Savage Beating
+1 Akroma's Will
+1 The Earth Crystal
+1 Annie Joins Up
+1 Path to Exile
+1 Swords to Plowshares
+1 Beast Within
+1 Sacred Foundry
+1 Windswept Heath
+1 Snow-Covered Plains
+1 Stomping Ground
+1 Temple Garden
+1 Snow-Covered Forest
+1 Crop Rotation
+1 Manascape Refractor
+1 Branching Evolution
+1 Kodama of the West Tree
+1 Sphere Grid
+1 Jetmir's Garden
+1 Sylvan Safekeeper
+1 Thornspire Verge
+1 Hushwood Verge
+1 Sunbillow Verge
+4 Plains
+1 Terrasymbiosis
+1 Unwinding Clock
+1 Evendo, Waking Haven
+1 Bristly Bill, Spine Sower
+1 Talisman of Impulse
+1 Talisman of Unity
+1 Talisman of Conviction
+1 Chimil, the Inner Sun
+1 Brightglass Gearhulk
+1 The One Ring
+1 Generous Gift
+1 Crucible of Worlds
+1 Snow-Covered Mountain
+1 Sunfall
+1 Haywire Mite
+1 Bow of Nylea
+1 Constant Mists
+1 Inventors' Fair
+1 Tiller Engine
+1 Esper Sentinel
+1 Patrolling Peacemaker
+1 Crystalline Crawler
+1 Valakut Awakening // Valakut Stoneforge
+1 Bumi, Unleashed
+1 Avatar Kyoshi, Earthbender
+1 Toph, Earthbending Master
+1 Exploration Broodship
+1 Command Tower
+3 Mountain
+1 Toph, Greatest Earthbender
+1 Arid Mesa
+1 Mox Amber
+1 Agatha's Soul Cauldron
+1 Felidar Retreat
+1 Field of the Dead
+1 Earthbender Ascension
+1 Misty Rainforest
+1 Flooded Strand
+1 Secret Tunnel
+1 Badgermole Cub
+1 Earthbending Student
+1 Inkmoth Nexus
+1 Traveling Chocobo
+1 Disciple of Freyalise // Garden of Freyalise
+1 Evolution Sage
+1 Collector's Cage
+1 Germination Practicum
+1 Tireless Provisioner
+1 Talon Gates of Madara
+1 The Arkenstone // Seek the Heart
+1 Scythecat Cub
+5 Forest
+1 The Echoverse Fulcrum
+1 Hall of Echoes

@@ -1,0 +1,92 @@
+# Archidekt — Kitty Kitty Bang Bang
+# source: archidekt:8178785
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Purraj of Urborg
+
+Deck:
+1 Hagra Mauling // Hagra Broodpit
+1 Unholy Strength
+1 Lake of the Dead
+1 Soul Channeling
+1 Unexpected Fangs
+1 Imp's Mischief
+1 Eternal Thirst
+1 Darkness
+1 Blessing of Leeches
+1 The Black Gate
+1 Shizo, Death's Storehouse
+1 Bubbling Muck
+1 Vampiric Link
+1 Dark Ritual
+1 No Mercy
+1 Fell the Profane // Fell Mire
+1 Soldevi Adnate
+1 Cover of Darkness
+1 Inner Demon
+1 Thrull Retainer
+1 Crypt Ghast
+1 Bojuka Bog
+1 Cabal Coffers
+1 Urborg, Tomb of Yawgmoth
+1 Dark Confidant
+1 Qarsi Revenant
+1 Snuff Out
+1 Pact Weapon
+1 The Darkness Crystal
+1 Slaughter Pact
+1 Malakir Rebirth // Malakir Mire
+1 Cabal Stronghold
+1 Seal of Doom
+1 Astarion's Thirst
+1 Darkstar Augur
+1 Flare of Malice
+1 Vorpal Sword
+1 Endless Scream
+16 Snow-Covered Swamp
+1 Keen Duelist
+1 Phyrexian Tower
+1 Demonic Embrace
+1 Defiler of Flesh
+1 Baron Helmut Zemo
+1 Koskun Falls
+1 Minas Morgul, Dark Fortress
+1 Basal Thrull
+1 Black Market Connections
+1 Daring Fiendbonder
+1 Garza's Assassin
+1 Volrath's Stronghold
+1 Strength of Lunacy
+1 Overeager Apprentice
+1 Withering Torment
+1 Sign in Blood
+1 Night's Whisper
+1 Peer into the Abyss
+1 Rime Transfusion
+1 Xiahou Dun, the One-Eyed
+1 Nefarious Lich
+1 Lich's Mastery
+1 Dying Wish
+1 Blood on the Snow
+1 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Meathook Massacre II
+1 Essence Harvest
+1 Feed the Swarm
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Basal Sliver
+1 Greed
+1 Viper, Cruel Conspirator
+1 Lich's Relic
+1 Sinister Strength
+1 Gruesome Deformity
+1 Predator's Gambit
+1 Oni Possession

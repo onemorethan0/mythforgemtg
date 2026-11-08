@@ -1,0 +1,89 @@
+# Archidekt — Polukranos & The Headless Hydras
+# source: archidekt:13653108
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Polukranos Reborn // Polukranos, Engine of Ruin
+
+Deck:
+1 Hungering Hydra
+1 Sylvan Library
+1 Primordial Hydra
+1 Steelbane Hydra
+1 Wren's Run Hydra
+1 Mistcutter Hydra
+1 Guardian Project
+1 Swords to Plowshares
+1 Vigilant Martyr
+1 Slash the Ranks
+1 Temple Garden
+1 Abiding Grace
+1 Patch Up
+1 Path to Exile
+1 Raise the Past
+1 Lifeline
+1 Overgrown Farmland
+1 Path of Ancestry
+1 Capricopian
+1 Hooded Hydra
+1 Neverwinter Hydra
+1 Six
+1 Utopia Sprawl
+1 Feral Hydra
+1 Goldvein Hydra
+1 Protean Hydra
+1 Static Prison
+1 Brightglass Gearhulk
+1 Ranger of Eos
+1 Lair of the Hydra
+1 City of Brass
+1 Windswept Heath
+1 Wildwood Scourge
+1 Mirror Entity
+1 Rally the Ancestors
+1 Collective Resistance
+1 Nature's Lore
+1 Three Visits
+1 Austere Command
+1 Elemental Bond
+1 Renewed Solidarity
+1 Canopy Vista
+1 Command Tower
+1 Sunpetal Grove
+1 Bountiful Promenade
+1 Brushland
+1 Exotic Orchard
+1 Haywire Mite
+1 Benevolent Bodyguard
+1 Alseid of Life's Bounty
+1 Sevinne's Reclamation
+1 Dewdrop Cure
+1 Yavimaya, Cradle of Growth
+1 Clever Concealment
+1 Shifting Woodland
+1 Curious Farm Animals
+1 Fall of the First Civilization
+1 Abundant Harvest
+1 Idol of Oblivion
+1 Seismic Sense
+1 Rite of Harmony
+1 Fecundity
+1 Herd Heirloom
+1 Spinner of Souls
+1 Tocasia's Welcome
+1 Hourglass of the Lost
+1 Fanatic of Rhonas
+1 Welcoming Vampire
+1 Sakura-Tribe Elder
+1 Diligent Farmhand
+1 Insidious Fungus
+1 Neverwinter Dryad
+1 Wild Growth
+1 Temple of Plenty
+6 Plains
+1 Thornglint Bridge
+1 Studious First-Year // Rampant Growth
+1 Hushwood Verge
+15 Forest
+1 Ecological Appreciation

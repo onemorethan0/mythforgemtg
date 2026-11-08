@@ -1,0 +1,106 @@
+# Archidekt — Animar, Soul of Elements
+# source: archidekt:8279396
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Animar, Soul of Elements
+
+Deck:
+1 Birds of Paradise
+1 Eternal Witness
+1 Worldly Tutor
+1 Rhystic Study
+1 Survival of the Fittest
+1 Deflecting Swat
+1 Imperial Recruiter
+1 Solemn Simulacrum
+1 Enduring Vitality
+1 Wood Elves
+1 Sylvan Tutor
+1 Taiga
+1 Ornithopter of Paradise
+1 Cyclonic Rift
+1 The Great Henge
+1 Delighted Halfling
+1 Sowing Mycospawn
+1 Beast Whisperer
+1 Allosaurus Shepherd
+1 Ketria Triome
+1 Breeding Pool
+1 Misty Rainforest
+1 Scalding Tarn
+1 Wooded Foothills
+1 Stomping Ground
+1 Steam Vents
+1 Mana Confluence
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Command Tower
+1 Reflecting Pool
+1 Consecrated Sphinx
+1 Yavimaya Hollow
+1 Rejuvenating Springs
+1 Spire Garden
+1 Training Center
+1 Bloom Tender
+1 Mulldrifter
+1 Biophagus
+1 Chaos Warp
+1 Tropical Island
+1 Heroic Intervention
+1 Wheel of Fortune
+1 Finale of Devastation
+1 Spellseeker
+1 Hedge Maze
+1 Phyrexian Metamorph
+1 Glen Elendra Archmage
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Kozilek, Butcher of Truth
+1 Nature's Lore
+1 Three Visits
+1 Wan Shi Tong, Librarian
+1 An Offer You Can't Refuse
+1 Nulldrifter
+1 Bane of Progress
+1 Hexing Squelcher
+1 Sink into Stupor // Soporific Springs
+1 Ancient Tomb
+1 Mana Drain
+1 Fierce Guardianship
+1 Cavern of Souls
+1 Momir Vig, Simic Visionary
+1 Mountain
+2 Forest
+2 Island
+1 Exotic Orchard
+1 Arcane Signet
+1 Sol Ring
+1 Maelstrom Wanderer
+1 Yavimaya, Cradle of Growth
+1 Formidable Speaker
+1 Hullbreaker Horror
+1 Lotus Petal
+1 Volatile Stormdrake
+1 High Fae Trickster
+1 Aether Channeler
+1 Walking Ballista
+1 Ancestral Statue
+1 Peregrine Drake
+1 Tishana, Voice of Thunder
+1 Glasspool Mimic // Glasspool Shore
+1 Evendo, Waking Haven
+1 Palinchron
+1 Three Steps Ahead
+1 Volcanic Island
+1 Cloud of Faeries
+1 Force of Will
+1 Gemstone Caverns
+1 Emeritus of Ideation // Ancestral Recall
+1 Fyndhorn Elves
+1 Fauna Shaman
+1 Spike Weaver
+1 Wild Growth
+1 Beast Within
+1 Shaman of Forgotten Ways

@@ -1,0 +1,108 @@
+# Archidekt — Kefka "Borne upon a Clown" Cedh
+# source: archidekt:13043572
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 _____ Goblin
+1 Agatha's Soul Cauldron
+1 Ancient Tomb
+1 Arcane Signet
+1 Arena of Glory
+1 Badlands
+1 Banishing Knack
+1 Blood Crypt
+1 Bloodstained Mire
+1 Borne Upon a Wind
+1 Brain Freeze
+1 Cabal Ritual
+1 Cascading Cataracts
+1 Chrome Mox
+1 City of Brass
+1 Command Tower
+1 Cyclonic Rift
+1 Dark Ritual
+1 Demonic Consultation
+1 Demonic Tutor
+1 Dualcaster Mage
+1 Elusive Tormentor // Insidious Mist
+1 Entomb
+1 Exotic Orchard
+1 Faerie Mastermind
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Final Fortune
+1 Flooded Strand
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Gamble
+1 Gemstone Caverns
+1 Ghostly Flicker
+1 Gifts Ungiven
+1 Grim Monolith
+1 Harmonic Prodigy
+1 Imperial Seal
+1 Into the Flood Maw
+1 Jeska's Will
+1 Ledger Shredder
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Mana Confluence
+1 Mana Vault
+1 Mental Misstep
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Molten Duplication
+1 Mox Diamond
+1 Mox Opal
+1 Mystic Remora
+1 Mystical Tutor
+1 Necropotence
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Pact of Negation
+1 Phyrexian Metamorph
+1 Polluted Delta
+1 Praetor's Grasp
+1 Psychosis Crawler
+1 Pyroblast
+1 Ragavan, Nimble Pilferer
+1 Reanimate
+1 Red Elemental Blast
+1 Rhystic Study
+1 Rite of Flame
+1 Scalding Tarn
+1 Snapcaster Mage
+1 Snow-Covered Island
+1 Snow-Covered Mountain
+1 Snow-Covered Swamp
+1 Sol Ring
+1 Spellseeker
+1 Starting Town
+1 Steam Vents
+1 Swan Song
+1 Tainted Pact
+1 Thassa's Oracle
+1 The Aetherspark
+1 The One Ring
+1 Toxic Deluge
+1 Twinflame
+1 Undercity Sewers
+1 Underground Sea
+1 Underworld Breach
+1 Urborg, Tomb of Yawgmoth
+1 Urza's Saga
+1 Valley Floodcaller
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Vivi Ornitier
+1 Volcanic Island
+1 Waste Not
+1 Watery Grave
+1 Wishclaw Talisman
+1 Wooded Foothills
+1 Yawgmoth's Will

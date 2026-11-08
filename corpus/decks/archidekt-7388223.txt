@@ -1,0 +1,88 @@
+# Archidekt — The Legion of Dusk - Ixalan Themed
+# source: archidekt:7388223
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Vito, Thorn of the Dusk Rose + Exquisite Blood; Bracket 1 allows none
+
+Commander:
+1 Clavileño, First of the Blessed
+
+Deck:
+12 Swamp
+1 Promise of Aclazotz // Foul Rebirth
+1 Sanctum Seeker
+1 Shineshadow Snarl
+1 Unclaimed Territory
+1 Vault of the Archangel
+1 Voldaren Estate
+1 Swiftfoot Boots
+1 Temple of Silence
+1 Tainted Field
+1 Rogue's Passage
+1 Temple of the False God
+1 Path of Ancestry
+1 Return to Dust
+1 Swords to Plowshares
+1 Redemption Choir
+1 Vona, Butcher of Magan
+1 Twilight Prophet
+1 Blade of the Bloodchief
+1 Bloodghast
+1 Charismatic Conqueror
+1 Dusk Legion Sergeant
+1 Elenda's Hierophant
+1 Elenda, the Dusk Rose
+1 Kindred Boon
+1 Legion Lieutenant
+1 March of the Canonized
+1 Martyr of Dusk
+1 Mavren Fein, Dusk Apostle
+1 Oathsworn Vampire
+1 Order of Sacred Dusk
+1 Commander's Sphere
+1 Orzhov Signet
+1 Mind Stone
+1 Myriad Landscape
+1 Isolated Chapel
+1 Command Tower
+1 Bojuka Bog
+1 Damn
+1 Champion of Dusk
+1 Bloodline Necromancer
+1 Carmen, Cruel Skymarcher
+1 Dusk Legion Zealot
+1 Master of Dark Rites
+1 Vito, Fanatic of Aclazotz
+1 Tarrian's Soulcleaver
+1 Wayfarer's Bauble
+1 Skullclamp
+1 Bishop of Rebirth
+1 Fanatical Offering
+1 Sol Ring
+1 Talisman of Hierarchy
+1 Dusk Rose Reliquary
+1 Profane Procession // Tomb of the Dusk Rose
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Bloodcrazed Paladin
+1 Paladin of Atonement
+1 Arcane Signet
+1 Bringer of the Last Gift
+1 Forerunner of the Legion
+1 Vicious Conquistador
+1 Preacher of the Schism
+1 Legion's Landing // Adanto, the First Fort
+1 Queen's Bay Paladin
+1 Vona's Hunger
+1 Bartolomé del Presidio
+1 Elenda, Saint of Dusk
+1 Vito, Thorn of the Dusk Rose
+1 Etchings of the Chosen
+1 Treacherous Greed
+1 Rite of Oblivion
+10 Plains
+1 Village Rites
+1 Radiant Destiny
+1 Exquisite Blood
+1 Secluded Courtyard
+1 Orzhov Basilica

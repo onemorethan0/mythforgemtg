@@ -1,0 +1,79 @@
+# Archidekt — Miriam Mount Menagerie
+# source: archidekt:7376809
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Miriam, Herd Whisperer
+
+Deck:
+1 Brightfield Mustang
+1 Bristlepack Sentry
+1 Betrayal at the Vault
+1 Bucolic Ranch
+1 Conduit Pylons
+1 Creosote Heath
+1 Mirage Mesa
+1 Rambling Possum
+1 Reach for the Sky
+1 Sandstorm Verge
+1 Thunder Lasso
+1 Trained Arynx
+1 Bounding Felidar
+1 Bovine Intervention
+1 Bridled Bighorn
+1 Careening Mine Cart
+1 Claim Jumper
+1 Clear Shot
+1 Dance of the Tumbleweeds
+1 Eriette's Lullaby
+16 Forest
+1 Full Steam Ahead
+1 Intrepid Stablemaster
+1 Luxurious Locomotive
+1 Mobile Homestead
+1 Hardened Scales
+1 Ornery Tumblewagg
+1 Snakeskin Veil
+1 Steer Clear
+1 Thornado
+1 Explorer's Cache
+1 Split Up
+1 Veteran Survivor
+1 Lagorin, Soul of Alacria
+1 Bulwark Ox
+1 Guardian Sunmare
+1 Caradora, Heart of Alacria
+1 Interface Ace
+1 Unswerving Sloth
+1 Veteran Beastrider
+1 Lumbering Worldwagon
+1 Esika's Chariot
+1 Voracious Varmint
+1 Kutzil, Malamet Exemplar
+1 Throw from the Saddle
+1 Roadside Assistance
+1 Starfall Invocation
+1 Alacrian Armory
+1 Venomsac Lagac
+1 Shepherd of the Clouds
+1 Pristine Talisman
+1 Autarch Mammoth
+1 Guidelight Matrix
+1 Wylie Duke, Atiin Hero
+1 Silken Strength
+1 Seraphic Steed
+1 One Last Job
+1 Sundial, Dawn Tyrant
+1 Invasion of Moag // Bloomwielder Dryads
+1 Rustler Rampage
+1 Take Up the Shield
+1 Canyon Vaulter
+1 Earthrumbler
+1 Run Over
+15 Plains
+1 Congregation Gryff
+1 Drover Grizzly
+1 Giant Beaver
+1 Raucous Entertainer
+1 Shrewd Storyteller

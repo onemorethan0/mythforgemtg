@@ -1,0 +1,82 @@
+# Archidekt — The Grim Captain - Ixalan Themed
+# source: archidekt:13017970
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Throne of the Grim Captain // The Grim Captain
+
+Deck:
+1 Twilight Prophet
+1 Feed the Swarm
+1 Necropolis Regent
+1 Blood Seeker
+1 Ruin Raider
+1 Skeleton Crew
+1 Maskwood Nexus
+1 Kitesail Freebooter
+1 Visage of Dread // Dread Osseosaur
+1 Putrid Raptor
+1 Mire Triton
+1 Forerunner of the Coalition
+1 Dire Fleet Ravager
+1 Hollowsage
+1 Merrow Bonegnawer
+1 Gutless Plunderer
+1 Rampaging Spiketail
+1 Rotting Regisaur
+1 Cemetery Tampering
+1 Undead Butler
+1 Caged Sun
+1 Charcoal Diamond
+1 Sol Ring
+1 Changeling Outcast
+1 Cairn Wanderer
+1 Graveshifter
+1 Universal Automaton
+1 Nameless Inversion
+1 Ghostly Changeling
+28 Swamp
+1 Myriad Landscape
+1 Witch's Cottage
+1 Mortuary Mire
+1 Buried Ruin
+1 Barren Moor
+1 Grasping Shadows // Shadows' Lair
+1 Matzalantli, the Great Door // The Core
+1 Francisco, Fowl Marauder
+1 Corpse Churn
+1 Phyrexian Arena
+1 Altar of the Wretched // Wretched Bonemass
+1 Commander's Sphere
+1 Well of Lost Dreams
+1 Heraldic Banner
+1 Tragic Slip
+1 Mind Stone
+1 Join the Dead
+1 Bringer of the Last Gift
+1 Hidden Necropolis
+1 Terror Tide
+1 Corpses of the Lost
+1 The Grim Captain's Locker
+1 Boneyard Parley
+1 Walk the Plank
+1 Tomb Robber
+1 Incarnation Technique
+1 Everflowing Chalice
+1 Sequestered Stash
+1 Defossilize
+1 Vito, Thorn of the Dusk Rose
+1 Dusk Legion Zealot
+1 Ascendant Evincar
+1 Nullpriest of Oblivion
+1 Patron of the Vein
+1 Temple of the False God
+1 Bojuka Bog
+1 Skeletal Changeling
+1 Buried Alive
+1 Tetzimoc, Primal Death
+1 Deadeye Tracker
+1 Saw in Half
+1 Tithing Blade // Consuming Sepulcher
+1 Throne of the Grim Captain // The Grim Captain

@@ -1,0 +1,98 @@
+# Archidekt — (0-0) Soundwave These Cheeks
+# source: archidekt:10777627
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Soundwave, Sonic Spy // Soundwave, Superior Captain
+
+Deck:
+1 Signal Pest
+1 Sword of Body and Mind
+1 Mind Stone
+1 Resculpt
+1 Unfortunate Accident
+1 Darkslick Shores
+1 Aqueous Form
+1 Terramorphic Expanse
+1 Gloomlake Verge
+1 Keys to the House
+7 Island
+4 Swamp
+1 Evolving Wilds
+1 Don't Make a Sound
+1 Decanter of Endless Water
+1 Enduring Curiosity
+1 Breathe Your Last
+1 Geyser Drake
+1 Soured Springs
+1 Sunken Hollow
+1 Morphic Pool
+1 Arcane Signet
+1 Sea of Clouds
+1 Bident of Thassa
+1 Castle Vantress
+1 Abandoned Campground
+1 Talisman of Dominance
+1 Hidden Cataract
+1 Enter the Enigma
+1 Command Tower
+1 Hidden Necropolis
+1 Mirrormade
+1 Phantom Interference
+1 Wayfarer's Bauble
+1 Murky Sewer
+1 Dark Ritual
+1 Nashi, Searcher in the Dark
+1 Negate
+1 Mourner's Surprise
+1 Enduring Tenacity
+1 Raven of Fell Omens
+1 Nimble Larcenist
+1 Toxin Analysis
+1 Tamiyo Meets the Story Circle
+1 Shay Cormac
+1 Fear of Impostors
+1 Metamorphic Blast
+1 Nowhere to Run
+1 Victimize
+1 Murder
+1 Ratonhnhaké꞉ton
+1 Bottomless Pool // Locker Room
+1 Dovin, Hand of Control
+1 Meat Locker // Drowned Diner
+1 Muster the Departed
+1 Sporogenic Infection
+1 Amphibian Downpour
+1 Counterspell
+1 Silent Hallcreeper
+1 Manticore
+1 Come Back Wrong
+1 Stop Cold
+1 No Escape
+1 Hookblade
+1 Distract the Guards
+1 Basilisk Collar
+1 Caduceus, Staff of Hermes
+1 Barbed Spike
+1 Sickleslicer
+1 Rabble Rousing
+1 Decree of Justice
+1 Carrot Cake
+1 Sworn Companions
+1 Hourglass of the Lost
+1 Temple of Enlightenment
+1 Shattered Seraph
+1 Azorius Signet
+1 Phyrexian Rebirth
+1 Contaminated Landscape
+1 Exotic Orchard
+1 Azorius Chancery
+1 Tranquil Cove
+1 Lonely Arroyo
+1 Port Town
+2 Plains
+1 Drag the Canal
+1 Reflecting Pool
+1 Wrangler of the Damned
+1 Nezumi Linkbreaker

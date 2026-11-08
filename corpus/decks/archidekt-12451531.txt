@@ -1,0 +1,104 @@
+# Archidekt — BRAGO -  Bracket 4
+# source: archidekt:12451531
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Brago, King Eternal
+
+Deck:
+1 Aether Channeler
+1 Archivist of Oghma
+1 Delney, Streetwise Lookout
+1 Drannith Magistrate
+1 Esper Sentinel
+1 Grand Abolisher
+1 Loran of the Third Path
+1 Ranger-Captain of Eos
+1 Recruiter of the Guard
+1 Serra Ascendant
+1 Soulherder
+1 Tribute Mage
+1 Trinket Mage
+1 Voice of Victory
+1 Altar of the Brood
+1 Arcane Signet
+1 Arcum's Astrolabe
+1 Grim Monolith
+1 Lavaspur Boots
+1 Lightning Greaves
+1 Mana Vault
+1 Mox Opal
+1 Basalt Monolith
+1 Lithoform Engine
+1 Urza, Lord High Artificer
+1 Thassa's Oracle
+1 Teferi, Time Raveler
+1 Sol Ring
+1 Strionic Resonator
+1 Talisman of Progress
+1 Tangle Wire
+1 The One Ring
+1 Winter Orb
+1 Cyclonic Rift
+1 Enlightened Tutor
+1 Fierce Guardianship
+1 Force of Negation
+1 Force of Will
+1 Mana Drain
+1 Muddle the Mixture
+1 Swords to Plowshares
+1 Teferi's Protection
+1 Trickbind
+1 Approach of the Second Sun
+1 Fabricate
+1 Supreme Verdict
+1 Mystic Remora
+1 Reality Acid
+1 Rhystic Study
+1 Smothering Tithe
+1 Academy Ruins
+1 Arid Mesa
+1 City of Brass
+1 Command Tower
+1 Eiganjo, Seat of the Empire
+1 Flooded Strand
+1 Gemstone Caverns
+1 Hall of the Bandit Lord
+1 Hallowed Fountain
+1 Mana Confluence
+1 Meticulous Archive
+1 Reliquary Tower
+1 Scalding Tarn
+1 Sea of Clouds
+4 Snow-Covered Island
+2 Snow-Covered Plains
+1 Talon Gates of Madara
+1 Tundra
+1 Stifle
+1 Pact of Negation
+1 Path to Exile
+1 Urza's Saga
+1 Ancient Tomb
+1 Static Orb
+1 Command Beacon
+1 Inventors' Fair
+1 Lotus Petal
+1 Silence
+1 City of Traitors
+1 Chrome Mox
+1 Mox Diamond
+1 Counterspell
+1 Mindbreak Trap
+1 Narset, Parter of Veils
+1 Tithe
+1 Spellseeker
+1 Swan Song
+1 Adarkar Wastes
+1 Access Tunnel
+1 Meekstone
+1 Wrath of God
+1 Vanquish the Horde
+1 Sensei's Divining Top
+1 Blind Obedience
+1 Displacer Kitten

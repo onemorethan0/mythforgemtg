@@ -1,0 +1,108 @@
+# Archidekt — Rog/Tym GoFundMyNuclearWarhead
+# source: archidekt:17654347
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rograkh, Son of Rohgahh
+1 Tymna the Weaver
+
+Deck:
+1 Tataru Taru
+1 Bolas's Citadel
+1 Springleaf Drum
+1 Talisman of Conviction
+1 Necropotence
+1 Wishclaw Talisman
+1 Arcane Signet
+1 Infernal Plunge
+1 Dark Ritual
+1 Diabolic Intent
+1 Mana Vault
+1 Arid Mesa
+1 Command Tower
+1 Bloodstained Mire
+1 Urza's Saga
+1 Vault of Champions
+1 Godless Shrine
+1 Blood Crypt
+1 Jeska's Will
+1 Orcish Bowmasters
+1 Dualcaster Mage
+1 Rite of Flame
+1 Culling the Weak
+1 Ancient Tomb
+1 Spectator Seating
+1 Marsh Flats
+1 Gemstone Caverns
+1 Enlightened Tutor
+1 Sevinne's Reclamation
+1 Wheel of Fortune
+1 Chrome Mox
+1 Final Fortune
+1 Lion's Eye Diamond
+1 Mox Diamond
+1 Badlands
+1 Mox Opal
+1 Plateau
+1 Aetherflux Reservoir
+1 Scrubland
+1 City of Traitors
+1 Last Chance
+1 Phyrexian Tower
+1 Goblin Bombardment
+1 Grim Monolith
+1 Grinding Station
+1 Chromatic Star
+1 Demonic Tutor
+1 Ragavan, Nimble Pilferer
+1 Paradise Mantle
+1 Wear // Tear
+1 Flare of Duplication
+1 Underworld Breach
+1 Vampiric Tutor
+1 Demonic Consultation
+1 Gamble
+1 Lightning Bolt
+1 Sacred Foundry
+1 Emergence Zone
+1 Praetor's Grasp
+1 Tainted Pact
+1 Mana Confluence
+1 Cabal Ritual
+1 Lotus Petal
+1 Sensei's Divining Top
+1 City of Brass
+1 Sol Ring
+1 Orim's Chant
+1 Swords to Plowshares
+1 Ad Nauseam
+1 Guild Artisan
+1 Demonic Counsel
+1 Molten Duplication
+1 Wheel of Misfortune
+1 Gemstone Mine
+1 Strike It Rich
+1 Deflecting Swat
+1 Impulsive Pilferer
+1 Silence
+1 Kobolds of Kher Keep
+1 Flooded Strand
+1 Esper Sentinel
+1 Simian Spirit Guide
+1 Goblin Welder
+1 Dragon's Rage Channeler
+1 Entomb
+1 Imperial Seal
+1 Red Elemental Blast
+1 Pyroblast
+1 The Queen of Dale
+1 Overmaster
+1 Voice of Victory
+1 Angel's Grace
+1 Skirk Prospector
+1 Reforge the Soul
+1 Enduring Renewal
+1 Grapeshot
+1 Defense Grid
+1 Mox Amber

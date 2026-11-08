@@ -1,0 +1,93 @@
+# Archidekt — Hazezon Tamar Top Deck Manipulation
+# source: archidekt:6389766
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Hazezon Tamar
+
+Deck:
+1 Skirk Prospector
+1 Horn of Ramos
+1 Titania, Protector of Argoth
+1 Mountain Valley
+1 Flood Plain
+1 Naya Panorama
+1 Seer's Sundial
+1 Canopy Vista
+1 Cinder Glade
+3 Mountain
+12 Forest
+1 Druid Class
+1 Aftermath Analyst
+1 Temple of Plenty
+1 Temple of Triumph
+1 Rith's Attendant
+1 Goblin Tutor
+1 Sunforger
+1 Hall of Heliod's Generosity
+1 Idyllic Tutor
+1 Brainstone
+1 Heart of Ramos
+1 Conch Horn
+1 Chromatic Star
+1 Ghirapur Orrery
+1 Skullclamp
+1 Sensei's Divining Top
+1 Sterling Grove
+1 Moon-Blessed Cleric
+1 Spore Frog
+1 Wanderer's Twig
+1 Tooth of Ramos
+1 Mind Stone
+1 Commander's Sphere
+1 Chromatic Sphere
+1 Norn's Annex
+1 Astrolabe
+1 Wild Cantor
+1 Sculpting Steel
+1 Expedition Map
+1 Yavimaya Elder
+1 Tinder Wall
+1 Sakura-Tribe Elder
+1 Mons's Goblin Waiters
+1 Krosan Wayfarer
+1 Catalyst Elemental
+1 Second Sunrise
+1 Ghostly Prison
+1 Generator Servant
+1 Dryad of the Ilysian Grove
+1 Faith's Reward
+1 Sylvan Library
+1 Cankerbloom
+1 Gaea's Touch
+1 Courser of Kruphix
+1 Spelunking
+1 New Benalia
+1 Madblind Mountain
+1 Grasslands
+1 Myriad Landscape
+1 Temple of Abandon
+1 Rocky Tar Pit
+1 Sheltering Landscape
+1 Bant Panorama
+1 Krosan Verge
+1 Jund Panorama
+1 Blighted Woodland
+1 Credit Voucher
+1 Insidious Fungus
+1 Split Screen
+1 Scapeshift
+1 Zuran Orb
+1 Yet Another Aether Vortex
+1 Splendid Reclamation
+1 Valakut Exploration
+1 Inventors' Fair
+1 The Mycosynth Gardens
+1 Ashnod's Altar
+1 Broadside Bombardiers
+1 Wall of Mulch
+3 Plains
+1 Plea for Guidance
+1 Restoration Specialist
+1 Hoarding Dragon

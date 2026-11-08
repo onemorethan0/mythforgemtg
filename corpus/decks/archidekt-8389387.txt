@@ -1,0 +1,95 @@
+# Archidekt — Wick, the Whorled Mind
+# source: archidekt:8389387
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Wick, the Whorled Mind
+
+Deck:
+3 Island
+1 Taurean Mauler
+1 Tainted Strike
+1 Piper of the Swarm
+1 Lilypad Village
+1 Mudflat Village
+1 Flare of Malice
+1 Invert Polarity
+1 Dark Ritual
+1 Arcane Denial
+1 Big Apple, 3 a.m.
+1 Panharmonicon
+1 Waterlogged Teachings // Inundated Archive
+1 Ashcoat of the Shadow Swarm
+1 Plague of Vermin
+1 Distant Melody
+1 Collective Inferno
+1 Rat Out
+1 Totentanz, Swarm Piper
+1 Curse of Opulence
+1 Ogre Slumlord
+4 Mountain
+9 Swamp
+1 Song of Totentanz
+1 Gnawing Crescendo
+1 Karumonix, the Rat King
+1 Lord Skitter, Sewer King
+1 Pack Rat
+1 Persistent Marshstalker
+1 Shoreline Looter
+1 Tangled Colony
+1 Voracious Vermin
+1 Vren, the Relentless
+1 Changeling Outcast
+1 Bloodline Pretender
+1 Chittering Witch
+1 Chthonian Nightmare
+1 Seething Landscape
+1 Mad Ratter
+1 Ogre Chitterlord
+1 Typhoid Rats
+1 Nezumi Prowler
+1 Sunken Hollow
+1 Exotic Orchard
+1 Crumbling Necropolis
+1 Command Tower
+1 Smoldering Marsh
+1 Dragonskull Summit
+1 Metallic Mimic
+1 Izzet Boilerworks
+1 Talisman of Dominance
+1 Impact Tremors
+1 Goblin Bombardment
+1 Marrow-Gnawer
+1 Valley Rotcaller
+1 Chainsaw
+1 Revenge of the Rats
+1 Path of Ancestry
+1 Engine Rat
+1 Virtue of Knowledge // Vantress Visions
+1 Swarmyard Massacre
+1 Swarmyard
+1 Bulk Up
+1 Burglar Rat
+1 Lord Skitter's Butcher
+1 Dimir Signet
+1 Kindred Discovery
+1 Nashi, Searcher in the Dark
+1 Unearth
+1 Phyrexian Arena
+1 Azure Beastbinder
+1 Rat King, Verminister
+1 Stock Up
+1 Jet Medallion
+1 Izzet Signet
+1 Canyon Slough
+1 Run Away Together
+1 Dimir Aqueduct
+1 Sulfur Falls
+1 Rakdos Carnarium
+1 Blasphemous Act
+1 Foreboding Ruins
+1 Arcane Signet
+1 Swiftfoot Boots
+1 Negate
+1 Firdoch Core

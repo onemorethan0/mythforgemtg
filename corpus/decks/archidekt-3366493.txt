@@ -1,0 +1,91 @@
+# Archidekt — Chaos take the world
+# source: archidekt:3366493
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Sol'Kanar the Tainted
+
+Deck:
+1 Xantcha, Sleeper Agent
+1 Shared Fate
+1 Whims of the Fates
+1 Eon Frolicker
+1 Psychic Battle
+1 Zur's Weirding
+1 Confusion in the Ranks
+1 Sudden Substitution
+1 Perplexing Chimera
+1 Cultural Exchange
+1 Goblin Game
+1 Hive Mind
+1 Izzet Boilerworks
+1 Aeon Engine
+1 Role Reversal
+1 Descent into Avernus
+1 Chef's Kiss
+1 Grip of Chaos
+1 Maddening Hex
+1 Possibility Storm
+1 Warp World
+1 Share the Spoils
+1 Chaotic Transformation
+1 Teferi's Puzzle Box
+1 Silent Arbiter
+1 Endless Whispers
+1 Reins of Power
+1 Havoc Festival
+1 Lethal Vapors
+1 Descent into Madness
+1 Plague Reaver
+1 Raving Dead
+1 Vial Smasher the Fierce
+1 Collision of Realms
+1 Blim, Comedic Genius
+1 Cruel Entertainment
+1 Ian Malcolm, Chaotician
+1 Hedron Archive
+1 Thran Dynamo
+1 Last One Standing
+1 Assault Suit
+1 Dimir Signet
+1 Rakdos Signet
+8 Mountain
+5 Swamp
+1 Izzet Signet
+1 Over the Top
+1 Abyssal Persecutor
+1 Wild Evocation
+1 Creeping Bloodsucker
+1 Nightscape Familiar
+1 Cascade Bluffs
+7 Island
+1 Commander's Sphere
+1 Wild Magic Surge
+1 Graven Cairns
+1 Worn Powerstone
+1 Plargg and Nassari
+1 The Ruinous Powers
+1 Uvilda, Dean of Perfection // Nassari, Dean of Expression
+1 Luxury Suite
+1 Shadowblood Ridge
+1 Darkwater Catacombs
+1 Ferrous Lake
+1 Crumbling Necropolis
+1 Tainted Peak
+1 Sunken Hollow
+1 Dimir Aqueduct
+1 Smoldering Marsh
+1 Tainted Isle
+1 Sulfur Falls
+1 Wheel of Misfortune
+1 Bazaar Trader
+1 Ice Cave
+1 Platinum Angel
+1 Neera, Wild Mage
+1 Command Tower
+1 Witch Hunt
+1 Eye of the Storm
+1 Knowledge Pool
+1 Chaos Warp
+1 Sol Ring

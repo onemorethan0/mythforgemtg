@@ -1,0 +1,91 @@
+# Archidekt — Everything Changed
+# source: archidekt:15384168
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+4 Mountain
+4 Swamp
+4 Island
+1 Dark Deal
+1 Lo and Li, Twin Tutors
+1 Fire Nation Attacks
+1 Fire Nation Engineer
+1 Scarring Memories
+1 Sakashima of a Thousand Faces
+1 Ty Lee, Artful Acrobat
+1 The Rise of Sozin // Fire Lord Sozin
+1 Swamp
+1 Fire Nation Archers
+1 Dai Li Indoctrination
+1 Epic Downfall
+1 Lightning Strike
+1 Ozai's Cruelty
+1 Heartless Act
+1 Zuko, Exiled Prince
+1 Fire Lord Ozai
+1 Clone
+1 Fire Nation Sentinels
+1 Azula, Ruthless Firebender
+1 Azula, On the Hunt
+1 Deadly Precision
+1 Fire Nation Cadets
+1 Jet's Brainwashing
+1 The Fire Nation Drill
+1 Mai, Jaded Edge
+1 Noxious Gearhulk
+1 Sozin's Comet
+1 The Last Agni Kai
+1 Zuko's Exile
+1 Phantasmal Image
+1 Fire Navy Trebuchet
+1 Firebending Student
+1 Fire Nation Turret
+1 Cityscape Leveler
+1 Serpent's Pass
+1 Boiling Rock Prison
+1 Airship Engine Room
+1 Sold Out
+1 Callous Inspector
+1 Azula Always Lies
+1 Combustion Technique
+1 Combustion Man
+1 Fire Nation Palace
+1 Agent of Treachery
+1 Thriving Bluff
+1 Deadly Rollick
+1 Diaochan, Artful Beauty
+1 Obsessive Pursuit
+1 Nyla, Shirshu Sleuth
+1 Lo and Li, Royal Advisors
+1 Overwhelming Victory
+1 Joo Dee, One of Many
+1 Zhao, the Moon Slayer
+1 Tarnished Citadel
+1 Phoenix Fleet Airship
+1 Island
+3 Swamp
+2 Swamp
+1 Mountain
+4 Mountain
+3 Mountain
+1 Braid of Fire
+1 Painful Truths
+1 Torment of Hailfire
+1 Lightning Bolt
+1 Fervor
+1 Fire Nation Occupation
+1 Thespian's Stage
+1 Azula, Cunning Usurper
+1 June, Bounty Hunter
+1 Thriving Isle
+1 Ember Island Production
+1 Thriving Moor
+1 Clone Legion
+1 Firebender Ascension
+1 Ozai, the Phoenix King
+1 Fated Firepower
+1 Fire Nation Salvagers

@@ -1,0 +1,108 @@
+# Archidekt — Nature Finds a Way - Kellan, Daring Traveler Deck
+# source: archidekt:6808721
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kellan, Daring Traveler // Journey On
+
+Deck:
+1 Skyknight Squire
+1 Adventuring Gear
+1 Expedition Map
+1 Trailblazer's Boots
+1 Lifecrafter's Bestiary
+1 Intrepid Adversary
+1 Jadelight Ranger
+1 Nissa, Vastwood Seer // Nissa, Sage Animist
+1 Fabled Passage
+1 Radiant Grove
+1 Lush Portico
+1 Makindi Stampede // Makindi Mesas
+1 Windswept Heath
+1 Glowcap Lantern
+1 Ashaya, Soul of the Wild
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Forest
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Forest
+1 Unclaimed Territory
+1 Borderland Explorer
+1 Trailtracker Scout
+1 Yasharn, Implacable Earth
+1 Tireless Tracker
+1 Avenger of Zendikar
+1 Seer's Sundial
+1 Endless Atlas
+1 Liege of the Tangle
+1 Mossborn Hydra
+1 Rampaging Baloths
+1 Temple Garden
+1 Rite of Harmony
+1 Verge Rangers
+1 Stirring Wildwood
+1 Clifftop Lookout
+1 Undergrowth Recon
+1 Splendid Reclamation
+1 Exploration
+1 Explore
+1 Lumra, Bellow of the Woods
+1 Enter the Unknown
+1 Plains
+1 Tangled Florahedron // Tangled Vale
+1 Zendikar's Roil
+1 Delney, Streetwise Lookout
+1 Wood Elves
+1 Jadelight Spelunker
+1 Evolving Wilds
+1 Dusk // Dawn
+1 Explorer's Scope
+1 Terramorphic Expanse
+1 Kinjalli's Dawnrunner
+1 Nissa, Resurgent Animist
+1 Farseek
+1 Canopy Vista
+1 Sundering Growth
+1 Kenrith's Transformation
+1 Lignify
+1 Beast Within
+1 Inspiring Call
+1 Wildfield Borderpost
+1 Prismatic Vista
+1 Sunpetal Grove
+1 Yavimaya, Cradle of Growth
+1 Fertile Thicket
+1 Khalni Ambush // Khalni Territory
+1 Felidar Retreat
+1 Crash of Rhino Beetles
+1 Greensleeves, Maro-Sorcerer
+1 Disciple of Freyalise // Garden of Freyalise
+1 Stocking the Pantry
+1 Rumbleweed
+1 Worldsoul Colossus
+1 Botanical Brawler
+1 Wayfaring Temple
+1 Scute Swarm
+1 Trove Warden
+1 Selvala, Explorer Returned
+1 Sentinel of the Nameless City
+1 Topography Tracker
+1 Tireless Provisioner
+1 Twists and Turns // Mycoid Maze
+1 Khalni Heart Expedition
+1 Vengevine
+1 Ascend from Avernus

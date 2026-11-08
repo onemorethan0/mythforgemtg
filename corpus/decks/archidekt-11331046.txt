@@ -1,0 +1,108 @@
+# Archidekt — The Heist of Maag Taranau
+# source: archidekt:11331046
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rakdos, the Muscle
+
+Deck:
+1 Cavern of Souls
+1 Vault of Whispers
+1 K'rrik, Son of Yawgmoth
+1 Master of Dark Rites
+1 Reckless Barbarian
+1 Sol Ring
+1 Lion's Eye Diamond
+1 Orcish Bowmasters
+1 Gemstone Caverns
+1 Mana Confluence
+1 Mox Opal
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Culling the Weak
+1 Dark Ritual
+1 Entomb
+1 City of Traitors
+1 Red Elemental Blast
+1 Blood Pet
+1 Ashnod's Altar
+1 Forsaken Miner
+1 Demonic Tutor
+1 Ingot Chewer
+1 Luxury Suite
+1 Poxwalkers
+1 Vampiric Tutor
+1 Shriekmaw
+1 Shambling Ghast
+1 Lotus Petal
+1 Verdant Catacombs
+1 Ragavan, Nimble Pilferer
+1 Songs of the Damned
+1 Flamekin Harbinger
+1 Boggart Trawler // Boggart Bog
+1 Talisman of Indulgence
+1 Carnival of Souls
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Skittering Precursor
+1 Treasonous Ogre
+1 City of Brass
+1 Polluted Delta
+1 Sulfurous Springs
+1 Viscera Seer
+1 Popular Egotist
+1 Rite of Flame
+1 Burnt Offering
+1 Underworld Breach
+1 Deflecting Swat
+1 Warren Soultrader
+1 Reanimate
+1 Grim Monolith
+1 Arcane Signet
+1 Marsh Flats
+1 Offalsnout
+1 Timeline Culler
+1 Dargo, the Shipwrecker
+1 Command Tower
+1 Phyrexian Altar
+1 Infernal Plunge
+1 Swamp
+1 Greedy Freebooter
+1 Patron of the Arts
+1 Phyrexian Tower
+1 Cabal Ritual
+1 Mana Vault
+1 Goblin Recruiter
+1 Hexing Squelcher
+1 Blood Crypt
+1 _____ Goblin
+1 Chrome Mox
+1 Skirk Prospector
+1 Opposition Agent
+1 The Sackville-Bagginses
+1 Party Thrasher
+1 Sacrifice
+1 Priest of Gix
+1 Flare of Duplication
+1 Chthonian Nightmare
+1 Carrion Feeder
+1 Impulsive Pilferer
+1 Pinnacle Monk // Mystic Peak
+1 Myr Moonvessel
+1 Bloodstained Mire
+1 Badlands
+1 Fury
+1 Grief
+1 Springleaf Drum
+1 Great Furnace
+1 Ancient Tomb
+1 Priest of Urabrask
+1 Mount Doom
+1 Charming Scoundrel
+1 Cabal Therapy
+1 Imperial Seal
+1 Nightscape Familiar
+1 Thunderscape Familiar
+1 Simian Spirit Guide
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Spider-Punk
+1 Piggy Bank

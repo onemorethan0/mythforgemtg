@@ -1,7 +1,8 @@
 # Archidekt — [Precon] Hearthhull, the Worldseed - Mid-range / Aristocrats
 # source: archidekt:25770312
 # fetched: 2026-08-26
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo The Gitrog Monster + Dakmor Salvage; Bracket 2 allows none
 
 Commander:
 1 Hearthhull, the Worldseed

@@ -1,0 +1,72 @@
+# Archidekt — Wayne Reynolds
+# source: archidekt:2959963
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tariel, Reckoner of Souls
+
+Deck:
+14 Swamp
+11 Plains
+1 Auntie's Hovel
+1 Ajani's Chosen
+1 Ajani Vengeant
+1 Alpine Guide
+1 Ambitious Assault
+1 Arms Dealer
+1 Ashen-Skin Zubera
+1 Ashling, the Extinguisher
+1 Ashling the Pilgrim
+1 Balthor the Defiled
+1 Blightsteel Colossus
+1 Blood Reckoning
+1 Bogardan Hellkite
+1 Brute Force
+1 Cunning Sparkmage
+1 Dark Withering
+1 Dreadbore
+1 Facevaulter
+1 Fanatical Firebrand
+1 Feather, the Redeemed
+1 Fiend Hunter
+1 Final-Sting Faerie
+1 Firemane Avenger
+1 Goblin Arsonist
+1 Goblin Bangchuckers
+1 Goblin Sharpshooter
+1 Goblin Spymaster
+1 Goblin War Drums
+1 Ib Halfheart, Goblin Tactician
+1 Ink-Eyes, Servant of Oni
+1 Mad Auntie
+1 Mad Prophet
+1 Marsh Flitter
+1 Mindsparker
+1 Oona's Prowler
+1 Pirate's Pillage
+1 Return to Dust
+1 Shirei, Shizo's Caretaker
+1 Silence
+1 Skeletal Vampire
+1 Spirit Loop
+1 Soul's Fire
+1 Stingscourger
+1 Sudden Impact
+1 Terminate
+1 Throttle
+1 Torbran, Thane of Red Fell
+1 Twist Allegiance
+1 Vow of Duty
+1 Wall of Reverence
+1 Wandering Archaic // Explore the Vastlands
+1 Warren Pilferers
+1 Xathrid Demon
+1 Zo-Zu the Punisher
+14 Mountain
+1 Discerning Financier
+1 Death-Rattle Oni
+1 Goring Warplow
+1 Wisecrack
+1 Searslicer Goblin
+1 Slickshot Show-Off

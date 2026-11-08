@@ -1,0 +1,87 @@
+# Archidekt — EDH Wyll, "Wild Card"
+# source: archidekt:3060318
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Wyll, Blade of Frontiers
+1 Sword Coast Sailor
+
+Deck:
+1 Chaos Channeler
+1 Netherese Puzzle-Ward
+1 Maddening Hex
+1 Wild Magic Surge
+1 Elminster's Simulacrum
+1 Underdark Rift
+1 Tibalt's Trickery
+1 Pixie Guide
+11 Island
+1 Command Tower
+1 Rivendell
+1 Barbarian Class
+1 Guild Artisan
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Sword of Hours
+1 See Double
+1 Memorial to Genius
+1 Memorial to War
+1 The Deck of Many Things
+1 Cursed Mirror
+12 Mountain
+1 Temple of the False God
+1 Body Double
+1 Dack's Duplicate
+1 Diviner's Portent
+1 Vexing Puzzlebox
+1 Mysterious Stranger
+1 Gale's Redirection
+1 Feywild Trickster
+1 Reckless Endeavor
+1 Wyll's Reversal
+1 Myriad Landscape
+1 Temple of Epiphany
+1 Wand of Wonder
+1 Etali, Primal Storm
+1 Delina, Wild Mage
+1 Component Pouch
+1 Ebony Fly
+1 Chaos Warp
+1 Contact Other Plane
+1 Hoarding Ogre
+1 Explorer's Scope
+1 Fellwar Stone
+1 Mocking Doppelganger
+1 Strength-Testing Hammer
+1 Cephalid Facetaker
+1 Wheel of Misfortune
+1 Bonder's Ornament
+1 Rogue's Passage
+1 Spinerock Knoll
+1 Opal Palace
+1 Path of Ancestry
+1 Rad Rascal
+1 The Irencrag
+1 Monitor Monitor
+1 Plargg and Nassari
+1 Seasoned Buttoneer
+1 Call Forth the Tempest
+1 Wizard's Spellbook
+1 Modify Memory
+1 Ian Malcolm, Chaotician
+1 Hidden Cataract
+1 Hidden Volcano
+1 Myra the Magnificent
+1 Crystal Grotto
+1 Iron Mastiff
+1 Invert Polarity
+1 Fleeting Reflection
+1 Sibylline Soothsayer
+1 Zoyowa's Justice
+1 Command Performance
+1 Clown Car
+1 Chef's Kiss
+1 Alexios, Deimos of Kosmos
+1 Draconian Gate-Bot
+1 Celebr-8000
+1 Chaos Dragon

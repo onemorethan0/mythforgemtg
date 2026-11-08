@@ -1,0 +1,102 @@
+# Archidekt — High Power Aristocrats Edgar Markov; Guide at the bottom
+# source: archidekt:7319967
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Olivia's Wrath
+1 Sol Ring
+1 Bartolomé del Presidio
+1 Anguished Unmaking
+1 Swords to Plowshares
+1 The Meathook Massacre
+1 Vicious Conquistador
+1 Yahenni, Undying Partisan
+1 Twilight Prophet
+1 Vito, Thorn of the Dusk Rose
+1 Viscera Seer
+1 Vraan, Executioner Thane
+1 Vampiric Tutor
+1 Impact Tremors
+1 Changeling Outcast
+1 Creeping Bloodsucker
+1 Kambal, Consul of Allocation
+1 Master of Dark Rites
+1 Elas il-Kor, Sadistic Pilgrim
+1 Blood Artist
+1 Bloodchief Ascension
+1 Blood Seeker
+1 Bloodletter of Aclazotz
+1 Charismatic Conqueror
+1 Captivating Vampire
+1 Cordial Vampire
+1 Cruel Celebrant
+1 Florian, Voldaren Scion
+1 Kalastria Highborn
+1 Indulgent Aristocrat
+1 Legion Lieutenant
+1 Markov Baron
+1 Malakir Bloodwitch
+1 Pulse Tracker
+1 Sanctum Seeker
+1 Cavern of Souls
+1 Arid Mesa
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Caves of Koilos
+1 Command Tower
+1 Dragonskull Summit
+1 Isolated Chapel
+1 Luxury Suite
+1 Marsh Flats
+1 Mountain
+1 Path of Ancestry
+1 Secluded Courtyard
+1 Spectator Seating
+1 Unclaimed Territory
+1 Vault of Champions
+3 Plains
+1 Sacred Foundry
+1 Ruthless Lawbringer
+1 Pact of the Serpent
+1 Inkshield
+1 Elenda, the Dusk Rose
+1 Culling the Weak
+1 Priest of Forgotten Gods
+1 Nykthos, Shrine to Nyx
+1 Bolas's Citadel
+1 Scrubland
+5 Swamp
+1 Ayara, First of Locthwain
+1 Beseech the Mirror
+1 Vengeful Bloodwitch
+1 Bloodthirsty Conqueror
+1 Authority of the Consuls
+1 Contamination
+1 Necropotence
+1 Teferi's Protection
+1 Phyrexian Tower
+1 Godless Shrine
+1 Blood Crypt
+1 Voldaren Estate
+1 Urborg, Tomb of Yawgmoth
+1 Skullclamp
+1 Welcoming Vampire
+1 Rite of Oblivion
+1 Yawgmoth, Thran Physician
+1 Path to Exile
+1 Mana Confluence
+1 Oathsworn Vampire
+1 City of Brass
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Dark Ritual
+1 Funeral Room // Awakening Hall
+1 Clavileño, First of the Blessed
+1 Dictate of Erebos
+1 Grave Pact
+1 And They Shall Know No Fear
+1 Grand Abolisher
+1 Phyrexian Altar

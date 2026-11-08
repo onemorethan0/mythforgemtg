@@ -1,0 +1,96 @@
+# Archidekt — Life's Bounty | Lathiel
+# source: archidekt:4391065
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lathiel, the Bounteous Dawn
+
+Deck:
+1 Canopy Vista
+1 Razorverge Thicket
+1 Cleric Class
+1 Soul Warden
+1 The Ozolith
+1 Arcane Signet
+1 Selesnya Sanctuary
+7 Plains
+1 Path to Exile
+1 Inspiring Call
+1 Aetherflux Reservoir
+1 Damning Verdict
+1 Authority of the Consuls
+1 Champion of Lambholt
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Kami of Whispered Hopes
+1 Gavony Township
+1 Swiftfoot Boots
+1 The Great Henge
+1 Doubling Season
+1 Beast Within
+1 Essence Warden
+1 Overgrown Farmland
+1 Radiant Fountain
+1 Bountiful Promenade
+1 Flawless Maneuver
+1 Brushland
+1 Kutzil, Malamet Exemplar
+1 Voice of the Blessed
+1 Dusk Legion Duelist
+1 Celestine, the Living Saint
+1 Branchloft Pathway // Boulderloft Pathway
+1 Temple Garden
+1 Clever Concealment
+1 Secluded Steppe
+1 Shalai, Voice of Plenty
+1 Scattered Groves
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Hushwood Verge
+1 Spike Feeder
+1 Boseiju, Who Endures
+1 Arcane Lighthouse
+1 Esper Sentinel
+1 Path of Ancestry
+1 Horizon Canopy
+1 Utopia Sprawl
+1 Explore
+7 Forest
+1 Angel of Destiny
+1 Fortified Village
+1 Rishkar's Expertise
+1 Hardened Scales
+1 Soul's Attendant
+1 Farseek
+1 Angelic Accord
+1 Blossoming Bogbeast
+1 The Gaffer
+1 Three Visits
+1 Terrasymbiosis
+1 Ajani's Welcome
+1 Sol Ring
+1 Birds of Paradise
+1 Tamiyo's Safekeeping
+1 Serra Ascendant
+1 Fabled Passage
+1 Exemplar of Light
+1 Nature's Lore
+1 Sylvan Library
+1 Aura Shards
+1 Flare of Fortitude
+1 Gyre Sage
+1 Haliya, Guided by Light
+1 Prosperous Innkeeper
+1 Resplendent Angel
+1 Avacyn's Pilgrim
+1 Speaker of the Heavens
+1 Righteous Valkyrie
+1 Valkyrie Harbinger
+1 Conclave Mentor
+1 Botanical Brawler
+1 Sigarda, Font of Blessings
+1 Archangel of Thune
+1 Scavenging Ooze
+1 Walking Ballista
+1 Orim's Chant
+1 Command Tower

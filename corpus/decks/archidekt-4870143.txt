@@ -1,0 +1,99 @@
+# Archidekt — Bobby Shmurza
+# source: archidekt:4870143
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Amphibian Downpour
+1 Valley Floodcaller
+1 Faerie Mastermind
+1 Phyrexian Metamorph
+1 The Reality Chip
+1 Forensic Gadgeteer
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Spellskite
+1 Copy Artifact
+1 Winter Orb
+1 Otawara, Soaring City
+1 Sensei's Divining Top
+1 Force of Will
+1 Solve the Equation
+1 Sol Ring
+1 Mystic Remora
+1 Reshape
+1 Isochron Scepter
+1 Static Orb
+1 Seat of the Synod
+1 Mystical Tutor
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Unwinding Clock
+1 Mishra's Bauble
+1 Dramatic Reversal
+1 Urza's Saga
+1 Copy Enchantment
+1 Retraction Helix
+1 Hullbreaker Horror
+1 Basalt Monolith
+1 Cyclonic Rift
+1 Mana Drain
+1 Mox Opal
+1 Lotus Petal
+1 Grim Monolith
+1 Academy Ruins
+1 Plaza of Heroes
+1 Timetwister
+1 Rhystic Study
+1 Chrome Mox
+1 Fierce Guardianship
+1 Misty Rainforest
+1 Mindbreak Trap
+1 Power Artifact
+1 Counterbalance
+1 Cavern of Souls
+1 Spell Pierce
+1 Snap
+1 Rings of Brighthearth
+1 Mox Diamond
+1 Mana Vault
+1 Muddle the Mixture
+1 Force of Negation
+1 Flusterstorm
+1 Transmute Artifact
+1 Tezzeret the Seeker
+1 Whir of Invention
+1 Codex Shredder
+1 Aether Spellbomb
+1 Ancient Tomb
+1 Fabricate
+1 Manifold Key
+1 Pact of Negation
+1 Imposter Mech
+1 Scalding Tarn
+1 Minamo, School at Water's Edge
+1 Flooded Strand
+1 Gemstone Caverns
+1 Polluted Delta
+1 Inventors' Fair
+10 Island
+1 Counterspell
+1 Everflowing Chalice
+1 Chain of Vapor
+1 Misdirection
+1 Dispel
+1 Cephalid Coliseum
+1 Mental Misstep
+1 Narset's Reversal
+1 Grafdigger's Cage
+1 Urza's Bauble
+1 Tormod's Crypt
+1 Trinisphere
+1 Sink into Stupor // Soporific Springs
+1 Emergence Zone
+1 Fellwar Stone
+1 Battered Golem
+1 Chrome Host Seedshark
+1 Etherium Sculptor

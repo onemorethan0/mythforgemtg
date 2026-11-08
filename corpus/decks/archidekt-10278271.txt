@@ -1,0 +1,72 @@
+# Archidekt — T5 Ragtime Gals
+# source: archidekt:10278271
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Lyzolda, the Blood Witch
+
+Deck:
+1 Lava Tubes
+1 Blood Clock
+1 Blood Fountain
+1 Clock of Omens
+1 Lavabrink Floodgates
+1 Wine of Blood and Iron
+1 Blood Funnel
+1 Descent into Madness
+1 Frenzied Rage
+1 Imminent Doom
+1 Impending Doom
+1 Mark of Fury
+1 Armageddon Clock
+1 Spawning Pit
+1 Blood Moon
+1 Breeding Pit
+1 Nether Void
+1 Bloodfell Caves
+1 Bloodstained Mire
+1 Stensia Bloodhall
+19 Mountain
+19 Swamp
+1 See Red
+1 Bleed Dry
+1 Blood Curdle
+1 Blood Frenzy
+1 Empty the Pits
+1 Magma Burst
+1 Magmatic Sinkhole
+1 Psychotic Fury
+1 Uncontrollable Anger
+1 Magma Spray
+1 Blood Lust
+1 Rush of Blood
+1 Tears of Rage
+1 Temporary Insanity
+1 Blood Tithe
+1 Hint of Insanity
+1 Lava Burst
+1 Exsanguinate
+1 Lava Flow
+1 Magmatic Chasm
+1 Misguided Rage
+1 New Blood
+1 Psychotic Episode
+1 Torrent of Lava
+1 Akroma, Angel of Fury
+1 Anje, Maid of Dishonor
+1 Belligerent Guest
+1 Blood Artist
+1 Blood Petal Celebrant
+1 Bloodcrazed Socialite
+1 Bloodhall Ooze
+1 Chaotic Goo
+1 Exava, Rakdos Blood Witch
+1 Kamber, the Plunderer
+1 Olivia's Attendants
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Wall of Blood
+1 Bloodflow Connoisseur
+1 Blood Feud
+1 Nightmare Void
+1 Blood Hypnotist

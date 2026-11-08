@@ -1,0 +1,108 @@
+# Archidekt — Painting the Town...
+# source: archidekt:3815436
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Najeela, the Blade-Blossom
+
+Deck:
+1 Noble Hierarch
+1 Ignoble Hierarch
+1 Silence
+1 Demonic Consultation
+1 Exotic Orchard
+1 Dispel
+1 Tinder Wall
+1 Red Elemental Blast
+1 Neoform
+1 Mental Misstep
+1 Summoner's Pact
+1 Veil of Summer
+1 Thassa's Oracle
+1 Enlightened Tutor
+1 Worldly Tutor
+1 Verdant Catacombs
+1 Tainted Pact
+1 Diabolic Intent
+1 Chain of Vapor
+1 Ranger-Captain of Eos
+1 Ad Nauseam
+1 Simian Spirit Guide
+1 Gamble
+1 Samut, Vizier of Naktamun
+1 Ragavan, Nimble Pilferer
+1 Demonic Tutor
+1 Windswept Heath
+1 Mana Confluence
+1 Wooded Foothills
+1 Flooded Strand
+1 Scalding Tarn
+1 Breeding Pool
+1 Marsh Flats
+1 Misty Rainforest
+1 Sacred Foundry
+1 Godless Shrine
+1 Steam Vents
+1 Blood Crypt
+1 Temple Garden
+1 Overgrown Tomb
+1 Stomping Ground
+1 Watery Grave
+1 Arid Mesa
+1 Bloodstained Mire
+1 Lotus Petal
+1 Gemstone Caverns
+1 City of Brass
+1 Elvish Spirit Guide
+1 Esper Sentinel
+1 Mindbreak Trap
+1 Swords to Plowshares
+1 Mox Diamond
+1 Derevi, Empyrial Tactician
+1 Rhystic Study
+1 Boseiju, Who Endures
+1 Eldritch Evolution
+1 Hallowed Fountain
+1 Birds of Paradise
+1 Will of the Mardu
+1 Voice of Victory
+1 Fierce Guardianship
+1 Command Tower
+1 Tarnished Citadel
+1 Grim Hireling
+1 Rite of Flame
+1 Hexing Squelcher
+1 Mockingbird
+1 Chrome Mox
+1 Mystic Remora
+1 An Offer You Can't Refuse
+1 Gitaxian Probe
+1 Force of Negation
+1 Imperial Seal
+1 Flusterstorm
+1 Force of Will
+1 Mystical Tutor
+1 Polluted Delta
+1 Mountain
+1 Sol Ring
+1 Arcane Signet
+1 Faerie Mastermind
+1 Warrior's Oath
+1 Lotho, Corrupt Shirriff
+1 Island
+1 Culling Ritual
+1 Final Fortune
+1 Fellwar Stone
+1 Deflecting Swat
+1 The Queen of Dale
+1 Into the Flood Maw
+1 Manamorphose
+1 Dark Ritual
+1 Culling the Weak
+1 Mox Opal
+1 Green Sun's Zenith
+1 Mana Vault
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Enduring Vitality
+1 Gleaming Splendor

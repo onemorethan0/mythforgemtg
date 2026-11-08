@@ -1,7 +1,8 @@
 # Archidekt — Hatch & Burn
 # source: archidekt:23868890
 # fetched: 2026-08-26
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Enlightened Tutor); Bracket 2 allows 0
 
 Commander:
 1 Atla Palani, Nest Tender

@@ -1,0 +1,109 @@
+# Archidekt — Spongebob and Friends
+# source: archidekt:12383088
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Najeela, the Blade-Blossom + Cyclonus, the Saboteur // Cyclonus, Cybertronian Fighter; Bracket 2 allows none
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Mondo Gecko
+1 Basim Ibn Ishaq
+1 Counterspell
+1 Skrelv, Defector Mite
+1 Toxrill, the Corrosive
+1 Toski, Bearer of Secrets
+1 Inevitable Betrayal
+1 Command Tower
+1 Daze
+1 Barktooth Warbeard
+1 Grazilaxx, Illithid Scholar
+1 Exotic Orchard
+1 Night's Whisper
+1 Plains
+1 Pippin, Guard of the Citadel
+1 Dismember
+1 Force of Despair
+1 Bayek of Siwa
+1 Great Hall of the Citadel
+1 Brago, King Eternal
+1 Mountain
+1 Swamp
+1 Charix, the Raging Isle
+1 The World Tree
+1 Boromir, Warden of the Tower
+1 Shire Terrace
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Jungle Shrine
+1 Arcane Sanctum
+1 Seaside Citadel
+1 Sandsteppe Citadel
+1 Pillar of the Paruns
+1 Gemstone Mine
+1 Super State
+1 K-9, Mark I
+1 Multiversal Passage
+1 Spider-Man 2099
+1 Raphael, the Nightwatcher
+1 Isshin, Two Heavens as One
+1 Heroes in a Half Shell
+1 Leonardo, the Balance
+1 The Grey Havens
+1 Spectacular Spider-Man
+1 Weatherlight
+1 Chameleon, Master of Disguise
+1 Sonic the Hedgehog
+1 Yargle, Glutton of Urborg
+1 Yargle and Multani
+1 Spider-Man, Brooklyn Visionary
+1 Mona Lisa, Science Geek
+1 The Master, Multiplied
+1 Undercity Sewers
+1 Najeela, the Blade-Blossom
+1 Gogo, Mysterious Mime
+1 Groundchuck & Dirtbag
+1 Raph & Mikey, Troublemakers
+1 April, Reporter of the Weird
+1 Irma, Part-Time Mutant
+1 Éomer, King of Rohan
+1 Forest
+1 Swamp
+1 Mountain
+1 Island
+1 Plains
+1 Island
+1 Forest
+1 Gandalf the White
+1 Gimli of the Glittering Caves
+1 Path of Ancestry
+1 Fabled Passage
+1 Grand Coliseum
+1 Hidden Hideout
+1 Escape Tunnel
+1 Gregor, Shrewd Magistrate
+1 Raph & Leo, Sibling Rivals
+1 Mister Negative
+1 Peter Parker // Amazing Spider-Man
+1 Ellie and Alan, Paleontologists
+1 Bugenhagen, Wise Elder
+1 The Wandering Minstrel
+1 Doc Samson, Super Psychiatrist
+1 Forest
+1 Chromatic Lantern
+1 Island
+1 Swamp
+1 Plains
+1 Mountain
+1 Spider-Man, To the Rescue
+1 Black Tom Cassidy
+1 H.E.R.B.I.E., Lovable Robot
+1 Torgal, A Fine Hound
+1 Ka-Zar of the Savage Land
+1 Cyclonus, the Saboteur // Cyclonus, Cybertronian Fighter
+1 Vibrant Cityscape
+1 Firebird, Blazing Ranger
+1 Photon, Mighty Marvel
+1 Professor Hulk
+1 Annie Joins Up

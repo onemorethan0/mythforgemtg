@@ -1,0 +1,102 @@
+# WotC precon — Turtle Power! (TMC, 2026-03-06)
+# source: mtgjson:TurtlePower_TMC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Heroes in a Half Shell
+
+Deck:
+1 Acidic Slime
+1 April O'Neil, Live on the Scene
+1 Arcade Cabinet
+1 Arcane Signet
+1 Ash Barrens
+1 Assassin's Trophy
+1 Baxter, Fly in the Ointment
+1 Bebop, Skull & Crossbones
+1 Big Apple, 3 a.m.
+1 Big Mother Mouser
+1 Biogenic Ooze
+1 Blasphemous Act
+1 Casey Jones, Back Alley Brute
+1 Chromatic Lantern
+1 Cinder Glade
+1 City of Brass
+1 Coin of Mastery
+1 Command Tower
+1 Continue?
+1 Corpsejack Menace
+1 Cultivate
+1 Dimension X Pizzasaur
+1 Donatello, the Brains
+1 Double Jump // Flying Kick
+1 Dragonskull Summit
+1 Electric Seaweed
+1 Endless Foot Assault
+1 Escape Tunnel
+1 Everything Pizza
+1 Evolving Wilds
+1 Exotic Orchard
+1 Exploding Barrel
+1 Fabled Passage
+1 Fast Forward
+1 Foot Chopper
+4 Forest
+1 Game Over
+1 Grand Coliseum
+1 Harmonize
+1 Here Comes a New Hero!
+1 Hidden Hideout
+1 High Score
+1 Hinterland Harbor
+1 Irma, Part-Time Mutant
+2 Island
+1 Krang, the All-Powerful
+1 Leatherhead, Iron Gator
+1 Leonardo, the Balance
+1 Lessons from Life
+1 Level Up
+1 Lita, Little Orphan Amphibian
+1 Michelangelo, the Heart
+1 Mole Module
+1 Mona Lisa, Science Geek
+2 Mountain
+1 Ninja Pizza
+1 Path of Ancestry
+2 Plains
+1 Rain-Slicked Copse
+1 Raphael, the Muscle
+1 Rat King, Pale Piper
+1 Ray Fillet, Wave Warrior
+1 Roadkill Rodney
+1 Rocksteady, Mutant Marauder
+1 Rootbound Crag
+1 Shellshock
+1 Shredder, Shadow Master
+1 Smoldering Marsh
+1 Sodden Verdure
+1 Sol Ring
+1 Special Move
+1 Spire Garden
+1 Splinter, the Mentor
+1 Steelbane Hydra
+1 Sunken Hollow
+1 Super Combo
+2 Swamp
+1 Swift Demise
+1 Tempestra, Dame of Games
+1 Thriving Grove
+1 Thriving Isle
+1 Thriving Moor
+1 Together Forever
+1 Tokka & Rahzar, Unsupervised
+1 Turtle Lair
+1 Undergrowth Stadium
+1 Vanquish the Horde
+1 Vernal Fen
+1 Vibrant Cityscape
+1 Vigor
+1 Voracious Hydra
+1 Wave Goodbye

@@ -1,0 +1,106 @@
+# Archidekt — Edgar Markov tribal commander
+# source: archidekt:14515869
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Ad Nauseam
+1 Akroma's Will
+1 Ancient Tomb
+1 Angel's Grace
+1 Anguished Unmaking
+1 Arcane Signet
+1 Arid Mesa
+1 Ashnod's Altar
+1 Battlefield Forge
+1 Black Market Connections
+1 Blackcleave Cliffs
+1 Blasphemous Act
+1 Blood Artist
+1 Blood Crypt
+1 Bloodstained Mire
+1 Bloodthirsty Conqueror
+1 Boros Charm
+1 Cabal Ritual
+1 Captivating Vampire
+1 Caves of Koilos
+1 Chrome Mox
+1 Command Tower
+1 Concealed Courtyard
+1 Cordial Vampire
+1 Cruel Celebrant
+1 Culling the Weak
+1 Dark Ritual
+1 Deadly Dispute
+1 Deflecting Swat
+1 Demonic Tutor
+1 Diabolic Intent
+1 Dragonskull Summit
+1 Enlightened Tutor
+1 Exotic Orchard
+1 Exquisite Blood
+1 Fellwar Stone
+1 Forerunner of the Legion
+1 Godless Shrine
+1 Grand Abolisher
+1 Grim Tutor
+1 Imperial Seal
+1 Indulgent Aristocrat
+1 Insolent Neonate
+1 Inspiring Vantage
+1 Isolated Chapel
+1 Kindred Dominance
+1 Knight of the Ebon Legion
+1 Legion Lieutenant
+1 Lotus Petal
+1 Luxury Suite
+1 Mana Confluence
+1 Mana Vault
+1 Marauding Blight-Priest
+1 Marsh Flats
+1 Master of Dark Rites
+1 Mountain
+1 Necropotence
+1 Night's Whisper
+1 Orim's Chant
+1 Path to Exile
+1 Phyrexian Altar
+2 Plains
+1 Reanimate
+1 Sacred Foundry
+1 Sanguine Bond
+1 Savai Triome
+1 Secluded Courtyard
+1 Silence
+1 Silent Clearing
+1 Skullclamp
+1 Smothering Tithe
+1 Sol Ring
+1 Spectator Seating
+1 Staff of Domination
+1 Sulfurous Springs
+1 Sunbaked Canyon
+2 Swamp
+1 Swords to Plowshares
+1 Takenuma, Abandoned Mire
+1 Talisman of Conviction
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Teferi's Protection
+1 The Meathook Massacre
+1 Unclaimed Territory
+1 Underworld Breach
+1 Vampire Socialite
+1 Vampiric Tutor
+1 Vault of Champions
+1 Village Rites
+1 Viscera Seer
+1 Vito, Thorn of the Dusk Rose
+1 Voldaren Epicure
+1 Voldaren Estate
+1 Warleader's Call
+1 Welcoming Vampire
+1 Yahenni, Undying Partisan

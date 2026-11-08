@@ -1,7 +1,8 @@
 # Archidekt — Flicker Pandemonium
 # source: archidekt:24431543
 # fetched: 2026-07-17
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Restoration Angel + Felidar Guardian; Bracket 2 allows none
 
 Commander:
 1 Scriv, the Obligator

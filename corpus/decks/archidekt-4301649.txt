@@ -1,0 +1,102 @@
+# Archidekt — Shalai and Hallar: One Punch Combo
+# source: archidekt:4301649
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Shalai and Hallar
+
+Deck:
+1 Esper Sentinel
+1 Crop Rotation
+1 Steelshaper's Gift
+1 Shadowspear
+1 Basilisk Collar
+1 Reckless Impulse
+1 Wrenn's Resolve
+1 Elenda's Hierophant
+1 Snakeskin Veil
+1 Chaos Warp
+1 Wear // Tear
+1 Nature's Claim
+1 Stomping Ground
+1 Sacred Foundry
+1 Bountiful Promenade
+1 Arid Mesa
+1 Spire Garden
+1 Temple Garden
+1 Command Tower
+1 Farseek
+1 Boseiju, Who Endures
+1 Arcane Signet
+1 Sol Ring
+1 Forgotten Cave
+1 Secluded Steppe
+1 Tranquil Thicket
+1 Horizon Canopy
+1 Ajani's Pridemate
+1 Cleric Class
+1 Sylvan Library
+1 Tamiyo's Safekeeping
+1 Rampant Growth
+1 Worldly Tutor
+1 Enlightened Tutor
+1 Nature's Lore
+1 The Red Terror
+1 Heliod, Sun-Crowned
+1 Swords to Plowshares
+1 Path to Exile
+1 Sakura-Tribe Elder
+1 Search for Tomorrow
+1 Edge of Autumn
+1 Karplusan Forest
+1 Brushland
+1 Jetmir's Garden
+1 Faithless Looting
+1 Eladamri's Call
+1 Battlefield Forge
+1 Voice of the Blessed
+1 Windswept Heath
+1 Sunbaked Canyon
+1 Nearheath Pilgrim
+1 Mortal's Ardor
+1 Flawless Maneuver
+1 Blacksmith's Skill
+1 Deglamer
+1 Witch's Clinic
+1 Trelasarra, Moon Dancer
+1 Loran's Escape
+1 Tyvar's Stand
+1 Blessed Defiance
+1 Explore
+1 Swift Justice
+1 Utopia Sprawl
+1 Into the North
+4 Snow-Covered Forest
+3 Snow-Covered Plains
+2 Snow-Covered Mountain
+1 Surge of Salvation
+1 Copperline Gorge
+1 Razorverge Thicket
+1 Inspiring Vantage
+1 Three Visits
+1 Wooded Foothills
+1 Spectator Seating
+1 Rebuff the Wicked
+1 Deflecting Swat
+1 Legolas's Quick Reflexes
+1 Defend the Rider
+1 Aerith Gainsborough
+1 Restoration Magic
+1 Mana Confluence
+1 Enter the Avatar State
+1 Hall of the Bandit Lord
+1 Shared Roots
+1 City of Brass
+1 Leonardo, Cutting Edge
+1 Lifelink
+1 Tigra, Feline Fury
+1 Take Up the Shield
+1 Noxious Revival
+1 Unflinching Hortimancer
+1 Sheltered by Ghosts

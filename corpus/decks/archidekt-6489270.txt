@@ -1,0 +1,110 @@
+# Archidekt — Wilhelt's Great Big Sac
+# source: archidekt:6489270
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Culling the Weak
+1 Basim Ibn Ishaq
+1 Gray Merchant of Asphodel
+1 Mox Opal
+1 Zulaport Cutthroat
+1 Sunken Ruins
+1 Sensei's Divining Top
+1 Watery Grave
+1 Imperial Seal
+1 Chrome Mox
+1 Cyclonic Rift
+1 Lotus Petal
+1 Ancient Tomb
+1 Shambling Ghast
+1 Flooded Strand
+1 Sink into Stupor // Soporific Springs
+1 Bloodstained Mire
+1 Marsh Flats
+1 Deadly Rollick
+1 Underground Sea
+1 Orcish Bowmasters
+1 City of Brass
+1 Foulmire Knight // Profane Insight
+1 Scheming Symmetry
+1 Swamp
+1 Springleaf Drum
+1 Transmute Artifact
+1 Vault of Whispers
+1 Aetherflux Reservoir
+1 Hope of Ghirapur
+1 Diabolic Vision
+1 Golbez, Crystal Collector
+1 Fierce Guardianship
+1 Personal Tutor
+1 Counterbalance
+1 Metallic Mimic
+1 Putrid Goblin
+1 Snow-Covered Island
+1 Snow-Covered Swamp
+1 Command Tower
+1 Vampiric Tutor
+1 Talisman of Dominance
+1 Boggart Trawler // Boggart Bog
+1 Frantic Search
+1 Toxic Deluge
+1 Cryptbreaker
+1 Geralf, the Fleshwright
+1 Skullclamp
+1 Chief Engineer
+1 Arcane Proxy
+1 Mystic Remora
+1 Morphic Pool
+1 Viscera Seer
+1 Loyal Inventor
+1 Underground River
+1 Mox Diamond
+1 Arcane Signet
+1 Rhystic Study
+1 Bolas's Citadel
+1 Gemstone Caverns
+1 Cruel Tutor
+1 Diabolic Intent
+1 Prismatic Vista
+1 Brainstorm
+1 The One Ring
+1 Seat of the Synod
+1 Metalworker
+1 Demonic Tutor
+1 Lim-Dûl's Vault
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Gravecrawler
+1 Spellskite
+1 Dark Ritual
+1 Grim Monolith
+1 Mystical Tutor
+1 The Meathook Massacre
+1 Chain of Vapor
+1 Mana Vault
+1 Ornithopter of Paradise
+1 Sheoldred, the Apocalypse
+1 Polluted Delta
+1 Warren Soultrader
+1 Island
+1 Nardole, Resourceful Cyborg
+1 Mana Confluence
+1 Mox Amber
+1 Altar of Dementia
+1 Otawara, Soaring City
+1 Urborg, Tomb of Yawgmoth
+1 Urza's Saga
+1 Fell the Profane // Fell Mire
+1 Feed the Swarm
+1 Mana Drain
+1 Sol Ring
+1 Butcher Ghoul
+1 Phyrexian Altar
+1 Grim Tutor
+1 Yawgmoth, Thran Physician
+1 Scroll Rack
+1 Necropotence
+1 Phyrexian Tower

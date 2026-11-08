@@ -1,0 +1,81 @@
+# Archidekt — Tourach
+# source: archidekt:15119376
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tourach, Dread Cantor
+
+Deck:
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Breeding Pit
+1 Ebon Praetor
+1 Ebony Charm
+1 Order of the Ebon Hand
+1 Hymn to Tourach
+1 Tourach's Gate
+1 Tourach's Chant
+1 Derelor
+1 Implements of Sacrifice
+1 Ebon Stronghold
+1 Basal Thrull
+1 Initiates of the Ebon Hand
+1 Blood Pet
+1 Mindstab Thrull
+1 Thrull Champion
+1 Morgue Thrull
+1 Necrite
+1 Thrull Surgeon
+1 Thrull Wizard
+1 Ebon Dragon
+1 Ebonblade Reaper
+1 Eastern Paladin
+1 Black Knight
+1 Western Paladin
+1 Duress
+1 Mind Twist
+1 Mind Peel
+1 Funeral Charm
+1 Ostracize
+1 Syphon Mind
+1 Word of Binding
+1 Armor Thrull
+1 Darkness
+1 Hand of Death
+1 Shadow-Rite Priest
+1 Mind's Eye
+1 Endrek Sahr, Master Breeder
+1 Soul Exchange
+1 Dark Ritual
+1 Bad Moon
+1 Sacrifice
+1 Bottomless Vault
+1 Greed
+1 Howling Mine
+1 Barren Moor
+1 Polluted Mire
+1 Dark Confidant
+1 Blood Vassal
+1 Doomed Necromancer
+1 Charcoal Diamond
+1 Jet Medallion
+28 Snow-Covered Swamp
+1 Gloom
+1 Deathgrip
+1 Terror
+1 Evil Presence
+1 Thrull Retainer
+1 Black Mana Battery
+1 Casting of Bones
+1 Ebon Drake
+1 Vile Deacon
+1 Knight of Dusk
+1 Royal Assassin
+1 Cabal Trainee
+1 Disciple of Malice
+1 Cabal Archon

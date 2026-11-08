@@ -1,0 +1,91 @@
+# Archidekt — 🩸🌕  Bloody Magda 💎💀
+# source: archidekt:8030486
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Magda, Brazen Outlaw
+
+Deck:
+1 Gogo, Mysterious Mime
+1 Tibalt's Trickery
+1 Jeska's Will
+1 Abrade
+1 Liquimetal Torque
+1 Red Elemental Blast
+1 Maskwood Nexus
+1 Trinisphere
+1 Clock of Omens
+1 Dwarven Grunt
+1 High-Speed Hoverbike
+1 Enslaved Dwarf
+1 Stoke the Flames
+1 Lightning Bolt
+1 Magda, the Hoardmaster
+1 Professional Face-Breaker
+1 Roaming Throne
+1 Twinshot Sniper
+1 Liberated Dwarf
+1 Dwarven Bloodboiler
+1 Treasure Vault
+1 Universal Automaton
+1 Spark Mage
+1 Dwarven Scorcher
+1 Dwarven Armorer
+1 Bloodfire Dwarf
+1 Dwarven Trader
+1 Mutavault
+1 Holdout Settlement
+1 Metallic Mimic
+1 Axgard Cavalry
+1 Xorn
+1 Unlicensed Hearse
+1 Pyroblast
+1 Clown Car
+1 Deflecting Swat
+1 Portal to Phyrexia
+1 Smuggler's Copter
+1 Flare of Duplication
+1 Command Beacon
+1 Return the Favor
+1 Survivors' Encampment
+1 Dragon-Cursed Halls
+1 Fíli and Kíli, Joyous
+1 Óin the Brave
+1 Redirect Lightning
+1 Barkform Harvester
+1 Lifecraft Engine
+1 Battered Golem
+1 Three Tree Mascot
+1 Burner Rocket
+1 Sol Ring
+1 Vexing Bauble
+1 Great Furnace
+1 Tezzeret, Cruel Captain
+1 Springleaf Drum
+1 Tangle Wire
+1 Kavaron, Memorial World
+1 Relic of Legends
+1 Realm-Scorcher Hellkite
+1 Cursed Mirror
+1 Academy Manufactor
+1 Simian Spirit Guide
+1 Peter Parker's Camera
+1 Ancient Tomb
+1 Mana Vault
+1 Chrome Mox
+1 Blood Moon
+1 Plundering Barbarian
+1 Gemstone Caverns
+17 Mountain
+1 Lotus Petal
+1 Firdoch Core
+1 Stalactite Dagger
+1 Bottle-Cap Blast
+1 Molten Duplication
+1 Rite of Flame
+1 Sculpting Steel
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sundering Eruption // Volcanic Fissure
+1 Pinnacle Monk // Mystic Peak
+1 Dwarven Mauler

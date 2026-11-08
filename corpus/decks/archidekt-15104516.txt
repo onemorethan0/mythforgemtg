@@ -1,0 +1,102 @@
+# Archidekt — Tidus Deck 4.5
+# source: archidekt:15104516
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tidus, Yuna's Guardian
+
+Deck:
+1 Maester Seymour
+1 Flusterstorm
+3 Island
+3 Plains
+1 Abandoned Air Temple
+1 Sea of Clouds
+1 Floodfarm Verge
+1 Willowrush Verge
+1 Windswept Heath
+1 Flooded Strand
+1 Flooded Grove
+1 Pollywog Prodigy
+1 Dreamtide Whale
+1 Generous Pup
+1 Reconnaissance
+1 Heroic Intervention
+1 Birds of Paradise
+1 Ripples of Potential
+1 Triumph of the Hordes
+1 Kinnan, Bonder Prodigy
+1 Devoted Druid
+1 Pensive Professor
+1 Delighted Halfling
+1 Spara's Headquarters
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 An Offer You Can't Refuse
+1 Arcane Signet
+1 Biophagus
+1 Counterspell
+1 Command Tower
+1 Damning Verdict
+1 Hardened Scales
+1 Kami of Whispered Hopes
+1 Luminarch Aspirant
+1 Branching Evolution
+1 Ozolith, the Shattered Spire
+1 Sol Ring
+1 Sphere Grid
+1 Swords to Plowshares
+1 Nesting Grounds
+1 Wave Goodbye
+1 Zimone, Paradox Sculptor
+1 Three Visits
+1 Brushland
+1 Exotic Orchard
+1 Hinterland Harbor
+1 Glacial Fortress
+1 Sunpetal Grove
+1 Herald of Secret Streams
+1 Sage of Hours
+1 Rejuvenating Springs
+3 Forest
+1 Eladamri's Call
+1 Kodama of the West Tree
+1 Champion of Lambholt
+1 Strix Serenade
+1 Dusk Legion Duelist
+1 Mental Misstep
+1 Hadana's Climb // Winged Temple of Orazca
+1 Innkeeper's Talent
+1 Abzan Falconer
+1 Arwen, Mortal Queen
+1 Dawn's Truce
+1 Bountiful Promenade
+1 Worldly Tutor
+1 Temple Garden
+1 Hallowed Fountain
+1 Grand Abolisher
+1 Managorger Hydra
+1 Mikey & Leo, Chaos & Order
+1 Ray Fillet, Wave Warrior
+1 The Ozolith
+1 Esper Sentinel
+1 Danny Pink
+1 Noble Hierarch
+1 Ouroboroid
+1 Kutzil, Malamet Exemplar
+1 Enlightened Tutor
+1 Incubation Druid
+1 Irma, Part-Time Mutant
+1 Finale of Devastation
+1 Green Sun's Zenith
+1 Breeding Pool
+1 Nature's Lore
+1 Nature's Rhythm
+1 The Great Henge
+1 Fellwar Stone
+1 Smothering Tithe
+1 Lotus Petal
+1 Mystic Remora
+1 Terrasymbiosis
+1 Otawara, Soaring City
+1 Hexhaven Invigorator

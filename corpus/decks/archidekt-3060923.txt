@@ -1,0 +1,75 @@
+# Archidekt — Thrun $35 Bulk Bin Budget Voltron
+# source: archidekt:3060923
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Thrun, the Last Troll
+
+Deck:
+1 Hornbash Mentor
+1 Witch's Web
+1 Bonds of Mortality
+1 Prodigious Growth
+1 Thundering Mightmare
+1 Ruthless Instincts
+1 Struggle for Skemfar
+1 Deconstruct
+1 Dryad's Revival
+1 Nissa's Pilgrimage
+1 Enter the Unknown
+1 Monstrous Step
+1 Introduction to Annihilation
+1 Barrier Breach
+1 Vitality Charm
+1 Turn the Earth
+1 Blessed Respite
+1 Vorrac Battlehorns
+1 Dormant Grove // Gnarled Grovestrider
+1 Staff of Titania
+1 Wild Defiance
+1 Hardy Outlander
+1 Tajuru Preserver
+1 Ring of Kalonia
+1 Gaea's Embrace
+1 Reclaim
+1 Gemrazer
+1 Ancestral Mask
+1 Manriki-Gusari
+1 Keen Sense
+1 One with Nature
+1 Rancor
+1 Dungrove Elder
+1 Krosan Vorine
+34 Forest
+1 Silent Arbiter
+1 Sudden Spinnerets
+1 Primeval Bounty
+1 War Room
+1 Blackblade Reforged
+1 Kosei, Penitent Warlord
+1 Rhox
+1 Strata Scythe
+1 Visions of Dominance
+1 Season of Growth
+1 Migration Path
+1 Time to Feed
+1 Retrieve
+1 Ram Through
+1 Titanic Growth
+1 Seal of Primordium
+1 Haunted Cloak
+1 Grappling Hook
+1 Witchbane Orb
+1 Battle Mammoth
+1 Tail Swipe
+1 Nature's Way
+1 Naturalize
+1 Hunter's Insight
+1 Evolution Charm
+1 Beast Within
+1 Clear Shot
+1 Colossification
+1 Blanchwood Armor
+1 Hydra's Growth
+1 Sword of Vengeance

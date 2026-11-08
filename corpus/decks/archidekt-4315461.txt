@@ -1,0 +1,108 @@
+# Archidekt — Vohar CEDH
+# source: archidekt:4315461
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Vohar, Vodalian Desecrator
+
+Deck:
+1 Watery Grave
+1 Isochron Scepter
+1 Dramatic Reversal
+1 Forbidden Orchard
+1 Opposition Agent
+1 Ifnir Deadlands
+1 Ipnu Rivulet
+1 Wishclaw Talisman
+1 Seat of the Synod
+1 Plaza of Heroes
+1 Thassa's Oracle
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 Exotic Orchard
+1 Island
+1 Snow-Covered Island
+1 Snow-Covered Swamp
+1 Swamp
+1 Underground River
+1 Vault of Whispers
+1 River of Tears
+1 Cabal Pit
+1 Choked Estuary
+1 Demonic Consultation
+1 Mana Leak
+1 Muddle the Mixture
+1 Vampiric Tutor
+1 Diabolic Intent
+1 Notion Thief
+1 Malevolent Hermit // Benevolent Geist
+1 Lotus Petal
+1 Fellwar Stone
+1 Windfall
+1 Spire of Industry
+1 Emergence Zone
+1 Arcane Signet
+1 Talisman of Dominance
+1 Ad Nauseam
+1 Pongify
+1 Feed the Swarm
+1 An Offer You Can't Refuse
+1 Miscast
+1 Predict
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Chain of Vapor
+1 Grim Tutor
+1 Diabolic Tutor
+1 Dauthi Voidwalker
+1 Laboratory Maniac
+1 Mystic Remora
+1 Force of Negation
+1 Mystical Tutor
+1 Lim-Dûl's Vault
+1 Dark Ritual
+1 Negate
+1 Praetor's Grasp
+1 Swan Song
+1 City of Brass
+1 Entomb
+1 Dimir Signet
+1 Geier Reach Sanitarium
+1 Narset's Reversal
+1 Rhystic Study
+1 Mana Vault
+1 Mox Amber
+1 Doomsday
+1 Springleaf Drum
+1 Chrome Mox
+1 Ponder
+1 Snap
+1 Reliquary Tower
+1 Darkslick Shores
+1 Orcish Bowmasters
+1 Reanimate
+1 Imperial Seal
+1 Tainted Pact
+1 Force of Will
+1 Shipwreck Marsh
+1 Morphic Pool
+1 Mental Misstep
+1 Jace, Wielder of Mysteries
+1 Unearth
+1 Spell Pierce
+1 Animate Dead
+1 Urza's Saga
+1 The One Ring
+1 Phantasmal Image
+1 Gitaxian Probe
+1 Faerie Mastermind
+1 Counterspell
+1 Sol Ring
+1 Mox Opal
+1 Demonic Tutor
+1 Divining Witch
+1 Tainted Isle
+1 Monument to Endurance
+1 Strix Serenade
+1 Pact of Negation
+1 Narset, Parter of Veils

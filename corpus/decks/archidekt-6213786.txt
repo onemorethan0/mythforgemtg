@@ -1,0 +1,104 @@
+# Archidekt — A & K's Homing Missile
+# source: archidekt:6213786
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ardenn, Intrepid Archaeologist
+1 Kediss, Emberclaw Familiar
+
+Deck:
+1 Inkmoth Nexus
+1 Batterskull
+1 Rugged Prairie
+1 Arcane Signet
+1 Blackblade Reforged
+1 Bloodforged Battle-Axe
+1 Cloud Key
+1 Fellwar Stone
+1 Open the Armory
+1 Inquisitor's Flail
+1 Hexplate Wallbreaker
+1 Sword of the Animist
+1 Tarrian's Soulcleaver
+1 Thran Power Suit
+1 Sword of Once and Future
+1 Lizard Blades
+1 Komainu Battle Armor
+1 Outpost Siege
+1 Codsworth, Handy Helper
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Bitter Reunion
+1 Forge Anew
+1 Chandra's Ignition
+1 Masterwork of Ingenuity
+1 Lion Sash
+1 Trouble in Pairs
+1 All That Glitters
+1 Grim Reaper's Sprint
+1 Axgard Armory
+1 Clifftop Retreat
+1 Boros Garrison
+1 Battlefield Forge
+1 Sundown Pass
+1 Command Tower
+1 Path of Ancestry
+1 Spectator Seating
+1 Rustvale Bridge
+1 Sunhome, Fortress of the Legion
+1 Rogue's Passage
+1 Temple of Triumph
+1 Ancient Den
+1 Great Furnace
+1 Mind Stone
+1 Surge of Salvation
+1 Chaos Warp
+1 Foundry Inspector
+1 Sol Ring
+1 Talisman of Conviction
+1 Smothering Tithe
+1 Stroke of Midnight
+1 Sram, Senior Edificer
+1 Puresteel Paladin
+1 Kaldra Compleat
+1 Tavern Brawler
+1 The Reaver Cleaver
+1 Nettlecyst
+1 Dispatch
+1 Path to Exile
+1 Jeska, Thrice Reborn
+1 Goldwardens' Gambit
+1 Shinka, the Bloodsoaked Keep
+1 Needle Spires
+1 Sword of Vengeance
+1 Rip Apart
+1 Haunted Plate Mail
+1 Trailblazer's Boots
+1 Bilbo's Ring
+1 Take the Bait
+1 Sacred Foundry
+1 Boros Signet
+1 Elegant Parlor
+1 Arid Mesa
+1 Opal Palace
+1 Restless Bivouac
+1 Sacred Peaks
+3 Plains
+1 Champion's Helm
+1 Flawless Maneuver
+1 Galadriel's Dismissal
+1 Hammer of Nazahn
+1 Mithril Coat
+1 Sword of Feast and Famine
+1 Loran's Escape
+1 Commander's Plate
+1 Field of Ruin
+1 Mishra's Factory
+1 Jeska's Will
+1 Ancient Tomb
+1 Wrenn's Resolve
+1 Stoneforge Mystic
+1 Ghirapur Aether Grid
+1 Battlefield Improvisation
+1 Secluded Starforge
+4 Mountain

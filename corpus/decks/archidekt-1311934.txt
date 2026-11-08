@@ -1,0 +1,94 @@
+# Archidekt — Brazen Outlaw Country
+# source: archidekt:1311934
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Magda, Brazen Outlaw
+
+Deck:
+1 Cavern of Souls
+1 Xorn
+1 Treasure Vault
+1 Red Elemental Blast
+1 Mox Amber
+1 Deflecting Swat
+1 Professional Face-Breaker
+1 Tibalt's Trickery
+1 Paradise Mantle
+1 Jeska's Will
+1 Dwarven Bloodboiler
+1 Mox Opal
+1 Survivors' Encampment
+1 Holdout Settlement
+1 Bloodline Pretender
+1 Mutavault
+1 Adaptive Automaton
+1 Universal Automaton
+1 Clock of Omens
+1 Great Furnace
+1 Pyroblast
+1 Lightning Bolt
+1 Urza's Saga
+1 Metallic Mimic
+1 Galvanic Blast
+1 Shinka, the Bloodsoaked Keep
+1 Dwarven Trader
+1 Bloodfire Dwarf
+1 Dwarven Grunt
+1 Spark Mage
+1 Dwarven Scorcher
+1 Simian Spirit Guide
+1 Portal to Phyrexia
+1 Mana Vault
+1 Lotus Petal
+1 Bottle-Cap Blast
+1 Sculpting Steel
+1 Fomori Vault
+1 Urza's Cave
+1 Magda, the Hoardmaster
+1 Untimely Malfunction
+1 Return the Favor
+1 Barkform Harvester
+1 Roaming Throne
+1 Grafdigger's Cage
+1 The One Ring
+1 Three Tree Mascot
+1 Strip Mine
+1 Abrade
+1 Dwarven Armorer
+1 Chrome Mox
+1 Enslaved Dwarf
+1 Liberated Dwarf
+1 Disruptor Flute
+1 Tezzeret, Cruel Captain
+1 God-Pharaoh's Statue
+1 Siege Smash
+1 Sudden Shock
+1 Chaos Warp
+1 Zoyowa's Justice
+1 Arena of Glory
+1 Battered Golem
+1 Liquimetal Torque
+1 Pyrokinesis
+11 Mountain
+1 Sokenzan, Crucible of Defiance
+1 Lifecraft Engine
+1 Flywheel Racer
+1 Talon Gates of Madara
+1 Smuggler's Copter
+1 Unlicensed Hearse
+1 Vexing Bauble
+1 Redirect Lightning
+1 Hexing Squelcher
+1 Realm-Scorcher Hellkite
+1 Goblin Welder
+1 Springleaf Drum
+1 Cursed Mirror
+1 The Mycosynth Gardens
+1 Spine of Ish Sah
+1 High-Speed Hoverbike
+1 Sol Ring
+1 Eriette's Tempting Apple
+1 Firdoch Core
+1 Gemstone Caverns

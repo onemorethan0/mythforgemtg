@@ -1,0 +1,73 @@
+# Archidekt — MTG Zoo
+# source: archidekt:12325430
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Gorilla Pack
+1 Graceful Antelope
+1 Wary Okapi
+1 Stampeding Wildebeests
+1 Woolly Mammoths
+1 Wild Elephant
+1 Southern Elephant
+1 Nimble Mongoose
+1 Coral Eel
+1 Electric Eel
+1 Arctic Foxes
+1 Stinging Lionfish
+1 Poison Dart Frog
+1 Bloated Toad
+1 Anaconda
+1 Vampire Bats
+1 Bear Cub
+1 Grizzly Bears
+1 Birds of Paradise
+1 Whippoorwill
+1 Murder of Crows
+1 Scurry of Squirrels
+1 Camel
+1 Wild Ox
+1 Lynx
+1 Black Cat
+1 Horned Turtle
+1 Pygmy Hippo
+1 Brood of Cockroaches
+1 Firefly
+1 Goliath Beetle
+1 Horseshoe Crab
+1 Locust Swarm
+1 Robber Fly
+1 Killer Whale
+1 Timber Wolves
+1 Wild Dogs
+1 Arctic Wolves
+1 Ant Queen
+1 Bellowing Elk
+1 Narwhal
+1 Pack Rat
+1 Prairie Dog
+1 Python
+1 Stampeding Rhino
+1 School of Piranha
+1 Silverback Ape
+1 Spiny Starfish
+1 Tree Monkey
+1 Wolverine Pack
+1 Boa Constrictor
+1 Hammerhead Shark
+1 Fire Ants
+1 Gang of Elk
+1 King Crab
+1 Mockingbird
+1 Man-o'-War
+1 Manta Ray
+6 Mountain
+10 Island
+6 Plains
+12 Forest
+6 Swamp
+1 Mountain Goat

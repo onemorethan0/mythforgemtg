@@ -1,0 +1,100 @@
+# Archidekt — Lynde, Cheerful Tormentor
+# source: archidekt:8168065
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Lynde, Cheerful Tormentor
+
+Deck:
+1 Shivan Reef
+1 Sulfur Falls
+1 Shipwreck Marsh
+1 Drowned Catacomb
+1 Dragonskull Summit
+1 Foreboding Ruins
+1 Rakdos Signet
+1 Maestros Theater
+1 Claws of Gix
+1 Curse of Echoes
+1 Read the Runes
+4 Island
+1 Dimir Signet
+1 Sol Ring
+1 Command Tower
+1 Crumbling Necropolis
+1 Exotic Orchard
+1 Bad River
+1 Rocky Tar Pit
+1 Seething Landscape
+1 Arcane Signet
+1 Fellwar Stone
+1 Talisman of Creativity
+1 Estrid's Invocation
+1 Darkwater Catacombs
+1 Talisman of Dominance
+1 Choked Estuary
+1 Tainted Isle
+1 Despotic Scepter
+1 Undercity Sewers
+1 Haunted Ridge
+1 Sulfurous Springs
+1 Stormcarved Coast
+1 Underground River
+1 Slaughter-Priest of Mogis
+4 Swamp
+1 Curse of Disturbance
+1 Curse of Opulence
+1 Curse of Shallow Graves
+1 Curse of the Restless Dead
+1 Perilous Research
+1 Curse of Surveillance
+1 Curse of Unbinding
+1 Izzet Signet
+1 Curse of Shaken Faith
+1 Curse of Verbosity
+1 Oscorp Industries
+1 Nightscape Familiar
+1 Farsight Ritual
+1 Demon of Fate's Design
+1 Masterful Flourish
+1 Cascade Bluffs
+1 Rowan's Grim Search
+1 Crawlspace
+1 Clever Impersonator
+1 Kardur, Doomscourge
+1 Silent Arbiter
+1 Trinket Mage
+1 Copy Enchantment
+1 Curse of Misfortunes
+1 Leyline of Anticipation
+1 Paradox Haze
+1 Negate
+1 Feed the Swarm
+1 Fabled Passage
+1 Entity Tracker
+1 Curse of the Pierced Heart
+1 Bitterheart Witch
+3 Mountain
+1 Vandalblast
+1 Chain Reaction
+1 Blasphemous Act
+1 Braids, Arisen Nightmare
+1 Curse of Fool's Wisdom
+1 Stuffy Doll
+1 Maddening Hex
+1 Rakdos Charm
+1 Trespasser's Curse
+1 Curse of Thirst
+1 Brash Taunter
+1 Phyrexian Arena
+1 Mirrormade
+1 Ringsight
+1 Frostboil Snarl
+1 Flood Plain
+1 Smoldering Marsh
+1 Sunken Hollow
+1 Xander's Lounge
+1 Strionic Resonator
+1 Curse of Death's Hold
+1 Tavern Scoundrel

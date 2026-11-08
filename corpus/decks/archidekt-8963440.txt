@@ -1,0 +1,72 @@
+# Archidekt — 1 Gradual Ultimation
+# source: archidekt:8963440
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Uro, Titan of Nature's Wrath
+
+Deck:
+1 Croaking Counterpart
+1 Nulltread Gargantuan
+1 Malanthrope
+1 Aeromunculus
+1 Bred for the Hunt
+1 Drakewing Krasis
+1 Lullmage's Familiar
+1 Oko, Thief of Crowns
+1 Void Grafter
+1 Erestor of the Council
+1 Bounding Krasis
+1 Beetleform Mage
+1 Cytoshape
+1 Elusive Krasis
+1 Snapping Voidcraw
+1 Agent's Toolkit
+1 Hadana's Climb // Winged Temple of Orazca
+1 Empyreal Voyager
+1 Kaseto, Orochi Archmage
+1 Trumpeting Gnarr
+1 Tainted Observer
+1 Winged Coatl
+1 Weaver of Currents
+1 Singer of Swift Rivers
+1 Unruly Krasis
+1 Tyranid Prime
+1 Vigean Hydropon
+1 Venomthrope
+1 Vorel of the Hull Clade
+1 Mirkwood Trapper
+13 Wastes
+1 Clement, the Worrywort
+1 Risen Reef
+1 Rogue Refiner
+1 Temporal Spring
+1 The Bears of Littjara
+13 Island
+13 Forest
+1 Moon Girl and Devil Dinosaur
+1 The Lion-Turtle
+1 Glacierwood Siege
+1 Troyan, Gutsy Explorer
+1 Ignis Scientia
+1 Mutational Advantage
+1 The Thirteenth Doctor
+1 Shapers of Nature
+1 Slogurk, the Overslime
+1 Gyre Engineer
+1 Repudiate // Replicate
+1 Primal Empathy
+1 Plaxcaster Frogling
+1 Gor Muldrak, Amphinologist
+1 Trygon Predator
+1 Kumena, Tyrant of Orazca
+1 Eutropia the Twice-Favored
+1 Biomathematician
+1 Golden Ratio
+1 Biovisionary
+1 Edric, Spymaster of Trest
+1 Kasmina, Enigma Sage
+1 Lorescale Coatl
+1 Quandrix Command
+1 Zimone, All-Questioning

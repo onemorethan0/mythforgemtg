@@ -1,0 +1,99 @@
+# Archidekt — Captain Sisay's Soul Cauldron
+# source: archidekt:11619336
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Captain Sisay
+
+Deck:
+1 Yavimaya, Cradle of Growth
+1 Eiganjo, Seat of the Empire
+1 Kor Haven
+1 Sunpetal Grove
+1 Windswept Heath
+1 Exotic Orchard
+1 Overgrown Farmland
+1 Brushland
+1 Canopy Vista
+1 Demolition Field
+1 Branchloft Pathway // Boulderloft Pathway
+5 Plains
+6 Forest
+1 Akroma's Memorial
+1 The Irencrag
+1 Gwenna, Eyes of Gaea
+1 Selvala, Heart of the Wilds
+1 Selvala, Eager Trailblazer
+1 Path to Exile
+1 Loran of the Third Path
+1 Susan Foreman
+1 Boromir, Warden of the Tower
+1 Rishkar, Peema Renegade
+1 Loot, Exuberant Explorer
+1 Saffi Eriksdotter
+1 Brigone, Soldier of Meletis
+1 Six
+1 The Peregrine Dynamo
+1 Kutzil, Malamet Exemplar
+1 Mangara, the Diplomat
+1 Reki, the History of Kamigawa
+1 Yes Man, Personal Securitron
+1 Homeward Path
+1 The Eternal Wanderer
+1 Altar of Dementia
+1 Hermit Druid
+1 Kogla, the Titan Ape
+1 Temple Garden
+1 Selvala, Explorer Returned
+1 The Wandering Rescuer
+1 Split Up
+1 Yavimaya Hollow
+1 Saryth, the Viper's Fang
+1 Flagstones of Trokair
+1 Plaza of Heroes
+1 The Grey Havens
+1 Scattered Groves
+1 Great Hall of the Citadel
+1 Life from the Loam
+1 Skrelv, Defector Mite
+1 Boseiju, Who Endures
+1 Shigeki, Jukai Visionary
+1 Minas Tirith
+1 Shalai, Voice of Plenty
+1 Katilda, Dawnhart Prime
+1 Noble Heritage
+1 The Wandering Emperor
+1 Bountiful Promenade
+1 Sting, the Glinting Dagger
+1 Patron of the Orochi
+1 Trostani Discordant
+1 Elspeth, Sun's Champion
+1 Wrenn and Seven
+1 Perpetual Timepiece
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Karametra, God of Harvests
+1 Bugenhagen, Wise Elder
+1 Abstergo Entertainment
+1 Kozilek, the Great Distortion
+1 The Warring Triad
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Elena, Turk Recruit
+1 Torgal, A Fine Hound
+1 Prismatic Vista
+1 Matzalantli, the Great Door // The Core
+1 Sovereign Okinec Ahau
+1 The Seriema
+1 Kona, Rescue Beastie
+1 Buried Ruin
+1 Command Tower
+1 Preacher
+1 Emmara, Soul of the Accord
+1 The Capitoline Triad
+1 Agatha's Soul Cauldron
+1 Gandalf the White
+1 Marvin, Murderous Mimic
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Swords to Plowshares
+1 Yoshimaru, Ever Faithful
+1 The Queen of Dale

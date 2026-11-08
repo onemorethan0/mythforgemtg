@@ -1,0 +1,106 @@
+# Archidekt — Sythis, Harvest's Hand
+# source: archidekt:3058228
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sythis, Harvest's Hand
+
+Deck:
+1 Sanctum Weaver
+1 Sterling Grove
+1 Yavimaya, Cradle of Growth
+1 Destiny Spinner
+1 Utopia Sprawl
+1 Bountiful Promenade
+1 Fertile Ground
+1 Command Tower
+1 Exploration
+1 Argothian Enchantress
+1 Sylvan Library
+1 Worldly Tutor
+1 Enlightened Tutor
+1 Boseiju, Who Endures
+1 Ghostly Prison
+1 Burgeoning
+1 Grand Abolisher
+1 Setessan Champion
+1 Ground Seal
+1 Greater Auramancy
+1 Heliod, Sun-Crowned
+1 Carpet of Flowers
+1 Eladamri's Call
+1 Misty Rainforest
+1 Wooded Foothills
+1 Flooded Strand
+1 City of Solitude
+1 Walking Ballista
+1 Land Tax
+1 Finale of Devastation
+1 Horizon Canopy
+1 Prismatic Vista
+1 Arid Mesa
+1 Windswept Heath
+1 Seal of Cleansing
+1 Rest in Peace
+1 Blind Obedience
+1 Enchantress's Presence
+1 Gaea's Cradle
+1 Serra's Sanctum
+1 Mox Amber
+1 Chrome Mox
+1 Mox Diamond
+1 Green Sun's Zenith
+1 Mirri's Guile
+1 Gemstone Caverns
+1 Savannah
+1 Temple Garden
+1 Dryad of the Ilysian Grove
+1 Enduring Vitality
+1 Prismatic Omen
+1 Alseid of Life's Bounty
+1 Wild Growth
+1 Ashes of the Abhorrent
+1 Seal of Primordium
+1 Ranger-Captain of Eos
+1 Brushland
+1 Mana Confluence
+1 Devoted Druid
+1 Birds of Paradise
+1 Verdant Catacombs
+1 Crop Rotation
+1 Authority of the Consuls
+1 Nature's Rhythm
+1 Jennifer Walters // The Sensational She-Hulk
+1 Marsh Flats
+1 Urza's Saga
+2 Forest
+1 City of Brass
+1 Survival of the Fittest
+1 Candelabra of Tawnos
+1 Orim's Chant
+1 Silence
+1 Esper Sentinel
+1 Sylvan Scrying
+1 Path to Exile
+1 Meticulous Excavation
+1 Magus of the Candelabra
+1 Deserted Temple
+1 Swords to Plowshares
+1 Expedition Map
+1 Sowing Mycospawn
+1 Eternal Witness
+1 Abundant Growth
+1 Multani's Presence
+1 Unbridled Growth
+1 Assemble the Players
+1 Shimmerwilds Growth
+2 Plains
+1 Oath of Nissa
+1 Flickering Ward
+1 Paladin Class
+1 Cleric Class
+1 Hyena Umbra
+1 Ethereal Armor
+1 Static Prison
+1 Veil of Summer

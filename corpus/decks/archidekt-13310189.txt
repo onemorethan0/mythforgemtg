@@ -1,0 +1,94 @@
+# Archidekt — The Reality is Created
+# source: archidekt:13310189
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 The Reality Chip
+
+Deck:
+1 Muddle the Mixture
+1 Flusterstorm
+1 Academy Ruins
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Buried Ruin
+1 Cephalid Coliseum
+1 Chrome Mox
+1 Etherium Sculptor
+1 Fabricate
+1 Fierce Guardianship
+1 Force of Negation
+1 Arcane Signet
+1 Brainstorm
+1 Grim Monolith
+1 Inventors' Fair
+1 Lotus Petal
+1 Mind Stone
+1 Mishra's Workshop
+1 Mistrise Village
+1 Mox Amber
+1 Mystic Remora
+1 Pact of Negation
+1 Sapphire Medallion
+1 Seat of the Synod
+1 Swan Song
+1 Spellskite
+1 Tolaria West
+1 Urza's Saga
+1 Mystical Tutor
+1 Mox Opal
+1 Sol Ring
+1 Mana Vault
+1 Resculpt
+1 Transmute Artifact
+1 Dispel
+1 Whir of Invention
+1 Reshape
+1 Everflowing Chalice
+1 Paradise Mantle
+1 Solve the Equation
+1 Mishra's Bauble
+1 Miscast
+1 Merchant Scroll
+1 Welding Jar
+1 Tormod's Crypt
+1 Wan Shi Tong, Librarian
+1 Manifold Key
+1 Mental Misstep
+1 Codex Shredder
+1 Springleaf Drum
+1 Force of Will
+1 Rhystic Study
+1 Mindbreak Trap
+1 Thassa's Oracle
+15 Island
+1 Ornithopter of Paradise
+1 Artificer's Assistant
+1 Emry, Lurker of the Loch
+1 Riddlesmith
+1 Semblance Anvil
+1 Cloud Key
+1 Counterbalance
+1 Memnite
+1 Cathartic Adept
+1 Foundry Inspector
+1 Trinket Mage
+1 Helm of Awakening
+1 Tribute Mage
+1 Timetwister
+1 Artificer's Intuition
+1 Sensei's Divining Top
+1 Chief Engineer
+1 Trophy Mage
+1 Ornithopter
+1 Phyrexian Metamorph
+1 Moonsnare Prototype
+1 Ledger Shredder
+1 Leyline of Anticipation
+1 Volatile Stormdrake
+1 Silver Myr
+1 Misdirection
+1 Disrupting Shoal
+1 Gitaxian Probe
+1 Daze

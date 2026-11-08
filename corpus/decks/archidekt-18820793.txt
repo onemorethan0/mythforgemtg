@@ -1,0 +1,106 @@
+# Archidekt — Crime Mommy
+# source: archidekt:18820793
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Marchesa, Dealer of Death
+
+Deck:
+1 Geist of Saint Thalia
+1 Polluted Delta
+1 Wooded Foothills
+1 Gemstone Caverns
+1 Mana Vault
+1 Chrome Mox
+1 Force of Negation
+1 Grim Tutor
+1 Demonic Tutor
+1 Talisman of Indulgence
+1 Scrabbling Claws
+1 Mindbreak Trap
+1 Grapeshot
+1 Lightning Bolt
+1 Into the Flood Maw
+1 Deadly Rollick
+1 Wheel of Fortune
+1 Ancient Tomb
+1 City of Brass
+1 Arid Mesa
+1 Bloodstained Mire
+1 Sulfurous Springs
+1 Shivan Reef
+1 Underground River
+1 Blood Crypt
+1 Scalding Tarn
+1 Steam Vents
+1 Underworld Breach
+1 Deflecting Swat
+1 Brain Freeze
+1 An Offer You Can't Refuse
+1 Volcanic Island
+1 Badlands
+1 Sensei's Divining Top
+1 Arcane Signet
+1 Urza's Saga
+1 Marsh Flats
+1 Cephalid Coliseum
+1 Reflecting Pool
+1 Tainted Pact
+1 Mana Confluence
+1 Chain of Vapor
+1 Fierce Guardianship
+1 Flare of Duplication
+1 Necropotence
+1 Flare of Denial
+1 Command Tower
+1 Watery Grave
+1 Mox Opal
+1 Mox Diamond
+1 Vampiric Tutor
+1 Dark Confidant
+1 Spellskite
+1 Borne Upon a Wind
+1 Force of Will
+1 Undercity Sewers
+1 Mystical Tutor
+1 Orcish Bowmasters
+1 Sol Ring
+1 Island
+1 Mountain
+1 Seat of the Synod
+1 Talisman of Creativity
+1 Lotus Petal
+1 Demonic Consultation
+1 Fellwar Stone
+1 Phyrexian Furnace
+1 Ghost Vacuum
+1 Gitaxian Probe
+1 Jeska's Will
+1 Forbidden Orchard
+1 Hex Parasite
+1 Relic of Progenitus
+1 Thassa's Oracle
+1 Talisman of Dominance
+1 Scheming Symmetry
+1 Mental Misstep
+1 Flusterstorm
+1 Defense Grid
+1 Hexing Squelcher
+1 Dauthi Voidwalker
+1 Notion Thief
+1 Urborg
+1 Hammerheim
+1 Glasses of Urza
+1 Imperial Seal
+1 Underground Sea
+1 Gilded Drake
+1 Great Furnace
+1 Vault of Whispers
+1 Swamp
+1 Pact of Negation
+1 Mox Amber
+1 Volatile Stormdrake
+1 Ledger Shredder
+1 Magda, the Hoardmaster
+1 Force of Despair

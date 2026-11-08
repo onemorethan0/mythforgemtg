@@ -1,0 +1,91 @@
+# Archidekt — Dee Kay - Attractions
+# source: archidekt:4258651
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Basalt Monolith + Forensic Gadgeteer; Bracket 2 allows none
+
+Commander:
+1 Dee Kay, Finder of the Lost
+
+Deck:
+1 Treasure Vault
+1 Moonsilver Key
+1 Deadbeat Attendant
+1 Master of Etherium
+1 Pixie Guide
+1 Soul Swindler
+1 Thoughtcast
+1 Nettlecyst
+1 "Lifetime" Pass Holder
+1 Kappa Cannoneer
+1 Academy Ruins
+1 Stridehangar Automaton
+1 Tezzeret, Artifice Master
+1 Bloodforged Battle-Axe
+1 Darksteel Citadel
+1 Mistvault Bridge
+1 Seat of the Synod
+1 Vault of Whispers
+1 Hall of Tagsin
+1 Rise and Shine
+1 Biotransference
+1 Encroaching Mycosynth
+1 Vexing Puzzlebox
+1 Skorpekh Lord
+1 Sai, Master Thopterist
+1 Ebony Fly
+1 Sol Ring
+1 Attempted Murder
+1 Master Transmuter
+1 Component Pouch
+1 Discourtesy Clerk
+1 Clown Car
+1 Cyberdrive Awakener
+1 Monitor Monitor
+1 Seasoned Buttoneer
+1 Reverse Engineer
+1 Cranial Plating
+1 Karn, Living Legacy
+1 Universal Surveillance
+1 Tezzeret, Master of the Bridge
+1 Retrofitter Foundry
+10 Swamp
+1 Broodstar
+1 Skeleton Shard
+10 Island
+1 Phyrexian Scriptures
+1 Reliquary Tower
+1 Command Tower
+1 Power Depot
+1 Clock of Omens
+1 The Cyber-Controller
+1 Skyclave Relic
+1 Tezzeret the Schemer
+1 Rogue's Passage
+1 Secret Passage
+1 Spellskite
+1 Myr Battlesphere
+1 Simulacrum Synthesizer
+1 Thopter Spy Network
+1 Netherese Puzzle-Ward
+1 Unwinding Clock
+1 Synth Infiltrator
+1 Archway of Innovation
+1 Masterful Replication
+1 The Mycosynth Gardens
+1 Nuka-Cola Vending Machine
+1 Forensic Gadgeteer
+1 Research Thief
+1 Shimmer Dragon
+1 Thought Monitor
+1 Solemn Simulacrum
+1 Basalt Monolith
+1 Sunken Hollow
+1 Adaptive Omnitool
+1 Noxious Gearhulk
+1 Necron Deathmark
+1 Phyrexian Metamorph
+1 Academy Manufactor
+1 Etherium Sculptor
+1 Treasure Mage
+1 Foundry Inspector

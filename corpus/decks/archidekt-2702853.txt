@@ -1,0 +1,100 @@
+# Archidekt — Volo: Catalogue of Life in the Multiverse
+# source: archidekt:2702853
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Haunted One
+1 Volo, Itinerant Scholar
+
+Deck:
+1 Spellstutter Sprite
+1 Mistwalker
+1 Bloodline Pretender
+1 Littjara Kinseekers
+1 Amoeboid Changeling
+1 Universal Automaton
+1 Changeling Outcast
+1 Venomous Changeling
+1 Skeletal Changeling
+1 Moonglove Changeling
+1 Path of Ancestry
+1 Galecaster Colossus
+1 Mothdust Changeling
+1 Peer Pressure
+1 Orvar, the All-Form
+1 Shapesharer
+1 Arcane Adaptation
+1 Crux of Fate
+1 Coveted Prize
+1 Maskwood Nexus
+1 Mutavault
+1 Black Market Connections
+1 Azami, Lady of Scrolls
+1 Riptide Laboratory
+1 Patchwork Banner
+1 Mox Jasper
+1 Unholy Annex // Ritual Chamber
+1 Soulstone Sanctuary
+1 The Scarab God
+1 Trenzalore Clocktower
+1 Unholy Grotto
+1 Eclipsed Realms
+1 Vren, the Relentless
+1 Secluded Courtyard
+1 Silumgar, the Drifting Death
+1 Unesh, Criosphinx Sovereign
+1 Swarmyard
+1 Kindred Discovery
+1 Three Tree City
+1 Roaming Throne
+1 Chronicle of Victory
+1 Cavern of Souls
+1 Graveshifter
+1 Wings of Velis Vel
+1 Changeling Wayfinder
+1 Omni-Changeling
+1 Mischievous Sneakling
+1 Firdoch Core
+1 Captivating Vampire
+1 Haakon, Stromgald Scourge
+1 Nameless Inversion
+1 Merrow Reejerey
+1 Avengers Tower
+1 Scion of Oona
+1 Lord of the Unreal
+1 White Lotus Tile
+1 Turtle Lair
+1 Secret Tunnel
+1 Gathering Stone
+1 Ancient Cellarspawn
+1 Burakos, Party Leader
+1 Malcolm, Keen-Eyed Navigator
+1 Harmonized Crescendo
+1 Sunderflock
+1 Thrumming Hivepool
+1 Marrow-Gnawer
+1 Toxrill, the Corrosive
+1 Mana Sculpt
+1 Abundant Countryside
+1 Seahunter
+1 Glasspool Mimic // Glasspool Shore
+1 Summon: Leviathan
+1 Elven Passage
+1 Hobbit Hole
+1 Death Baron
+1 Lilypad Village
+5 Island
+1 Secluded Glen
+1 Step Through
+1 Gallifrey Council Chamber
+1 Sliver Hive
+1 Mudflat Village
+1 Unclaimed Territory
+1 Kaito, Bane of Nightmares
+1 Temple of the Dragon Queen
+5 Swamp
+1 Jasmine Dragon Tea Shop
+1 Maelstrom of the Spirit Dragon
+1 Voldaren Estate
+1 Tegwyll, Duke of Splendor

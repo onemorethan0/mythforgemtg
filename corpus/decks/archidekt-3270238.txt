@@ -1,0 +1,87 @@
+# Archidekt — Callaphe, Beloved of the Sea: Hopelessly Devoted to Blue
+# source: archidekt:3270238
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Callaphe, Beloved of the Sea
+
+Deck:
+1 War Room
+1 Midnight Clock
+1 Arcane Signet
+1 Sol Ring
+1 Strip Mine
+1 Ancient Tomb
+1 Sapphire Medallion
+1 Thought Vessel
+1 Scavenger Grounds
+1 Mind Stone
+1 Auramancer's Guise
+1 Aqueous Form
+1 One With the Wind
+1 Spectral Flight
+1 Security Bypass
+1 Demolition Field
+1 Flight of Fancy
+1 Liquimetal Torque
+1 Drake Umbra
+1 Talon Gates of Madara
+1 Witch's Clinic
+1 Bonders' Enclave
+1 Minamo, School at Water's Edge
+1 Nykthos, Shrine to Nyx
+1 Public Enemy
+1 Abstergo Entertainment
+1 Nerd Rage
+1 Smirking Spelljacker
+1 Urza's Cave
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Amphibian Downpour
+1 Pemmin's Aura
+1 Rousing Read
+1 Voracious Bibliophile
+1 Fear of Impostors
+1 Throne of Eldraine
+1 Tolaria West
+1 Corrupted Conscience
+1 Future Flight
+1 Fresh Start
+1 Cradle of Safety
+1 As Foretold
+1 The One Ring
+1 Court of Vantress
+1 Estrid's Invocation
+1 Copy Enchantment
+1 Insight
+1 Mirrormade
+1 Observed Stasis
+1 Curiosity
+1 Curious Obsession
+1 Combat Research
+1 Psychic Possession
+1 Rhystic Study
+1 Storm of Saruman
+1 Tamiyo's Compleation
+1 Utter Insignificance
+1 Vesuvan Duplimancy
+1 Take Flight
+1 Lost in the Maze
+1 Tolarian Contempt
+1 The Theorist, Jace Beleren
+1 Valeria Richards, Precocious
+1 Saiba Cryptomancer
+1 Defiler of Dreams
+1 Gadwick, the Wizened
+1 Fear of Sleep Paralysis
+1 Starlit Mantle
+1 Plumecreed Escort
+1 Aquitect's Defenses
+1 Fae Flight
+1 Entity Tracker
+1 Vanishing
+1 Venser, Shaper Savant
+1 Leyline of Anticipation
+1 Anthropological Mission
+1 Nyota Uhura, Communications
+21 Island

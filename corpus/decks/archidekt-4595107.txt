@@ -1,0 +1,86 @@
+# Archidekt — Search for Blex: "Mono-Black" Reanimator
+# source: archidekt:4595107
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Blex, Vexing Pest // Search for Blex
+
+Deck:
+1 Witch's Cottage
+1 Archfiend of Despair
+1 Vilis, Broker of Blood
+1 Expedition Map
+1 Hogaak, Arisen Necropolis
+1 Dreadfeast Demon
+1 Darkness
+1 Reanimate
+1 Ophiomancer
+1 Abhorrent Overlord
+1 High Market
+1 Lethal Scheme
+1 Animate Dead
+1 Tortured Existence
+1 Archon of Cruelty
+1 Undead Butler
+1 Golgari Thug
+1 Saw in Half
+1 Urborg, Tomb of Yawgmoth
+1 Defile
+1 Feed the Swarm
+1 Dread Return
+1 Bojuka Bog
+1 Life // Death
+1 Thieving Amalgam
+1 Malakir Rebirth // Malakir Mire
+1 Necromancy
+1 Blood Fountain
+1 Syphon Mind
+1 Stitch Together
+1 Living Death
+1 Nighthawk Scavenger
+1 Mortuary Mire
+1 Apprentice Necromancer
+1 Victimize
+1 Ripples of Undeath
+1 Consuming Corruption
+1 Chthonian Nightmare
+1 Jet Medallion
+1 Flare of Malice
+1 Overlord of the Balemurk
+1 Metamorphosis Fanatic
+1 Snuff Out
+1 Withering Torment
+1 Harvester of Misery
+1 Massacre Wurm
+1 Sangromancer
+1 Wurmcoil Engine
+1 Fell the Profane // Fell Mire
+1 Troll of Khazad-dûm
+1 Ayara, First of Locthwain
+23 Swamp
+1 Cabal Coffers
+1 Nykthos, Shrine to Nyx
+1 Demolition Field
+1 Phyrexian Tower
+1 Deserted Temple
+1 Virtue of Persistence // Locthwain Scorn
+1 Diabolic Servitude
+1 Phyrexian Arena
+1 Dance of the Dead
+1 Phyrexian Reclamation
+1 Liliana, Death's Majesty
+1 Toxic Deluge
+1 Hagra Mauling // Hagra Broodpit
+1 Imp's Mischief
+1 Noxious Gearhulk
+1 Lord of the Void
+1 Crypt Ghast
+1 Coffin Queen
+1 Takenuma, Abandoned Mire
+1 Twilight Diviner
+1 Lluwen, Imperfect Naturalist
+1 Armaggon, Future Shark
+1 Infernal Grasp
+1 Ardyn, the Usurper
+1 Stitcher's Supplier

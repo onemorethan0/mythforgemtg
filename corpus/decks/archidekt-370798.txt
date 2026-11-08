@@ -1,0 +1,84 @@
+# Archidekt — Bearbearbearbearbear - Bro's Deck
+# source: archidekt:370798
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Ayula, Queen Among Bears
+
+Deck:
+1 Temur Sabertooth
+1 Metallic Mimic
+1 Flaxen Intruder // Welcome Home
+1 Bonders' Enclave
+1 War Room
+1 Masked Vandal
+1 Spirit of the Aldergard
+1 Professor of Zoomancy
+1 Ruxa, Patient Professor
+1 Overwhelming Stampede
+1 Adaptive Automaton
+1 Nissa's Pilgrimage
+1 Door of Destinies
+1 Emerald Medallion
+1 Heroic Intervention
+1 Rishkar's Expertise
+1 Lifecrafter's Bestiary
+1 Panharmonicon
+1 Werebear
+1 Chameleon Colossus
+1 Druid's Familiar
+1 Ulvenwald Bear
+1 Harmonize
+1 Grizzly Bears
+1 Ashcoat Bear
+1 River Bear
+1 Grizzly Fate
+1 Balduvian Bears
+1 Bearscape
+1 Pale Bears
+1 Inspiring Call
+1 Mosswort Bridge
+1 Kodama's Reach
+1 Guardian Project
+1 Vivien's Grizzly
+1 Force of Vigor
+1 Ayula's Influence
+1 Mother Bear
+1 Sol Ring
+1 Goreclaw, Terror of Qal Sisma
+1 Vanquisher's Banner
+1 Myriad Landscape
+1 Beast Whisperer
+1 Rogue's Passage
+1 Rhonas's Monument
+1 Cauldron of Souls
+1 Vigor
+1 Shamanic Revelation
+1 Runeclaw Bear
+1 Dragon-Scarred Bear
+1 Cultivate
+1 Beast Within
+1 Beastmaster Ascension
+1 Bear Cub
+1 Alpine Grizzly
+1 Guardian Gladewalker
+1 Striped Bears
+1 Desert of the Indomitable
+1 Slippery Karst
+1 Wrap in Vigor
+1 Hardened Scales
+1 Return to Nature
+1 Ghost Quarter
+1 Lignify
+1 Scavenger Grounds
+1 Tranquil Thicket
+1 Sylvan Anthem
+1 Owlbear
+1 Greater Good
+1 Kenrith's Transformation
+1 Spectral Bears
+1 Bear Umbra
+1 Realmwalker
+25 Snow-Covered Forest
+1 Return of the Wildspeaker

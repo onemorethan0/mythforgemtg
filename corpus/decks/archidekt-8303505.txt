@@ -1,0 +1,108 @@
+# Archidekt — Mamba Ulalek
+# source: archidekt:8303505
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ulalek, Fused Atrocity
+
+Deck:
+1 Mana Drain
+1 High Fae Trickster
+1 Boseiju, Who Endures
+1 Wandering Archaic // Explore the Vastlands
+1 Writhing Chrysalis
+1 Crystal Vein
+1 Rings of Brighthearth
+1 Cloud Key
+1 God-Pharaoh's Statue
+1 Chrome Mox
+1 Roaming Throne
+1 Spell Pierce
+1 Snapping Voidcraw
+1 Dovin's Veto
+1 Void Winnower
+1 Voltaic Key
+1 Grand Abolisher
+1 Ornithopter of Paradise
+1 Talisman of Progress
+1 Nightshade Dryad
+1 Null Elemental Blast
+1 Rhystic Study
+1 Command Tower
+1 Ugin's Binding
+1 Ulamog, the Defiler
+1 Kozilek's Command
+1 Herald of Kozilek
+1 Glaring Fleshraker
+1 Eye of Ugin
+1 Basalt Monolith
+1 Cavern of Souls
+1 Urza's Tower
+1 Urza's Power Plant
+1 Urza's Mine
+1 Sensei's Divining Top
+1 Isochron Scepter
+1 Opposition Agent
+1 Arcane Signet
+1 Sol Ring
+1 Underground River
+1 Eldrazi Temple
+1 Sowing Mycospawn
+1 Polluted Delta
+1 The One Ring
+1 City of Brass
+1 Spara's Headquarters
+1 Mana Confluence
+1 Fierce Guardianship
+1 Urza's Saga
+1 Skittering Cicada
+1 Reflecting Pool
+1 Kozilek, Butcher of Truth
+1 Planar Nexus
+1 Cyclonic Rift
+1 Counterspell
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Mystic Forge
+1 Devourer of Destiny
+1 Spawn-Gang Commander
+1 Abstruse Archaic
+1 Ancient Tomb
+1 Teferi's Protection
+1 Vexing Bauble
+1 Drannith Magistrate
+1 Raffine's Tower
+1 Smothering Tithe
+1 Adarkar Wastes
+1 Hallowed Fountain
+1 Enlightened Tutor
+1 Flooded Strand
+1 Mystic Remora
+1 Esper Sentinel
+1 Raugrin Triome
+1 Mana Vault
+1 Expedition Map
+1 Sylvan Library
+1 Misty Rainforest
+1 Archon of Emeria
+1 High Noon
+1 Chromatic Orrery
+1 Thran Dynamo
+1 Steam Vents
+1 Breeding Pool
+1 Marsh Flats
+1 Strionic Resonator
+1 Arid Mesa
+1 Emrakul, the Promised End
+1 Authority of the Consuls
+1 Gemstone Caverns
+1 Mystical Tutor
+1 Dramatic Reversal
+1 Worldly Tutor
+1 Swords to Plowshares
+1 Foundry Inspector
+1 Rhythm of the Wild
+1 Talisman of Curiosity
+1 Island
+1 Kozilek's Return

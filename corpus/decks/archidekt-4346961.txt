@@ -1,0 +1,108 @@
+# Archidekt — Kenrith Goodstuff
+# source: archidekt:4346961
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Sylvan Library
+1 Flusterstorm
+1 Trouble in Pairs
+1 Fierce Guardianship
+1 Force of Negation
+1 Esper Sentinel
+1 Force of Will
+1 Cyclonic Rift
+1 Mana Drain
+1 Vampiric Tutor
+1 Phyrexian Metamorph
+1 Opposition Agent
+1 Mystic Remora
+1 Badlands
+1 Taiga
+1 Ranger-Captain of Eos
+1 Stomping Ground
+1 Gaea's Cradle
+1 Thassa's Oracle
+1 Bayou
+1 Noble Hierarch
+1 Teferi, Time Raveler
+1 Swords to Plowshares
+1 Culling Ritual
+1 Mox Diamond
+1 Lotus Petal
+1 Breeding Pool
+1 Intuition
+1 Mana Vault
+1 Sol Ring
+1 The One Ring
+1 Phantasmal Image
+1 Grand Abolisher
+1 Smothering Tithe
+1 Rhystic Study
+1 Agatha of the Vile Cauldron
+1 Orcish Bowmasters
+1 Command Tower
+1 Bloom Tender
+1 Pact of Negation
+1 Assassin's Trophy
+1 Sevinne's Reclamation
+1 Eternal Witness
+1 Lotho, Corrupt Shirriff
+1 Wishclaw Talisman
+1 Chrome Mox
+1 Mental Misstep
+1 Underworld Breach
+1 Brain Freeze
+1 Lion's Eye Diamond
+1 Survival of the Fittest
+1 Deathrite Shaman
+1 Birds of Paradise
+1 Toxic Deluge
+1 Displacer Kitten
+1 An Offer You Can't Refuse
+1 Wooded Foothills
+1 Windswept Heath
+1 Volcanic Island
+1 Ancient Tomb
+1 Mana Confluence
+1 Flooded Strand
+1 Bloodstained Mire
+1 City of Brass
+1 Overgrown Tomb
+1 Savannah
+1 Scrubland
+1 Tropical Island
+1 Tundra
+1 Underground Sea
+1 Hallowed Fountain
+1 Gemstone Caverns
+1 Misty Rainforest
+1 Otawara, Soaring City
+1 Kinnan, Bonder Prodigy
+1 Demonic Tutor
+1 Tainted Pact
+1 Demonic Consultation
+1 Chain of Smog
+1 Witherbloom Apprentice
+1 Boseiju, Who Endures
+1 Sylvan Tutor
+1 Eladamri's Call
+1 Hermit Druid
+1 Drannith Magistrate
+1 Pollywog Prodigy
+1 Gilded Drake
+1 Abrupt Decay
+1 Dauthi Voidwalker
+1 Necromancy
+1 Exotic Orchard
+1 Warren Soultrader
+1 Enduring Vitality
+1 Cloud of Faeries
+1 Valgavoth, Terror Eater
+1 Dark Ritual
+1 Reanimate
+1 Entomb
+1 Talion, the Kindly Lord

@@ -1,0 +1,99 @@
+# Archidekt — Dementia. (Retired)
+# source: archidekt:4053705
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Muldrotha, the Gravetide
+
+Deck:
+1 Utopia Sprawl
+1 Mystic Remora
+1 Sol Ring
+1 Rhystic Study
+1 Misty Rainforest
+1 Oko, Thief of Crowns
+1 Watery Grave
+1 Breeding Pool
+1 Overgrown Tomb
+1 Polluted Delta
+1 Verdant Catacombs
+1 Mana Vault
+1 Lion's Eye Diamond
+1 Mox Diamond
+1 Plaguecrafter
+1 Grim Monolith
+1 Glen Elendra Archmage
+1 Survival of the Fittest
+1 Tezzeret, Cruel Captain
+1 Glacial Chasm
+1 The One Ring
+3 Snow-Covered Island
+3 Snow-Covered Swamp
+1 Painter's Servant
+1 Mana Confluence
+1 Spellskite
+2 Island
+2 Forest
+2 Swamp
+1 Scalding Tarn
+1 Prismatic Vista
+1 Claws of Gix
+1 Mindcrank
+1 Braids, Arisen Nightmare
+3 Snow-Covered Forest
+1 Seal of Primordium
+1 Necromancy
+1 Wild Growth
+1 Exploration
+1 Emeritus of Woe // Demonic Tutor
+1 Ancient Tomb
+1 Field of the Dead
+1 Boseiju, Who Endures
+1 Cephalid Coliseum
+1 Command Beacon
+1 Birthing Ritual
+1 Phyrexian Tower
+1 Birthing Pod
+1 Stitcher's Supplier
+1 Opposition Agent
+1 Strip Mine
+1 Ashiok, Dream Render
+1 Hermit Druid
+1 Teferi, Master of Time
+1 Sothera, the Supervoid
+1 Back to Basics
+1 Winter Moon
+1 Expedition Map
+1 Reflecting Pool
+1 City of Brass
+1 Forbidden Orchard
+1 Wooded Foothills
+1 Bloodstained Mire
+1 Command Tower
+1 Animate Dead
+1 Vexing Bauble
+1 Sylvan Safekeeper
+1 Haywire Mite
+1 Wasteland
+1 Lotus Cobra
+1 Riverchurn Monument
+1 Lotus Petal
+1 Kaya's Ghostform
+1 Dauthi Voidwalker
+1 Tireless Provisioner
+1 Accursed Marauder
+1 Spore Frog
+1 Eternal Witness
+1 Chthonian Nightmare
+1 Mesmeric Orb
+1 Springbloom Druid
+1 World Shaper
+1 Grave Pact
+1 Bruvac the Grandiloquent
+1 Maddening Cacophony
+1 Bloodchief Ascension
+1 Grindstone
+1 Bloodghast
+1 Duskmantle Guildmage
+1 Spinner of Souls

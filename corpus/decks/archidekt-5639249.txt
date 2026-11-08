@@ -1,0 +1,107 @@
+# Archidekt — Codie & Friends
+# source: archidekt:5639249
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Codie, Vociferous Codex
+
+Deck:
+1 Cyclonic Rift
+1 Brainstorm
+1 Bring to Light
+1 Ketria Triome
+1 Flooded Strand
+1 Profane Tutor
+1 Raffine's Tower
+1 Rakdos Charm
+1 Supreme Verdict
+1 Three Visits
+2 Plains
+1 Dark Ritual
+1 Brokers Charm
+1 Indatha Triome
+1 Expressive Iteration
+1 Sunfall
+1 Ponder
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Ugin, the Spirit Dragon
+1 Approach of the Second Sun
+1 Celestial Colonnade
+1 Wrenn and Six
+1 Command Tower
+1 Lórien Revealed
+1 Forest
+1 Underground Mortuary
+1 Boseiju, Who Endures
+1 Bojuka Bog
+1 Swamp
+1 Final Showdown
+1 Three Steps Ahead
+1 Sol Ring
+1 Polluted Delta
+1 Windswept Heath
+1 Path of Ancestry
+1 Island
+1 Mountain
+1 Shadow Prophecy
+1 Ojutai's Command
+1 Raging Ravine
+1 Cultivate
+1 Stroke of Genius
+1 Raugrin Triome
+1 Expropriate
+1 Kodama's Reach
+1 Unite the Coalition
+1 Mystical Tutor
+1 Nature's Lore
+1 Jetmir's Garden
+1 Reflecting Pool
+1 Zagoth Triome
+1 Dovin's Veto
+1 Swords to Plowshares
+1 Teferi's Protection
+1 Dig Through Time
+1 Force of Negation
+1 Force of Will
+1 Sphinx's Revelation
+1 Xander's Lounge
+1 Counterspell
+1 Farseek
+1 Arid Mesa
+1 Exotic Orchard
+1 Savai Triome
+1 Spara's Headquarters
+1 Path to Exile
+1 Field of the Dead
+1 Blasphemous Act
+1 Prismari Command
+1 Mystic Sanctuary
+1 Farewell
+1 The One Ring
+1 Crackling Doom
+1 Sink into Stupor // Soporific Springs
+1 Waterlogged Teachings // Inundated Archive
+1 Ziatora's Proving Ground
+1 Merciless Eviction
+1 Skyshroud Claim
+1 Sylvan Reclamation
+1 Minsc & Boo, Timeless Heroes
+1 Silundi Vision // Silundi Isle
+1 Snapcaster Mage
+1 Sensei's Divining Top
+1 Demonic Tutor
+1 Vivi Ornitier
+1 Lightning Bolt
+1 Treasure Cruise
+1 Fact or Fiction
+1 Mystic Confluence
+1 Anguished Unmaking
+1 Flusterstorm
+1 Reliquary Tower
+1 Resonating Lute
+1 Mana Drain
+1 Shark Typhoon
+1 Theorist's Sanctum

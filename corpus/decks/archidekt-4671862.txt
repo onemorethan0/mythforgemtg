@@ -1,0 +1,107 @@
+# Archidekt — Raffine, Crawling
+# source: archidekt:4671862
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Raffine, Scheming Seer
+
+Deck:
+1 Flooded Strand
+1 Underground River
+1 Shipwreck Marsh
+1 Living Death
+1 Sand Scout
+1 Liliana's Standard Bearer
+1 Lively Dirge
+1 Hallowed Fountain
+1 Adarkar Wastes
+1 Liliana, Untouched by Death
+1 Deserted Beach
+1 Wayward Servant
+1 Corpse Knight
+1 Headless Rider
+1 Marsh Flats
+1 Diabolic Intent
+1 Archfiend of Ifnir
+1 Deep Analysis
+1 Deep Gnome Terramancer
+1 Changeling Outcast
+1 Raffine's Tower
+1 Faerie Mastermind
+1 Shambling Ghast
+1 Waterlogged Teachings // Inundated Archive
+1 Grim Servant
+1 Marionette Apprentice
+1 Nevinyrral, Urborg Tyrant
+1 Gravecrawler
+1 Diregraf Captain
+1 Sol Ring
+1 Undead Augur
+1 Stitcher's Supplier
+1 Emrakul's Messenger
+1 Mystic Remora
+1 Island
+1 Ifnir Deadlands
+1 Entomb
+1 Command Tower
+1 Wilhelt, the Rotcleaver
+1 Plague Belcher
+1 Verdant Catacombs
+1 Windswept Heath
+1 Darkslick Shores
+1 Concealed Courtyard
+1 Swords to Plowshares
+1 Sea of Clouds
+1 Pollywog Prodigy
+1 Mystical Tutor
+1 An Offer You Can't Refuse
+2 Swamp
+1 Midnight Reaper
+1 Teferi's Ageless Insight
+1 Reanimate
+1 Darkwater Catacombs
+1 Boggart Trawler // Boggart Bog
+1 Dauthi Voidwalker
+1 Grand Abolisher
+1 Plains
+1 Mystic Gate
+1 Scholar of New Horizons
+1 Ainok Strike Leader
+1 Ghostly Pilferer
+1 Delay
+1 Ranger-Captain of Eos
+1 Mother of Runes
+1 Watery Grave
+1 Sink into Stupor // Soporific Springs
+1 Enlightened Tutor
+1 Lethal Scheme
+1 Bridge from Below
+1 Master of Death
+1 Sidisi, Undead Vizier
+1 Ipnu Rivulet
+1 Ripples of Undeath
+1 Sevinne's Reclamation
+1 Land Tax
+1 Dark Ritual
+1 Orcish Bowmasters
+1 Polluted Delta
+1 Emperor of Bones
+1 Ashnod's Altar
+1 Spellskite
+1 Warren Soultrader
+1 Phyrexian Altar
+1 Lotho, Corrupt Shirriff
+1 Gitaxian Probe
+1 Siren Stormtamer
+1 Voice of Victory
+1 City of Brass
+1 Skullclamp
+1 Godless Shrine
+1 Fetid Heath
+1 Kabira Takedown // Kabira Plateau
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Caves of Koilos
+1 Vault of Champions
+1 Shadowy Backstreet
+1 Loran of the Third Path

@@ -1,0 +1,91 @@
+# Archidekt — Bloom and Gloom
+# source: archidekt:21292084
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Witherbloom, the Balancer
+
+Deck:
+1 Arachnogenesis
+1 Audience with Trostani
+1 Awaken the Woods
+1 Sedgemoor Witch
+1 Witherbloom Apprentice
+1 Bojuka Bog
+1 Darkbore Pathway // Slitherbore Pathway
+1 Temple of Malady
+1 Nurturing Peatland
+1 Deathcap Glade
+1 Undergrowth Stadium
+1 Pest Infestation
+1 For the Common Good
+1 Woodland Cemetery
+1 Sol Ring
+1 Command Tower
+1 Overgrown Tomb
+1 Underground Mortuary
+1 Llanowar Wastes
+1 Birds of Paradise
+1 Tainted Wood
+1 Twilight Mire
+1 Second Harvest
+1 Wastewood Verge
+1 Vernal Fen
+1 Stinging Study
+1 Nature's Lore
+1 Biorhythm
+1 Delighted Halfling
+1 Golgari Charm
+1 Three Visits
+1 Szat's Will
+1 Viridescent Bog
+1 Skullclamp
+1 Mirkwood Bats
+15 Forest
+1 Galadhrim Ambush
+1 Heroic Intervention
+1 Return of the Wildspeaker
+1 Llanowar Elves
+1 Crash the Party
+1 Witherbloom Charm
+1 Windgrace's Judgment
+1 Lluwen, Exchange Student // Pest Friend
+1 In Garruk's Wake
+1 Insidious Roots
+1 Gelatinous Genesis
+1 Saproling Symbiosis
+1 Chitterspitter
+1 Collective Resistance
+1 Creakwood Liege
+1 Eccentric Pestfinder // Turn Stones
+1 Fresh Meat
+1 Curious Herd
+1 Tendershoot Dryad
+1 Rise of the Dread Marn
+1 Reach of Branches
+1 Formless Genesis
+1 Return from the Wilds
+1 Tyvar's Stand
+1 Doomsday Confluence
+1 Shamanic Revelation
+1 Collective Unconscious
+1 Springleaf Parade
+1 Enduring Vitality
+1 Arcane Signet
+1 Vitalizing Wind
+1 Growth Spasm
+1 Parallel Evolution
+1 Malevolent Rumble
+1 Twitching Doll
+1 Turbulent Fen
+1 Decorum Dissertation
+1 Verdant Catacombs
+1 Scavenger Grounds
+1 Verdant Command
+4 Swamp
+1 Damnable Pact
+1 Ribtruss Roaster
+1 Saproling Migration
+1 Stensian Sanguinist // Exsanguinate
+1 Circle of Power

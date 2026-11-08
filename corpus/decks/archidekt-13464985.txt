@@ -1,0 +1,107 @@
+# Archidekt — Baldur's Gates
+# source: archidekt:13464985
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Secret Door
+1 Astarion, the Decadent
+1 Astarion's Thirst
+1 Baldur's Gate
+1 Bane, Lord of Darkness
+1 Bane's Contingency
+1 Bar the Gate
+1 Barbarian Class
+1 Bard Class
+1 Basilisk Gate
+1 Bhaal, Lord of Murder
+1 Black Dragon Gate
+1 Campfire
+1 Champion's Helm
+1 Citadel Gate
+1 Cleric Class
+1 Cliffgate
+1 Command Tower
+1 Contact Other Plane
+1 Druid Class
+1 Dungeon Map
+1 Evolving Wilds
+1 Explore the Underdark
+1 Fighter Class
+1 Jaheira, Friend of the Forest
+1 Gale, Waterdeep Prodigy
+1 Gond Gate
+1 Guiding Bolt
+1 Halsin, Emerald Archdruid
+1 Heap Gate
+1 Instrument of the Bards
+1 Jaheira's Respite
+1 Lae'zel, Vlaakith's Champion
+1 Long Rest
+1 Manor Gate
+1 Minsc & Boo, Timeless Heroes
+1 Minthara, Merciless Soul
+1 Myrkul, Lord of Bones
+1 Nine-Fingers Keene
+1 Open the Gates
+1 Paladin Class
+1 Potion of Healing
+1 Ranger Class
+1 Raphael, Fiendish Savior
+1 Rogue Class
+1 Sea Gate
+1 Shadowheart, Dark Justiciar
+1 Swamp
+1 Treasure Chest
+1 Wizard Class
+1 Wyll, Blade of Frontiers
+1 Swiftfoot Boots
+1 Maze's End
+1 Izzet Guildgate
+1 Dimir Guildgate
+1 Selesnya Guildgate
+1 Golgari Guildgate
+1 Boros Guildgate
+1 Rakdos Guildgate
+1 Cloudkill
+1 Wyll's Reversal
+1 Myrkul's Edict
+1 Revivify
+1 Cone of Cold
+1 Kethis, the Hidden Hand
+1 Kenrith, the Returned King
+1 The Council of Four
+1 Sol Ring
+1 Divine Resilience
+1 Terramorphic Expanse
+1 The Deck of Many Things
+1 Chromatic Lantern
+1 Urza's Ruinous Blast
+1 Karlach, Fury of Avernus
+1 Azorius Guildgate
+2 Forest
+1 Simic Guildgate
+1 Island
+1 Gruul Guildgate
+1 Gateway Plaza
+1 Orzhov Guildgate
+1 Wilson, Refined Grizzly
+1 Varis, Silverymoon Ranger
+1 Plains
+1 Lae'zel's Acrobatics
+1 Fly
+1 Crystal Quarry
+1 Exotic Orchard
+1 Path of Ancestry
+1 Gatecreeper Vine
+1 You Find a Cursed Idol
+1 Mountain
+1 Arcane Sanctum
+1 Mystic Monastery
+1 Crumbling Necropolis
+1 Frontier Bivouac
+1 Warlock Class
+1 Volo, Itinerant Scholar

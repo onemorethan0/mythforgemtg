@@ -1,0 +1,96 @@
+# Archidekt — Hama, Blood (Token) Bender
+# source: archidekt:17433658
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Bloodchief Ascension + Mindcrank; Bracket 2 allows none
+
+Commander:
+1 Hama, the Bloodbender
+
+Deck:
+1 Noble's Purse
+1 Archway of Innovation
+1 Serpent's Pass
+1 Dream Harvest
+1 Midgar, City of Mako // Reactor Raid
+1 Public Enemy
+1 Spirit Water Revival
+4 Swamp
+4 Island
+4 Island
+1 Vampire's Kiss
+1 Intrude on the Mind
+1 Arcane Signet
+1 Sunken Hollow
+1 Obsessive Pursuit
+1 The Mechanist, Aerial Artisan
+1 Teferi's Time Twist
+1 Phyrexian Tower
+1 Planar Incision
+1 Falkenrath Forebear
+1 Pointed Discussion
+1 Bloodchief Ascension
+1 Reanimate
+1 Domineering Will
+1 Sedgemoor Witch
+1 Drown in the Loch
+1 Waterlogged Teachings // Inundated Archive
+1 Intellectual Offering
+1 Reins of Power
+1 Singularity Rupture
+1 Splash Portal
+1 Run Away Together
+1 Outrageous Robbery
+1 Afterlife from the Loam
+1 The Cyber-Controller
+1 Altar of the Brood
+1 The Water Crystal
+1 Maddening Cacophony
+1 Shipwreck Marsh
+1 Polluted Delta
+1 Exotic Orchard
+1 Drowned Catacomb
+1 Talisman of Dominance
+1 Bojuka Bog
+1 Morphic Pool
+1 Fetid Pools
+1 Temple of Deceit
+1 Gonti, Night Minister
+1 Essence Flux
+1 Fractured Sanity
+1 Stern Lesson
+1 Callous Bloodmage
+1 Heartless Conscription
+1 Gyruda, Doom of Depths
+1 Mindcrank
+1 Thief of Sanity
+1 Sign in Blood
+1 Zellix, Sanity Flayer
+1 Worst Fears
+1 Sangromancer
+1 Jidoor, Aristocratic Capital // Overture
+1 Glimpse the Unthinkable
+1 Secret of Bloodbending
+1 Foggy Swamp Visions
+1 Cruel Entertainment
+1 Waterbender's Restoration
+1 Choked Estuary
+5 Swamp
+1 Hard Evidence
+1 High Market
+1 Watery Grave
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 Dimir Signet
+1 Ceremonial Knife
+1 Blood Fountain
+1 Thought Vessel
+1 Mind Stone
+1 Siren's Ruse
+1 Greed
+1 Mesmeric Orb
+1 Agna Qel'a
+1 Thassa, Deep-Dwelling
+1 Conjurer's Closet
+1 Psychic Possession
+1 The Unagi of Kyoshi Island

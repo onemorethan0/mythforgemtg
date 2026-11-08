@@ -1,0 +1,100 @@
+# Archidekt — Trumps Tariffs
+# source: archidekt:9184802
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Grand Arbiter Augustin IV
+
+Deck:
+1 Commander's Sphere
+1 Personal Tutor
+1 Arcane Signet
+1 Sensei's Divining Top
+1 Chromatic Lantern
+1 Mana Drain
+1 Skycloud Expanse
+1 Sapphire Medallion
+1 Smothering Tithe
+1 Academy Rector
+1 Winter Orb
+1 Glacial Fortress
+1 Marsh Flats
+1 Silence
+1 Hengegate Pathway // Mistgate Pathway
+1 Trouble in Pairs
+1 Thassa's Oracle
+1 Aven Interrupter
+1 Paradigm Shift
+1 Lotus Petal
+1 Pearl Medallion
+1 Arid Mesa
+1 Force of Negation
+1 Mystical Tutor
+1 Mana Confluence
+1 Approach of the Second Sun
+1 Gemstone Caverns
+1 Strip Mine
+1 The One Ring
+1 Prismatic Vista
+1 Aven Mindcensor
+1 Fierce Guardianship
+1 Time Warp
+1 Sol Ring
+1 Dovin's Veto
+1 Cyclonic Rift
+1 Greater Auramancy
+1 Grand Abolisher
+1 Land Tax
+1 Floodfarm Verge
+1 Mind Stone
+1 Sea of Clouds
+1 Enduring Innocence
+1 Trinisphere
+1 Hallowed Fountain
+1 Misty Rainforest
+1 Serra's Sanctum
+1 Counterspell
+1 Force of Will
+1 Rhystic Study
+1 Linvala, Keeper of Silence
+1 The Council of Four
+1 Mox Opal
+1 Crucible of Worlds
+1 Grim Monolith
+1 Ancient Tomb
+1 The Reality Chip
+1 Aura of Silence
+1 Jin-Gitaxias, Progress Tyrant
+1 Windborn Muse
+1 Nimbus Maze
+1 Scalding Tarn
+1 Mox Amber
+1 Mystic Gate
+1 Mana Vault
+1 Consecrated Sphinx
+1 Ghostly Prison
+1 Counterbalance
+1 Tundra
+1 Omniscience
+1 Pact of Negation
+1 City of Brass
+1 Laboratory Maniac
+1 Flooded Strand
+1 Thought Lash
+1 Command Tower
+1 Path to Exile
+1 Drannith Magistrate
+1 Solve the Equation
+1 Swords to Plowshares
+1 Idyllic Tutor
+1 Triskaidekaphile
+1 Enlightened Tutor
+1 Propaganda
+1 Azorius Signet
+5 Island
+1 Flagstones of Trokair
+1 Chrome Mox
+1 Monologue Tax
+5 Plains
+1 Walking Ballista

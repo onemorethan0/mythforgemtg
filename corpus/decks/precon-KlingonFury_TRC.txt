@@ -1,0 +1,97 @@
+# WotC precon — Klingon Fury (TRC, 2026-11-13)
+# source: mtgjson:KlingonFury_TRC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Worf, Defiant Commander
+
+Deck:
+1 Alexander, Ship's Fool
+1 Ambassador K'Ehleyr
+1 Arcane Signet
+1 Battlefield Forge
+1 Blood-Sport Champion
+1 Canyon Slough
+1 Cha'DIch Investigator
+1 Chancellor Gorkon
+1 Clifftop Retreat
+1 Combat Celebrant
+1 Command Tower
+1 Concerted Effort
+1 Curzon Dax, Bound by Blood
+1 Disrupt Decorum
+1 Dragonskull Summit
+1 Duelist's Heritage
+1 Eclipsed Steppe
+1 Evolving Wilds
+1 Exotic Orchard
+1 Ferocious Colonist
+1 Foreboding Ruins
+1 Furycalm Snarl
+1 Gagh Slinger
+1 Galvanizing Tenor
+1 Glittering Massif
+1 Glory to the Empire!
+1 Gnarling Targ
+1 Grilka, Widowed Warrior
+1 Herald's Horn
+1 I.K.S. Negh'Var, Imperial Flagship
+1 Imperial Hullbreachers
+1 Indelicate Healer
+1 Isolated Chapel
+1 K'Vort-Class Raider
+1 K't'inga-Class Battle Cruiser
+1 Kang, Suspicious Captain
+1 Koloth, Tribble Hunter
+1 Kor, Cause of Vengeance
+1 Korok, Liberated Rage
+1 Kurn, Son of Mogh
+1 Lightning Greaves
+1 Martok, Hero of the Empire
+1 Merciful Mandate
+1 Mind Stone
+5 Mountain
+1 Night's Whisper
+1 Nomad Outpost
+1 Own the Day
+1 Painful Truths
+1 Path of Ancestry
+1 Path to Exile
+1 Pest Control
+5 Plains
+1 Professional Face-Breaker
+1 Qo'noS Quartermaster
+1 Radiant Summit
+1 Return to Dust
+1 Right of Vengeance
+1 Rite of Ascension
+1 Rite of Oblivion
+1 Rogue's Passage
+1 Ruinous Ultimatum
+1 Shared Animosity
+1 Shattered Landscape
+1 Shineshadow Snarl
+1 Sins of the Father
+1 Smoldering Marsh
+1 Sol Ring
+5 Swamp
+1 Sword of Light and Shadow
+1 Talisman of Conviction
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Temple of Malice
+1 Terminate
+1 Terramorphic Expanse
+1 The Beacon of Kahless
+1 The Promise of Kahless
+1 The Sword of Kahless
+1 Umbral Expanse
+1 Valorous Stance
+1 Vanquish the Horde
+1 Vault of Champions
+1 Vindicate
+1 Voq, Torchbearer
+1 Warleader's Call
+1 World at War

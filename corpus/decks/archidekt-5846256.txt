@@ -1,0 +1,94 @@
+# Archidekt — Wurm Tribal
+# source: archidekt:5846256
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Alena, Kessig Trapper
+1 Ikra Shidiqi, the Usurper
+
+Deck:
+7 Forest
+2 Mountain
+1 Charnelhoard Wurm
+1 Defiler of Vigor
+1 Arrogant Wurm
+1 Trench Wurm
+1 Wurmcoil Engine
+1 Impervious Greatwurm
+1 Symbiotic Wurm
+1 Massacre Wurm
+1 Baru, Wurmspeaker
+1 Dark Ritual
+3 Swamp
+1 Greater Good
+1 Reckless Wurm
+1 Worldspine Wurm
+1 Elderscale Wurm
+1 Ignoble Hierarch
+1 Worldly Tutor
+1 Faithless Looting
+1 Ziatora's Proving Ground
+1 Dismember
+1 Read the Bones
+1 Terminate
+1 Fabled Passage
+1 Traverse the Outlands
+1 Persist
+1 Command Tower
+1 Reanimate
+1 Urborg, Tomb of Yawgmoth
+1 Cabal Coffers
+1 Selvala, Heart of the Wilds
+1 Bloodstained Mire
+1 Luxury Suite
+1 Blood Crypt
+1 Ornithopter of Paradise
+1 Crop Rotation
+1 Nykthos, Shrine to Nyx
+1 Bedevil
+1 Undergrowth Stadium
+1 Smoldering Marsh
+1 Farseek
+1 Gwenna, Eyes of Gaea
+1 Ancient Tomb
+1 Scoria Wurm
+1 Beast Whisperer
+1 Hull Breach
+1 Penumbra Wurm
+1 Guardian Project
+1 Rhythm of the Wild
+1 Stomping Ground
+1 Chaos Warp
+1 Elvish Mystic
+1 Phyrexian Purge
+1 Sol Ring
+1 Arcane Signet
+1 Syphon Mind
+1 Birds of Paradise
+1 Nature's Claim
+1 Exotic Orchard
+1 Aggravated Assault
+1 Ilharg, the Raze-Boar
+1 Rampant Growth
+1 Overgrown Tomb
+1 Wooded Foothills
+1 Commercial District
+1 Pyroblast
+1 Carrion Wurm
+1 Woodland Cemetery
+1 Winds of Change
+1 Ancient Craving
+1 Kavu Lair
+1 Diabolic Servitude
+1 Plague Wind
+1 Swiftfoot Boots
+1 Sulfurous Springs
+1 Yavimaya, Cradle of Growth
+1 Darigaaz's Caldera
+1 Shivan Oasis
+1 Cannibalize
+1 Wood Elves
+1 Quilled Greatwurm
+1 Crush of Wurms
+1 Llanowar Wastes

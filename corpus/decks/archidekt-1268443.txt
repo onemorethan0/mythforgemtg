@@ -1,0 +1,101 @@
+# Archidekt — Cobblestone Casket
+# source: archidekt:1268443
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Toggo, Goblin Weaponsmith
+1 Keskit, the Flesh Sculptor
+
+Deck:
+1 Dragonspark Reactor
+1 Polluted Delta
+1 Idol of Oblivion
+1 Loyal Apprentice
+1 Canoptek Scarab Swarm
+1 Liquimetal Torque
+1 Myriad Landscape
+1 Demolition Field
+1 Bloodstained Mire
+1 Servo Schematic
+1 Walking Atlas
+1 Urborg, Tomb of Yawgmoth
+1 Cabal Coffers
+1 Ingenious Artillerist
+1 Reckless Endeavor
+1 Inspiring Statuary
+1 Wayfarer's Bauble
+1 Impulsive Pilferer
+1 Wooded Foothills
+1 Great Furnace
+1 Treasure Vault
+1 Seize the Spotlight
+1 Mycosynth Wellspring
+1 Hedron Detonator
+1 Vault of Whispers
+1 Blood Crypt
+1 Mayhem Devil
+1 God-Eternal Bontu
+1 Smoldering Marsh
+1 Fabled Passage
+1 Ichor Wellspring
+1 Prismatic Vista
+1 Nadier's Nightblade
+7 Swamp
+2 Mountain
+1 Command Tower
+1 Bojuka Bog
+1 Marionette Master
+1 Blood Fountain
+1 Retributive Wand
+1 Drossforge Bridge
+1 Verdant Catacombs
+1 Marsh Flats
+1 Prized Statue
+1 Nimblewright Schematic
+1 Urza's Saga
+1 Mirkwood Bats
+1 Mephitic Draught
+1 Shire Terrace
+1 Riveteers Overlook
+1 Promising Vein
+1 Crime Novelist
+1 Pitiless Carnage
+1 Raucous Theater
+1 Cavalier of Night
+1 Arcbound Condor
+1 Bottle-Cap Blast
+1 Escape Tunnel
+1 Chiss-Goria, Forge Tyrant
+1 Imskir Iron-Eater
+1 Marionette Apprentice
+1 Marketback Walker
+1 Pactdoll Terror
+1 PuPu UFO
+1 Reckless Fireweaver
+1 Zell Dincht
+1 Weapons Manufacturing
+1 Warmaker Gunship
+1 Depthshaker Titan
+1 Arc Reactor
+1 Obsessive Pursuit
+1 Turbulent Crater
+1 Lich's Relic
+1 Ravenous Robots
+1 Mouser Foundry
+1 Anchovy & Banana Pizza
+1 Badlands
+1 Ultron the Annihilator
+1 Age of Ultron
+1 Ultron's Auxiliary
+1 Super Shredder
+1 The Lonely Mountain
+1 Smaug, Wicked Worm
+1 Jaws, Relentless Predator
+1 Draconic Visitor
+1 Aligned Hedron Network
+1 Phyrexian Scriptures
+1 Quark, Humble Proprietor
+1 Exploratory Mission
+1 Radiant Lotus
+1 Will Riker, First in the Field

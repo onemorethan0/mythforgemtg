@@ -1,0 +1,56 @@
+# Archidekt — Filthy Rats
+# source: archidekt:1741864
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Marrow-Gnawer
+
+Deck:
+1 Thornbite Staff
+1 Mirror Box
+1 Ogre Slumlord
+1 Chittering Witch
+1 Skullclamp
+1 Dark Ritual
+1 Arcane Signet
+1 Herald's Horn
+1 Sol Ring
+1 Haunted One
+1 Sting, the Glinting Dagger
+1 Bontu's Monument
+1 Diabolic Intent
+1 Fellwar Stone
+1 Karumonix, the Rat King
+1 Deadly Rollick
+1 Lord Skitter, Sewer King
+1 Reckoner's Bargain
+1 Wayfarer's Bauble
+1 Piper of the Swarm
+1 Valley Rotcaller
+1 Coat of Arms
+1 Skemfar Shadowsage
+1 Vanquisher's Banner
+1 Swarmyard
+1 Mortuary Mire
+1 Witch's Cottage
+1 Cavern of Souls
+1 Nykthos, Shrine to Nyx
+1 Path of Ancestry
+1 Cabal Coffers
+1 Myriad Landscape
+1 Thrumming Stone
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Ayara, First of Locthwain
+1 Bolas's Citadel
+1 Pact of the Serpent
+1 Nyx Lotus
+1 Pack Rat
+1 Zulaport Cutthroat
+1 Demonic Tutor
+1 Echoing Return
+27 Swamp
+26 Relentless Rats
+1 Ashcoat of the Shadow Swarm
+1 The One Ring

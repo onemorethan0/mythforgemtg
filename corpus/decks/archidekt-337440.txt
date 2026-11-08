@@ -1,0 +1,98 @@
+# Archidekt — Oloro, Ageless Ascetic
+# source: archidekt:337440
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Oloro, Ageless Ascetic
+
+Deck:
+1 Raffine's Tower
+1 Hagra Mauling // Hagra Broodpit
+1 Crested Sunmare
+1 Tainted Isle
+1 Anguished Unmaking
+1 Sorin, Grim Nemesis
+1 Karlov of the Ghost Council
+1 Shambling Vent
+7 Plains
+2 Island
+4 Swamp
+1 Prairie Stream
+1 Sunken Hollow
+1 Sunscorch Regent
+1 Phyrexian Reclamation
+1 Toxic Deluge
+1 Lim-Dûl's Vault
+1 Azorius Chancery
+1 Command Tower
+1 Archangel of Thune
+1 Vizkopa Guildmage
+1 Godless Shrine
+1 Rhox Faithmender
+1 Drogskol Reaver
+1 Serra Ascendant
+1 Ulamog, the Infinite Gyre
+1 Bojuka Bog
+1 Halimar Depths
+1 Soul Warden
+1 Orzhov Basilica
+1 Dimir Aqueduct
+1 Watery Grave
+1 Miren, the Moaning Well
+1 Kokusho, the Evening Star
+1 Weathered Wayfarer
+1 Tainted Field
+1 Tarnished Citadel
+1 Hatred
+1 Necropotence
+1 Reliquary Tower
+1 Ancient Tomb
+1 Revival // Revenge
+1 Bolas's Citadel
+1 Command the Dreadhorde
+1 Ajani, Strength of the Pride
+1 Vilis, Broker of Blood
+1 Heliod's Intervention
+1 Speaker of the Heavens
+1 Vito, Thorn of the Dusk Rose
+1 Resplendent Angel
+1 Demolition Field
+1 Marsh Flats
+1 Shadowy Backstreet
+1 Enduring Tenacity
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Moseo, Vein's New Dean
+1 Razorgrass Ambush // Razorgrass Field
+1 Archnemesis
+1 Bloodthirsty Conqueror
+1 Doctor Strange, Surgeon
+1 Claim Jumper
+1 Sol Ring
+1 Azorius Signet
+1 Orzhov Signet
+1 Dimir Signet
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Smothering Tithe
+1 Talisman of Hierarchy
+1 Vona, Butcher of Magan
+1 Merciless Eviction
+1 Cyclonic Rift
+1 Kaya's Wrath
+1 Damn
+1 Void Rend
+1 Withering Curse
+1 Pristine Talisman
+1 The One Ring
+1 Exemplar of Light
+1 Haliya, Guided by Light
+1 Aetherflux Reservoir
+1 Polluted Bonds
+1 Felidar Sovereign
+1 Cleric Class
+1 Gollum, Obsessed Stalker
+1 Soul's Attendant
+1 Amalia Benavides Aguirre
+1 Caduceus, Staff of Hermes
+1 Niv-Mizzet, Ghost Counsel

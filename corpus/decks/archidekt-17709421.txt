@@ -1,0 +1,108 @@
+# Archidekt — Golbez, Shiny & Chrome
+# source: archidekt:17709421
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Golbez, Crystal Collector
+
+Deck:
+1 Polluted Delta
+1 Entomb
+1 Banishing Knack
+1 Emergence Zone
+1 Force of Will
+1 Gloomlake Verge
+1 Academy Ruins
+1 Borne Upon a Wind
+1 Lotus Petal
+1 Urza's Saga
+1 Morphic Pool
+1 Mox Amber
+1 Mox Opal
+1 Matoya, Archon Elder
+1 The Mycosynth Gardens
+1 Seat of the Synod
+1 Sensei's Divining Top
+1 Vault of Whispers
+1 Watery Grave
+1 The Reality Chip
+1 Scroll Rack
+1 Apocalypse Demon
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Swamp
+1 Aetherflux Reservoir
+1 Yawgmoth's Will
+1 Chrome Mox
+1 Cavern of Souls
+1 The One Ring
+1 Bolas's Citadel
+1 Snapcaster Mage
+1 Malevolent Hermit // Benevolent Geist
+1 Mystic Remora
+1 Necropotence
+1 Ancient Tomb
+1 Shallow Grave
+1 Sol Ring
+1 Island
+1 Valley Floodcaller
+1 Counterbalance
+1 Fierce Guardianship
+1 Beseech the Mirror
+1 Basalt Monolith
+1 Arcane Signet
+1 Praetor's Grasp
+1 Transmute Artifact
+1 Lion's Eye Diamond
+1 Underground Sea
+1 Command Tower
+1 Tezzeret, Cruel Captain
+1 Demonic Consultation
+1 Otawara, Soaring City
+1 Lim-Dûl's Vault
+1 Imperial Seal
+1 Doomsday
+1 Defense Grid
+1 Mistrise Village
+1 Minamo, School at Water's Edge
+1 Rhystic Study
+1 Urborg, Tomb of Yawgmoth
+1 Gemstone Caverns
+1 Inventors' Fair
+1 Tezzeret the Seeker
+1 Phyrexian Dreadnought
+1 Thassa's Oracle
+1 Opposition Agent
+1 Talon Gates of Madara
+1 An Offer You Can't Refuse
+1 Treasure Vault
+1 Pollywog Prodigy
+1 Grim Monolith
+1 Undercity Sewers
+1 Dark Ritual
+1 Tainted Pact
+1 Predict
+1 Cursed Totem
+1 Forensic Gadgeteer
+1 Shuri, Wakandan Inventor
+1 Ad Nauseam
+1 Geist of Saint Thalia
+1 Retraction Helix
+1 Cabal Ritual
+1 Power Artifact
+1 Mox Diamond
+1 Samut, Tyrant of Naktamun
+1 Hurkyl's Recall
+1 Retract
+1 Reanimate
+1 Hullbreaker Horror
+1 Time Sieve
+1 Walking Ballista
+1 Bilbo, Thief in the Night
+1 Mana Vault
+1 Wan Shi Tong, Librarian
+1 Crystal Skull, Isu Spyglass
+1 Cephalid Coliseum
+1 Gifts Ungiven
+1 Force of Negation

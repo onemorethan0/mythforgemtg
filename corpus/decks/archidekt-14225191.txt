@@ -1,0 +1,82 @@
+# Archidekt — Vivi - Final Fantasy only cards
+# source: archidekt:14225191
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Vivi Ornitier
+
+Deck:
+1 Gogo, Master of Mimicry
+1 Propaganda
+1 Gogo, Mysterious Mime
+1 Shantotto, Tactician Magician
+1 Swiftfoot Boots
+1 Alphinaud Leveilleur
+1 Summon: Esper Valigarmanda
+1 Firion, Wild Rose Warrior
+1 Archmage Emeritus
+1 Observed Stasis
+1 Strago and Relm
+1 Hraesvelgr of the First Brood
+1 Cait Sith, Fortune Teller
+1 Rikku, Resourceful Guardian
+1 Sol Ring
+1 The Emperor of Palamecia // The Lord Master of Hell
+1 Hermes, Overseer of Elpis
+1 Triple Triad
+1 Red Mage's Rapier
+1 Arcane Signet
+1 Sleep Magic
+1 Sidequest: Play Blitzball // World Champion, Celestial Weapon
+1 Sage's Nouliths
+1 Coral Sword
+1 Wrecking Ball Arm
+1 Combat Tutorial
+1 Stuck in Summoner's Sanctum
+1 Astrologian's Planisphere
+1 Champion's Helm
+1 Hero's Blade
+1 Conformer Shuriken
+1 Buster Sword
+1 Fire Magic
+1 Light of Judgment
+1 Lightning Greaves
+1 Darksteel Plate
+1 Ice Magic
+1 Nibelheim Aflame
+1 Hero's Heirloom
+1 Ultimate Magic: Meteor
+1 Haste Magic
+1 Hypnotic Sprite // Mesmeric Glare
+1 Suplex
+1 Lightning Bolt
+1 Eject
+1 Cryptic Command
+1 An Offer You Can't Refuse
+1 Counterspell
+1 Rite of Replication
+1 Brainstorm
+1 Dreams of Laguna
+1 Swallowed by Leviathan
+1 Arcane Denial
+1 Opera Love Song
+1 Memories Returning
+1 Light Up the Stage
+1 Snort
+1 Stolen Uniform
+1 Magic Damper
+1 Spire of Industry
+1 Relm's Sketching
+1 Evolving Wilds
+1 Bonders' Enclave
+1 Lindblum, Industrial Regency // Mage Siege
+1 Command Tower
+1 Exotic Orchard
+1 Path of Ancestry
+15 Island
+13 Mountain
+1 Thunder Magic
+1 Ultros, Obnoxious Octopus
+1 Trailblazer's Boots
+1 Vandalblast

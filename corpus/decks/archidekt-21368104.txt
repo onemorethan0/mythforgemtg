@@ -1,0 +1,78 @@
+# Archidekt — City of Angels (Pre-Modern)
+# source: archidekt:21368104
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 6 Game Changers (Ancient Tomb, Chrome Mox, Enlightened Tutor, Mana Vault, Mox Diamond...); Bracket 1 allows 0
+
+Commander:
+1 Radiant, Archangel
+
+Deck:
+1 Dawn Elemental
+1 Haunted Angel
+1 Serra's Sanctum
+1 Afterlife
+1 Karmic Guide
+1 Noble Purpose
+1 Urza's Incubator
+1 Harsh Mercy
+1 Voice of All
+1 Gold Myr
+1 Sacred Mesa
+1 Mind Stone
+1 Mask of Memory
+1 Moat
+1 Commander Eesha
+1 Pearl Medallion
+1 Land Tax
+1 Windborn Muse
+1 Aura of Silence
+1 Swords to Plowshares
+1 Exalted Angel
+1 Sol Ring
+1 Mother of Runes
+1 Disenchant
+1 Serra Angel
+1 Seal of Cleansing
+1 Tariff
+1 Akroma, Angel of Wrath
+1 Serra's Blessing
+32 Plains
+1 Ancient Tomb
+1 Mox Diamond
+1 Temple of the False God
+1 Reverent Mantra
+1 Kor Haven
+1 Maze of Ith
+1 Strip Mine
+1 Lotus Petal
+1 Lightning Greaves
+1 Voice of Grace
+1 Radiant's Judgment
+1 Angel's Trumpet
+1 Crackdown
+1 Hobble
+1 Blinding Angel
+1 Reya Dawnbringer
+1 Orim's Chant
+1 Aura Blast
+1 Lieutenant Kirtar
+1 Suntail Hawk
+1 Leonin Skyhunter
+1 Decree of Justice
+1 Luminous Angel
+1 Illumination
+1 Duskrider Falcon
+1 Skyshroud Falcon
+1 Smite
+1 Soul Warden
+1 Fellwar Stone
+1 Unquestioned Authority
+1 Voice of Reason
+1 Mana Vault
+1 Inviolability
+1 Seraph
+1 Enlightened Tutor
+1 Breath of Life
+1 Chrome Mox
+1 Mind's Eye

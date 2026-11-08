@@ -1,0 +1,101 @@
+# Archidekt — Thranduil, Lord of the rings
+# source: archidekt:24547061
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Allosaurus Shepherd
+1 Fauna Shaman
+1 Eldritch Evolution
+1 Torment of Hailfire
+1 Deepwood Denizen
+1 Skemfar Avenger
+1 Glimpse of Nature
+1 Beast Whisperer
+1 Elven Passage
+1 Finale of Devastation
+3 Swamp
+1 Rhystic Study
+1 Windswept Heath
+1 Takenuma, Abandoned Mire
+1 Polluted Delta
+1 Zagoth Triome
+1 Otawara, Soaring City
+1 Verdant Catacombs
+1 Veil of Summer
+1 Fierce Guardianship
+1 Elvish Archdruid
+1 Assassin's Trophy
+1 Abrupt Decay
+1 Umbral Mantle
+1 Starting Town
+1 Elvish Mystic
+1 Llanowar Elves
+1 Devoted Druid
+1 Argothian Elder
+1 Sol Ring
+1 Walking Ballista
+1 Elrond, Moon-Reader
+1 Jarad's Orders
+1 Toxic Deluge
+1 Kindred Discovery
+1 Gaea's Cradle
+1 Boseiju, Who Endures
+1 Overgrown Tomb
+1 Yavimaya, Cradle of Growth
+1 The One Ring
+1 Pact of Negation
+1 The Master of Lake-town
+1 Beast Within
+1 Wirewood Channeler
+1 Deadly Rollick
+1 Bloom Tender
+1 Selvala, Heart of the Wilds
+1 Incubation Druid
+1 Natural Order
+1 Thousand-Year Elixir
+1 Formidable Speaker
+1 Chrome Mox
+1 Survival of the Fittest
+1 Fyndhorn Elves
+1 Marwyn, the Nurturer
+1 Worldly Tutor
+1 An Offer You Can't Refuse
+1 Entomb
+1 Green Sun's Zenith
+1 Breeding Pool
+1 Dryad Arbor
+1 Undergrowth Stadium
+1 Black Market Connections
+1 Disciple of Freyalise // Garden of Freyalise
+1 Crop Rotation
+1 Cyclonic Rift
+1 Priest of Titania
+1 Ashaya, Soul of the Wild
+1 Immaculate Magistrate
+1 Timberwatch Elf
+1 Ezuri, Renegade Leader
+1 Staff of Domination
+1 Vampiric Tutor
+1 Swan Song
+1 Heroic Intervention
+1 Nature's Claim
+1 Demonic Tutor
+1 Buried Alive
+1 Mystic Remora
+1 Sylvan Library
+1 Command Tower
+1 Wirewood Lodge
+1 Watery Grave
+1 Misty Rainforest
+1 Marsh Flats
+1 Wooded Foothills
+4 Forest
+3 Island
+1 Force of Will
+1 Necropotence
+1 Rejuvenating Springs
+1 Tyvar, Jubilant Brawler

@@ -1,0 +1,84 @@
+# WotC precon — Mirror Mastery (CMD, 2011-06-17)
+# source: mtgjson:MirrorMastery_CMD
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Riku of Two Reflections
+
+Deck:
+1 Aethersnipe
+1 Animar, Soul of Elements
+1 Armillary Sphere
+1 Artisan of Kozilek
+1 Avatar of Fury
+1 Baloth Woodcrasher
+1 Brainstorm
+1 Call the Skybreaker
+1 Chain Reaction
+1 Chartooth Cougar
+1 Collective Voyage
+1 Colossal Might
+1 Command Tower
+1 Conundrum Sphinx
+1 Cultivate
+1 Deadwood Treefolk
+1 Death by Dragons
+1 Disaster Radius
+1 Edric, Spymaster of Trest
+1 Electrolyze
+1 Elvish Aberration
+1 Evolving Wilds
+1 Explosive Vegetation
+1 Faultgrinder
+1 Fierce Empath
+1 Fire // Ice
+1 Firespout
+13 Forest
+1 Fungal Reaches
+1 Garruk Wildspeaker
+1 Gruul Signet
+1 Gruul Turf
+1 Homeward Path
+1 Hull Breach
+1 Hunting Pack
+1 Hydra Omnivore
+1 Intet, the Dreamer
+1 Invigorate
+7 Island
+1 Izzet Boilerworks
+1 Izzet Signet
+1 Kazandu Refuge
+1 Kodama's Reach
+1 Krosan Tusker
+1 Lightning Greaves
+1 Magmatic Force
+1 Magus of the Vineyard
+8 Mountain
+1 Nucklavee
+1 Prophetic Bolt
+1 Prophetic Prism
+1 Rapacious One
+1 Ray of Command
+1 Ruination
+1 Rupture Spire
+1 Savage Twister
+1 Simic Growth Chamber
+1 Simic Signet
+1 Simic Sky Swallower
+1 Sol Ring
+1 Spell Crumple
+1 Spitebellows
+1 Temple of the False God
+1 Trench Gorger
+1 Tribute to the Wild
+1 Valley Rannet
+1 Vengeful Rebirth
+1 Veteran Explorer
+1 Vivid Crag
+1 Vivid Creek
+1 Vivid Grove
+1 Vow of Flight
+1 Vow of Lightning
+1 Vow of Wildness

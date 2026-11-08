@@ -1,0 +1,106 @@
+# Archidekt — The Most Dangerous Deck
+# source: archidekt:4504751
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Most Dangerous Gamer
+
+Deck:
+1 Venture Forth
+1 Darkmoss Bridge
+1 Emperor of Bones
+1 Infesting Radroach
+1 Trickster's Elk
+1 Wicker Picker
+1 Bone Dancer
+1 Invasion of Fiora // Marchesa, Resolute Monarch
+1 Woodripper
+1 Virulent Silencer
+1 Corpse Dance
+1 Multiply by Zero
+1 Baleful Mastery
+1 Sanctum Lurker
+1 Cruel Entertainment
+1 Herald of Leshrac
+1 Miss Highwater
+1 Panglacial Wurm
+1 Kazandu Mammoth // Kazandu Valley
+1 Hagra Mauling // Hagra Broodpit
+1 Acererak the Archlich
+1 Saw in Half
+1 Swamp
+1 Khalni Ambush // Khalni Territory
+1 Turbulent Fen
+1 Bloodghast
+1 Aeon Engine
+1 Timesifter
+1 Chains of Mephistopheles
+1 Disciple of Freyalise // Garden of Freyalise
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Fell the Profane // Fell Mire
+1 Malakir Rebirth // Malakir Mire
+1 Ice Cauldron
+1 Tempting Licid
+1 Rootpath Purifier
+1 Migratory Greathorn
+1 The Celestus
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Grist, the Hunger Tide
+1 Boseiju, Who Endures
+1 Command Tower
+1 Nurturing Peatland
+1 Overgrown Tomb
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Forest
+1 Oubliette
+1 Alpha Deathclaw
+1 Gonti, Night Minister
+1 Chthonian Nightmare
+1 Germination Practicum
+1 Call of the Ring
+1 Erebos, God of the Dead
+1 Dream Devourer
+1 Illusionary Mask
+1 Bone Shredder
+1 Summon: Fenrir
+1 Wishclaw Talisman
+1 Darksteel Angel
+1 Susur Secundi, Void Altar
+1 Ba Sing Se
+1 Great Hall of the Biblioplex
+1 Meren of Clan Nel Toth
+1 Bojuka Bog
+1 Bramble Familiar // Fetch Quest
+1 Cabal Coffers
+1 The Soul Stone
+1 Life from the Loam
+1 Harold and Bob, First Numens
+1 From the Catacombs
+1 Festering Thicket
+1 Phyrexian Tower
+1 Nesting Grounds
+1 Thespian's Stage
+1 Shifting Woodland
+1 Underground Mortuary
+1 Takenuma, Abandoned Mire
+1 Urborg, Tomb of Yawgmoth
+1 Yavimaya, Cradle of Growth
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Urza's Saga
+1 Vernal Fen
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Timeline Culler
+1 Boggart Trawler // Boggart Bog
+1 Amonkhet Raceway
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Unholy Annex // Ritual Chamber
+1 Revitalizing Repast // Old-Growth Grove
+1 Slippery Bogbonder
+1 Outcaster Trailblazer
+1 Tanuki Transplanter
+1 Chimil, the Inner Sun
+1 Yavimaya Bloomsage // Channel
+1 Dawnhand Dissident
+1 Ninja Teen
+1 Jeweled Amulet

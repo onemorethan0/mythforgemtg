@@ -1,0 +1,105 @@
+# Archidekt — Doctor Doom, King of Latveria
+# source: archidekt:19080297
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 The Ooze
+1 Blasphemous Act
+1 Brainstorm
+1 Black Market Connections
+1 Vandalblast
+1 Mystic Confluence
+1 Sol Ring
+1 Tombstone, Career Criminal
+1 Chameleon, Master of Disguise
+1 Bojuka Bog
+1 Oscorp Industries
+1 Command Tower
+1 Drowned Catacomb
+1 Multiversal Passage
+1 Deadly Rollick
+1 Behold the Sinister Six!
+1 Opposition Agent
+1 Profane Tutor
+1 Steam Vents
+1 Splinter's Technique
+1 Saw in Half
+1 Hexing Squelcher
+1 Time Warp
+1 Rhystic Study
+1 Infernal Grasp
+1 Demonic Tutor
+1 Vulture, Scheming Scavenger
+1 Reliquary Tower
+1 Venom, Eddie Brock
+1 Wandering Fumarole
+1 Lavaclaw Reaches
+1 Creeping Tar Pit
+1 Lotus Field
+1 Mornsong Aria
+1 Meteor Crater
+1 Arena of Glory
+1 Crossbones, Malicious Mercenary
+1 Praetor's Grasp
+1 We Say Thee Nay!
+1 Red Hulk
+1 Fury of the Horde
+1 Construct a Cosmic Cube
+1 Baron Helmut Zemo
+1 Baron Strucker, HYDRA Overlord
+1 Arc Reactor
+1 Doctor Octopus, Master Planner
+1 Norman Osborn // Green Goblin
+1 Glorious Purpose
+1 Spark Double
+1 Kindred Dominance
+1 Taskmaster, Mercenary Mimic
+1 Molecule Man
+1 Patchwork Banner
+1 Loki, the Deceiver
+1 Doom's Time Platform
+1 Currency Converter
+1 The Frightful Four
+1 Puppet Master, String Puller
+1 Iron Monger, Sadistic Tycoon
+1 Typhoid Mary, Fractured
+1 Kang, Temporal Tyrant
+1 Extract Power
+1 Abomination, World Ravager
+1 Red Ghost, Intangible Genius
+1 The Squadron Sinister
+1 Crumbling Necropolis
+1 Luxury Suite
+1 Smoldering Marsh
+1 Dragonskull Summit
+1 Villainous Hideout
+1 Sunken Hollow
+1 Choked Estuary
+1 Fetid Pools
+1 Metallic Mimic
+1 Foreboding Ruins
+1 Frostboil Snarl
+1 Tri-Sentinel, Act of Vengeance
+1 Wishclaw Talisman
+1 Lightning Bolt
+1 Talisman of Dominance
+1 Loki, Lord of Misrule
+1 Archnemesis
+1 Thunderbolts Conspiracy
+1 Underworld Breach
+1 Blood Crypt
+2 Island
+1 Island
+1 Mountain
+1 Island
+1 Mountain
+2 Swamp
+2 Swamp
+1 Swamp
+1 Swamp
+1 Mountain
+1 A.I.M. Labs

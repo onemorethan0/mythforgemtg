@@ -1,0 +1,108 @@
+# Archidekt — Tidus | Optimized
+# source: archidekt:11446070
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tidus, Yuna's Guardian
+
+Deck:
+1 Abzan Falconer
+1 Adarkar Wastes
+1 Ancient Tomb
+1 Angel of Invention
+1 Arcane Signet
+1 Arid Mesa
+1 Arwen, Mortal Queen
+1 Avacyn's Pilgrim
+1 Aven Courier
+1 Basri's Solidarity
+1 Birds of Paradise
+1 Blind Obedience
+1 Bloom Tender
+1 Borne Upon a Wind
+1 Boseiju, Who Endures
+1 Botanical Brawler
+1 Bountiful Promenade
+1 Breeding Pool
+1 Bristly Bill, Spine Sower
+1 Brokers Ascendancy
+1 Brushland
+1 City of Brass
+1 Command Tower
+1 Cyclonic Rift
+1 Delighted Halfling
+1 Delney, Streetwise Lookout
+1 Denry Klin, Editor in Chief
+1 Devoted Druid
+1 Dovin's Veto
+1 Drannith Magistrate
+1 Duskshell Crawler
+1 Eladamri's Call
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Exotic Orchard
+1 Faeburrow Elder
+1 Fierce Guardianship
+1 Finale of Devastation
+1 Flooded Strand
+1 Flusterstorm
+1 Flux Channeler
+1 Forbidden Orchard
+1 Force of Negation
+1 Force of Will
+1 Forest
+1 Fyndhorn Elves
+1 Green Sun's Zenith
+1 Hallowed Fountain
+1 Hardened Scales
+1 Hedge Maze
+1 Heliod, Sun-Crowned
+1 Herald of Secret Streams
+1 Innkeeper's Talent
+1 Island
+1 Kalonian Hydra
+1 Kodama of the West Tree
+1 Kutzil, Malamet Exemplar
+1 Lae'zel, Vlaakith's Champion
+1 Ledger Shredder
+1 Legolas's Quick Reflexes
+1 Mana Confluence
+1 Mana Vault
+1 Marsh Flats
+1 Mental Misstep
+1 Mikaeus, the Lunarch
+1 Minamo, School at Water's Edge
+1 Mirage Mirror
+1 Misty Rainforest
+1 Mystic Remora
+1 Mystical Tutor
+1 Noble Hierarch
+1 Otawara, Soaring City
+1 Ozolith, the Shattered Spire
+1 Path to Exile
+2 Plains
+1 Polluted Delta
+1 Prismatic Vista
+1 Reluctant Role Model
+1 Requisition Raid
+1 Rhystic Study
+1 Shalai, Voice of Plenty
+1 Silence
+1 Sol Ring
+1 Swan Song
+1 Swords to Plowshares
+1 Sylvan Tutor
+1 Tekuthal, Inquiry Dominus
+1 Temple Garden
+1 The One Ring
+1 Thrummingbird
+1 Triumph of the Hordes
+1 Utopia Sprawl
+1 Verdant Catacombs
+1 Walking Ballista
+1 Windswept Heath
+1 Wooded Foothills
+1 Worldly Tutor
+1 Yavimaya Coast
+1 Zimone, Paradox Sculptor

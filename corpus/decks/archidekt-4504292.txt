@@ -1,0 +1,108 @@
+# Archidekt — Sidisi Reanimator Doomsday
+# source: archidekt:4504292
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sidisi, Brood Tyrant
+
+Deck:
+1 Entomb
+1 Fatestitcher
+1 Vampiric Tutor
+1 Arcane Signet
+1 Cephalid Coliseum
+1 Bayou
+1 Tropical Island
+1 Underground Sea
+1 Field of the Dead
+1 Verdant Catacombs
+1 Lotus Petal
+1 Nurturing Peatland
+1 Misty Rainforest
+1 Waterlogged Grove
+1 Life from the Loam
+1 Overgrown Tomb
+1 Watery Grave
+1 Finale of Devastation
+1 Urborg, Tomb of Yawgmoth
+1 Boseiju, Who Endures
+1 Lion's Eye Diamond
+1 Reanimate
+1 Diabolic Intent
+1 Stitcher's Supplier
+1 Yavimaya, Cradle of Growth
+1 Polluted Delta
+1 Breeding Pool
+1 Takenuma, Abandoned Mire
+1 Crop Rotation
+1 Mox Diamond
+1 Sol Ring
+1 Dread Return
+1 Narcomoeba
+1 Bridge from Below
+1 Nether Traitor
+1 Yawgmoth's Will
+1 Sylvan Library
+1 Bloodghast
+1 Toxic Deluge
+1 Chrome Mox
+1 Thassa's Oracle
+1 Green Sun's Zenith
+1 Pact of Negation
+1 Force of Negation
+1 Demonic Consultation
+1 Force of Will
+1 Fierce Guardianship
+1 Otawara, Soaring City
+1 Doomsday
+1 Squandered Resources
+1 Zagoth Triome
+1 Intuition
+1 Underground Mortuary
+1 Undercity Sewers
+1 Six
+1 Tainted Pact
+1 Otherworldly Gaze
+1 Ancient Tomb
+1 Shifting Woodland
+1 Cabal Therapy
+1 Talisman of Curiosity
+1 Talisman of Resilience
+1 Talisman of Dominance
+1 Snapcaster Mage
+1 Insidious Roots
+1 Visions of Beyond
+1 Grisly Salvage
+1 Read the Runes
+1 Hermit Druid
+1 Gifts Ungiven
+1 Buried Alive
+1 Necromancy
+1 Aftermath Analyst
+1 Poxwalkers
+1 Tranquil Thicket
+1 Mental Misstep
+1 Phyrexian Altar
+1 Chord of Calling
+1 Mindbreak Trap
+1 Unmarked Grave
+1 Flusterstorm
+1 Deathrite Shaman
+1 Icetill Explorer
+1 Malevolent Hermit // Benevolent Geist
+1 Mystical Tutor
+1 Dark Ritual
+1 Gitaxian Probe
+1 Demonic Tutor
+1 Culling Ritual
+1 Mystic Remora
+1 Rhystic Study
+1 Delighted Halfling
+1 Dauthi Voidwalker
+1 Nature's Rhythm
+1 Hedge Maze
+1 Wooded Foothills
+1 Bloodstained Mire
+1 Marsh Flats
+1 Windswept Heath

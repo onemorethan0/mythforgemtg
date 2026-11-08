@@ -1,0 +1,84 @@
+# Archidekt — Blimsalablim
+# source: archidekt:4392822
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Blim, Comedic Genius
+
+Deck:
+1 Fickle Efreet
+1 Goblin Festival
+1 Treacherous Pit-Dweller
+1 Curse of Hospitality
+1 Telim'Tor's Edict
+1 Drooling Ogre
+1 Contested War Zone
+1 Coveted Jewel
+1 Xantcha, Sleeper Agent
+1 Measure of Wickedness
+1 Custody Battle
+1 Chef's Kiss
+1 Jinxed Choker
+1 Avarice Amulet
+1 Scrambleverse
+1 Bedevil
+1 Whispersilk Cloak
+1 Share the Spoils
+1 Tainted Peak
+1 Feed the Swarm
+1 Last One Standing
+1 Offer Immortality
+11 Swamp
+1 Knowledge Pool
+1 Turf War
+15 Mountain
+1 Goldnight Castigator
+1 Plague Reaver
+1 Akroan Horse
+1 Bucknard's Everfull Purse
+1 Master of the Feast
+1 Crown of Doom
+1 Sol Ring
+1 Arcane Signet
+1 Geth's Grimoire
+1 Fateful Handoff
+1 Evil Eye of Orms-by-Gore
+1 Terminate
+1 Humble Defector
+1 Rakdos Charm
+1 Avarice Totem
+1 Illicit Auction
+1 Bojuka Bog
+1 Smoldering Marsh
+1 Jinxed Idol
+1 Jinxed Ring
+1 Blasphemous Act
+1 Dragonskull Summit
+1 Rainbow Vale
+1 Sleeper Agent
+1 Temple of Malice
+1 Thieves' Auction
+1 Wishclaw Talisman
+1 Witch Hunt
+1 Witch Engine
+1 Steel Golem
+1 Midnight Oil
+1 Lich's Mastery
+1 Rogue's Passage
+1 Tibalt's Trickery
+1 Oath of Lim-Dûl
+1 Cinder Giant
+1 Immortal Coil
+1 Demonic Lore
+1 Rogue Skycaptain
+1 Bazaar Trader
+1 Staff of Compleation
+1 Harmless Offering
+1 Rakdos Signet
+1 Waste Not
+1 Dark Ritual
+1 Curse of Opulence
+1 Pendant of Prosperity
+1 Command Tower
+1 Chaos Warp

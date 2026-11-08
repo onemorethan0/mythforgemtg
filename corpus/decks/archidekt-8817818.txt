@@ -1,0 +1,94 @@
+# Archidekt — Urza edh
+# source: archidekt:8817818
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Borne Upon a Wind
+1 Drift of Phantasms
+1 Spell Pierce
+1 An Offer You Can't Refuse
+1 Faerie Mastermind
+1 Codex Shredder
+1 Aether Spellbomb
+1 Basalt Monolith
+1 Chain of Vapor
+1 Cloud Key
+1 Fabricate
+1 Flusterstorm
+1 Forensic Gadgeteer
+1 Fomori Vault
+1 Force of Negation
+1 Gemstone Caverns
+1 Isochron Scepter
+1 Mana Drain
+1 Mox Opal
+1 Mystical Tutor
+1 Narset's Reversal
+1 Mystic Remora
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Pongify
+1 Sapphire Medallion
+1 Rhystic Study
+1 Sensei's Divining Top
+1 Sol Ring
+1 Spellskite
+1 Swan Song
+1 Tezzeret the Seeker
+1 Timetwister
+1 Urza's Saga
+1 Whir of Invention
+1 Unwinding Clock
+1 Voltaic Key
+1 Transmute Artifact
+1 Muddle the Mixture
+1 Oboro, Palace in the Clouds
+1 Saprazzan Skerry
+1 Sink into Stupor // Soporific Springs
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Fierce Guardianship
+1 The One Ring
+1 Mana Vault
+1 Inventors' Fair
+1 Lotus Petal
+1 Etherium Sculptor
+1 The Reality Chip
+1 Phyrexian Metamorph
+1 Mental Misstep
+1 Force of Will
+1 Dramatic Reversal
+1 Ancient Tomb
+15 Snow-Covered Island
+1 Chrome Mox
+1 Mindbreak Trap
+1 Copy Artifact
+1 Hullbreaker Horror
+1 Solve the Equation
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Jeweled Amulet
+1 Grim Monolith
+1 Mox Diamond
+1 Minamo, School at Water's Edge
+1 Arcane Signet
+1 Rings of Brighthearth
+1 Trickbind
+1 Fellwar Stone
+1 Manifold Key
+1 Power Artifact
+1 Rapid Hybridization
+1 Valley Floodcaller
+1 Battered Golem
+1 Banishing Knack
+1 Treasure Vault
+1 Retraction Helix
+1 Prized Statue
+1 Everflowing Chalice
+1 Miscast
+1 Back to Basics
+1 Dispel
+1 Trinisphere
+1 Mockingbird

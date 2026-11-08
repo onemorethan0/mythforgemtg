@@ -1,0 +1,101 @@
+# Archidekt — Satoru Umezawa
+# source: archidekt:5536532
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Satoru Umezawa
+
+Deck:
+1 Blightsteel Colossus
+1 Marsh Flats
+1 Rhystic Study
+1 Hullbreaker Horror
+1 Invisible Stalker
+1 Talisman of Dominance
+1 Command Tower
+1 Ornithopter
+1 Vampiric Tutor
+1 Changeling Outcast
+1 Arcane Signet
+1 Sol Ring
+1 Morphic Pool
+1 March of Swirling Mist
+1 Mystic Remora
+1 Clearwater Pathway // Murkwater Pathway
+1 Lightning Greaves
+1 Peregrine Drake
+1 Great Whale
+1 Silver-Fur Master
+1 An Offer You Can't Refuse
+1 Nezahal, Primal Tide
+1 Siren Stormtamer
+1 Spectral Sailor
+1 Mox Amber
+1 Lotus Petal
+1 Snuff Out
+1 Dark Ritual
+1 Ingenious Prodigy
+1 Force of Will
+1 Shipwreck Marsh
+1 Drowned Catacomb
+1 Tainted Isle
+1 Satoru, the Infiltrator
+1 Deadeye Navigator
+1 Copy Enchantment
+1 Ringsight
+1 Polluted Delta
+1 Chrome Mox
+1 Fierce Guardianship
+1 Consecrated Sphinx
+1 Flooded Strand
+1 Lim-Dûl's Vault
+1 Consign to Memory
+4 Swamp
+1 Fellwar Stone
+1 Mana Vault
+1 Toxic Deluge
+1 Sink into Stupor // Soporific Springs
+1 Watery Grave
+1 Underground Sea
+1 Jin-Gitaxias, Core Augur
+1 Tishana's Tidebinder
+1 Demonic Tutor
+1 Void Winnower
+1 Ancient Tomb
+1 City of Brass
+1 Imperial Seal
+1 Opposition Agent
+5 Island
+1 Faerie Mastermind
+1 Orcish Bowmasters
+1 Ledger Shredder
+1 Palinchron
+1 Rune-Scarred Demon
+1 Dimir Signet
+1 Gemstone Caverns
+1 Misty Rainforest
+1 Phyrexian Metamorph
+1 Thassa's Oracle
+1 Demonic Consultation
+1 The One Ring
+1 Mox Opal
+1 Cyclonic Rift
+1 Reanimate
+1 Deadly Rollick
+1 Mox Diamond
+1 Force of Negation
+1 High Tide
+1 Altar of the Brood
+1 Talion, the Kindly Lord
+1 Notion Thief
+1 Mindbreak Trap
+1 Swan Song
+1 Mana Drain
+1 Ancient Silver Dragon
+1 Dauthi Voidwalker
+1 Praetor's Grasp
+1 Darkwater Catacombs
+1 Thousand-Faced Shadow
+1 Borne Upon a Wind
+1 Mental Misstep

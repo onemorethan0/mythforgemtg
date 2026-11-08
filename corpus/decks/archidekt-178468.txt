@@ -1,0 +1,108 @@
+# Archidekt — Sidisi Zombo Combo. Or: how I learned to stop worrying and love the zomb
+# source: archidekt:178468
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sidisi, Brood Tyrant
+
+Deck:
+1 Snow-Covered Swamp
+1 Snow-Covered Island
+1 Phyrexian Tower
+1 Island
+1 Scalding Tarn
+1 Flooded Strand
+1 Mikaeus, the Unhallowed
+1 Forest
+1 Wooded Foothills
+1 Mana Confluence
+1 Misty Rainforest
+1 Marsh Flats
+1 Bayou
+1 Tropical Island
+1 Underground Sea
+1 Swamp
+1 Necroduality
+1 Fell Stinger
+1 Vile Entomber
+1 Abrupt Decay
+1 Cabal Therapy
+1 Academy Ruins
+1 Krosan Grip
+1 Embalmer's Tools
+1 Verdant Catacombs
+1 Cryptbreaker
+1 Bloodstained Mire
+1 Polluted Delta
+1 Windswept Heath
+1 Gravecrawler
+1 Carrion Feeder
+1 Gravespawn Sovereign
+1 Patriarch's Bidding
+1 Llanowar Dead
+1 Tombstone Stairwell
+1 Sylvan Library
+1 Demonic Tutor
+1 Liliana, Untouched by Death
+1 Living Death
+1 Buried Ruin
+1 Watery Grave
+1 Overgrown Tomb
+1 Buried Alive
+1 Phyrexian Delver
+1 Pernicious Deed
+1 Noxious Ghoul
+1 Assassin's Trophy
+1 Elves of Deep Shadow
+1 Urborg, Tomb of Yawgmoth
+1 Breeding Pool
+1 Undead Augur
+1 Field of the Dead
+1 Rooftop Storm
+1 Path of Discovery
+1 Command Tower
+1 Underrealm Lich
+1 Graveborn Muse
+1 Sidisi, Undead Vizier
+1 Gray Merchant of Asphodel
+1 Birds of Paradise
+1 Stitcher's Supplier
+1 Grimgrin, Corpse-Born
+1 Sakura-Tribe Elder
+1 Fierce Guardianship
+1 Exotic Orchard
+1 Dread Return
+1 Mesmeric Orb
+1 Toxic Deluge
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Takenuma, Abandoned Mire
+1 Boseiju, Who Endures
+1 Grist, the Hunger Tide
+1 Deathrite Shaman
+1 Wilhelt, the Rotcleaver
+1 Unholy Grotto
+1 Swan Song
+1 Altar of Dementia
+1 Apprentice Necromancer
+1 Aftermath Analyst
+1 Grim Servant
+1 Underground Mortuary
+1 Snarling Gorehound
+1 Molt Tender
+1 Poxwalkers
+1 Squirming Emergence
+1 Raul, Trouble Shooter
+1 Warren Soultrader
+1 Archghoul of Thraben
+1 Life from the Loam
+1 Zul Ashur, Lich Lord
+1 Wight of the Reliquary
+1 Rot Hulk
+1 Sol Ring
+1 Ravenous Rotbelly
+1 Hedge Maze
+1 Bloom Tender
+1 Sidisi, Regent of the Mire
+1 Undercity Sewers
+1 Snow-Covered Forest

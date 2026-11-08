@@ -1,0 +1,82 @@
+# Archidekt — I hate reading.
+# source: archidekt:5987441
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jasmine Boreal
+
+Deck:
+1 Gaea's Anthem
+1 Muraganda Petroglyphs
+1 Bring to Trial
+1 Borrowed Time
+1 Bramblecrush
+1 Prey Upon
+1 Broken Wings
+1 Day of Judgment
+1 Introduction to Prophecy
+1 Secret Rendezvous
+1 Gerrard's Battle Cry
+1 Arcane Signet
+1 Selesnya Signet
+1 Farseek
+18 Forest
+1 Anthem of Champions
+1 Always Watching
+1 Collective Blessing
+1 Glorious Anthem
+1 Spidersilk Armor
+1 Arcane Encyclopedia
+1 Emmessi Tome
+1 Harmonize
+1 Command Tower
+1 Reflecting Pool
+1 Sungrass Prairie
+1 Kodama's Reach
+1 Nature's Lore
+1 Sol Ring
+1 Yavimaya, Cradle of Growth
+1 Three Visits
+1 Atraxa's Fall
+1 Immolating Glare
+1 Citywide Bust
+1 Canopy Vista
+1 Natural Connection
+1 Vorstclaw
+1 Terrian, World Tyrant
+1 Sundial, Dawn Tyrant
+1 Indomitable Ancients
+1 Isamaru, Hound of Konda
+1 Icehide Golem
+1 Snow-Covered Forest
+10 Plains
+1 Snow-Covered Plains
+1 Gigantosaurus
+1 Watchwolf
+1 Quakestrider Ceratops
+1 Nyxborn Colossus
+1 Looming Altisaur
+1 Call of the Conclave
+1 Ageless Guardian
+1 Elvish Warrior
+1 Pheres-Band Centaurs
+1 Dutiful Servants
+1 Those Who Serve
+1 Colossodon Yearling
+1 Kalonian Tusker
+1 Armored Wolf-Rider
+1 Kami of Old Stone
+1 Armored Warhorse
+1 Rotted Hystrix
+1 Quilled Slagwurm
+1 Leatherback Baloth
+1 Grizzled Leotau
+1 Rampant Growth
+1 Terrain Elemental
+1 Cursed Totem
+1 Elemental Bond
+1 Privileged Position
+1 Heroic Intervention
+1 Rise from the Wreck
+1 Beyond the Quiet

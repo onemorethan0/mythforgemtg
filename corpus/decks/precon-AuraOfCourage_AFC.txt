@@ -1,0 +1,98 @@
+# WotC precon — Aura of Courage (AFC, 2021-07-23)
+# source: mtgjson:AuraOfCourage_AFC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Galea, Kindler of Hope
+
+Deck:
+1 Abundant Growth
+1 Acidic Slime
+1 Angel of Finality
+1 Angelic Gift
+1 Arcane Signet
+1 Argentum Armor
+1 Azorius Chancery
+1 Bant Charm
+1 Bant Panorama
+1 Basilisk Collar
+1 Behemoth Sledge
+1 Belt of Giant Strength
+1 Brainstorm
+1 Canopy Vista
+1 Catti-brie of Mithral Hall
+1 Clay Golem
+1 Cold-Eyed Selkie
+1 Colossus Hammer
+1 Command Tower
+1 Curse of Verbosity
+1 Diviner's Portent
+1 Ebony Fly
+1 Eel Umbra
+1 Evolving Wilds
+1 Exotic Orchard
+1 Explorer's Scope
+1 Fertile Ground
+1 Fey Steed
+1 Fleecemane Lion
+1 Flood Plain
+8 Forest
+1 Fortified Village
+1 Grasslands
+1 Greater Good
+1 Gryff's Boon
+1 Halimar Depths
+1 Heroic Intervention
+1 Holy Avenger
+1 Imprisoned in the Moon
+4 Island
+1 Kenrith's Transformation
+1 Knight of Autumn
+1 Lumbering Falls
+1 Mantle of the Ancients
+1 Masterwork of Ingenuity
+1 Mishra's Factory
+1 Moonsilver Spear
+1 Nature's Lore
+1 Netherese Puzzle-Ward
+1 Paradise Druid
+1 Path of Ancestry
+2 Plains
+1 Port Town
+1 Prairie Stream
+1 Prognostic Sphinx
+1 Psychic Impetus
+1 Puresteel Paladin
+1 Rancor
+1 Realm-Cloaked Giant // Cast Off
+1 Ride the Avalanche
+1 Riverwise Augur
+1 Robe of Stars
+1 Seaside Citadel
+1 Serum Visions
+1 Shielding Plax
+1 Simic Growth Chamber
+1 Skycloud Expanse
+1 Sol Ring
+1 Song of Inspiration
+1 Sram, Senior Edificer
+1 Storvald, Frost Giant Jarl
+1 Sungrass Prairie
+1 Swiftfoot Boots
+1 Sword of Hours
+1 Sword of the Animist
+1 Terramorphic Expanse
+1 Thriving Grove
+1 Thriving Heath
+1 Thriving Isle
+1 Utopia Sprawl
+1 Valiant Endeavor
+1 Valorous Stance
+1 Verdant Embrace
+1 Viridian Longbow
+1 Vitu-Ghazi, the City-Tree
+1 Wild Growth
+1 Winds of Rath
+1 Winged Boots

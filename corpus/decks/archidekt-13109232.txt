@@ -1,0 +1,94 @@
+# Archidekt — FFIV Got Overlooked But My Goat Did Not
+# source: archidekt:13109232
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Cecil, Dark Knight // Cecil, Redeemed Paladin
+
+Deck:
+1 Niv-Mizzet, Ghost Counsel
+1 Rosa, Resolute White Mage
+1 Paladin Danse, Steel Maverick
+1 K'rrik, Son of Yawgmoth
+1 Moment of Reckoning
+1 Toxic Deluge
+1 Selenia, the Cursed Heart
+1 Keen Duelist
+1 Sword of Forge and Frontier
+1 Desolate Mire
+1 Silent Clearing
+1 Dismember
+1 Case of the Gateway Express
+1 Restoration Magic
+1 Enduring Tenacity
+1 Eclipsed Steppe
+1 Shefet Dunes
+1 Sanguine Bond
+1 Children of Korlis
+1 Ifnir Deadlands
+1 Kain, Traitorous Dragoon
+1 Doom Whisperer
+1 Livewire Lash
+1 Redeem the Lost
+1 Razorgrass Ambush // Razorgrass Field
+1 Auron, Venerated Guardian
+1 White Mage's Staff
+1 Night's Whisper
+1 Orzhov Signet
+1 Neglected Manor
+1 Slaughter
+1 Boggart Trawler // Boggart Bog
+1 Mangara, the Diplomat
+1 Withering Boon
+1 Excalibur II
+1 Sol Ring
+1 Sword of Vengeance
+1 Ardyn, the Usurper
+1 Godless Shrine
+1 Caves of Koilos
+1 Plunge into Darkness
+1 Paladin's Arms
+1 Swords to Plowshares
+1 Protection Magic
+1 Orzhov Guildgate
+1 Ultimate Magic: Holy
+1 Talisman of Hierarchy
+1 Swiftfoot Boots
+1 Final Payment
+1 Arcane Signet
+1 Anguished Unmaking
+1 Tainted Sigil
+1 Umbral Expanse
+1 Moonlight Bargain
+1 Ardbert, Warrior of Darkness
+1 Pox
+1 Tymna the Weaver
+1 Aerith Gainsborough
+1 Orzhov Basilica
+1 Staff of Compleation
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 Insomnia, Crown City
+1 Temple of Silence
+1 Debt to the Deathless
+1 General's Enforcer
+1 Shattered Sanctum
+1 Command Tower
+1 Lunar Convocation
+1 Phyrexian Arena
+1 Shineshadow Snarl
+1 Isolated Chapel
+1 The Wind Crystal
+7 Swamp
+1 Rogue's Passage
+8 Plains
+1 Erode
+1 Orzhov Charm
+1 Deadly Dispute
+1 Bitter Triumph
+1 Dark Knight's Greatsword
+1 Unspeakable Symbol
+1 Agent of the Shadow Thieves
+1 Bilbo's Gambit
+1 Ori, Plate Stacker
+1 Turbulent Moor

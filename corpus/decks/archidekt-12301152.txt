@@ -1,0 +1,110 @@
+# Archidekt — LG's Bugs n Booty
+# source: archidekt:12301152
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 The Locust God
+
+Deck:
+1 Fiery Islet
+1 Merchant Scroll
+1 Force of Will
+1 Talisman of Creativity
+1 Mystic Remora
+1 Scalding Tarn
+1 Steam Vents
+1 Gamble
+1 Training Center
+1 Volcanic Island
+1 Thundering Falls
+1 Rhystic Study
+1 Ancient Tomb
+1 Urza's Saga
+1 Treasonous Ogre
+1 Command Tower
+1 Muddle the Mixture
+1 Simian Spirit Guide
+1 Mana Vault
+1 Otawara, Soaring City
+1 Mystical Tutor
+1 Wheel of Fortune
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Chain of Vapor
+1 Imposter Mech
+1 Polluted Delta
+1 Wooded Foothills
+1 Transmute Artifact
+1 City of Traitors
+1 Emergence Zone
+1 Faerie Mastermind
+1 Intuition
+1 Gemstone Mine
+1 Bloodstained Mire
+1 Arcane Signet
+1 Island
+1 Mountain
+1 Mox Amber
+1 Crystal Vein
+1 Frantic Search
+1 Hexing Squelcher
+1 Spellseeker
+1 Flooded Strand
+1 Gemstone Caverns
+1 Arid Mesa
+1 Sink into Stupor // Soporific Springs
+1 Jeska's Will
+1 Cyclonic Rift
+1 Phantasmal Image
+1 Sage of the Falls
+1 Mana Confluence
+1 Geist of Saint Thalia
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Lion's Eye Diamond
+1 Underworld Breach
+1 Recall
+1 Vivi Ornitier
+1 Sensei's Divining Top
+1 Windfall
+1 Timetwister
+1 Fierce Guardianship
+1 Mental Misstep
+1 Flusterstorm
+1 Mindbreak Trap
+1 Pyretic Ritual
+1 Brain Freeze
+1 Bilbo, Thief in the Night
+1 Step Through
+1 Ragavan, Nimble Pilferer
+1 Mox Opal
+1 Grim Monolith
+1 Sol Ring
+1 Chrome Mox
+1 Lotus Petal
+1 Mox Diamond
+1 Rite of Flame
+1 City of Brass
+1 Imperial Recruiter
+1 Commandeer
+1 Pyroblast
+1 Past in Flames
+1 Pact of Negation
+1 Cavern of Souls
+1 Seething Song
+1 Ashling, Rekindled // Ashling, Rimebound
+1 Treasure Vault
+1 Volatile Stormdrake
+1 Dualcaster Mage
+1 Molten Duplication
+1 Reiterate
+1 Desperate Ritual
+1 Valley Floodcaller
+1 Misdirection
+1 Swan Song
+1 Red Elemental Blast
+1 Flare of Duplication
+1 Fabricate
+1 Solve the Equation
+1 Vexing Bauble
+1 Brainstorm
+1 Borne Upon a Wind

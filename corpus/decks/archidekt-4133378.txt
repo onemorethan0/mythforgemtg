@@ -1,0 +1,97 @@
+# Archidekt — Border Patrol - Arcades, the Strategist
+# source: archidekt:4133378
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Arcades, the Strategist
+
+Deck:
+1 Wall of Runes
+1 Sylvan Caryatid
+1 Mithril Coat
+1 Arcane Signet
+1 Flawless Maneuver
+1 Sol Ring
+1 High Alert
+1 Ulvenwald Captive // Ulvenwald Abomination
+1 Tree of Redemption
+1 Sunpetal Grove
+1 Tetsuko Umezawa, Fugitive
+1 Tower Defense
+1 Stalwart Shield-Bearers
+1 Triumph of the Hordes
+1 Corrupted Shapeshifter
+1 Rammas Echor, Ancient Shield
+1 The Pride of Hull Clade
+1 Crystal Barricade
+1 Plagon, Lord of the Beach
+1 Angelic Wall
+1 Tranquil Landscape
+1 Drift of Phantasms
+1 Vine Trellis
+1 Wall of Shards
+1 Wall of Tanglecord
+1 Resolute Watchdog
+1 Wall of Glare
+1 Birds of Paradise
+1 Zopandrel, Hunger Dominus
+1 Branchloft Pathway // Boulderloft Pathway
+1 Bountiful Promenade
+5 Plains
+1 Axebane Guardian
+1 Slaughter the Strong
+1 Fell the Mighty
+1 Expel the Interlopers
+1 Bar the Door
+1 Dusk // Dawn
+1 Wave of Reckoning
+1 Mystical Tutor
+1 Nature's Lore
+1 Three Visits
+1 Brave the Sands
+1 The Battle of Bywater
+1 Wall of Omens
+1 Wall of Blossoms
+1 Orator of Ojutai
+1 Weathered Sentinels
+1 Towering Viewpoint
+1 Saruli Caretaker
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Breeding Pool
+1 Command Tower
+6 Forest
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Hengegate Pathway // Mistgate Pathway
+1 Hinterland Harbor
+3 Island
+1 Rejuvenating Springs
+1 Sea of Clouds
+1 Temple Garden
+1 Fabled Passage
+1 Command Beacon
+1 Spara's Headquarters
+1 Reliquary Tower
+1 Urban Retreat
+1 Seaside Citadel
+1 Crashing Drawbridge
+1 Eerie Interlude
+1 Ghostway
+1 Wall of Denial
+1 Hover Barrier
+1 Wall of Roots
+1 Wall of Junk
+1 Sunscape Familiar
+1 Overgrown Battlement
+1 Jeskai Barricade
+1 Shield Sphere
+1 Exotic Orchard
+1 Akroma's Will
+1 Ascend from Avernus
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Continue?
+1 Lae'zel's Acrobatics
+1 Aura Shards
+1 Enlightened Tutor
+1 Force of Vigor

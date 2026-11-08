@@ -1,0 +1,104 @@
+# Archidekt — Vhal, Candlekeep Researcher + Haunted One: Wizard Warfare
+# source: archidekt:5001753
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Haunted One
+1 Vhal, Candlekeep Researcher
+
+Deck:
+1 Otawara, Soaring City
+2 Swamp
+1 Pol Jamaar, Illusionist
+1 Arcane Signet
+1 Urza's Cave
+4 Island
+1 Path of Ancestry
+1 Titan of Littjara
+1 Watery Grave
+1 Underground River
+1 Sunken Ruins
+1 Talisman of Dominance
+1 Drowned Catacomb
+1 Bojuka Bog
+1 Command Tower
+1 Polluted Delta
+1 Morphic Pool
+1 Urborg, Tomb of Yawgmoth
+1 War Room
+1 Scavenger Grounds
+1 Sol Ring
+1 Dimir Signet
+1 Demolition Field
+1 Shipwreck Marsh
+1 Nykthos, Shrine to Nyx
+1 Minamo, School at Water's Edge
+1 Riptide Laboratory
+1 Azami, Lady of Scrolls
+1 Freed from the Real
+1 Pemmin's Aura
+1 Thassa's Ire
+1 Shadowmage Infiltrator
+1 Volo, Itinerant Scholar
+1 Sapphire Medallion
+1 Sage of Fables
+1 Kefnet's Monument
+1 Bonders' Enclave
+1 Strip Mine
+1 Urza's Incubator
+1 Stubborn Denial
+1 Cavern of Souls
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Three Tree City
+1 Patchwork Banner
+1 Gloomlake Verge
+1 Abstergo Entertainment
+1 Mindspring Merfolk
+1 Unstoppable Plan
+1 Ancient Tomb
+1 Pollywog Prodigy
+1 Talon Gates of Madara
+1 Clearwater Pathway // Murkwater Pathway
+1 Thousand-Year Elixir
+1 Magewright's Stone
+1 An Offer You Can't Refuse
+1 Fierce Guardianship
+1 Swan Song
+1 Patriar's Seal
+1 Reflections of Littjara
+1 Glen Elendra Guardian
+1 Siren Stormtamer
+1 Smirking Spelljacker
+1 Galvanic Alchemist
+1 Puppeteer
+1 Ertai Resurrected
+1 Venser, Shaper Savant
+1 Fatestitcher
+1 Glen Elendra Archmage
+1 Archmage of Echoes
+1 Gogo, Master of Mimicry
+1 Teferi, Mage of Zhalfir
+1 Roaming Throne
+1 Sigil Tracer
+1 Stonybrook Banneret
+1 Mutavault
+1 Emeritus of Ideation // Ancestral Recall
+1 Pensive Professor
+1 Mana Sculpt
+1 Mana Drain
+1 High Fae Trickster
+1 Pongify
+1 Rapid Hybridization
+1 Withering Torment
+1 Feed the Swarm
+1 Resculpt
+1 Herald's Horn
+1 Chronicle of Victory
+1 Wizard's Staff
+1 Crippling Fear
+1 Beguiler of Wills
+1 Hapatra, the Desert Frost
+1 Lyra, Tolarian Archangel
+1 Archetype of Imagination
+1 Aphetto Alchemist

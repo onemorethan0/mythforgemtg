@@ -1,0 +1,95 @@
+# Archidekt — Kibo, Uktabi Prince
+# source: archidekt:8707005
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Kibo, Uktabi Prince
+
+Deck:
+1 Viridian Revel
+1 Meltdown
+1 Goblin Anarchomancer
+1 Hit-Monkey
+1 Scrounging Bandar
+1 Yavimaya Steelcrusher
+1 Fangren Marauder
+1 Instill Energy
+1 Killmonger, Ruthless Usurper
+1 Elephant-Mandrill
+1 Party Dude
+1 Uktabi Orangutan
+1 Gorilla Shaman
+1 Lifestream's Blessing
+1 Yavimaya, Cradle of Growth
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Kogla, the Titan Ape
+1 Tree Monkey
+1 Greater Good
+1 Sol Ring
+1 Terrasymbiosis
+1 Simian Simulacrum
+1 Necklace of Girion
+1 Guerrilla Gorilla
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Special Move
+1 Liquimetal Coating
+1 Liquimetal Torque
+1 Sting, the Glinting Dagger
+1 Tarrian's Soulcleaver
+1 The Great Henge
+1 Ancient Silverback
+1 Chomping Changeling
+1 Jolene, the Plunder Queen
+1 Kodama of the West Tree
+1 Kird Ape
+1 Kogla and Yidaro
+1 Taurean Mauler
+1 Ragavan, Nimble Pilferer
+1 Gearbane Orangutan
+1 Flopsie, Bumi's Buddy
+1 Hardened Scales
+1 Sphere Grid
+1 Inspiring Call
+1 Well Rested
+1 Archdruid's Charm
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Khalni Ambush // Khalni Territory
+1 Klauth's Will
+1 Return of the Wildspeaker
+1 Untimely Malfunction
+1 Command Tower
+1 Grove of the Burnwillows
+1 Thornspire Verge
+1 Rockfall Vale
+4 Mountain
+1 Gruul Turf
+1 Guildless Commons
+1 Karplusan Forest
+1 Spire Garden
+1 Stomping Ground
+1 Blasphemous Act
+1 Chain Reaction
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Sundering Eruption // Volcanic Fissure
+1 Stump Stomp // Burnwillow Clearing
+1 Vandalblast
+1 Boseiju, Who Endures
+1 Inventors' Fair
+1 Shifting Woodland
+1 Generous Plunderer
+1 Rhythm of the Wild
+1 Ozolith, the Shattered Spire
+1 Curse of Opulence
+1 Wily Bandar
+1 Ferocious Tigorilla
+1 Zodiac Monkey
+1 Collective Resistance
+1 Sarinth Steelseeker
+1 Mugato
+1 Gumato
+11 Forest
+1 The Ozolith
+1 Silverback Elder
+1 Beast Whisperer

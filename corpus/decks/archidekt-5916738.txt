@@ -1,0 +1,102 @@
+# Archidekt — The Seventh Doctor and Clara Would like to play a game...or 13
+# source: archidekt:5916738
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Seventh Doctor
+1 Clara Oswald
+
+Deck:
+1 Brilliant Ultimatum
+1 Hengegate Pathway // Mistgate Pathway
+1 Raffine's Tower
+1 Scrubland
+1 Anguished Unmaking
+1 Astrid Peth
+1 Black Market Connections
+1 Eloise, Nephalia Sleuth
+1 Gollum, Scheming Guide
+1 Irenicus's Vile Duplication
+1 Myojin of Seeing Winds
+1 Nullstone Gargoyle
+1 Pitiless Plunderer
+1 Reya Dawnbringer
+1 Sakashima of a Thousand Faces
+1 Search the Premises
+1 Sol Ring
+1 Thorough Investigation
+1 Tivit, Seller of Secrets
+1 Zhentarim Bandit
+1 Wernog, Rider's Chaplain
+1 The Toymaker's Trap
+1 Greedy Freebooter
+1 Spyglass Siren
+1 Mox Tantalite
+1 Inkwell Leviathan
+1 Phyrexian Triniform
+1 Reflecting Pool
+1 Mycosynth Golem
+1 Havengul Laboratory // Havengul Mystery
+1 Filigree Angel
+1 Voldaren Estate
+3 Swamp
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Glimmervoid
+1 Tundra
+1 Underground Sea
+1 Vault of Champions
+1 Cyberdrive Awakener
+1 Cybermen Squadron
+1 Discerning Financier
+1 Gilded Pinions
+1 Grozoth
+1 Idol of Oblivion
+1 Inevitable Betrayal
+1 Noble's Purse
+1 Sol Talisman
+1 Swords to Plowshares
+1 Tempting Contract
+1 Shambling Ghast
+1 Tangletrove Kelp
+1 Merchant of Truth
+1 Clearwater Pathway // Murkwater Pathway
+1 Forbidden Orchard
+1 Morphic Pool
+1 Sea of Clouds
+1 Academy Manufactor
+1 Ancestral Vision
+1 Living End
+1 Profane Tutor
+1 Ratadrabik of Urborg
+1 Sakashima the Impostor
+1 Spark Double
+1 Sphinx of the Steel Wind
+1 Thieves' Tools
+1 Watery Grave
+1 Angel of the Ruins
+1 Blazing Archon
+1 Deadly Dispute
+1 Lotus Bloom
+1 Mox Amber
+1 Noxious Gearhulk
+1 Thought Monitor
+1 Thraben Inspector
+3 Plains
+1 Arcane Sanctum
+1 Command Tower
+1 Exotic Orchard
+1 Godless Shrine
+1 Hallowed Fountain
+1 Master of Predicaments
+1 The Celestial Toymaker
+1 Scion of Draco
+1 Secret Passage
+1 Ballroom
+1 Study
+1 Restless Anchorage
+3 Island
+1 Meticulous Archive
+1 Shadowy Backstreet
+1 Undercity Sewers
+1 Monumental Corruption

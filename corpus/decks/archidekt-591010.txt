@@ -1,0 +1,108 @@
+# Archidekt — Derevi, Empyrial Tactician [No Rocks] [Retired]
+# source: archidekt:591010
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Derevi, Empyrial Tactician
+
+Deck:
+1 Wild Growth
+1 Utopia Sprawl
+1 Malevolent Hermit // Benevolent Geist
+1 Avacyn's Pilgrim
+1 Ephemerate
+1 Enlightened Tutor
+1 Felidar Guardian
+1 Preston, the Vanisher
+1 Prime Speaker Vannifar
+1 Angel's Grace
+1 Otawara, Soaring City
+1 Boseiju, Who Endures
+1 Stony Silence
+1 Dauntless Dismantler
+1 Archivist of Oghma
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Blind Obedience
+1 Spectral Sailor
+1 Minamo, School at Water's Edge
+1 Gemstone Caverns
+1 Null Rod
+1 Noble Hierarch
+1 Flusterstorm
+1 Crop Rotation
+1 Eldritch Evolution
+1 Grand Abolisher
+1 Flooded Strand
+1 Polluted Delta
+1 Windswept Heath
+1 Wooded Foothills
+1 Chord of Calling
+1 Swords to Plowshares
+1 Mana Confluence
+1 Llanowar Elves
+1 Linvala, Keeper of Silence
+1 Arid Mesa
+1 Marsh Flats
+1 Misty Rainforest
+1 Bloom Tender
+1 Birds of Paradise
+1 Gaea's Cradle
+1 Ancient Tomb
+1 Savannah
+1 Tropical Island
+1 Tundra
+1 Spellseeker
+1 Neoform
+1 Finale of Devastation
+1 Eladamri's Call
+1 Collector Ouphe
+1 Elvish Reclaimer
+1 Faeburrow Elder
+1 Drannith Magistrate
+1 Fierce Guardianship
+1 Toski, Bearer of Secrets
+1 Fyndhorn Elves
+1 Kinnan, Bonder Prodigy
+1 Worldly Tutor
+1 Kutzil, Malamet Exemplar
+1 Faerie Mastermind
+1 Wargate
+1 Delighted Halfling
+1 Emiel the Blessed
+1 Mystic Remora
+1 Command Tower
+1 Elvish Mystic
+1 City of Brass
+1 Breeding Pool
+1 Hallowed Fountain
+1 Temple Garden
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Exotic Orchard
+1 An Offer You Can't Refuse
+1 Ranger-Captain of Eos
+1 Delney, Streetwise Lookout
+1 Mental Misstep
+1 Silence
+1 Flare of Denial
+1 Archdruid's Charm
+1 Esper Sentinel
+1 Phyrexian Metamorph
+1 Sigarda, Font of Blessings
+1 Monumental Henge
+1 Mockingbird
+1 Mindbreak Trap
+1 Elvish Spirit Guide
+1 Mausoleum Wanderer
+1 White Plume Adventurer
+1 Yisan, the Wanderer Bard
+1 Biomancer's Familiar
+1 Plains
+1 Quirion Ranger
+1 Waterlogged Grove
+1 Birthing Ritual
+1 Voice of Victory
+1 Mistrise Village
+1 Nature's Rhythm
+1 Rhystic Study

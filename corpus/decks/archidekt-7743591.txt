@@ -1,0 +1,80 @@
+# Archidekt — Candlekeep Sage//Lulu, Loyal Hollyphant
+# source: archidekt:7743591
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Lulu, Loyal Hollyphant
+1 Candlekeep Sage
+
+Deck:
+1 Aether Spike
+1 Aether Swooper
+1 Aether Theorist
+1 Airbending Lesson
+1 Angelic Shield
+1 Blur
+1 Buried Treasure
+1 Cone of Cold
+1 Contraband Livestock
+1 Dire Mimic
+1 Elite Guardmage
+1 Emergency Eject
+1 Emissary of Soulfire
+1 Geistwave
+1 Genku, Future Shaper
+1 Githzerai Monk
+1 Janjeet Sentry
+1 Lofty Denial
+1 Metastatic Evangel
+1 Mimic
+1 Minister of Inquiries
+1 Novice Inspector
+1 Oji, the Exquisite Blade
+1 Pegasus Guardian // Rescue the Foal
+1 Planar Incision
+1 Riddle Gate Gargoyle
+1 Roil Cartographer
+1 Secrets of the Key
+1 Shielded Aether Thief
+1 Solstice Zealot
+1 Tempest Harvester
+1 Thraben Inspector
+1 Thriving Turtle
+1 Tune the Narrative
+1 Vibrant Cityscape
+1 Voltstorm Angel
+1 Wash Out
+1 Your Temple Is Under Attack
+15 Island
+15 Plains
+1 Aether Spellbomb
+1 Decoction Module
+1 Mind Stone
+1 Solar Transformer
+1 Fabrication Module
+1 Inspiring Overseer
+1 Eddytrail Hawk
+1 Azorius Charm
+1 Seal of Cleansing
+1 Acrobatic Maneuver
+1 Seal of Removal
+1 Echoing Truth
+1 Flicker of Fate
+1 Momentary Blink
+1 Disenchant
+1 Azorius Chancery
+1 Azorius Guildgate
+1 Command Tower
+1 Terramorphic Expanse
+1 Slaughter the Strong
+1 Evolving Wilds
+1 Experimental Augury
+1 All-Fates Stalker
+1 Mechanozoa
+1 Starbreach Whale
+1 Rayblade Trooper
+1 Codecracker Hound
+1 Personify
+1 Aetherize
+1 Voyager Staff

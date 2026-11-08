@@ -1,0 +1,80 @@
+# Archidekt — Lesbian power couple
+# source: archidekt:5208209
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Drana and Linvala
+
+Deck:
+1 Firja's Retribution
+1 Vicious Rumors
+1 Michiko Konda, Truth Seeker
+1 Soul Warden
+1 Strict Proctor
+1 Pariah
+1 Blood of the Martyr
+1 Tithe Taker
+1 Gift of Estates
+1 Worship
+1 Promise of Loyalty
+1 Shining Shoal
+1 Heliod's Punishment
+1 Dawn of Hope
+1 Tangle Wire
+1 Soul Collector
+1 Succumb to Temptation
+1 Mandate of Peace
+1 Glass-Cast Heart
+1 Sol Ring
+1 Archivist of Oghma
+1 Ayli, Eternal Pilgrim
+1 Blood Artist
+1 Containment Priest
+1 Ayara, First of Locthwain
+1 Ambition's Cost
+1 Angel's Grace
+1 Anguished Unmaking
+1 Authority of the Consuls
+1 Blood Tribute
+1 Bojuka Bog
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Crawlspace
+15 Plains
+15 Swamp
+1 Drana's Emissary
+1 Drana, Liberator of Malakir
+1 Elesh Norn, Grand Cenobite
+1 Elenda, the Dusk Rose
+1 Eradicator Valkyrie
+1 Drana, the Last Bloodchief
+1 Darksteel Mutation
+1 Deadly Dispute
+1 Feast of the Victorious Dead
+1 Fracture
+1 Ghostly Prison
+1 Mortify
+1 Night's Whisper
+1 Rebuff the Wicked
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Reliquary Tower
+1 Reprieve
+1 Sheoldred // The True Scriptures
+1 Stone of Erech
+1 Temple of the False God
+1 Uba Mask
+1 Vault of the Archangel
+1 Wandering Archaic // Explore the Vastlands
+1 Firemane Commando
+1 Hushbringer
+1 Linvala, Keeper of Silence
+1 Myrel, Shield of Argive
+1 Seraph of the Scales
+1 Thalia, Guardian of Thraben
+1 Windborn Muse
+1 Thalia, Heretic Cathar
+1 Liesa, Forgotten Archangel
+1 Lightning Greaves
+1 Firja, Judge of Valor
+1 Withering Boon
+1 Maralen of the Mornsong

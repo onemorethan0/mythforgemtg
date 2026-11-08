@@ -1,0 +1,92 @@
+# Archidekt — Age of the Dinosaur (and Jeff Goldblum)
+# source: archidekt:11979086
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Atla Palani, Nest Tender
+
+Deck:
+1 Chromatic Lantern
+1 Quartzwood Crasher
+1 Goblin Bombardment
+1 Sauron, Dino Devotee
+1 High Market
+1 Bronzebeak Foragers
+1 Dinosaurs on a Spaceship
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Etali, Primal Storm
+1 Hulking Raptor
+1 Pugnacious Hammerskull
+1 Ravenous Tyrannosaurus
+1 Thrashing Brontodon
+1 Tyrranax Rex
+1 Trumpeting Carnosaur
+1 Wakening Sun's Avatar
+1 Zacama, Primal Calamity
+1 Verdant Sun's Avatar
+1 Patchwork Banner
+1 Don't Move
+1 Savage Order
+1 Life Finds a Way
+1 Welcome to . . . // Jurassic Park
+1 Jungle Shrine
+1 Restless Ridgeline
+1 Ashnod's Altar
+1 Restless Bivouac
+1 Banner of Kinship
+1 Regal Imperiosaur
+1 Wrathful Raptors
+1 Polyraptor
+1 Earthshaker Dreadmaw
+1 Gishath, Sun's Avatar
+1 Restless Prairie
+1 Palani's Hatcher
+1 Bonehoard Dracosaur
+1 Dinosaur Egg
+1 Seasons Past
+1 Pantlaza, Sun-Favored
+1 Vaultborn Tyrant
+1 Carnage Tyrant
+1 Bygone Marvels
+1 Thought Vessel
+1 Ghalta, Stampede Tyrant
+1 Monster Manual // Zoological Study
+9 Forest
+1 Homeward Path
+1 Command Tower
+1 Aura Shards
+1 Zetalpa, Primal Dawn
+1 Annie Joins Up
+1 Scion of Calamity
+1 Lightning Greaves
+1 Teferi's Protection
+1 Reliquary Tower
+1 Kinjalli's Sunwing
+1 Swooping Pteranodon
+1 Birds of Paradise
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Fanatic of Rhonas
+1 Oviya, Automech Artisan
+1 Temple Altisaur
+1 The Great Henge
+1 Seedborn Muse
+1 Jetmir's Garden
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Triceraton Commander
+1 Hexing Squelcher
+1 Sunken Citadel
+1 Sol Ring
+1 Devil Dinosaur
+1 Selesnya Sanctuary
+1 Gruul Turf
+1 Natural Order
+1 Nesting Grounds
+5 Plains
+5 Mountain
+1 Ghalta, Primal Hunger
+1 Wayta, Trainer Prodigy
+1 Deflecting Swat
+1 Redirect Lightning
+1 Arcane Signet
+1 Huatli, Poet of Unity // Roar of the Fifth People

@@ -1,0 +1,84 @@
+# Archidekt — Ketramose Random ADHD Budget Deck
+# source: archidekt:13228906
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ketramose, the New Dawn
+
+Deck:
+1 Tainted Field
+1 Marauding Blight-Priest
+1 Thought Vessel
+1 Exsanguinate
+1 Wretched Doll
+1 Isolated Chapel
+1 Sol Ring
+1 Felidar Guardian
+1 Pride of the Road
+1 Fetid Heath
+1 Senu, Keen-Eyed Protector
+1 Concealed Courtyard
+1 Bleachbone Verge
+1 Night Market
+1 Shattered Sanctum
+1 Evolving Wilds
+1 Avishkar Raceway
+1 Terramorphic Expanse
+1 Shadowy Backstreet
+1 Jack-o'-Lantern
+1 Grim Bauble
+1 Blood Artist
+1 Ritual of Hope
+1 Thraben Inspector
+1 Ethereal Armor
+1 Candletrap
+1 Intimidation Tactics
+1 Duress
+1 Ornithopter of Paradise
+1 Zahur, Glory's Past
+1 Fleeting Spirit
+1 Butcher Ghoul
+1 Sheltered by Ghosts
+1 Rite of Oblivion
+1 Gallant Strike
+1 Hour of Victory
+1 Gix's Caress
+1 Wreck Remover
+1 Stormplain Detainment
+1 Swiftwing Assailant
+1 Ripclaw Wrangler
+1 Sever the Bloodline
+1 Rite of the Moth
+1 Streaking Oilgorger
+1 Spectacular Pileup
+1 No One Left Behind
+1 Phelia, Exuberant Shepherd
+1 Ephemerate
+1 Tragic Slip
+1 Mindleech Ghoul
+1 Soul-Guide Lantern
+12 Plains
+1 Soul Warden
+1 Distinguished Conjurer
+1 Diregraf Scavenger
+1 Arrogant Outlaw
+1 Weftblade Enhancer
+1 Perigee Beckoner
+1 Dauntless Scrapbot
+1 Timeline Culler
+1 Rayblade Trooper
+1 Ascendant Dustspeaker
+1 Hylderblade
+1 Ennis, Debate Moderator
+1 Leyline of the Void
+1 Hardlight Containment
+1 Faller's Faithful
+1 Glorious Protector
+1 Syr Vondam, the Lucent
+1 Cloudshift
+1 Imperious Inkmage
+1 Sneering Shadewriter
+14 Swamp
+1 Lightstall Inquisitor
+1 Icewind Stalwart

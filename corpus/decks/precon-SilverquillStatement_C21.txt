@@ -1,0 +1,87 @@
+# WotC precon — Silverquill Statement (C21, 2021-04-23)
+# source: mtgjson:SilverquillStatement_C21
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Breena, the Demagogue
+
+Deck:
+1 Ambition's Cost
+1 Angel of Serenity
+1 Arcane Signet
+1 Author of Shadows
+1 Barren Moor
+1 Bloodthirsty Blade
+1 Bojuka Bog
+1 Bold Plagiarist
+1 Boreas Charger
+1 Caves of Koilos
+1 Citadel Siege
+1 Combat Calligrapher
+1 Command Tower
+1 Coveted Jewel
+1 Cunning Rhetoric
+1 Curse of Disturbance
+1 Deathbringer Liege
+1 Deathbringer Regent
+1 Debtors' Knell
+1 Duelist's Heritage
+1 Elite Scaleguard
+1 Exotic Orchard
+1 Fain, the Broker
+1 Felisa, Fang of Silverquill
+1 Fracture
+1 Ghostly Prison
+1 Gideon, Champion of Justice
+1 Guardian Archon
+1 Hunted Lammasu
+1 Incarnation Technique
+1 Infernal Offering
+1 Inkshield
+1 Keen Duelist
+1 Knight of the White Orchid
+1 Magister of Worth
+1 Martial Impetus
+1 Mikokoro, Center of the Sea
+1 Mind Stone
+1 Myriad Landscape
+1 Necropolis Regent
+1 Nils, Discipline Enforcer
+1 Oblation
+1 Opal Palace
+1 Oreskos Explorer
+1 Orzhov Advokist
+1 Orzhov Basilica
+1 Orzhov Signet
+1 Parasitic Impetus
+1 Pendant of Prosperity
+14 Plains
+1 Promise of Loyalty
+1 Rogue's Passage
+1 Scholarship Sponsor
+1 Secluded Steppe
+1 Secret Rendezvous
+1 Selfless Squire
+1 Silverquill Campus
+1 Sol Ring
+1 Soul Snare
+1 Spectral Searchlight
+1 Stalking Leonin
+1 Stinging Study
+1 Study Hall
+1 Sunscorch Regent
+10 Swamp
+1 Tainted Field
+1 Temple of Silence
+1 Temple of the False God
+1 Tempting Contract
+1 Teysa, Envoy of Ghosts
+1 Together Forever
+1 Tragic Arrogance
+1 Utter End
+1 Victory Chimes
+1 Vow of Duty
+1 Windborn Muse
+1 Zetalpa, Primal Dawn

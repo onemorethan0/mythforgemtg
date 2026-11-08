@@ -1,0 +1,75 @@
+# Archidekt — Mono Blue Winconless Budget Svyelun Merfolk Tribal
+# source: archidekt:2714662
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Svyelun of Sea and Sky
+
+Deck:
+1 Kindred Discovery
+1 Thieving Skydiver
+1 Defiler of Dreams
+1 Master of the Pearl Trident
+1 Distant Melody
+33 Island
+1 Sol Ring
+1 Counterspell
+1 Arcane Signet
+1 Seafloor Oracle
+1 Merrow Harbinger
+1 Teferi's Ageless Insight
+1 Coralhelm Commander
+1 Saprazzan Heir
+1 Pyre of Heroes
+1 Harbinger of the Tides
+1 Kefnet's Monument
+1 Archetype of Imagination
+1 Tempest Caller
+1 Abjure
+1 Reflections of Littjara
+1 Merrow Reejerey
+1 Reliquary Tower
+1 Merfolk Sovereign
+1 Emperor Mihail II
+1 Miscast
+1 Cursecatcher
+1 Empress Galina
+1 Seahunter
+1 Vodalian Mage
+1 Ominous Seas
+1 Aether Gust
+1 Streambed Aquitects
+1 Wake Thrasher
+1 Quicksilver Fountain
+1 Thought Vessel
+1 Tide Shaper
+1 Spell Pierce
+1 Wonder
+1 Vodalian Hexcatcher
+1 Aquitect's Will
+1 Master of Waves
+1 Bident of Thassa
+1 Rapid Hybridization
+1 Pongify
+1 Rootwater Thief
+1 Resculpt
+1 Merfolk Trickster
+1 Lullmage Mentor
+1 Merrow Commerce
+1 Silvergill Adept
+1 Stonybrook Banneret
+1 Heraldic Banner
+1 Triton Shorestalker
+1 Mistcaller
+1 Secrets of the Golden City
+1 Talrand, Sky Summoner
+1 Thassa's Rebuff
+1 Kopala, Warden of Waves
+1 Mist-Cloaked Herald
+1 River Sneak
+1 Reconnaissance Mission
+1 Military Intelligence
+1 Deepchannel Mentor
+1 Callaphe, Beloved of the Sea
+1 Lord of Atlantis

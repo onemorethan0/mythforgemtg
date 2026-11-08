@@ -1,0 +1,99 @@
+# Archidekt — Shadow
+# source: archidekt:14971032
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Shadow the Hedgehog
+
+Deck:
+1 Academy Manufactor
+1 Amonkhet Raceway
+1 Anger
+1 Arcane Signet
+1 Arena of Glory
+1 Ash Barrens
+1 Big Score
+1 Blood Crypt
+1 Bloodstained Mire
+1 Canyon Slough
+1 Command Tower
+1 Crackle with Power
+1 Cursed Mirror
+1 Darksteel Citadel
+1 Deadly Dispute
+1 Demand Answers
+1 Descent into Avernus
+1 Drossforge Bridge
+1 Expedition Map
+1 Field of Ruin
+1 Goldspan Dragon
+1 Great Furnace
+1 Grim Hireling
+1 Jaxis, the Troublemaker
+1 Knuckles the Echidna
+1 Lightning Greaves
+1 Mana Confluence
+1 Midgar, City of Mako // Reactor Raid
+1 Mount Doom
+1 Perigee Beckoner
+1 Phyrexian Tower
+1 Pitiless Plunderer
+1 Prismatic Vista
+1 Professional Face-Breaker
+1 Rain of Riches
+1 Rakdos Signet
+1 Return the Favor
+1 Rev, Tithe Extractor
+1 Revel in Riches
+1 Scalding Tarn
+1 Seize the Spoils
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Sol Ring
+1 Sulfurous Mire
+1 Super State
+1 Susur Secundi, Void Altar
+1 Swiftfoot Boots
+1 Takenuma, Abandoned Mire
+1 The Fire Crystal
+1 The Reaver Cleaver
+1 Treasure Vault
+1 Unexpected Windfall
+1 Untimely Malfunction
+1 Urabrask's Forge
+1 Urborg, Tomb of Yawgmoth
+1 Vault of Whispers
+1 Verdant Catacombs
+1 World Map
+1 Bolt Bend
+6 Swamp
+1 Xorn
+1 Village Rites
+1 Talisman of Indulgence
+1 Infantry Shield
+1 Sabin, Master Monk
+1 Mayhem Devil
+1 Kellogg, Dangerous Mind
+1 Black Market Connections
+1 Lagomos, Hand of Hatred
+1 Blasphemous Act
+1 Rakdos Charm
+1 Ancient Copper Dragon
+5 Mountain
+1 Withering Torment
+1 Enduring Courage
+1 Terminate
+1 Vandalblast
+1 Devastating Onslaught
+1 Tannuk, Steadfast Second
+1 Umbral Collar Zealot
+1 Ragavan, Nimble Pilferer
+1 Idol of Oblivion
+1 Depthshaker Titan
+1 Mirkwood Bats
+1 Zulaport Cutthroat
+1 Feed the Swarm
+1 Loyal Apprentice
+1 Viscera Seer
+1 Spawning Pit
+1 Goblin Bombardment

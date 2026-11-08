@@ -1,0 +1,99 @@
+# Archidekt — Vrondiss - Dice & Chaos "Precon"
+# source: archidekt:3101015
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Vrondiss, Rage of Ancients + Warstorm Surge; Bracket 1 allows none
+
+Commander:
+1 Vrondiss, Rage of Ancients
+
+Deck:
+1 Chaos Warp
+1 Garruk's Uprising
+1 Rishkar's Expertise
+1 Delina, Wild Mage
+1 Path of Ancestry
+1 Arcane Signet
+1 Cinder Glade
+1 Command Tower
+1 Exotic Orchard
+1 Mossfire Valley
+1 Etali, Primal Storm
+1 Return to Nature
+1 Return of the Wildspeaker
+1 Desert
+1 Druid of Purification
+1 Sword of Hours
+1 Underdark Rift
+1 Wand of Wonder
+1 Maddening Hex
+1 Blasphemous Act
+1 Wyll, Blade of Frontiers
+1 Goblin Anarchomancer
+1 Hoarding Ogre
+1 Rockfall Vale
+1 Greater Good
+1 Sakura-Tribe Elder
+1 Myriad Landscape
+1 Kodama's Reach
+1 Dire Fleet Daredevil
+1 You Find Some Prisoners
+1 Wildfire Devils
+1 The Deck of Many Things
+1 Ash Barrens
+1 Farseek
+1 Nature's Lore
+1 Strength-Testing Hammer
+1 Centaur of Attention
+1 Journey to the Lost City
+1 Overwhelming Stampede
+1 Wyll's Reversal
+1 Reckless Endeavor
+1 Chain Reaction
+1 Frenzied Saddlebrute
+1 Territorial Hellkite
+1 Caves of Chaos Adventurer
+1 Disciple of Freyalise // Garden of Freyalise
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Akoum Warrior // Akoum Teeth
+1 Reckless Impulse
+1 Wrenn's Resolve
+1 Light Up the Stage
+1 Copper Host Crusher
+1 Chaos Dragon
+1 Neverwinter Hydra
+1 Component Pouch
+1 Bushwhack
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Sundering Eruption // Volcanic Fissure
+1 Abundant Harvest
+1 Barbarian Class
+1 Curse of Opulence
+1 Shiny Impetus
+1 Impact Tremors
+1 Warstorm Surge
+1 Cultivate
+1 Rampant Growth
+1 Wild Endeavor
+1 Overwhelming Encounter
+1 Thunderwave
+1 Tamiyo's Safekeeping
+1 Skyline Despot
+1 Tyvar's Stand
+1 Chaos Channeler
+1 Spikefield Hazard // Spikefield Cave
+1 Game Trail
+1 Mosswort Bridge
+1 Gruul Turf
+1 Khalni Ambush // Khalni Territory
+1 Wooded Ridgeline
+1 Tangled Florahedron // Tangled Vale
+1 Stump Stomp // Burnwillow Clearing
+1 Undermountain Adventurer
+1 Oliphaunt
+1 Generous Ent
+7 Mountain
+1 Temple of Abandon
+4 Forest
+1 Elemental Bond

@@ -1,0 +1,93 @@
+# Archidekt — Edgar Markov High Power CEDH
+# source: archidekt:12442112
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Demonic Tutor
+1 Smothering Tithe
+1 Enlightened Tutor
+1 Reanimate
+1 Toxic Deluge
+1 Flooded Strand
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Godless Shrine
+1 Rogue's Passage
+1 Sorin Markov
+1 Charismatic Conqueror
+1 Sanguine Bond
+1 Forerunner of the Legion
+1 Elenda, the Dusk Rose
+1 Oathsworn Vampire
+1 Myriad Landscape
+1 Bojuka Bog
+1 Yahenni, Undying Partisan
+1 Sorin, Vengeful Bloodlord
+1 Malakir Rebirth // Malakir Mire
+1 Anguished Unmaking
+1 Evolving Wilds
+1 Elenda's Hierophant
+1 Cordial Vampire
+1 Bolas's Citadel
+1 Phyrexian Arena
+1 Bloodletter of Aclazotz
+1 Bloodthirsty Conqueror
+1 Anointed Procession
+1 Stromkirk Captain
+1 Blood Crypt
+1 Reliquary Tower
+9 Swamp
+4 Mountain
+5 Plains
+1 Teferi's Protection
+1 Utter End
+1 Gruesome Fate
+1 Nullpriest of Oblivion
+1 Vicious Conquistador
+1 Vault of the Archangel
+1 Indulging Patrician
+1 Marauding Blight-Priest
+1 Austere Command
+1 Path of Ancestry
+1 Hall of Heliod's Generosity
+1 Feed the Swarm
+1 Dark Ritual
+1 Vermin Gorger
+1 Sol Ring
+1 Command Tower
+1 Arcane Signet
+1 Damn
+1 Bloodghast
+1 Blood Artist
+1 Drana, Liberator of Malakir
+1 Duress
+1 Read the Bones
+1 Legion Lieutenant
+1 Olivia, Crimson Bride
+1 Indulgent Aristocrat
+1 Pact of the Serpent
+1 Generous Gift
+1 Vito, Thorn of the Dusk Rose
+1 Unclaimed Territory
+1 Sorin, Imperious Bloodlord
+1 Wooded Foothills
+1 Arid Mesa
+1 Marsh Flats
+1 Sacred Foundry
+1 Markov Baron
+1 Dusk Legion Sergeant
+1 Cruel Celebrant
+1 Exquisite Blood
+1 Vampire of the Dire Moon
+1 Vampire Socialite
+1 Master of Dark Rites
+1 Olivia's Wrath
+1 Path to Exile
+1 Vampiric Tutor
+1 Swords to Plowshares
+1 Viscera Seer
+1 Throne of the God-Pharaoh

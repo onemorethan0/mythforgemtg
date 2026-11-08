@@ -1,0 +1,107 @@
+# Archidekt — All MTG players make a Sliver deck.
+# source: archidekt:5464055
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 10 Game Changers (Demonic Tutor, Enlightened Tutor, Force of Will, Gamble, Jeska's Will...); Bracket 1 allows 0
+
+Commander:
+1 Sliver Legion
+
+Deck:
+1 Vampiric Tutor
+1 Sylvan Library
+1 Sensei's Divining Top
+1 Demonic Tutor
+1 Phyrexian Arena
+1 Black Market Connections
+1 Assault Suit
+1 Stoneforge Mystic
+1 Recruiter of the Guard
+1 Imperial Recruiter
+1 Jeska's Will
+1 Tundra
+1 Taiga
+1 Eladamri's Call
+1 Grim Tutor
+1 Gamble
+1 Enlightened Tutor
+1 Idyllic Tutor
+1 Nature's Lore
+1 Fabricate
+1 Doomsday
+1 Diabolic Tutor
+1 Mystic Remora
+1 Tropical Island
+1 Underground Sea
+1 Bayou
+1 Volcanic Island
+1 Jon Irenicus, Shattered One
+1 Badlands
+1 Scrubland
+1 Savannah
+1 Emperor Crocodile
+1 Gorilla Pack
+1 Bronze Bombshell
+1 Mana Drain
+1 Tethered Griffin
+1 Stuffy Doll
+1 Manta Ray
+1 Seasinger
+1 Barbarian Outcast
+1 Lurebound Scarecrow
+1 Sivvi's Valor
+1 Merchant Ship
+1 Dandân
+1 Vodalian Knights
+1 Pariah's Shield
+1 Otawara, Soaring City
+1 Sol Ring
+1 Boseiju, Who Endures
+1 Pariah
+1 Force of Will
+1 Command Tower
+1 Mystical Tutor
+1 Personal Tutor
+1 Prismatic Vista
+1 Arcane Signet
+1 Forest
+1 Mountain
+1 Plains
+1 Manaweft Sliver
+1 Three Visits
+1 Dimir Signet
+1 Gemhide Sliver
+1 Basalt Monolith
+1 Fellwar Stone
+1 Polluted Delta
+1 Buried Ruin
+1 Swan Song
+1 Muddle the Mixture
+1 Steelshaper's Gift
+1 Cruel Tutor
+1 Worldly Tutor
+1 Survival of the Fittest
+1 Lim-Dûl's Vault
+1 Mastermind's Acquisition
+2 Swamp
+1 Congregation at Dawn
+1 Open the Armory
+1 Breeding Pool
+1 Overgrown Tomb
+1 Plateau
+1 Island
+1 Flooded Strand
+1 Arid Mesa
+1 Marsh Flats
+1 Verdant Catacombs
+1 Windswept Heath
+1 Watery Grave
+1 Hallowed Fountain
+1 Farseek
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Scalding Tarn
+1 Wooded Foothills
+1 Godless Shrine
+1 Perplex
+1 Mox Diamond

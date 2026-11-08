@@ -1,0 +1,92 @@
+# WotC precon — Prismari Performance (C21, 2021-04-23)
+# source: mtgjson:PrismariPerformance_C21
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Zaffai, Thunder Conductor
+
+Deck:
+1 Aether Gale
+1 Aetherspouts
+1 Apex of Power
+1 Arcane Signet
+1 Blasphemous Act
+1 Blighted Cataract
+1 Brainstorm
+1 Brass's Bounty
+1 Call the Skybreaker
+1 Charmbreaker Devils
+1 Command Tower
+1 Crackling Drake
+1 Creative Technique
+1 Dazzling Sphinx
+1 Desert of the Fervent
+1 Desert of the Mindful
+1 Dig Through Time
+1 Diluvian Primordial
+1 Dualcaster Mage
+1 Elemental Masterpiece
+1 Elementalist's Palette
+1 Epic Experiment
+1 Erratic Cyclops
+1 Etali, Primal Storm
+1 Exotic Orchard
+1 Expressive Iteration
+1 Faithless Looting
+1 Fiery Encore
+1 Fiery Fall
+1 Forgotten Cave
+1 Hedron Archive
+1 Humble Defector
+1 Inferno Project
+1 Inspiring Refrain
+10 Island
+1 Izzet Boilerworks
+1 Izzet Signet
+1 Jaya Ballard
+1 Letter of Acceptance
+1 Living Lore
+1 Lonely Sandbar
+1 Mage-Ring Network
+1 Mana Geyser
+1 Memorial to Genius
+1 Metallurgic Summonings
+1 Mind Stone
+1 Mind's Desire
+9 Mountain
+1 Muse Vortex
+1 Myriad Landscape
+1 Naru Meha, Master Wizard
+1 Octavia, Living Thesis
+1 Ponder
+1 Prismari Campus
+1 Pyromancer's Goggles
+1 Radiant Performer
+1 Reinterpret
+1 Reliquary Tower
+1 Resculpt
+1 Rionya, Fire Dancer
+1 Rootha, Mercurial Artist
+1 Rousing Refrain
+1 Scavenger Grounds
+1 Seething Song
+1 Serum Visions
+1 Shivan Reef
+1 Sly Instigator
+1 Sol Ring
+1 Storm-Kiln Artist
+1 Study Hall
+1 Sunbird's Invocation
+1 Surge to Victory
+1 Swarm Intelligence
+1 Talisman of Creativity
+1 Talrand, Sky Summoner
+1 Temple of Epiphany
+1 Temple of the False God
+1 Traumatic Visions
+1 Treasure Cruise
+1 Veyran, Voice of Duality
+1 Volcanic Vision
+1 Wildfire Devils

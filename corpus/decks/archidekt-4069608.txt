@@ -1,0 +1,85 @@
+# Archidekt — Tetsuo Dragons
+# source: archidekt:4069608
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Niv-Mizzet, Parun + Niv-Mizzet, Visionary; Bracket 2 allows none
+
+Commander:
+1 Tetsuo, Imperial Champion
+
+Deck:
+1 Consider
+1 Plaza of Heroes
+1 Faithless Looting
+1 Akki Battle Squad
+1 Hellkite Charger
+1 Command Tower
+1 Frantic Search
+1 Exotic Orchard
+1 Luxury Suite
+1 Morphic Pool
+1 Scalding Tarn
+1 Shizo, Death's Storehouse
+1 Takenuma, Abandoned Mire
+1 Training Center
+1 Xander's Lounge
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Malakir Rebirth // Malakir Mire
+1 Silundi Vision // Silundi Isle
+1 Desolate Lighthouse
+1 Hexplate Wallbreaker
+1 Swamp
+1 Geier Reach Sanitarium
+1 Fabled Passage
+1 Port of Karfell
+1 The Reaver Cleaver
+1 Mask of the Schemer
+1 Wheel of Fate
+1 Haven of the Spirit Dragon
+1 Tomb Fortress
+1 Goro-Goro, Disciple of Ryusei
+1 Mithril Coat
+1 Sword of Hearth and Home
+1 Grafted Exoskeleton
+1 Knollspine Dragon
+1 Niv-Mizzet, Parun
+1 Thundering Falls
+1 Undercity Sewers
+1 Raucous Theater
+1 Pact Weapon
+1 Winged Boots
+1 Chandra's Ignition
+1 Diamond Pick-Axe
+1 Swiftfoot Boots
+1 Sword of the Animist
+1 Ancestral Vision
+1 Windfall
+1 Wheel of Misfortune
+1 Basilisk Collar
+1 The Irencrag
+1 Reflecting Pool
+1 Maze of Ith
+1 Arena of Glory
+1 Dalakos, Crafter of Wonders
+1 Abstergo Entertainment
+1 Polluted Delta
+1 Brotherhood Regalia
+1 The Key to the Vault
+4 Mountain
+1 Niv-Mizzet, Visionary
+3 Island
+1 Pulse of the Grid
+1 Gilgamesh, Master-at-Arms
+1 Ancient Brass Dragon
+1 Sword of Wealth and Power
+1 Starting Town
+1 Prismari, the Inspiration
+1 Ninja's Blades
+1 Twinflame Tyrant
+1 Godo, Bandit Warlord
+1 Traumatic Critique
+20 Dragon's Approach
+1 Hammer of Nazahn
+1 Wizard's Staff
+1 Glamdring, Foe-hammer // Gleam of Death
+1 Prismari Charm

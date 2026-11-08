@@ -1,0 +1,106 @@
+# Archidekt — Santa Jonny - Gifts on the House! (EDH, Jon Irenicus, B4)
+# source: archidekt:3855541
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jon Irenicus, Shattered One
+
+Deck:
+1 Exchange of Words
+1 Toxic Deluge
+1 Arcane Signet
+1 Sol Ring
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Sudden Substitution
+1 Thought Vessel
+1 Archfiend of the Dross
+1 Sygg, River Cutthroat
+1 Faerie Mastermind
+1 Witch-king of Angmar
+1 Wasteland
+1 Talisman of Dominance
+1 Demonic Tutor
+1 Withering Torment
+1 Fellwar Stone
+1 Dark Ritual
+1 Urborg, Tomb of Yawgmoth
+1 Underground River
+1 Takenuma, Abandoned Mire
+1 Sink into Stupor // Soporific Springs
+1 Verdant Catacombs
+1 Sunken Ruins
+1 Reliquary Tower
+2 Swamp
+1 Malakir Rebirth // Malakir Mire
+1 Fell the Profane // Fell Mire
+2 Island
+1 Polluted Delta
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Cabal Coffers
+1 Otawara, Soaring City
+1 Morphic Pool
+1 Misty Rainforest
+1 Homeward Path
+1 Gloomlake Verge
+1 Command Tower
+1 Clearwater Pathway // Murkwater Pathway
+1 Marsh Flats
+1 Blasphemous Edict
+1 Force of Despair
+1 Counterspell
+1 Maze of Ith
+1 Torment of Hailfire
+1 Mana Drain
+1 Wrong Turn
+1 An Offer You Can't Refuse
+1 The One Ring
+1 Notion Thief
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Swan Song
+1 Dimir Signet
+1 Blighted Agent
+1 March of Swirling Mist
+1 Sword of War and Peace
+1 Pendrell Mists
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Gudul Lurker
+1 Changeling Outcast
+1 Prying Blade
+1 Lost Jitte
+1 Phyrexian Crusader
+1 Reins of Power
+1 Force of Negation
+1 Abyssal Persecutor
+1 Vampiric Tutor
+1 Mystical Tutor
+1 Rhystic Study
+1 Ancient Tomb
+1 Underground Sea
+1 Flesh Reaver
+1 Dreamtide Whale
+1 Phyrexian Negator
+1 Invisible Stalker
+1 Liquimetal Torque
+1 Watery Grave
+1 Ghost Vacuum
+1 Ebon Drake
+1 Slither Blade
+1 Steel Golem
+1 Master of the Feast
+1 Vashta Nerada
+1 Desecration Elemental
+1 Bloodforged Battle-Axe
+1 Dauthi Voidwalker
+1 Umezawa's Jitte
+1 Phyrexian Obliterator
+1 Nether Traitor
+1 Tezzeret, Cruel Captain
+1 Undercity Sewers
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Chamber of Manipulation
+1 Tormented Soul
+1 Urza's Saga

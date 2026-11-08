@@ -1,0 +1,98 @@
+# Archidekt — Urza Artifacts
+# source: archidekt:3900114
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Strix Serenade
+1 Muddle the Mixture
+1 Basalt Monolith
+1 Swan Song
+1 Grim Monolith
+1 Sol Ring
+1 Trinisphere
+1 Reshape
+1 Isochron Scepter
+1 Fabricate
+1 Mystical Tutor
+1 Urza's Saga
+1 Ornithopter
+1 Winter Orb
+1 Reliquary Tower
+1 Sapphire Medallion
+1 Mindbreak Trap
+1 Paradoxical Outcome
+1 Spell Pierce
+1 Windfall
+1 Faerie Mastermind
+1 Power Artifact
+1 Mox Diamond
+1 Inventors' Fair
+1 Phyrexian Walker
+1 Treasure Vault
+1 Volatile Stormdrake
+1 Chain of Vapor
+1 Disruptor Flute
+1 Mishra's Bauble
+1 Counterspell
+1 Merchant Scroll
+1 Darksteel Citadel
+1 Mystic Forge
+1 Battered Golem
+1 Banishing Knack
+1 Crystal Vein
+1 Emergence Zone
+1 Fomori Vault
+1 Preordain
+1 Sensei's Divining Top
+1 Ancient Tomb
+1 Fierce Guardianship
+1 Lotus Petal
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Mana Vault
+1 Force of Will
+1 Cephalid Coliseum
+1 Dramatic Reversal
+1 Chrome Mox
+1 Brainstorm
+1 Forensic Gadgeteer
+1 Pact of Negation
+1 Retraction Helix
+1 Unwinding Clock
+1 Force of Negation
+1 Grafdigger's Cage
+1 Mockingbird
+1 Rhystic Study
+1 Codex Shredder
+1 Cyclonic Rift
+1 Gemstone Caverns
+1 Flooded Strand
+1 Flusterstorm
+1 Etherium Sculptor
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 The One Ring
+1 Mental Misstep
+1 Phyrexian Metamorph
+1 Manifold Key
+1 Hullbreaker Horror
+1 Mystic Remora
+1 Seat of the Synod
+1 Rings of Brighthearth
+1 Solve the Equation
+1 Static Orb
+1 Mox Opal
+1 Narset, Parter of Veils
+1 The Reality Chip
+1 Vexing Bauble
+1 Miscast
+1 Mana Drain
+1 Transmute Artifact
+11 Island
+1 Uthros, Titanic Godcore
+1 Minamo, School at Water's Edge
+1 Consecrated Sphinx
+1 Gold Pan

@@ -1,0 +1,92 @@
+# Archidekt — Surgeon General Commander - Mutate Voltron
+# source: archidekt:11667975
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Surgeon General Commander
+
+Deck:
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Marsh Flats
+1 Flooded Strand
+1 Arid Mesa
+1 Bloodstained Mire
+1 Windswept Heath
+1 Everquill Phoenix
+1 Guided Passage
+1 Silhana Ledgewalker
+1 Sol Ring
+1 Paradise Druid
+1 Arcane Signet
+1 Brainsurge
+1 Swiftfoot Boots
+1 Ketria Triome
+1 Savai Triome
+1 Indatha Triome
+1 Zagoth Triome
+1 Alpha Authority
+1 Command Tower
+1 Raugrin Triome
+1 Glowstone Recluse
+7 Forest
+1 Gemrazer
+1 Growth Spiral
+1 Farseek
+1 Auspicious Starrix
+1 Dirge Bat
+1 Brokkos, Apex of Forever
+1 Parcelbeast
+1 Sea-Dasher Octopus
+1 Illuna, Apex of Wishes
+1 Snapdax, Apex of the Hunt
+1 Nethroi, Apex of Death
+1 Insatiable Hemophage
+1 Boneyard Lurker
+1 Dreamtail Heron
+1 Pouncing Shoreshark
+1 Necropanther
+1 Huntmaster Liger
+1 Toski, Bearer of Secrets
+1 Lore Drakkis
+1 Ivy, Gleeful Spellthief
+1 Porcuparrot
+1 Vadrok, Apex of Thunder
+1 Mythos of Illuna
+1 Cubwarden
+1 Majestic Auricorn
+1 Gladecover Scout
+1 Slippery Bogle
+1 Pollywog Symbiote
+1 Sink into Stupor // Soporific Springs
+1 Vivien, Monsters' Advocate
+1 Wooded Foothills
+1 Vesuvan Duplimancy
+1 Venomthrope
+1 Trumpeting Gnarr
+1 Canopy Cover
+1 Slip Out the Back
+1 Archipelagore
+1 Regal Leosaur
+1 Mythos of Snapdax
+1 Mythos of Brokkos
+1 Mythos of Nethroi
+1 Mythos of Vadrok
+1 Lukka, Coppercoat Outcast
+1 Plains
+8 Island
+2 Swamp
+3 Mountain
+1 Eerie Ultimatum
+1 Cavern Whisperer
+1 Chittering Harvester
+1 Cloudpiercer
+1 Extinction Event
+1 Migratory Greathorn
+1 Inspired Ultimatum
+1 Genesis Ultimatum
+1 Cancel
+1 Negate
+1 Emergent Ultimatum

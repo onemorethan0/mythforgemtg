@@ -1,0 +1,84 @@
+# Archidekt — Elf Mom
+# source: archidekt:111551
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Marwyn, the Nurturer
+
+Deck:
+1 Allosaurus Shepherd
+1 Wirewood Symbiote
+1 Utopia Sprawl
+1 Circle of Dreams Druid
+1 Chrome Mox
+1 Soul of the Harvest
+1 Boseiju, Who Endures
+1 Leaf-Crowned Visionary
+1 Emerald Medallion
+1 Wrap in Vigor
+1 Llanowar Loamspeaker
+1 Concordant Crossroads
+1 Heroic Intervention
+1 Beast Within
+1 Imperious Perfect
+1 Ezuri's Predation
+1 Beastmaster Ascension
+1 Shamanic Revelation
+1 Freyalise, Llanowar's Fury
+1 Elvish Archdruid
+1 Heritage Druid
+1 Gaea's Herald
+1 Finale of Devastation
+1 Vitalize
+1 Elvish Mystic
+1 Arbor Elf
+1 Ezuri, Renegade Leader
+1 Joraga Treespeaker
+1 Elvish Visionary
+1 Helix Pinnacle
+1 Umbral Mantle
+1 Elvish Harbinger
+1 Lys Alana Huntmaster
+1 Thousand-Year Elixir
+1 Elvish Champion
+1 Fierce Empath
+1 Seedborn Muse
+1 Timberwatch Elf
+1 Wirewood Lodge
+1 Fyndhorn Elder
+1 Llanowar Elves
+1 Seeker of Skybreak
+1 Wild Growth
+1 Wood Elves
+1 Crop Rotation
+1 Priest of Titania
+1 Fyndhorn Elves
+1 Regal Force
+1 Reclamation Sage
+1 Beast Whisperer
+1 Guardian Project
+1 Incubation Druid
+1 Paradise Druid
+1 Regrowth
+1 Sol Ring
+1 Staff of Domination
+1 Elvish Warmaster
+1 Craterhoof Behemoth
+1 Yavimaya, Cradle of Growth
+1 Quirion Ranger
+1 Natural Order
+1 Realmwalker
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Llanowar Tribe
+1 Birchlore Rangers
+1 Taunting Elf
+1 Song of the Dryads
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Triumph of the Hordes
+1 Rishkar's Expertise
+1 Heritage Reclamation
+1 Sylvan Library
+1 Evendo, Waking Haven
+25 Forest
+1 Skullclamp

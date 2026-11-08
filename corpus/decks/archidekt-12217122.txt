@@ -1,0 +1,96 @@
+# Archidekt — Sticky Spiderman
+# source: archidekt:12217122
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Sensational Spider-Man
+
+Deck:
+1 Sharae of Numbing Depths
+1 Wicked Slumber
+1 Thrummingbird
+1 Adarkar Wastes
+1 Arcane Lighthouse
+1 Authority of the Consuls
+1 Arcane Denial
+1 Arcane Signet
+1 Austere Command
+1 Command Tower
+1 Experimental Augury
+1 Dreamtide Whale
+1 Freeze in Place
+1 Floodfarm Verge
+1 Flux Channeler
+1 Floodpits Drowner
+1 Glacial Fortress
+1 Grateful Apparition
+1 Greatsword of Tyr
+1 Hallowed Fountain
+1 Grappling Kraken
+1 Hylda of the Icy Crown
+1 Inexorable Tide
+1 Nimbus Maze
+1 Norn's Choirmaster
+1 Port Town
+1 Sea of Clouds
+1 Solitary Sanctuary
+1 Verity Circle
+1 Karn's Bastion
+7 Island
+1 Impede Momentum
+1 Sanctuary Wall
+1 Tranquilize
+7 Plains
+1 Mjölnir, Storm Hammer
+1 Mystic Gate
+1 Path to Exile
+1 Succumb to the Cold
+1 Stall Out
+1 Kitnap
+1 Meat Locker // Drowned Diner
+1 Lost in the Maze
+1 Ominous Seas
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Sol Ring
+1 The Watcher in the Water
+1 Split Up
+1 Dovin's Veto
+1 Fabled Passage
+1 Mystic Sanctuary
+1 Reliquary Tower
+1 Staff of Compleation
+1 Lightning Greaves
+1 Ghostly Prison
+1 Winged Boots
+1 Reconnaissance
+1 Monstrosity of the Lake
+1 Out Cold
+1 Ambling Stormshell
+1 Dolmen Gate
+1 Sapphire Medallion
+1 Talisman of Progress
+1 Trap the Trespassers
+1 Scroll of Isildur
+1 Sleep-Cursed Faerie
+1 Prairie Stream
+1 Decanter of Endless Water
+1 Rogue's Passage
+1 Midnight Clock
+1 Ash Barrens
+1 Hylda's Crown of Winter
+1 Windfall
+1 Vnwxt, Verbose Host
+1 Unstoppable Plan
+1 Everflowing Chalice
+1 Fear of Sleep Paralysis
+1 Mistrise Village
+1 Noble Heritage
+1 Permission Denied
+1 Timely Ward
+1 Aqueous Form
+1 Absolute Virtue
+1 Lulu, Stern Guardian
+1 Summon: Valefor
+1 Conformer Shuriken
+1 Swords to Plowshares

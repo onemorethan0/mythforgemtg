@@ -1,0 +1,91 @@
+# Archidekt — Rosheen Meanderer the 10th
+# source: archidekt:588971
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Rosheen, Roaring Prophet
+
+Deck:
+1 Jaya's Immolating Inferno
+1 Kamahl's Druidic Vow
+1 Hydradoodle
+1 Myriad Landscape
+1 Sheltered Thicket
+1 Release the Gremlins
+1 Walking Ballista
+1 Wildest Dreams
+1 Subterranean Tremors
+1 Comet Storm
+1 Magmaquake
+1 Cinder Glade
+1 Animist's Awakening
+1 Hangarback Walker
+1 Mage-Ring Network
+1 Gruul Turf
+1 Temple of the False God
+1 Lifeblood Hydra
+1 Rugged Highlands
+1 Astral Cornucopia
+1 Temple of Abandon
+1 Savageborn Hydra
+1 Clan Defiance
+1 Kazandu Refuge
+1 Devil's Play
+1 Kessig Wolf Run
+1 Primordial Hydra
+1 Rootbound Crag
+1 Genesis Wave
+1 Strength of the Tajuru
+1 Apocalypse Hydra
+1 Molder
+1 Wurmcalling
+1 Fungal Reaches
+1 Enshrined Memories
+1 Terrain Generator
+1 The Ultimate Nightmare of Wizards of the Coast® Customer Service
+1 Flock of Rabid Sheep
+1 Fanning the Flames
+1 Krakilin
+1 Choking Vines
+1 Hungering Hydra
+1 Stomping Ground
+1 Steelbane Hydra
+1 Stonecoil Serpent
+1 Castle Garenbrig
+1 Nylea's Intervention
+1 Capricopian
+10 Forest
+1 Aberrant
+1 Neverwinter Hydra
+1 Kurbis, Harvest Celebrant
+1 Voracious Hydra
+1 Broodlord
+1 Fractal Harness
+1 Tervigon
+1 Pest Infestation
+1 Shivan Devastator
+1 Silkguard
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Klauth's Will
+1 Mawloc
+1 Tyrant Guard
+1 Exocrine
+1 Sporocyst
+1 War Room
+1 Treasure Vault
+1 Termagant Swarm
+1 Tyvar's Stand
+9 Mountain
+1 Primal Might
+1 Open the Way
+1 Zenith Festival
+1 Spinning Wheel Kick
+1 Clown Car
+1 Long Rest
+1 Valgavoth's Onslaught
+1 Red Sun's Twilight
+1 Goldvein Hydra
+1 Green Sun's Twilight
+1 Marketback Walker
+1 Hugs, Grisly Guardian

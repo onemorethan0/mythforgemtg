@@ -1,0 +1,93 @@
+# Archidekt — D.U.I. With Ty - Drunk Driver Tymaret
+# source: archidekt:13918179
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tymaret, the Murder King
+
+Deck:
+1 Tavern Brawler
+1 Pharika's Libation
+1 Disrupt Decorum
+1 Generous Plunderer
+1 Claim the Firstborn
+1 Goatnap
+1 Command Tower
+1 Dark Confidant
+1 Seize the Spotlight
+1 Act of Aggression
+1 Underworld Connections
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Everflowing Chalice
+1 Font of Mythos
+1 Gilded Assault Cart
+1 Reckless Handling
+1 Volatile Rig
+1 Renegade Freighter
+1 Hierophant's Chalice
+1 Chromatic Lantern
+1 Ayara, Widow of the Realm // Ayara, Furnace Queen
+1 Sol Grail
+1 Sol Ring
+1 Fell the Profane // Fell Mire
+1 Black Market Connections
+1 Vector, Imperial Capital
+1 Lindblum, Industrial Regency // Mage Siege
+1 Midgar, City of Mako // Reactor Raid
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Detection Tower
+1 Haunted Ridge
+1 Rakdos Carnarium
+1 Custody Battle
+1 Sulfurous Springs
+1 Hellish Rebuke
+1 Hellish Sideswipe
+1 Kazuul, Tyrant of the Cliffs
+1 Cursed Mirror
+1 Buried Ruin
+1 Arcane Lighthouse
+1 Howling Mine
+1 Hot Dog Cart
+1 Curse of Opulence
+6 Swamp
+1 Consumed by Greed
+1 Geier Reach Sanitarium
+1 Big Apple, 3 a.m.
+1 Snow-Covered Swamp
+1 Snow-Covered Mountain
+1 Foreboding Ruins
+1 Gastal Thrillroller
+1 The Fire Nation Drill
+1 Unlicensed Hearse
+1 Night Market
+1 High Market
+1 Mizzium Tank
+1 Deadly Dispute
+1 Shiny Impetus
+1 Sibling Rivalry
+1 Bothersome Quasit
+1 Unexpected Request
+1 Bloodgift Demon
+1 Count on Luck
+1 Big Wheel
+1 Smuggler's Copter
+1 Ichor Elixir
+1 Royal Assassin
+1 Hijack
+1 Maximum Overdrive
+1 Tavern Scoundrel
+1 The Sound of Drums
+11 Mountain
+1 Ovalchase Dragster
+1 Threaten
+1 Besmirch
+1 Far Fortune, End Boss
+1 Spin Out
+1 Adrenaline Jockey
+1 Fountain of Ichor
+1 Crash and Burn
+1 Brash Taunter
+1 Luke Cage, Hero for Hire
+1 Game of Chaos
+1 Brawl

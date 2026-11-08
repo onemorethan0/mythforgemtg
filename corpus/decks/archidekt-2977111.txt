@@ -1,0 +1,104 @@
+# Archidekt — K & T Elementals
+# source: archidekt:2977111
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kynaios and Tiro of Meletis
+
+Deck:
+1 Skyclave Apparition
+1 Leyline Binding
+1 Adagia, Windswept Bastion
+1 Solitude
+1 Cackling Counterpart
+1 Exotic Orchard
+1 Sevinne's Reclamation
+1 Endurance
+1 Repudiate // Replicate
+1 Eternal Witness
+1 Clever Impersonator
+1 Swan Song
+1 Risen Reef
+1 Titania, Protector of Argoth
+1 Sun Titan
+1 Omnath, Locus of Creation
+1 Wooded Foothills
+1 Twinflame
+1 Sanctum Weaver
+1 Temur Ascendancy
+1 Temple Garden
+3 Forest
+1 Plains
+2 Mountain
+2 Island
+1 Volcanic Island
+1 Tundra
+1 Reflecting Pool
+1 Taiga
+1 Tropical Island
+1 Savannah
+1 Plateau
+1 Jetmir's Garden
+1 Spara's Headquarters
+1 Misty Rainforest
+1 Breeding Pool
+1 Command Tower
+1 Hallowed Fountain
+1 Sacred Foundry
+1 Steam Vents
+1 Stomping Ground
+1 Arid Mesa
+1 Flooded Strand
+1 Windswept Heath
+1 Field of the Dead
+1 Finale of Devastation
+1 Deep Gnome Terramancer
+1 Flameshadow Conjuring
+1 Nissa, Resurgent Animist
+1 Raugrin Triome
+1 Scalding Tarn
+1 Brudiclad, Telchor Engineer
+1 Avatar of Growth
+1 Last March of the Ents
+1 Crop Rotation
+1 Devastating Onslaught
+1 Path to Exile
+1 Doppelgang
+1 Vernal Sovereign
+1 Faeburrow Elder
+1 Parallel Lives
+1 Tireless Provisioner
+1 Chord of Calling
+1 Eidolon of Blossoms
+1 Roaming Throne
+1 Molten Duplication
+1 Elesh Norn, Mother of Machines
+1 Consign to Memory
+1 Ketria Triome
+1 Horizon of Progress
+1 Overlord of the Hauntwoods
+1 Struggle for Project Purity
+1 Stifle
+1 Overlord of the Floodpits
+1 Springheart Nantuko
+1 Fecund Greenshell
+1 Louisoix's Sacrifice
+1 Flusterstorm
+1 Open the Way
+1 Flare of Cultivation
+1 Champion of the Path
+1 Twinflame Travelers
+1 Wistfulness
+1 Omnath, Locus of Rage
+1 Sunderflock
+1 Vibrance
+1 Aurora Awakener
+1 Bloom Tender
+1 Rescuer Chwinga
+1 Swords to Plowshares
+1 Avatar's Wrath
+1 Winds of Abandon
+1 Wyll's Reversal
+1 Cultivate
+1 Trouble in Pairs

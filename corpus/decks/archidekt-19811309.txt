@@ -1,0 +1,96 @@
+# Archidekt — Dark Moon's Echo (Golbez Crystal Collector)
+# source: archidekt:19811309
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Golbez, Crystal Collector
+
+Deck:
+1 Mistvault Bridge
+1 Broodstar
+1 Treasure Vault
+1 Seat of the Synod
+1 Moonshadow
+1 Etherium Sculptor
+1 Urza, Lord High Artificer
+1 Riddlesmith
+1 Spellskite
+1 Fell the Profane // Fell Mire
+3 Swamp
+1 Phyrexian Triniform
+1 Swan Song
+1 Resculpt
+1 Black Market Connections
+1 Tezzeret, Master of the Bridge
+1 Pact of Negation
+1 Counterbalance
+1 Ancient Stone Idol
+1 Brainstorm
+1 Vault of Whispers
+1 Darksteel Citadel
+1 Stridehangar Automaton
+1 Phyrexian Dreadnought
+1 Troll of Khazad-dûm
+1 Phyrexian Metamorph
+1 Liquimetal Torque
+1 Emry, Lurker of the Loch
+1 Master of Etherium
+1 Foundry Inspector
+1 Baleful Strix
+1 Malakir Rebirth // Malakir Mire
+1 Skullclamp
+1 Mausoleum Secrets
+1 Gate to Phyrexia
+1 Thieving Skydiver
+1 Sai, Master Thopterist
+1 Armix, Filigree Thrasher
+1 The Underworld Cookbook
+1 Matoya, Archon Elder
+1 Forensic Gadgeteer
+1 Retrofitter Foundry
+1 Deadly Dispute
+1 Thought Monitor
+1 Cyclonic Rift
+1 Negate
+1 Darksteel Juggernaut
+1 Uthros, Titanic Godcore
+1 Otawara, Soaring City
+1 Urborg, Tomb of Yawgmoth
+6 Island
+1 Field of Ruin
+1 Feed the Swarm
+1 Clearwater Pathway // Murkwater Pathway
+1 Aura Thief
+1 Morphic Pool
+1 Gloomlake Verge
+1 Undercity Sewers
+1 Underground River
+1 Exotic Orchard
+1 Command Tower
+1 Watery Grave
+1 Entomb
+1 Shipwreck Marsh
+1 Darkslick Shores
+1 Eldrazi Monument
+1 Master Transmuter
+1 Palantír of Orthanc
+1 Mirage Mirror
+1 Flusterstorm
+1 Academy Ruins
+1 Fierce Guardianship
+1 The Ooze
+1 Dimir Aqueduct
+1 Waterlogged Teachings // Inundated Archive
+1 Mirrodin Besieged
+1 Simulacrum Synthesizer
+1 Sol Ring
+1 Mana Sculpt
+1 Bolas's Citadel
+1 Obsessive Pursuit
+1 Urza's Saga
+1 Supper for Spiders
+1 Blood Money
+1 Inkmoth Nexus
+1 Tamiyo Meets the Story Circle
+1 Seven of Nine, Unassimilated

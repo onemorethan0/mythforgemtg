@@ -1,0 +1,88 @@
+# Archidekt — Crypteque
+# source: archidekt:10460885
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Gisa, the Hellraiser
+
+Deck:
+1 Withering Torment
+1 Toxic Deluge
+1 Sol Ring
+1 Liliana, Dreadhorde General
+1 Phyrexian Arena
+1 Black Market
+1 Blood Artist
+1 Dark Ritual
+1 Arcane Signet
+21 Swamp
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Reanimate
+1 Flare of Malice
+1 Rishadan Port
+1 Bojuka Bog
+1 Ashnod's Altar
+1 Reliquary Tower
+1 Crypt Ghast
+1 Skullclamp
+1 Altar of Dementia
+1 Imp's Mischief
+1 Vein Ripper
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Unmarked Grave
+1 Jet Medallion
+1 Diabolic Intent
+1 Cabal Coffers
+1 Boggart Trawler // Boggart Bog
+1 Priest of Forgotten Gods
+1 Forbidden Orchard
+1 High Market
+1 Susur Secundi, Void Altar
+1 Archenemy's Charm
+1 Coat of Arms
+1 Deadly Rollick
+1 Entomb
+1 Blood Pet
+1 Carnival of Souls
+1 Grave Pact
+1 The Meathook Massacre
+1 Reassembling Skeleton
+1 Undead Augur
+1 Ayara, First of Locthwain
+1 Death Baron
+1 Patchwork Banner
+1 Morbid Opportunist
+1 Unstoppable Slasher
+1 Buried Alive
+1 Contamination
+1 Bloodletter of Aclazotz
+1 Zombie Trailblazer
+1 Orcish Bowmasters
+1 Blasphemous Edict
+1 Command Tower
+1 Umbral Collar Zealot
+1 Ophiomancer
+1 Endless Ranks of the Dead
+1 Black Market Connections
+1 Yawgmoth, Thran Physician
+1 Carrion Feeder
+1 Warren Soultrader
+1 Pitiless Plunderer
+1 Forsaken Miner
+1 Gravecrawler
+1 Cover of Darkness
+1 Banner of Kinship
+1 Persistent Constrictor
+1 Malakir Rebirth // Malakir Mire
+1 Insatiable Avarice
+1 Caged Sun
+1 Dismember
+1 Vampiric Tutor
+1 Fell the Profane // Fell Mire
+1 Phyrexian Altar
+1 Lord of the Undead
+1 Barad-dûr
+1 Hex Parasite
+1 Extraplanar Lens
+1 Peat Bog

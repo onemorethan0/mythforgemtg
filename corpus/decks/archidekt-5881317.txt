@@ -1,0 +1,91 @@
+# Archidekt — Aaliyah's Ponies Deck
+# source: archidekt:5881317
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Emiel the Blessed
+
+Deck:
+1 Prized Unicorn
+1 Bill the Pony
+1 Captivating Unicorn
+1 Daybreak Charger
+1 Ordinary Pony
+1 Pegasus Guardian // Rescue the Foal
+1 Pearled Unicorn
+13 Plains
+1 Blossoming Sands
+1 Inspiring Call
+1 Knight of Autumn
+1 Boreas Charger
+1 Kodama's Reach
+1 Lifecrafter's Bestiary
+1 Arcane Signet
+1 Command Tower
+1 Call for Unity
+1 Vine Mare
+1 Commander's Sphere
+1 Secluded Courtyard
+1 Radiant Grove
+1 Fortified Village
+1 Botanical Plaza
+1 Arctic Treeline
+1 Sungrace Pegasus
+1 Bretagard Stronghold
+1 Arborea Pegasus
+1 Secret Rendezvous
+1 Hipparion
+1 Motivated Pony
+1 Mistral Charger
+1 Generous Gift
+1 Storm Herd
+1 Saddle of the Cavalier
+1 Blessed Sanctuary
+1 Trapped in the Tower
+1 Distinguished Conjurer
+1 Glass Casket
+1 Oran-Rief, the Vastwood
+1 Canopy Vista
+1 Harmonize
+1 Loyal Unicorn
+1 Opaline Unicorn
+1 Splendor Mare
+1 Beloved Princess
+1 Good-Fortune Unicorn
+1 Inspiring Unicorn
+1 Lathiel, the Bounteous Dawn
+1 Lonesome Unicorn // Rider in Need
+1 Mesa Unicorn
+1 Park Heights Pegasus
+1 Regal Unicorn
+1 Sunmane Pegasus
+1 Wandermare
+6 Forest
+1 Idyllic Grange
+1 Sungrass Prairie
+1 Radiant Fountain
+1 Temple of Plenty
+1 Krosan Verge
+1 Rumor Gatherer
+1 Tarpan
+1 Valorous Steed
+1 Selesnya Cluestone
+1 Cleansing Nova
+1 Gift of Paradise
+1 Kenrith's Transformation
+1 Brightmare
+1 Ronom Unicorn
+1 Shield Mare
+1 Brushland
+1 Path of Ancestry
+1 Cultivate
+1 Camaraderie
+1 Thurid, Mare of Destiny
+1 Selesnya Locket
+1 Seraphic Steed
+1 Swiftfoot Boots
+1 Steadfast Unicorn
+1 Tenacity
+1 Celestial Unicorn
+1 Semester's End

@@ -1,0 +1,75 @@
+# Archidekt — Scarlet Witch B4 (Turn 4-5 wins) v0.5
+# source: archidekt:23470734
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Scarlet Witch
+
+Deck:
+1 Inspired Tinkering
+1 Repeated Reverberation
+1 Big Score
+1 Unexpected Windfall
+1 Pirate's Pillage
+1 Path of the Pyromancer
+1 Inner Fire
+1 Sorceress's Schemes
+1 Ruby Medallion
+1 Apex of Power
+1 Will of the Jeskai
+1 Arcane Signet
+1 Snort
+1 Ignite the Future
+1 Reforge the Soul
+1 Bolt Bend
+1 Ore-Rich Stalactite // Cosmium Catalyst
+1 Desperate Ritual
+1 Pyretic Ritual
+1 Electro, Assaulting Battery
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Sol Ring
+1 Call Forth the Tempest
+1 Pyretic Charge
+1 Khorvath's Fury
+1 Into the Night
+1 Change of Fortune
+1 Raphael's Technique
+1 Seething Song
+1 Rousing Refrain
+1 Rite of Flame
+1 Jeska's Will
+1 Mana Geyser
+1 Past in Flames
+1 Mizzix's Mastery
+1 Reckless Charge
+1 Wild Ride
+1 Spider-Punk
+1 Seething Anger
+1 Gamble
+1 Borrowed Hostility
+1 Titan's Strength
+1 Lightning Greaves
+1 Untimely Malfunction
+1 Infuriate
+1 Turn Inside Out
+1 Redirect Lightning
+1 Deflecting Swat
+34 Mountain
+1 Wild Ricochet
+1 Ricochet Trap
+1 Ancient Tomb
+1 Runaway Steam-Kin
+1 Storm-Kiln Artist
+1 Hexing Squelcher
+1 Molten-Core Maestro
+1 Simian Spirit Guide
+1 Treasonous Ogre
+1 Elemental Eruption
+1 Strike It Rich
+1 Zenith Festival
+1 First Day of Class
+1 Lotus Petal
+1 Tablet of Discovery
+1 Thunderdrum Soloist
+1 Dragon's Rage Channeler

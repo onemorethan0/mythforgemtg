@@ -1,0 +1,102 @@
+# Archidekt — Depressive Impish Nightmare Boy
+# source: archidekt:4845395
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Don Andres, the Renegade
+
+Deck:
+1 Blood Money
+1 Thief of Sanity
+1 Rogue Class
+1 Treachery
+1 Malcolm, Alluring Scoundrel
+1 Arcane Denial
+1 Luxury Suite
+1 Morphic Pool
+1 Haunted Ridge
+1 Coercive Recruiter
+1 Hostage Taker
+1 Malcolm, Keen-Eyed Navigator
+1 Agent of Treachery
+1 Watery Grave
+1 Stormcarved Coast
+1 Control Magic
+1 Seize the Spotlight
+1 Breeches, Brazen Plunderer
+1 Command Tower
+1 Crumbling Necropolis
+1 Tasha, the Witch Queen
+1 Ramirez DePietro, Pillager
+1 Revel in Riches
+1 Rise of the Dark Realms
+1 Sol Ring
+1 The Indomitable
+1 Arcane Signet
+1 Gríma, Saruman's Footman
+1 Gemcutter Buccaneer
+1 Highland Lake
+1 Insurrection
+1 Path of Ancestry
+1 Pirated Copy
+1 Captain Storm, Cosmium Raider
+1 Pitiless Plunderer
+1 Blood Crypt
+1 Dire Fleet Daredevil
+1 Xorn
+1 Bedevil
+1 Exotic Orchard
+1 Grenzo, Havoc Raiser
+1 Feed the Swarm
+1 Chaos Warp
+3 Swamp
+1 Xander's Lounge
+1 Hurl Through Hell
+1 Sword of Wealth and Power
+1 Kellogg, Dangerous Mind
+1 Training Center
+1 Shipwreck Marsh
+1 Arcane Heist
+3 Island
+1 Grim Hireling
+1 Cover of Darkness
+1 Counterspell
+1 Dazzling Sphinx
+1 Steam Vents
+1 Swiftfoot Boots
+1 Admiral Beckett Brass
+1 Winged Boots
+1 Seething Landscape
+1 Brotherhood Regalia
+1 Vandalblast
+1 Bribery
+1 The Black Gate
+1 Rogue's Passage
+1 Captivating Crew
+1 Kindred Dominance
+1 Mob Rule
+1 Plargg and Nassari
+1 Etali, Primal Storm
+1 An Offer You Can't Refuse
+1 Underground River
+1 Shivan Reef
+1 Sulfurous Springs
+1 Unclaimed Territory
+3 Mountain
+1 Cavern of Souls
+1 Kindred Discovery
+1 Forerunner of the Coalition
+1 Ragavan, Nimble Pilferer
+1 Francisco, Fowl Marauder
+1 Talisman of Dominance
+1 Laughing Jasper Flint
+1 Talisman of Creativity
+1 Bident of Thassa
+1 Talisman of Indulgence
+1 City of Brass
+1 Mana Confluence
+1 Reflecting Pool
+1 Prismatic Vista
+1 Reliquary Tower
+1 Secluded Courtyard

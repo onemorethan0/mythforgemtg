@@ -1,0 +1,94 @@
+# Archidekt — Fire Lord Azula - Budget EDHREC Article
+# source: archidekt:17067862
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Storm-Kiln Artist
+1 Snap
+1 Archmage Emeritus
+1 Big Score
+1 Frantic Search
+1 Dark Ritual
+1 Guttersnipe
+1 Goblin Electromancer
+1 Torrential Gearhulk
+1 Nightscape Familiar
+1 Pinnacle Monk // Mystic Peak
+1 Cormela, Glamour Thief
+1 Stormcatch Mentor
+1 Crackling Spellslinger
+1 Coruscation Mage
+1 Dragon's Rage Channeler
+1 Fists of Flame
+1 Demand Answers
+1 Sedgemoor Witch
+1 Abrade
+1 Thrill of Possibility
+1 Bulk Up
+1 Rakdos Charm
+1 Increasing Vengeance
+1 Prismari Command
+1 Expedite
+1 Aqueous Form
+1 Rakdos Signet
+1 Eel Umbra
+1 Arcane Signet
+1 Nowhere to Run
+1 Dimir Signet
+1 Izzet Signet
+1 Fellwar Stone
+1 Desperate Ritual
+1 Wild Magic Surge
+1 Spikefield Hazard // Spikefield Cave
+1 Twinferno
+1 Siege Smash
+1 Cast into the Fire
+1 Zoyowa's Justice
+1 Ancestors' Aid
+1 Dreadmaw's Ire
+1 Eaten by Piranhas
+1 Lost in the Maze
+1 Errant, Street Artist
+1 Mysterious Stranger
+1 Hidden Footblade
+1 Lightning Bolt
+1 Command Tower
+1 Exotic Orchard
+1 Darkwater Catacombs
+1 Fetid Pools
+1 Sunken Hollow
+1 Canyon Slough
+1 Dragonskull Summit
+1 Foreboding Ruins
+1 Choked Estuary
+1 Shadowblood Ridge
+1 Smoldering Marsh
+1 Shivan Reef
+1 Sulfur Falls
+1 Frostboil Snarl
+1 Cascade Bluffs
+1 Ferrous Lake
+1 Seething Landscape
+1 Swamp
+1 Laughing Mad
+1 Commune with Lava
+1 Temple of Malice
+12 Mountain
+1 Izzet Charm
+1 Thassa's Intervention
+1 Octopus Form
+1 Water Wings
+1 Electrodominance
+1 Etali, Primal Storm
+1 Swiftfoot Boots
+1 Mocking Doppelganger
+1 Leyline of Anticipation
+1 Valley Floodcaller
+4 Island
+1 Unexpected Windfall
+1 Starstorm
+1 Sol Ring

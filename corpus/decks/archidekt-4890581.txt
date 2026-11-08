@@ -1,0 +1,92 @@
+# Archidekt — Bella Cose
+# source: archidekt:4890581
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Tyvar the Bellicose
+
+Deck:
+1 Viridian Joiner
+1 Quest for Renewal
+1 Leyline Immersion
+1 Guardian Project
+1 Marwyn, the Nurturer
+1 Galadhrim Ambush
+1 Overgrown Tomb
+1 Command Tower
+1 Heroic Intervention
+1 Kami of Whispered Hopes
+1 Woodland Cemetery
+1 Wirewood Lodge
+1 Gilt-Leaf Palace
+1 Vitalize
+1 Undergrowth Stadium
+1 Last March of the Ents
+1 Night's Whisper
+1 Read the Bones
+1 Rishkar's Expertise
+1 Tanuki Transplanter
+1 Curse of Bounty
+1 Garruk's Uprising
+1 Cradle Clearcutter
+1 Bonders' Enclave
+1 Temple of Malady
+1 Kindred Dominance
+1 Pest Infestation
+1 Beast Whisperer
+1 Circle of Dreams Druid
+1 Incubation Druid
+1 Inspiring Call
+1 Path of Ancestry
+1 Reclamation Sage
+1 Shamanic Revelation
+1 Sol Ring
+1 Deathcap Glade
+1 Return of the Wildspeaker
+1 Heronblade Elite
+1 Golgari Rot Farm
+1 Vivien's Stampede
+1 Toxic Deluge
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Bugenhagen, Wise Elder
+1 Mona Lisa, Science Geek
+1 Damnable Pact
+1 Birds of Paradise
+1 Genesis Wave
+1 Terrasymbiosis
+1 Twitching Doll
+1 Branching Evolution
+1 Hollowmurk Siege
+1 Dai Li Agents
+1 Synchronized Charge
+1 Topiary Lecturer
+1 Asceticism
+1 You Look Upon the Tarrasque
+1 Profane Command
+1 Elvish Mystic
+1 Fyndhorn Elves
+1 Llanowar Elves
+1 Overwhelming Stampede
+5 Swamp
+13 Forest
+1 Darkbore Pathway // Slitherbore Pathway
+1 Elvish Archdruid
+1 Priest of Titania
+1 Llanowar Tribe
+1 Selvala, Heart of the Wilds
+1 Assassin's Trophy
+1 Llanowar Wastes
+1 Thousand-Year Elixir
+1 Bojuka Bog
+1 Lightning Greaves
+1 Rogue's Passage
+1 Harmonize
+1 Storm the Seedcore
+1 Golgari Charm
+1 Mosswort Bridge
+1 Overwhelming Encounter
+1 End-Raze Forerunners
+1 Deadly Tempest
+1 Dionus, Elvish Archdruid
+1 Woodland Weavemaster

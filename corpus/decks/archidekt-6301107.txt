@@ -1,0 +1,101 @@
+# Archidekt — Gallifrey's Exodia
+# source: archidekt:6301107
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo The Tenth Doctor + Rousing Refrain; Bracket 1 allows none
+
+Commander:
+1 The Fourteenth Doctor
+1 Clara Oswald
+
+Deck:
+1 The Second Doctor
+1 The Ninth Doctor
+1 Port Town
+1 Rory Williams
+1 River Song
+1 TARDIS
+1 Heroes' Podium
+1 Bigger on the Inside
+1 The Seventh Doctor
+1 The Fourth Doctor
+1 The Fifth Doctor
+1 The Sixth Doctor
+1 Cultivate
+1 Gallifrey Stands
+1 Sol Ring
+1 Trenzalore Clocktower
+1 Frontier Bivouac
+1 The Parting of the Ways
+1 Wibbly-wobbly, Timey-wimey
+1 Everything Comes to Dust
+1 Sonic Screwdriver
+1 K-9, Mark I
+1 Amy Pond
+1 Susan Foreman
+1 Rose Tyler
+1 Reverse the Polarity
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Command Tower
+1 Frostboil Snarl
+1 Deserted Beach
+1 Dreamroot Cascade
+1 Furycalm Snarl
+1 Path of Ancestry
+1 Glacial Fortress
+1 Prairie Stream
+1 Reliquary Tower
+1 Skycloud Expanse
+1 Stormcarved Coast
+1 Thriving Grove
+1 The Fifteenth Doctor
+1 Path to Exile
+1 Mystic Monastery
+1 Thriving Isle
+1 Bronze Walrus
+4 Plains
+1 Suspended Sentence
+1 Arcane Signet
+1 Star Whale
+1 Time Beetle
+2 Mountain
+1 The Eighth Doctor
+1 Adric, Mathematical Genius
+1 The Twelfth Doctor
+1 The Thirteenth Doctor
+1 The Third Doctor
+1 The Tenth Doctor
+1 The First Doctor
+1 Tegan Jovanka
+1 The Eleventh Doctor
+1 Sarah Jane Smith
+1 Yasmin Khan
+1 Donna Noble
+1 Exotic Orchard
+1 Gallifrey Council Chamber
+2 Forest
+4 Island
+1 Trial of a Time Lord
+1 Rotating Fireplace
+1 Inspiring Refrain
+1 Heroic Intervention
+1 Oasis Gardener
+1 Rose Noble
+1 Mox Tantalite
+1 Doom's Time Platform
+1 Pym Particles
+1 As Foretold
+1 Fractured Identity
+1 Confession Dial
+1 Rousing Refrain
+1 Improvisation Capstone
+1 Birds of Paradise
+1 Call Forth the Tempest
+1 Thriving Bluff
+1 Thriving Heath
+1 Thriving Moor
+1 Manamorphose
+1 Chimil, the Inner Sun
+1 Iraxxa, Empress of Mars
+1 Germination Practicum

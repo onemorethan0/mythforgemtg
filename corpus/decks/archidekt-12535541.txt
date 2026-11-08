@@ -1,0 +1,95 @@
+# Archidekt — Chaos (Ft. Deadpool, Wade Wilson, Merc with a Mouth, Leader of X-Force)
+# source: archidekt:12535541
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Orcish Bowmasters); Bracket 1 allows 0
+
+Commander:
+1 Deadpool, Trading Card
+
+Deck:
+1 Saw in Half
+1 The Master, Multiplied
+1 Deadly Rollick
+1 Redoubled Stormsinger
+1 Blade of Selves
+1 Vandalblast
+1 Blasphemous Act
+1 Jaxis, the Troublemaker
+1 The Lord of Pain
+1 Delina, Wild Mage
+1 Harmless Offering
+1 Molten Duplication
+1 Electroduplicate
+1 Orthion, Hero of Lavabrink
+1 Conjurer's Closet
+1 Helm of the Host
+1 Mirror Box
+1 Morbid Opportunist
+1 Kardur, Doomscourge
+1 Splinter Twin
+1 Terror of the Peaks
+1 Solemn Simulacrum
+1 Xantcha, Sleeper Agent
+1 Alexios, Deimos of Kosmos
+1 Karazikar, the Eye Tyrant
+1 Phyrexian Arena
+1 Dalek Squadron
+1 Etali, Primal Storm
+1 Orcish Bowmasters
+1 Viscera Seer
+1 Feldon of the Third Path
+1 Genasi Enforcers
+1 Humble Defector
+1 Feign Death
+1 Ashnod's Altar
+1 Undying Malice
+1 Not Dead After All
+1 Village Rites
+1 Big Score
+1 Sword of Hearth and Home
+1 Nasty End
+1 Fake Your Own Death
+1 Warstorm Surge
+1 Disrupt Decorum
+1 Victimize
+1 Ensnared by the Mara
+1 Heat Shimmer
+1 Exotic Orchard
+1 Temple of Malice
+1 Rakdos Signet
+1 Exquisite Blood
+1 Exsanguinate
+1 Descent into Avernus
+1 Echoing Assault
+1 Mirror March
+1 Mirror Gallery
+1 Sol Ring
+1 Arcane Signet
+1 Canyon Slough
+1 Kaya's Ghostform
+1 Command Beacon
+1 Arena of Glory
+1 Temple of the False God
+1 Chandra, Flameshaper
+1 Bojuka Bog
+1 Reliquary Tower
+1 Smoldering Marsh
+1 Evolving Wilds
+8 Swamp
+1 Cursed Mirror
+1 Talisman of Indulgence
+1 Mount Doom
+1 Blood Crypt
+1 Luxury Suite
+1 Command Tower
+1 Dragonskull Summit
+1 Haunted Ridge
+1 Tainted Peak
+1 Bloodstained Mire
+1 Path of Ancestry
+8 Mountain
+1 Harsh Mentor
+1 Bloodthirsty Conqueror
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Elturel Survivors

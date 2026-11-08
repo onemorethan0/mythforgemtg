@@ -1,0 +1,108 @@
+# Archidekt — Ulalek, Fused Atrocity
+# source: archidekt:7589436
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ulalek, Fused Atrocity
+
+Deck:
+1 Command Tower
+1 Eye of Ugin
+1 Eldrazi Confluence
+1 All Is Dust
+1 Endbringer
+1 Karplusan Forest
+1 Llanowar Wastes
+1 Talisman of Curiosity
+1 Ugin, the Ineffable
+1 Tendo Ice Bridge
+1 Yavimaya, Cradle of Growth
+1 Ulamog, the Ceaseless Hunger
+1 Void Winnower
+1 Ulamog, the Infinite Gyre
+1 Kozilek, Butcher of Truth
+1 Kozilek, the Great Distortion
+1 Zhulodok, Void Gorger
+1 Yavimaya Coast
+1 Urza's Saga
+1 Manifold Key
+1 Ugin, the Spirit Dragon
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Worldly Tutor
+1 Nulldrifter
+1 Kozilek's Command
+1 Ulamog, the Defiler
+1 Forest
+1 Emrakul, the Promised End
+1 Arcane Signet
+1 Liberator, Urza's Battlethopter
+1 Ancient Tomb
+1 Sowing Mycospawn
+1 Thran Dynamo
+1 Sanctum of Ugin
+1 Hideous Taskmaster
+1 Skittering Cicada
+1 Conduit of Ruin
+1 Sol Ring
+1 Corrupted Crossroads
+1 Glaring Fleshraker
+1 Ugin's Labyrinth
+1 Benthic Anomaly
+1 Aether Hub
+1 Tarnished Citadel
+1 Chromatic Orrery
+1 Kozilek, the Broken Reality
+1 Herigast, Erupting Nullkite
+1 Kozilek's Unsealing
+1 Gemstone Caverns
+1 Fierce Guardianship
+1 Deflecting Swat
+1 Spire of Industry
+1 Sonic Screwdriver
+1 Grim Monolith
+1 Up the Beanstalk
+1 Urza's Cave
+1 Emrakul, the World Anew
+1 Rhystic Study
+1 Darksteel Monolith
+1 Wastescape Battlemage
+1 Rath's Edge
+1 Urza's Workshop
+1 Planar Nexus
+1 Urza's Mine
+1 Urza's Power Plant
+1 Urza's Tower
+1 Expedition Map
+1 Sylvan Scrying
+1 Gamble
+1 Crop Rotation
+1 Sire of Seven Deaths
+1 Smothering Tithe
+1 Fomori Vault
+1 Ultima, Origin of Oblivion
+1 World Map
+1 Starting Town
+1 Ugin, Eye of the Storms
+1 Uthros, Titanic Godcore
+1 Tezzeret, Cruel Captain
+1 Eldrazi Temple
+1 It That Heralds the End
+1 Gilded Lotus
+1 Forsaken Monument
+1 Basalt Monolith
+1 Cyclonic Rift
+1 Deadly Rollick
+1 Progenitor's Icon
+1 Herald's Horn
+1 Mana Vault
+1 Inventors' Fair
+1 Exotic Orchard
+1 Cascading Cataracts
+1 Peter Parker's Camera
+1 Voltaic Key
+1 Excalibur, Sword of Eden
+1 Roaming Throne
+1 Talisman of Resilience
+1 Abundant Countryside

@@ -1,0 +1,101 @@
+# Archidekt — Lavinia Lockout (not that lavinia, the other one)
+# source: archidekt:21069065
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lavinia of the Tenth
+
+Deck:
+1 Mistrise Village
+1 Reliquary Tower
+1 Summon: Yojimbo
+1 Enduring Ideal
+1 Arcane Laboratory
+1 Eidolon of Rhetoric
+1 Fall of the Thran
+1 Shadow of the Second Sun
+1 Summon: Leviathan
+1 Sphere of Safety
+1 Solitary Confinement
+1 Touch the Spirit Realm
+1 Decree of Silence
+1 Mystical Tutor
+1 Solve the Equation
+1 Personal Tutor
+1 Starfield of Nyx
+1 Adagia, Windswept Bastion
+1 Myriad Landscape
+1 Rule of Law
+1 Restricted Office // Lecture Hall
+1 Skybind
+1 Deafening Silence
+1 Dovescape
+1 Command Tower
+1 Adarkar Wastes
+1 Exotic Orchard
+1 Emergence Zone
+1 Otawara, Soaring City
+1 Sea of Clouds
+1 Hallowed Fountain
+1 Eiganjo, Seat of the Empire
+1 Hall of Heliod's Generosity
+1 Azorius Chancery
+1 Floodfarm Verge
+1 Ondu Inversion // Ondu Skyruins
+1 Deserted Beach
+1 Skycloud Expanse
+1 Mystic Gate
+1 Hengegate Pathway // Mistgate Pathway
+1 Ominous Cemetery
+1 Underdark Rift
+1 Teleportation Circle
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Leyline of Anticipation
+1 Glasspool Mimic // Glasspool Shore
+1 Thassa, Deep-Dwelling
+1 Invasion of Arcavios // Invocation of the Founders
+1 Spellseeker
+1 Kitsa, Otterball Elite
+1 Twincast
+1 Sunken Palace
+1 Dovin's Veto
+1 Tidal Barracuda
+1 Borne Upon a Wind
+1 Teferi, Time Raveler
+1 Twinning Staff
+1 Kor Haven
+1 Sol Ring
+1 Estrid's Invocation
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Overlord of the Floodpits
+1 Solemn Simulacrum
+1 Watcher for Tomorrow
+1 Ephemerate
+1 Wall of Omens
+1 Phelia, Exuberant Shepherd
+1 Spirited Companion
+1 Swan Song
+1 Arcane Signet
+1 Solitude
+1 Loran of the Third Path
+1 An Offer You Can't Refuse
+1 Delay
+5 Island
+4 Plains
+1 Recruiter of the Guard
+1 Skyclave Apparition
+1 Kor Cartographer
+1 Preordain
+1 Ponder
+1 Meticulous Archive
+1 Stock Up
+1 Azorius Signet
+1 Talisman of Progress
+1 Fellwar Stone
+1 Sword of Hearth and Home
+1 Force of Will
+1 Aether Channeler
+1 Dour Port-Mage
+1 Three Steps Ahead
+1 Serum Visions

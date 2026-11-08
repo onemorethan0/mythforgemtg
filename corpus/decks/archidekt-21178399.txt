@@ -1,0 +1,73 @@
+# Archidekt — dishonour on you! dishonour on your boardstate!
+# source: archidekt:21178399
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Junji, the Midnight Sky
+
+Deck:
+1 The Sibsig Ceremony
+1 Feign Death
+1 Supernatural Stamina
+1 Flare of Malice
+1 Body Snatcher
+1 Plaguecrafter
+1 Grim Servant
+1 Victimize
+1 Heartless Summoning
+1 Lively Dirge
+1 Perigee Beckoner
+1 Attrition
+1 Midnight Reaper
+1 Grim Haruspex
+1 Bog Witch
+1 Accursed Marauder
+1 Necrogoyf
+1 Soldevi Adnate
+1 Lorcan, Warlock Collector
+1 Corrupted Conviction
+1 Lethal Throwdown
+1 Undying Malice
+1 Undying Evil
+1 Abnormal Endurance
+1 Demonic Gifts
+1 Return to Action
+1 Buried Alive
+1 Final Parting
+1 Pain 101
+1 Body Launderer
+1 Fake Your Own Death
+1 Shredder's Technique
+1 Mindslicer
+1 Presumed Dead
+1 Feed the Swarm
+1 Vincent's Limit Break
+1 Dakmor Salvage
+1 Baleful Force
+1 Vile Entomber
+1 Kinzu of the Bleak Coven
+1 Vile Mutilator
+1 Not Dead After All
+1 Dark Ritual
+1 Blood Pet
+1 Overeager Apprentice
+1 Ashnod's Intervention
+1 Heirloom Mirror // Inherited Fiend
+1 Village Rites
+1 Bitter Triumph
+1 Nasty End
+1 Umbral Collar Zealot
+1 Fleshbag Marauder
+1 Gray Merchant of Asphodel
+1 Reaper from the Abyss
+1 Butcher of Malakir
+1 Lash of the Balrog
+36 Swamp
+1 Barren Moor
+1 Dreadfeast Demon
+1 Sol Ring
+1 Arcane Signet
+1 Basal Thrull
+1 Kuro, Pitlord
+1 Withering Torment

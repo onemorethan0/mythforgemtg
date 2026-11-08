@@ -1,0 +1,92 @@
+# Archidekt — Super Shadow (BUDGET CEDH)
+# source: archidekt:15442637
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Shadow the Hedgehog
+
+Deck:
+1 Reckless Fireweaver
+1 Mayhem Devil
+1 Strategic Betrayal
+1 Dark Ritual
+1 Purphoros, Bronze-Blooded
+1 Prismatic Lens
+1 Rising of the Day
+1 Fervor
+1 Darksteel Citadel
+1 Forever Young
+1 Pitiless Plunderer
+1 Strago and Relm
+1 Talisman of Indulgence
+1 Shadowblood Ridge
+1 Arid Archway
+1 Goblin Bombardment
+1 Hellkite Tyrant
+1 Rogue's Passage
+1 Fire Diamond
+1 Insurrection
+1 Dragonskull Summit
+1 Hivestone
+1 Goldspan Dragon
+1 Command Tower
+1 Rakdos Riteknife
+1 Rakdos Signet
+1 Rakdos Locket
+1 Rakdos Keyrune
+1 Sol Ring
+1 Rakdos Cluestone
+1 Rakdos Guildgate
+1 Basalt Monolith
+1 Super State
+1 Anger
+1 Urabrask's Forge
+1 Abandon the Post
+1 Furnace Hellkite
+1 Coral Sword
+1 Hellkite Charger
+1 Fake Your Own Death
+1 Swiftfoot Boots
+1 Knuckles the Echidna
+1 Chandra, Flame's Catalyst
+1 Akki Drillmaster
+1 Fiery Emancipation
+1 Obosh, the Preypiercer
+1 Evolving Wilds
+8 Swamp
+8 Mountain
+1 Smoldering Spires
+1 Akoum Refuge
+1 Blackcleave Cliffs
+1 Blighted Fen
+1 Blighted Gorge
+1 Bloodfell Caves
+1 Academy Manufactor
+1 Brass's Bounty
+1 Diamond Pick-Axe
+1 Hell to Pay
+1 Rakdos Charm
+1 Lagomos, Hand of Hatred
+1 Forsaken Monument
+1 Crackdown Construct
+1 Phyresis
+1 Angrath, the Flame-Chained
+1 Archwing Dragon
+1 Act of Aggression
+1 Final Parting
+1 Diabolic Tutor
+1 Commander's Sphere
+1 Tidy Conclusion
+1 Fortuitous Find
+1 Gadrak, the Crown-Scourge
+1 Tonberry
+1 Blow Your House Down
+1 Ravaging Blaze
+1 War Effort
+1 Meticulous Artisan
+1 Taurean Mauler
+1 Relentless X-ATM092
+1 Interceptor Mechan
+1 Shocking Sharpshooter
+1 Juri, Master of the Revue

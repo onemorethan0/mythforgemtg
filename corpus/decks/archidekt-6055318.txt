@@ -1,0 +1,86 @@
+# Archidekt — Soyara the Falconer Banding Birds
+# source: archidekt:6055318
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Soraya the Falconer
+
+Deck:
+1 Scour the Desert
+1 Gauntlet of Power
+1 Love Song of Night and Day
+1 Healer's Flock
+1 Battle Screech
+1 Healer's Hawk
+23 Snow-Covered Plains
+1 Aerial Extortionist
+1 Animal Sanctuary
+1 Aven Brigadier
+1 Myriad Landscape
+1 Path of Ancestry
+1 Temple of the False God
+1 Terrain Generator
+1 Windbrisk Heights
+1 Kor Haven
+1 Minas Tirith
+1 Pearl Medallion
+1 Aven Mindcensor
+1 Aven Cloudchaser
+1 Brave the Sands
+1 Urza's Incubator
+1 Sword of Hearth and Home
+1 Eagles of the North
+1 Cartographer's Hawk
+1 Dowsing Dagger // Lost Vale
+1 Extraplanar Lens
+1 Freewind Falcon
+1 Duskrider Falcon
+1 Gwaihir, Greatest of the Eagles
+1 Teshar, Ancestor's Apostle
+1 Nesting Dovehawk
+1 Lieutenant Kirtar
+1 Phantom Flock
+1 Windbrisk Raptor
+1 Mind's Eye
+1 Vanquisher's Banner
+1 Caged Sun
+1 Swords to Plowshares
+1 Dust to Dust
+1 Lay Down Arms
+1 Harsh Mercy
+1 Mass Calcify
+1 Sky Crier
+1 Junk Diver
+1 Scouting Hawk
+1 Cloudchaser Eagle
+1 Jhoira's Familiar
+1 Circle of Solace
+1 Everybody Lives!
+1 Serra's Blessing
+1 Spark Rupture
+1 Miner's Guidewing
+1 Arch of Orazca
+1 Eagle of Deliverance
+1 Senu, Keen-Eyed Protector
+1 Glarecaster
+1 Aven Interrupter
+1 Monumental Henge
+1 Horizon of Progress
+1 Abstergo Entertainment
+1 Murmuration
+1 Emeria, the Sky Ruin
+1 Nykthos, Shrine to Nyx
+1 Scavenger Grounds
+1 Strip Mine
+1 Bitterthorn, Nissa's Animus
+1 Herald's Horn
+1 Mask of Memory
+1 Sword of the Animist
+1 Emeria Angel
+1 Wingmate Roc
+1 Homeward Path
+1 Roc Egg
+1 Soulcatchers' Aerie
+1 Jackdaw Savior
+1 Heartstone

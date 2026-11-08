@@ -1,0 +1,100 @@
+# Archidekt — Myrel, Salt Bae
+# source: archidekt:13738103
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Myrel, Shield of Argive
+
+Deck:
+1 Mana Vault
+1 Silence
+1 Erode
+1 Ranger of Eos
+1 Lotus Petal
+1 Strip Mine
+1 Arcane Lighthouse
+1 Blind Obedience
+1 Flawless Maneuver
+1 Boromir, Warden of the Tower
+1 Maze of Ith
+1 Enlightened Tutor
+1 Eiganjo, Seat of the Empire
+1 Elspeth, Storm Slayer
+1 Land Tax
+1 Farewell
+1 Drannith Magistrate
+1 Ancient Tomb
+1 Chrome Mox
+1 Plaza of Heroes
+1 Cavern of Souls
+1 Armageddon
+1 Mox Amber
+1 Giver of Runes
+1 Esper Sentinel
+1 Gemstone Caverns
+1 Skullclamp
+1 The One Ring
+1 Three Tree City
+1 Voice of Victory
+1 Elesh Norn, Mother of Machines
+1 Deafening Silence
+1 Authority of the Consuls
+1 War Room
+1 Pearl Medallion
+1 Soul Warden
+1 Dawn's Truce
+1 Ocelot Pride
+1 Minas Tirith
+1 Skrelv, Defector Mite
+1 Urza's Saga
+1 Swords to Plowshares
+1 Ranger-Captain of Eos
+1 Isochron Scepter
+1 Soul's Attendant
+1 Manifold Key
+1 Mox Opal
+1 Emeria, the Sky Ruin
+1 Command Beacon
+1 Mox Diamond
+1 Defense Grid
+1 Winter Orb
+1 Flooded Strand
+1 Windswept Heath
+1 Marsh Flats
+1 Nykthos, Shrine to Nyx
+1 Grafdigger's Cage
+1 Get Lost
+1 Orim's Chant
+1 Mondrak, Glory Dominus
+1 Sevinne's Reclamation
+1 Akroma's Will
+1 Heliod, Sun-Crowned
+1 Anointed Procession
+1 Path to Exile
+1 Bilbo's Gambit
+1 Gleaming Splendor
+1 Coat of Arms
+1 Trinisphere
+1 The Queen of Dale
+1 Galadriel's Dismissal
+3 Plains
+3 Plains
+3 Plains
+3 Plains
+1 Everybody Lives!
+1 Walking Ballista
+1 Smothering Tithe
+1 Recruiter of the Guard
+1 Lightning Greaves
+1 Commander's Plate
+1 Angel's Grace
+1 Sol Ring
+1 Arcane Signet
+1 Teferi's Protection
+1 Liliana the Faultless
+1 Trouble in Pairs
+1 Grand Abolisher
+1 Roaming Throne
+1 Mother of Runes
+1 Flowering of the White Tree

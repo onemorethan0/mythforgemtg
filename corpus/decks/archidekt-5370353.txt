@@ -1,0 +1,102 @@
+# Archidekt — Blood Avatar Sacrifice
+# source: archidekt:5370353
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Extus, Oriq Overlord // Awaken the Blood Avatar
+
+Deck:
+1 Greedy Freebooter
+1 Market Gnome
+1 Prosperous Partnership
+1 Marionette Apprentice
+1 Blood for the Blood God!
+1 Wriggling Grub
+1 Marsh Flats
+1 Skrelv's Hive
+1 Indebted Spirit
+1 Charforger
+1 Infestation Sage
+1 Nested Shambler
+1 Lurrus of the Dream-Den
+1 Graven Cairns
+1 Afterlife Insurance
+1 Braids, Arisen Nightmare
+1 Enduring Innocence
+1 Cosmogrand Zenith
+1 Caretaker's Talent
+1 Crawling Chorus
+1 Hallowed Spiritkeeper
+1 Call the Coppercoats
+1 Pitiless Plunderer
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Staff of the Storyteller
+1 Smile at Death
+1 Pawn of Ulamog
+1 Elenda, the Dusk Rose
+1 Jadar, Ghoulcaller of Nephalia
+1 Raise the Past
+1 Doomed Traveler
+1 Abiding Grace
+1 Alesha, Who Laughs at Fate
+1 Teysa Karlov
+1 Turbulent Moor
+1 Soul Immolation
+1 Exalted Sunborn
+1 Reassembling Skeleton
+1 Caves of Koilos
+1 Teysa, Orzhov Scion
+1 The Jolly Balloon Man
+1 Elspeth, Storm Slayer
+1 Mayhem Devil
+1 Burn Down the House
+1 Rakdos Carnarium
+1 Impulsive Pilferer
+1 Mogg War Marshal
+1 Seize the Spotlight
+1 Black Market Connections
+1 Garrison Cat
+1 Orcish Bowmasters
+1 Blood Artist
+1 Timeline Culler
+1 Sorin, Vengeful Bloodlord
+1 Foggy Swamp Visions
+1 Kambal, Profiteering Mayor
+1 Muster the Departed
+1 Case of the Stashed Skeleton
+1 Bloodghast
+1 Nether Traitor
+1 Nezumi Linkbreaker
+1 Return to the Ranks
+1 Hour of Reckoning
+1 Dewdrop Cure
+1 Command Tower
+4 Swamp
+2 Mountain
+3 Plains
+1 Boggart Trawler // Boggart Bog
+1 Fabled Passage
+1 Prismatic Vista
+1 Arid Mesa
+1 Bloodstained Mire
+1 Sacred Foundry
+1 Godless Shrine
+1 Blood Crypt
+1 Luxury Suite
+1 Spectator Seating
+1 Vault of Champions
+1 Shattered Sanctum
+1 Shadowy Backstreet
+1 Sokenzan, Crucible of Defiance
+1 Raucous Theater
+1 Elegant Parlor
+1 Rally the Ancestors
+1 Poxwalkers
+1 Clattering Augur
+1 Shattered Landscape
+1 Bloodsoaked Insight // Sanguine Morass
+1 Bleachbone Verge
+1 Reflecting Pool
+1 Sunbillow Verge
+1 Battlefield Forge

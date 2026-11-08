@@ -1,0 +1,101 @@
+# Archidekt — Word Search
+# source: archidekt:12551149
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kellan, the Fae-Blooded // Birthright Boon
+
+Deck:
+1 The Irencrag
+1 Shadowspear
+1 Diamond Pick-Axe
+1 Goldvein Pick
+1 Zetalpa, Primal Dawn
+1 Weathered Sentinels
+1 Eater of Virtue
+1 Sky Terror
+1 Baneslayer Angel
+1 Adult Gold Dragon
+1 Thran Power Suit
+1 Furycalm Snarl
+1 Sundown Pass
+1 Monumental Henge
+1 Beamtown Beatstick
+1 Danitha, Benalia's Hope
+1 Grafted Wargear
+1 Swiftblade Vindicator
+1 Loran's Escape
+1 Surge of Salvation
+1 Sram, Senior Edificer
+1 Basilisk Collar
+1 Rograkh, Son of Rohgahh
+1 Needleverge Pathway // Pillarverge Pathway
+1 Sire of Seven Deaths
+1 Chainsaw
+1 Brass Knuckles
+1 Goldhound
+1 Elite Inquisitor
+1 Akiri, Fearless Voyager
+1 Clifftop Retreat
+1 Command Tower
+1 Arena of Glory
+1 Sevinne's Reclamation
+1 Opal Palace
+1 Quaketusk Boar
+1 Resilient Roadrunner
+1 Sacred Foundry
+1 Two-Handed Axe // Sweeping Cleave
+1 Hammer of Nazahn
+1 Golem-Skin Gauntlets
+1 Champion's Helm
+1 Bloodforged Battle-Axe
+1 Robe of Stars
+1 Spectator Seating
+1 Wurmcoil Engine
+1 Kemba's Banner
+1 Icingdeath, Frost Tyrant
+1 Horn of Valhalla // Ysgard's Call
+1 Legion Leadership // Legion Stronghold
+1 Puresteel Paladin
+4 Plains
+1 Rebuff the Wicked
+1 Danitha Capashen, Paragon
+1 Stormbeacon Blade
+1 Jailbreak
+1 Sunforger
+1 Take the Bait
+4 Mountain
+1 Battlefield Forge
+1 Elegant Parlor
+1 Inspiring Vantage
+1 Sunbillow Verge
+1 Radiant Summit
+1 Exotic Orchard
+1 Conduit Pylons
+1 Evolving Wilds
+2 Plains
+1 Terramorphic Expanse
+1 Hidden Grotto
+1 Ash Barrens
+1 Blacksmith's Skill
+1 Bladehold War-Whip
+1 Inventory Management
+1 Nettlecyst
+1 Glimmer Lens
+1 Rebel Salvo
+1 Goldwardens' Gambit
+1 Pull from Eternity
+1 Masterwork of Ingenuity
+1 Axgard Armory
+1 Mistveil Plains
+1 Buried Ruin
+1 Bitterthorn, Nissa's Animus
+1 Sword of the Animist
+1 Season of the Burrow
+1 Reckless Crew
+1 Mask of Avacyn
+1 Swiftfoot Boots
+1 Comeuppance
+1 Aurelia, the Law Above
+1 Jor Kadeen, First Goldwarden

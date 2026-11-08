@@ -1,0 +1,102 @@
+# Archidekt — Squall, SeeD Mercenary
+# source: archidekt:13624228
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Squall, SeeD Mercenary
+
+Deck:
+1 Inkshield
+1 Dauthi Voidwalker
+2 Swamp
+1 Codsworth, Handy Helper
+1 Command Tower
+1 Brotherhood Regalia
+1 Command Beacon
+1 Arcane Signet
+1 Accursed Marauder
+1 Ranger-Captain of Eos
+1 Godless Shrine
+1 Demonic Tutor
+1 Kaya's Ghostform
+1 Fetid Heath
+1 Grand Abolisher
+1 Open the Armory
+1 Shineshadow Snarl
+1 Sevinne's Reclamation
+1 Shattered Sanctum
+1 Deadly Rollick
+1 Isolated Chapel
+1 Mother of Runes
+1 Flawless Maneuver
+1 Steelshaper's Gift
+1 Deadly Dispute
+1 Mask of Memory
+1 Dark Ritual
+1 Sigarda's Aid
+1 Sol Ring
+1 Rogue's Passage
+1 Ghostly Prison
+1 Skyclave Apparition
+1 Plaguecrafter
+1 Path to Exile
+1 Genji Glove
+1 Reanimate
+1 Shadowspear
+1 Brilliant Wings
+1 Spirit Mantle
+1 Sword of Fire and Ice
+1 Marsh Flats
+1 Key to the City
+1 Bastion Protector
+1 Cathar Commando
+1 Blitzball
+1 Mind Stone
+1 Stitcher's Supplier
+1 Buried Alive
+1 Puresteel Paladin
+1 Jirina, Dauntless General
+1 Midgar, City of Mako // Reactor Raid
+1 Excalibur, Sword of Eden
+1 Swords to Plowshares
+1 Ripples of Undeath
+1 Buster Sword
+1 Idolized
+1 Fated Clash
+1 Millikin
+1 Bleachbone Verge
+1 Teferi's Protection
+8 Plains
+1 Malakir Rebirth // Malakir Mire
+1 Turbulent Moor
+1 Sram, Senior Edificer
+1 All That Glitters
+1 Vault of the Archangel
+1 Talisman of Hierarchy
+1 Summon: Primal Odin
+1 Sheltered by Ghosts
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Hammer of Nazahn
+1 Sword of Hearth and Home
+1 Takenuma, Abandoned Mire
+1 Animate Dead
+1 Caves of Koilos
+1 Ancient Tomb
+1 Fabled Passage
+1 Vault of Champions
+1 Shadowy Backstreet
+1 Phyrexian Tower
+1 Shizo, Death's Storehouse
+1 Witch's Clinic
+1 Danitha Capashen, Paragon
+1 Stoneforge Mystic
+1 Damn
+1 Cataclysm
+1 Rinoa, Angel Wing
+1 Boromir, Warden of the Tower
+1 My Precious // Allure of Power
+1 Dragon-Cursed Halls
+1 Cloud, Midgar Mercenary
+1 Selfless Spirit
+1 Phyrexian Arena

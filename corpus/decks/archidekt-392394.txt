@@ -1,0 +1,88 @@
+# Archidekt — Arixmethes: the lost world
+# source: archidekt:392394
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Arixmethes, Slumbering Isle
+
+Deck:
+1 Rampant Growth
+1 Counterspell
+1 Simic Growth Chamber
+1 Sakura-Tribe Elder
+1 Traverse the Outlands
+1 Explore
+1 Yavimaya Coast
+1 Trench Behemoth
+1 Nezahal, Primal Tide
+1 Stormsurge Kraken
+1 Alchemist's Refuge
+1 Tatyova, Benthic Druid
+1 Mosswort Bridge
+1 Growth Spiral
+1 Emergence Zone
+1 Kiora, Behemoth Beckoner
+1 Whelming Wave
+1 Serpent of Yawning Depths
+1 Sol Ring
+1 Reliquary Tower
+1 Garruk's Uprising
+1 Koma, Cosmos Serpent
+1 Momentous Fall
+1 Spawning Kraken
+1 Command Tower
+1 Tireless Provisioner
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Kiora, Sovereign of the Deep
+1 Hinterland Harbor
+13 Island
+1 Vivien, Champion of the Wilds
+1 Kozilek's Unsealing
+1 Herd Heirloom
+1 Goreclaw, Terror of Qal Sisma
+1 Hullbreaker Horror
+1 Grappling Kraken
+1 Scourge of Fleets
+1 Kiora Bests the Sea God
+1 Slinn Voda, the Rising Deep
+1 Apex Altisaur
+1 Aesi, Tyrant of Gyre Strait
+1 Xolatoyac, the Smiling Flood
+1 Swan Song
+1 Tangled Florahedron // Tangled Vale
+1 Stubborn Denial
+1 Entish Restoration
+1 Lotus Cobra
+1 Escape Tunnel
+1 Monstrosity of the Lake
+1 Savage Order
+1 Outcaster Trailblazer
+1 Sunken Palace
+1 Benthic Anomaly
+1 Kiora's Follower
+1 Koma, World-Eater
+1 Vineglimmer Snarl
+1 Apex Devastator
+1 Wayward Swordtooth
+1 Summon: Leviathan
+1 Brinelin, the Moon Kraken
+1 Famished Worldsire
+1 Glacier Godmaw
+9 Forest
+1 The Legend of Kyoshi // Avatar Kyoshi
+1 The Unagi of Kyoshi Island
+1 Ghalta, Stampede Tyrant
+1 Vorinclex, Voice of Hunger
+1 Vaultborn Tyrant
+1 Starwinder
+1 Disciple of Freyalise // Garden of Freyalise
+1 Nesting Grounds
+1 Regrowth
+1 Colossal Skyturtle
+1 Fanatic of Rhonas
+1 Radagast of Rhosgobel
+1 Verdant Kraken
+1 Kiora, the Rising Tide
+1 The Watcher in the Water

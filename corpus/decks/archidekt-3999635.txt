@@ -1,0 +1,104 @@
+# Archidekt — 😽🐶
+# source: archidekt:3999635
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jinnie Fay, Jetmir's Second
+
+Deck:
+1 Anim Pakal, Thousandth Moon
+1 Jetmir, Nexus of Revels
+1 Spectator Seating
+1 Sacred Foundry
+1 Brushland
+1 Bloodstained Mire
+1 Flooded Strand
+1 Gilded Goose
+1 Birds of Paradise
+1 Arbor Elf
+1 Fyndhorn Elves
+1 Qasali Slingers
+1 Rose Room Treasurer
+1 Verdant Catacombs
+1 Bloom Tender
+1 Arid Mesa
+1 Wooded Foothills
+1 Jetmir's Garden
+1 Call the Coppercoats
+1 Marsh Flats
+1 Stomping Ground
+1 Misty Rainforest
+1 Welcoming Vampire
+1 Tribute to the World Tree
+1 Scalding Tarn
+1 Spire Garden
+1 Windswept Heath
+1 Swords to Plowshares
+1 Force of Vigor
+1 Elemental Bond
+1 Smothering Tithe
+1 Grove of the Burnwillows
+1 Boseiju, Who Endures
+1 Archivist of Oghma
+1 Deflecting Swat
+1 Branchloft Pathway // Boulderloft Pathway
+1 Delighted Halfling
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Llanowar Elves
+1 Utopia Sprawl
+1 Bountiful Promenade
+1 Loyal Apprentice
+1 Bennie Bracks, Zoologist
+1 Adeline, Resplendent Cathar
+1 Farmer Cotton
+1 Avacyn's Pilgrim
+1 Grand Crescendo
+1 Prosperous Partnership
+1 Wild Growth
+1 Chord of Calling
+1 Ohran Frostfang
+1 Augur of Autumn
+1 Gala Greeters
+1 Tibalt's Trickery
+1 Elspeth, Sun's Champion
+1 Dollmaker's Shop // Porcelain Gallery
+1 Enduring Innocence
+1 Will of the Mardu
+1 Artifact Mutation
+1 Command Tower
+1 Ragavan, Nimble Pilferer
+1 Ainok Strike Leader
+1 Tataru Taru
+1 Green Sun's Zenith
+1 Garruk's Packleader
+1 Sylvan Library
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Temple Garden
+1 Sunbaked Canyon
+1 Path to Exile
+1 Flawless Maneuver
+1 Worldly Tutor
+1 Horizon Canopy
+1 City of Brass
+1 Tendershoot Dryad
+1 Lita, Little Orphan Amphibian
+1 Elvish Mystic
+1 Heroic Intervention
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Eiganjo, Seat of the Empire
+1 Mana Confluence
+5 Forest
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Pinnacle Monk // Mystic Peak
+1 Teferi's Protection
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Caretaker's Talent
+1 Samut, Vizier of Naktamun
+1 Charismatic Conqueror
+1 Finale of Devastation
+1 The Cabbage Merchant
+1 Pest Rescuer
+1 The Queen of Dale
+1 Jennifer Walters // The Sensational She-Hulk
+1 Toski, Bearer of Secrets

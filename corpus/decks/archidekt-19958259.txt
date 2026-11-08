@@ -1,0 +1,107 @@
+# Archidekt — Y'shtola Bracket 5
+# source: archidekt:19958259
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Talon Gates of Madara
+1 Mnemonic Betrayal
+1 Scalding Tarn
+1 Mana Confluence
+1 Marsh Flats
+1 Gemstone Caverns
+1 Exotic Orchard
+1 Morphic Pool
+1 Tarnished Citadel
+1 Tundra
+1 Underground Sea
+1 Watery Grave
+1 Urza's Saga
+1 Narset, Parter of Veils
+1 The One Ring
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Enlightened Tutor
+1 Mana Vault
+1 Ancient Tomb
+1 Swords to Plowshares
+1 Sol Ring
+1 Chrome Mox
+1 Teferi, Time Raveler
+1 Arcane Signet
+1 Flooded Strand
+1 Scrubland
+1 Island
+1 Command Tower
+1 Esper Sentinel
+1 Displacer Kitten
+1 Delney, Streetwise Lookout
+1 Smothering Tithe
+1 Grand Abolisher
+1 Thassa's Oracle
+1 Demonic Consultation
+1 Fierce Guardianship
+1 Force of Will
+1 Mindbreak Trap
+1 Lotus Petal
+1 Mox Diamond
+1 Rhystic Study
+1 Cursed Totem
+1 Dark Ritual
+1 Praetor's Grasp
+1 Amphibian Downpour
+1 Mox Amber
+1 Opposition Agent
+1 Kambal, Consul of Allocation
+1 Swan Song
+1 Pact of Negation
+1 Bloodchief Ascension
+1 Drannith Magistrate
+1 Papalymo Totolymo
+1 Voice of Victory
+1 Orcish Bowmasters
+1 Wishclaw Talisman
+1 Silence
+1 Mystical Tutor
+1 Beseech the Mirror
+1 Imperial Seal
+1 Talisman of Progress
+1 Sheoldred, the Apocalypse
+1 Into the Flood Maw
+1 Fellwar Stone
+1 Talisman of Dominance
+1 Force of Despair
+1 Lotho, Corrupt Shirriff
+1 Cyclonic Rift
+1 Deadly Rollick
+1 Misdirection
+1 Tainted Pact
+1 Flusterstorm
+1 Mystic Remora
+1 Force of Negation
+1 Faerie Mastermind
+1 Curiosity
+1 Dovin's Veto
+1 Mana Drain
+1 Mental Misstep
+1 An Offer You Can't Refuse
+1 City of Brass
+1 Sink into Stupor // Soporific Springs
+1 Hullbreaker Horror
+1 Otawara, Soaring City
+1 Notion Thief
+1 Mox Opal
+1 Necropotence
+1 Timetwister
+1 Windfall
+1 Hallowed Fountain
+1 Godless Shrine
+1 Polluted Delta
+1 Arid Mesa
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Undercity Sewers
+1 Counterspell

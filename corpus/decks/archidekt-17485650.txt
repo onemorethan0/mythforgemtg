@@ -1,0 +1,108 @@
+# Archidekt — Tymna / Dargo cEDH - Has anyone asked Dargo if he's OK?
+# source: archidekt:17485650
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tymna the Weaver
+1 Dargo, the Shipwrecker
+
+Deck:
+1 Simian Spirit Guide
+1 Memnite
+1 Deadpool, Trading Card
+1 The Jolly Balloon Man
+1 Lively Dirge
+1 Scrubland
+1 Mardu Devotee
+1 Lotho, Corrupt Shirriff
+1 Godless Shrine
+1 Badlands
+1 Plateau
+1 Voice of Victory
+1 Mox Diamond
+1 Grand Abolisher
+1 Gamble
+1 Sevinne's Reclamation
+1 Burnt Offering
+1 Dark Ritual
+1 Mox Amber
+1 Impulsive Pilferer
+1 Phyrexian Tower
+1 Mana Vault
+1 Ad Nauseam
+1 Bloodstained Mire
+1 Culling the Weak
+1 Altar of Dementia
+1 Mana Confluence
+1 Relic of Legends
+1 Ruthless Technomancer
+1 Sacred Foundry
+1 Final Fortune
+1 Starting Town
+1 Altar of the Wretched // Wretched Bonemass
+1 Prized Statue
+1 Imperial Seal
+1 Lotus Petal
+1 Necropotence
+1 Hope of Ghirapur
+1 Sacrifice
+1 Diabolic Intent
+1 Cavern of Souls
+1 Command Tower
+1 Cabal Ritual
+1 Wishclaw Talisman
+1 Vampiric Tutor
+1 Ancient Tomb
+1 City of Brass
+1 Enlightened Tutor
+1 Professional Face-Breaker
+1 Verdant Catacombs
+1 Polluted Delta
+1 Marsh Flats
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Ragavan, Nimble Pilferer
+1 Vexing Bauble
+1 Infernal Plunge
+1 Ranger-Captain of Eos
+1 Sol Ring
+1 Goblin Bombardment
+1 Chrome Mox
+1 Lion's Eye Diamond
+1 Esper Sentinel
+1 City of Traitors
+1 Goblin Engineer
+1 Windswept Heath
+1 Beseech the Mirror
+1 Underworld Breach
+1 Arid Mesa
+1 Demonic Tutor
+1 Blood Crypt
+1 Arcane Signet
+1 Gemstone Caverns
+1 Wooded Foothills
+1 Emergence Zone
+1 Mox Opal
+1 Magda, Brazen Outlaw
+1 Yawgmoth, Thran Physician
+1 Ajani, Nacatl Pariah // Ajani, Nacatl Avenger
+1 Bolas's Citadel
+1 Static Prison
+1 Warrior's Oath
+1 Ancient Den
+1 The Queen of Dale
+1 Tataru Taru
+1 Greedy Freebooter
+1 Goblin Welder
+1 Rite of Flame
+1 Marionette Apprentice
+1 Warren Soultrader
+1 Orcish Bowmasters
+1 Demonic Consultation
+1 Redirect Lightning
+1 Hexing Squelcher
+1 Soul Partition
+1 Scheming Symmetry
+1 Tainted Pact
+1 Silence
+1 Insolent Neonate

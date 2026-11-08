@@ -1,0 +1,89 @@
+# Archidekt — Debt Collection
+# source: archidekt:14269221
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Liesa, Shroud of Dusk
+
+Deck:
+11 Swamp
+1 Cliffhaven Vampire
+1 Aura of Silence
+1 Exemplar of Light
+1 Temple of Silence
+1 Swords to Plowshares
+1 Anguished Unmaking
+1 Everflowing Chalice
+1 Merciless Eviction
+1 Concealed Courtyard
+1 Shambling Vent
+1 Polluted Bonds
+1 The Gaffer
+1 Utter End
+1 Amalia Benavides Aguirre
+1 Wound Reflection
+1 Arcane Signet
+1 Heliod's Intervention
+1 Exsanguinate
+1 Exotic Orchard
+1 Desolate Mire
+1 Archaeomancer's Map
+1 Vault of the Archangel
+1 Restless Fortress
+1 Orzhov Signet
+1 Fracture
+1 Sol Ring
+1 Enduring Tenacity
+1 Shineshadow Snarl
+1 Infernal Grasp
+1 Isolated Chapel
+1 Fetid Heath
+1 Myriad Landscape
+1 Despark
+1 Promise of Loyalty
+1 Lunar Convocation
+1 Generous Gift
+1 Starscape Cleric
+1 Starfall Invocation
+1 Command Tower
+1 Fellwar Stone
+1 Phyrexian Arena
+1 Fumigate
+1 Sunscorch Regent
+1 Caves of Koilos
+10 Plains
+1 Talisman of Hierarchy
+1 Painful Quandary
+1 Life Insurance
+1 Inkshield
+1 Sanguine Bond
+1 Fate Unraveler
+1 Kaya's Guile
+1 High Priest of Penance
+1 Markov Purifier
+1 Kambal, Consul of Allocation
+1 Wayfarer's Bauble
+1 Greed
+1 Mangara, the Diplomat
+1 Tainted Field
+1 Orzhov Basilica
+1 Twilight Prophet
+1 Blood Money
+1 Austere Command
+1 Dawn of Hope
+1 Damn
+1 The Wind Crystal
+1 Blind Obedience
+1 Lotho, Corrupt Shirriff
+1 Elas il-Kor, Sadistic Pilgrim
+1 Authority of the Consuls
+1 Soul's Attendant
+1 Soul Warden
+1 Ghostly Prison
+1 Angelic Accord
+1 Godless Shrine
+1 Well of Lost Dreams
+1 Gilded Lotus
+1 Shattered Sanctum
+1 Knight of the White Orchid

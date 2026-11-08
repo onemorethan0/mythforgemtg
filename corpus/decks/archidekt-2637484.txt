@@ -1,0 +1,104 @@
+# Archidekt — Licia,  Sanguine Tribune [Voltron]
+# source: archidekt:2637484
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Serra's Sanctum); Bracket 2 allows 0
+
+Commander:
+1 Licia, Sanguine Tribune
+
+Deck:
+1 Scrubland
+1 Chains of Custody
+1 Arid Mesa
+1 Chandra's Ignition
+1 Chaplain's Blessing
+1 Command Tower
+1 Bloodstained Mire
+1 Chariot of Victory
+1 Cavern of Souls
+1 Draconic Destiny
+1 Etali's Favor
+1 Font of Agonies
+1 Mana Confluence
+1 Light of Hope
+1 Godless Shrine
+1 Marsh Flats
+1 Hyena Umbra
+1 Hide // Seek
+1 Mythos of Snapdax
+1 Rakdos Charm
+1 Sram, Senior Edificer
+1 Swamp
+1 Prowler's Helm
+1 Sacred Foundry
+1 Savai Triome
+1 Silent Clearing
+1 Sunbeam Spellbomb
+1 Plaza of Heroes
+1 Spirit Mantle
+5 Plains
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Unquestioned Authority
+1 Vizkopa Guildmage
+1 Stinging Study
+1 Holy Mantle
+1 Robe of Stars
+1 Showstopping Surprise
+1 Spymaster's Vault
+1 Shardmage's Rescue
+1 Painful Truths
+1 Bolt Bend
+1 Embercleave
+1 Brotherhood Regalia
+1 Pearl-Ear, Imperial Advisor
+1 Messenger's Speed
+1 Sunbaked Canyon
+1 Sundering Eruption // Volcanic Fissure
+1 Celestial Armor
+1 Untimely Malfunction
+1 Demonic Ruckus
+1 Footfall Crater
+1 Silver Shroud Costume
+1 Glasswing Grace // Age-Graced Chapel
+1 Mantle of the Ancients
+1 Sheltered by Ghosts
+1 Skrelv, Defector Mite
+1 Serra Ascendant
+1 Sage's Reverie
+1 Rugged Prairie
+1 Danitha Capashen, Paragon
+1 Benevolent Blessing
+1 Talon Gates of Madara
+1 Galadriel's Dismissal
+1 Scheming Silvertongue // Sign in Blood
+1 Serra's Sanctum
+1 Plateau
+1 Two-Handed Axe // Sweeping Cleave
+1 Axgard Armory
+1 Blackblade Reforged
+1 Valakut Awakening // Valakut Stoneforge
+1 Fabled Passage
+1 Blood Crypt
+1 Songbirds' Blessing
+2 Mountain
+1 Glittering Massif
+1 Danitha, Sword of Hope
+1 Black Market Connections
+1 Ranger-Captain of Eos
+1 Battle Menu
+1 Blasphemous Act
+1 Trouble in Pairs
+1 Treacherous Blessing
+1 Toxic Deluge
+1 The Meathook Massacre
+1 Legion Leadership // Legion Stronghold
+1 Temur Battle Rage
+1 Boros Charm
+1 Tibalt's Trickery
+1 Swiftfoot Boots
+1 Horizon of Progress
+1 Eiganjo, Seat of the Empire
+1 Dark Ritual
+1 Brilliant Wings
+1 Roadside Reliquary

@@ -1,0 +1,98 @@
+# Archidekt — Selvala  BroStorm - CEDH
+# source: archidekt:1018605
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Selvala, Heart of the Wilds
+
+Deck:
+1 Nylea, Keen-Eyed
+1 Natural Order
+1 Greater Good
+1 Command Beacon
+1 Castle Garenbrig
+1 Walking Ballista
+1 Ashaya, Soul of the Wild
+1 Return of the Wildspeaker
+1 Homeward Path
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Yavimaya, Cradle of Growth
+1 Utopia Sprawl
+1 Regrowth
+1 Kenrith's Transformation
+1 Craterhoof Behemoth
+1 Gemstone Caverns
+1 War Room
+1 Allosaurus Shepherd
+1 Berserk
+1 Hyrax Tower Scout
+1 Cloudstone Curio
+1 Scale Up
+1 Force of Vigor
+1 Summoner's Pact
+1 Pendelhaven
+1 Benefactor's Draught
+1 Lupine Prototype
+1 Nature's Claim
+1 Vines of Vastwood
+1 Temur Sabertooth
+1 Wirewood Lodge
+1 Elvish Mystic
+1 Nykthos, Shrine to Nyx
+1 Noxious Revival
+1 Green Sun's Zenith
+1 Genesis Wave
+1 Autumn's Veil
+1 Llanowar Elves
+1 Arbor Elf
+1 Umbral Mantle
+1 Thousand-Year Elixir
+1 Sheltering Ancient
+1 Phyrexian Soulgorger
+1 Survival of the Fittest
+1 Quirion Ranger
+1 Phyrexian Dreadnought
+1 Emergence Zone
+1 Staff of Domination
+1 Shared Summons
+1 Scryb Ranger
+1 Chord of Calling
+1 Kogla, the Titan Ape
+1 Veil of Summer
+1 Worldly Tutor
+1 Invigorate
+1 Eldritch Evolution
+1 Wirewood Symbiote
+1 Concordant Crossroads
+1 Ancient Tomb
+1 Wild Growth
+1 Vitalize
+1 Beast Within
+1 Fyndhorn Elves
+1 Gaea's Cradle
+1 Finale of Devastation
+1 Lotus Petal
+1 Priest of Titania
+1 Mox Diamond
+1 Circle of Dreams Druid
+1 Chrome Mox
+1 Elvish Spirit Guide
+1 Scavenger Grounds
+1 Cavern of Souls
+1 Momentous Fall
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Eternal Witness
+1 Crop Rotation
+1 Delighted Halfling
+1 Marvin, Murderous Mimic
+10 Forest
+1 Sol Ring
+1 Boseiju, Who Endures
+1 Shifting Woodland
+1 Mana Vault
+1 Archdruid's Charm
+1 Fanatic of Rhonas
+1 Avoid Fate
+1 Dryad Arbor
+1 Aether Vial

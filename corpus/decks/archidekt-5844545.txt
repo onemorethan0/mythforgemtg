@@ -1,0 +1,106 @@
+# Archidekt — Queza, Augur of Agonies
+# source: archidekt:5844545
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Queza, Augur of Agonies
+
+Deck:
+1 Archivist of Oghma
+1 Boon of the Wish-Giver
+1 Castle Vantress
+1 Chart a Course
+1 Black Market Connections
+1 Castle Locthwain
+1 Brainstorm
+1 Alhammarret's Archive
+1 Ancient Silver Dragon
+1 Ledger Shredder
+1 Kaito Shizuki
+1 Mangara, the Diplomat
+1 Phyrexian Arena
+1 Psychosis Crawler
+1 Opt
+1 Ominous Seas
+1 Commit // Memory
+1 Drogskol Reaver
+1 Drowned Catacomb
+1 Fabled Passage
+1 Faerie Mastermind
+1 Frantic Search
+1 Glacial Fortress
+1 Nadir Kraken
+1 Shark Typhoon
+1 Shipwreck Marsh
+1 The Celestus
+1 Void Rend
+1 Wizard Class
+1 Mystic Remora
+1 Godless Shrine
+1 Thought Vessel
+1 Shattered Sanctum
+1 Deserted Beach
+1 Watery Grave
+1 Sol Ring
+1 Command Tower
+1 Thirst for Meaning
+1 Sheoldred, the Apocalypse
+1 Esper Sentinel
+1 Sublime Epiphany
+1 Teferi's Ageless Insight
+1 Scrawling Crawler
+1 Prismatic Vista
+1 Adarkar Wastes
+1 Undercity Sewers
+1 Underground River
+1 Ancient Tomb
+1 Morphic Pool
+1 Trouble in Pairs
+1 Vnwxt, Verbose Host
+1 Floodfarm Verge
+1 Raffine, Scheming Seer
+1 Mana Confluence
+1 Rhystic Study
+1 Marsh Flats
+1 Insatiable Avarice
+1 Clever Concealment
+1 Lightning Greaves
+1 Arcane Signet
+1 Chasm Skulker
+1 The One Ring
+1 Baleful Strix
+1 Solemn Simulacrum
+1 Vampiric Tutor
+1 Windfall
+1 Mana Vault
+1 Demonic Tutor
+1 Three Steps Ahead
+1 Mana Drain
+1 Fierce Guardianship
+1 Reliquary Tower
+1 Kami of the Crescent Moon
+1 Teferi's Protection
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Raffine's Tower
+1 Mischievous Mystic
+1 The Endstone
+1 Reflecting Pool
+1 Counterspell
+1 Hallowed Fountain
+1 Homunculus Horde
+1 Underground Sea
+1 Scrubland
+1 Tundra
+1 Teferi, Time Raveler
+1 Wan Shi Tong, Librarian
+1 Agna Qel'a
+1 The Legend of Yangchen // Avatar Yangchen
+1 Spirit Water Revival
+1 Plains
+1 Swamp
+1 Peer into the Abyss
+1 Swords to Plowshares
+3 Island
+1 Smothering Tithe
+1 Flooded Strand

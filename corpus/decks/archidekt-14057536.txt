@@ -1,0 +1,106 @@
+# Archidekt — Squall Seed Mercenary
+# source: archidekt:14057536
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Squall, SeeD Mercenary
+
+Deck:
+1 Skullclamp
+1 Steelshaper's Gift
+1 Hammer of Nazahn
+1 Enlightened Tutor
+1 Gravebreaker Lamia
+1 Unmarked Grave
+1 Trading Post
+1 Warren Soultrader
+1 Ashnod's Altar
+1 Entomb
+1 Salvaging Station
+1 Chthonian Nightmare
+1 Sevinne's Reclamation
+1 Karmic Guide
+1 Revival // Revenge
+1 Fabled Passage
+1 Inventors' Fair
+1 Rogue's Passage
+1 Access Tunnel
+1 Bloodstained Mire
+1 Polluted Delta
+1 Flooded Strand
+1 Arid Mesa
+1 Arcane Signet
+1 Sol Ring
+1 Talisman of Hierarchy
+1 Marsh Flats
+1 Eagles of the North
+1 Mind Stone
+1 Chromatic Star
+1 Damn
+1 Welding Jar
+1 Skyclave Apparition
+1 Nihil Spellbomb
+1 Galadriel's Dismissal
+1 Plaguecrafter
+1 Accursed Marauder
+1 Selfless Savior
+1 Buster Sword
+1 Glasswing Grace // Age-Graced Chapel
+1 Command Tower
+1 Key to the City
+1 Sword of Feast and Famine
+1 Urborg, Tomb of Yawgmoth
+1 Lightning Greaves
+1 Vault of Whispers
+1 Ancient Den
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Godless Shrine
+1 Shadowy Backstreet
+1 Silent Clearing
+1 Caves of Koilos
+1 Vault of Champions
+1 Ishgard, the Holy See // Faith & Grief
+1 Takenuma, Abandoned Mire
+1 Secluded Steppe
+1 High Market
+1 Inkmoth Nexus
+1 Phyrexia's Core
+1 Vault of the Archangel
+2 Swamp
+1 Sun Titan
+1 Forge Anew
+1 Tymna the Weaver
+1 Loran of the Third Path
+1 Swords to Plowshares
+1 Umezawa's Jitte
+1 Sigarda's Aid
+1 Animate Dead
+1 Stoneforge Mystic
+1 Lurrus of the Dream-Den
+1 Puresteel Paladin
+1 Mother of Runes
+1 Cloud, Midgar Mercenary
+1 Esper Sentinel
+1 Grand Abolisher
+1 Dauthi Voidwalker
+1 Sword of Fire and Ice
+1 Swiftfoot Boots
+1 Orzhov Signet
+1 Lotus Bloom
+1 Mishra's Bauble
+1 Sram, Senior Edificer
+1 Sword of Forge and Frontier
+2 Plains
+1 Codex Shredder
+1 Mask of Memory
+1 Bleachbone Verge
+1 Gandalf the White
+1 Phyrexian Altar
+1 Brotherhood Regalia
+1 Lotus Petal
+1 Mystic Forge
+1 Fishing Gear
+1 Midgar, City of Mako // Reactor Raid
+1 Urza's Saga
+1 Tezzeret, Cruel Captain

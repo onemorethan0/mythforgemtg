@@ -1,0 +1,108 @@
+# Archidekt — Surface Pressure
+# source: archidekt:15252828
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Toph, the First Metalbender
+
+Deck:
+1 Nissa, Resurgent Animist
+1 Noxious Revival
+1 Prismatic Vista
+1 Plains
+1 Forest
+1 Mountain
+1 Goblin Welder
+1 Goblin Engineer
+1 Moonsilver Key
+1 Reckless Handling
+1 Silence
+1 Gaea's Cradle
+1 Mana Vault
+1 Lotus Field
+1 Esper Sentinel
+1 Candelabra of Tawnos
+1 Grim Monolith
+1 Voice of Victory
+1 Valakut Exploration
+1 Gamble
+1 Sol Ring
+1 Enlightened Tutor
+1 Deserted Temple
+1 Lotus Cobra
+1 Icetill Explorer
+1 Sabotender
+1 Storm Cauldron
+1 Tireless Provisioner
+1 Sensei's Divining Top
+1 Crop Rotation
+1 Sylvan Safekeeper
+1 Underworld Breach
+1 Chrome Mox
+1 Mox Amber
+1 Mox Opal
+1 Mox Diamond
+1 Emeria Shepherd
+1 Plateau
+1 Savannah
+1 Flooded Strand
+1 Kutzil, Malamet Exemplar
+1 Taiga
+1 Stomping Ground
+1 Ancient Tomb
+1 Tinder Wall
+1 Temple Garden
+1 Lotus Petal
+1 The One Ring
+1 Swords to Plowshares
+1 Exotic Orchard
+1 Simian Spirit Guide
+1 Mana Confluence
+1 Wooded Foothills
+1 Command Tower
+1 City of Brass
+1 Arcane Signet
+1 Gemstone Caverns
+1 Bloodstained Mire
+1 Windswept Heath
+1 Fellwar Stone
+1 Scalding Tarn
+1 Boseiju, Who Endures
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Arid Mesa
+1 Deflecting Swat
+1 Ranger-Captain of Eos
+1 Marsh Flats
+1 Archivist of Oghma
+1 Lion's Eye Diamond
+1 Delighted Halfling
+1 Ragavan, Nimble Pilferer
+1 Birds of Paradise
+1 Pyroblast
+1 Red Elemental Blast
+1 Finale of Devastation
+1 Sevinne's Reclamation
+1 Chord of Calling
+1 Urza's Saga
+1 Veil of Summer
+1 Rite of Flame
+1 Wheel of Fortune
+1 Forbidden Orchard
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blind Obedience
+1 Carpet of Flowers
+1 Grinding Station
+1 Jeska's Will
+1 Mystic Forge
+1 Dragon's Rage Channeler
+1 Chromatic Orrery
+1 Chromatic Lantern
+1 Shifting Woodland
+1 Sowing Mycospawn
+1 Expedition Map
+1 Flamekin Spitfire
+1 Nature's Rhythm
+1 Yavimaya, Cradle of Growth

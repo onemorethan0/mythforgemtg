@@ -1,0 +1,81 @@
+# Archidekt — A Dwarf and Her Very Persistent Rabbits
+# source: archidekt:24191872
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Krile Baldesion
+
+Deck:
+1 Polluted Delta
+1 Skyclave Cleric // Skyclave Basilica
+1 Altar of Dementia
+1 Arcane Adaptation
+1 Ascend from Avernus
+1 Beyeen Veil // Beyeen Coast
+1 Cathar Commando
+1 Chronic Flooding
+1 Deranged Assistant
+1 Drannith Healer
+1 Dreams of Laguna
+1 Exhibition Tidecaller
+1 Kabira Takedown // Kabira Plateau
+1 Faithful Mending
+1 Flare of Fortitude
+1 Flooded Strand
+1 Founding the Third Path
+1 Hedron Crab
+1 Isochron Scepter
+1 Jace, Vryn's Prodigy // Jace, Telepath Unbound
+1 Ledger Shredder
+1 Leyline of Transformation
+1 Malevolent Hermit // Benevolent Geist
+1 Mesmeric Orb
+1 Millikin
+1 Misty Rainforest
+1 Muddle the Mixture
+1 Mystic Sanctuary
+1 Orim's Cure
+5 Persistent Petitioners
+1 Picklock Prankster // Free the Fae
+1 Raise the Past
+1 Rally the Ancestors
+1 Razorgrass Ambush // Razorgrass Field
+1 Restoration Specialist
+1 Riverchurn Monument
+1 Sejiri Shelter // Sejiri Glacier
+1 Selfless Spirit
+1 Sink into Stupor // Soporific Springs
+1 Skullclamp
+1 Snapcaster Mage
+1 Start the TARDIS
+1 Stillness in Motion
+1 Think Twice
+1 Scalding Tarn
+1 Jwari Disruption // Jwari Ruins
+1 Exotic Orchard
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Command Tower
+1 Prismatic Vista
+1 Glimpse of Freedom
+1 Deserted Beach
+1 Hallowed Fountain
+1 Otawara, Soaring City
+1 Floodfarm Verge
+1 Nimbus Maze
+1 Adarkar Wastes
+4 Island
+1 Glacial Fortress
+4 Plains
+1 Hengegate Pathway // Mistgate Pathway
+1 Meticulous Archive
+1 Reflecting Pool
+1 Sea of Clouds
+1 Talon Gates of Madara
+1 Academy Ruins
+1 Skycloud Expanse
+1 Ishgard, the Holy See // Faith & Grief
+1 Lashknife
+1 Maskwood Nexus
+1 Kitsa, Otterball Elite
+18 Hare Apparent

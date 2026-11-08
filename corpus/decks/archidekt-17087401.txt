@@ -1,0 +1,20 @@
+# Archidekt — ‎
+# source: archidekt:17087401
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Yargle and Multani
+
+Deck:
+1 Phyrexian Walker
+1 Terrian, World Tyrant
+1 Memnite
+1 Kalonian Tusker
+1 Metallic Sliver
+1 Gigantosaurus
+1 Quakestrider Ceratops
+1 Leatherback Baloth
+45 Snow-Covered Wastes
+1 Cowl Prowler
+45 Forest

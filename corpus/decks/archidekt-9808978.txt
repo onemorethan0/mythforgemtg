@@ -1,0 +1,82 @@
+# Archidekt — 6. Cut the Sap
+# source: archidekt:9808978
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Shroofus Sproutsire
+
+Deck:
+1 Sylvan Anthem
+1 Swiftfoot Boots
+1 Skullclamp
+1 Beastmaster Ascension
+1 Heroic Intervention
+1 Tyrite Sanctum
+1 Mosswort Bridge
+1 Guildless Commons
+1 Thallid Germinator
+1 Nature's Claim
+1 Symmetry Matrix
+1 Sporecrown Thallid
+1 Nemata, Grove Guardian
+1 Fungal Plots
+1 Ohran Frostfang
+1 Invigorate
+1 Sakura-Tribe Elder
+1 Obelisk of Urd
+1 Birds of Paradise
+1 Patchwork Banner
+1 Rogue's Passage
+1 Nissa's Pilgrimage
+1 Tyvar's Stand
+1 Tamiyo's Safekeeping
+1 Snake Umbra
+1 Peregrin Took
+1 Fecundity
+1 Beast Within
+1 Ezuri's Predation
+1 Idol of Oblivion
+1 Gift of the Viper
+1 Ruxa, Patient Professor
+1 Wild Growth
+1 Utopia Sprawl
+1 Sol Ring
+1 Shamanic Revelation
+1 Stoneforge Masterwork
+1 Commander's Plate
+1 Giant Growth
+1 Toski, Bearer of Secrets
+1 Unnatural Growth
+1 Urza's Saga
+1 Basilisk Collar
+1 Haywire Mite
+1 Fyndhorn Elves
+1 Gaea's Anthem
+1 Elvish Mystic
+1 Llanowar Elves
+1 Defense of the Heart
+1 Shifting Woodland
+1 Natural Order
+1 Harvest Season
+1 Pendelhaven
+1 Finishing Move
+1 Saproling Migration
+1 Chord of Calling
+1 Guardian Augmenter
+1 Druid of Purification
+1 Psychic Paper
+1 Access Tunnel
+1 Emerald Medallion
+1 Lifecraft Engine
+1 Nature's Lore
+1 Three Visits
+1 Defend the Rider
+1 Return of the Wildspeaker
+1 Tendershoot Dryad
+1 Daily Bugle Building
+27 Forest
+1 Selfless Safewright
+1 Muraganda Petroglyphs
+1 Riding the Dilu Horse
+1 Regal Force

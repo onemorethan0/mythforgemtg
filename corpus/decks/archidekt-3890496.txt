@@ -1,0 +1,87 @@
+# Archidekt — *Retired*Sythis, Harvest's Hand $100ish Budget Deck
+# source: archidekt:3890496
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sythis, Harvest's Hand
+
+Deck:
+1 Spirited Companion
+1 Ajani's Chosen
+1 Jukai Naturalist
+1 Eidolon of Blossoms
+1 Herald of the Pantheon
+1 Sanctum Weaver
+1 Mesa Enchantress
+1 Moon-Blessed Cleric
+1 Satyr Enchanter
+1 Beast Within
+1 Path to Exile
+1 Approach of the Second Sun
+1 Austere Command
+1 Resurgent Belief
+1 Enchantress's Presence
+1 Fertile Ground
+1 Ghostly Prison
+1 Kenrith's Transformation
+1 Meticulous Excavation
+1 Overgrowth
+1 Sigil of the Empty Throne
+1 Wild Growth
+1 Sterling Grove
+1 Canopy Vista
+1 Fortified Village
+1 Brushland
+1 Glittering Frost
+1 Unbridled Growth
+1 Squirrel Sanctuary
+1 Cast Out
+1 Font of Fertility
+1 Touch the Spirit Realm
+1 Utopia Sprawl
+1 Leyline Immersion
+11 Forest
+1 Shielded by Faith
+1 Darksteel Mutation
+1 Felidar Retreat
+1 Sungrass Prairie
+1 Griffin Aerie
+1 Grasp of Fate
+1 Trudge Garden
+1 Minimus Containment
+1 Archon of Sun's Grace
+1 Destiny Spinner
+1 Jolrael, Mwonvuli Recluse
+1 Chains of Custody
+1 Alseid of Life's Bounty
+1 Cleric Class
+1 Rancor
+1 Seal from Existence
+1 Arasta of the Endless Web
+1 Abundant Growth
+1 Dawn's Reflection
+1 Shigeki, Jukai Visionary
+1 Kami of Transience
+1 Siona, Captain of the Pyleas
+1 Starnheim Courser
+1 Weaver of Harmony
+1 All That Glitters
+1 Court of Grace
+1 Market Festival
+1 Verdant Haven
+1 Command Tower
+1 Exotic Orchard
+12 Plains
+1 Reliquary Tower
+1 Selesnya Sanctuary
+1 Scattered Groves
+1 Privileged Position
+1 Karametra's Blessing
+1 Brilliant Restoration
+1 Swords to Plowshares
+1 Setessan Champion
+1 Trelasarra, Moon Dancer
+1 Buried in the Garden
+1 Intangible Virtue
+1 Karametra, God of Harvests

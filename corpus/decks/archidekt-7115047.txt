@@ -1,0 +1,82 @@
+# Archidekt — Mothman - Slime Against Humanity ($400)
+# source: archidekt:7115047
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 The Wise Mothman
+
+Deck:
+1 Spellweaver Helix
+1 Kami of Whispered Hopes
+1 Command Tower
+1 Secret Salvage
+1 Hunter's Insight
+1 Dreamroot Cascade
+1 Biogenic Ooze
+1 Locket of Yesterdays
+1 Struggle for Project Purity
+1 Undergrowth Stadium
+1 Llanowar Wastes
+1 Underground River
+1 Rejuvenating Springs
+1 Yavimaya Coast
+1 Hedge Maze
+1 Deathcap Glade
+1 Shipwreck Marsh
+1 Twilight Mire
+1 Flooded Grove
+1 Path of Ancestry
+1 Overflowing Basin
+1 Viridescent Bog
+25 Slime Against Humanity
+1 Swamp
+1 Dakmor Salvage
+1 Simic Growth Chamber
+1 Opulent Palace
+1 Exotic Orchard
+1 Thunderclap Drake
+1 Ohran Frostfang
+1 Ripples of Undeath
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Polymorphist's Jest
+1 Assassin's Trophy
+1 Toski, Bearer of Secrets
+1 Danny Pink
+1 Make an Example
+1 Inspiring Call
+1 Saryth, the Viper's Fang
+1 Baral's Expertise
+1 Sink into Stupor // Soporific Springs
+1 Kindred Discovery
+1 Fanatic of Rhonas
+1 Awaken the Honored Dead
+1 Lórien Revealed
+1 Hollowmurk Siege
+1 Pollywog Prodigy
+1 Emet-Selch of the Third Seat
+1 Baleful Mastery
+1 Uthros Psionicist
+1 Terrasymbiosis
+1 Hagra Mauling // Hagra Broodpit
+1 Fell the Profane // Fell Mire
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Yahenni's Expertise
+1 Windfall
+1 Simic Charm
+1 Kitsa, Otterball Elite
+1 Hidden Hideout
+1 Foresight
+1 Manipulate Fate
+1 Auroral Procession
+1 Wastewood Verge
+1 Malevolent Rumble
+3 Forest
+1 Ancestral Knowledge
+1 Bred for the Hunt
+1 Glimpse the Unthinkable
+1 Island
+1 Morphic Pool
+1 Underground Mortuary
+1 Breeding Pool
+1 Watery Grave

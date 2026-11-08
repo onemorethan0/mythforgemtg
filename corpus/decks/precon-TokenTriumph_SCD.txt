@@ -1,0 +1,82 @@
+# WotC precon — Token Triumph (SCD, 2022-12-02)
+# source: mtgjson:TokenTriumph_SCD
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Emmara, Soul of the Accord
+
+Deck:
+1 Ajani, Caller of the Pride
+1 Arcane Signet
+1 Aura Mutation
+1 Avacyn's Pilgrim
+1 Blossoming Sands
+1 Camaraderie
+1 Canopy Vista
+1 Champion of Lambholt
+1 Citanul Hierophants
+1 Citywide Bust
+1 Collective Blessing
+1 Collective Unconscious
+1 Command Tower
+1 Commander's Insignia
+1 Commander's Sphere
+1 Conclave Tribunal
+1 Curse of Bounty
+1 Dauntless Escort
+1 Dawn of Hope
+1 Devouring Light
+1 Dictate of Heliod
+1 Elfhame Palace
+1 Eternal Witness
+1 Farhaven Elf
+1 Felidar Retreat
+15 Forest
+1 Fortified Village
+1 Graypelt Refuge
+1 Great Oak Guardian
+1 Harmonize
+1 Harvest Season
+1 Holdout Settlement
+1 Hornet Nest
+1 Hornet Queen
+1 Hour of Reckoning
+1 Idol of Oblivion
+1 Jade Mage
+1 Jaspera Sentinel
+1 Karametra's Favor
+1 Leafkin Druid
+1 Loyal Guardian
+1 Maja, Bretagard Protector
+1 March of the Multitudes
+1 Mentor of the Meek
+1 Nissa's Expedition
+1 Nullmage Shepherd
+1 Overrun
+1 Overwhelming Instinct
+1 Path to Exile
+14 Plains
+1 Presence of Gond
+1 Reclamation Sage
+1 Rishkar, Peema Renegade
+1 Rootborn Defenses
+1 Scatter the Seeds
+1 Scavenging Ooze
+1 Selesnya Evangel
+1 Selesnya Guildmage
+1 Slate of Ancestry
+1 Sol Ring
+1 Sporemound
+1 Sylvan Reclamation
+1 Talisman of Unity
+1 Temple of Plenty
+1 Thunderfoot Baloth
+1 Tranquil Expanse
+1 Trostani Discordant
+1 Valor in Akros
+1 Verdant Force
+1 Vitu-Ghazi, the City-Tree
+1 Voice of Many
+1 White Sun's Zenith

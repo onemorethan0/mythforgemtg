@@ -1,0 +1,108 @@
+# Archidekt — Ur-Dragon and the pals try out Bracket 4
+# source: archidekt:12473010
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Maelstrom of the Spirit Dragon
+1 Call the Spirit Dragons
+1 Mountain
+1 Betor, Kin to All
+1 Three Visits
+1 Swan Song
+1 Path of Ancestry
+1 Misty Rainforest
+1 Tiamat
+1 Lathliss, Dragon Queen
+1 Scion of Draco
+1 Haven of the Spirit Dragon
+1 Temur Ascendancy
+1 Karrthus, Tyrant of Jund
+1 Rejuvenating Springs
+1 Ancient Silver Dragon
+1 Farseek
+1 Dragon Tempest
+1 Birds of Paradise
+1 Skyshroud Claim
+1 Crux of Fate
+1 Ancient Copper Dragon
+1 Rith, Liberated Primeval
+1 Sarkhan, Soul Aflame
+1 Bountiful Promenade
+1 Morphic Pool
+1 Scourge of Valkas
+1 Command Tower
+1 Sea of Clouds
+1 Rivaz of the Claw
+1 Forest
+1 Morophon, the Boundless
+1 Patchwork Banner
+1 Smothering Tithe
+1 Atarka, World Render
+1 Korlessa, Scale Singer
+1 Utvara Hellkite
+1 Hellkite Courser
+1 Goldspan Dragon
+1 Beledros Witherbloom
+1 Dragon's Hoard
+1 Magda, Brazen Outlaw
+1 Despark
+1 Hellkite Charger
+1 Blast-Furnace Hellkite
+1 Garruk's Uprising
+1 Hoarding Broodlord
+1 Training Center
+1 Old Gnawbone
+1 Delighted Halfling
+1 Ziatora's Proving Ground
+1 Canopy Gargantuan
+1 Herd Heirloom
+1 Polluted Delta
+1 Thundering Falls
+1 Wooded Foothills
+1 Temple Garden
+1 Steam Vents
+1 Commercial District
+1 Stomping Ground
+1 Windswept Heath
+1 Ketria Triome
+1 Xander's Lounge
+1 Terror of the Peaks
+1 Ruinous Ultimatum
+1 Silumgar, the Drifting Death
+1 Dragonlord Kolaghan
+1 Dragonlord Silumgar
+1 Ureni of the Unwritten
+1 Sol Ring
+1 Fierce Guardianship
+1 Shadowy Backstreet
+1 Scavenger Regent // Exude Toxin
+1 Flawless Maneuver
+1 Otawara, Soaring City
+1 Ponder
+1 Arcane Signet
+1 Cavern of Souls
+1 Sylvan Library
+1 Stubborn Denial
+1 Dragonspeaker Shaman
+1 Lush Portico
+1 Sacred Foundry
+1 Goldlust Triad
+1 Godless Shrine
+1 Bloodstained Mire
+1 Blood Crypt
+1 Vault of Champions
+1 Cyclonic Rift
+1 Miirym, Sentinel Wyrm
+1 The One Ring
+1 Klauth, Unrivaled Ancient
+1 Bloom Tender
+1 Overgrown Tomb
+1 Ancient Tomb
+1 Heroic Intervention
+1 Starting Town
+1 Arid Mesa
+1 Dragonlord Dromoka

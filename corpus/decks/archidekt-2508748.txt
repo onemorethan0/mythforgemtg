@@ -1,0 +1,92 @@
+# Archidekt — One of One | Volo, Guide to Monsters
+# source: archidekt:2508748
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Volo, Guide to Monsters
+
+Deck:
+1 Command Tower
+1 Evolving Wilds
+1 Dreamroot Cascade
+1 Scavenger Grounds
+1 Reliquary Tower
+1 Cultivate
+1 Twinning Staff
+1 Myr Battlesphere
+1 Prosperous Innkeeper
+1 Pongify
+1 Alchemist's Refuge
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Mana Drain
+6 Island
+1 Garruk's Uprising
+1 Rejuvenating Springs
+1 Talisman of Curiosity
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Yavimaya Coast
+1 Flooded Grove
+1 Simic Growth Chamber
+1 Cloud of Faeries
+1 End-Raze Forerunners
+1 Beast Whisperer
+1 Counterspell
+1 Kiora's Follower
+1 Evacuation
+1 Junk Winder
+1 Endless Sands
+1 Amphin Mutineer
+1 Loyal Drake
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Silverback Elder
+1 Tendershoot Dryad
+1 Hinterland Harbor
+12 Forest
+1 Littjara Mirrorlake
+1 Rapid Hybridization
+1 Ornithopter of Paradise
+1 Birds of Paradise
+1 Spark Double
+1 Breeding Pool
+1 Rhystic Study
+1 Sludge Monster
+1 Sol Ring
+1 Arcane Signet
+1 Return of the Wildspeaker
+1 Simic Signet
+1 Astral Dragon
+1 Clever Impersonator
+1 Lightning Greaves
+1 Elemental Bond
+1 Heroic Intervention
+1 Consecrated Sphinx
+1 Dutiful Replicator
+1 Vaultborn Tyrant
+1 Beast Within
+1 Managorger Hydra
+1 Wandering Archaic // Explore the Vastlands
+1 Enduring Curiosity
+1 Trailtracker Scout
+1 Lotus Cobra
+1 Fierce Guardianship
+1 Tribute to the World Tree
+1 Avenger of Zendikar
+1 Willowrush Verge
+1 Overflowing Basin
+1 Man-o'-War
+1 Hornet Queen
+1 Gruff Triplets
+1 Loyal Guardian
+1 Sire of Seven Deaths
+1 Craterhoof Behemoth
+1 Threefold Thunderhulk
+1 Wall of Blossoms
+1 Farseek
+1 Rampant Growth
+1 Three Visits
+1 Roaming Throne
+1 Sodden Verdure
+1 Nature's Lore
+1 Turbulent Wilderness
+1 Cyclonic Rift

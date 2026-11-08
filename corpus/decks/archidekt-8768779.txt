@@ -1,0 +1,86 @@
+# Archidekt — Murica
+# source: archidekt:8768779
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Immard, the Stormcleaver
+
+Deck:
+1 Annex
+1 Aerial Surveyor
+1 Prodigy's Prototype
+1 Day of Judgment
+1 Martial Law
+1 Propaganda
+1 Darien, King of Kjeldor
+1 Elspeth, Sun's Champion
+1 Gwafa Hazid, Profiteer
+1 Ultramarines Honour Guard
+1 Azor's Elocutors
+1 Tax Collector
+1 Arrest
+1 Cathedral of War
+1 Contested War Zone
+1 Prison Term
+1 Prison Sentence
+1 Standard Bearer
+1 Liberate
+1 Prosperity
+1 Senate Courier
+1 Unquestioned Authority
+1 Guard Duty
+1 Martial Coup
+1 Atraxa's Skitterfang
+1 Churning Reservoir
+1 Ichorplate Golem
+1 Norn's Wellspring
+1 The Monumental Facade
+1 Atmosphere Surgeon
+1 Fervor
+1 Anger
+1 Captain of the Watch
+1 Perilous Landscape
+1 Mystic Monastery
+1 In the Trenches
+1 Anchor to Reality
+1 Coalition Honor Guard
+1 Valiant Veteran
+1 Thalia, Guardian of Thraben
+1 Heroic Reinforcements
+1 Valor
+1 Glory
+1 Sacred Peaks
+1 Arcane Signet
+1 Swords to Plowshares
+1 Path to Exile
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Lightning Bolt
+1 Deliberate
+8 Island
+1 Secure the Wastes
+1 Brave the Sands
+1 Sol Ring
+1 Incite War
+1 Wrath of God
+1 Temple of the False God
+1 Righteous Authority
+1 Righteous Cause
+1 Vanquisher's Banner
+1 Isperia, Supreme Judge
+1 The Council of Four
+1 Battlewing Mystic
+1 Blasphemous Act
+1 Bribery
+1 Swiftwater Cliffs
+1 Tranquil Cove
+1 Molten Tributary
+1 Wind-Scarred Crag
+1 Idyllic Beachfront
+1 Border Guard
+8 Mountain
+9 Plains
+1 Urabrask's Forge
+1 Command Tower
+1 Scorched Earth

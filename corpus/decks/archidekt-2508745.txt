@@ -1,0 +1,96 @@
+# Archidekt — [Retired] A Girl and Her Monster Cat | Trynn and Silvar
+# source: archidekt:2508745
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Silvar, Devourer of the Free
+1 Trynn, Champion of Freedom
+
+Deck:
+1 Hanweir Battlements
+1 Chandra's Ignition
+1 Starry-Eyed Skyrider
+1 Hanweir Militia Captain // Westvale Cult Leader
+1 Pitiless Plunderer
+1 Thraben Doomsayer
+1 Inevitable Defeat
+1 Stensia Uprising
+1 Boros Charm
+1 Théoden, King of Rohan
+1 Kambal, Profiteering Mayor
+1 Mardu Siegebreaker
+1 Warleader's Call
+1 Isolated Chapel
+1 Dragonskull Summit
+1 Bastion of Remembrance
+1 Boros Signet
+1 Orzhov Signet
+1 Rakdos Signet
+1 Call the Coppercoats
+1 Sol Ring
+1 Skullclamp
+1 Increasing Devotion
+1 Morbid Opportunist
+1 Cemetery Protector
+1 Swords to Plowshares
+1 Bojuka Bog
+1 Bonders' Enclave
+1 Boros Garrison
+1 Command Tower
+1 Evolving Wilds
+1 Nomad Outpost
+1 Orzhov Basilica
+1 Rakdos Carnarium
+1 Savai Triome
+1 Smoldering Marsh
+1 Unclaimed Territory
+5 Swamp
+3 Mountain
+1 Jerren, Corrupted Bishop // Ormendahl, the Corrupter
+1 Jirina, Dauntless General
+1 Caves of Koilos
+1 Path of Ancestry
+1 Village Rites
+1 Corrupted Conviction
+1 Minas Tirith
+1 Adeline, Resplendent Cathar
+1 Talisman of Hierarchy
+1 Ruinous Ultimatum
+1 Damn
+1 General Kudro of Drannith
+1 Knight of the White Orchid
+1 Jirina Kudro
+1 Garna, Bloodfist of Keld
+1 Clifftop Retreat
+1 Species Specialist
+1 Tenacious Underdog
+1 Hanweir Garrison
+1 General's Enforcer
+1 Lossarnach Captain
+1 Mentor of the Meek
+1 Verge Rangers
+1 Riders of the Mark
+1 Secluded Courtyard
+7 Plains
+1 Shattered Landscape
+1 Arcane Signet
+1 Horn of Gondor
+1 Mythos of Snapdax
+1 Teysa Karlov
+1 Talisman of Conviction
+1 Outlaws' Merriment
+1 Zulaport Cutthroat
+1 Dire Tactics
+1 Anguished Unmaking
+1 Denethor, Ruling Steward
+1 Grim Haruspex
+1 Castle Ardenvale
+1 Battlefield Forge
+1 Marionette Apprentice
+1 Bloodsoaked Champion
+1 Riders of Rohan
+1 Syr Konrad, the Grim
+1 Tocasia's Welcome
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Alesha, Who Laughs at Fate

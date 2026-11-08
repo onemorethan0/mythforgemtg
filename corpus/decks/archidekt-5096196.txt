@@ -1,0 +1,108 @@
+# Archidekt — Extreme Wealth and Casual Cruelty
+# source: archidekt:5096196
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ob Nixilis, Captive Kingpin
+
+Deck:
+1 Orcish Bowmasters
+1 Unstable Amulet
+1 Opposition Agent
+1 Firebrand Archer
+1 Kessig Flamebreather
+1 Mox Amber
+1 Dragonskull Summit
+1 Haunted Ridge
+1 Blackcleave Cliffs
+1 Bolt Bend
+1 Grapeshot
+1 Gut Shot
+1 Talisman of Indulgence
+1 Luxury Suite
+1 Mount Doom
+1 Pyretic Ritual
+1 Sol Ring
+1 Arcane Signet
+1 Command Tower
+1 Raucous Theater
+1 Dualcaster Mage
+1 Cavern of Souls
+1 Coruscation Mage
+1 Jeska's Will
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Cabal Ritual
+1 Seething Song
+1 Storm-Kiln Artist
+1 Ragavan, Nimble Pilferer
+1 Deflecting Swat
+1 Bloodstained Mire
+1 Deadly Rollick
+1 Snuff Out
+1 Chrome Mox
+1 Blood Crypt
+1 Demonic Tutor
+1 Dauthi Voidwalker
+1 Walking Ballista
+1 Agatha's Soul Cauldron
+1 Blazemire Verge
+1 Grim Tutor
+1 Lotus Petal
+1 Ancient Tomb
+1 Mountain
+1 City of Brass
+1 Verdant Catacombs
+1 Untimely Malfunction
+1 Pinnacle Monk // Mystic Peak
+1 Mayhem Devil
+1 Lightning Bolt
+1 Artist's Talent
+1 Molten Duplication
+1 Wooded Foothills
+1 Exotic Orchard
+1 Pyroblast
+1 Mana Confluence
+1 Rite of Flame
+1 Red Elemental Blast
+1 Fire Covenant
+1 Dismember
+1 Lightning Greaves
+1 Reanimate
+1 Burning Inquiry
+1 Prismatic Vista
+1 Final Fortune
+1 Gemstone Caverns
+1 Gamble
+1 Mana Clash
+1 Vampiric Tutor
+1 City of Traitors
+1 Kederekt Parasite
+1 Mox Opal
+1 Badlands
+1 Defense Grid
+1 Ruby Medallion
+1 Flare of Duplication
+1 Swamp
+1 Starting Town
+1 Wheel of Fortune
+1 The Last Agni Kai
+1 Shadow of the Goblin
+1 Black Mage's Rod
+1 Vivi's Persistence
+1 Tainted Pact
+1 Scalding Tarn
+1 Redirect Lightning
+1 Strike It Rich
+1 Hexing Squelcher
+1 Party Thrasher
+1 Sulfurous Springs
+1 Prosper, Tome-Bound
+1 Goblin Engineer
+1 Casey Jones, Back Alley Brute
+1 Faithless Looting
+1 Flashback
+1 Fellwar Stone
+1 Underworld Breach
+1 Dark Ritual
+1 Beseech the Mirror

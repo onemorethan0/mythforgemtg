@@ -1,0 +1,108 @@
+# Archidekt — The Ur-Dragon
+# source: archidekt:1237757
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Xander's Lounge
+1 Crux of Fate
+1 Kindred Discovery
+1 Boseiju, Who Endures
+1 Jetmir's Garden
+1 Ziatora's Proving Ground
+1 Haven of the Spirit Dragon
+1 Descent of the Dragons
+1 Atarka, World Render
+1 Silumgar, the Drifting Death
+1 Haunting Voyage
+1 Rith, Liberated Primeval
+1 Rivaz of the Claw
+1 Sarkhan's Triumph
+1 Sarkhan Unbroken
+1 Flooded Strand
+1 Polluted Delta
+1 Raugrin Triome
+1 Lightning Greaves
+1 Swords to Plowshares
+1 Warstorm Surge
+1 Stomping Ground
+1 Urza's Incubator
+1 Marsh Flats
+1 Ojutai, Soul of Winter
+1 Herald's Horn
+1 Command Beacon
+1 Three Visits
+1 Skyshroud Claim
+1 Verdant Catacombs
+1 Watery Grave
+1 Savai Triome
+1 Breeding Pool
+1 Godless Shrine
+1 Blood Crypt
+1 Hallowed Fountain
+1 Overgrown Tomb
+1 Cavern of Souls
+1 Misty Rainforest
+1 Arid Mesa
+1 Command Tower
+1 Teferi's Protection
+1 Bloodstained Mire
+1 Heroic Intervention
+1 Temur Ascendancy
+1 Scalding Tarn
+1 Sacred Foundry
+1 Reliquary Tower
+1 Arcane Signet
+1 Chromatic Lantern
+1 Cyclonic Rift
+1 Farseek
+1 Sol Ring
+1 Homeward Path
+1 Nature's Lore
+1 Dragon's Hoard
+1 Deflecting Swat
+1 Garruk's Uprising
+1 The Great Henge
+1 Dragon Tempest
+1 Sarkhan, Soul Aflame
+1 Scalelord Reckoner
+1 Teneb, the Harvester
+1 Thundermaw Hellkite
+1 Wooded Foothills
+1 The World Tree
+1 Windswept Heath
+1 Ketria Triome
+1 Majestic Genesis
+1 Ancient Copper Dragon
+1 Steam Vents
+1 Temple Garden
+1 Aggravated Assault
+1 Scion of the Ur-Dragon
+1 Tiamat
+1 Fellwar Stone
+1 Canopy Gargantuan
+1 Thundermane Dragon
+1 Ureni of the Unwritten
+1 Maelstrom of the Spirit Dragon
+1 Smaug the Magnificent
+1 Smaug, Wicked Worm
+1 Klauth, Unrivaled Ancient
+1 Old Gnawbone
+1 Terror of the Peaks
+1 Bladewing the Risen
+1 Ancient Gold Dragon
+1 Balefire Dragon
+1 Wrathful Red Dragon
+1 Scourge of Valkas
+1 Scion of Draco
+1 Utvara Hellkite
+1 Goldspan Dragon
+1 Lathliss, Dragon Queen
+1 Hellkite Courser
+1 Miirym, Sentinel Wyrm
+1 Karrthus, Tyrant of Jund
+1 Ramos, Dragon Engine
+1 Dragonlord Dromoka

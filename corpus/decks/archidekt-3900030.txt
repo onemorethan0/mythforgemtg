@@ -1,0 +1,97 @@
+# Archidekt — Trelasarra, Root Dancer [Chromatic Project]
+# source: archidekt:3900030
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Crop Rotation); Bracket 1 allows 0
+
+Commander:
+1 Trelasarra, Moon Dancer
+
+Deck:
+1 Scavenging Ooze
+1 Blossoming Sands
+1 Rishkar's Expertise
+1 Harmonize
+1 Bountiful Promenade
+1 Krosan Verge
+1 Crop Rotation
+1 Gavony Township
+1 Aetherflux Reservoir
+1 Brushland
+1 Weather the Storm
+1 Jaddi Offshoot
+1 Behemoth Sledge
+6 Plains
+1 Well of Lost Dreams
+1 Loxodon Warhammer
+1 Swiftfoot Boots
+1 Honor Troll
+7 Forest
+1 Sun Droplet
+1 Soul Warden
+1 Righteous Valkyrie
+1 Conclave Mentor
+1 Cabaretti Courtyard
+1 Overgrown Farmland
+1 Courser of Kruphix
+1 Canopy Vista
+1 Druid Class
+1 Trostani, Selesnya's Voice
+1 Daxos, Blessed by the Sun
+1 Soul's Attendant
+1 Cosmic Rebirth
+1 Abzan Falconer
+1 Moon-Blessed Cleric
+1 Generous Gift
+1 Ajani's Pridemate
+1 Voice of the Blessed
+1 Pristine Talisman
+1 Sol Ring
+1 Rancor
+1 Blossoming Bogbeast
+1 Trudge Garden
+1 Essence Warden
+1 Sunpetal Grove
+1 Command Tower
+1 Branchloft Pathway // Boulderloft Pathway
+1 Ajani, Strength of the Pride
+1 Urborg, Tomb of Yawgmoth
+1 Archangel of Thune
+1 Witch's Clinic
+1 Hall of Heliod's Generosity
+1 Temple Garden
+1 Lignify
+1 Avacyn's Pilgrim
+1 Abzan Battle Priest
+1 Fortifying Draught
+1 Leonin Elder
+1 Cleric Class
+1 Ordeal of Nylea
+1 Graypelt Refuge
+1 Myriad Landscape
+1 Angel of Vitality
+1 Your Temple Is Under Attack
+1 Scale the Heights
+1 Path of Ancestry
+1 Tamiyo's Safekeeping
+1 Kenrith's Transformation
+1 Survival Cache
+1 Celestine, the Living Saint
+1 Hardened Scales
+1 Spreading Algae
+1 Indomitable Might
+1 Roots of Life
+1 Prosperous Innkeeper
+1 Sunscorch Regent
+1 Ajani's Welcome
+1 Pest Infestation
+1 Healing Technique
+1 Crested Sunmare
+1 Attended Healer
+1 Valkyrie Harbinger
+1 Temple of Plenty
+1 Scattered Groves
+1 Twinblade Paladin
+1 Resourceful Defense
+1 Brokers Hideout
+1 Weathered Wayfarer

@@ -1,0 +1,92 @@
+# WotC precon — Corrupting Influence (ONC, 2023-02-10)
+# source: mtgjson:CorruptingInfluence_ONC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Ixhel, Scion of Atraxa
+
+Deck:
+1 Arcane Signet
+1 Beast Within
+1 Bilious Skulldweller
+1 Blight Mamba
+1 Blightbelly Rat
+1 Bojuka Bog
+1 Cankerbloom
+1 Canopy Vista
+1 Caress of Phyrexia
+1 Carrion Call
+1 Chromatic Lantern
+1 Command Tower
+1 Commander's Sphere
+1 Contagion Clasp
+1 Contaminant Grafter
+1 Culling Ritual
+1 Cultivate
+1 Evolution Sage
+1 Exotic Orchard
+1 Expand the Sphere
+1 Feed the Infection
+1 Fellwar Stone
+8 Forest
+1 Fortified Village
+1 Fumigate
+1 Geth's Summons
+1 Ghostly Prison
+1 Glissa's Retriever
+1 Glistening Sphere
+1 Golgari Signet
+1 Grafted Exoskeleton
+1 Grateful Apparition
+1 Ichor Rats
+1 Ichorclaw Myr
+1 Infectious Inquiry
+1 Karn's Bastion
+1 Krosan Verge
+1 Merciless Eviction
+1 Moldervine Reclamation
+1 Mortify
+1 Mycosynth Fiend
+1 Myr Convert
+1 Myriad Landscape
+1 Necroblossom Snarl
+1 Night's Whisper
+1 Norn's Annex
+1 Norn's Choirmaster
+1 Norn's Decree
+1 Noxious Assault
+1 Noxious Revival
+1 Painful Truths
+1 Path of Ancestry
+1 Pestilent Syphoner
+1 Phyresis Outbreak
+1 Phyrexian Atlas
+1 Phyrexian Rebirth
+1 Phyrexian Swarmlord
+1 Plague Myr
+1 Plague Stinger
+6 Plains
+1 Putrefy
+1 Sandsteppe Citadel
+1 Scavenging Ooze
+1 Shineshadow Snarl
+1 Sol Ring
+1 Sungrass Prairie
+6 Swamp
+1 Swords to Plowshares
+1 Tainted Field
+1 Tainted Wood
+1 Temple of Malady
+1 Temple of Plenty
+1 Temple of Silence
+1 Trailblazer's Boots
+1 Unnatural Restoration
+1 Vat Emergence
+1 Venomous Brutalizer
+1 Viridian Corrupter
+1 Vishgraz, the Doomhive
+1 Vraska's Fall
+1 Windborn Muse
+1 Wurmquake

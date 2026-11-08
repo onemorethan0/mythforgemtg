@@ -1,0 +1,98 @@
+# Archidekt — Kykar Polymorph
+# source: archidekt:8070386
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kykar, Wind's Fury
+
+Deck:
+1 Medomai the Ageless
+1 Deflecting Swat
+1 Flawless Maneuver
+1 Sea of Clouds
+1 Arid Mesa
+1 Sol Ring
+1 Reality Scramble
+1 Polymorph
+1 Chaos Mutation
+1 Mass Polymorph
+1 Synthetic Destiny
+1 Reweave
+1 Proteus Staff
+1 Lukka, Coppercoat Outcast
+1 Transmogrify
+1 Divergent Transformations
+1 Gisela, Blade of Goldnight
+1 Jin-Gitaxias, Progress Tyrant
+1 Ponder
+1 Gitaxian Probe
+1 An Offer You Can't Refuse
+1 Counterspell
+1 Talisman of Conviction
+1 Azorius Signet
+1 Lightning Greaves
+1 Swords to Plowshares
+1 Path to Exile
+1 Training Center
+1 Spectator Seating
+1 Flooded Strand
+1 Raugrin Triome
+1 Scalding Tarn
+1 Hallowed Fountain
+1 Sacred Foundry
+1 Steam Vents
+8 Island
+1 Elesh Norn, Grand Cenobite
+1 Indomitable Creativity
+1 Ovika, Enigma Goliath
+1 Aurelia, the Warleader
+1 Velomachus Lorehold
+1 Dovin's Veto
+1 Farewell
+1 Austere Command
+1 Kher Keep
+1 Castle Ardenvale
+1 Command Tower
+1 Elegant Parlor
+1 Mishra's Factory
+1 Mistveil Plains
+1 Mystic Monastery
+1 Mystic Sanctuary
+1 Lotus Petal
+1 Bloodthirster
+1 Sokenzan, Crucible of Defiance
+1 Skullclamp
+1 Brainstorm
+1 Consecrated Sphinx
+1 Thought Vessel
+1 Mystic Remora
+1 Gamble
+1 Serum Visions
+1 Mystical Tutor
+1 Opt
+1 Consider
+1 Arcane Denial
+1 Vandalblast
+1 Arcane Signet
+1 Swiftfoot Boots
+1 Talisman of Progress
+1 Chaos Warp
+1 Talisman of Creativity
+1 Salvation Colossus
+1 Hullbreaker Horror
+1 Boros Signet
+1 Izzet Signet
+1 Faithless Looting
+1 Stroke of Midnight
+1 Generous Gift
+1 Frantic Search
+1 See Beyond
+1 Fellwar Stone
+1 Sephara, Sky's Blade
+1 Dalkovan Encampment
+1 Cori Mountain Monastery
+3 Plains
+1 Teferi's Protection
+1 Mutavault
+2 Mountain

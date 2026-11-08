@@ -1,0 +1,97 @@
+# Archidekt — Kilo proliferate's
+# source: archidekt:16877588
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kilo, Apogee Mind
+
+Deck:
+1 City on Fire
+1 Paradise Mantle
+1 Tezzeret, Cruel Captain
+1 Ugin, Eye of the Storms
+1 Anim Pakal, Thousandth Moon
+1 Steel Overseer
+1 Spark Double
+1 Sulfur Falls
+1 Command Tower
+1 Spire of Industry
+1 Ghostly Prison
+1 Propaganda
+1 Counterspell
+1 Medomai the Ageless
+1 Krark-Clan Ironworks
+1 Sundown Pass
+1 Panharmonicon
+1 Freed from the Real
+1 Forensic Gadgeteer
+1 Deserted Beach
+1 Urza, Lord High Artificer
+1 Pinnacle Emissary
+1 Walking Ballista
+1 Cathars' Crusade
+1 Castle Doom
+1 Mm'menon, Uthros Exile
+1 Reflecting Pool
+1 Arcane Signet
+1 Riverpyre Verge
+1 Pensive Professor
+1 Magistrate's Scepter
+1 Arcane Denial
+1 Everflowing Chalice
+1 Sol Ring
+1 Sunbillow Verge
+1 Floodfarm Verge
+1 Bygone Bishop
+1 Mm'menon, the Right Hand
+1 Organic Extinction
+1 Recon Craft Theta
+1 Lyla, Holographic Assistant
+1 All Will Be One
+1 Sacred Foundry
+1 An Offer You Can't Refuse
+1 Hallowed Fountain
+1 Reliquary Tower
+1 Shivan Reef
+1 Fabricate
+1 Academy Manufactor
+1 Niv-Mizzet, the Firemind
+1 Niv-Mizzet, Visionary
+1 Herald of Secret Streams
+1 Plains
+2 Mountain
+1 The Seriema
+1 Teleportation Circle
+1 Monologue Tax
+1 Magda, Brazen Outlaw
+1 Machinesmith Automaton
+1 Temple of the False God
+1 Jace, Wielder of Mysteries
+1 Donatello, Way with Machines
+1 Steam Vents
+1 Psychosis Crawler
+1 Tamiyo's Journal
+1 Krang, Utrom Warlord
+1 Farewell
+1 Seat of the Synod
+11 Island
+1 Inspiring Vantage
+1 Kappa Cannoneer
+1 Crime Novelist
+1 Jhoira, Weatherlight Captain
+1 Iron Spider, Stark Upgrade
+1 Reckless Fireweaver
+1 Forsaken Monument
+1 Simulacrum Synthesizer
+1 Darksteel Reactor
+1 Dovin's Veto
+1 Syncopate
+1 Grafted Exoskeleton
+1 Exalted Sunborn
+1 Rosie Cotton of South Lane
+1 Clock of Omens
+1 Inexorable Tide
+1 Thought Vessel
+1 Mendicant Core, Guidelight
+1 SP//dr, Piloted by Peni

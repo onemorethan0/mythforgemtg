@@ -1,7 +1,8 @@
 # Archidekt — SQUAAAAAAAD
 # source: archidekt:25772140
 # fetched: 2026-08-26
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Drogskol Reaver + Queza, Augur of Agonies; Bracket 2 allows none
 
 Commander:
 1 Marneus Calgar

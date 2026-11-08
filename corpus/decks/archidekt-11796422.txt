@@ -1,7 +1,8 @@
 # Archidekt — Rocco's Flying Goats of Nostalgia (Exhibition - Bracket 1)
 # source: archidekt:11796422
 # fetched: 2026-07-28
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Staff of Domination + Bloom Tender; Bracket 1 allows none
 
 Commander:
 1 Rocco, Cabaretti Caterer

@@ -1,0 +1,102 @@
+# Archidekt — Goro-Goro and Satoru
+# source: archidekt:4294031
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Goro-Goro and Satoru
+
+Deck:
+1 Path of Ancestry
+1 Phoenix Chick
+1 Exotic Orchard
+1 Sakashima's Student
+1 Xander's Lounge
+1 Command Tower
+1 Stubborn Denial
+1 Training Center
+1 Luxury Suite
+1 Steam Vents
+1 Cascade Bluffs
+1 City of Brass
+1 Underground River
+1 Crumbling Necropolis
+1 Blood Crypt
+1 Watery Grave
+1 Morphic Pool
+1 Fiery Islet
+1 Malakir Rebirth // Malakir Mire
+1 Bloodstained Mire
+1 Kaito, Bane of Nightmares
+1 Hate Mirage
+1 Loyal Apprentice
+1 Silver Raven
+1 Call of the Ring
+1 Throat Slitter
+1 Grim Reaper's Sprint
+1 Ingenious Prodigy
+1 Breath of Fury
+1 Darkslick Shores
+1 Polluted Delta
+1 Prosperous Thief
+1 Plaza of Heroes
+1 Frostcliff Siege
+1 Spectral Denial
+1 Dragon Tempest
+1 Shipwreck Marsh
+3 Swamp
+1 Yuffie, Materia Hunter
+1 Infiltration Lens
+1 Silent-Blade Oni
+1 Thousand-Faced Shadow
+1 Nashi, Moon Sage's Scion
+1 Yuriko, the Tiger's Shadow
+1 Mistblade Shinobi
+1 Moon-Circuit Hacker
+1 Skullclamp
+1 Wingcrafter
+1 Faerie Seer
+3 Island
+1 Mockingbird
+1 Corporeal Projection
+1 Scalding Tarn
+1 Popular Entertainer
+3 Mountain
+1 Spirebluff Canal
+1 Saheeli, Filigree Master
+1 Determined Iteration
+1 Bitterblossom
+1 Esior, Wardwing Familiar
+1 Ingenious Infiltrator
+1 Ninja of the Deep Hours
+1 Fallen Shinobi
+1 Kolaghan, the Storm's Fury
+1 Faerie Impostor
+1 Spyglass Siren
+1 Haunted Ridge
+1 Siren Stormtamer
+1 March of Swirling Mist
+1 Stormcarved Coast
+1 Lightning Greaves
+1 Dokuchi Silencer
+1 Gossip's Talent
+1 Reflecting Pool
+1 Faerie Dreamthief
+1 Shivan Reef
+1 Nezumi Prowler
+1 Horizon of Progress
+1 Collective Inferno
+1 Foot Chopper
+1 Harrier Strix
+1 Flitterwing Nuisance
+1 Dream Beavers
+1 Shark Shredder, Killer Clone
+1 Raphael, the Nightwatcher
+1 Oroku Saki, Shredder Rising
+1 Cunning Evasion
+1 Moonsnare Specialist
+1 Shredder's Technique
+1 Waterbender Ascension
+1 Bolt Bend
+1 Elektra, Daughter of the Hand
+1 Abjure

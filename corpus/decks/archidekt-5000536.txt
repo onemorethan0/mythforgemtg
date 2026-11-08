@@ -1,0 +1,90 @@
+# Archidekt — Trelassara-Tron ($100 Budget, Bracket 1)
+# source: archidekt:5000536
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Trelasarra, Moon Dancer
+
+Deck:
+1 Lathiel, the Bounteous Dawn
+1 Abzan Falconer
+1 Ajani, the Greathearted
+1 Ajani's Welcome
+1 Alseid of Life's Bounty
+1 Armadillo Cloak
+1 Beast Within
+1 Behemoth Sledge
+1 Bretagard Stronghold
+1 Brokers Hideout
+1 Cabaretti Courtyard
+1 Canopy Vista
+1 Cleric Class
+1 Command Tower
+1 Conclave Mentor
+1 Contemplation
+1 Daxos, Blessed by the Sun
+1 Distinguished Conjurer
+1 Duskshell Crawler
+1 Farhaven Elf
+1 Flaming Fist
+1 Fortified Village
+1 Gaea's Gift
+1 Graypelt Refuge
+1 Haunted Cloak
+1 Hunter's Insight
+1 Impassioned Orator
+1 Inscription of Abundance
+1 Inspiring Overseer
+1 Lunarch Veteran // Luminous Phantom
+1 Pridemalkin
+1 Priest of Ancient Lore
+1 Prosperous Innkeeper
+1 Radiant Fountain
+1 Rogue's Passage
+1 Sanctuary Warden
+1 Selesnya Sanctuary
+1 Sejiri Shelter // Sejiri Glacier
+1 Shield of the Oversoul
+1 Sigarda's Splendor
+1 Soul Warden
+1 Speaker of the Heavens
+1 Springbloom Druid
+1 Sunscorch Regent
+1 Suture Priest
+1 Swiftfoot Boots
+1 Tablet of the Guilds
+1 Take Up the Shield
+1 Tamiyo's Safekeeping
+1 Voice of the Blessed
+1 Trailblazer's Boots
+1 Tuskguard Captain
+1 Whispersilk Cloak
+1 Wood Elves
+13 Plains
+1 Swords to Plowshares
+1 Sol Ring
+1 Khalni Ambush // Khalni Territory
+1 Krosan Verge
+1 Sun Titan
+1 Selesnya Signet
+1 Kabira Crossroads
+1 Talisman of Unity
+1 Arcane Signet
+1 Reluctant Role Model
+7 Forest
+1 Ordeal of Nylea
+1 Unwanted Remake
+1 Solemn Simulacrum
+1 Timeless Witness
+1 Unbreakable Formation
+1 Exemplar of Light
+1 Adventurer's Inn
+1 Wrap in Vigor
+1 Haywire Mite
+1 Essence Channeler
+1 The Celestus
+1 Tocasia's Welcome
+1 Blossoming Sands
+1 Branchloft Pathway // Boulderloft Pathway
+1 Bonders' Enclave

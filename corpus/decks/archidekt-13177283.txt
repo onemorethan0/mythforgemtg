@@ -1,7 +1,8 @@
 # Archidekt — Terra - Every Summon - Only FF
 # source: archidekt:13177283
 # fetched: 2026-07-28
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Rhystic Study); Bracket 1 allows 0
 
 Commander:
 1 Terra, Magical Adept // Esper Terra

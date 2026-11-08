@@ -1,0 +1,99 @@
+# Archidekt — Simic Creature Coleslaw
+# source: archidekt:24359371
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 2 allows none
+
+Commander:
+1 Inga and Esika
+
+Deck:
+1 Frilled Mystic
+1 Toski, Bearer of Secrets
+1 Ulvenwald Tracker
+1 Intruder Alarm
+1 Access Denied
+1 Aether Gale
+1 Alchemist's Refuge
+1 Amphibian Downpour
+1 Ancient Silver Dragon
+1 Beast Whisperer
+1 Birds of Paradise
+1 Bloom Tender
+1 Boseiju, Who Endures
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Defiler of Dreams
+1 Draining Whelk
+1 Enduring Curiosity
+1 Etherium Spinner
+1 Evacuation
+1 Faerie Formation
+1 Faerie Slumber Party
+1 Fanatic of Rhonas
+1 Fear of Impostors
+1 Gargoyle Flock
+1 Guardian Augmenter
+1 Glen Elendra Archmage
+1 Hammerhead Tyrant
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Ice-Fang Coatl
+1 Ilysian Caryatid
+1 Jolrael, Mwonvuli Recluse
+1 Joraga Treespeaker
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Khalni Garden
+1 Kogla, the Titan Ape
+1 Llanowar Elves
+1 Mana Confluence
+1 Mischievous Mystic
+1 Misty Rainforest
+1 Mystic Snake
+1 Ohran Frostfang
+1 Otawara, Soaring City
+1 Overcharged Amalgam
+1 Overflowing Basin
+1 Rejuvenating Springs
+1 Reliquary Tower
+1 Runadi, Behemoth Caller
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Silverback Elder
+1 Simic Growth Chamber
+1 Siren Stormtamer
+1 Sister of Silence
+1 Smirking Spelljacker
+1 Somberwald Sage
+1 Spectral Adversary
+1 Spring-Leaf Avenger
+1 Sturmgeist
+1 Surrak and Goreclaw
+1 Surrak, the Hunt Caller
+1 Tender Wildguide
+1 Trailtracker Scout
+1 Transcendent Dragon
+1 Ulamog, the Defiler
+1 Urza's Cave
+1 Waterlogged Grove
+1 Willowrush Verge
+1 Yavimaya Hollow
+1 Evendo, Waking Haven
+1 Breeding Pool
+1 Haywire Mite
+1 Hullbreaker Horror
+1 Cityscape Leveler
+1 Command Tower
+1 Crashing Drawbridge
+1 Flood of Tears
+1 Hinterland Harbor
+1 Koma, Cosmos Serpent
+1 Master of the Wild Hunt
+1 Mosswort Bridge
+1 Prismatic Vista
+6 Snow-Covered Forest
+6 Snow-Covered Island
+1 Tropical Island
+1 Ulamog, the Infinite Gyre
+1 Yavimaya Coast
+1 Kozilek, Butcher of Truth
+1 Sol Ring
+1 Spectral Sailor
+1 Jin-Gitaxias, Core Augur

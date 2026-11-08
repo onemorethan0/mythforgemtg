@@ -1,0 +1,86 @@
+# Archidekt — Cleopatra, Exiled pharaoh legends matters
+# source: archidekt:7011259
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Cleopatra, Exiled Pharaoh
+
+Deck:
+1 Ashnod's Altar
+1 Agent Frank Horrigan
+1 Hardened Scales
+1 Heroic Intervention
+1 Jarad, Golgari Lich Lord
+1 Kami of Whispered Hopes
+1 Nature's Lore
+1 Ozolith, the Shattered Spire
+1 Viridescent Bog
+1 Woodland Cemetery
+1 Cankerbloom
+1 Dark Ritual
+13 Forest
+1 Winding Constrictor
+1 Infernal Grasp
+1 Defiler of Vigor
+1 Incubation Druid
+1 Vraska, Betrayal's Sting
+1 Six
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Honest Rutstein
+1 Vraska Joins Up
+1 Surrak and Goreclaw
+1 Legolas Greenleaf
+1 The Animus
+1 Viscera Seer
+1 Mowu, Loyal Companion
+1 Drana, Liberator of Malakir
+1 Altar of Dementia
+1 Arcane Signet
+1 Bitter Triumph
+1 Branching Evolution
+1 Corpsejack Menace
+1 Court of Garenbrig
+1 Culling Ritual
+1 Doubling Season
+1 Drivnod, Carnage Dominus
+1 Fain, the Broker
+1 Grakmaw, Skyclave Ravager
+1 Gwenna, Eyes of Gaea
+1 Kodama of the West Tree
+1 Kodama's Reach
+1 Kurbis, Harvest Celebrant
+1 Polukranos, Unchained
+1 Reliquary Tower
+1 Renata, Called to the Hunt
+1 Rise of the Witch-king
+1 Rishkar, Peema Renegade
+1 Rogue's Passage
+1 Sarulf, Realm Eater
+1 Skullbriar, the Walking Grave
+1 Sol Ring
+1 The Great Henge
+1 Time of Need
+1 Toxic Deluge
+1 Undying Malice
+1 Yahenni, Undying Partisan
+1 Reyhan, Last of the Abzan
+1 Darkbore Pathway // Slitherbore Pathway
+1 Deathcap Glade
+1 Golgari Rot Farm
+1 Llanowar Wastes
+1 Necroblossom Snarl
+1 Overgrown Tomb
+1 Tainted Wood
+1 Undergrowth Stadium
+1 Invigorating Surge
+1 Return of the Wildspeaker
+1 Rishkar's Expertise
+1 Sign in Blood
+11 Swamp
+1 Benevolent Hydra
+1 Gyre Sage
+1 K'rrik, Son of Yawgmoth
+1 Marwyn, the Nurturer
+1 Pir, Imaginative Rascal

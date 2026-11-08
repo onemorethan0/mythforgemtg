@@ -1,0 +1,108 @@
+# Archidekt — Set Phagers to Stun
+# source: archidekt:4845116
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Phage the Untouchable
+
+Deck:
+1 Arcane Signet
+1 Commander's Plate
+1 Lightning Greaves
+1 Imp's Mischief
+1 Necropotence
+1 Blasphemous Edict
+1 Insatiable Avarice
+1 Bloodletter of Aclazotz
+1 Dauthi Voidwalker
+1 K'rrik, Son of Yawgmoth
+1 Unstoppable Slasher
+1 Strip Mine
+1 Maze of Ith
+1 Nykthos, Shrine to Nyx
+1 Urborg, Tomb of Yawgmoth
+1 Sol Ring
+1 Torpor Orb
+1 Crypt Ghast
+1 Toxic Deluge
+1 Damnation
+1 Sign in Blood
+1 Black Market Connections
+1 Demonic Tutor
+1 Netherborn Altar
+1 Shadowspear
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Snow-Covered Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Snow-Covered Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Jet Medallion
+1 Barad-dûr
+1 Smoke Bomb
+1 Wasteland
+1 Deserted Temple
+1 Malakir Rebirth // Malakir Mire
+1 Feed the Swarm
+1 Fell the Profane // Fell Mire
+1 The Meathook Massacre
+1 Bojuka Bog
+1 Expedition Map
+1 Command Beacon
+1 Talon Gates of Madara
+1 Withering Torment
+1 Vorpal Sword
+1 Heartless Summoning
+1 Infernal Grasp
+1 Cabal Coffers
+1 Phyrexian Obliterator
+1 Hive of the Eye Tyrant
+1 Nyx Lotus
+1 Hagra Mauling // Hagra Broodpit
+1 Stinging Study
+1 Sheoldred, the Apocalypse
+1 The Speed Demon
+1 Reanimate
+1 Dismember
+1 The Darkness Crystal
+1 Summon: Primal Odin
+1 Takenuma, Abandoned Mire
+1 Palantír of Orthanc
+1 Swiftfoot Boots
+1 Throne of Eldraine
+1 Valgavoth, Terror Eater
+1 Silver Shroud Costume
+1 Unholy Annex // Ritual Chamber
+1 Urza's Cave
+1 Chrome Mox
+1 Ancient Tomb
+1 Swamp
+1 The Black Gate
+1 Shizo, Death's Storehouse
+1 Boggart Trawler // Boggart Bog
+1 Castle Locthwain
+1 Dark Ritual
+1 Hall of the Bandit Lord
+1 Gwenom, Remorseless
+1 Bolas's Citadel
+1 Sonic Screwdriver
+1 Urza's Saga
+1 Gray Merchant of Asphodel
+1 Mithril Coat
+1 Campfire
+1 Summon: Bahamut
+1 The Soul Stone
+1 Vampiric Tutor
+1 Decorum Dissertation
+1 Phyrexian Arena
+1 Emeritus of Woe // Demonic Tutor
+1 Sheoldred's Edict
+1 Ad Nauseam

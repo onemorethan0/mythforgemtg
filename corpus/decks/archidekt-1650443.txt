@@ -1,0 +1,92 @@
+# Archidekt — Tiamat and Her Children (Dragon Commander Cube)
+# source: archidekt:1650443
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Tiamat
+
+Deck:
+1 Cavern of Souls
+1 Ketria Triome
+1 Temple of the Dragon Queen
+1 Arid Mesa
+1 Mana Confluence
+1 Training Center
+1 Birds of Paradise
+1 Command Tower
+1 Dragon's Hoard
+1 Arcane Signet
+1 Fellwar Stone
+1 Sol Ring
+1 Path of Ancestry
+1 Temur Ascendancy
+1 Imposing Grandeur
+1 Klauth's Will
+1 Patriarch's Bidding
+1 Orb of Dragonkind
+1 Descent into Avernus
+1 Fearsome Awakening
+1 Defense of the Heart
+1 The Great Henge
+1 Plaza of Heroes
+1 Timeless Lotus
+1 Indatha Triome
+1 Vault of Champions
+1 Undergrowth Stadium
+1 Bountiful Promenade
+1 Rivaz of the Claw
+1 City of Brass
+1 Raugrin Triome
+1 Spectator Seating
+1 Rejuvenating Springs
+1 Rhythm of the Wild
+1 Forest
+1 Savai Triome
+1 Zagoth Triome
+1 Crux of Fate
+1 Exhume
+1 Shard Convergence
+1 Carnelian Orb of Dragonkind
+1 Chromatic Lantern
+1 Jade Orb of Dragonkind
+1 Lapis Orb of Dragonkind
+1 Bloom Tender
+1 Minion of the Mighty
+1 Roaming Throne
+1 Contest of Claws
+1 Unburial Rites
+17 Dragon's Approach
+1 Raise the Palisade
+1 Great Hall of the Citadel
+1 Crucible of the Spirit Dragon
+1 Secluded Courtyard
+1 Mountain
+1 Haven of the Spirit Dragon
+1 Reflecting Pool
+1 Moonsilver Key
+1 Chromatic Orrery
+1 Dracogenesis
+1 Dragon Tempest
+1 Maelstrom of the Spirit Dragon
+1 Sarkhan, Soul Aflame
+1 Mutable Explorer
+1 Bloodline Bidding
+1 Last March of the Ents
+1 Steely Resolve
+1 Big Score
+1 Roiling Dragonstorm
+1 Delighted Halfling
+1 Dragonspeaker Shaman
+1 Abundant Countryside
+1 Chomping Changeling
+1 Spire Garden
+1 Luxury Suite
+1 Sea of Clouds
+1 Morphic Pool
+1 Urza's Incubator
+1 Faithless Looting
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Marsh Flats
+1 Misty Rainforest

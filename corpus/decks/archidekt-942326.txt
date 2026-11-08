@@ -1,0 +1,89 @@
+# Archidekt — Pir und Toothy retired
+# source: archidekt:942326
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Pir, Imaginative Rascal
+1 Toothy, Imaginary Friend
+
+Deck:
+10 Island
+1 Command Tower
+1 Alchemist's Refuge
+1 Reliquary Tower
+1 Scavenger Grounds
+1 Yavimaya Coast
+1 An Offer You Can't Refuse
+1 Beast Within
+1 Essence Flux
+1 Everflowing Chalice
+1 Ghostly Flicker
+1 Psychic Corrosion
+1 Psychosis Crawler
+1 Repudiate // Replicate
+1 Sawtusk Demolisher
+1 Simic Signet
+1 Sol Ring
+1 Thought Vessel
+1 Venser's Journal
+1 Wizard Class
+1 Ominous Seas
+1 Rogue's Passage
+1 Hardened Scales
+1 Sylvan Library
+1 Plaxcaster Frogling
+1 Force of Will
+1 Cyclonic Rift
+1 Counterspell
+1 Planar Incision
+1 Seedborn Muse
+1 Rishkar, Peema Renegade
+1 Pact of Negation
+1 Tolaria West
+10 Forest
+1 Poison Dart Frog
+1 Prime Speaker Zegana
+1 Herald of Secret Streams
+1 Oneirophage
+1 Whirlpool Rider
+1 Boseiju, Who Endures
+1 Kami of Whispered Hopes
+1 Decanter of Endless Water
+1 Hinterland Harbor
+1 Dreamroot Cascade
+1 Gaea's Gift
+1 Flooded Grove
+1 Wave Goodbye
+1 Whirlpool Drake
+1 Ripples of Potential
+1 Summer Bloom
+1 Talisman of Curiosity
+1 Whiptongue Hydra
+1 Chasm Skulker
+1 Mystic Remora
+1 Pongify
+1 Brainstorm
+1 Voidslime
+1 Clinquant Skymage
+1 Inscription of Abundance
+1 Planar Genesis
+1 Willowrush Verge
+1 Jolrael, Voice of Zhalfir
+1 Lifestream's Blessing
+1 Season of Gathering
+1 Gifts Ungiven
+1 Zimone, Paradox Sculptor
+1 Rejuvenating Springs
+1 Birds of Paradise
+1 Llanowar Elves
+1 Ozolith, the Shattered Spire
+1 Worldly Tutor
+1 Blessed Respite
+1 Ledger Shredder
+1 Strip Mine
+1 Lonely Sandbar
+1 Rhystic Study
+1 Displacer Kitten
+1 Thassa, Deep-Dwelling
+1 Otawara, Soaring City

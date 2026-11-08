@@ -1,0 +1,93 @@
+# Archidekt — Zada: Wombo Gombo
+# source: archidekt:175587
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zada, Hedron Grinder
+
+Deck:
+1 Shield Sphere
+1 Renegade Tactics
+1 Dragon Fodder
+1 Hordeling Outburst
+1 Krenko, Tin Street Kingpin
+1 Sol Ring
+1 Krenko, Mob Boss
+1 Krenko's Command
+1 Goblin Instigator
+1 Accelerate
+1 Mogg War Marshal
+1 Jeska's Will
+1 Ancestral Anger
+1 Twinflame
+1 Gamble
+1 Witch's Mark
+1 Crystal Vein
+1 _____ Goblin
+1 Brightstone Ritual
+1 Skirk Prospector
+1 Mox Diamond
+1 The One Ring
+1 Molten Duplication
+1 Battle Cry Goblin
+1 Arcane Signet
+1 Electro, Assaulting Battery
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Runaway Steam-Kin
+1 Blazing Crescendo
+1 Haste Magic
+1 Sudden Breakthrough
+1 Electroduplicate
+1 Roaming Throne
+1 Imperial Recruiter
+1 Goblin Bombardment
+1 Dualcaster Mage
+1 Might of the Meek
+1 Arena of Glory
+1 Three Tree City
+1 Weftstalker Ardent
+1 Ancient Tomb
+1 General Kreat, the Boltbringer
+1 Battle Hymn
+1 Devastating Onslaught
+1 Urza's Saga
+1 City of Traitors
+1 Isochron Scepter
+1 Chrome Mox
+1 Ruby Medallion
+1 Underworld Breach
+1 Storm-Kiln Artist
+1 Daring Discovery
+1 Paradise Mantle
+1 Will of the Jeskai
+1 Stun
+1 Reckless Ransacking
+1 Sundering Eruption // Volcanic Fissure
+16 Mountain
+1 Goblin Chirurgeon
+1 Redirect Lightning
+1 Flashback
+1 Choco-Comet
+1 Frontline Heroism
+1 Krark, the Thumbless
+1 Deflecting Swat
+1 Hexing Squelcher
+1 Springleaf Drum
+1 Nykthos, Shrine to Nyx
+1 Simian Spirit Guide
+1 Gemstone Caverns
+1 Cavern of Souls
+1 Lotus Petal
+1 Ragavan, Nimble Pilferer
+1 Mana Vault
+1 Ancestors' Aid
+1 Crimson Wisps
+1 Young Pyromancer
+1 Rite of Flame
+1 Impolite Entrance
+1 Pinnacle Monk // Mystic Peak
+1 Sokenzan, Crucible of Defiance
+1 Expedite
+1 Fists of Flame
+1 Treasonous Ogre

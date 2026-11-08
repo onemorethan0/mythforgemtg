@@ -1,0 +1,108 @@
+# Archidekt — [B4] Just A Precon
+# source: archidekt:4634909
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Tenth Doctor
+1 Rose Tyler
+
+Deck:
+1 Akroma's Will
+1 Ancient Tomb
+1 Arcane Signet
+1 Arid Mesa
+1 Armageddon
+1 Bloodstained Mire
+1 Borne Upon a Wind
+1 Boromir, Warden of the Tower
+1 Brotherhood Regalia
+1 Chrome Mox
+1 City of Brass
+1 Clockspinning
+1 Command Tower
+1 Cyclonic Rift
+1 Dack Fayden
+1 Deflecting Swat
+1 Displacer Kitten
+1 Drannith Magistrate
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Everybody Lives!
+1 Expropriate
+1 Faerie Mastermind
+1 Fierce Guardianship
+1 Flawless Maneuver
+1 Flooded Strand
+1 Flusterstorm
+1 Force of Negation
+1 Force of Will
+1 Fury Charm
+1 Gamble
+1 Gemstone Caverns
+1 Grand Abolisher
+1 Hallowed Fountain
+1 High Fae Trickster
+1 Island
+1 Jeska's Will
+1 Lavinia, Azorius Renegade
+1 Linvala, Keeper of Silence
+1 Lotus Petal
+1 Mana Confluence
+1 Mana Drain
+1 Mana Vault
+1 Marsh Flats
+1 Minamo, School at Water's Edge
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Mockingbird
+1 Mountain
+1 Mox Amber
+1 Mox Diamond
+1 Mox Opal
+1 Mystic Remora
+1 Mystical Tutor
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Passionate Archaeologist
+1 Personal Tutor
+1 Plains
+1 Plateau
+1 Polluted Delta
+1 Pollywog Prodigy
+1 Possibility Storm
+1 Professional Face-Breaker
+1 Ragavan, Nimble Pilferer
+1 Ranger-Captain of Eos
+1 Ravages of War
+1 Red Elemental Blast
+1 Rhystic Study
+1 Rousing Refrain
+1 Sacred Foundry
+1 Scalding Tarn
+1 Scroll Rack
+1 Sensei's Divining Top
+1 Sevinne's Reclamation
+1 Silence
+1 Smothering Tithe
+1 Sol Ring
+1 Steam Vents
+1 Swan Song
+1 Sword of Wealth and Power
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Teferi, Time Raveler
+1 The One Ring
+1 Time Stretch
+1 Training Grounds
+1 Trenzalore Clocktower
+1 Trouble in Pairs
+1 Tundra
+1 Urza's Saga
+1 Voice of Victory
+1 Void Winnower
+1 Volcanic Island
+1 Wheel of Fortune
+1 Windswept Heath
+1 Wooded Foothills
+1 Worldfire

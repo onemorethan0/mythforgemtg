@@ -1,0 +1,86 @@
+# Archidekt — Dwarves & Dragons | Magda, Brazen Outlaw
+# source: archidekt:2508060
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Magda, Brazen Outlaw
+
+Deck:
+1 Dermotaxi
+1 Buried Ruin
+1 Smuggler's Copter
+1 Holdout Settlement
+1 Vault Robber
+1 Reckoner Bankbuster
+1 Treasure Vault
+1 Chaos Warp
+1 Dwarven Grunt
+1 Skyline Despot
+1 Seize the Spoils
+1 Smashing Success
+1 Survivors' Encampment
+1 Rubble Rouser
+1 Big Score
+1 Balefire Dragon
+1 Volatile Fault
+1 Careening Mine Cart
+1 Hoard Hauler
+1 Treasure Map // Treasure Cove
+1 Hangar Scrounger
+1 Terror of the Peaks
+1 Clock of Omens
+1 Dwarven Mine
+1 Mines of Moria
+1 Valakut Awakening // Valakut Stoneforge
+1 Glóin, Dwarf Emissary
+1 Metallic Mimic
+1 Plundering Barbarian
+1 Relic of Legends
+1 Cultivator's Caravan
+1 War Room
+1 Adaptive Automaton
+1 Bloodline Pretender
+1 Dwarven Nomad
+1 Maskwood Nexus
+1 Dwarven Bloodboiler
+7 Seven Dwarves
+1 Pirate's Pillage
+1 Hellkite Tyrant
+1 Demand Answers
+1 Scourge of Valkas
+1 Goldspan Dragon
+1 Lifecraft Engine
+1 Xorn
+1 Utvara Hellkite
+1 Unexpected Windfall
+1 Reckless Endeavor
+1 Torbran, Thane of Red Fell
+1 Springleaf Drum
+1 Ancient Copper Dragon
+1 Deflecting Swat
+1 Axgard Cavalry
+1 Paradise Mantle
+1 Ganax, Astral Hunter
+1 Ruby Medallion
+1 Inspiring Statuary
+1 Sundering Eruption // Volcanic Fissure
+8 Snow-Covered Mountain
+3 Mountain
+2 Mountain
+6 Mountain
+1 Firdoch Core
+1 Banner of Kinship
+1 Goldlust Triad
+1 Twinflame Tyrant
+2 Mountain
+1 Scene of the Crime
+1 Mountain
+1 Mountain
+1 Summon: Bahamut
+1 Roaming Throne
+1 Óin the Brave
+1 Liquimetal Torque
+1 Lightning Greaves
+1 Sol Ring
+1 Lathliss, Dragon Queen

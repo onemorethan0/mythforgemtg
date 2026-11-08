@@ -1,0 +1,84 @@
+# Archidekt — Mono Green Flash Stompy - Yeva, Nature's Herald
+# source: archidekt:1871700
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Yeva, Nature's Herald
+
+Deck:
+1 Castle Garenbrig
+1 Karametra's Acolyte
+1 War Room
+1 Tribute to the World Tree
+1 Scavenger Grounds
+1 Allosaurus Shepherd
+1 Kogla, the Titan Ape
+1 Sol Ring
+1 Llanowar Elves
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Somberwald Sage
+1 Reliquary Tower
+1 Fierce Empath
+1 Surrak and Goreclaw
+1 Craterhoof Behemoth
+1 Crystal Vein
+1 Arid Archway
+1 Devoted Druid
+1 Collector Ouphe
+1 Wrap in Vigor
+1 Ashaya, Soul of the Wild
+1 Reclamation Sage
+1 Great Oak Guardian
+1 Arbor Elf
+1 Priest of Titania
+1 Radagast the Brown
+1 Elvish Mystic
+1 Wall of Roots
+1 Defiler of Vigor
+1 Woodland Bellower
+1 Fyndhorn Elves
+1 Apex Devastator
+1 Circle of Dreams Druid
+1 Goreclaw, Terror of Qal Sisma
+1 Apex Altisaur
+1 Heroic Intervention
+1 Augur of Autumn
+1 Dryad Arbor
+1 Spinner of Souls
+1 Smuggler's Surprise
+1 Regal Force
+1 Toski, Bearer of Secrets
+1 Guardian Project
+1 Garruk's Uprising
+1 Beast Whisperer
+1 Ohran Frostfang
+1 Tooth and Nail
+1 Green Sun's Zenith
+1 Disciple of Freyalise // Garden of Freyalise
+1 Herd Heirloom
+1 Fanatic of Rhonas
+1 Shaman of Forgotten Ways
+1 Chord of Calling
+1 Outcaster Trailblazer
+1 Nature's Rhythm
+1 Vastlands Scavenger // Bind to Life
+1 Summoner's Pact
+1 Silverback Elder
+1 Sylvan Library
+1 Undermountain Adventurer
+1 Emergence Zone
+1 Eternal Witness
+1 Force of Vigor
+1 Seedborn Muse
+1 Endurance
+1 Selvala, Heart of the Wilds
+1 The Earth King
+1 Boseiju, Who Endures
+1 Natural Order
+22 Forest
+1 Guildless Commons
+1 Khalni Ambush // Khalni Territory
+1 Gaea's Cradle
+1 Green Slime
+1 Chancellor of the Tangle

@@ -1,0 +1,97 @@
+# Archidekt — Flavour crystal 7
+# source: archidekt:9213358
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Asmoranomardicadaistinaculdacar
+
+Deck:
+1 Foreboding Ruins
+1 Taste of Death
+1 Forgotten Cave
+1 Barren Moor
+1 Bedevil
+1 Bloodfell Caves
+1 Collector's Vault
+1 Command Tower
+1 Discerning Taste
+1 Dockside Chef
+1 Feed the Swarm
+1 Geothermal Bog
+1 Grave Scrabbler
+1 Kitchen Imp
+1 Lord Skitter, Sewer King
+1 Nadier's Nightblade
+1 Ovalchase Daredevil
+1 Oversold Cemetery
+1 Party Thrasher
+1 Rakdos Guildgate
+1 Smoldering Marsh
+1 Temple of Malice
+1 The Underworld Cookbook
+1 Faithless Looting
+1 Sol Ring
+1 Thriving Bluff
+1 Thriving Moor
+1 Trading Post
+1 Tramway Station
+1 Voracious Vermin
+1 Witch's Oven
+1 Bake into a Pie
+1 Rix Maadi, Dungeon Palace
+1 Riveteers Overlook
+1 Diresight
+1 Ash Barrens
+1 Canyon Slough
+1 Bushmeat Poacher
+1 Ivora, Insatiable Heir
+1 Feed the Cauldron
+1 Dubious Delicacy
+1 Polluted Mire
+1 Rakdos Charm
+1 Transmutation Font
+1 Haunted Ridge
+5 Mountain
+1 Blazemire Verge
+8 Swamp
+1 Moonglove Extractor
+1 Squee, Goblin Nabob
+1 Gristle Glutton
+1 Alesha, Who Laughs at Fate
+1 Garna, Bloodfist of Keld
+1 Brash Taunter
+1 Engine Rat
+1 Monument to Endurance
+1 Totentanz, Swarm Piper
+1 Chainer, Nightmare Adept
+1 Vindictive Vampire
+1 Sweettooth Witch
+1 Experimental Confectioner
+1 Witch's Cauldron
+1 Eviscerator's Insight
+1 Demand Answers
+1 Count on Luck
+1 Tavern Brawler
+1 Thrill of Possibility
+1 Foreboding Fruit
+1 Chef's Kiss
+1 Read the Bones
+1 Ogre Slumlord
+1 Feed the Flames
+1 Arcane Signet
+1 Old Flitterfang
+1 Lord Skitter's Butcher
+1 Revenge of the Rats
+1 Eaten Alive
+1 Savor
+1 Lightning Axe
+1 Tempting Witch
+1 Midnight Snack
+1 Drossforge Bridge
+1 Pyretic Rebirth
+1 Bothersome Quasit
+1 Hell's Kitchen
+1 Buried Ruin
+1 Blood Crypt
+1 Murmuring Volume

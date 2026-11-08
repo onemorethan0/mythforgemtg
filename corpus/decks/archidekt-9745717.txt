@@ -1,0 +1,100 @@
+# Archidekt — Kellan the Kid Prepare for Adventure
+# source: archidekt:9745717
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kellan, the Kid
+
+Deck:
+1 Vega, the Watcher
+1 Twining Twins // Swift Spiral
+1 Mosswort Bridge
+1 Hushwood Verge
+1 Command Tower
+1 Canopy Vista
+1 Deserted Beach
+1 Sunpetal Grove
+1 Simic Growth Chamber
+1 Prairie Stream
+1 Azorius Chancery
+1 Hinterland Harbor
+1 Dreamroot Cascade
+1 Overgrown Farmland
+1 Glacial Fortress
+1 Sungrass Prairie
+1 Overflowing Basin
+1 Yavimaya Coast
+1 Selesnya Sanctuary
+1 Adarkar Wastes
+1 Hidden Cataract
+1 Skycloud Expanse
+1 Vineglimmer Snarl
+1 Hidden Courtyard
+4 Plains
+1 Hidden Nursery
+4 Forest
+4 Island
+1 Augur of Autumn
+1 Woodland Acolyte // Mend the Wilds
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Ardenvale Tactician // Dizzying Swoop
+1 Blessed Hippogriff // Tyr's Blessing
+1 Beanstalk Giant // Fertile Footsteps
+1 Crystal Dragon // Rob the Hoard
+1 Besotted Knight // Betroth the Beast
+1 Beluna's Gatekeeper // Entry Denied
+1 Ettercap // Web Shot
+1 Brightcap Badger // Fungus Frolic
+1 Cheeky House-Mouse // Squeak By
+1 Elusive Otter // Grove's Bounty
+1 Horned Loch-Whale // Lagoon Breach
+1 Sapphire Dragon // Psionic Pulse
+1 Dread Linnorm // Scale Deflection
+1 Guardian Naga // Banishing Coils
+1 Moonshae Pixie // Pixie Dust
+1 Pollen-Shield Hare // Hare Raising
+1 Giant Killer // Chop Down
+1 Stormkeld Vanguard // Bear Down
+1 Sea Hag // Aquatic Ingress
+1 Karvanista, Loyal Lupari // Lupari Shield
+1 Obyra's Attendants // Desperate Parry
+1 Sword Coast Serpent // Capsizing Wave
+1 Queen of Ice // Rage of Winter
+1 Tlincalli Hunter // Retrieve Prey
+1 Threadbind Clique // Rip the Seams
+1 Behold the Multiverse
+1 Reliquary Tower
+1 Exotic Orchard
+1 Outcaster Trailblazer
+1 Skycoach Waypoint
+1 Emeritus of Ideation // Ancestral Recall
+1 Tam, Observant Sequencer // Deep Sight
+1 Striding Shotcaller // Run the Play
+1 Studious First-Year // Rampant Growth
+1 Brazen Borrower // Petty Theft
+1 Landscape Painter // Vibrant Idea
+1 Harmonized Trio // Brainstorm
+1 Elite Interceptor // Rejoinder
+1 Skycoach Conductor // All Aboard
+1 Spellbook Seeker // Careful Study
+1 Virtue of Knowledge // Vantress Visions
+1 Yavimaya Bloomsage // Channel
+1 Honorbound Page // Forum's Favor
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Joined Researchers // Secret Rendezvous
+1 Realm-Cloaked Giant // Cast Off
+1 Emeritus of Truce // Swords to Plowshares
+1 Infirmary Healer // Stream of Life
+1 Lovestruck Beast // Heart's Desire
+1 Emeritus of Abundance // Regrowth
+1 An Unexpected Party // At the Door
+1 Thranduil, Sindarin Liege // Silvan Rally
+1 Colossal Badger // Dig Deep
+1 Aquatic Alchemist // Bubble Up
+1 Beorn, Reluctant Host // Till and Tend
+1 Velvetwing Butterflies // Gaze in Wonder
+1 Bilbo Baggins, Burglar // Take a Glance
+1 Bilbo, Luckwearer // Burglar's Plot
+1 Horn of Valhalla // Ysgard's Call
+1 Bofur, Reliable Guardian // Concerted Care

@@ -1,0 +1,102 @@
+# Archidekt — Tag, You're It--It--It 👊🏻⏰- Obeka, Splitter of Seconds
+# source: archidekt:7638805
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Obeka, Splitter of Seconds
+
+Deck:
+1 Dragonmaster Outcast
+1 Caves of Chaos Adventurer
+1 Court of Ambition
+1 Court of Locthwain
+1 Court of Embereth
+1 Fierce Guardianship
+1 Bloodboil Sorcerer
+1 Izzet Signet
+1 Arcane Signet
+1 Dungeoneer's Pack
+1 An Offer You Can't Refuse
+1 Court of Vantress
+1 Extravagant Replication
+1 Passageway Seer
+1 Aarakocra Sneak
+1 Mithril Coat
+1 Nightscape Familiar
+1 Cyclonic Rift
+1 Sarevok's Tome
+1 Loot Dispute
+1 Chaos Warp
+1 Deflecting Swat
+1 Sol Ring
+1 Twilight Prophet
+1 Silver Shroud Costume
+1 Ring of Evos Isle
+1 Stirring Bard
+1 Dimir Signet
+1 Phyrexian Arena
+1 Tomb of Horrors Adventurer
+1 Rakdos Signet
+1 Vicious Battlerager
+1 Plargg and Nassari
+1 Toxic Deluge
+1 Ring of Xathrid
+1 Talisman of Indulgence
+1 Winged Boots
+1 Reckless Charge
+1 Underground River
+1 Xander's Lounge
+1 Shizo, Death's Storehouse
+1 Blightstep Pathway // Searstep Pathway
+1 Crumbling Necropolis
+1 Bojuka Bog
+1 Exotic Orchard
+1 Drowned Catacomb
+1 Dragonskull Summit
+3 Island
+1 Rilsa Rael, Kingpin
+1 Swan Song
+1 Talisman of Creativity
+1 Swiftfoot Boots
+1 Talisman of Dominance
+1 Fellwar Stone
+1 Thassa, God of the Sea
+1 Thopter Spy Network
+3 Swamp
+1 Sulfur Falls
+1 Training Center
+1 Cascade Bluffs
+1 Haunted Ridge
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 The Black Gate
+1 Path of Ancestry
+1 Luxury Suite
+1 Morphic Pool
+3 Mountain
+1 Shipwreck Marsh
+1 Shivan Reef
+1 Sulfurous Springs
+1 Stormcarved Coast
+1 Fiery Islet
+1 Riverglide Pathway // Lavaglide Pathway
+1 Ravenloft Adventurer
+1 Bonehoard Dracosaur
+1 Sphinx of the Second Sun
+1 Paradox Haze
+1 Inspiring Refrain
+1 Creeping Bloodsucker
+1 Alexios, Deimos of Kosmos
+1 Fae Flight
+1 Arcane Denial
+1 As Foretold
+1 Lavaspur Boots
+1 Ring of Valkas
+1 Brotherhood Regalia
+1 Suspended Sentence
+1 Frostcliff Siege
+1 Withering Torment
+1 Generous Plunderer
+1 Rogue's Passage
+1 Minas Morgul, Dark Fortress

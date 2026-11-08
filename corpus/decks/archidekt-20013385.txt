@@ -1,0 +1,108 @@
+# Archidekt — JesterMaxxxing
+# source: archidekt:20013385
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+
+Deck:
+1 Fierce Guardianship
+1 Phyrexian Metamorph
+1 Steam Vents
+1 Mystic Remora
+1 Watery Grave
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Arcane Signet
+1 Deflecting Swat
+1 Polluted Delta
+1 Bloodstained Mire
+1 Thundering Falls
+1 Mana Confluence
+1 Chrome Mox
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Arid Mesa
+1 Wooded Foothills
+1 Displacer Kitten
+1 Sol Ring
+1 Mox Amber
+1 Jeska's Will
+1 Ragavan, Nimble Pilferer
+1 Desperate Ritual
+1 Grim Monolith
+1 Dark Ritual
+1 Mental Misstep
+1 Flusterstorm
+1 Chain of Vapor
+1 Mana Drain
+1 Force of Negation
+1 Mindbreak Trap
+1 Orcish Bowmasters
+1 Wheel of Fortune
+1 Marsh Flats
+1 Verdant Catacombs
+1 Underground Sea
+1 Mystical Tutor
+1 Otawara, Soaring City
+1 Rhystic Study
+1 Hexing Squelcher
+1 Gemstone Caverns
+1 Final Fortune
+1 Cavern of Souls
+1 City of Brass
+1 Flooded Strand
+1 Phantasmal Image
+1 Thassa's Oracle
+1 Swan Song
+1 Underworld Breach
+1 Mockingbird
+1 Crystal Vein
+1 Demonic Consultation
+1 Ancient Tomb
+1 Borne Upon a Wind
+1 Lotus Petal
+1 Opposition Agent
+1 Training Center
+1 The One Ring
+1 Scalding Tarn
+1 Deadly Rollick
+1 Brain Freeze
+1 Urza's Saga
+1 Pyroblast
+1 Undercity Sewers
+1 Fellwar Stone
+1 Volcanic Island
+1 Beseech the Mirror
+1 Badlands
+1 Mistrise Village
+1 Blood Crypt
+1 Vivi Ornitier
+1 Hullbreaker Horror
+1 Gamble
+1 Harmonic Prodigy
+1 Command Tower
+1 Into the Flood Maw
+1 Simian Spirit Guide
+1 Flesh Duplicate
+1 Necropotence
+1 Swamp
+1 Spellseeker
+1 Dualcaster Mage
+1 Faerie Mastermind
+1 Flashback
+1 Lion's Eye Diamond
+1 Force of Will
+1 Raucous Theater
+1 Cyclonic Rift
+1 Essence Flux
+1 Bloodchief Ascension
+1 Sink into Stupor // Soporific Springs
+1 Island
+1 Samut, Tyrant of Naktamun
+1 An Offer You Can't Refuse
+1 Molten Duplication
+1 Waste Not
+1 Cabal Ritual
+1 Tainted Pact

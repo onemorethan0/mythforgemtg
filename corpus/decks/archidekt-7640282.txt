@@ -1,0 +1,108 @@
+# Archidekt — Animar, "I can only count to 4"
+# source: archidekt:7640282
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Animar, Soul of Elements
+
+Deck:
+1 Command Tower
+1 Stomping Ground
+1 Volcanic Island
+1 Tropical Island
+1 Gaea's Cradle
+1 Taiga
+1 Walking Ballista
+1 Haywire Mite
+1 Shrieking Drake
+1 Nulldrifter
+1 Cloud of Faeries
+1 Simian Spirit Guide
+1 Oblivion Sower
+1 Breeding Pool
+1 Bond Beetle
+1 Llanowar Elves
+1 Bounty of the Hunt
+1 Arid Mesa
+1 Hedge Maze
+1 Faerie Mastermind
+1 Delighted Halfling
+1 Gemstone Caverns
+1 Hullbreaker Horror
+1 Pyroblast
+1 Windswept Heath
+1 Wooded Foothills
+1 Boseiju, Who Endures
+1 Ancestral Statue
+1 Elvish Spirit Guide
+1 Flooded Strand
+1 Mana Confluence
+1 Hexing Squelcher
+1 High Fae Trickster
+1 Transit Mage
+1 Phyrexian Metamorph
+1 Chrome Mox
+1 Badgermole Cub
+1 Signal the Clans
+1 Ancient Ziggurat
+1 Tinder Wall
+1 Drift of Phantasms
+1 Shield-Wall Sentinel
+1 Fierce Empath
+1 Bloom Tender
+1 Sunshower Druid
+1 Birds of Paradise
+1 Wild Cantor
+1 Elvish Mystic
+1 Lotus Petal
+1 Rhystic Study
+1 Sowing Mycospawn
+1 Steam Vents
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Into the Flood Maw
+1 Polluted Delta
+1 Bloodstained Mire
+1 Mystic Remora
+1 Swan Song
+1 Formidable Speaker
+1 Myr Scrapling
+1 Ragavan, Nimble Pilferer
+1 Worldly Tutor
+1 Skullwinder
+1 Charming Scoundrel
+1 Orcish Lumberjack
+1 Imperial Recruiter
+1 Mox Amber
+1 Spellskite
+1 Misty Rainforest
+1 Spellseeker
+1 Abundant Countryside
+1 Mindbreak Trap
+1 Endurance
+1 Batroc the Leaper
+1 Crop Rotation
+1 Force of Will
+1 Mental Misstep
+1 Rograkh, Son of Rohgahh
+1 City of Brass
+1 Fierce Guardianship
+1 Supportive Parents
+1 Clement, the Worrywort
+1 Snap
+1 Tishana's Tidebinder
+1 Wild Growth
+1 Eldritch Evolution
+1 Phantasmal Image
+1 Pia, Aether Ascetic
+1 The Unagi of Kyoshi Island
+1 Verdant Catacombs
+1 Aether Channeler
+1 Scalding Tarn
+1 Collector Ouphe
+1 Summoner's Pact
+1 Woodland Bellower
+1 Sicarian Infiltrator
+1 Deflecting Swat
+1 Otawara, Soaring City
+1 Fauna Shaman

@@ -1,0 +1,75 @@
+# Archidekt — Delina
+# source: archidekt:4449717
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Delina, Wild Mage
+
+Deck:
+34 Mountain
+1 Kediss, Emberclaw Familiar
+1 Sol Ring
+1 Rage Forger
+1 Port Razer
+1 Prowler's Helm
+1 Aggravated Assault
+1 Plundering Barbarian
+1 Dolmen Gate
+1 Commander's Plate
+1 Sardian Cliffstomper
+1 Torbran, Thane of Red Fell
+1 Whispersilk Cloak
+1 Arcane Signet
+1 Insufferable Balladeer
+1 Blackblade Reforged
+1 Circuit Mender
+1 Professional Face-Breaker
+1 Witty Roastmaster
+1 Godo, Bandit Warlord
+1 Devilish Valet
+1 Wyll, Blade of Frontiers
+1 Imperial Recruiter
+1 Kiki-Jiki, Mirror Breaker
+1 Headliner Scarlett
+1 Sword of the Animist
+1 Curse of Opulence
+1 Barbarian Class
+1 Ancient Copper Dragon
+1 Bronze Walrus
+1 Throne of Eldraine
+1 Skyscanner
+1 Purphoros, God of the Forge
+1 Harmonic Prodigy
+1 Aspiring Champion
+1 Idol of Oblivion
+1 Terror of the Peaks
+1 Heraldic Banner
+1 Stigma Lasher
+1 Brazen Dwarf
+1 Vexing Puzzlebox
+1 Sword of Hearth and Home
+1 Tibalt's Trickery
+1 Powerbalance
+1 Fanatic of Mogis
+1 Vandalblast
+1 Panharmonicon
+1 Goblin Chainwhirler
+1 Fiery Emancipation
+1 Sword of Feast and Famine
+1 Iron Myr
+1 Trailblazer's Boots
+1 Price of Progress
+1 Impact Tremors
+1 Sunspine Lynx
+1 General Kreat, the Boltbringer
+1 Karlach, Fury of Avernus
+1 Ruby Medallion
+1 Lightning Greaves
+1 Neheb, the Eternal
+1 Silent Arbiter
+1 Jeska's Will
+1 Flametongue Kavu
+1 Agate Instigator
+1 City on Fire
+1 Ragavan, Nimble Pilferer

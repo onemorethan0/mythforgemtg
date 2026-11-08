@@ -1,0 +1,85 @@
+# Archidekt — Obzedat, Ghost Council
+# source: archidekt:1897319
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Obzedat, Ghost Council
+
+Deck:
+1 Orzhov Locket
+1 Cruel Celebrant
+1 Suture Priest
+1 Archivist of Oghma
+1 Greed
+1 Rhox Faithmender
+1 Blood Artist
+1 Mind Stone
+1 Profane Tutor
+1 Eiganjo, Seat of the Empire
+1 Day of Judgment
+1 Dawn Charm
+1 Perilous Vault
+1 Scrubland
+1 Marsh Flats
+1 Godless Shrine
+1 Norn's Annex
+1 Painful Quandary
+1 Phyrexian Arena
+1 Orzhov Cluestone
+1 Court of Ambition
+1 Akroma's Will
+1 Despark
+1 Terramorphic Expanse
+1 Lux Cannon
+1 Crush Contraband
+1 Fiend Hunter
+1 Drana's Emissary
+1 Forsaken Sanctuary
+1 Corpse Knight
+1 Rogue's Passage
+1 Exsanguinate
+1 Kambal, Consul of Allocation
+1 Bolas's Citadel
+1 Monologue Tax
+1 Soul's Attendant
+1 Tainted Remedy
+1 Nykthos Paragon
+1 Tivash, Gloom Summoner
+1 Orim's Chant
+1 Static Orb
+1 Temporal Extortion
+1 Well of Lost Dreams
+1 Panharmonicon
+1 Cunning Rhetoric
+1 Enduring Tenacity
+1 Decanter of Endless Water
+1 Witch of the Moors
+1 Talisman of Hierarchy
+1 Twilight Prophet
+1 Ancient Tomb
+1 Orzhov Signet
+14 Swamp
+1 Aetherflux Reservoir
+1 Crawlspace
+1 Vito, Thorn of the Dusk Rose
+1 Soul Warden
+1 Liesa, Shroud of Dusk
+1 Windborn Muse
+1 Sanguine Bond
+1 Astarion, the Decadent
+1 Gray Merchant of Asphodel
+1 Wound Reflection
+1 Ayara, First of Locthwain
+1 Revenge of Ravens
+1 Swords to Plowshares
+1 Exquisite Blood
+11 Plains
+1 Tainted Field
+1 Mana Confluence
+1 Torment of Hailfire
+1 Evolving Wilds
+1 Lotho, Corrupt Shirriff
+1 Hokori, Dust Drinker
+1 Magus of the Moat
+1 Exotic Orchard

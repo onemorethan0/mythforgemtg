@@ -1,0 +1,91 @@
+# Archidekt — Braids
+# source: archidekt:4238839
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Braids, Arisen Nightmare
+
+Deck:
+1 Demonic Pact
+1 Drownyard Temple
+1 Gix, Yawgmoth Praetor
+1 Jadar, Ghoulcaller of Nephalia
+1 Living Death
+1 Malakir Rebirth // Malakir Mire
+1 Bloodghast
+1 Castle Locthwain
+1 Crypt Ghast
+1 Junji, the Midnight Sky
+1 Liliana of the Dark Realms
+1 Reanimate
+1 Soul Shatter
+1 Sudden Spoiling
+1 Torment of Hailfire
+1 Treacherous Blessing
+1 Urborg, Tomb of Yawgmoth
+1 Takenuma, Abandoned Mire
+1 Mycosynth Wellspring
+1 Ichor Wellspring
+1 Skullclamp
+1 Sol Ring
+1 Ayara, First of Locthwain
+1 Lightning Greaves
+1 Gray Merchant of Asphodel
+1 Massacre Girl
+1 Skyclave Shade
+1 Opposition Agent
+1 Sheoldred, the Apocalypse
+1 Black Sun's Twilight
+1 Dark Ritual
+1 Sheoldred, Whispering One
+1 Gemstone Caverns
+1 The Meathook Massacre
+1 Tragic Slip
+5 Swamp
+6 Swamp
+6 Swamp
+1 Rise of the Dark Realms
+4 Swamp
+1 Demonic Tutor
+1 Breach the Multiverse
+1 Damnation
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Black Market Connections
+1 Dunes of the Dead
+1 Force of Despair
+1 Gods' Eye, Gate to the Reikai
+1 Go for the Throat
+1 Liliana's Triumph
+1 Nykthos, Shrine to Nyx
+1 Ophiomancer
+1 Overwhelming Remorse
+1 Plaguecrafter
+1 Szat's Will
+1 Vona's Hunger
+1 Bojuka Bog
+1 Cabal Coffers
+1 Reliquary Tower
+1 Oubliette
+1 Hive of the Eye Tyrant
+1 Preacher of the Schism
+1 Ugin's Nexus
+1 Beseech the Mirror
+1 Screams from Within
+1 Arcane Signet
+1 Dauthi Voidwalker
+1 The One Ring
+1 Jet Medallion
+1 Solemn Simulacrum
+1 Morbid Opportunist
+1 Blessing of Leeches
+1 Orcish Bowmasters
+1 Marionette Apprentice
+1 Caustic Bronco
+1 Keen Duelist
+1 Warehouse Tabby
+1 K'rrik, Son of Yawgmoth
+1 Flare of Malice
+1 Spymaster's Vault
+1 Deadly Dispute
+1 Feed the Swarm

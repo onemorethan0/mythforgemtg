@@ -1,0 +1,91 @@
+# Archidekt — Squirrels Drive Cars
+# source: archidekt:6667002
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Rip, Spawn Hunter
+
+Deck:
+1 Blighted Woodland
+1 Bountiful Promenade
+1 Mech Hangar
+1 Scavenger Grounds
+1 Acorn Catapult
+1 Camaraderie
+1 Born to Drive
+1 Argivian Archaeologist
+1 Getaway Car
+1 Smuggler's Copter
+1 Squirrel Sanctuary
+1 Verdant Command
+1 Luxurious Locomotive
+1 Ellyn Harbreeze, Busybody
+1 Bessie, the Doctor's Roadster
+1 Myriad Landscape
+1 Reliquary Tower
+1 Temple Garden
+1 Windswept Heath
+1 Gavony Township
+1 Grasslands
+1 Krosan Verge
+9 Plains
+1 Sunpetal Grove
+1 Swarmyard
+1 War Room
+1 Chatterstorm
+1 Squirrel Nest
+1 Sram, Senior Edificer
+1 Collective Unconscious
+1 Shamanic Revelation
+1 Overwhelming Instinct
+1 Nut Collector
+1 Rootcast Apprenticeship
+1 Thornvault Forager
+1 Prairie Dog
+1 Goliath Truck
+1 Knight Paladin
+1 Country Roads
+1 Collision Course
+1 Wild Roads
+1 Curious Forager
+1 Lifecraft Engine
+1 Lightwheel Enhancements
+1 Amonkhet Raceway
+1 Point the Way
+1 Spectacular Pileup
+1 Perilous Snare
+1 Avishkar Raceway
+1 Bushy Bodyguard
+1 Starting Column
+1 Muraganda Raceway
+1 Racers' Scoreboard
+1 Citanul Hierophants
+1 Mysterious Limousine
+1 Nautiloid Ship
+1 Smuggler's Buggy
+1 Thundersteel Colossus
+1 Unlicensed Hearse
+1 Aerial Surveyor
+1 Acorn Harvest
+1 Chatter of the Squirrel
+1 Chitterspitter
+1 Deep Forest Hermit
+1 Deranged Hermit
+1 Helica Glider
+1 Scurry Oak
+1 Squirrel Sovereign
+1 Toski, Bearer of Secrets
+1 Thunderhawk Gunship
+1 Jaheira, Friend of the Forest
+1 Elven Chorus
+1 Cryptolith Rite
+1 Enduring Vitality
+1 Beast Within
+1 Generous Gift
+10 Forest
+1 Voyager Glidecar
+1 Lumbering Worldwagon
+1 The Regalia
+1 Adventurer's Airship
+1 Hedge Shredder

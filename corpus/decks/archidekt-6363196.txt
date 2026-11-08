@@ -1,0 +1,102 @@
+# Archidekt — Crafting Artifacts - Ixalan Themed
+# source: archidekt:6363196
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tetzin, Gnome Champion // The Golden-Gear Colossus
+
+Deck:
+1 Sevinne's Reclamation
+1 Saheeli's Lattice // Mastercraft Raptor
+1 Anim Pakal, Thousandth Moon
+1 Razortide Bridge
+1 Inverted Iceberg // Iceberg Titan
+1 Spring-Loaded Sawblades // Bladewheel Chariot
+1 Master's Guide-Mural // Master's Manufactory
+1 Matzalantli, the Great Door // The Core
+1 Threefold Thunderhulk
+1 Wayfarer's Bauble
+1 Saheeli, Sublime Artificer
+1 Clay-Fired Bricks // Cosmium Kiln
+1 Sunbird Standard // Sunbird Effigy
+1 Fabrication Foundry
+1 Boros Signet
+1 Azorius Signet
+1 Dowsing Dagger // Lost Vale
+1 Unstable Glyphbridge // Sandswirl Wanderglyph
+1 Akal Pakal, First Among Equals
+1 Eye of Ojer Taq // Apex Observatory
+1 Get Lost
+1 Storm the Vault // Vault of Catlacan
+1 Abuelo, Ancestral Echo
+1 Path of Ancestry
+1 Buried Ruin
+1 Skycloud Expanse
+1 Power Depot
+1 Saheeli, the Sun's Brilliance
+1 Rustvale Bridge
+1 Dusk Rose Reliquary
+1 Illustrious Wanderglyph
+1 Dispatch
+1 Great Furnace
+1 Spire of Industry
+1 Darksteel Citadel
+1 Lodestone Needle // Guidestone Compass
+1 Idol of the Deep King // Sovereign's Macuahuitl
+1 Poetic Ingenuity
+1 Brass's Tunnel-Grinder // Tecutlan, the Searing Rift
+1 Dire Flail // Dire Blunderbuss
+1 The Everflowing Well // The Myriad Pools
+1 Golden Guardian // Gold-Forge Garrison
+1 Ancient Den
+1 Silverbluff Bridge
+1 Waterlogged Hulk // Watertight Gondola
+1 Oteclan Landmark // Oteclan Levitator
+1 Braided Net // Braided Quipu
+1 Treasure Map // Treasure Cove
+1 Dowsing Device // Geode Grotto
+1 Gold-Forged Thopteryx
+1 Brilliant Restoration
+1 The Immortal Sun
+1 Paleontologist's Pick-Axe // Dinosaur Headdress
+1 Thaumatic Compass // Spires of Orazca
+1 Azor's Gateway // Sanctum of the Sun
+1 Hallowed Fountain
+1 Sacred Foundry
+1 Rugged Prairie
+1 Cascade Bluffs
+1 Ferrous Lake
+1 Mystic Gate
+1 Sunscorched Divide
+1 Weapons Manufacturing
+1 Orazca Puzzle-Door
+1 Steam Vents
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 The Enigma Jewel // Locus of Enlightenment
+3 Island
+5 Plains
+3 Mountain
+1 Caparocti Sunborn
+1 Reliquary Tower
+1 Great Hall of the Citadel
+1 Wake the Past
+1 Elixir of Immortality
+1 Exotic Orchard
+1 Trading Post
+1 Swiftfoot Boots
+1 Mystic Monastery
+1 Sunder the Gateway
+1 Organic Extinction
+1 Seat of the Synod
+1 Sequestered Stash
+1 Chimil, the Inner Sun
+1 Command Tower
+1 Radiant Destiny
+1 Izzet Signet
+1 Sol Ring
+1 Conqueror's Galleon // Conqueror's Foothold
+1 Vance's Blasting Cannons // Spitfire Bastion
+1 Foundry Inspector
+1 Jeskai Ascendancy
+1 Search for Azcanta // Azcanta, the Sunken Ruin

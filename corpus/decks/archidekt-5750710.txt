@@ -1,0 +1,108 @@
+# Archidekt — The Beat Down
+# source: archidekt:5750710
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Gemstone Caverns
+1 Arid Mesa
+1 Mox Diamond
+1 Volcanic Island
+1 Ancient Copper Dragon
+1 Command Tower
+1 Exotic Orchard
+1 Worldly Tutor
+1 Miirym, Sentinel Wyrm
+1 Dragonborn Champion
+1 Terror of the Peaks
+1 Bloom Tender
+1 Dragon Tempest
+1 Vampiric Tutor
+1 Ancient Silver Dragon
+1 Old Gnawbone
+1 Smothering Tithe
+1 Mana Confluence
+1 Birds of Paradise
+1 Bloodstained Mire
+1 Cyclonic Rift
+1 Mana Drain
+1 Roaming Throne
+1 Demonic Tutor
+1 Wooded Foothills
+1 Stomping Ground
+1 Cavern of Souls
+1 Finale of Devastation
+1 Rhystic Study
+1 Polluted Delta
+1 The Great Henge
+1 Mystic Remora
+1 Boseiju, Who Endures
+1 Mox Amber
+1 Ancient Tomb
+1 Swan Song
+1 Twinflame Tyrant
+1 Silence
+1 Flusterstorm
+1 City of Brass
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Scalding Tarn
+1 Grand Abolisher
+1 Force of Negation
+1 Goldspan Dragon
+1 Blood Crypt
+1 Aggravated Assault
+1 Urza's Saga
+1 Tropical Island
+1 Orcish Bowmasters
+1 Force of Will
+1 Kinnan, Bonder Prodigy
+1 Angel's Grace
+1 Chrome Mox
+1 The One Ring
+1 Mox Opal
+1 Mox Jasper
+1 Arcane Signet
+1 Sol Ring
+1 Force of Vigor
+1 Monster Manual // Zoological Study
+1 Hellkite Courser
+1 Sarkhan, Soul Aflame
+1 Hellkite Tyrant
+1 Fellwar Stone
+1 Pact of Negation
+1 Lotus Petal
+1 Lion's Eye Diamond
+1 Underworld Breach
+1 Brain Freeze
+1 Mindbreak Trap
+1 Plateau
+1 Otawara, Soaring City
+1 Ureni of the Unwritten
+1 Imperial Seal
+1 Mistrise Village
+1 Esper Sentinel
+1 An Offer You Can't Refuse
+1 Red Elemental Blast
+1 Delighted Halfling
+1 Sevinne's Reclamation
+1 Taiga
+1 Mana Vault
+1 Enlightened Tutor
+1 Mystical Tutor
+1 Into the Flood Maw
+1 Drannith Magistrate
+1 Scourge of Valkas
+1 Mental Misstep
+1 Pyroblast
+1 Swords to Plowshares
+1 Chain of Vapor
+1 Green Sun's Zenith
+1 Intuition
+1 Underground Sea
+1 Tundra
+1 Hexing Squelcher
+1 Rivaz of the Claw

@@ -1,0 +1,107 @@
+# Archidekt — Tiamat Mother of Dragons
+# source: archidekt:3115829
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Tiamat
+
+Deck:
+1 Grand Abolisher
+1 Smothering Tithe
+1 Exotic Orchard
+1 Moritte of the Frost
+1 Overgrown Tomb
+1 Miirym, Sentinel Wyrm
+1 Flooded Strand
+1 Arid Mesa
+1 Farseek
+1 Energy Tap
+1 Silence
+1 Watery Grave
+1 Cavern of Souls
+1 Mystic Remora
+1 Dragonlord Dromoka
+1 Polluted Delta
+1 Reflecting Pool
+1 Mana Drain
+1 Forbidden Orchard
+1 Temple Garden
+1 Wooded Foothills
+1 Hallowed Fountain
+1 Stomping Ground
+1 Utopia Sprawl
+1 Sneak Attack
+1 Boseiju, Who Endures
+1 Marsh Flats
+1 Ancient Tomb
+1 Steam Vents
+1 Ignoble Hierarch
+1 Sylvan Library
+1 Breeding Pool
+1 Blood Crypt
+1 Demonic Tutor
+1 Godless Shrine
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Bladewing the Risen
+1 Sacred Foundry
+1 Two-Headed Hellkite
+1 Wild Growth
+1 Nature's Lore
+1 Esper Sentinel
+1 City of Brass
+1 Mana Confluence
+1 Birds of Paradise
+1 Fist of Suns
+1 Morophon, the Boundless
+1 Command Tower
+1 Delighted Halfling
+1 Shields of Velis Vel
+1 Sol Ring
+1 Arcane Signet
+1 Three Visits
+1 Scaled Nurturer
+1 Veil of Summer
+1 Noble Hierarch
+1 Enlightened Tutor
+1 Fellwar Stone
+1 Crux of Fate
+1 Ramos, Dragon Engine
+1 Terror of the Peaks
+1 The One Ring
+1 Carpet of Flowers
+1 Faeburrow Elder
+1 Bloom Tender
+1 Island
+2 Forest
+1 Swamp
+1 Food Chain
+1 Mountain
+1 Karrthus, Tyrant of Jund
+1 Defense of the Heart
+1 Windswept Heath
+1 Haven of the Spirit Dragon
+1 Plains
+1 Kutzil, Malamet Exemplar
+1 Deathrite Shaman
+1 Vampiric Tutor
+1 Cyclonic Rift
+1 Conqueror's Flail
+1 Orim's Chant
+1 Scion of the Ur-Dragon
+1 The Ur-Dragon
+1 Dream Halls
+1 Everybody Lives!
+1 Squee, the Immortal
+1 Rhythm of the Wild
+1 Niv-Mizzet Reborn
+1 Temur Ascendancy
+1 Dragon Tempest
+1 Rhystic Study
+1 Leyline of Mutation
+1 Dracogenesis
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Misty Rainforest
+1 Voice of Victory

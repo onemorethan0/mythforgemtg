@@ -1,0 +1,97 @@
+# Archidekt — Dad and son bonding - Kindred gods
+# source: archidekt:16291504
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Kratos, Stoic Father
+1 Atreus, Impulsive Son
+
+Deck:
+1 Arcane Signet
+1 Sol Ring
+1 Decanter of Endless Water
+1 Cleansing Nova
+1 Altar of the Pantheon
+1 Austere Command
+1 Supreme Verdict
+1 Blasphemous Act
+1 Experimental Augury
+1 Contentious Plan
+1 God-Eternal Oketra
+1 Heliod, Sun-Crowned
+1 Heliod, God of the Sun
+1 The Locust God
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Oketra the True
+1 Kefnet the Mindful
+1 God-Eternal Kefnet
+1 Keranos, God of Storms
+1 Thassa, God of the Sea
+1 Mystic Monastery
+1 Rogue's Passage
+1 Clifftop Retreat
+1 Command Tower
+1 Exotic Orchard
+1 Prairie Stream
+1 Port Town
+1 Furycalm Snarl
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Path to Exile
+1 Swords to Plowshares
+1 Dovin's Veto
+1 Chaos Warp
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Inexorable Tide
+1 Frostboil Snarl
+1 Glacial Fortress
+1 Reliquary Tower
+1 Sulfur Falls
+1 Reality Shift
+1 Gods Willing
+1 Field of Ruin
+1 Alrund, God of the Cosmos // Hakka, Whispering Raven
+1 Karn's Bastion
+1 Chandra's Ignition
+1 Taunt from the Rampart
+1 Djeru and Hazoret
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Tezzeret's Gambit
+1 Thought Vessel
+1 Tekuthal, Inquiry Dominus
+1 Ponder
+1 Wash Away
+1 Ilharg, the Raze-Boar
+1 Demolition Field
+1 Lightning Helix
+1 Purphoros, God of the Forge
+1 Surtr, Fiery Jötun
+1 An Offer You Can't Refuse
+1 Patchwork Banner
+1 Mana Tithe
+5 Plains
+7 Island
+1 Fellwar Stone
+1 Radiant Summit
+1 Counterspell
+1 Negate
+1 Iroas, God of Victory
+1 Teferi's Ageless Insight
+1 Raugrin Triome
+1 Path of Ancestry
+1 Thrummingbird
+1 Purphoros, Bronze-Blooded
+1 Talisman of Progress
+1 Frostcliff Siege
+1 Ripples of Potential
+1 Azorius Signet
+1 Training Grounds
+1 Invasion of Theros // Ephara, Ever-Sheltering
+1 Training Center
+1 Shivan Reef
+2 Mountain
+1 Stormcarved Coast
+1 Sundown Pass
+1 Deserted Beach
+1 Temple of the False God

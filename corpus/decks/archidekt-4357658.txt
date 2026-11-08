@@ -1,0 +1,79 @@
+# Archidekt — Comin in on a wing and a prayer
+# source: archidekt:4357658
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Errant and Giada
+
+Deck:
+1 Myriad Landscape
+1 Prairie Stream
+1 Brokers Hideout
+1 Obscura Storefront
+1 Linvala, Shield of Sea Gate
+1 Coral Atoll
+1 Airborne Aid
+1 Firemane Commando
+1 Watcher of the Spheres
+1 Rivendell
+1 Glacial Fortress
+1 Azorius Chancery
+1 Temple of Enlightenment
+1 Port Town
+1 Deserted Beach
+1 Nimbus Maze
+1 Reliquary Tower
+1 Skycloud Expanse
+1 Karoo
+1 Skybridge Towers
+1 Tranquil Cove
+1 Ornithopter of Paradise
+1 Judge's Familiar
+1 Kangee, Sky Warden
+9 Plains
+9 Island
+1 Empyrean Eagle
+1 Skycat Sovereign
+1 Jubilant Skybonder
+1 Thunderclap Wyvern
+1 Thraben Watcher
+1 Rally of Wings
+1 Seaside Haven
+1 Avenging Angel
+1 Cartographer's Hawk
+1 Serra Angel
+1 Angel of Retribution
+1 Storm Crow
+1 Always Watching
+1 Cloudchaser Kestrel
+1 Warden of Evos Isle
+1 Healer's Hawk
+1 Beacon Hawk
+1 Bay Falcon
+1 Coast Watcher
+1 Spire Owl
+1 Thieving Magpie
+1 Stormscape Familiar
+1 Windbrisk Raptor
+1 Skyshroud Falcon
+1 Duskrider Falcon
+1 Glarecaster
+1 Commander Eesha
+14 Tempest Hawk
+1 Skyshroud Condor
+1 Kastral, the Windcrested
+1 Kangee, Aerie Keeper
+1 Radiant, Archangel
+1 Angelic Page
+1 Emancipation Angel
+1 Angel of the Dire Hour
+1 Freewind Falcon
+1 Vega, the Watcher
+1 Giant Albatross
+1 Soulcatchers' Aerie
+1 Dream Thrush
+1 Most Decrepit Old Bird // Speak Secrets
+1 Ravenhill Flock
+1 Angelic Renewal
+1 Command Tower

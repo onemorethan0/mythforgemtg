@@ -1,0 +1,105 @@
+# Archidekt — Henzie: MTG Blitz
+# source: archidekt:2699094
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Henzie "Toolbox" Torre
+
+Deck:
+1 Spire Garden
+1 Undergrowth Stadium
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Overgrown Tomb
+1 Vaultborn Tyrant
+1 Blood Crypt
+1 Badlands
+1 Misty Rainforest
+1 Desperate Ritual
+1 Helm of the Host
+1 Stomping Ground
+1 Simian Spirit Guide
+1 Sol Ring
+1 Rampant Rejuvenator
+1 Bayou
+1 Talisman of Resilience
+1 Verdant Catacombs
+1 Worldly Tutor
+1 Arcane Signet
+1 Bane of Progress
+1 Overlord of the Hauntwoods
+1 Command Tower
+1 Swamp
+1 Luxury Suite
+1 Mountain
+1 Godo, Bandit Warlord
+1 Burnt Offering
+3 Forest
+1 Birds of Paradise
+1 Tinder Wall
+1 Roxanne, Starfall Savant
+1 Culling Ritual
+1 Delighted Halfling
+1 Reanimate
+1 Metamorphosis
+1 Ancient Copper Dragon
+1 Alexios, Deimos of Kosmos
+1 Diabolic Intent
+1 Birthing Pod
+1 Chrome Mox
+1 Deadpool, Trading Card
+1 Jeska's Will
+1 Orcish Bowmasters
+1 Windswept Heath
+1 Polluted Delta
+1 Arid Mesa
+1 Demonic Tutor
+1 Marsh Flats
+1 Dark Ritual
+1 Cabal Ritual
+1 Ancient Tomb
+1 Druid of Purification
+1 Primeval Herald
+1 Scalding Tarn
+1 Sacrifice
+1 Braids, Arisen Nightmare
+1 Herd Heirloom
+1 The Great Henge
+1 Shifting Woodland
+1 Ancient Brass Dragon
+1 Knuckles the Echidna
+1 Lotus Petal
+1 Taiga
+1 Fire Covenant
+1 Prismatic Vista
+1 Eldritch Evolution
+1 Pinnacle Monk // Mystic Peak
+1 Culling the Weak
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Archon of Cruelty
+1 Treasonous Ogre
+1 Cavern-Hoard Dragon
+1 Imperial Seal
+1 Gwenom, Remorseless
+1 Vampiric Tutor
+1 Necropotence
+1 Elvish Spirit Guide
+1 The Notary Hobbits
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+1 Birthing Ritual
+1 Timeless Witness
+1 Avacyn, Angel of Horror
+1 Phyrexian Delver
+1 Chainer, Nightmare Adept
+1 Seedguide Ash
+1 Kingpin, Wilson Fisk
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Raph & Mikey, Troublemakers
+1 Sidisi, Undead Vizier
+1 Heartless Summoning
+1 Primaris Eliminator
+1 Aerid Konstrari
+1 Gaius van Baelsar
+1 Tom, Bert, and William
+1 Kethek, Crucible Goliath

@@ -1,0 +1,86 @@
+# WotC precon — Wade into Battle (C15, 2015-11-13)
+# source: mtgjson:WadeIntoBattle_C15
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Kalemne, Disciple of Iroas
+
+Deck:
+1 Ancient Amphitheater
+1 Angel of Serenity
+1 Anya, Merciless Angel
+1 Arbiter of Knollridge
+1 Banishing Light
+1 Basalt Monolith
+1 Blade of Selves
+1 Blasted Landscape
+1 Borderland Behemoth
+1 Boros Cluestone
+1 Boros Garrison
+1 Boros Guildgate
+1 Boros Signet
+1 Breath of Darigaaz
+1 Coldsteel Heart
+1 Command Tower
+1 Crib Swap
+1 Curse of the Nightly Hunt
+1 Darksteel Ingot
+1 Dawnbreak Reclaimer
+1 Dawnglare Invoker
+1 Desolation Giant
+1 Disaster Radius
+1 Dream Pillager
+1 Dreamstone Hedron
+1 Drifting Meadow
+1 Earthquake
+1 Evolving Wilds
+1 Faith's Fetters
+1 Fall of the Hammer
+1 Fellwar Stone
+1 Fiery Confluence
+1 Forgotten Cave
+1 Fumiko the Lowblood
+1 Gisela, Blade of Goldnight
+1 Hamletback Goliath
+1 Hammerfist Giant
+1 Herald of the Host
+1 Hostility
+1 Hunted Dragon
+1 Inferno Titan
+1 Jareth, Leonine Titan
+1 Kalemne's Captain
+1 Lightning Greaves
+1 Loxodon Warhammer
+1 Magma Giant
+1 Magus of the Wheel
+1 Meteor Blast
+1 Mind Stone
+14 Mountain
+1 Oreskos Explorer
+1 Orim's Thunder
+11 Plains
+1 Rite of the Raging Storm
+1 Sandstone Oracle
+1 Secluded Steppe
+1 Seer's Sundial
+1 Smoldering Crater
+1 Sol Ring
+1 Staff of Nin
+1 Stinkdrinker Daredevil
+1 Stoneshock Giant
+1 Sun Titan
+1 Sunrise Sovereign
+1 Taurean Mauler
+1 Terramorphic Expanse
+1 Thought Vessel
+1 Thundercloud Shaman
+1 Urza's Incubator
+1 Victory's Herald
+1 Vivid Crag
+1 Vivid Meadow
+1 Warchief Giant
+1 Warstorm Surge
+1 Wind-Scarred Crag
+1 Worn Powerstone

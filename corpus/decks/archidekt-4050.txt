@@ -1,0 +1,102 @@
+# Archidekt — Poke
+# source: archidekt:4050
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Gorm the Great
+1 Virtus the Veiled
+
+Deck:
+1 Woodland Cemetery
+1 Ancient Craving
+1 Cultivate
+1 Twilight Mire
+1 Path of Ancestry
+1 Damnable Pact
+1 Nissa's Pilgrimage
+1 Command Tower
+1 Scavenger Grounds
+1 Bojuka Bog
+1 Heroic Intervention
+1 Lightning Greaves
+1 Beast Within
+1 Sylvan Library
+1 Deadly Tempest
+1 Phyrexian Arena
+1 Read the Bones
+1 Ambition's Cost
+1 Llanowar Wastes
+1 Night's Whisper
+1 Rogue's Passage
+1 Rampant Growth
+1 Champion's Helm
+1 Sol Ring
+1 Golgari Rot Farm
+1 Sign in Blood
+1 Tectonic Edge
+1 Harmonize
+1 Kodama's Reach
+1 Yavimaya Hollow
+1 Nature's Lore
+1 Myriad Landscape
+1 Swiftfoot Boots
+1 Genesis Storm
+1 Assassin's Trophy
+1 Force of Vigor
+1 Nurturing Peatland
+1 Farseek
+1 Tome of Legends
+1 Overgrown Tomb
+1 Obscuring Haze
+1 Deadly Rollick
+1 Undergrowth Stadium
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Three Visits
+1 Syphon Mind
+1 Into the North
+1 Scytheclaw
+1 Raving Dead
+1 Trailblazer's Boots
+1 Phage the Untouchable
+1 Whispersilk Cloak
+1 Dauthi Embrace
+1 Archfiend of Despair
+1 Skull Storm
+1 Trailblazer
+1 Vorpal Sword
+1 Warlock Class
+1 Tamiyo's Safekeeping
+1 Thieves' Tools
+1 Raised by Giants
+1 Tear Asunder
+1 Infernal Grasp
+1 Access Tunnel
+1 Culling Ritual
+1 Guardian Augmenter
+1 Viridian Revel
+1 Yavimaya, Cradle of Growth
+1 Blessed Respite
+1 Urborg, Tomb of Yawgmoth
+1 Guildless Commons
+1 Boseiju, Who Endures
+1 Deathcap Glade
+1 Curtains' Call
+1 Arachnogenesis
+1 Shizo, Death's Storehouse
+1 Darkbore Pathway // Slitherbore Pathway
+1 Woodland Chasm
+1 Kindred Dominance
+5 Snow-Covered Swamp
+1 The Black Gate
+1 Galadhrim Ambush
+1 Shard of the Nightbringer
+1 Tyvar's Stand
+1 Damnation
+1 Yargle and Multani
+1 Pit of Offerings
+1 Ash Barrens
+1 Golgari Charm
+1 Wound Reflection
+1 Revitalizing Repast // Old-Growth Grove
+3 Snow-Covered Forest

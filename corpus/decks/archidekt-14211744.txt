@@ -1,0 +1,78 @@
+# Archidekt — Gooner deck
+# source: archidekt:14211744
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Sex Appeal
+1 Goldberry, River-Daughter
+1 Rod of Spanking
+1 Dingus Staff
+1 Mother of Goons
+1 Goblin Goon
+1 Goblin Bangchuckers
+1 Assquatch
+1 Seeker of Skybreak
+1 Nimbleclaw Adept
+1 Clergy en-Vec
+1 Armada Wurm
+1 Tempting Licid
+1 Uktabi Orangutan
+1 Earthbind
+1 Serra Angel
+1 Bouncing Beebles
+1 Gwendlyn Di Corci
+1 Elvish Ranger
+1 Lady Evangela
+1 Basandra, Battle Seraph
+1 Faerie Impostor
+1 Rocket-Powered Turbo Slug
+1 Siona, Captain of the Pyleas
+1 Liliana, Death Mage
+1 Liliana, Heretical Healer // Liliana, Defiant Necromancer
+1 Rev, Tithe Extractor
+1 Loose Lips
+1 Yargle, Glutton of Urborg
+1 Bronze Bombshell
+1 Dreamborn Muse
+1 Acorn Catapult
+1 Naked Singularity
+1 Beamtown Beatstick
+1 Scissors Lizard
+1 Paper Tiger
+1 Rock Lobster
+1 Glissa Sunseeker
+1 Rope
+1 Applejack
+1 Gus
+1 Llanowar Elves
+1 Rarity
+1 Pinkie Pie
+1 Rainbow Dash
+1 Princess Twilight Sparkle
+1 Fluttershy
+1 Buzzing Whack-a-Doodle
+1 Ass Whuppin'
+1 Cheap Ass
+1 City of Ass
+1 Duh
+1 Flaccify
+1 Fascist Art Director
+1 GO TO JAIL
+1 Inflation Station
+1 Little Girl
+1 I'm Rubber, You're Glue
+1 Punctuate
+1 Mox Lotus
+1 Red-Hot Hottie
+1 Save Life
+1 Stop That
+7 Forest
+1 The Ultimate Nightmare of Wizards of the Coast® Customer Service
+7 Mountain
+7 Plains
+7 Swamp
+7 Island

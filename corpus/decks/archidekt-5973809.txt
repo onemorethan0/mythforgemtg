@@ -1,0 +1,108 @@
+# Archidekt — Merman…MERMAN!!!
+# source: archidekt:5973809
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Hakbal of the Surging Soul
+
+Deck:
+1 Deeproot Pilgrimage
+1 Overwhelming Stampede
+1 Aetherize
+1 Svyelun of Sea and Sky
+1 Island
+1 Three Tree City
+1 Benthic Biomancer
+1 Forest
+1 Hardened Scales
+1 Rejuvenating Springs
+1 Tishana's Tidebinder
+1 Overflowing Basin
+1 Deeproot Historian
+1 Mist Dancer
+1 Path of Ancestry
+1 Ripples of Potential
+1 Singer of Swift Rivers
+1 Topography Tracker
+1 Zegana, Utopian Speaker
+1 Alchemist's Refuge
+1 Beast Within
+1 Cold-Eyed Selkie
+1 Deeproot Elite
+1 Deeproot Waters
+1 Emperor Mihail II
+1 Herald of Secret Streams
+1 Hinterland Harbor
+1 Inspiring Call
+1 Karn's Bastion
+1 Kindred Discovery
+1 Kiora's Follower
+1 Kopala, Warden of Waves
+1 Kumena, Tyrant of Orazca
+1 Master of the Pearl Trident
+1 Merfolk Skydiver
+1 Merrow Reejerey
+1 Metallic Mimic
+1 Mosswort Bridge
+1 Rapid Hybridization
+1 Realmwalker
+1 Reliquary Tower
+1 Seafloor Oracle
+1 Secluded Courtyard
+1 Simic Growth Chamber
+1 Sol Ring
+1 Stonybrook Banneret
+1 Surgespanner
+1 Tatyova, Benthic Druid
+1 Thieving Skydiver
+1 Vodalian Hexcatcher
+1 Lord of Atlantis
+1 Forerunner of the Heralds
+1 Raise the Palisade
+1 Merfolk Sovereign
+1 Jadelight Ranger
+1 Arcane Denial
+1 Island
+1 Island
+1 Forest
+1 Forest
+1 Merrow Commerce
+1 Tide Shaper
+1 Otawara, Soaring City
+1 Island
+1 Island
+1 Flooded Grove
+1 Cenote Scout
+1 Jadelight Spelunker
+1 Lullmage Mentor
+1 Hedge Maze
+1 Misty Rainforest
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Tishana, Voice of Thunder
+1 Mindspring Merfolk
+1 Innkeeper's Talent
+1 Floodpits Drowner
+1 Counterspell
+1 Dreamroot Cascade
+1 Command Tower
+1 Yavimaya Coast
+1 Cyclonic Rift
+1 Island
+1 Willowrush Verge
+1 Become the Avalanche
+1 Breeding Pool
+1 Nicanzil, Current Conductor
+1 Evendo, Waking Haven
+1 Secret Tunnel
+1 Agna Qel'a
+1 Forest
+1 Exotic Orchard
+1 Vineglimmer Snarl
+1 Impostor Syndrome
+1 Heroic Intervention
+1 Attuma, Atlantean Warlord
+1 Harmonized Trio // Brainstorm
+1 Namor, Scourge of the Seas
+1 Merfolk Mistbinder
+1 Ozolith, the Shattered Spire

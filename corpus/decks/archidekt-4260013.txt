@@ -1,0 +1,106 @@
+# Archidekt — Henzie + Umori Companion
+# source: archidekt:4260013
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Umori, the Collector
+1 Henzie "Toolbox" Torre
+
+Deck:
+1 Exotic Orchard
+1 Phyrexian Delver
+1 Seedguide Ash
+1 Rampant Rejuvenator
+1 Junji, the Midnight Sky
+1 Primeval Herald
+1 Kogla, the Titan Ape
+1 Bane of Progress
+1 Necron Deathmark
+1 Chainer, Nightmare Adept
+1 Body Snatcher
+1 Undergrowth Stadium
+1 Vaevictis Asmadi, the Dire
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Luxury Suite
+1 Ziatora's Proving Ground
+1 Spire Garden
+1 Balefire Dragon
+1 Goreclaw, Terror of Qal Sisma
+1 Marsh Flats
+1 Verdant Catacombs
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Kardur, Doomscourge
+1 Karlach, Fury of Avernus
+1 Llanowar Wastes
+1 Twilight Mire
+1 Overgrown Tomb
+1 Stomping Ground
+1 Karplusan Forest
+1 Blood Crypt
+1 Mana Confluence
+1 Arid Mesa
+1 Scalding Tarn
+1 Misty Rainforest
+1 City of Brass
+1 Mikaeus, the Unhallowed
+1 Commercial District
+2 Mountain
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Evercoat Ursine
+1 Sheoldred // The True Scriptures
+1 Polluted Delta
+2 Swamp
+1 Metamorphosis Fanatic
+1 Enduring Courage
+1 Primaris Eliminator
+1 Overlord of the Hauntwoods
+1 Incinerator of the Guilty
+1 Bringer of the Last Gift
+1 Archon of Cruelty
+1 Kokusho, the Evening Star
+1 Wasteland Raider
+1 Terror of the Peaks
+1 Bloom Tender
+1 Windswept Heath
+1 Phyrexian Tower
+1 Underground Mortuary
+1 Command Tower
+1 Ignoble Hierarch
+1 Arbor Elf
+1 Elvish Mystic
+1 Delighted Halfling
+1 Fyndhorn Elves
+1 Elves of Deep Shadow
+1 Llanowar Elves
+1 Birds of Paradise
+1 Ancient Brass Dragon
+1 Roxanne, Starfall Savant
+1 Massacre Wurm
+1 Druid of Purification
+1 Blossoming Tortoise
+1 Ravenous Chupacabra
+1 Pathbreaker Ibex
+1 Deadpool, Trading Card
+1 Sulfurous Springs
+1 Ancient Ziggurat
+1 Jenova, Ancient Calamity
+1 Gwenom, Remorseless
+1 Spider Manifestation
+1 Archpriest of Shadows
+1 Colossal Grave-Reaver
+1 Lizard, Connors's Curse
+1 Damage Control Crew
+1 Fanatic of Rhonas
+1 Ilysian Caryatid
+1 Gray Merchant of Asphodel
+1 Aurora Awakener
+1 Abundant Countryside
+2 Forest
+1 The Notary Hobbits
+1 Tom, Bert, and William
+1 Avacyn, Angel of Horror
+1 Disciple of Freyalise // Garden of Freyalise
+1 Hapatra, the Desert Fang
+1 Aerid Konstrari

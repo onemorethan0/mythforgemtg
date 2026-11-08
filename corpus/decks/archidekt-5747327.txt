@@ -1,0 +1,108 @@
+# Archidekt — cEDH - Talion - Control
+# source: archidekt:5747327
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Talion, the Kindly Lord
+
+Deck:
+1 Misdirection
+1 Counterbalance
+1 Gemstone Caverns
+1 Marsh Flats
+1 Arcane Signet
+1 Morphic Pool
+1 Flusterstorm
+1 Prismatic Vista
+1 City of Brass
+1 Chrome Mox
+1 Mox Diamond
+1 An Offer You Can't Refuse
+1 Lim-Dûl's Vault
+1 Imposter Mech
+1 Undercity Sewers
+1 Ancient Tomb
+1 Bloodchief Ascension
+1 Bloodstained Mire
+1 Command Tower
+1 Cursed Totem
+1 Cyclonic Rift
+1 Dark Ritual
+1 Deadly Rollick
+1 Demonic Consultation
+1 Demonic Tutor
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Flooded Strand
+1 Force of Negation
+1 Force of Will
+1 Gilded Drake
+1 Grafdigger's Cage
+1 Imperial Seal
+1 Island
+1 Lotus Petal
+1 Mana Vault
+1 Mental Misstep
+1 Minamo, School at Water's Edge
+1 Mindbreak Trap
+1 Misty Rainforest
+1 Mnemonic Betrayal
+1 Mox Opal
+1 Mystic Remora
+1 Mystical Tutor
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Polluted Delta
+1 Reanimate
+1 Rhystic Study
+1 Scalding Tarn
+1 Sheoldred, the Apocalypse
+1 Sol Ring
+1 Swamp
+1 Swan Song
+1 Tainted Pact
+1 Talisman of Dominance
+1 Thassa's Oracle
+1 The One Ring
+1 Toxic Deluge
+1 Underground River
+1 Vampiric Tutor
+1 Verdant Catacombs
+1 Watery Grave
+1 Trickbind
+1 Praetor's Grasp
+1 Mox Amber
+1 Phyrexian Metamorph
+1 Mana Confluence
+1 Wishclaw Talisman
+1 Borne Upon a Wind
+1 Underground Sea
+1 Sink into Stupor // Soporific Springs
+1 Strix Serenade
+1 Mockingbird
+1 Into the Flood Maw
+1 Cabal Ritual
+1 Gloomlake Verge
+1 Steal Enchantment
+1 Necropotence
+1 Beseech the Mirror
+1 Dispel
+1 Gitaxian Probe
+1 Flare of Denial
+1 Clearwater Pathway // Murkwater Pathway
+1 Sensei's Divining Top
+1 Diabolic Intent
+1 Snap
+1 Wan Shi Tong, Librarian
+1 Faerie Mastermind
+1 Cephalid Coliseum
+1 Telepathy
+1 Urza's Saga
+1 Daze
+1 Starting Town
+1 Snow-Covered Island
+1 Snow-Covered Swamp
+1 Copy Enchantment

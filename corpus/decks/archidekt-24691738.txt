@@ -1,0 +1,93 @@
+# Archidekt — A Fair Thrasios Deck That You Can Take to Parties!
+# source: archidekt:24691738
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Thrasios, Triton Hero
+1 Vial Smasher the Fierce
+
+Deck:
+1 Abrupt Decay
+1 Arcane Denial
+1 Ashling, Flame Dancer
+1 Avatar Roku, Firebender
+1 Azula, On the Hunt
+1 Battlemage's Bracers
+1 Biomancer's Familiar
+1 Birds of Paradise
+1 Braid of Fire
+1 Cinder Glade
+1 Crumbling Necropolis
+1 Fire Lord Ozai
+1 Fire Nation Palace
+1 Fire Nation Turret
+1 Fire Sages
+1 Firebender Ascension
+1 Firebending Student
+1 Frontier Bivouac
+1 Horizon Stone
+1 Iroh, Dragon of the West
+1 Iroh, Grand Lotus
+1 Kruphix, God of Horizons
+1 Leyline Tyrant
+1 Llanowar Elves
+1 Maelstrom Wanderer
+1 Omnath, Locus of Mana
+1 Opulent Palace
+1 Ozai, the Phoenix King
+1 Quest for Renewal
+1 Rapid Hybridization
+1 Rings of Brighthearth
+1 Rite of Replication
+1 Savage Lands
+1 Sozin's Comet
+1 The Last Agni Kai
+1 The Legend of Roku // Avatar Roku
+1 Three Visits
+1 Treasure Cruise
+1 Vindictive Warden
+1 Yavimaya Coast
+1 Yedora, Grave Gardener
+1 Zimone, Mystery Unraveler
+1 Zuko, Exiled Prince
+1 Zuko, Firebending Master
+1 Arcane Signet
+1 Assassin's Trophy
+1 Averna, the Chaos Bloom
+1 Awakening
+1 Brainstorm
+1 Command Tower
+1 Counterspell
+1 Cultivate
+1 Deathrite Shaman
+1 Farseek
+1 Fire Nation Attacks
+5 Forest
+1 Gray Merchant of Asphodel
+1 Heartstone
+1 Heroic Intervention
+1 Hinterland Harbor
+1 Ignoble Hierarch
+1 Impact Tremors
+1 Instill Energy
+4 Island
+1 Karplusan Forest
+1 Kodama's Reach
+1 Leyline of Anticipation
+1 Llanowar Wastes
+7 Mountain
+1 Nature's Lore
+1 Ponder
+1 Pongify
+1 Reflecting Pool
+1 Reliquary Tower
+1 Sakura-Tribe Elder
+1 Smoldering Marsh
+1 Sol Ring
+1 Sunken Hollow
+3 Swamp
+1 Toxic Deluge
+1 Training Grounds
+1 Vitalize
+1 Wilderness Reclamation

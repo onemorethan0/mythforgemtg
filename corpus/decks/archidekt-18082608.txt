@@ -1,0 +1,83 @@
+# Archidekt — Wan Shi Tong, Librarian
+# source: archidekt:18082608
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Wan Shi Tong, Librarian
+
+Deck:
+1 Essence Scatter
+1 Valley Floodcaller
+1 Octopus Form
+1 Demolition Field
+1 Bender's Waterskin
+1 Knowledge Seeker
+1 Meteor Sword
+1 White Lotus Hideout
+1 Dazzling Denial
+1 Accumulate Wisdom
+1 Negate
+1 Dive Down
+1 Clinquant Skymage
+1 Iguana Parrot
+1 The Mechanist, Aerial Artisan
+1 North Pole Patrol
+1 Think Twice
+1 Gran-Gran
+1 Agna Qel'a
+1 Yue, the Moon Spirit
+1 Waterbending Scroll
+1 Mocking Sprite
+1 Boomerang Basics
+1 Mazemind Tome
+1 Secret of Bloodbending
+1 The Legend of Kuruk // Avatar Kuruk
+1 Archmage of Runes
+1 Heraldic Banner
+1 Katara, Bending Prodigy
+1 Rumble Arena
+1 Swiftfoot Boots
+1 Arcane Signet
+1 Katara, Waterbending Master
+4 Island
+4 Island
+2 Island
+1 Watery Grasp
+1 Honest Work
+1 Opt
+1 Counterspell
+1 The Unagi of Kyoshi Island
+1 Sakashima of a Thousand Faces
+1 Force of Negation
+1 Island
+1 Island
+4 Island
+6 Island
+1 Deny Entry
+1 Aetherize
+1 Imprisoned in the Moon
+1 Refute
+1 Mystic Remora
+1 Into the Flood Maw
+1 Brainstorm
+1 Prosperity
+1 Cityscape Leveler
+1 The Blue Spirit
+1 Spirit Water Revival
+1 Clone
+1 Wan Shi Tong, All-Knowing
+1 Katara's Reversal
+1 Waterbending Lesson
+1 Lost Days
+1 Whirlwind Technique
+1 Secret Tunnel
+1 It'll Quench Ya!
+3 Island
+1 Sokka's Haiku
+5 Island
+1 Zuko's Exile
+1 Serpent of the Pass
+1 Trusty Boomerang
+1 Aang's Journey
+2 Island

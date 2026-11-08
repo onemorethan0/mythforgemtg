@@ -1,0 +1,81 @@
+# Archidekt — Chaos Incarnate Precon List
+# source: archidekt:10643309
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kardur, Doomscourge
+
+Deck:
+1 Terminate
+1 Chaos Warp
+1 Coveted Jewel
+1 Solemn Simulacrum
+1 Thermo-Alchemist
+1 Brash Taunter
+1 Dredge the Mire
+1 Bloodgift Demon
+1 Breath of Malfegor
+1 Commander's Sphere
+1 Burnished Hart
+1 Cinder Barrens
+1 Bloodfell Caves
+1 Explosion of Riches
+1 Feed the Swarm
+1 Profane Command
+1 Magmatic Force
+1 Rakdos Charm
+1 Scythe Specter
+1 Sangromancer
+1 Hate Mirage
+1 Lightning Greaves
+1 Reign of the Pit
+1 Ob Nixilis Reignited
+1 Mana Geyser
+1 Rakdos Signet
+1 Molten Slagheap
+1 Ambition's Cost
+1 Akoum Refuge
+1 Deadly Tempest
+1 Indulgent Tormentor
+15 Swamp
+1 Titan Hunter
+1 Temple of Malice
+1 Urborg Volcano
+1 Wildfire Devils
+1 Sunbird's Invocation
+1 Dictate of the Twin Gods
+1 Worn Powerstone
+1 Wild Ricochet
+1 Read the Bones
+1 Kaervek the Merciless
+1 Syphon Mind
+1 Fiery Confluence
+1 Nihil Spellbomb
+1 Rakshasa Debaser
+1 Spiteful Visions
+1 Kazuul, Tyrant of the Cliffs
+1 Soul Shatter
+1 Abrade
+14 Mountain
+1 Command Tower
+1 Foreboding Ruins
+1 Arcane Signet
+1 Talisman of Indulgence
+1 Myriad Landscape
+1 Wayfarer's Bauble
+1 Blasphemous Act
+1 Geode Rager
+1 Theater of Horrors
+1 Vampire Nighthawk
+1 Tectonic Giant
+1 Stormfist Crusader
+1 Smoldering Marsh
+1 Sign in Blood
+1 Stensia Bloodhall
+1 Unlicensed Disintegration
+1 Guttersnipe
+1 Combustible Gearhulk
+1 Archfiend of Depravity
+1 Sepulchral Primordial
+1 Sol Ring

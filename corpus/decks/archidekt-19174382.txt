@@ -1,0 +1,105 @@
+# Archidekt — I'm about to em-bear-ass you
+# source: archidekt:19174382
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Lumra, Bellow of the Woods
+
+Deck:
+1 Springheart Nantuko
+1 Tireless Provisioner
+1 Tiller Engine
+1 Sylvan Safekeeper
+1 Sowing Mycospawn
+1 Rootpath Purifier
+1 Mole Man, Moloid Master
+1 Return of the Mole Man
+1 Famished Worldsire
+1 Endurance
+1 Dryad Arbor
+1 Delighted Halfling
+1 Allosaurus Shepherd
+1 Carpet of Flowers
+1 Crop Rotation
+1 Archdruid's Charm
+1 Natural Order
+1 Green Sun's Zenith
+1 Finale of Devastation
+1 Windswept Heath
+1 Vesuva
+1 Verdant Catacombs
+1 The Mycosynth Gardens
+1 Talon Gates of Madara
+1 Sunscorched Desert
+1 Prismatic Vista
+1 Horizon of Progress
+1 High Market
+1 Gemstone Caverns
+1 Ghost Quarter
+1 Geier Reach Sanitarium
+1 Gaea's Cradle
+3 Forest
+1 Echoing Deeps
+1 Crystal Vein
+1 Command Beacon
+1 Boseiju, Who Endures
+1 Amulet of Vigor
+1 Grim Monolith
+1 Mana Vault
+1 Aftermath Analyst
+1 Sylvan Library
+1 Birds of Paradise
+1 Zuran Orb
+1 Lion's Eye Diamond
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Blossoming Tortoise
+1 Ashaya, Soul of the Wild
+1 Six
+1 Food Chain
+1 Elvish Reclaimer
+1 Icetill Explorer
+1 Lotus Cobra
+1 Horizon Explorer
+1 Spelunking
+1 Exploration
+1 Nissa, Resurgent Animist
+1 Arid Archway
+1 Chord of Calling
+1 Nature's Rhythm
+1 Summoner's Pact
+1 Ancient Tomb
+1 Tezzeret, Cruel Captain
+1 Ba Sing Se
+1 City of Traitors
+1 Castle Garenbrig
+1 Cavern of Souls
+1 Crumbling Vestige
+1 Field of the Dead
+1 Emergence Zone
+1 Lazotep Quarry
+1 Guildless Commons
+1 Havenwood Battleground
+1 Hickory Woodlot
+1 Mirrorpool
+1 Lotus Field
+1 Misty Rainforest
+1 Sanctum of Eternity
+1 Wasteland
+1 Pit of Offerings
+1 Strip Mine
+1 Urza's Cave
+1 Shifting Woodland
+2 Snow-Covered Forest
+1 Yavimaya, Cradle of Growth
+1 Urza's Saga
+1 Deserted Temple
+1 The Tabernacle at Pendrell Vale
+1 Bazaar of Baghdad
+1 Collector Ouphe
+1 Veil of Summer
+1 Conduit Pylons
+1 Sol Ring
+1 Lotus Petal
+1 Surveillance Room
+1 Mox Diamond

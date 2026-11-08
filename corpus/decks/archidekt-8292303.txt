@@ -1,0 +1,84 @@
+# Archidekt — Alexios & Chill
+# source: archidekt:8292303
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Alexios, Deimos of Kosmos
+
+Deck:
+1 Ragavan, Nimble Pilferer
+1 Gilded Pinions
+1 Iron Myr
+1 Arena of Glory
+1 Brotherhood Regalia
+1 Arcane Signet
+1 Commander's Plate
+1 Hammer of Nazahn
+1 Command Beacon
+1 Buried Ruin
+1 Chaos Warp
+1 Simian Spirit Guide
+1 Urza's Saga
+1 Lightning Greaves
+1 Ruby Medallion
+1 Shiny Impetus
+1 Tibalt's Trickery
+1 Return the Favor
+1 Sol Ring
+1 Rogue's Passage
+1 War Room
+1 Red Elemental Blast
+1 Mind Stone
+1 Vandalblast
+1 Thought Vessel
+1 Wayfarer's Bauble
+1 Fire Diamond
+1 Bolt Bend
+1 Seething Song
+1 Desperate Ritual
+1 Boltbender
+1 Fellwar Stone
+1 Magnetic Theft
+1 Whispersilk Cloak
+1 Wild Ricochet
+1 Chef's Kiss
+1 Repercussion
+1 Ornithopter of Paradise
+1 Shunt
+1 Planar Chaos
+1 Cloak and Dagger
+1 Wyll's Reversal
+1 Mana Geyser
+1 Untimely Malfunction
+1 Ricochet Trap
+1 Generator Servant
+1 Winter Moon
+1 Redirect Lightning
+1 Goldhound
+1 Zookeeper Mechan
+1 Sunset Strikemaster
+1 Prismatic Lens
+1 Liquimetal Torque
+1 Gemstone Caverns
+1 Ancient Tomb
+1 Smoke Bomb
+1 Rite of Flame
+1 Everflowing Chalice
+1 Star Compass
+1 Pyroblast
+1 Abrade
+1 Magus of the Moon
+1 Blood Moon
+1 Lightning Bolt
+1 Reckless Barbarian
+1 Pyretic Ritual
+1 Hexing Squelcher
+1 Static Orb
+1 Winter Orb
+1 The Sound of Drums
+1 Homeward Path
+25 Mountain
+1 Cavern of Souls
+1 Chrome Mox
+1 Deflecting Swat

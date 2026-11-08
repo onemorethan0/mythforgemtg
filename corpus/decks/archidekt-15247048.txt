@@ -1,0 +1,102 @@
+# Archidekt — Ellie and Alan Discover Cycling (Budget)
+# source: archidekt:15247048
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Ellie and Alan, Paleontologists
+
+Deck:
+1 Glacial Fortress
+1 Mosswort Bridge
+1 Krosan Verge
+1 Disciple of Freyalise // Garden of Freyalise
+3 Island
+1 Idyllic Beachfront
+1 Cultivate
+1 Faeburrow Elder
+1 Kiora, Behemoth Beckoner
+1 Teferi, Who Slows the Sunset
+1 Summon: Good King Mog XII
+1 Astral Slide
+1 Astral Drift
+1 Monstrosity of the Lake
+1 Balamb T-Rexaur
+1 Nurturing Bristleback
+1 Overgrowth
+1 Walker of the Grove
+1 Migrating Ketradon
+1 Curator of Mysteries
+1 Waker of Waves
+1 Vega, the Watcher
+1 Winternight Stories
+1 Colossal Skyturtle
+1 Topiary Stomper
+1 Ignis Scientia
+1 Aethersnipe
+1 Imoti, Celebrant of Bounty
+1 Troyan, Gutsy Explorer
+1 Kozilek's Unsealing
+1 Generous Ent
+1 Titanoth Rex
+1 Striped Riverwinder
+1 Split Up
+1 Angel of the Ruins
+1 Keruga, the Macrosage
+1 Alabaster Host Intercessor
+1 Wavesifter
+1 Brushland
+1 Shepherding Spirits
+1 Lunar Hatchling
+1 Summon: Valefor
+1 Greater Tanuki
+1 Tranquil Thicket
+1 Summon: Shiva
+1 Soul of Migration
+1 Return of the Wildspeaker
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Endless Detour
+1 Exotic Orchard
+1 Dreamroot Cascade
+1 Irrigated Farmland
+1 Eagles of the North
+1 Canopy Vista
+1 Kodama's Reach
+1 Ioreth of the Healing House
+1 Glacial Floodplain
+1 Flare of Cultivation
+1 Imposing Vantasaur
+3 Plains
+1 Monstrous Vortex
+1 Kelpie Guide
+1 Summon: Magus Sisters
+4 Forest
+1 Yavimaya Coast
+1 Outcaster Trailblazer
+1 Garruk's Uprising
+1 Radiant Grove
+1 Secluded Steppe
+1 Sunpetal Grove
+1 Agonasaur Rex
+1 Summon: Titan
+1 Command Tower
+1 Lonely Sandbar
+1 Tangled Islet
+1 Vizier of Tumbling Sands
+1 Eternal Dragon
+1 Mulldrifter
+1 Kellan, the Kid
+1 Hinterland Harbor
+1 Ice Flan
+1 Seaside Citadel
+1 Scattered Groves
+1 Foundation Breaker
+1 Adarkar Wastes
+1 Helga, Skittish Seer
+1 Nulldrifter
+1 Greater Sandwurm
+1 Prairie Stream
+1 Forensic Researcher
+1 Clever Conjurer
+1 Summon: Fenrir
+1 Ash Barrens

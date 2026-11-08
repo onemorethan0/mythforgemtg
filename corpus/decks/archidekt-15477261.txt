@@ -1,0 +1,108 @@
+# Archidekt — Edgar Markov cEDH
+# source: archidekt:15477261
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Cavern of Souls
+1 Ancient Tomb
+1 Three Tree City
+1 Mana Confluence
+1 Silence
+1 Arid Mesa
+1 Polluted Delta
+1 Marsh Flats
+1 Wooded Foothills
+1 Flooded Strand
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Malakir Rebirth // Malakir Mire
+1 Vengeful Bloodwitch
+1 City of Traitors
+1 Scalding Tarn
+1 Windswept Heath
+1 Urza's Saga
+1 Gravecrawler
+1 Sol Ring
+1 Esper Sentinel
+1 Mox Diamond
+1 Mana Vault
+1 Lotus Petal
+1 Warren Soultrader
+1 Necropotence
+1 Ragavan, Nimble Pilferer
+1 The One Ring
+1 Captivating Vampire
+1 Charismatic Conqueror
+1 Ad Nauseam
+1 Voice of Victory
+1 Command Tower
+1 Swords to Plowshares
+1 Skullclamp
+1 Ranger-Captain of Eos
+1 Oathsworn Vampire
+1 Bloodthirsty Conqueror
+1 Sensei's Divining Top
+1 Exquisite Blood
+1 Viscera Seer
+1 Indulgent Aristocrat
+1 Enlightened Tutor
+1 Vito, Thorn of the Dusk Rose
+1 Drannith Magistrate
+1 Susurian Voidborn
+1 Wheel of Fortune
+1 Mox Opal
+1 Fellwar Stone
+1 Opposition Agent
+1 Talisman of Indulgence
+1 Talisman of Hierarchy
+1 Drana and Linvala
+1 Falkenrath Pit Fighter
+1 Gamble
+1 Phyrexian Tower
+1 Marauding Blight-Priest
+1 Insolent Neonate
+1 Wishclaw Talisman
+1 Blood Artist
+1 Entomb
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Imperial Seal
+1 Diabolic Intent
+1 Beseech the Mirror
+1 Smothering Tithe
+1 Chrome Mox
+1 Culling the Weak
+1 Cabal Ritual
+1 Arcane Signet
+1 Master of Dark Rites
+1 Phyrexian Altar
+1 Bolas's Citadel
+1 Gemstone Caverns
+1 Voldaren Epicure
+1 City of Brass
+1 Blood Crypt
+1 Godless Shrine
+1 Sacred Foundry
+1 Urborg, Tomb of Yawgmoth
+1 Scrubland
+1 Badlands
+1 Plateau
+1 Orcish Bowmasters
+1 Reanimate
+1 The Meathook Massacre
+1 Lotho, Corrupt Shirriff
+1 Forsaken Miner
+1 Razaketh, the Foulblooded
+1 Jet Medallion
+1 Red Elemental Blast
+1 Pyroblast
+1 Bloodline Recollector // Ancestral Craving
+1 The Queen of Dale
+1 Angel's Grace
+1 Rain of Filth
+1 Dark Ritual
+1 Fell the Profane // Fell Mire

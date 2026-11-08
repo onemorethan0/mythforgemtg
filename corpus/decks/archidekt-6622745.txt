@@ -1,0 +1,74 @@
+# Archidekt — Karlach's old school Voltron
+# source: archidekt:6622745
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Necropotence); Bracket 1 allows 0
+
+Commander:
+1 Karlach, Fury of Avernus
+1 Agent of the Shadow Thieves
+
+Deck:
+1 Chariot of the Sun
+1 Draconian Cylix
+1 Thrull Wizard
+1 Fear
+1 Imposing Visage
+1 Burrowing
+1 Mob Mentality
+1 Filth
+19 Swamp
+1 Sisay's Ring
+1 Dark Ritual
+1 Fire Diamond
+1 Aftershock
+1 Thrull Retainer
+1 Shatter
+1 Panic
+1 Sisters of the Flame
+1 Raise Dead
+1 Stromgald Cabal
+1 Deathgrip
+1 Cave People
+1 Terror
+1 Leshrac's Rite
+1 Eternal Warrior
+1 Recover
+1 The Brute
+1 Red Elemental Blast
+1 Gorilla War Cry
+1 Bestial Fury
+1 Gravedigger
+1 Black Market
+1 War Barge
+1 Dauthi Trapper
+1 Crystal Chimes
+1 Mages' Contest
+1 Power Matrix
+1 Oubliette
+1 Chaos Charm
+1 Bloodstone Cameo
+1 Phyrexian Splicer
+1 Barreling Attack
+1 Mystic Compass
+1 Corrupting Licid
+1 Mark of Fury
+1 Sleeper's Guile
+1 Blood Vassal
+1 Shade's Form
+1 Soul Channeling
+1 Necropotence
+1 Erratic Portal
+1 Spoils of Evil
+1 Funeral Charm
+1 Blood Pet
+1 Molten Influence
+1 Phyrexian Arena
+1 Need for Speed
+1 Artifact Blast
+1 Urborg Volcano
+18 Mountain
+1 Urborg Uprising
+1 Terminate
+1 Cave Sense
+1 Withering Boon

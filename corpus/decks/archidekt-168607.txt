@@ -1,0 +1,103 @@
+# Archidekt — Varina Bobina - Combo
+# source: archidekt:168607
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Varina, Lich Queen
+
+Deck:
+1 Phyrexian Altar
+1 Universal Automaton
+1 Living Death
+1 Vault of Champions
+1 Master of Death
+1 Plague Belcher
+1 Wayward Servant
+1 Cryptbreaker
+1 Flooded Strand
+1 Gravecrawler
+1 Polluted Delta
+1 Mana Confluence
+1 Marsh Flats
+1 Unholy Grotto
+1 Tombstone Stairwell
+1 Watery Grave
+1 Urborg, Tomb of Yawgmoth
+1 Hallowed Fountain
+1 Godless Shrine
+1 Undead Augur
+1 Carrion Feeder
+1 Corpse Knight
+1 Command Tower
+1 Plumb the Forbidden
+1 Champion of the Perished
+1 Shambling Ghast
+1 Kindred Discovery
+1 Headless Rider
+1 Ashnod's Altar
+1 Skullclamp
+1 Crypt of Agadeem
+1 Repository Skaab
+1 Changeling Outcast
+1 Morphic Pool
+1 Buried Alive
+1 Cavern of Souls
+1 Putrid Imp
+1 Stitcher's Supplier
+1 Entomb
+1 Intuition
+1 Haakon, Stromgald Scourge
+1 Liliana's Standard Bearer
+1 Chain of Vapor
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Vampiric Tutor
+1 Songs of the Damned
+1 Liliana, Untouched by Death
+1 Gray Merchant of Asphodel
+1 Dark Ritual
+1 Phyrexian Tower
+1 Warren Soultrader
+1 Sevinne's Reclamation
+1 Foulmire Knight // Profane Insight
+1 Nykthos, Shrine to Nyx
+1 Withered Wretch
+1 Three Tree City
+1 Sunken Ruins
+1 Zul Ashur, Lich Lord
+1 Underground River
+1 Hashaton, Scarab's Fist
+1 Springleaf Drum
+1 Bleachbone Verge
+1 Land Tax
+1 Tithe
+1 Spymaster's Vault
+1 Lazotep Chancellor
+1 Gloomlake Verge
+3 Island
+1 Plains
+1 Zombie Apocalypse
+1 Raffine's Tower
+1 Isolated Chapel
+4 Swamp
+1 Apprentice Necromancer
+1 Dictate of Erebos
+1 Binding Mummy
+1 Prophet of the Scarab
+1 Midnight Reaper
+1 Swan Song
+1 Arcane Denial
+1 An Offer You Can't Refuse
+1 Fierce Guardianship
+1 Monument to Endurance
+1 Zombie Infestation
+1 Culling the Weak
+1 Relentless Dead
+1 Sol Ring
+1 Misty Rainforest
+1 Cyclonic Rift
+1 Swords to Plowshares
+1 Shadowy Backstreet
+1 Undead Hand Ninja
+1 Lazotep Reaver
+1 Undercity Sewers

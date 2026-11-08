@@ -1,0 +1,108 @@
+# Archidekt — Najeela's Warrior Roadshow
+# source: archidekt:159639
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Najeela, the Blade-Blossom
+
+Deck:
+1 Mirari's Wake
+1 Ragavan, Nimble Pilferer
+1 Secluded Courtyard
+1 Aggravated Assault
+1 Vanquisher's Banner
+1 Mirri, Weatherlight Duelist
+1 Herald's Horn
+1 Aven Wind Guide
+1 Throne of the God-Pharaoh
+1 Cascading Cataracts
+1 Cryptolith Rite
+1 Impact Tremors
+1 Surrak Dragonclaw
+1 Wooded Foothills
+1 Iroas, God of Victory
+1 Aurelia, the Warleader
+1 Champion of Lambholt
+1 Bear Umbra
+1 Brighthearth Banneret
+1 Bramblewood Paragon
+1 Lovisa Coldeyes
+1 Nature's Will
+1 Blood Crypt
+1 Godless Shrine
+1 Overgrown Tomb
+1 Stomping Ground
+1 Chromatic Lantern
+1 Demonic Tutor
+1 Prismatic Vista
+1 Species Specialist
+1 Chromatic Orrery
+1 Cultivate
+1 Mana Echoes
+1 Mana Confluence
+1 Kargan Intimidator
+1 Swiftfoot Boots
+1 The Immortal Sun
+1 Plaza of Heroes
+1 Mountain
+1 Moraug, Fury of Akoum
+1 Arcane Signet
+1 Purphoros, God of the Forge
+1 Karlach, Fury of Avernus
+1 Drumbellower
+1 Reflecting Pool
+1 Elven Chorus
+1 Delighted Halfling
+1 Command Tower
+1 Bloodstained Mire
+1 Mox Amber
+1 Rhystic Study
+1 Dolmen Gate
+1 Morophon, the Boundless
+1 Professional Face-Breaker
+1 Chatterfang, Squirrel General
+1 Three Tree City
+1 Eldrazi Monument
+1 City of Brass
+1 Anguished Unmaking
+1 Enduring Vitality
+1 Misty Rainforest
+1 Scalding Tarn
+1 Dryad of the Ilysian Grove
+1 Ketria Triome
+1 Breeding Pool
+1 Polluted Delta
+1 Windswept Heath
+1 Sacred Foundry
+1 Flooded Strand
+1 Watery Grave
+1 Arid Mesa
+1 Hallowed Fountain
+1 Temple Garden
+1 Verdant Catacombs
+1 Marsh Flats
+1 Steam Vents
+1 Fire-Lit Thicket
+1 Zagoth Triome
+1 Vexilus Praetor
+1 Ultramarines Honour Guard
+1 Warleader's Call
+1 Gornog, the Red Reaper
+1 Zurgo Stormrender
+1 Ainok Strike Leader
+1 Knuckles the Echidna
+1 Great Divide Guide
+1 Suki, Kyoshi Captain
+1 Leonardo, the Balance
+1 Springleaf Parade
+1 Bloom Tender
+1 Slash, Reptile Rampager
+1 Irma, Part-Time Mutant
+1 Baylen, the Haymaker
+1 Forest
+1 Plains
+1 Island
+1 Swamp
+1 Reconnaissance
+1 Prismatic Omen

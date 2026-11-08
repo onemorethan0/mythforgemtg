@@ -1,0 +1,105 @@
+# Archidekt — Please Don't Hurt Me, I'll Scream
+# source: archidekt:14073071
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sythis, Harvest's Hand
+
+Deck:
+1 Gemstone Caverns
+1 Badgermole Cub
+1 Crop Rotation
+1 Bountiful Promenade
+1 Brushland
+1 Delney, Streetwise Lookout
+1 Horizon Canopy
+1 Temple Garden
+1 Savannah
+1 Ethereal Armor
+1 Whip Silk
+1 Chord of Calling
+1 Sanctum Weaver
+1 Forest
+1 Plains
+1 Command Tower
+1 Finale of Devastation
+1 Staff of Domination
+1 Worldly Tutor
+1 Nature's Rhythm
+1 Formidable Speaker
+1 Sylvan Library
+1 Argothian Enchantress
+1 Esper Sentinel
+1 Destiny Spinner
+1 Blind Obedience
+1 Sterling Grove
+1 Brightglass Gearhulk
+1 Veil of Summer
+1 Walking Ballista
+1 Deafening Silence
+1 Aura of Silence
+1 Wild Growth
+1 Reprieve
+1 Boseiju, Who Endures
+1 Devoted Druid
+1 Swift Reconfiguration
+1 Silence
+1 Green Sun's Zenith
+1 Gauntlets of Light
+1 Nature's Chosen
+1 Instill Energy
+1 Sevinne's Reclamation
+1 Ranger-Captain of Eos
+1 Birds of Paradise
+1 Avacyn's Pilgrim
+1 Grand Abolisher
+1 Paladin Class
+1 Serra's Sanctum
+1 Swords to Plowshares
+1 Mox Amber
+1 Chrome Mox
+1 Lotus Petal
+1 Carpet of Flowers
+1 Ancient Tomb
+1 Smothering Tithe
+1 Enduring Vitality
+1 Solitude
+1 Cryptolith Rite
+1 Shifting Woodland
+1 Sheltered by Ghosts
+1 The Queen of Dale
+1 Enlightened Tutor
+1 Heliod, Sun-Crowned
+1 Gleaming Splendor
+1 Elvish Spirit Guide
+1 Eladamri's Call
+1 Jennifer Walters // The Sensational She-Hulk
+1 Meticulous Excavation
+1 Hushwood Verge
+1 Mark of Asylum
+1 Galadriel's Dismissal
+1 Gaea's Cradle
+1 Ancient Den
+1 Delighted Halfling
+1 Summoner's Pact
+1 Sol Ring
+1 Arcane Signet
+1 Tataru Taru
+1 Tree of Tales
+1 Mox Opal
+1 Lush Portico
+1 The Cabbage Merchant
+1 Seedcradle Witch
+1 Brigid, Clachan's Heart // Brigid, Doun's Mind
+1 Reflecting Pool
+1 Verdant Catacombs
+1 Exploration
+1 Pia, Aether Ascetic
+1 Rest in Peace
+1 Shang-Chi, Master of Kung Fu
+1 Flooded Strand
+1 Endurance
+1 Drannith Magistrate
+1 Angel's Grace
+1 Orim's Chant

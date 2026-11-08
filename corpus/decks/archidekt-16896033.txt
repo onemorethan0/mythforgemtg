@@ -1,0 +1,83 @@
+# Archidekt — Talrand the Slinger
+# source: archidekt:16896033
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Talrand, Sky Summoner
+
+Deck:
+1 Wizard's Staff
+1 Aetherize
+1 Arcane Denial
+1 Brainstorm
+1 Commandeer
+1 Consider
+1 Counterspell
+1 Cyclonic Rift
+1 Dispel
+1 Dramatic Reversal
+1 Force of Negation
+1 Force of Will
+1 Harmonized Crescendo
+1 High Tide
+1 Misdirection
+1 Back to Basics
+1 Narset's Reversal
+1 Nexus of Fate
+1 Opt
+1 Pongify
+1 Slip Out the Back
+1 Snap
+1 Stifle
+1 Strix Serenade
+1 Tale's End
+1 Wash Away
+1 Candlekeep Inspiration
+1 Fabricate
+1 Gitaxian Probe
+1 Merchant Scroll
+1 Personal Tutor
+1 Preordain
+1 Retraced Image
+1 Solve the Equation
+1 Treasure Cruise
+1 Windfall
+1 Aetherflux Reservoir
+1 Arcane Signet
+1 Bender's Waterskin
+1 Fellwar Stone
+1 Isochron Scepter
+1 Mind Stone
+1 Mindsplice Apparatus
+1 Primal Amulet // Primal Wellspring
+1 Proteus Staff
+1 Sapphire Medallion
+1 Sol Ring
+1 Kindred Discovery
+1 Propaganda
+1 Mystic Sanctuary
+1 Teferi's Ageless Insight
+1 Trade Routes
+1 Buried Ruin
+1 Demolition Field
+26 Island
+1 Reconnaissance Mission
+1 Riptide Laboratory
+1 Three Tree City
+1 War Room
+1 Reliquary Tower
+1 Stock Up
+1 Abjure
+1 Swan Song
+1 Fierce Guardianship
+1 An Offer You Can't Refuse
+1 Dive Down
+1 Rapid Hybridization
+1 Ponder
+1 Thought Vessel
+1 Orcrist, Goblin-cleaver
+1 Shore Up
+1 Frantic Search
+1 Terrain Generator
+1 Case of the Ransacked Lab

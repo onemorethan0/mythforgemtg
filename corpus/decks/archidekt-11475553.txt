@@ -1,0 +1,80 @@
+# Archidekt — Stiltzkin's Traveling Tchotchke Emporium
+# source: archidekt:11475553
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Stiltzkin, Moogle Merchant
+
+Deck:
+1 Eriette's Tempting Apple
+1 Bygone Bishop
+1 C.A.M.P.
+1 Digsite Engineer
+1 Lembas
+1 Magewright's Stone
+1 Bronze Guardian
+1 Sevinne's Reclamation
+1 Golden Egg
+1 Academy Manufactor
+1 Archaeomancer's Map
+1 Witch's Oven
+1 Homeward Path
+1 Overencumbered
+1 Survivor's Med Kit
+1 Esper Sentinel
+1 Ratchet, Field Medic // Ratchet, Rescue Racer
+1 Splitskin Doll
+1 Voyager Quickwelder
+1 Illustrious Wanderglyph
+1 Delney, Streetwise Lookout
+1 Thraben Inspector
+1 Treasure Hunter
+1 The Battle of Bywater
+1 Tocasia's Welcome
+1 Caretaker's Talent
+1 Mentor of the Meek
+1 Dusk // Dawn
+1 Recommission
+1 Monumental Henge
+1 War Room
+1 Inventors' Fair
+1 Fountainport
+1 Novice Inspector
+1 Drumbellower
+1 Nuka-Cola Vending Machine
+1 Foundry Inspector
+1 Bill the Pony
+1 Kor Skyfisher
+1 Ephemerate
+1 Rosie Cotton of South Lane
+1 The Underworld Cookbook
+1 Glint Hawk
+1 Sarah Jane Smith
+1 Swords to Plowshares
+1 Sol Ring
+1 Nurturing Pixie
+1 Argivian Find
+1 Skrelv, Defector Mite
+1 Springleaf Drum
+1 Fabrication Foundry
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Arcane Signet
+1 Marble Diamond
+1 Liquimetal Torque
+1 Weathered Wayfarer
+1 Fellwar Stone
+1 Unexpectedly Absent
+1 Generous Gift
+1 Stroke of Midnight
+1 Flare of Fortitude
+1 March of Otherworldly Light
+1 Liberator, Urza's Battlethopter
+1 Losheel, Clockwork Scholar
+1 Sun Titan
+1 Solemn Simulacrum
+29 Plains
+1 White Plume Adventurer
+1 Wedding Ring
+1 Trusty Packbeast
+1 Emeria, the Sky Ruin

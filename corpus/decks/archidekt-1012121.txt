@@ -1,0 +1,103 @@
+# Archidekt — Temur Spellslinger - One Punch Kalamax, the Stormsire
+# source: archidekt:1012121
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Kalamax, the Stormsire + Return the Favor; Bracket 2 allows none
+
+Commander:
+1 Kalamax, the Stormsire
+
+Deck:
+1 Soul's Fire
+1 Fists of Flame
+2 Mountain
+1 Fire-Lit Thicket
+1 Pinnacle Monk // Mystic Peak
+1 Survivors' Encampment
+1 Holdout Settlement
+1 Kessig Wolf Run
+1 Exotic Orchard
+1 Frontier Bivouac
+1 Cinder Glade
+1 Talrand, Sky Summoner
+1 Training Center
+1 Run Away Together
+1 Harrow
+1 Sol Ring
+1 Storm Seeker
+1 Bountiful Landscape
+1 Magma Opus
+1 Atarka's Command
+1 Sunken Palace
+1 March of Swirling Mist
+1 Quandrix Apprentice
+1 Arcane Bombardment
+1 Lightning Greaves
+1 Winged Boots
+1 Siege Smash
+1 Veyran, Voice of Duality
+1 Haughty Djinn
+1 Invasion of Arcavios // Invocation of the Founders
+1 Sudden Impact
+1 Bedlam Reveler
+1 Great Train Heist
+1 Cerebral Vortex
+1 Ghostfire Slice
+1 Deekah, Fractal Theorist
+1 Unexpected Windfall
+1 Gold Rush
+1 Mercadia's Downfall
+1 Metallurgic Summonings
+1 Command Tower
+1 Rejuvenating Springs
+1 Archmage Emeritus
+1 Shark Typhoon
+5 Island
+1 Octavia, Living Thesis
+1 Dragonsguard Elite
+1 Tablet of Discovery
+1 Return the Favor
+1 Cryptic Command
+1 Origin of Metalbending
+1 Renegade Bull
+1 Magmablood Archaic
+1 Thunderclap Drake
+1 Flamekin Village
+1 Coastal Peak
+1 Showstopping Surprise
+1 Ketria Triome
+2 Forest
+1 Entish Restoration
+1 Storm-Kiln Artist
+1 Thunderdrum Soloist
+1 Sanar, Unfinished Genius // Wild Idea
+1 Prismari Charm
+1 Divergent Equation
+1 Flooded Grove
+1 Hinterland Harbor
+1 Yavimaya Coast
+1 Bender's Waterskin
+1 Victory Chimes
+1 Waterlogged Grove
+1 Sodden Verdure
+1 Hedge Maze
+1 Aetherize
+1 Breeding Pool
+1 The Dawning Archaic
+1 Rain-Slicked Copse
+1 Manamorphose
+1 Karplusan Forest
+1 Loki Laufeyson
+1 Bloodthirsty Adversary
+1 Third Path Iconoclast
+1 Traumatic Critique
+1 Tomb of Horrors Adventurer
+1 Riddles in the Dark
+1 Uncover the Moon-Letters
+1 Mountain
+1 Cycle of Renewal
+1 Resonating Lute
+1 Junk Winder
+1 Volatile Fjord
+1 Geist of Saint Thalia
+1 Clash of Elements

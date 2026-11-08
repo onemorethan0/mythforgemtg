@@ -1,0 +1,108 @@
+# Archidekt — Sliver Overlord
+# source: archidekt:3049528
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sliver Overlord
+
+Deck:
+1 Ketria Triome
+1 Mana Echoes
+1 Flooded Strand
+1 Predatory Sliver
+1 Bloodstained Mire
+1 Wooded Foothills
+1 Clever Concealment
+1 Dregscape Sliver
+1 Watery Grave
+1 Gemhide Sliver
+1 Hibernation Sliver
+1 Manaweft Sliver
+1 Sentinel Sliver
+1 Striking Sliver
+1 Harmonic Sliver
+1 Nature's Lore
+1 Intruder Alarm
+1 Basal Sliver
+1 Blur Sliver
+1 Bonescythe Sliver
+1 Cloudshredder Sliver
+1 Diffusion Sliver
+1 Galerider Sliver
+1 Heart Sliver
+1 Quick Sliver
+1 Two-Headed Sliver
+1 Winged Sliver
+1 Talon Sliver
+1 Forest
+1 The First Sliver
+1 Crystalline Sliver
+1 Farseek
+1 Syphon Sliver
+1 Flawless Maneuver
+1 Stomping Ground
+1 Heroic Intervention
+1 Scalding Tarn
+1 Sliver Queen
+1 Spiteful Sliver
+1 Indatha Triome
+1 Eldritch Evolution
+1 Verdant Catacombs
+1 Muscle Sliver
+1 Morophon, the Boundless
+1 Lavabelly Sliver
+1 Marsh Flats
+1 Conjurer's Mantle
+1 Overgrown Tomb
+1 Hallowed Fountain
+1 Vampiric Tutor
+1 Worldly Tutor
+1 Boros Charm
+1 March of Swirling Mist
+1 Cyclonic Rift
+1 Fierce Guardianship
+1 Tyvar's Stand
+1 Abrupt Decay
+1 Filter Out
+1 Rampant Growth
+1 Sliver Gravemother
+1 Skyshroud Claim
+1 Swords to Plowshares
+1 Veil of Summer
+1 Crop Rotation
+1 Raugrin Triome
+1 Savai Triome
+1 Zagoth Triome
+1 Island
+1 Sliver Hive
+1 Temple Garden
+1 Mana Confluence
+1 Path of Ancestry
+1 Blood Crypt
+1 Godless Shrine
+1 Breeding Pool
+1 Sacred Foundry
+1 Polluted Delta
+1 Steam Vents
+1 Essence Sliver
+1 Secluded Courtyard
+1 Hatchery Sliver
+1 Mountain
+1 Prismatic Vista
+1 Teferi's Protection
+1 Arid Mesa
+1 Windswept Heath
+1 Misty Rainforest
+1 Swamp
+1 Open the Way
+1 Three Visits
+1 Dawn's Truce
+1 Training Grounds
+1 Cryptolith Rite
+1 Blasphemous Act
+1 Sliver Hivelord
+1 Command Tower
+1 Thrumming Hivepool
+1 Cavern of Souls
+1 Sol Ring

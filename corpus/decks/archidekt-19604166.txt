@@ -1,0 +1,95 @@
+# Archidekt — Parnesse, The Subtle Brush
+# source: archidekt:19604166
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Twinning Staff + Narset's Reversal; Bracket 2 allows none
+
+Commander:
+1 Parnesse, the Subtle Brush
+
+Deck:
+1 Adventurer's Inn
+1 Aid the Fallen
+1 Alania, Divergent Storm
+1 Ambition's Cost
+1 Arcane Bombardment
+1 Archmage Emeritus
+1 Baral, Chief of Compliance
+1 Blood Crypt
+1 Catalog
+1 Chaos Warp
+1 Chef's Kiss
+1 Command Tower
+1 Cormela, Glamour Thief
+1 Crackle with Power
+1 Crossroads Village
+1 Curse of the Swine
+1 Cut // Ribbons
+1 Dimir Signet
+1 Double Vision
+1 Drawn from Dreams
+1 Enhanced Awareness
+1 Ensnared by the Mara
+1 Eroded Canyon
+1 Errant, Street Artist
+1 Exalted Flamer of Tzeentch
+1 Exotic Orchard
+1 Explosion of Riches
+1 Exsanguinate
+1 Flame of Anor
+1 Flash Photography
+1 Flawless Forgery
+1 Flusterstorm
+1 Frantic Search
+1 Galvanic Iteration
+1 Goblin Electromancer
+1 Grapeshot
+1 Harmonic Prodigy
+1 Hexing Squelcher
+8 Island
+1 Isochron Scepter
+1 Jace, Wielder of Mysteries
+1 Judith, Carnage Connoisseur
+1 Kess, Dissident Mage
+1 Lutri, the Spellchaser
+1 Melek, Izzet Paragon
+1 Mistrise Village
+1 Morphic Pool
+7 Mountain
+1 Murky Sewer
+1 Mystic Sanctuary
+1 Narset's Reversal
+1 Nightscape Familiar
+1 Opal Palace
+1 Path of Ancestry
+1 Ponder
+1 Preordain
+1 Pyromancer's Goggles
+1 Rakdos Signet
+1 Ral, Storm Conduit
+1 Ravaging Blaze
+1 Razortrap Gorge
+1 Redirect Lightning
+1 Return the Favor
+1 Scene of the Crime
+1 Seething Landscape
+1 Sign in Blood
+1 Smoldering Marsh
+1 Sol Ring
+1 Spark Double
+1 Spell Pierce
+1 Starting Town
+1 Storm King's Thunder
+1 Storm-Kiln Artist
+1 Summary Dismissal
+2 Swamp
+1 Swarm Intelligence
+1 Temple of Malice
+1 Tendrils of Agony
+1 Thought Vessel
+1 Thousand-Year Storm
+1 Thriving Bluff
+1 Twinning Staff
+1 Unknown Shores
+1 Veyran, Voice of Duality
+1 Wandering Archaic // Explore the Vastlands

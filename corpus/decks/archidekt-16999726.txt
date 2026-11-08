@@ -1,0 +1,108 @@
+# Archidekt — Return of the Returned King | cEDH Kenrith, the Returned King 2026 | 5-Color Mid-Range (No Proxies v3.1)
+# source: archidekt:16999726
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Tundra
+1 Pollywog Prodigy
+1 Demonic Consultation
+1 Vampiric Tutor
+1 Eldritch Evolution
+1 Derevi, Empyrial Tactician
+1 Mindbreak Trap
+1 Cloud of Faeries
+1 Emiel the Blessed
+1 Rhystic Study
+1 Ancient Tomb
+1 Enlightened Tutor
+1 Dispel
+1 Misty Rainforest
+1 Boseiju, Who Endures
+1 Stomping Ground
+1 Overgrown Tomb
+1 Cephalid Coliseum
+1 Hallowed Fountain
+1 Temple Garden
+1 Mystical Tutor
+1 Savannah
+1 Mystic Remora
+1 Mayhem Devil
+1 Chord of Calling
+1 Godless Shrine
+1 Phantasmal Image
+1 Flooded Strand
+1 Orcish Bowmasters
+1 Lotho, Corrupt Shirriff
+1 Mox Opal
+1 Culling Ritual
+1 Sol Ring
+1 Trickbind
+1 An Offer You Can't Refuse
+1 Swords to Plowshares
+1 Silence
+1 Arcane Signet
+1 Tainted Pact
+1 Force of Will
+1 Thassa's Oracle
+1 Chain of Vapor
+1 Assassin's Trophy
+1 Dark Ritual
+1 Flusterstorm
+1 Demonic Tutor
+1 Nature's Claim
+1 Scrubland
+1 Arid Mesa
+1 Blood Crypt
+1 Sacred Foundry
+1 Breeding Pool
+1 Otawara, Soaring City
+1 Command Tower
+1 Taiga
+1 Volcanic Island
+1 Wooded Foothills
+1 Watery Grave
+1 Plateau
+1 Verdant Catacombs
+1 Steam Vents
+1 Gaea's Cradle
+1 Bloom Tender
+1 Drannith Magistrate
+1 Faeburrow Elder
+1 Pemmin's Aura
+1 Freed from the Real
+1 Tishana's Tidebinder
+1 Chrome Mox
+1 Mockingbird
+1 Mana Vault
+1 Grim Monolith
+1 Grand Abolisher
+1 Biomancer's Familiar
+1 Faerie Mastermind
+1 Esper Sentinel
+1 Mox Diamond
+1 Hexing Squelcher
+1 Into the Flood Maw
+1 Voice of Victory
+1 Ranger-Captain of Eos
+1 Kutzil, Malamet Exemplar
+1 Agatha of the Vile Cauldron
+1 Snap
+1 Minamo, School at Water's Edge
+1 Training Grounds
+1 Smothering Tithe
+1 Bloodstained Mire
+1 Imperial Recruiter
+1 Underground Sea
+1 Pia, Aether Ascetic
+1 Gleaming Splendor
+1 Wan Shi Tong, Librarian
+1 Flashback
+1 Bilbo's Gambit
+1 Lotus Petal
+1 Deathrite Shaman
+1 Warren Soultrader
+1 Stridehangar Automaton

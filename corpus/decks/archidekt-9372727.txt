@@ -1,0 +1,87 @@
+# Archidekt — Mazeura's Torment
+# source: archidekt:9372727
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Chainer, Dementia Master
+
+Deck:
+1 K'rrik, Son of Yawgmoth
+1 Arcane Signet
+1 Animate Dead
+1 The One Ring
+1 Cabal Coffers
+1 Kokusho, the Evening Star
+1 Grave Pact
+1 Urborg, Tomb of Yawgmoth
+1 Phyrexian Tower
+1 Jet Medallion
+1 Entomb
+1 Gray Merchant of Asphodel
+1 Yawgmoth's Will
+1 Xiahou Dun, the One-Eyed
+1 Massacre Wurm
+1 Sol Ring
+1 Phyrexian Altar
+1 Black Market Connections
+1 Yawgmoth, Thran Physician
+1 Demonic Tutor
+1 Lake of the Dead
+1 Buried Alive
+1 Braids, Arisen Nightmare
+1 Sheoldred, the Apocalypse
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Junji, the Midnight Sky
+1 Fellwar Stone
+1 Soldevi Adnate
+1 Archon of Cruelty
+1 Plaguecrafter
+1 Throne of Eldraine
+1 Necropotence
+1 Toxic Deluge
+1 Nykthos, Shrine to Nyx
+1 Orcish Bowmasters
+1 Bolas's Citadel
+1 Viscera Seer
+1 Takenuma, Abandoned Mire
+1 Umbral Collar Zealot
+1 Carrion Feeder
+1 Dark Ritual
+1 War Room
+1 Imp's Mischief
+1 Valgavoth, Terror Eater
+1 Urza's Saga
+1 Dauthi Voidwalker
+1 Malakir Rebirth // Malakir Mire
+1 The Soul Stone
+1 Ripples of Undeath
+1 Accursed Marauder
+1 High Market
+1 Incarnation Technique
+1 Reanimate
+1 Vile Entomber
+1 Nirkana Revenant
+1 Boggart Trawler // Boggart Bog
+1 Metamorphosis Fanatic
+1 The Meathook Massacre
+1 Crypt Ghast
+1 Damnation
+1 Warren Soultrader
+1 Bojuka Bog
+22 Snow-Covered Swamp
+1 Thought Vessel
+1 Vilis, Broker of Blood
+1 Reliquary Tower
+1 Twilight Diviner
+1 Snuff Out
+1 Lightning Greaves
+1 Torment of Hailfire
+1 Vampiric Tutor
+1 Ancient Tomb
+1 Altar of Dementia
+1 Spymaster's Vault
+1 Castle Locthwain
+1 The Master of Lake-town
+1 The Darkness Crystal
+1 Imperial Seal

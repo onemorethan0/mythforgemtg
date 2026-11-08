@@ -1,0 +1,100 @@
+# Archidekt — Chatterfang, Squirrel General
+# source: archidekt:3188140
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Undergrowth Stadium
+1 Verdant Catacombs
+1 Overgrown Tomb
+1 Golgari Rot Farm
+1 Essence Warden
+1 Crop Rotation
+1 Birds of Paradise
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Parallel Lives
+1 Awaken the Woods
+1 Bootleggers' Stash
+1 The Shire
+1 Awakening Zone
+1 Mycoloth
+1 Command Tower
+1 Sol Ring
+1 Nature's Lore
+1 Pitiless Plunderer
+1 Lord Skitter, Sewer King
+1 Nested Shambler
+1 Shifting Woodland
+1 Fountainport
+1 Springheart Nantuko
+6 Forest
+1 Sylvan Library
+1 Valley Rotcaller
+1 Craterhoof Behemoth
+3 Swamp
+1 Scute Swarm
+1 Toski, Bearer of Secrets
+1 Deep Forest Hermit
+1 Verdant Command
+1 Skullclamp
+1 Yavimaya, Cradle of Growth
+1 Darkbore Pathway // Slitherbore Pathway
+1 Llanowar Wastes
+1 Temple of the False God
+1 Prosperous Innkeeper
+1 Woodland Cemetery
+1 Assassin's Trophy
+1 Tireless Provisioner
+1 Culling the Weak
+1 Arachnogenesis
+1 Beseech the Mirror
+1 Doubling Season
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Heroic Intervention
+1 Arcane Signet
+1 Deathcap Glade
+1 Black Market Connections
+1 Bitterblossom
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Force of Vigor
+1 Three Tree City
+1 Worldly Tutor
+1 Urborg, Tomb of Yawgmoth
+1 Swarmyard Massacre
+1 Boseiju, Who Endures
+1 For the Common Good
+1 Spymaster's Vault
+1 Saw in Half
+1 Warren Soultrader
+1 Gala Greeters
+1 Ophiomancer
+1 Enduring Vitality
+1 Underground Mortuary
+1 The Meathook Massacre
+1 Lich-Knights' Conquest
+1 Wooded Foothills
+1 Evendo, Waking Haven
+1 Tear Asunder
+1 Delighted Halfling
+1 Swarmyard
+1 Horizon Explorer
+1 Unholy Annex // Ritual Chamber
+1 Malevolent Rumble
+1 The Cabbage Merchant
+1 Grim Hireling
+1 Icetill Explorer
+1 Sentinel of the Nameless City
+1 The One Ring
+1 Gyome, Master Chef
+1 Fyndhorn Elves
+1 Tendershoot Dryad
+1 Twilight Mire
+1 Dreadhorde Invasion
+1 Dowsing Dagger // Lost Vale
+1 Sapling Nursery
+1 Pest Infestation
+1 The Notary Hobbits
+1 Lightning Greaves

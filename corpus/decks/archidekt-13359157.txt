@@ -1,0 +1,107 @@
+# Archidekt — Terra, Herald of Hope
+# source: archidekt:13359157
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Terra, Herald of Hope
+
+Deck:
+1 Celes, Rune Knight
+1 Tragic Arrogance
+1 General Leo Cristophe
+1 Siegfried, Famed Swordsman
+1 Gogo, Mysterious Mime
+1 Banon, the Returners' Leader
+1 Edgar, Master Machinist
+1 Mog, Moogle Warrior
+1 The Warring Triad
+1 Flayer of the Hatebound
+1 Priest of Fell Rites
+1 Key to the City
+1 Solemn Simulacrum
+1 Battlefield Forge
+1 Clifftop Retreat
+1 Desolate Mire
+1 Dragonskull Summit
+1 Exotic Orchard
+1 Fetid Heath
+1 Foreboding Ruins
+1 Furycalm Snarl
+1 Graven Cairns
+1 High Market
+1 Isolated Chapel
+1 Rugged Prairie
+1 Shadowblood Ridge
+1 Shineshadow Snarl
+1 Sulfurous Springs
+1 Sunscorched Divide
+1 Laughing Mad
+1 Stitcher's Supplier
+1 Anger
+1 Arcane Signet
+1 Meteor Golem
+1 Millikin
+1 Sol Ring
+1 Talisman of Conviction
+1 Talisman of Indulgence
+1 Nomad Outpost
+1 Path of Ancestry
+1 Rogue's Passage
+1 Command Tower
+1 Plains
+1 Swamp
+1 Mountain
+1 Sevinne's Reclamation
+1 Azra Oddsmaker
+1 Lotho, Corrupt Shirriff
+1 Viscera Seer
+1 Boromir, Warden of the Tower
+1 Cathar Commando
+1 Blade Historian
+1 Sister Hospitaller
+1 Alesha, Who Smiles at Death
+1 Goblin Cratermaker
+1 Bishop of Rebirth
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Skyclave Apparition
+1 Dusk // Dawn
+1 Fell the Mighty
+1 Squall, SeeD Mercenary
+1 Aurelia, the Warleader
+1 Ankle Shanker
+1 Fear of Missing Out
+1 Accursed Marauder
+1 Rakdos Signet
+1 Path to Exile
+1 Stroke of Midnight
+1 Orzhov Signet
+1 Blood Crypt
+1 Godless Shrine
+1 Sacred Foundry
+1 Drownyard Temple
+1 Bloodstained Mire
+1 Bojuka Bog
+1 Dakmor Salvage
+1 Sunbaked Canyon
+1 Ingot Chewer
+1 Mire Triton
+1 Smile at Death
+1 Temple of Silence
+1 Temple of Malice
+1 Ranger-Captain of Eos
+1 Mirror Entity
+1 Selfless Spirit
+1 Shriekmaw
+1 Ripples of Undeath
+1 Fellwar Stone
+1 Vile Entomber
+1 Ravenous Chupacabra
+1 Toxic Deluge
+1 Imperial Recruiter
+1 Recruiter of the Guard
+1 Pinnacle Monk // Mystic Peak
+1 Marsh Flats
+1 Victimize
+1 Dread Return
+1 Dalek Drone

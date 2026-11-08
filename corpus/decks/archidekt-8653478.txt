@@ -1,0 +1,99 @@
+# Archidekt — Michael, It's Your Birthday
+# source: archidekt:8653478
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Wick, the Whorled Mind
+
+Deck:
+1 Thundering Falls
+1 Talisman of Indulgence
+1 Tainted Strike
+1 Withering Torment
+1 Blazemire Verge
+1 Riverpyre Verge
+1 Yuriko, the Tiger's Shadow
+1 Xander's Lounge
+1 Kindred Discovery
+1 Talisman of Dominance
+1 Dark Ritual
+4 Swamp
+1 Haunted Ridge
+1 Amoeboid Changeling
+1 Fell the Profane // Fell Mire
+1 Shapesharer
+1 Blade of the Bloodchief
+1 Cavern of Souls
+1 Saruman, the White Hand
+1 Raucous Theater
+1 Undercity Sewers
+1 Polluted Delta
+1 Didgeridoo
+1 Stormcarved Coast
+1 Watery Grave
+1 Gloomlake Verge
+1 Deflecting Swat
+1 Swarmyard
+1 Taurean Mauler
+1 Smaug, Wicked Worm
+1 Warg Rider
+1 Mystical Tutor
+1 Mothdust Changeling
+1 Shipwreck Marsh
+1 Steam Vents
+1 Blood Crypt
+1 Clock of Omens
+4 Island
+1 Universal Automaton
+1 Bloodline Pretender
+1 Relic of Sauron
+1 Phyresis
+1 Talisman of Creativity
+1 Plague of Vermin
+1 Maskwood Nexus
+1 Secluded Courtyard
+1 Firdoch Core
+1 Kazuul Warlord
+1 Changeling Outcast
+1 The Reaver Cleaver
+1 Song of Totentanz
+1 Cyclonic Rift
+1 Fierce Guardianship
+1 Rite of Replication
+1 Black Market Connections
+1 Ashling's Command
+1 Toxrill, the Corrosive
+1 Kindred Dominance
+1 Robe of the Archmagi
+1 Alchemist's Talent
+1 Dwarven Recruiter
+1 Séance Board
+1 Bloodstained Mire
+4 Mountain
+1 Coin of Mastery
+1 The Ooze
+1 Tarrian's Soulcleaver
+1 Devastating Onslaught
+1 Roaming Throne
+1 Abundant Countryside
+1 Soulstone Sanctuary
+1 Return the Favor
+1 Tablet of Discovery
+1 Generous Plunderer
+1 Chandra's Ignition
+1 Terror of the Peaks
+1 Magda, Brazen Outlaw
+1 Mox Jasper
+1 Sting, Bilbo's Sword
+1 Command Tower
+1 Arcane Signet
+1 Improvisation Capstone
+1 Storm the Vault // Vault of Catlacan
+1 The Great Goblin
+1 Blade of Selves
+1 Balin, Loremaster
+1 Liquimetal Torque
+1 Soul Immolation
+1 Sol Ring
+1 Virtue of Knowledge // Vantress Visions

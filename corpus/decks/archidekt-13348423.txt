@@ -1,0 +1,98 @@
+# Archidekt — It Came from  Planet Glurg [Bracket 1]
+# source: archidekt:13348423
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Glarb, Calamity's Augur
+
+Deck:
+1 Ambassador Laquatus
+1 Ambassador Blorpityblorpboop
+1 Blex, Vexing Pest // Search for Blex
+1 Fblthp, Lost on the Range
+1 Fblthp, the Lost
+1 Graaz, Unstoppable Juggernaut
+1 Greel, Mind Raker
+1 Gorbag of Minas Morgul
+1 Gorm the Great
+1 Grazilaxx, Illithid Scholar
+1 Grolnok, the Omnivore
+1 Grunn, the Lonely King
+1 Hogaak, Arisen Necropolis
+1 Lorthos, the Tidemaker
+1 Kogla, the Titan Ape
+1 Lim-Dûl the Necromancer
+1 Ozox, the Clattering King
+1 Orvar, the All-Form
+1 Oona, Queen of the Fae
+1 Rankle, Master of Pranks
+1 Sygg, River Cutthroat
+1 Shroofus Sproutsire
+1 Shelob, Dread Weaver
+1 Slogurk, the Overslime
+1 Slimefoot, the Stowaway
+1 Slurrk, All-Ingesting
+1 Thryx, the Sudden Storm
+1 Yargle, Glutton of Urborg
+1 Uurg, Spawn of Turg
+1 Yorvo, Lord of Garenbrig
+1 Yargle and Multani
+1 Zhulodok, Void Gorger
+1 Zndrsplt, Eye of Wisdom
+1 Dingus Egg
+1 Sloppity Bilepiper
+1 Hornswoggle
+1 Slippery Bogbonder
+1 Bamboozle
+1 Hoodwink
+1 Squeaking Pie Grubfellows
+1 Noggin Whack
+1 Brushwagg
+1 Walking Sponge
+1 Hunted Wumpus
+1 Root Greevil
+1 Dandân
+1 Nebuchadnezzar
+1 Boggart Loggers
+1 Knickknack Ouphe
+1 Bouncing Beebles
+1 Creeping Peeper
+1 Slimy Piper
+1 Ravenous Gigamole
+1 Mwonvuli Ooze
+1 Sunken Hollow
+1 Foreboding Landscape
+1 Evolving Wilds
+1 Hinterland Harbor
+1 Command Tower
+1 Terramorphic Expanse
+1 Opulent Palace
+1 Woodland Cemetery
+1 Path of Ancestry
+1 Jungle Hollow
+1 Exotic Orchard
+1 Temple of Mystery
+1 Llanowar Wastes
+1 Dismal Backwater
+1 Underground River
+1 Temple of Malady
+1 Flooded Grove
+1 Temple of Deceit
+1 Vineglimmer Snarl
+1 Yavimaya Coast
+1 Thornwood Falls
+4 Island
+1 Choked Estuary
+1 Necroblossom Snarl
+1 Tainted Isle
+1 Drowned Catacomb
+1 Dreamroot Cascade
+1 Darkwater Catacombs
+1 Overflowing Basin
+1 Viridescent Bog
+1 Fabled Passage
+1 Tainted Wood
+3 Swamp
+4 Forest
+1 They Came from the Pipes

@@ -1,0 +1,108 @@
+# Archidekt — Ayara death by 1000 cuts
+# source: archidekt:2975220
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ayara, First of Locthwain
+
+Deck:
+1 Saw in Half
+1 Swamp
+1 Swamp
+1 Blood Artist
+1 Bloodghast
+1 Castle Locthwain
+1 Crypt Ghast
+1 Yawgmoth, Thran Physician
+1 Toxic Deluge
+1 Animate Dead
+1 Chittering Witch
+1 Swamp
+1 Malakir Rebirth // Malakir Mire
+1 Pitiless Plunderer
+1 Gray Merchant of Asphodel
+1 Swamp
+1 Phyrexian Tower
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Abhorrent Overlord
+1 Cabal Coffers
+1 The Meathook Massacre
+1 Grave Pact
+1 Jet Medallion
+1 Jadar, Ghoulcaller of Nephalia
+1 Demonic Tutor
+1 Urborg, Tomb of Yawgmoth
+1 Nykthos, Shrine to Nyx
+1 High Market
+1 Bojuka Bog
+1 Swamp
+1 Army of the Damned
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Nyx Lotus
+1 Swamp
+1 Ashnod's Altar
+1 Nightmare Shepherd
+1 Orcish Bowmasters
+1 Bloodletter of Aclazotz
+1 Skullclamp
+1 Dauthi Voidwalker
+1 Swamp
+1 Warren Soultrader
+1 Kokusho, the Evening Star
+1 Necromancy
+1 Swamp
+1 Marionette Apprentice
+1 Cabal Stronghold
+1 Dark Prophecy
+1 Gravecrawler
+1 Black Market Connections
+1 Mirkwood Bats
+1 Vito, Thorn of the Dusk Rose
+1 Sol Ring
+1 Exsanguinate
+1 Swamp
+1 Swamp
+1 Nether Traitor
+1 Enduring Tenacity
+1 Malicious Affliction
+1 Expedition Map
+1 Swamp
+1 Swamp
+1 Swamp
+1 Agent Venom
+1 Bitterblossom
+1 Great Unclean One
+1 Zulaport Cutthroat
+1 Starscape Cleric
+1 Nine-Lives Familiar
+1 Deadly Dispute
+1 Dark Ritual
+1 Swamp
+1 Bloodthirsty Conqueror
+1 Swamp
+1 Arcane Signet
+1 Reassembling Skeleton
+1 Braids, Arisen Nightmare
+1 Wriggling Grub
+1 Killing Wave
+1 Pawn of Ulamog
+1 Massacre Girl
+1 Massacre Wurm
+1 Plumb the Forbidden
+1 Swamp
+1 Tainted Adversary
+1 Sudden Spoiling
+1 Swamp
+1 Nowhere to Run
+1 Entomb
+1 Bloodchief Ascension
+1 The Soul Stone
+1 Living Death

@@ -1,0 +1,96 @@
+# Archidekt — Karona, False God
+# source: archidekt:6693466
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Karona, False God
+
+Deck:
+1 Chromatic Lantern
+1 Swamp
+1 Endless Whispers
+1 Mogg Assassin
+1 Kami of the Crescent Moon
+1 Heartwood Storyteller
+1 Chaos Warp
+1 Cultivate
+1 Farseek
+1 Seizan, Perverter of Truth
+1 Blasphemous Act
+1 Sol Ring
+1 Howling Mine
+1 Dictate of Kruphix
+1 Tempt with Discovery
+1 Cruel Entertainment
+1 Heartbeat of Spring
+1 Eye of the Storm
+1 Grip of Chaos
+1 Psychic Battle
+1 Sphere of Safety
+1 Mana Flare
+1 Warp World
+1 Perplexing Chimera
+1 Possibility Storm
+1 Hive Mind
+1 Shared Fate
+1 Approach of the Second Sun
+1 Confusion in the Ranks
+1 Xyris, the Writhing Storm
+1 Folio of Fancies
+1 Blessed Respite
+1 Zur's Weirding
+1 Command Tower
+1 Exotic Orchard
+1 Plains
+1 Path of Ancestry
+1 Poison Dart Frog
+1 Temple of Epiphany
+1 Temple of Mystery
+1 Kodama's Reach
+1 Gate to the Aether
+1 Descent into Avernus
+1 Capricious Efreet
+1 Forced Fruition
+1 Collective Voyage
+1 Evolving Wilds
+1 Prisoner's Dilemma
+1 Arcane Signet
+1 Tidal Barracuda
+1 Yidris, Maelstrom Wielder
+1 Braids, Conjurer Adept
+1 Wild Evocation
+1 Dictate of Karametra
+1 Maelstrom Wanderer
+1 Temple of Abandon
+1 Humble Defector
+1 Temple of Deceit
+1 Temple of Malady
+6 Mountain
+1 Crossroads Village
+1 Thriving Grove
+5 Island
+4 Forest
+1 Thriving Isle
+1 Thriving Heath
+1 Veteran Explorer
+1 Tempting Wurm
+1 Oath of Druids
+1 Noble Benefactor
+1 Mirrorweave
+1 Scrambleverse
+1 Rites of Flourishing
+1 Genesis Ultimatum
+1 Ignoble Hierarch
+1 Knowledge Pool
+1 Kardur, Doomscourge
+1 Font of Mythos
+1 Yavimaya Coast
+1 Terramorphic Expanse
+1 Conjured Currency
+1 Battlefield Forge
+1 Sulfurous Springs
+1 Shivan Reef
+1 Brushland
+1 Karplusan Forest
+1 Underground River

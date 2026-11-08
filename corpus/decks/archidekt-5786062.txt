@@ -1,0 +1,108 @@
+# Archidekt — Atraxa.POISON.dec
+# source: archidekt:5786062
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Atraxa, Praetors' Voice
+
+Deck:
+1 Everflowing Chalice
+1 Astral Cornucopia
+1 Grateful Apparition
+1 Erode
+1 Venerated Rotpriest
+1 Experimental Augury
+1 White Sun's Twilight
+1 Teferi, Time Raveler
+1 Mana Drain
+1 Prologue to Phyresis
+1 Tamiyo, Collector of Tales
+1 Swords to Plowshares
+1 Esper Sentinel
+1 Blighted Agent
+1 Infectious Inquiry
+1 Hallowed Fountain
+1 Overgrown Farmland
+1 Norn's Decree
+1 Marsh Flats
+1 Lotus Petal
+1 Polluted Delta
+1 Inkmoth Nexus
+1 Sol Ring
+1 Cyclonic Rift
+1 Arcane Signet
+1 Skrelv, Defector Mite
+1 Rhystic Study
+1 Smothering Tithe
+1 Bountiful Promenade
+1 Morphic Pool
+1 Vault of Champions
+1 Sea of Clouds
+1 Command Tower
+1 Windswept Heath
+1 Flooded Strand
+1 Demonic Tutor
+1 Dark Ritual
+1 Forest
+1 Watery Grave
+1 Misty Rainforest
+1 Temple Garden
+1 Overgrown Tomb
+1 Godless Shrine
+1 Verdant Catacombs
+1 Shattered Sanctum
+1 Undergrowth Stadium
+1 Rejuvenating Springs
+1 Shipwreck Marsh
+1 Dreamroot Cascade
+1 Deserted Beach
+1 Anguished Unmaking
+1 Breeding Pool
+1 Deathcap Glade
+1 Vraska's Fall
+1 Chrome Mox
+1 Ichor Rats
+1 Vorinclex, Monstrous Raider
+1 Staff of Compleation
+1 Phyrexian Crusader
+1 Dovin's Veto
+1 Vampiric Tutor
+1 Path to Exile
+1 Phyresis Outbreak
+1 Family's Favor
+1 Unnatural Restoration
+1 Swamp
+1 Raffine's Tower
+1 Indatha Triome
+1 Spara's Headquarters
+1 Zagoth Triome
+1 Eternal Witness
+1 Displacer Kitten
+1 Skithiryx, the Blight Dragon
+1 Evolution Sage
+1 Whisper of the Dross
+1 Ajani, Sleeper Agent
+1 Whispering Specter
+1 Glistening Sphere
+1 Contentious Plan
+1 Unbounded Potential
+1 Metastatic Evangel
+1 Island
+1 Ixhel, Scion of Atraxa
+1 Plains
+1 Vishgraz, the Doomhive
+1 Expansion Algorithm
+1 Steady Progress
+1 Ichorspit Basilisk
+1 Bilious Skulldweller
+1 Blightbelly Rat
+1 Tromell, Seymour's Butler
+1 Flux Channeler
+1 Trygon Prime
+1 Yennett, Cryptic Sovereign
+1 Ozolith, the Shattered Spire
+1 Yuna, Grand Summoner
+1 The Great Henge
+1 Worldly Tutor
+1 Archaeomancer

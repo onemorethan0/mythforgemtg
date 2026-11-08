@@ -1,0 +1,108 @@
+# Archidekt — Fire Lord Azula cEDH
+# source: archidekt:17159324
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Fire Lord Azula
+
+Deck:
+1 Arcane Signet
+1 Orcish Bowmasters
+1 Lion's Eye Diamond
+1 Redirect Lightning
+1 Flusterstorm
+1 Dragon's Rage Channeler
+1 Brain Freeze
+1 Cabal Ritual
+1 Red Elemental Blast
+1 Wan Shi Tong, Librarian
+1 Mental Misstep
+1 Mystic Remora
+1 Dark Ritual
+1 Rhystic Study
+1 Dauthi Voidwalker
+1 Electro, Assaulting Battery
+1 Fierce Guardianship
+1 Pyretic Ritual
+1 Lightning Bolt
+1 Borne Upon a Wind
+1 Imperial Seal
+1 Mox Diamond
+1 Deflecting Swat
+1 Simian Spirit Guide
+1 Tainted Pact
+1 Ancient Tomb
+1 Ragavan, Nimble Pilferer
+1 Jeska's Will
+1 Underworld Breach
+1 Professional Face-Breaker
+1 Thassa's Oracle
+1 Faerie Mastermind
+1 Opposition Agent
+1 Chrome Mox
+1 Force of Will
+1 Vampiric Tutor
+1 Mystical Tutor
+1 Mana Vault
+1 Dualcaster Mage
+1 An Offer You Can't Refuse
+1 Deadly Rollick
+1 Snapcaster Mage
+1 Sink into Stupor // Soporific Springs
+1 Pact of Negation
+1 Desperate Ritual
+1 Reverberate
+1 Frantic Search
+1 Steam Vents
+1 Brainstorm
+1 Fire Covenant
+1 Nightscape Familiar
+1 Rite of Flame
+1 Cyclonic Rift
+1 Mindbreak Trap
+1 Lavaspur Boots
+1 Demand Answers
+1 Gamble
+1 Narset's Reversal
+1 Expedite
+1 Bloodstained Mire
+1 Volcanic Island
+1 Unexpected Windfall
+1 Seething Song
+1 Flare of Duplication
+1 Sol Ring
+1 The One Ring
+1 Mountain
+1 Cavern of Souls
+1 Arena of Glory
+1 Urza's Saga
+1 Blood Crypt
+1 Starting Town
+1 Molten Duplication
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Talisman of Creativity
+1 Mistrise Village
+1 Emergence Zone
+1 Lotus Petal
+1 Otawara, Soaring City
+1 Talisman of Dominance
+1 Swamp
+1 Badlands
+1 Mox Opal
+1 Watery Grave
+1 Polluted Delta
+1 Underground Sea
+1 City of Brass
+1 Command Tower
+1 Island
+1 Scalding Tarn
+1 Mana Confluence
+1 Gemstone Caverns
+1 Chain of Vapor
+1 Ral, Storm Conduit
+1 Archmage Emeritus
+1 Storm-Kiln Artist
+1 Valley Floodcaller
+1 The Last Agni Kai

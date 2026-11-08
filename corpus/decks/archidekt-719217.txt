@@ -1,0 +1,99 @@
+# Archidekt — Aminatou's Infinite Insight (191)
+# source: archidekt:719217
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Aminatou, the Fateshifter
+
+Deck:
+1 Farewell
+1 Ascend from Avernus
+1 The Tabernacle at Pendrell Vale
+1 Ichormoon Gauntlet
+1 Primevals' Glorious Rebirth
+1 Djeru, With Eyes Open
+1 Tezzeret, Master of Metal
+1 Oath of Liliana
+1 Urza's Ruinous Blast
+1 Oath of Teferi
+1 Glacial Fortress
+1 Drowned Catacomb
+1 Oath of Gideon
+1 Oath of Jace
+1 Altar of the Brood
+1 Tezzeret, Master of the Bridge
+1 Teferi, Time Raveler
+1 Karn, the Great Creator
+1 Spark Double
+1 Ashiok, Dream Render
+4 Snow-Covered Swamp
+1 Liliana Vess
+1 Jace, the Mind Sculptor
+1 Sorin, Grim Nemesis
+1 Flooded Strand
+1 Teferi, Temporal Archmage
+1 Supreme Verdict
+1 Mycosynth Lattice
+1 Command Tower
+1 Watery Grave
+1 Wrath of God
+1 Azorius Chancery
+1 Chromatic Lantern
+1 Felidar Guardian
+1 Teferi, Master of Time
+1 Maze of Ith
+1 Gilded Lotus
+1 Tezzeret the Seeker
+1 Polluted Delta
+1 Morphic Pool
+1 Sunken Hollow
+1 Hallowed Fountain
+1 Reliquary Tower
+1 Ugin, the Spirit Dragon
+1 Fabled Passage
+1 Jace Beleren
+1 Karn Liberated
+1 Venser, the Sojourner
+1 Godless Shrine
+1 Rhystic Study
+1 Sol Ring
+1 Prismatic Vista
+1 Terminus
+1 An Offer You Can't Refuse
+1 Dreamtide Whale
+1 Wishclaw Talisman
+1 Honor-Worn Shaku
+1 Isolated Chapel
+1 Displacer Kitten
+1 Cleansing Nova
+1 Fierce Guardianship
+1 Teferi's Talent
+1 Arcane Denial
+1 Reflecting Pool
+1 Dovin's Veto
+1 Liliana, Dreadhorde General
+1 Narset, Parter of Veils
+1 Onakke Oathkeeper
+1 Cyclonic Rift
+1 Teferi, Temporal Pilgrim
+1 Arcane Signet
+1 Pact of Negation
+1 Chromatic Orrery
+1 Teferi, Hero of Dominaria
+1 Out of Time
+1 The Chain Veil
+1 Sea of Clouds
+1 Marsh Flats
+1 Rings of Brighthearth
+1 Teferi's Protection
+1 Bojuka Bog
+1 Jace, Wielder of Mysteries
+1 Raffine's Tower
+1 Ashiok, Nightmare Muse
+1 Spectacular Pileup
+1 Deepglow Skate
+4 Snow-Covered Island
+4 Snow-Covered Plains
+1 Resourceful Defense
+1 Chandra, Chill of Compliance

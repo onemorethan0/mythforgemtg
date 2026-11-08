@@ -1,0 +1,108 @@
+# Archidekt — Storm CEDH Ral Version
+# source: archidekt:9180925
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+
+Deck:
+1 Seething Song
+1 Wrenn's Resolve
+1 Bonus Round
+1 Storm-Kiln Artist
+1 Volcanic Island
+1 Grapeshot
+1 Rob the Archives
+1 Strike It Rich
+1 Lock and Load
+1 Deflecting Swat
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Brain Freeze
+1 Rite of Flame
+1 Mystical Tutor
+1 Pyretic Ritual
+1 Lion's Eye Diamond
+1 Reckless Impulse
+1 Sink into Stupor // Soporific Springs
+1 Flusterstorm
+1 Springleaf Drum
+1 Mox Opal
+1 Arcane Signet
+1 Chrome Mox
+1 Wheel of Misfortune
+1 Fiery Islet
+1 Mountain
+1 Intuition
+1 Red Elemental Blast
+1 Will of the Jeskai
+1 Gifts Ungiven
+1 Electro, Assaulting Battery
+1 Overmaster
+1 Untimely Malfunction
+1 Abandon Attachments
+1 Flashback
+1 Return the Favor
+1 Mox Amber
+1 Gemstone Caverns
+1 Hexing Squelcher
+1 Vision of Love
+1 Hex Magic
+1 Solve the Equation
+1 Embrace the Unknown
+1 Ecstatic Beauty
+1 Sundering Eruption // Volcanic Fissure
+1 The Vision and Scarlet Witch
+1 Command Tower
+1 Pyroblast
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Underworld Breach
+1 Snap
+1 Runaway Steam-Kin
+1 Urabrask // The Great Work
+1 Talisman of Creativity
+1 Valakut Awakening // Valakut Stoneforge
+1 Tavern Scoundrel
+1 Mystic Remora
+1 Reiterate
+1 Redirect Lightning
+1 Opera Love Song
+1 Highway Robbery
+1 Glimpse the Impossible
+1 Desperate Ritual
+1 Ruby Medallion
+1 Frantic Search
+1 Demand Answers
+1 Past in Flames
+1 Flame of Anor
+1 Borne Upon a Wind
+1 Bloodstained Mire
+1 Faithless Looting
+1 Training Center
+1 Gamble
+1 Shivan Reef
+1 Jeska's Will
+1 Romantic Rendezvous
+1 Shreds of Sanity
+1 Boomerang Basics
+1 Seize the Spoils
+1 Light Up the Stage
+1 Sol Ring
+1 City of Brass
+1 Wooded Foothills
+1 Simian Spirit Guide
+1 Arid Mesa
+1 Scalding Tarn
+1 Steam Vents
+1 Mana Confluence
+1 Fierce Guardianship
+1 Ancient Tomb
+1 Pact of Negation
+1 Mental Misstep
+1 Recoup
+1 Lotus Petal
+1 Mana Vault
+1 Wheel of Fortune
+1 Gandalf, Goblins' Bane // Flameshape
+1 Gitaxian Probe

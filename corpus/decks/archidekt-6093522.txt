@@ -1,0 +1,106 @@
+# Archidekt — Sarah Jane Sixth
+# source: archidekt:6093522
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Sarah Jane Smith
+1 The Sixth Doctor
+
+Deck:
+1 Dispatch
+1 Filigree Attendant
+1 Breeding Pool
+1 Urza's Saga
+1 Rogue's Passage
+1 Reliquary Tower
+1 Heroic Intervention
+1 Tangletrove Kelp
+1 Linvala, Shield of Sea Gate
+1 Mirage Mirror
+1 Swords to Plowshares
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Organic Extinction
+1 Bronze Guardian
+1 Idol of Oblivion
+1 Jaheira, Friend of the Forest
+1 Arcane Signet
+1 Sol Ring
+1 Command Tower
+1 Exotic Orchard
+1 Seaside Citadel
+1 Dreamroot Cascade
+1 Deserted Beach
+1 Overgrown Farmland
+1 Tree of Tales
+1 Tanglepool Bridge
+1 Auton Soldier
+1 Liquimetal Torque
+1 Thought Monitor
+1 Phyrexian Metamorph
+1 The Antiquities War
+1 Masterful Replication
+1 Saheeli's Artistry
+1 Thoughtcast
+1 Phyrexian Rebirth
+1 Sculpting Steel
+1 Ancient Den
+1 Angel of the Ruins
+1 Rise and Shine
+1 Academy Manufactor
+1 Five Hundred Year Diary
+1 City of Death
+1 Second Harvest
+1 Traverse Eternity
+1 Lightning Greaves
+1 Path of Ancestry
+1 Thought Vessel
+1 Relic of Legends
+1 Thran Dynamo
+1 Razortide Bridge
+1 Seat of the Synod
+1 Forest
+2 Plains
+1 Thornglint Bridge
+1 Reflecting Pool
+1 Illustrious Wanderglyph
+1 Faerie Artisans
+1 Master of Etherium
+1 Urza, Lord High Artificer
+1 Sharding Sphinx
+1 Echo Storm
+1 Loran of the Third Path
+1 Haywire Mite
+1 Otawara, Soaring City
+1 Fleeting Reflection
+1 Talisman of Curiosity
+1 Talisman of Unity
+1 Talisman of Progress
+1 Officious Interrogation
+1 Cyberdrive Awakener
+1 Inspiring Statuary
+1 Nettlecyst
+1 Hallowed Fountain
+1 Temple Garden
+1 Rejuvenating Springs
+1 Bountiful Promenade
+1 Spara's Headquarters
+1 Sea of Clouds
+1 Academy Ruins
+1 Darksteel Citadel
+1 Kappa Cannoneer
+1 The Mycosynth Gardens
+2 Island
+1 Cybermen Squadron
+1 Druid's Deliverance
+1 Simulacrum Synthesizer
+1 River's Rebuke
+1 Path to Exile
+1 Teferi's Ageless Insight
+1 Alhammarret's Archive
+1 Three Steps Ahead
+1 Universal Surveillance
+1 Trial of a Time Lord
+1 Sink into Stupor // Soporific Springs
+1 Suppression Ray // Orderly Plaza
+1 Witch Enchanter // Witch-Blessed Meadow

@@ -1,0 +1,103 @@
+# Archidekt — Marchesa, The Black Rose *8*
+# source: archidekt:61308
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Marchesa, the Black Rose
+
+Deck:
+1 Vigean Graftmage
+1 Bloodstained Mire
+1 Polluted Delta
+1 Urborg, Tomb of Yawgmoth
+1 Morphic Pool
+1 Luxury Suite
+1 Command Tower
+1 Watery Grave
+1 Steam Vents
+1 Blood Crypt
+1 Fiery Islet
+1 Carrion Feeder
+1 Scalding Tarn
+1 Training Center
+1 Exotic Orchard
+1 Baleful Strix
+1 Mount Doom
+1 Phyrexian Tower
+1 Uncivil Unrest
+1 Warren Soultrader
+1 Sunken Ruins
+1 Sage of Fables
+1 Ruthless Technomancer
+1 Gev, Scaled Scorch
+1 Fierce Guardianship
+1 Cyclonic Rift
+1 Tribute Mage
+1 Marionette Apprentice
+1 Mountain
+1 Sulfurous Springs
+1 Scroll of Fate
+1 Mana Confluence
+1 Solemn Simulacrum
+4 Island
+1 Faerie Seer
+1 Volrath's Stronghold
+1 Triarch Praetorian
+1 Valakut Awakening // Valakut Stoneforge
+1 Glasspool Mimic // Glasspool Shore
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Umbral Collar Zealot
+1 Midnight Reaper
+1 Body Launderer
+1 Ashnod's Altar
+1 Alesha, Who Laughs at Fate
+1 Imperial Recruiter
+1 The Ozolith
+1 Dark Confidant
+1 Flayer of the Hatebound
+1 Disciple of Bolas
+1 Gray Merchant of Asphodel
+1 Grim Haruspex
+1 Iron Apprentice
+1 Juri, Master of the Revue
+1 Altar of Dementia
+1 Spawning Pit
+1 Kalain, Reclusive Painter
+1 Unspeakable Symbol
+1 Goblin Bombardment
+1 Satoru, the Infiltrator
+1 Phantasmal Image
+1 Toxic Deluge
+1 Metallic Mimic
+1 Viscera Seer
+1 Yawgmoth, Thran Physician
+1 Spark Double
+1 Yahenni, Undying Partisan
+1 Shivan Reef
+1 Watcher for Tomorrow
+1 Living Death
+1 Underground River
+1 City of Brass
+1 Ancient Tomb
+3 Swamp
+1 Takenuma, Abandoned Mire
+1 Susur Secundi, Void Altar
+1 Xander's Lounge
+1 Phyrexian Altar
+1 Scorn-Blade Berserker
+1 Spire of Industry
+1 Sol Ring
+1 Painful Truths
+1 Graven Cairns
+1 Thundering Raiju
+1 Shipwreck Marsh
+1 Seize the Spotlight
+1 Bloodtracker
+1 Dimir Signet
+1 Talisman of Indulgence
+1 Arcane Signet
+1 Talisman of Dominance
+1 Rakdos Signet
+1 Talisman of Creativity
+1 Kokusho, the Evening Star

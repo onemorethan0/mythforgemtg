@@ -1,0 +1,108 @@
+# Archidekt — K'rrik, Son of Yawgmoth
+# source: archidekt:3224435
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Grim Tutor
+1 Beseech the Queen
+1 Lightning Greaves
+1 Lotus Petal
+1 Mana Vault
+1 Rogue's Passage
+1 Aetherflux Reservoir
+1 Necrotic Ooze
+1 Aether Hub
+1 Vile Entomber
+1 Vilis, Broker of Blood
+1 Cabal Ritual
+1 Corpse Dance
+1 Cut Down
+1 Dark Ritual
+1 Ancient Tomb
+1 Snow-Covered Swamp
+1 Spire of Industry
+1 Takenuma, Abandoned Mire
+1 Urborg
+1 Urza's Saga
+1 Vault of Whispers
+1 Dark Petition
+1 Diabolic Tutor
+1 Toxic Deluge
+1 Demonic Tutor
+1 Sidisi, Undead Vizier
+1 Peat Bog
+1 Chainer, Dementia Master
+1 Exhume
+1 Boseiju, Who Shelters All
+1 Skirge Familiar
+1 Scorched Ruins
+1 Vampiric Tutor
+1 Asmodeus the Archfiend
+1 Blood Celebrant
+1 Animate Dead
+1 Fleshwrither
+1 Gray Merchant of Asphodel
+1 Shallow Grave
+1 Darksteel Citadel
+1 Peer into the Abyss
+1 Shizo, Death's Storehouse
+1 Dance of the Dead
+1 Entomb
+1 Dimir House Guard
+1 Crystal Grotto
+1 Nykthos, Shrine to Nyx
+1 Forbidden Orchard
+1 Crystal Vein
+1 Emergence Zone
+1 Praetor's Grasp
+1 Secluded Courtyard
+1 Feed the Swarm
+1 Blood Pet
+1 Mind Stone
+1 Imperial Seal
+1 Demolition Field
+1 Arcane Signet
+1 Jet Medallion
+1 Grim Monolith
+1 Lion's Eye Diamond
+1 Sheoldred, the Apocalypse
+1 Xiahou Dun, the One-Eyed
+1 Hoarding Broodlord
+1 Grasp of Darkness
+1 Culling the Weak
+1 Orcish Bowmasters
+1 Necromancy
+1 Imp's Mischief
+1 Yawgmoth's Will
+1 Cavern of Souls
+1 Professor Onyx
+1 Ifnir Deadlands
+1 Brainspoil
+1 Gemstone Caverns
+1 Reanimate
+1 Urborg, Tomb of Yawgmoth
+1 Beseech the Mirror
+1 Swamp
+1 Stitch Together
+1 Buried Alive
+1 Bojuka Bog
+1 City of Traitors
+1 Razaketh, the Foulblooded
+1 Mox Amber
+1 Balthor the Defiled
+1 Chrome Mox
+1 Mox Diamond
+1 City of Brass
+1 Mana Confluence
+1 Chain of Smog
+1 Deadly Rollick
+1 Saw in Half
+1 Command Tower
+1 Gemstone Mine
+1 Sol Ring
+1 Gwenom, Remorseless
+1 Necropotence

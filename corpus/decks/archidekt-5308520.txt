@@ -1,0 +1,96 @@
+# Archidekt — (retired) Tokens For Your Thoughts?
+# source: archidekt:5308520
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Ovika, Enigma Goliath
+
+Deck:
+1 Coldsteel Heart
+1 Fierce Guardianship
+1 Reliquary Tower
+1 Brainstorm
+1 Gitaxian Probe
+1 Mind Stone
+1 Talrand, Sky Summoner
+1 Talisman of Creativity
+1 Cyclonic Rift
+1 Izzet Signet
+1 Alhammarret's Archive
+1 Flooded Strand
+1 Dragon Fodder
+1 Forgotten Cave
+1 Young Pyromancer
+1 Swiftfoot Boots
+1 Preordain
+1 Reality Shift
+1 Hordeling Outburst
+1 Surge to Victory
+1 Exalted Flamer of Tzeentch
+1 Jeska's Will
+1 Finale of Promise
+1 The Locust God
+1 Pyromancer's Goggles
+1 Aetherize
+1 Increasing Vengeance
+1 Niv-Mizzet, Parun
+1 Chaos Warp
+1 Krenko's Command
+1 Dig Through Time
+1 Cosmotronic Wave
+1 Shark Typhoon
+1 Teferi's Ageless Insight
+1 Third Path Iconoclast
+1 Swiftwater Cliffs
+1 Shivan Reef
+1 Sword of War and Peace
+1 Saheeli, Sublime Artificer
+1 Narset's Reversal
+1 Access Denied
+1 Ponder
+1 Training Center
+1 Arcane Signet
+1 Immolating Gyre
+1 Steam Vents
+1 Desolate Lighthouse
+1 Sol Ring
+1 Cascade Bluffs
+1 Surtland Frostpyre
+1 Blasphemous Act
+1 Archmage Emeritus
+1 Commander's Sphere
+1 Spell Swindle
+1 Keep Watch
+1 Goblin Wizardry
+1 Electrostatic Infantry
+1 Polluted Delta
+1 Frantic Search
+1 Mana Geyser
+1 Stormcarved Coast
+1 Thought Vessel
+1 Metallurgic Summonings
+1 Veyran, Voice of Duality
+1 Molten Tributary
+1 Twinferno
+1 Mindsplice Apparatus
+1 Chaotic Transformation
+1 Temple of Epiphany
+1 Ghitu Encampment
+1 Highland Lake
+1 Lonely Sandbar
+1 Storm-Kiln Artist
+1 Treasure Cruise
+1 Command Tower
+1 An Offer You Can't Refuse
+1 Bloodstained Mire
+1 Field of Ruin
+1 City on Fire
+1 Balmor, Battlemage Captain
+1 Idol of Oblivion
+9 Island
+5 Mountain
+1 Thundering Falls
+1 Mizzix's Mastery
+1 Wayfarer's Bauble
+1 Volcanic Island

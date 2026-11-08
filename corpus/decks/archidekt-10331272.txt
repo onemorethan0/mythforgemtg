@@ -1,0 +1,98 @@
+# Archidekt — Reaper King
+# source: archidekt:10331272
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Reaper King
+
+Deck:
+1 Double Major
+1 Blasphemous Act
+1 Unclaimed Territory
+1 Arcane Signet
+1 Shire Scarecrow
+1 Panharmonicon
+1 Dawn's Truce
+1 Kodama's Reach
+1 Flameshadow Conjuring
+1 Ephemerate
+1 Steely Resolve
+1 Timeless Lotus
+1 Shapesharer
+1 Morophon, the Boundless
+1 Karplusan Forest
+1 Taurean Mauler
+1 Realmwalker
+1 Swiftfoot Boots
+1 Reliquary Tower
+1 Thran Dynamo
+1 Adaptive Automaton
+1 Unsettled Mariner
+1 Bloodline Pretender
+1 Cascading Cataracts
+1 Myriad Landscape
+1 Changeling Outcast
+1 Cultivate
+1 Masked Vandal
+1 Mirror Entity
+1 Rugged Prairie
+1 Woodland Cemetery
+1 Sandsteppe Citadel
+1 Changeling Titan
+1 Universal Automaton
+1 Changeling Berserker
+1 Etchings of the Chosen
+3 Mountain
+1 Worn Powerstone
+3 Plains
+1 Temple of Epiphany
+1 Bant Panorama
+3 Forest
+1 Irregular Cohort
+1 Avian Changeling
+1 Bountiful Landscape
+1 Moonglove Changeling
+1 Rakdos Guildgate
+1 Rupture Spire
+1 Scarecrow Guide
+1 Scorn Effigy
+1 Scuttlemutt
+1 Secluded Courtyard
+3 Swamp
+1 Transguild Promenade
+1 Valiant Changeling
+1 Venomous Changeling
+1 Wild-Field Scarecrow
+1 Day of Judgment
+1 Banner of Kinship
+1 Phyrexian Arena
+1 Lunar Insight
+1 Scaretiller
+1 Sol Ring
+1 Chromatic Lantern
+1 Explore
+1 Reflections of Littjara
+1 Kindred Discovery
+1 Phantasmal Image
+1 Phyrexian Metamorph
+1 Frontier Bivouac
+1 Opulent Palace
+1 Mystic Monastery
+1 Ghostly Flicker
+1 Roaming Throne
+1 Arcane Sanctum
+1 Cursed Mirror
+3 Island
+1 Glasspool Mimic // Glasspool Shore
+1 Fog
+1 Faeburrow Elder
+1 Command Tower
+1 Village Rites
+1 Flawless Maneuver
+1 Quasiduplicate
+1 Mox Jasper
+1 Gangly Stompling
+1 Flock Impostor
+1 Springleaf Parade
+1 Feisty Spikeling

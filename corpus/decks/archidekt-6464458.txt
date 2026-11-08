@@ -1,0 +1,109 @@
+# Archidekt — Doctor Who?
+# source: archidekt:6464458
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo The Fifth Doctor + Adric, Mathematical Genius; Bracket 1 allows none
+
+Commander:
+1 Rose Noble
+1 The Fourteenth Doctor
+
+Deck:
+1 Prairie Stream
+1 Temple of Mystery
+1 Temple of Plenty
+1 Cinder Glade
+1 Temple of Triumph
+1 Island
+1 Temple of Epiphany
+1 Canopy Vista
+1 The Fifteenth Doctor
+1 Frontier Bivouac
+1 Forest
+1 Exotic Orchard
+1 Beast Within
+1 The War Doctor
+1 The Five Doctors
+1 Gallifrey Stands
+1 The Twelfth Doctor
+1 The Fifth Doctor
+1 The Sixth Doctor
+1 Mountain
+1 Mystic Monastery
+1 Adric, Mathematical Genius
+1 Arcane Signet
+1 An Unearthly Child
+1 K-9, Mark I
+1 Skycloud Expanse
+1 Talisman of Progress
+1 Alistair, the Brigadier
+1 Deserted Beach
+1 Overgrown Farmland
+1 Everything Comes to Dust
+1 Everybody Lives!
+1 Chaos Warp
+1 Dreamroot Cascade
+1 Gallifrey Council Chamber
+1 Heroic Intervention
+1 Path to Exile
+1 Lightning Greaves
+1 Talisman of Conviction
+1 The Eleventh Hour
+1 Rogue's Passage
+1 Sol Ring
+1 Sundown Pass
+1 Talisman of Curiosity
+1 Stormcarved Coast
+1 Swords to Plowshares
+1 Seaside Citadel
+1 Twice Upon a Time // Unlikely Meeting
+1 Traverse Eternity
+1 Trial of a Time Lord
+1 Talisman of Unity
+1 Banish to Another Universe
+1 Tegan Jovanka
+1 Reverse the Polarity
+1 Sarah Jane Smith
+1 TARDIS
+1 Grasp of Fate
+1 Talisman of Creativity
+1 Clara Oswald
+1 Heroes' Podium
+1 Path of Ancestry
+1 Plains
+1 Trenzalore Clocktower
+1 Island
+1 Rockfall Vale
+1 Temple of Enlightenment
+1 Glacial Fortress
+1 Mountain
+1 Plains
+1 Forest
+1 The Girl in the Fireplace
+1 Command Tower
+1 Psychic Paper
+1 The Thirteenth Doctor
+1 The Third Doctor
+1 The Ninth Doctor
+1 The Fourth Doctor
+1 The Seventh Doctor
+1 The First Doctor
+1 The Eighth Doctor
+1 The Tenth Doctor
+1 The Fugitive Doctor
+1 The Second Doctor
+1 City of Death
+1 Farseek
+1 Quantum Misalignment
+1 Three Visits
+1 Auton Soldier
+1 Cultivate
+1 Explore
+1 The Night of the Doctor
+1 Port Town
+1 Horizon Canopy
+1 Ash Barrens
+1 Waterlogged Grove
+1 Fiery Islet
+1 Sonic Screwdriver
+1 The Eleventh Doctor

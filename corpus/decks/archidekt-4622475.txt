@@ -1,0 +1,101 @@
+# Archidekt — Tergrid (January 2025)
+# source: archidekt:4622475
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tergrid, God of Fright // Tergrid's Lantern
+
+Deck:
+1 Chalice of the Void
+1 Mana Vault
+1 Sol Ring
+1 Static Orb
+1 Chimil, the Inner Sun
+1 The One Ring
+1 Torpor Orb
+1 Trinisphere
+1 Orcish Bowmasters
+1 Sheoldred, the Apocalypse
+1 Snuff Out
+1 Necrogen Mists
+1 Deadly Rollick
+1 Imp's Mischief
+1 Sheoldred's Edict
+1 Gemstone Caverns
+1 Vampiric Tutor
+1 Ancient Tomb
+1 Wasteland
+1 Verdant Catacombs
+1 Karn, the Great Creator
+1 Anvil of Bogardan
+1 Tangle Wire
+1 Urborg, Tomb of Yawgmoth
+1 Dark Deal
+1 Chains of Mephistopheles
+1 Vona's Hunger
+1 Smallpox
+1 Mire in Misery
+1 Memory Jar
+1 Oppression
+1 Nether Void
+1 Braids, Arisen Nightmare
+1 Cursed Totem
+1 Waste Not
+1 Chrome Mox
+1 Mox Diamond
+1 Mox Opal
+1 Necropotence
+1 Nykthos, Shrine to Nyx
+1 Toxic Deluge
+1 Dark Confidant
+1 Bloodstained Mire
+1 Demonic Tutor
+1 Marsh Flats
+1 Polluted Delta
+1 Prismatic Vista
+1 Urza's Saga
+1 Cabal Ritual
+1 Dark Ritual
+1 Opposition Agent
+1 War Room
+1 Bottomless Pit
+1 Geier Reach Sanitarium
+1 Beseech the Mirror
+1 Imperial Seal
+1 Lake of the Dead
+1 Grim Monolith
+1 Yawgmoth's Will
+1 Praetor's Grasp
+1 Innocent Blood
+1 Strip Mine
+1 City of Traitors
+1 The Tabernacle at Pendrell Vale
+1 Tainted Pact
+1 Fomori Vault
+1 Sphere of Resistance
+1 Mishra's Workshop
+1 Cavern of Souls
+1 Talon Gates of Madara
+1 Lodestone Golem
+1 Liliana of the Veil
+1 Thorn of Amethyst
+1 Dreadhorde Invasion
+1 Braids, Cabal Minion
+1 Ripples of Undeath
+1 Desolation
+1 Bitterblossom
+1 Contamination
+1 Vexing Bauble
+1 Reanimate
+1 Rev, Tithe Extractor
+1 Bolas's Citadel
+1 Tezzeret, Cruel Captain
+1 The Mycosynth Gardens
+1 Words of Waste
+1 Bontu's Last Reckoning
+1 Tinybones, Trinket Thief
+1 Lotus Petal
+1 Ultron, Artificial Malevolence
+8 Swamp
+1 Arcane Signet

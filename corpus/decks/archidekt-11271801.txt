@@ -1,0 +1,101 @@
+# Archidekt — Sab-Sunen, Luxa Embody-odied
+# source: archidekt:11271801
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Sab-Sunen, Luxa Embodied
+
+Deck:
+3 Forest
+1 Ring of Evos Isle
+1 Slip Out the Back
+1 Cultivate
+1 Thickest in the Thicket
+1 Thriving Isle
+1 Planar Genesis
+1 Overlord of the Hauntwoods
+1 Snakeskin Veil
+1 Zimone, Paradox Sculptor
+1 Frogify
+1 Long River's Pull
+1 Polymorphist's Jest
+1 Ingenious Prodigy
+1 Fabled Passage
+1 Season of Growth
+1 Stocking the Pantry
+1 Lilypad Village
+1 Titanic Brawl
+1 Hadana's Climb // Winged Temple of Orazca
+1 Dreamroot Cascade
+1 Mosswort Bridge
+1 Yavimaya Coast
+1 Island
+2 Island
+2 Island
+2 Forest
+1 Forest
+1 You Come to a River
+1 Forest
+1 Forest
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Ornery Tumblewagg
+1 Fight Rigging
+1 Herald of Secret Streams
+1 Command Tower
+1 Evolution Sage
+1 Experimental Augury
+1 Tyrite Sanctum
+1 Breeding Pool
+1 Spore Frog
+1 Pollywog Prodigy
+1 Poison Dart Frog
+1 Plaxcaster Frogling
+1 Clifftop Lookout
+1 Twenty-Toed Toad
+1 Exotic Orchard
+1 Rejuvenating Springs
+1 Hinterland Harbor
+1 Reflecting Pool
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Demolition Field
+1 Castle Garenbrig
+1 Sink into Stupor // Soporific Springs
+1 Nesting Grounds
+1 Disciple of Freyalise // Garden of Freyalise
+1 Thriving Grove
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+3 Island
+1 Nature's Lore
+1 Kodama's Reach
+1 Flood of Tears
+1 Everflowing Chalice
+1 Wave Goodbye
+1 Bounty of the Luxa
+1 Rapid Hybridization
+1 Rampant Frogantua
+1 Growth Spiral
+1 Stubborn Denial
+1 Collective Resistance
+1 Bushwhack
+1 Thirsting Roots
+1 Amphibian Downpour
+1 Nissa, Who Shakes the World
+1 Run Away Together
+1 Into the Flood Maw
+1 Overprotect
+1 Vastwood Fortification // Vastwood Thicket
+1 Spark Double
+1 Vesuvan Duplimancy
+1 Over the Edge
+1 Fathom Mage
+1 Court of Garenbrig
+1 Decisive Denial
+1 Flare of Cultivation
+1 Colossal Majesty
+1 Procrastinate
+1 Super Combo
+1 Baxter, Fly in the Ointment
+1 Ray Fillet, Wave Warrior
+1 Frog Butler

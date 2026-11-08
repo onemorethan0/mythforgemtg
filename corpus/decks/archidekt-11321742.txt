@@ -1,0 +1,107 @@
+# Archidekt — Glarb - Augur's Earthly Calamity
+# source: archidekt:11321742
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Glarb, Calamity's Augur
+
+Deck:
+1 Wonder
+1 Greensleeves, Maro-Sorcerer
+1 Force of Negation
+1 Crucible of Worlds
+1 Counterbalance
+1 Force of Vigor
+1 Ancient Greenwarden
+1 Arcane Signet
+1 Rhystic Study
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Overgrown Tomb
+1 Bojuka Bog
+1 Scute Swarm
+1 Loot, Exuberant Explorer
+1 Sylvan Library
+1 Honest Rutstein
+1 Animate Dead
+1 Volrath's Stronghold
+1 Morphic Pool
+1 Island
+1 Rejuvenating Springs
+1 Watery Grave
+1 Otawara, Soaring City
+1 Boseiju, Who Endures
+1 Swamp
+1 Undergrowth Stadium
+1 Breeding Pool
+1 Sol Ring
+1 Glacial Chasm
+1 Tireless Provisioner
+1 Lumra, Bellow of the Woods
+1 Conduit of Worlds
+1 Sensei's Divining Top
+1 Opposition Agent
+1 Misty Rainforest
+1 Heroic Intervention
+1 Verdant Catacombs
+1 Reanimate
+1 Mana Drain
+1 Bayou
+1 Polluted Delta
+1 Tropical Island
+1 Underground Sea
+1 Finale of Devastation
+1 Dryad of the Ilysian Grove
+1 The Gitrog Monster
+1 Exploration
+1 Azusa, Lost but Seeking
+1 Baleful Mastery
+1 Counterspell
+1 Culling Ritual
+1 Victimize
+1 Dread Return
+1 Aesi, Tyrant of Gyre Strait
+1 Wayward Swordtooth
+1 Tatyova, Benthic Druid
+1 Clearwater Pathway // Murkwater Pathway
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Darkbore Pathway // Slitherbore Pathway
+1 Craterhoof Behemoth
+1 Destiny Spinner
+1 Strip Mine
+1 Zagoth Triome
+1 Lotus Cobra
+1 Ob Nixilis, the Fallen
+1 Command Tower
+1 Mystic Sanctuary
+1 Wooded Foothills
+1 Shifting Woodland
+1 Field of the Dead
+1 Bloodstained Mire
+1 Zuran Orb
+1 Urza's Saga
+1 Takenuma, Abandoned Mire
+1 Strix Serenade
+1 Windfall
+1 Zendikar's Roil
+1 Thrasios, Triton Hero
+1 Cyclonic Rift
+1 Traveling Chocobo
+2 Forest
+1 Wistfulness
+1 Flusterstorm
+1 Burgeoning
+1 Brainstorm
+1 Orcish Bowmasters
+1 Sylvan Safekeeper
+1 Retreat to Coralhelm
+1 Life from the Loam
+1 Simic Growth Chamber
+1 Dimir Aqueduct
+1 Golgari Rot Farm
+1 Exsanguinate
+1 Crop Rotation
+1 Augur of Autumn
+1 Scroll Rack
+1 Torment of Hailfire

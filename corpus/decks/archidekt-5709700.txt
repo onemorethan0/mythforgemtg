@@ -1,0 +1,82 @@
+# Archidekt — Archimandrite - Monk Heal
+# source: archidekt:5709700
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Grand Arbiter Augustin IV); Bracket 1 allows 0
+
+Commander:
+1 The Archimandrite
+
+Deck:
+10 Island
+1 Ivory Tower
+1 Slaughter the Strong
+1 Sanctify
+1 Wind-Scarred Crag
+1 Tranquil Cove
+1 True Conviction
+1 Renewed Faith
+1 Taurean Mauler
+1 Well of Lost Dreams
+1 Sunscorch Regent
+1 Cosmos Elixir
+1 Cori Mountain Stalwart
+1 Sunset Strikemaster
+1 Flamehold Grappler
+1 Jeskai Brushmaster
+1 The Wind Crystal
+1 Aetherflux Reservoir
+1 Union of the Third Path
+1 Feldon of the Third Path
+1 Rhox Faithmender
+1 Boros Signet
+1 Swiftwater Cliffs
+1 Sol Ring
+1 Relentless Assault
+1 Grand Arbiter Augustin IV
+1 Howling Mine
+1 Hurloon Battle Hymn
+12 Plains
+1 Revitalize
+1 Rogue's Passage
+1 Jeskai Ascendancy
+1 Paradise Plume
+1 Taigam, Ojutai Master
+8 Mountain
+1 Command Tower
+1 Path of Bravery
+1 Rune-Tail, Kitsune Ascendant // Rune-Tail's Essence
+1 Heron of Hope
+1 Griffin Aerie
+1 Skywise Teachings
+1 Elusive Spellfist
+1 Beacon of Immortality
+1 Mantis Rider
+1 Sunhome, Fortress of the Legion
+1 Sakashima of a Thousand Faces
+1 Noble Purpose
+1 Elsha of the Infinite
+1 Lightning Helix
+1 Delusions of Mediocrity
+1 Swords to Plowshares
+1 Taigam's Strike
+1 Pristine Talisman
+1 Reward the Faithful
+1 Masako the Humorless
+1 Drumbellower
+1 Authority of the Consuls
+1 Counterspell
+1 Ledger Shredder
+1 Oreskos Sun Guide
+1 Mystic of the Hidden Way
+1 Drogskol Reaver
+1 Mistfire Adept
+1 Monastery Swiftspear
+1 Wiretapping
+1 Student of Ojutai
+1 Serra Ascendant
+1 Axis of Mortality
+1 Bargain
+1 Sage of the Skies
+1 Righteous Confluence
+1 Shu Yun, the Silent Tempest

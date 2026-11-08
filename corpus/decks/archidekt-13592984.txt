@@ -1,0 +1,96 @@
+# Archidekt — Emry Loves Her Cheerios!
+# source: archidekt:13592984
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Emry, Lurker of the Loch
+
+Deck:
+1 Liberator, Urza's Battlethopter
+1 Lotus Petal
+1 Gifts Ungiven
+1 Minamo, School at Water's Edge
+1 Tormod's Crypt
+1 Mirran Spy
+1 Dramatic Reversal
+1 Defense Grid
+1 The One Ring
+1 Aether Spellbomb
+1 Reshape
+1 Conjurer's Bauble
+1 Ancient Tomb
+1 Mesmeric Orb
+1 Merchant Scroll
+1 Crystal Vein
+1 Mana Vault
+1 Fabricate
+1 Tezzeret, Cruel Captain
+1 Cephalid Coliseum
+1 Mystical Tutor
+1 Mox Amber
+1 Arcane Signet
+1 Chromatic Star
+1 Basalt Monolith
+1 Rhystic Study
+1 Cephalid Illusionist
+1 Urza's Bauble
+1 Thassa's Oracle
+1 Otawara, Soaring City
+1 Fatestitcher
+1 Sewer-veillance Cam
+1 Shuko
+1 Lodestone Bauble
+1 Mox Diamond
+1 Mox Opal
+1 Jack-o'-Lantern
+1 Lavaspur Boots
+1 Intuition
+1 Into the Flood Maw
+1 Lion's Eye Diamond
+1 Steal Enchantment
+13 Island
+1 Transmute Artifact
+1 Claws of Gix
+1 Brain Freeze
+1 Flusterstorm
+1 Snapback
+1 Mishra's Workshop
+1 Artificer's Intuition
+1 Urza's Saga
+1 City of Traitors
+1 Sink into Stupor // Soporific Springs
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Disrupting Shoal
+1 Chain of Vapor
+1 Engineered Explosives
+1 Mindbreak Trap
+1 Force of Will
+1 Leyline of Anticipation
+1 Gemstone Caverns
+1 Glaring Fleshraker
+1 Chrome Mox
+1 Mystic Remora
+1 Grim Monolith
+1 Mishra's Bauble
+1 Displacer Kitten
+1 Grinding Station
+1 Commandeer
+1 Lightning Greaves
+1 Fierce Guardianship
+1 Force of Negation
+1 Mirrormade
+1 Daze
+1 Mental Misstep
+1 Pact of Negation
+1 Borne Upon a Wind
+1 Faerie Mastermind
+1 Gitaxian Probe
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Hope of Ghirapur
+1 Seat of the Synod
+1 Jeweled Amulet
+1 Misdirection
+1 Sol Ring
+1 Pongify
+1 Soul-Guide Lantern

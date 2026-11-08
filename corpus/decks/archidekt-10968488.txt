@@ -1,0 +1,106 @@
+# Archidekt — Minecraft
+# source: archidekt:10968488
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Mox Diamond); Bracket 1 allows 0
+
+Commander:
+1 Golos, Tireless Pilgrim
+1 Garth One-Eye
+
+Deck:
+1 There and Back Again
+1 Moss Diamond
+1 Marble Diamond
+1 Fire Diamond
+1 Charcoal Diamond
+1 Diamond Mare
+1 Sword of Fire and Ice
+1 Solemn Simulacrum
+1 Diamond Knight
+1 Sky Diamond
+1 Tectonic Reformation
+1 Kellan, Planar Trailblazer
+1 Goldvein Pick
+1 Diamond Pick-Axe
+1 Map the Frontier
+1 Selvala, Explorer Returned
+1 Explore
+1 Explorer's Scope
+1 Promising Vein
+1 Scampering Surveyor
+1 Darksteel Ingot
+1 Spelunking
+1 Calamitous Cave-In
+1 Compass Gnome
+2 Swamp
+1 The Reaver Cleaver
+1 Darksteel Plate
+1 Mithril Coat
+1 Shield of Kaldra
+1 Sword of Kaldra
+1 Helm of Kaldra
+1 Trailblazer's Boots
+1 Abundant Growth
+1 Fertile Ground
+1 Short Bow
+1 Delver's Torch
+1 Gilded Goose
+1 Many Partings
+1 Bone Dragon
+1 Skithiryx, the Blight Dragon
+1 Skeleton Archer
+1 Cinderbones
+1 Liliana's Reaver
+1 Creeping Mold
+1 Winged Boots
+1 Village Bell-Ringer
+1 Apothecary White
+1 Gather the Townsfolk
+1 Return from the Wilds
+1 Echo Chamber
+1 Neurok Stealthsuit
+1 Bartered Cow
+1 Cloak of the Bat
+1 Eager Trufflesnout
+1 Humble Defector
+1 Skyclave Shade
+1 Rune of Speed
+1 Rune of Might
+1 Ramirez DePietro, Pillager
+1 Mox Diamond
+1 Cuboid Colony
+1 The Ancient One
+1 Tempting Witch
+1 Forgotten Monument
+1 Conduit Pylons
+1 Badlands
+1 Cactus Preserve
+1 Hidden Courtyard
+1 Echoing Deeps
+1 Cavernous Maw
+1 Hidden Cataract
+1 Captivating Cave
+1 Arid Archway
+2 Forest
+1 Command Beacon
+1 Taiga
+1 Hidden Necropolis
+2 Island
+2 Plains
+1 Hidden Nursery
+1 Painted Bluffs
+1 Sunken Citadel
+1 Savannah
+1 Command Tower
+1 Volatile Fault
+1 Hidden Volcano
+1 Sunken Palace
+2 Mountain
+1 Jungle Shrine
+1 Volrath's Stronghold
+1 Urza's Cave
+1 Tundra
+1 Witch's Cottage
+1 Aggressive Mining
+1 Ceremonial Groundbreaker

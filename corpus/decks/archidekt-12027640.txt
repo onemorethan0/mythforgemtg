@@ -1,0 +1,75 @@
+# Archidekt — Why Mana No Fix?
+# source: archidekt:12027640
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Smothering Tithe); Bracket 1 allows 0
+
+Commander:
+1 Progenitus
+
+Deck:
+1 Beamtown Beatstick
+1 Grim Hireling
+1 Kalain, Reclusive Painter
+1 Smothering Tithe
+1 Professional Face-Breaker
+1 Big Score
+1 Seize the Spoils
+1 Black Market Connections
+1 Descent into Avernus
+1 Fake Your Own Death
+1 Shiny Impetus
+1 Spiteful Banditry
+1 Sticky Fingers
+1 The Reaver Cleaver
+1 Unexpected Windfall
+1 Zhentarim Bandit
+1 Alchemist's Talent
+1 Generous Plunderer
+1 Hornswoggle
+1 Spiteful Repossession
+1 Imposing Grandeur
+1 Stinging Study
+1 Jaheira, Friend of the Forest
+1 Rhythm of the Wild
+1 Rising of the Day
+1 Prosperous Bandit
+1 Lotho, Corrupt Shirriff
+1 Spell Swindle
+18 Mountain
+18 Swamp
+1 Hoard Robber
+1 Inspiring Statuary
+1 RMS Titanic
+1 Impulsive Pilferer
+1 Idol of Oblivion
+1 Captain Lannery Storm
+1 Diamond Pick-Axe
+1 Goldspan Dragon
+1 Old Gnawbone
+1 Bilbo, Retired Burglar
+1 Breeches, Eager Pillager
+1 Bejeweled Warg
+1 Goldlust Triad
+1 Goldvein Pick
+1 Typhoid Mary, Fractured
+1 Vaan, Street Thief
+1 Kellogg, Dangerous Mind
+1 Malcolm, Keen-Eyed Navigator
+1 Smaug the Magnificent
+1 Pirate's Pillage
+1 Currency Converter
+1 Xorn
+1 Collector's Vault
+1 Prying Blade
+1 Mask of Memory
+1 Iroas, God of Victory
+1 Anger
+1 Glissa Sunslayer
+1 Key to the City
+1 Thieves' Tools
+1 Manifold Key
+1 Break Through the Line
+1 Teleportal
+1 Throat Slitter
+1 Bedlam

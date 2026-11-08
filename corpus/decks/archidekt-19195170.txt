@@ -1,0 +1,105 @@
+# Archidekt — BDD's Ashling, The Limitless Combo - Non Budget Bracket 3
+# source: archidekt:19195170
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Ashling, the Limitless
+
+Deck:
+1 Earthquake Dragon
+1 Yargle and Multani
+1 Omnath, Locus of Rage
+1 Temur Ascendancy
+1 An Offer You Can't Refuse
+1 Animar, Soul of Elements
+1 Arid Mesa
+1 Avenger of Zendikar
+1 Belonging
+1 Birds of Paradise
+1 Breeding Pool
+1 Cavern of Souls
+1 Celestial Reunion
+1 Champion of the Path
+1 City of Brass
+1 Command Tower
+1 Delighted Halfling
+1 Elemental Bond
+1 Eshki, Temur's Roar
+1 Fabricate
+1 Fauna Shaman
+1 Fiery Islet
+1 Flooded Strand
+4 Forest
+1 Formidable Speaker
+1 Fyndhorn Elves
+1 Garruk's Uprising
+1 Goreclaw, Terror of Qal Sisma
+1 Grave Sifter
+1 Greater Good
+1 Greenwarden of Murasa
+1 Grove of the Burnwillows
+1 Gwenna, Eyes of Gaea
+1 Heroic Intervention
+1 Hinterland Harbor
+1 Ignoble Hierarch
+1 Imperial Recruiter
+1 Interdisciplinary Mascot
+1 Island
+1 Jubilation
+1 Karplusan Forest
+1 Keep Safe
+1 Ketria Triome
+1 Kiora, Behemoth Beckoner
+1 Krosan Drover
+1 Llanowar Elves
+1 Mana Confluence
+1 Mass of Mysteries
+1 Mistrise Village
+1 Misty Rainforest
+1 Mosswort Bridge
+1 Mountain
+1 Nature's Rhythm
+1 Negate
+1 Noble Hierarch
+1 Nyxbloom Ancient
+1 Polluted Delta
+1 Rejuvenating Springs
+1 Risen Reef
+1 Riverpyre Verge
+1 Rootbound Crag
+1 Rumbleweed
+1 Scalding Tarn
+1 Semblance Anvil
+1 Shinestriker
+1 Sol Ring
+1 Spire Garden
+1 Steam Vents
+1 Stomping Ground
+1 Sulfur Falls
+1 Sunderflock
+1 Swan Song
+1 Temur Battlecrier
+1 Thornspire Verge
+1 Time of Need
+1 Titan of Industry
+1 Training Center
+1 Trophy Mage
+1 Turn Aside
+1 Twinflame Travelers
+1 Urza's Incubator
+1 Utopia Sprawl
+1 Wild Growth
+1 Willowrush Verge
+1 Wooded Foothills
+1 Yavimaya Coast
+1 Worldly Tutor
+1 Nulldrifter
+1 Outcaster Trailblazer
+1 Soul of the Harvest
+1 Regal Force
+1 Maelstrom Wanderer
+1 Fierce Guardianship
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Kozilek's Unsealing

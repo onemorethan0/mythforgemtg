@@ -1,0 +1,80 @@
+# Archidekt — Ayula, Queen Among Bears
+# source: archidekt:1993234
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ayula, Queen Among Bears
+
+Deck:
+1 Panharmonicon
+1 Spirit of the Aldergard
+1 Werebear
+1 Ashcoat Bear
+1 River Bear
+1 Runeclaw Bear
+1 Sol Ring
+1 Goreclaw, Terror of Qal Sisma
+1 Owlbear
+1 Realmwalker
+1 Striped Bears
+1 Vivien's Grizzly
+1 Hardened Scales
+1 Bear Umbra
+1 Unnatural Growth
+1 Beast Within
+1 Mosswort Bridge
+1 Entish Restoration
+1 Zopandrel, Hunger Dominus
+1 Wilson, Refined Grizzly
+1 Ulvenwald Bear
+29 Snow-Covered Forest
+1 Kodama of the West Tree
+1 Wild Growth
+1 Utopia Sprawl
+1 Reliquary Tower
+1 Copper Host Crusher
+1 Grizzly Fate
+1 Nissa's Pilgrimage
+1 Words of Wilding
+1 Emerald Medallion
+1 Terrasymbiosis
+1 Tranquil Thicket
+1 Evercoat Ursine
+1 The Earth King
+1 Vanquisher's Banner
+1 Hunter's Insight
+1 Kenrith's Transformation
+1 Blessing of Frost
+1 Druid's Familiar
+1 Bonders' Enclave
+1 Stocking the Pantry
+1 Communal Brewing
+1 Oran-Rief, the Vastwood
+1 Defiler of Vigor
+1 Beast Whisperer
+1 Metallic Mimic
+1 Owlbear Cub
+1 Path of Ancestry
+1 Bloodline Pretender
+1 Surrak and Goreclaw
+1 The Earth Crystal
+1 Fade from History
+1 Garruk's Uprising
+1 Inspiring Call
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Little Bear
+1 Beorn the Fierce
+1 Bearscape
+1 Dancing from Dark to Dawn
+1 Ayula's Influence
+1 Mother Bear
+1 Necklace of Girion
+1 Gigantic Big Bear
+1 Ordinary Bear
+1 Beorn's Hospitality
+1 Masked Vandal
+1 Drover Grizzly
+1 Lifecrafter's Bestiary
+1 Herd Heirloom
+1 Overwhelming Stampede

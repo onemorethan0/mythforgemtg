@@ -1,0 +1,86 @@
+# Archidekt — Chun Li Artificial Evolution Shapeshifters
+# source: archidekt:6174717
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Gifts Ungiven); Bracket 1 allows 0
+
+Commander:
+1 Zethi, Arcane Blademaster
+
+Deck:
+1 Deserted Beach
+1 Reliquary Tower
+1 Glacial Fortress
+1 Port Town
+1 Adarkar Wastes
+1 Skycloud Expanse
+1 Rivendell
+1 Unnatural Selection
+1 Training Grounds
+1 Coastal Drake
+1 Mercenary Informer
+1 Bishop of Wings
+1 Spawning Kraken
+1 Angel of Glory's Rise
+1 Vega, the Watcher
+1 Realm-Cloaked Giant // Cast Off
+1 Combat Calligrapher
+1 Undead Slayer
+1 Standard Bearer
+1 Generous Gift
+1 Swords to Plowshares
+1 You Come to a River
+1 Standardize
+1 Talrand, Sky Summoner
+1 Azorius Chancery
+1 Stenn, Paranoid Partisan
+1 Archmage Emeritus
+1 Monastery Mentor
+1 Orvar, the All-Form
+1 Spellseeker
+1 Thought Scour
+1 King Suleiman
+1 Stroke of Midnight
+1 Urgent Exorcism
+1 Blasting Station
+1 Tivadar of Thorn
+1 Vesuvan Duplimancy
+1 Command Tower
+1 Prairie Stream
+1 Sea of Clouds
+1 Temple of Enlightenment
+1 Spirit Mirror
+14 Island
+11 Plains
+1 An Offer You Can't Refuse
+1 Faithful Mending
+1 Consider
+1 Brainstorm
+1 Shields of Velis Vel
+1 Curate
+1 Fact or Fiction
+1 Shadow Rift
+1 Shelter
+1 Snap
+1 Merchant Scroll
+1 Careful Study
+1 Frantic Search
+1 Artificial Evolution
+1 Thirst for Discovery
+1 Run Away Together
+1 Reality Shift
+1 Solve the Equation
+1 Tivadar's Crusade
+1 Phoenix Down
+1 Transit Mage
+1 Fractured Identity
+1 Maskwood Nexus
+1 Gifts Ungiven
+1 Candlekeep Inspiration
+1 Sol Ring
+1 Arcane Signet
+1 Leap
+1 Azorius Signet
+1 Swiftfoot Boots
+1 Ghostly Pilferer
+1 Arcane Denial

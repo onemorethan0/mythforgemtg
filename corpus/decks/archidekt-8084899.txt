@@ -1,0 +1,106 @@
+# Archidekt — [cEDH] Rograkh, Son of Rohgahh // Silas Renn, Seeker Adept - FreeLittleFreak
+# source: archidekt:8084899
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Silas Renn, Seeker Adept
+1 Rograkh, Son of Rohgahh
+
+Deck:
+1 Entomb
+1 Gamble
+1 Gemstone Caverns
+1 Chain of Vapor
+1 Orcish Bowmasters
+1 Gemstone Mine
+1 Underworld Breach
+1 Bloodstained Mire
+1 Mindbreak Trap
+1 Thassa's Oracle
+1 Simian Spirit Guide
+1 Ragavan, Nimble Pilferer
+1 Demonic Tutor
+1 Beseech the Mirror
+1 Diabolic Intent
+1 Rite of Flame
+1 An Offer You Can't Refuse
+1 Wheel of Fortune
+1 Yawgmoth's Will
+1 Ad Nauseam
+1 Windfall
+1 Cabal Ritual
+1 Dark Ritual
+1 Brain Freeze
+1 Culling the Weak
+1 Demonic Consultation
+1 Final Fortune
+1 Deflecting Swat
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Flusterstorm
+1 Force of Will
+1 Vampiric Tutor
+1 The One Ring
+1 Tainted Pact
+1 Pyroblast
+1 Mental Misstep
+1 Red Elemental Blast
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Mox Diamond
+1 Mox Opal
+1 Mox Amber
+1 Mystical Tutor
+1 Scalding Tarn
+1 Pact of Negation
+1 Grim Monolith
+1 Grinding Station
+1 Steam Vents
+1 Arcane Signet
+1 Springleaf Drum
+1 Defense Grid
+1 Chrome Mox
+1 Mystic Remora
+1 Necropotence
+1 Badlands
+1 Blood Crypt
+1 Arid Mesa
+1 City of Brass
+1 Mana Confluence
+1 Rhystic Study
+1 Marsh Flats
+1 Flooded Strand
+1 Command Tower
+1 Mana Vault
+1 Sol Ring
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Polluted Delta
+1 Otawara, Soaring City
+1 Watery Grave
+1 Misty Rainforest
+1 Phyrexian Tower
+1 Volcanic Island
+1 Ancient Tomb
+1 Minamo, School at Water's Edge
+1 Imperial Seal
+1 Stock Up
+1 Flare of Duplication
+1 Rain of Filth
+1 Necrodominance
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Borne Upon a Wind
+1 Paradise Mantle
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Talisman of Indulgence
+1 Underground Sea
+1 Praetor's Grasp
+1 Fellwar Stone
+1 Jeska's Will
+1 Undercity Sewers
+1 Into the Flood Maw
+1 Warrior's Oath
+1 Last Chance
+1 Mnemonic Betrayal

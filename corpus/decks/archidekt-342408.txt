@@ -1,0 +1,80 @@
+# Archidekt — Tsabo Tavoc Old School Flavor
+# source: archidekt:342408
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Necropotence); Bracket 1 allows 0
+
+Commander:
+1 Tsabo Tavoc
+
+Deck:
+1 Lightning Bolt
+1 Corpse Dance
+1 Ball Lightning
+1 Nekrataal
+1 Phyrexian Reclamation
+1 Soul Burn
+1 Drain Life
+1 Barren Moor
+1 Tainted Peak
+1 Skeletal Scrying
+1 Plague Spitter
+1 Yawgmoth's Agenda
+1 Feral Shadow
+1 Mercadian Bazaar
+1 Subterranean Hangar
+1 Apprentice Necromancer
+1 Carrion Beetles
+1 Necrologia
+1 Plaguebearer
+1 Ancient Craving
+1 Wall of Razors
+1 Carrionette
+1 Dauthi Horror
+1 Minion of the Wastes
+1 Bone Dancer
+1 Wave of Terror
+1 Cone of Flame
+1 Crypt Rats
+1 Necrosavant
+1 Army Ants
+1 Dormant Volcano
+1 Everglades
+1 Ashen Powder
+1 Breathstealer
+1 Dark Ritual
+1 Spirit of the Night
+1 Tombstone Stairwell
+1 Disintegrate
+1 Earthquake
+1 Urborg Panther
+1 Wall of Corpses
+1 Hammer of Bogardan
+1 Discordant Spirit
+1 Phyrexian Purge
+20 Swamp
+11 Mountain
+1 Death Spark
+1 Lake of the Dead
+1 Ihsan's Shade
+1 City of Brass
+1 Ashen Ghoul
+1 Necropotence
+1 Incinerate
+1 Fumarole
+1 Nevinyrral's Disk
+1 Initiates of the Ebon Hand
+1 Necrite
+1 Order of the Ebon Hand
+1 Banshee
+1 Inferno
+1 Takklemaggot
+1 Animate Dead
+1 Hypnotic Specter
+1 Sengir Vampire
+1 Pestilence
+1 Demonic Consultation
+1 Diabolic Servitude
+1 Morinfen
+1 Torture
+1 Gallowbraid

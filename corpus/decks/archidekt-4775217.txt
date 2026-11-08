@@ -1,0 +1,98 @@
+# Archidekt — Eowyn, Shieldmaiden / Beatstick
+# source: archidekt:4775217
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Éowyn, Shieldmaiden
+
+Deck:
+1 Sacred Foundry
+1 Kindred Discovery
+1 Reinforced Ronin
+1 Arcane Signet
+1 Battlefield Forge
+1 Breath of Fury
+1 Clifftop Retreat
+1 Command Tower
+1 Exotic Orchard
+1 Glacial Fortress
+1 Sol Ring
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Talisman of Progress
+1 Secluded Courtyard
+1 Adarkar Wastes
+1 Shivan Reef
+1 Boromir, Warden of the Tower
+1 Reliquary Tower
+1 Counterspell
+1 Ranger-Captain of Eos
+1 Castle Ardenvale
+1 Esper Sentinel
+1 Steam Vents
+1 Hallowed Fountain
+1 Grand Abolisher
+1 Galadriel's Dismissal
+1 Sunset Strikemaster
+1 Path of Ancestry
+1 Mystic Gate
+1 Recruiter of the Guard
+1 Forth Eorlingas!
+1 Needleverge Pathway // Pillarverge Pathway
+1 Prairie Stream
+1 Shared Animosity
+1 Combat Celebrant
+1 Lossarnach Captain
+4 Island
+1 Banner of Kinship
+1 Voice of Victory
+1 Loran of the Third Path
+1 Knight of the White Orchid
+1 Malevolent Hermit // Benevolent Geist
+1 Lavinia, Azorius Renegade
+1 Mentor of the Meek
+1 Beregond of the Guard
+1 Negate
+1 Cathar Commando
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Rugged Prairie
+1 Cascade Bluffs
+1 Sulfur Falls
+1 Skycloud Expanse
+4 Mountain
+1 Minas Tirith Garrison
+1 Erkenbrand, Lord of Westfold
+1 Thalia, Heretic Cathar
+1 Swords to Plowshares
+1 Prince Imrahil the Fair
+1 Mother of Runes
+1 Worn Powerstone
+1 Relic of Legends
+1 Avatar's Wrath
+1 Thought Vessel
+1 Patchwork Banner
+5 Plains
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Splinter Twin
+1 Wayfarer's Bauble
+1 King T'Challa // Black Panther, Hope Enduring
+1 Black Widow, Agile Avenger
+1 Spectator Seating
+1 Unclaimed Territory
+1 Training Center
+1 Scholar of New Horizons
+1 Bilbo's Gambit
+1 The Queen of Dale
+1 Bard, Heir of Girion
+1 Weathered Wayfarer
+1 Bard, King of Dale
+1 Fellwar Stone
+1 Thalia's Lieutenant
+1 Grand Arbiter Augustin IV
+1 Arcane Denial
+1 Gleaming Splendor
+1 Smothering Tithe
+1 Samut, Hazoret's Champion
+1 Taunt from the Rampart
+1 Riders of Rohan

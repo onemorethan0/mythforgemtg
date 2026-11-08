@@ -1,0 +1,99 @@
+# Archidekt — Just a Small Town Squirrel
+# source: archidekt:8635493
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Hazel of the Rootbloom
+
+Deck:
+1 Bonebind Orator
+1 Bushy Bodyguard
+1 Yavimaya, Cradle of Growth
+1 Nurturing Peatland
+1 Blooming Marsh
+1 Rootcast Apprenticeship
+1 Underground Mortuary
+1 Darkbore Pathway // Slitherbore Pathway
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Fountainport
+1 Fell the Profane // Fell Mire
+1 Fabled Passage
+1 Lazotep Quarry
+1 Swarmyard
+1 Saw in Half
+1 Path of Ancestry
+1 Swarmyard Massacre
+1 Krosan Beast
+1 Valley Rotcaller
+1 Bonecache Overseer
+1 Command Tower
+1 Hazel's Brewmaster
+8 Forest
+1 Beastmaster Ascension
+1 Cache Grab
+1 Llanowar Wastes
+1 Toski, Bearer of Secrets
+1 Deep Forest Hermit
+1 Tainted Wood
+1 Scurry of Squirrels
+3 Swamp
+1 Woodland Cemetery
+1 Scavenger's Talent
+1 Mudflat Village
+1 Farseek
+1 The Odd Acorn Gang
+1 Thornvault Forager
+1 Osteomancer Adept
+1 Squirrel Mob
+1 Three Tree City
+1 Ygra, Eater of All
+1 The Unbeatable Squirrel Girl
+1 Tippy-Toe, Terrific Partner
+1 Chatter of the Squirrel
+1 Nuka-Cola Vending Machine
+1 Squirrel Sanctuary
+1 Camellia, the Seedmiser
+1 Chitterspitter
+1 Ripples of Undeath
+1 Chatterfang, Squirrel General
+1 Honored Dreyleader
+1 Rampant Growth
+1 Twilight Mire
+1 Vinereap Mentor
+1 Black Market Connections
+1 Three Visits
+1 Overgrown Tomb
+1 Golgari Charm
+1 Undergrowth Stadium
+1 Gingerbread Cabin
+1 Nature's Lore
+1 Verdant Catacombs
+1 Cryptolith Rite
+1 Skullclamp
+1 Acorn Catapult
+1 Verdant Command
+1 Acorn Harvest
+1 Arcane Signet
+1 Chronicle of Victory
+1 Idol of Oblivion
+1 Banner of Kinship
+1 Sakura-Tribe Elder
+1 Gilded Goose
+1 Curious Forager
+1 Second Harvest
+1 For the Common Good
+1 Bumbleflower's Sharepot
+1 Pawpatch Formation
+1 Squirrel Sovereign
+1 Sylvan Library
+1 Bakersbane Duo
+1 Meatsqueak, Hoard Lord
+1 Party Dude
+1 Stardew Valley
+1 The Shire
+1 Deathcap Glade
+1 Ravenous Squirrel
+1 Tainted Treats
+1 Spider Food
+1 Chatterstorm

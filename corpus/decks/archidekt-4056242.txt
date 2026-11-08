@@ -1,0 +1,94 @@
+# Archidekt — Nothing is Certain but Death and Taxes - Liesa
+# source: archidekt:4056242
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Liesa, Shroud of Dusk
+
+Deck:
+1 Black Market Connections
+1 Blind Obedience
+1 Anguished Unmaking
+1 Vizkopa Guildmage
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Command Tower
+1 Exquisite Blood
+1 Fetid Heath
+1 Sanguine Bond
+1 Smothering Tithe
+1 Sol Ring
+1 Vito, Thorn of the Dusk Rose
+1 Lightning Greaves
+1 Pristine Talisman
+1 Authority of the Consuls
+1 Vault of Champions
+1 Soul Warden
+1 Toxic Deluge
+1 Planar Atlas
+1 Phyrexian Arena
+1 Norn's Annex
+1 War Room
+1 Soul's Attendant
+1 The One Ring
+1 Farewell
+1 Stroke of Midnight
+1 Path of Ancestry
+1 Caves of Koilos
+1 Kambal, Consul of Allocation
+1 Kunoros, Hound of Athreos
+1 Suture Priest
+1 Rug of Smothering
+1 Fellwar Stone
+1 Orzhov Signet
+1 Desolate Mire
+1 Exemplar of Light
+1 Valkyrie Harbinger
+1 Starscape Cleric
+1 Razorgrass Ambush // Razorgrass Field
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Teferi's Protection
+1 Archivist of Oghma
+1 Fell the Profane // Fell Mire
+1 Opposition Agent
+1 Elesh Norn // The Argent Etchings
+1 Boggart Trawler // Boggart Bog
+1 Grasp of Fate
+1 Despark
+1 Scavenger Grounds
+1 Sorin Markov
+1 Revival // Revenge
+1 Essence Channeler
+1 Enduring Tenacity
+1 Lunar Convocation
+1 Resplendent Angel
+1 Marauding Blight-Priest
+1 Bloodthirsty Conqueror
+1 Enlightened Tutor
+1 Vampiric Tutor
+1 Swords to Plowshares
+1 Path to Exile
+1 Swiftfoot Boots
+1 Godless Shrine
+1 Shadowy Backstreet
+1 Marsh Flats
+1 Vault of the Archangel
+1 Demonic Tutor
+1 Fabled Passage
+1 Bolas's Citadel
+1 Sphere of Safety
+1 Arcane Signet
+1 Bojuka Bog
+1 Ghostly Prison
+1 Austere Command
+8 Swamp
+8 Plains
+1 Thalia, Heretic Cathar
+1 Scheming Silvertongue // Sign in Blood
+1 Mai, Scornful Striker
+1 Sword of Light and Shadow
+1 Talisman of Hierarchy
+1 Witch of the Moors
+1 Twilight Prophet
+1 Darkstar Augur
+1 Seraph Sanctuary

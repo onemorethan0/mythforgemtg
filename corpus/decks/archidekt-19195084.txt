@@ -1,0 +1,96 @@
+# Archidekt — BDD's Ashling, The Limitless Combo - Budget Bracket 3
+# source: archidekt:19195084
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Ashling, the Limitless
+
+Deck:
+1 Ignoble Hierarch
+1 Omnath, Locus of Rage
+1 Earthquake Dragon
+1 Titan of Industry
+1 An Offer You Can't Refuse
+1 Arcane Signet
+1 Avenger of Zendikar
+1 Belonging
+1 Boreal Druid
+1 Cascade Bluffs
+1 Celestial Reunion
+1 Champion of the Path
+1 Cinder Glade
+1 Command Tower
+1 Defend the Rider
+1 Dispersal Shield
+1 Elemental Bond
+1 Eshki, Temur's Roar
+1 Fabricate
+1 Urza's Incubator
+1 Negate
+1 Greenwarden of Murasa
+1 Grave Sifter
+1 Semblance Anvil
+1 Muldrotha, the Gravetide
+1 Exotic Orchard
+1 Fauna Shaman
+1 Fellwar Stone
+1 Ferrous Lake
+1 Fiery Islet
+1 Fire-Lit Thicket
+1 Flooded Grove
+9 Forest
+1 Frontier Bivouac
+1 Frostboil Snarl
+1 Fyndhorn Elves
+1 Game Trail
+1 Garruk's Uprising
+1 Goreclaw, Terror of Qal Sisma
+1 Greater Good
+1 Hinterland Harbor
+1 Imperial Recruiter
+1 Interdisciplinary Mascot
+1 Intervene
+3 Island
+1 Jubilation
+1 Karplusan Forest
+1 Kavu Lair
+1 Keep Safe
+1 Kiora, Behemoth Beckoner
+1 Krosan Drover
+1 Llanowar Elves
+1 Maelstrom Wanderer
+1 Mass of Mysteries
+1 Mossfire Valley
+1 Mosswort Bridge
+3 Mountain
+1 Nulldrifter
+1 Outcaster Trailblazer
+1 Overflowing Basin
+1 Path of Ancestry
+1 Prismabasher
+1 Risen Reef
+1 Rootbound Crag
+1 Rumbleweed
+1 Scour for Scrap
+1 Shinestriker
+1 Shivan Reef
+1 Sol Ring
+1 Sulfur Falls
+1 Sunderflock
+1 Tamiyo's Safekeeping
+1 Time of Need
+1 Trophy Mage
+1 Turn Aside
+1 Twinflame Travelers
+1 Up the Beanstalk
+1 Utopia Sprawl
+1 Vineglimmer Snarl
+1 Wild Growth
+1 Yavimaya Coast
+1 Gwenna, Eyes of Gaea
+1 Temur Battlecrier
+1 Temur Ascendancy
+1 Regal Force
+1 Soul of the Harvest
+1 Kozilek's Unsealing

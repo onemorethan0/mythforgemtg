@@ -1,0 +1,108 @@
+# Archidekt — Bridge of the Gods
+# source: archidekt:567377
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Anguished Unmaking
+1 Athreos, God of Passage
+1 Arid Mesa
+1 Nicol Bolas, God-Pharaoh
+1 Erebos, God of the Dead
+1 City of Brass
+1 Island
+1 Blood Crypt
+1 The World Tree
+1 Purphoros, Bronze-Blooded
+1 Cavern of Souls
+1 Damnation
+1 Ephara, God of the Polis
+1 God-Eternal Bontu
+1 God-Eternal Kefnet
+1 Godless Shrine
+1 Swords to Plowshares
+1 Thassa, God of the Sea
+1 The Locust God
+1 Steam Vents
+1 Stomping Ground
+1 Temple Garden
+1 Verdant Catacombs
+1 Hallowed Fountain
+1 Heliod, Sun-Crowned
+1 Invasion of Theros // Ephara, Ever-Sheltering
+1 Iroas, God of Victory
+1 Karametra, God of Harvests
+1 Kefnet the Mindful
+1 Keranos, God of Storms
+1 Klothys, God of Destiny
+1 Kruphix, God of Horizons
+1 Mana Confluence
+1 Mogis, God of Slaughter
+1 Nicol Bolas, Dragon-God
+1 Nylea, God of the Hunt
+1 Nylea, Keen-Eyed
+1 Marsh Flats
+1 Misty Rainforest
+1 Phenax, God of Deception
+1 Purphoros, God of the Forge
+1 Reidane, God of the Worthy // Valkmira, Protector's Shield
+1 Rhonas the Indomitable
+1 Wrath of God
+1 Xenagos, God of Revels
+1 Polluted Delta
+1 Forest
+1 Ponder
+1 Pharika, God of Affliction
+1 Sol Ring
+1 Boseiju, Who Endures
+1 Nykthos, Shrine to Nyx
+1 Phlage, Titan of Fire's Fury
+1 Kroxa, Titan of Death's Hunger
+1 Uro, Titan of Nature's Wrath
+1 Arcane Denial
+1 Hedge Maze
+1 Shadowy Backstreet
+1 Bontu the Glorified
+1 Ondu Inversion // Ondu Skyruins
+1 Valakut Awakening // Valakut Stoneforge
+1 Zodiark, Umbral God
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Ketramose, the New Dawn
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Aclazotz, Deepest Betrayal // Temple of the Dead
+1 Bloodstained Mire
+1 Breeding Pool
+1 Flooded Strand
+1 Sacred Foundry
+1 Scalding Tarn
+1 Watery Grave
+1 Windswept Heath
+1 Wooded Foothills
+1 Forbidden Orchard
+1 Alrund, God of the Cosmos // Hakka, Whispering Raven
+1 God-Eternal Oketra
+1 God-Eternal Rhonas
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Kolvori, God of Kinship // The Ringhart Crest
+1 The Scarab God
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Expressive Iteration
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Elspeth, Sun's Champion
+1 Oath of Druids
+1 Overgrown Tomb
+1 Swan Song
+1 Heliod, God of the Sun
+1 Sundering Eruption // Volcanic Fissure
+1 Eirdu, Carrier of Dawn // Isilu, Carrier of Twilight
+1 Sylvan Library
+1 Command Tower
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Path of Ancestry
+1 Sab-Sunen, Luxa Embodied
+1 Ojer Taq, Deepest Foundation // Temple of Civilization

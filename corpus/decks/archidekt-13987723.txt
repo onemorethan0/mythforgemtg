@@ -1,0 +1,99 @@
+# Archidekt — Intet, the Memer
+# source: archidekt:13987723
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Intet, the Dreamer
+
+Deck:
+1 Atomic Microsizer
+1 Starwinder
+1 Run for Your Life
+2 Snow-Covered Forest
+6 Snow-Covered Mountain
+1 Reversal of Fortune
+4 Snow-Covered Island
+1 Willowrush Verge
+1 Terramorphic Expanse
+1 Myriad Landscape
+1 Frontier Bivouac
+1 Scalding Tarn
+1 Iraxxa, Empress of Mars
+1 The Key to the Vault
+1 Invasion of Kaldheim // Pyre of the World Tree
+1 Faithless Looting
+1 Ice Cauldron
+1 Mizzix, Replica Rider
+1 Fortune Teller's Talent
+1 Extraordinary Journey
+1 Ureni's Rebuff
+1 Command Tower
+1 Swiftfoot Boots
+1 Sol Ring
+1 Exotic Orchard
+1 Arcane Signet
+1 Botanical Sanctum
+1 Flooded Grove
+1 Shivan Reef
+1 Cinder Glade
+1 Dreamroot Cascade
+1 Rejuvenating Springs
+1 The Thirteenth Doctor
+1 Waterlogged Grove
+1 Sulfur Falls
+1 Hinterland Harbor
+1 Vineglimmer Snarl
+1 Sisterhood of Karn
+1 Boseiju, Who Endures
+1 Spring // Mind
+1 Stomping Ground
+1 Panglacial Wurm
+1 Cascade Bluffs
+1 Doc Aurlock, Grizzled Genius
+1 Spider-Man 2099
+1 The Lost and the Damned
+1 Ketria Triome
+1 Sol Talisman
+1 Three Visits
+1 Savvy Trader
+1 Nature's Lore
+1 Untimely Malfunction
+1 Smirking Spelljacker
+1 Charred Foyer // Warped Space
+1 Whirlwind Technique
+1 Bigger on the Inside
+1 Memory Worm
+1 Keeper of Secrets
+1 Sage of the Beyond
+1 Training Center
+1 Birds of Paradise
+1 Squee, the Immortal
+1 Daily Bugle Building
+1 Chameleon, Master of Disguise
+1 Demonic Ruckus
+1 Temporal Aperture
+1 Stromkirk Occultist
+1 Break Down
+1 Chimil, the Inner Sun
+1 Arcane Heist
+1 Mischievous Catgeist // Catlike Curiosity
+1 Steam Vents
+1 Distortion Strike
+1 Wooded Foothills
+1 Fight Rigging
+1 Improvisation Capstone
+1 Embrace the Unknown
+1 Kellan, Inquisitive Prodigy // Tail the Suspect
+1 Hex Magic
+1 Bilbo, Thief in the Night
+1 Nico Minoru, Runaway
+1 Scorched Geyser
+1 Alex Wilder, Runaway
+1 Farseek
+1 Chemister's Insight
+1 The Foretold Soldier
+1 Advanced Reconstruction
+1 Fly
+1 Emrakul, the Exigent Doom
+1 Heartwood Crafter // Soul Tether

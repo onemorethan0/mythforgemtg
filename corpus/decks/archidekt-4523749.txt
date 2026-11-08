@@ -1,0 +1,93 @@
+# Archidekt — K'rrik, Son of Yawgmoth
+# source: archidekt:4523749
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Chainer, Dementia Master
+1 Asmodeus the Archfiend
+1 Diabolic Tutor
+1 Persist
+1 Nykthos, Shrine to Nyx
+1 Vilis, Broker of Blood
+1 Final Parting
+1 Culling the Weak
+1 Reanimate
+1 Blood Celebrant
+1 Bolas's Citadel
+1 Skirge Familiar
+1 Praetor's Grasp
+1 Mastermind's Acquisition
+1 Aetherflux Reservoir
+1 Beseech the Queen
+1 Chain of Smog
+1 Gray Merchant of Asphodel
+1 Cabal Ritual
+1 Buried Alive
+1 Dauthi Voidwalker
+1 Opposition Agent
+1 Peer into the Abyss
+1 Sensei's Divining Top
+1 Inventors' Fair
+1 Snuff Out
+1 Shallow Grave
+1 Dark Petition
+1 Wishclaw Talisman
+1 Imperial Seal
+1 Urza's Saga
+1 Vampiric Tutor
+1 Animate Dead
+1 Cut Down
+1 Sidisi, Undead Vizier
+1 Sol Ring
+1 Saw in Half
+1 Necrotic Ooze
+1 Dark Ritual
+1 Diabolic Intent
+1 Crystal Vein
+1 Sacrifice
+1 Blood Pet
+1 Phyrexian Tower
+1 Emergence Zone
+1 Rain of Filth
+1 Dimir House Guard
+1 Mox Diamond
+1 Gemstone Caverns
+1 Arcane Signet
+1 Imp's Mischief
+1 Necromancy
+1 Insatiable Avarice
+1 Cavern of Souls
+1 Demonic Tutor
+1 Entomb
+1 Beseech the Mirror
+1 Dismember
+1 Not Dead After All
+1 Feign Death
+1 Deadly Rollick
+1 Undying Malice
+1 Hoarding Broodlord
+1 Sheoldred, the Apocalypse
+1 Heartless Summoning
+1 Chrome Mox
+1 Balthor the Defiled
+1 Grim Monolith
+1 Fleshwrither
+1 City of Traitors
+1 Yawgmoth's Will
+1 Ancient Tomb
+1 Lake of the Dead
+16 Swamp
+1 Lotus Petal
+1 Mana Vault
+1 The One Ring
+1 Orcish Bowmasters
+1 Grim Tutor
+1 Homeward Path
+1 Corpse Dance
+1 Unmarked Grave
+1 Mox Amber
+1 Professor Onyx

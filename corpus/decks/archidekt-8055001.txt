@@ -1,0 +1,108 @@
+# Archidekt — American Nightmare 🤼‍♂️
+# source: archidekt:8055001
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Codie, Vociferous Codex
+
+Deck:
+1 Force of Will
+1 Steam Vents
+1 Pact of Negation
+1 Necropotence
+1 An Offer You Can't Refuse
+1 Silence
+1 Miscast
+1 Spell Pierce
+1 Red Elemental Blast
+1 Chrome Mox
+1 Arcane Signet
+1 Badlands
+1 Scrubland
+1 Mox Opal
+1 Enlightened Tutor
+1 Mystical Tutor
+1 Sylvan Tutor
+1 Vampiric Tutor
+1 Mana Confluence
+1 Mana Vault
+1 Grim Tutor
+1 Lotus Petal
+1 Mox Diamond
+1 Brain Freeze
+1 Tainted Pact
+1 Spellseeker
+1 Imperial Seal
+1 Urza's Saga
+1 Command Tower
+1 Urborg, Tomb of Yawgmoth
+1 Reflecting Pool
+1 Beseech the Mirror
+1 Smothering Tithe
+1 Opposition Agent
+1 Rhystic Study
+1 The One Ring
+1 Polluted Delta
+1 Flooded Strand
+1 Misty Rainforest
+1 Bloodstained Mire
+1 Marsh Flats
+1 Scalding Tarn
+1 Tropical Island
+1 Bayou
+1 Chromatic Lantern
+1 Ancient Tomb
+1 Birds of Paradise
+1 Ignoble Hierarch
+1 Noble Hierarch
+1 Final Fortune
+1 Simian Spirit Guide
+1 Drannith Magistrate
+1 Sensei's Divining Top
+1 Mystic Remora
+1 Muddle the Mixture
+1 Thassa's Oracle
+1 Personal Tutor
+1 Flusterstorm
+1 Watery Grave
+1 Hallowed Fountain
+1 Godless Shrine
+1 Volcanic Island
+1 Underground Sea
+1 Tundra
+1 Orcish Bowmasters
+1 Demonic Consultation
+1 Underworld Breach
+1 Forbidden Orchard
+1 Lion's Eye Diamond
+1 Sevinne's Reclamation
+1 Esper Sentinel
+1 Profane Tutor
+1 Verdant Catacombs
+1 Worldly Tutor
+1 Grand Abolisher
+1 Diabolic Intent
+1 Breeding Pool
+1 Blood Crypt
+1 Overgrown Tomb
+1 Swan Song
+1 Lavinia, Azorius Renegade
+1 Defense Grid
+1 Ragavan, Nimble Pilferer
+1 Veil of Summer
+1 Tarnished Citadel
+1 Path to Exile
+1 Swords to Plowshares
+1 Demonic Tutor
+1 City of Brass
+1 Exotic Orchard
+1 Praetor's Grasp
+1 Pyroblast
+1 Grindstone
+1 Eladamri's Call
+1 Painter's Servant
+1 Doomsday
+1 Varragoth, Bloodsky Sire
+1 Ponder
+1 Sol Ring

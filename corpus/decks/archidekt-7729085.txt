@@ -1,0 +1,100 @@
+# Archidekt — Dirty Birds
+# source: archidekt:7729085
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Soraya the Falconer
+
+Deck:
+1 Curious Farm Animals
+2 Plains
+3 Snow-Covered Plains
+1 Windbrisk Heights
+1 Snow-Covered Plains
+2 Snow-Covered Plains
+2 Plains
+2 Plains
+1 Plains
+1 Plains
+2 Plains
+1 Plains
+1 Plains
+2 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Plains
+1 Lapse of Certainty
+1 Cloudchaser Eagle
+1 Secluded Steppe
+1 Plains
+1 Plains
+1 Arcane Signet
+1 Smuggler's Share
+1 Galadriel's Dismissal
+1 Soul's Attendant
+1 Eagle of Deliverance
+1 Aerial Extortionist
+1 Dawn of a New Age
+1 Austere Command
+1 Reprieve
+1 Sun Titan
+1 Mind Stone
+1 Getaway Glamer
+1 Sevinne's Reclamation
+1 Freewind Falcon
+1 Access Tunnel
+1 Aven Interrupter
+1 Battlefield Raptor
+1 Mesa Falcon
+1 Trouble in Pairs
+1 Comeuppance
+1 Healer's Hawk
+1 Duskrider Falcon
+1 Swords to Plowshares
+1 Retribution of the Meek
+1 Righteous Aura
+1 Afterlife
+1 Invoke the Divine
+1 Glorious Protector
+1 Make a Stand
+1 Bovine Intervention
+1 Soul Warden
+1 Requisition Raid
+1 Blinding Light
+1 Favorable Destiny
+1 Cartographer's Hawk
+1 Gustcloak Savior
+1 Gustcloak Harrier
+1 Battle Screech
+1 Celestial Gatekeeper
+1 Commander Eesha
+1 Suntail Hawk
+1 Lieutenant Kirtar
+1 Emeria Angel
+1 Radiant Destiny
+1 Senu, Keen-Eyed Protector
+1 Heraldic Banner
+1 Patchwork Banner
+1 Beacon Hawk
+1 Shrike Force
+1 Jackdaw Savior
+1 Lifecreed Duo
+1 Murmuration
+1 Skyshroud Falcon
+1 Horn of the Mark
+1 Tocasia's Welcome
+1 Miner's Guidewing
+1 Gwaihir, Greatest of the Eagles
+1 Pearl Medallion
+1 Pre-War Formalwear
+1 Toucan-Puffin
+1 Animal Sanctuary
+1 Plains
+1 Falcon and Redwing

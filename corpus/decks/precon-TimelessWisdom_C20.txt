@@ -1,0 +1,98 @@
+# WotC precon — Timeless Wisdom (C20, 2020-04-17)
+# source: mtgjson:TimelessWisdom_C20
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Fierce Guardianship); Bracket 2 allows 0
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Gavi, Nest Warden
+
+Deck:
+1 Abandoned Sarcophagus
+1 Agitator Ant
+1 Akim, the Soaring Wind
+1 Akroma's Vengeance
+1 Arcane Signet
+1 Ash Barrens
+1 Astral Drift
+1 Azorius Chancery
+1 Azorius Signet
+1 Bonder's Ornament
+1 Boon of the Wish-Giver
+1 Boros Garrison
+1 Boros Signet
+1 Brallin, Skyshark Rider
+1 Cast Out
+1 Chandra, Flamecaller
+1 Command Tower
+1 Commander's Sphere
+1 Cryptic Trilobite
+1 Crystalline Resonance
+1 Curator of Mysteries
+1 Decree of Justice
+1 Descend upon the Sinful
+1 Desert of the Fervent
+1 Desert of the Mindful
+1 Desert of the True
+1 Dismantling Wave
+1 Drake Haven
+1 Drifting Meadow
+1 Eternal Dragon
+1 Ethereal Forager
+1 Exotic Orchard
+1 Fierce Guardianship
+1 Fluctuator
+1 Forgotten Cave
+1 Herald of the Forgotten
+1 Hieroglyphic Illumination
+1 Hoofprints of the Stag
+1 Hostile Desert
+1 Irrigated Farmland
+5 Island
+1 Isperia, Supreme Judge
+1 Izzet Boilerworks
+1 Izzet Signet
+1 Lightning Rift
+1 Lonely Sandbar
+1 Martial Impetus
+1 Mercurial Chemister
+1 Migratory Route
+6 Mountain
+1 Myriad Landscape
+1 Mystic Monastery
+1 Neutralize
+1 New Perspectives
+1 Nimble Obstructionist
+1 Niv-Mizzet, the Firemind
+1 Ominous Seas
+4 Plains
+1 Portal Mage
+1 Prairie Stream
+1 Psychic Impetus
+1 Psychosis Crawler
+1 Raugrin Crystal
+1 Reconnaissance Mission
+1 Reliquary Tower
+1 Remote Isle
+1 Rooting Moloch
+1 Savai Thundermane
+1 Secluded Steppe
+1 Shabraz, the Skyshark
+1 Shiny Impetus
+1 Shivan Reef
+1 Skycloud Expanse
+1 Slice and Dice
+1 Smoldering Crater
+1 Sol Ring
+1 Spellpyre Phoenix
+1 Spirit Cairn
+1 Sun Titan
+1 Surly Badgersaur
+1 Tectonic Reformation
+1 Temple of the False God
+1 The Locust God
+1 Valiant Rescuer
+1 Vizier of Tumbling Sands
+1 Windfall
+1 Zenith Flare

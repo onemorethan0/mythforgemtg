@@ -1,0 +1,93 @@
+# Archidekt — Yurlok, Enchantments
+# source: archidekt:1077316
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Yurlok of Scorch Thrash
+
+Deck:
+1 Magewright's Stone
+1 City of Solitude
+1 Crawling Barrens
+1 Snakeskin Veil
+1 No Mercy
+1 Tectonic Instability
+1 Culling Ritual
+1 Ignoble Hierarch
+1 Twilight Mire
+1 Polluted Bonds
+1 Wound Reflection
+1 Umbral Mantle
+1 Fire-Lit Thicket
+1 Damnation
+1 Thousand-Year Elixir
+1 Karplusan Forest
+1 Graven Cairns
+1 Urborg, Tomb of Yawgmoth
+1 War's Toll
+1 Blood Crypt
+1 Sword of the Paruns
+1 Stoneshaker Shaman
+1 Birds of Paradise
+1 Sylvan Scrying
+1 Price of Glory
+1 Llanowar Wastes
+1 Rampant Growth
+1 Citadel of Pain
+1 Llanowar Elves
+1 Seeker of Skybreak
+1 Reflecting Pool
+1 Mana Web
+1 Nature's Chosen
+1 Nature's Lore
+1 Sulfurous Springs
+1 Power Surge
+1 Regrowth
+1 Sol Ring
+1 Instill Energy
+1 Overgrown Tomb
+1 Command Tower
+1 Leyline Tyrant
+1 Three Visits
+1 Belbe, Corrupted Observer
+1 Bayou
+1 Staff of Domination
+1 Dark Depths
+1 Leyline of Abundance
+1 Taiga
+1 Kaervek the Merciless
+1 Cut // Ribbons
+1 Stomping Ground
+1 Sylvan Ranger
+1 Manabarbs
+1 Terramorphic Expanse
+1 Lavalanche
+1 Ziatora's Proving Ground
+1 Tamiyo's Safekeeping
+1 Zo-Zu the Punisher
+1 Night's Whisper
+1 Swiftfoot Boots
+1 Comet Storm
+1 Omnath, Locus of Mana
+1 Xira Arien
+1 Torment of Hailfire
+1 Exsanguinate
+1 Nyxbloom Ancient
+1 Profane Command
+1 Savageborn Hydra
+1 Primordial Hydra
+9 Forest
+1 Apocalypse Hydra
+1 Mana Flare
+1 Heartbeat of Spring
+1 Zhur-Taa Ancient
+4 Swamp
+5 Mountain
+1 Overabundance
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Harmonize
+1 Animist's Awakening
+1 Lightning Greaves
+1 Badlands
+1 Blasphemous Act

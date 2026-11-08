@@ -1,0 +1,108 @@
+# Archidekt — Reaper King, Changeling Blinker
+# source: archidekt:149188
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Reaper King
+
+Deck:
+1 Path of Ancestry
+1 Without Weakness
+1 Mirror Entity
+1 High Market
+1 Deadeye Navigator
+1 Disallow
+1 Padeem, Consul of Innovation
+1 Eerie Interlude
+1 Mana Confluence
+1 Descendants' Path
+1 Changeling Hero
+1 Changeling Berserker
+1 Mechanized Production
+1 Fellwar Stone
+1 Seat of the Synod
+1 Etherium Sculptor
+1 Tranquil Thicket
+1 Soulherder
+1 Ephemerate
+1 Universal Automaton
+1 Ash Barrens
+1 Unearth
+1 Soul Manipulation
+1 Resourceful Return
+1 Call to the Kindred
+1 Lonely Sandbar
+1 Phyrexian Metamorph
+1 Sculpting Steel
+1 Spark Double
+1 Cursed Mirror
+1 Heap Doll
+1 Prismatic Vista
+1 Unsettled Mariner
+1 Exotic Orchard
+1 Fabled Passage
+1 Arcane Denial
+1 Wilt
+1 Escape Protocol
+1 Secluded Steppe
+1 Darksteel Citadel
+1 Plaza of Heroes
+1 Island
+1 Adaptive Automaton
+1 Unclaimed Territory
+1 Survivors' Encampment
+1 Cascading Cataracts
+1 Illusionist's Stratagem
+1 Acrobatic Maneuver
+1 Panharmonicon
+1 Command Beacon
+1 Plains
+1 Mountain
+1 Stifle
+1 City of Brass
+1 Swamp
+1 Gift of Immortality
+1 Scarecrone
+1 Scuttlemutt
+1 Tendo Ice Bridge
+1 Crystal Quarry
+1 Miscalculation
+1 Command Tower
+1 Sol Ring
+1 Chromatic Lantern
+1 Changeling Outcast
+1 Arcane Signet
+1 Barren Moor
+1 Lotus Petal
+1 Forgotten Cave
+1 Scorn Effigy
+1 Majestic Genesis
+1 Mothdust Changeling
+1 Forest
+1 Changeling Titan
+1 Roaming Throne
+1 Sylvan Library
+1 Teleportation Circle
+1 Astral Drift
+1 Roadside Reliquary
+1 Lull
+1 Guardian Gladewalker
+1 Realmwalker
+1 Shapesharer
+1 Valiant Changeling
+1 Woodland Changeling
+1 Vivid Crag
+1 Vivid Grove
+1 Vivid Marsh
+1 Vivid Meadow
+1 Crumbling Vestige
+1 Cavern of Souls
+1 Springleaf Drum
+1 Reliquary Tower
+1 Pillar of Origins
+1 Urza's Incubator
+1 Oasis Gardener
+1 Commander's Sphere
+1 Mutable Explorer
+1 Hide on the Ceiling

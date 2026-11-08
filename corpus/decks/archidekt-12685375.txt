@@ -1,0 +1,108 @@
+# Archidekt — Tayam cEDH
+# source: archidekt:12685375
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Flooded Strand
+1 Chord of Calling
+1 Sylvan Safekeeper
+1 Dauthi Voidwalker
+1 Horizon Canopy
+1 Archon of Emeria
+1 Collector Ouphe
+1 Hexdrinker
+1 Circle of Dreams Druid
+1 Talon Gates of Madara
+1 Deafening Silence
+1 Congregation at Dawn
+1 Archdruid's Charm
+1 Ranger-Captain of Eos
+1 Phyrexian Tower
+1 Esper Sentinel
+1 Hashep Oasis
+1 Quirion Ranger
+1 Windswept Heath
+1 Ancient Tomb
+1 Dryad Arbor
+1 Marsh Flats
+1 Polluted Delta
+1 Aven Interrupter
+1 Elves of Deep Shadow
+1 Blossoming Defense
+1 Gavony Township
+1 Voice of Victory
+1 Carrion Feeder
+1 Nature's Rhythm
+1 Mossborn Hydra
+1 Shield Mate
+1 Marvin, Murderous Mimic
+1 Agatha's Soul Cauldron
+1 Allosaurus Shepherd
+1 Warden of the Grove
+1 Temple Garden
+1 Orcish Bowmasters
+1 City of Brass
+1 Rule of Law
+1 Opposition Agent
+1 Godless Shrine
+1 Plains
+1 Sol Ring
+1 Forest
+1 Swamp
+1 Cavern of Souls
+1 Scrubland
+1 Overgrown Tomb
+1 Gaea's Cradle
+1 Savannah
+1 Green Sun's Zenith
+1 Arbor Elf
+1 Elvish Mystic
+1 Rishkar, Peema Renegade
+1 Managorger Hydra
+1 Delighted Halfling
+1 Llanowar Elves
+1 Command Tower
+1 Verdant Catacombs
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Eidolon of Rhetoric
+1 Mana Confluence
+1 Centaur Garden
+1 Misty Rainforest
+1 Finale of Devastation
+1 Wooded Foothills
+1 Crop Rotation
+1 Icatian Moneychanger
+1 Skyclave Apparition
+1 Bloodstained Mire
+1 Worldly Tutor
+1 Demonic Tutor
+1 Wall of Roots
+1 Tyvar, Jubilant Brawler
+1 Bloom Tender
+1 Scythecat Cub
+1 Scryb Ranger
+1 Eldritch Evolution
+1 Yavimaya, Cradle of Growth
+1 Swords to Plowshares
+1 Drannith Magistrate
+1 Destiny Spinner
+1 Avacyn's Pilgrim
+1 Bartolomé del Presidio
+1 Birds of Paradise
+1 Devoted Druid
+1 Deathrite Shaman
+1 Elvish Spirit Guide
+1 Eternal Witness
+1 Felothar, Dawn of the Abzan
+1 Grand Abolisher
+1 Kutzil, Malamet Exemplar
+1 Assassin's Trophy
+1 Recruiter of the Guard
+1 Phyrexian Censor
+1 Abrupt Decay
+1 Vampiric Tutor
+1 Entomb

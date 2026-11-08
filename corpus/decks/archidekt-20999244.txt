@@ -1,0 +1,78 @@
+# Archidekt — Wizards
+# source: archidekt:20999244
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Kuja, Genome Sorcerer // Trance Kuja, Fate Defied
+
+Deck:
+1 Insult // Injury
+1 Firebrand Archer
+1 Guttersnipe
+1 Kederekt Parasite
+1 Lightning Strike
+1 Maddening Hex
+1 Sunspine Lynx
+1 Theater of Horrors
+1 You've Been Caught Stealing
+1 Thrill of Possibility
+1 Control of the Court
+1 Chaos Warp
+1 Corrupted Conviction
+1 Redirect Lightning
+1 Village Rites
+1 Armor of Shadows
+1 Luxury Suite
+1 Sol Ring
+1 Arcane Signet
+1 Chimil, the Inner Sun
+1 Jeska's Will
+1 Mana Geyser
+1 Gamble
+1 Reliquary Tower
+1 Bloodstained Mire
+1 Command Tower
+1 Big Score
+1 Rakdos Charm
+1 Grapeshot
+1 Roaming Throne
+1 Emeritus of Conflict // Lightning Bolt
+1 Kefka, Dancing Mad
+14 Swamp
+1 Boltwave
+1 Whip of Erebos
+1 Goblin Glasswright // Craft with Pride
+1 Blazing Firesinger // Seething Song
+1 Pyretic Ritual
+1 Tablet of Discovery
+1 Flashback
+1 Burst Lightning
+1 Summon: G.F. Ifrit
+1 Summon: G.F. Cerberus
+1 Summon: Brynhildr
+1 Summon: Anima
+1 Transpose
+1 Summon: Esper Valigarmanda
+1 Black Waltz No. 3
+1 Queen Brahne
+1 Circle of Power
+1 Black Mage's Rod
+1 Dark Ritual
+1 Cornered by Black Mages
+1 Lindblum, Industrial Regency // Mage Siege
+1 Coruscation Mage
+1 Mysidian Elder
+1 Lightning Bolt
+1 Wizard's Lightning
+1 Seething Song
+1 Artist's Talent
+1 Black Market Connections
+1 Twinflame Tyrant
+1 Vandalblast
+18 Mountain
+1 Ricochet Trap
+1 Blazemire Verge
+1 Evolving Wilds
+1 Dismember
+1 Bitter Triumph

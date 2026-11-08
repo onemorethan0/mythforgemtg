@@ -1,0 +1,78 @@
+# Archidekt — Bane, Lord of Darkness Knows How to Rhyme
+# source: archidekt:2854343
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Bane, Lord of Darkness
+
+Deck:
+1 Gavel of the Righteous
+1 Furtive Homunculus
+1 Armored Pegasus
+1 Rising Populace
+1 Evra, Halcyon Witness
+1 Pillory of the Sleepless
+1 Strider Harness
+1 Glacial Fortress
+1 Whispering Madness
+1 Guardian of the Gateless
+1 Dismiss
+1 Mesa Enchantress
+1 Emissary of the Sleepless
+1 Spread the Sickness
+1 Enhanced Awareness
+1 Devout Witness
+1 Viper's Kiss
+1 Medomai the Ageless
+1 Debt to the Deathless
+1 Descent into Madness
+1 Recumbent Bliss
+1 Hasran Ogress
+1 Scion of Darkness
+1 Soul Kiss
+1 Govern the Guildless
+1 Souls of the Faultless
+1 Exile into Darkness
+1 Measure of Wickedness
+1 Masako the Humorless
+1 Plunge into Darkness
+1 Llawan, Cephalid Empress
+1 Heightened Awareness
+1 Dakmor Sorceress
+1 Brink of Madness
+1 Spinning Darkness
+1 Mind Harness
+1 Drown in Shapelessness
+1 Repel the Darkness
+1 Righteousness
+1 True Love's Kiss
+1 Grasp of Darkness
+1 The Book of Vile Darkness
+1 Vampire's Kiss
+1 Cruel Witness
+1 Awakened Awareness
+8 Island
+12 Plains
+13 Swamp
+1 Castle Vantress
+1 Extract from Darkness
+1 Navigator's Compass
+1 Star Compass
+1 Sydri, Galvanic Genius
+1 Glimmer of Genius
+1 Stroke of Genius
+1 Nezumi Shortfang // Stabwhisker the Odious
+1 Island Fish Jasconius
+1 Lazav, the Multifarious
+1 Pirate's Cutlass
+1 Memorial to Genius
+1 Evincar's Justice
+1 Voidmage Apprentice
+1 Archon of Justice
+1 Everflowing Chalice
+1 Cowardice
+1 Knight of Malice
+1 Opal Palace
+1 Phyrexian Furnace
+1 Thaumatic Compass // Spires of Orazca

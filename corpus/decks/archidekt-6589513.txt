@@ -1,0 +1,95 @@
+# Archidekt — Xans
+# source: archidekt:6589513
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Xanathar, Guild Kingpin
+
+Deck:
+1 Sunken Hollow
+1 Treasure Vault
+1 Krydle of Baldur's Gate
+1 Hostage Taker
+1 Imprisoned in the Moon
+1 Shortcut Seeker
+1 Rogue Class
+1 Swiftfoot Boots
+1 You See a Guard Approach
+1 Ebondeath, Dracolich
+1 Swamp
+1 Terramorphic Expanse
+1 Baleful Beholder
+1 Baleful Strix
+1 Component Pouch
+1 Dead Man's Chest
+1 Evolving Wilds
+1 Fiend of the Shadows
+1 Grim Hireling
+1 Grazilaxx, Illithid Scholar
+1 Heirloom Blade
+2 Island
+1 Island
+1 Island
+1 Mimic
+1 Ray of Enfeeblement
+1 Sol Ring
+1 Solemn Simulacrum
+1 Sphere of Annihilation
+3 Swamp
+1 Tasha's Hideous Laughter
+2 Swamp
+1 Sword of the Animist
+1 Thieves' Tools
+1 Treasure Chest
+1 Mortuary Mire
+1 Netherese Puzzle-Ward
+4 Island
+1 Extract Brain
+1 Bojuka Bog
+3 Island
+1 Wayfarer's Bauble
+1 Commander's Sphere
+1 Darkwater Catacombs
+1 Sword of Hours
+1 Propaganda
+1 Soulknife Spy
+1 Dungeon Map
+1 The Deck of Many Things
+1 You Find the Villains' Lair
+1 Mind Stone
+1 Winged Boots
+3 Swamp
+1 Forsworn Paladin
+1 Ogre Slumlord
+1 Basilisk Collar
+1 Swamp
+1 Gonti, Lord of Luxury
+1 Lightfoot Rogue
+1 Check for Traps
+1 Viridian Longbow
+1 Arcane Signet
+1 You Come to a River
+1 Trickster's Talisman
+1 Skullport Merchant
+1 Ray of Frost
+1 Pixie Guide
+1 Merfolk Looter
+1 Lolth, Spider Queen
+1 Hoard Robber
+1 Hive of the Eye Tyrant
+1 Halimar Depths
+1 Guild Thief
+1 Feywild Trickster
+1 Exotic Orchard
+1 Dungeon Crawler
+1 Dimir Aqueduct
+1 Death Tyrant
+1 Command Tower
+1 Choked Estuary
+1 Yuan-Ti Fang-Blade
+1 Fly
+1 Yuan-Ti Malison
+1 Dungeon Descent
+1 Bar the Gate
+3 Swamp

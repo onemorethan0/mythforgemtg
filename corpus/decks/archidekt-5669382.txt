@@ -1,0 +1,98 @@
+# Archidekt — cEDH Lathril, Blade of the Elves (read description)
+# source: archidekt:5669382
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Lathril, Blade of the Elves
+
+Deck:
+1 Legolas's Quick Reflexes
+1 Grim Tutor
+1 Diabolic Intent
+1 Overgrown Tomb
+1 Deathcap Glade
+1 Woodland Cemetery
+1 Viridescent Bog
+1 Twilight Mire
+1 Coat of Arms
+1 Eladamri, Lord of Leaves
+1 Last March of the Ents
+1 Numa, Joraga Chieftain
+1 Marwyn, the Nurturer
+1 Jungle Hollow
+1 Allosaurus Shepherd
+1 Ezuri, Renegade Leader
+1 Sol Ring
+1 Canopy Tactician
+1 Verdant Catacombs
+1 Naturalize
+1 Craterhoof Behemoth
+1 Elvish Archdruid
+1 Elvish Mystic
+1 Galadhrim Brigade
+1 Command Tower
+1 Three Tree City
+1 The Great Henge
+1 Wirewood Channeler
+1 Elvish Harbinger
+1 Heroic Intervention
+1 Worldly Tutor
+1 Tribute to the World Tree
+1 Wirewood Lodge
+1 Benefactor's Draught
+1 Nature's Claim
+1 Wilt
+1 Phyrexian Altar
+1 Putrid Goblin
+1 Gaea's Cradle
+1 Beast Within
+1 Eladamri, Korvecdal
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Urborg, Tomb of Yawgmoth
+1 Mana Vault
+1 Vitalize
+1 Selvala, Heart of the Wilds
+1 Fyndhorn Elves
+1 Nykthos, Shrine to Nyx
+1 Orcish Bowmasters
+1 Opposition Agent
+1 Dark Ritual
+1 Imperial Seal
+1 Concordant Crossroads
+1 Umbral Mantle
+1 Staff of Domination
+1 Circle of Dreams Druid
+1 Sylvan Tutor
+1 Priest of Titania
+1 Lotus Petal
+7 Forest
+1 Elvish Promenade
+1 Gemstone Caverns
+1 Carpet of Flowers
+1 Cavern of Souls
+1 Elves of Deep Shadow
+5 Swamp
+1 Elvish Spirit Guide
+1 Skullclamp
+1 Beseech the Mirror
+1 Sylvan Library
+1 Mox Opal
+1 Survival of the Fittest
+1 Phyrexian Tower
+1 Delighted Halfling
+1 Veil of Summer
+1 Chrome Mox
+1 Alpha Authority
+1 Ancient Tomb
+1 Ad Nauseam
+1 Prismatic Vista
+1 Force of Vigor
+1 Heritage Druid
+1 Eldritch Evolution
+1 Ashaya, Soul of the Wild
+1 Seedborn Muse
+1 Elvish Guidance
+1 Vines of Vastwood
+1 The One Ring

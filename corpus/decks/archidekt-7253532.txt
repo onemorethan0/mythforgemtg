@@ -1,0 +1,108 @@
+# Archidekt — Rutstocrats
+# source: archidekt:7253532
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Honest Rutstein
+
+Deck:
+1 Foundation Breaker
+1 Blood Artist
+1 Midnight Reaper
+1 Underground Mortuary
+1 Satyr Wayfinder
+1 Sakura-Tribe Elder
+1 Reclamation Sage
+1 Poison-Tip Archer
+1 Farseek
+1 Moldervine Reclamation
+1 Bojuka Bog
+1 Sol Ring
+1 Deathcap Glade
+1 Overgrown Tomb
+1 Living Death
+1 Three Visits
+1 Grim Haruspex
+1 Victimize
+1 Yawgmoth, Thran Physician
+1 Phyrexian Tower
+1 Woodland Cemetery
+1 Undergrowth Stadium
+1 Llanowar Wastes
+1 Golgari Rot Farm
+1 Temple of Malady
+1 Verdant Catacombs
+1 Darkbore Pathway // Slitherbore Pathway
+1 Nurturing Peatland
+1 Morbid Opportunist
+1 Smothering Abomination
+1 Eternal Witness
+1 Arachnogenesis
+1 Assassin's Trophy
+1 Viscera Seer
+1 Animate Dead
+1 High Market
+1 Command Tower
+1 Skullclamp
+1 Altar of Dementia
+1 Spawning Pit
+1 Mitotic Slime
+1 Yahenni, Undying Partisan
+1 Syr Konrad, the Grim
+1 Nature's Lore
+1 Khalni Garden
+1 Malakir Rebirth // Malakir Mire
+1 Twilight's Call
+1 Deadly Tempest
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Guildless Commons
+1 Puppeteer Clique
+1 Vein Ripper
+1 Blanchwood Prowler
+1 Fell Stinger
+1 Swamp
+1 Necron Deathmark
+1 Millikin
+1 Prowling Geistcatcher
+1 Snow-Covered Swamp
+1 Timeless Witness
+1 Eccentric Farmer
+1 Unscrupulous Contractor
+1 Patient Naturalist
+1 Druid of Purification
+1 Lord Skitter, Sewer King
+1 Snow-Covered Forest
+1 Volrath's Stronghold
+1 Arid Archway
+1 Path of Ancestry
+1 Viridescent Bog
+1 Wake the Dead
+1 Toxic Deluge
+1 Braids, Arisen Nightmare
+1 Pawn of Ulamog
+1 Ogre Slumlord
+1 Beast Whisperer
+1 Massacre Wurm
+1 Phyrexian Altar
+1 Bastion of Remembrance
+1 Yavimaya, Cradle of Growth
+1 Prismatic Vista
+1 Forest
+1 Urborg, Tomb of Yawgmoth
+1 Tombstone Stairwell
+1 Malevolent Rumble
+1 Marionette Apprentice
+1 Primaris Eliminator
+1 Zulaport Cutthroat
+1 Sanguinary Priest
+1 Boggart Trawler // Boggart Bog
+1 Warren Soultrader
+1 Come Back Wrong
+1 Spinner of Souls
+1 Nine-Lives Familiar
+1 Lazotep Quarry
+1 Guardian Project
+1 Shifting Woodland
+1 Vengeful Bloodwitch
+1 Accursed Marauder

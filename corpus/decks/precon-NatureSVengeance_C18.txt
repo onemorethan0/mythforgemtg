@@ -1,0 +1,94 @@
+# WotC precon — Nature's Vengeance (C18, 2018-08-10)
+# source: mtgjson:NatureSVengeance_C18
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Lord Windgrace
+
+Deck:
+1 Acidic Slime
+1 Akoum Refuge
+1 Avenger of Zendikar
+1 Baloth Woodcrasher
+1 Barren Moor
+1 Blighted Woodland
+1 Bloodtracker
+1 Bojuka Bog
+1 Borderland Explorer
+1 Budoka Gardener // Dokai, Weaver of Life
+1 Centaur Vinecrasher
+1 Chain Reaction
+1 Charnelhoard Wurm
+1 Command Tower
+1 Consign to Dust
+1 Crash of Rhino Beetles
+1 Cultivate
+1 Deathreap Ritual
+1 Decimate
+1 Emissary of Grudges
+1 Evolving Wilds
+1 Explore
+1 Explosive Vegetation
+1 Far Wanderings
+1 Farhaven Elf
+1 Flameblast Dragon
+7 Forest
+1 Forge of Heroes
+1 Forgotten Cave
+1 Fury Storm
+1 Gaze of Granite
+1 Golgari Rot Farm
+1 Grapple with the Past
+1 Grim Backwoods
+1 Grisly Salvage
+1 Gruul Turf
+1 Gyrus, Waker of Corpses
+1 Harrow
+1 Haunted Fengraf
+1 Hunting Wilds
+1 Jund Panorama
+1 Jungle Hollow
+1 Kazandu Refuge
+1 Khalni Garden
+1 Khalni Heart Expedition
+1 Lavalanche
+1 Loyal Apprentice
+1 Loyal Guardian
+1 Loyal Subordinate
+1 Moldgraf Monstrosity
+1 Moonlight Bargain
+5 Mountain
+1 Mountain Valley
+1 Myriad Landscape
+1 Nesting Dragon
+1 Putrefy
+1 Rakdos Carnarium
+1 Rampaging Baloths
+1 Reality Scramble
+1 Retreat to Hagra
+1 Rocky Tar Pit
+1 Rubblehulk
+1 Ruinous Path
+1 Sakura-Tribe Elder
+1 Savage Lands
+1 Savage Twister
+1 Scute Mob
+1 Seer's Sundial
+1 Sol Ring
+1 Soul of Innistrad
+1 Stitch Together
+6 Swamp
+1 Temple of the False God
+1 Terramorphic Expanse
+1 Thantis, the Warweaver
+1 Tranquil Thicket
+1 Turntimber Sower
+1 Warped Landscape
+1 Whiptongue Hydra
+1 Windgrace's Judgment
+1 Worm Harvest
+1 Xantcha, Sleeper Agent
+1 Yavimaya Elder
+1 Zendikar Incarnate

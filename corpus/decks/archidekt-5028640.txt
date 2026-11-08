@@ -1,0 +1,101 @@
+# Archidekt — Rodent Poaching
+# source: archidekt:5028640
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Assassin's Trophy
+1 Ashnod's Altar
+1 Skullclamp
+1 Blood Artist
+1 Krav, the Unredeemed
+1 Deadly Dispute
+1 Nature's Claim
+1 Birds of Paradise
+1 Prosperous Innkeeper
+1 Yawgmoth, Thran Physician
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Toxic Deluge
+1 Cryptolith Rite
+1 Liliana, Dreadhorde General
+1 Wild Growth
+1 Plumb the Forbidden
+1 Tendershoot Dryad
+1 Malakir Rebirth // Malakir Mire
+1 Delighted Halfling
+1 Phyrexian Altar
+1 Lightning Greaves
+1 The Shire
+1 Overgrown Tomb
+1 Khalni Garden
+1 Field of the Dead
+1 Swarmyard
+1 Treasure Vault
+1 Command Tower
+1 Nurturing Peatland
+1 Fabled Passage
+1 Undergrowth Stadium
+1 Darkbore Pathway // Slitherbore Pathway
+1 Deathcap Glade
+1 Woodland Cemetery
+1 Verdant Catacombs
+1 Mirkwood Bats
+1 Zulaport Cutthroat
+1 Necropotence
+1 Nested Shambler
+1 Yavimaya, Cradle of Growth
+1 Llanowar Wastes
+1 Chatterstorm
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Wasteland
+1 Urborg, Tomb of Yawgmoth
+1 Polluted Delta
+1 Beledros Witherbloom
+1 Black Market Connections
+1 Vampiric Tutor
+1 Species Specialist
+1 Old Gnawbone
+1 Ohran Frostfang
+1 Marsh Flats
+1 Bloodstained Mire
+1 Marionette Apprentice
+1 Tireless Provisioner
+1 Grim Hireling
+1 Urza's Cave
+1 Sign in Blood
+1 Poison-Tip Archer
+1 Bitterblossom
+1 Wight of the Reliquary
+1 Village Rites
+1 Pile On
+1 Deadly Rollick
+1 Culling Ritual
+5 Swamp
+1 Demonic Tutor
+1 Underground Mortuary
+1 Parallel Lives
+1 Bastion of Remembrance
+1 Deep Forest Hermit
+1 Cabal Coffers
+4 Forest
+1 Noble's Purse
+1 Bojuka Bog
+1 Toski, Bearer of Secrets
+1 Chord of Calling
+1 Vernal Fen
+1 Springleaf Parade
+1 Swarmyard Massacre
+1 Elves of Deep Shadow
+1 Awaken the Woods
+1 The Cabbage Merchant
+1 Malevolent Rumble
+1 Braids, Arisen Nightmare
+1 Kingpin, Wilson Fisk
+1 The Unbeatable Squirrel Girl
+1 Fyndhorn Elves
+1 Flare of Malice
+1 Bitterbloom Bearer
+1 Arcane Signet

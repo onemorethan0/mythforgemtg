@@ -1,0 +1,80 @@
+# Archidekt — :Good: :News:
+# source: archidekt:16136310
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Swarm, Being of Bees
+
+Deck:
+1 Feed the Swarm
+1 Lashwrithe
+1 Phyresis
+1 Dark Ritual
+1 Sign in Blood
+1 Mask of Griselbrand
+1 Swiftfoot Boots
+1 Rush of Vitality
+1 Wayfarer's Bauble
+1 Vorpal Sword
+1 The Darkness Crystal
+1 Phyrexian Arena
+1 Ring of Xathrid
+1 Bojuka Bog
+1 Mind Stone
+1 Sol Ring
+1 Solemn Simulacrum
+1 Burnished Hart
+1 Leaden Myr
+1 Mask of Memory
+1 Astarion's Thirst
+1 Read the Bones
+1 Diresight
+1 Disciple of Bolas
+1 Night's Whisper
+1 Accursed Marauder
+1 Fleshbag Marauder
+1 Plaguecrafter
+1 Merciless Executioner
+1 Morbid Opportunist
+1 Consumed by Greed
+1 Ashnod's Intervention
+1 Dead Revels
+1 Soul Salvage
+1 Oversold Cemetery
+1 Charcoal Diamond
+1 Demon's Disciple
+1 Mortuary Mire
+1 Forge of Heroes
+1 Witch's Cottage
+1 Myriad Landscape
+1 Spymaster's Vault
+29 Swamp
+1 Crawl from the Cellar
+1 Haunted Cloak
+1 Key to the City
+1 Accorder's Shield
+1 Fireshrieker
+1 Inquisitor's Flail
+1 Strata Scythe
+1 Necrosynthesis
+1 Avishkar Raceway
+1 Ceremonial Knife
+1 Pointed Discussion
+1 Rogue's Passage
+1 Rankle, Master of Pranks
+1 Moonstone Eulogist
+1 Gravelighter
+1 Voldaren Bloodcaster // Bloodbat Summoner
+1 Transmutation Font
+1 Eternal Thirst
+1 Slum Reaper
+1 Leyline Axe
+1 Loxodon Warhammer
+1 Resourceful Return
+1 Sword of the Animist
+1 Blackblade Reforged
+1 Ornithopter of Paradise
+1 Deadly Tempest
+1 Fake Your Own Death
+1 Demonic Vigor

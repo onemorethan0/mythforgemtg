@@ -1,0 +1,92 @@
+# Archidekt — Giant Pains
+# source: archidekt:7143503
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Ancient Tomb); Bracket 1 allows 0
+
+Commander:
+1 Ancient Tomb
+1 Ruhan of the Fomori
+
+Deck:
+1 The Fire Crystal
+1 Winternight Stories
+1 Perilous Landscape
+1 Everett K. Ross, Hapless Attaché
+1 Thundercloud Shaman
+1 Grab the Reins
+1 Bonecrusher Giant // Stomp
+7 Mountain
+7 Plains
+1 Mystic Sanctuary
+1 Talisman of Progress
+6 Island
+1 Spinerock Knoll
+1 Bonders' Enclave
+1 Boldwyr Heavyweights
+1 Sol Ring
+1 Sunforger
+1 Faith's Reward
+1 Ancient Amphitheater
+1 Urza's Incubator
+1 Land Tax
+1 Clifftop Retreat
+1 Brion Stoutarm
+1 Brought Back
+1 Thryx, the Sudden Storm
+1 Breath of Life
+1 Inferno Titan
+1 Desolation Giant
+1 Hamletback Goliath
+1 Cyclone Summoner
+1 Sunrise Sovereign
+1 Tectonic Giant
+1 Cosmic Intervention
+1 Sulfur Falls
+1 Talisman of Conviction
+1 Rupture
+1 Siegebreaker Giant
+1 Herald's Horn
+1 Resurrection
+1 Quakebringer
+1 Stinkdrinker Daredevil
+1 Raugrin Triome
+1 Arena of Glory
+1 Hallowed Fountain
+1 Command Tower
+1 Prairie Stream
+1 Sacred Foundry
+1 Steam Vents
+1 Arcane Signet
+1 Lifeline
+1 Witch's Clinic
+1 Where Ancients Tread
+1 Fling
+1 Crush Underfoot
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Legion Leadership // Legion Stronghold
+1 Thud
+1 Eagle Vision
+1 Archmage of Runes
+1 Calamity Bearer
+1 Borderland Behemoth
+1 Impelled Giant
+1 Cinderheart Giant
+1 Grabby Giant // That's Mine
+1 Realm-Cloaked Giant // Cast Off
+1 Phlage, Titan of Fire's Fury
+1 Ravenous Giant
+1 Surtr, Fiery Jötun
+1 Zalto, Fire Giant Duke
+1 Giantfall
+1 Burdened Stoneback
+1 Boldwyr Aggressor
+1 Hovel Hurler
+1 Bre of Clan Stoutarm
+1 Continue?
+1 Zealous Lorecaster
+1 Bulk Up
+1 Flashback
+1 Cragganwick Cremator
+1 Gleaming Bastion
+1 Stone-Giant of High Pass

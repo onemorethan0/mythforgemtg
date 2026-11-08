@@ -1,0 +1,95 @@
+# Archidekt — Marwyn cEDH
+# source: archidekt:4734639
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Marwyn, the Nurturer
+
+Deck:
+1 Worldly Tutor
+1 Umbral Mantle
+1 Fauna Shaman
+1 Eternal Witness
+1 Allosaurus Shepherd
+1 Ancient Tomb
+1 Arbor Elf
+1 Ashaya, Soul of the Wild
+1 Beast Whisperer
+1 Beast Within
+1 Berserk
+1 Boon of Boseiju
+1 Boseiju, Who Endures
+1 Castle Garenbrig
+1 Cavern of Souls
+1 Chord of Calling
+1 Circle of Dreams Druid
+1 Crop Rotation
+1 Delighted Halfling
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Elvish Archdruid
+1 Elvish Spirit Guide
+1 Endurance
+1 Ezuri, Renegade Leader
+1 Fierce Empath
+1 Finale of Devastation
+1 Force of Vigor
+1 Gaea's Cradle
+1 Garruk, Primal Hunter
+1 Great Oak Guardian
+1 Green Sun's Zenith
+1 Hyrax Tower Scout
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Invigorate
+1 Kogla, the Titan Ape
+1 Last March of the Ents
+1 Leaf-Crowned Visionary
+1 Llanowar Elves
+1 Mana Vault
+1 Nykthos, Shrine to Nyx
+1 Priest of Titania
+1 Quirion Ranger
+1 Reclamation Sage
+1 Regal Force
+1 Return of the Wildspeaker
+1 Scale Up
+1 Scryb Ranger
+1 Shared Summons
+1 Sol Ring
+1 Summoner's Pact
+1 Survival of the Fittest
+1 Sylvan Library
+1 Temur Sabertooth
+1 Tooth and Nail
+1 Utopia Sprawl
+1 Veil of Summer
+1 Wild Growth
+1 Vines of Vastwood
+1 Wirewood Lodge
+1 Wirewood Symbiote
+1 Woodland Bellower
+1 Yavimaya, Cradle of Growth
+1 Natural Order
+1 Deserted Temple
+1 Yavimaya Hollow
+1 Legolas's Quick Reflexes
+1 Lotus Petal
+1 Chrome Mox
+1 Fyndhorn Elves
+1 Elvish Mystic
+1 Eldritch Evolution
+1 Obscuring Haze
+1 Staff of Domination
+1 Elvish Visionary
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Disciple of Freyalise // Garden of Freyalise
+1 Season of Gathering
+14 Forest
+1 Rishkar's Expertise
+1 Dionus, Elvish Archdruid
+1 Talon Gates of Madara
+1 Collector Ouphe
+1 Birds of Paradise
+1 Genesis Wave
+1 Homeward Path
+1 Vivien, Monsters' Advocate

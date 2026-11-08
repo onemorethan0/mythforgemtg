@@ -1,0 +1,86 @@
+# Archidekt — Mr. Blue Sky Ojutai
+# source: archidekt:5946565
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Dragonlord Ojutai
+
+Deck:
+1 Sol Ring
+1 Prairie Stream
+1 Adarkar Wastes
+1 Approach of the Second Sun
+1 On Serra's Wings
+1 Steel of the Godhead
+1 Counterspell
+1 Glacial Fortress
+1 Duelist's Heritage
+1 Arcane Denial
+1 Mystic Confluence
+1 Skycloud Expanse
+1 Restless Anchorage
+1 Rivendell
+1 Sentinel's Eyes
+1 Command Tower
+1 Path to Exile
+1 Render Silent
+1 Myriad Landscape
+1 Temple of Enlightenment
+1 Generous Gift
+1 Staggering Insight
+1 Azorius Chancery
+1 Negate
+1 Dovin's Veto
+1 Open the Armory
+1 Patriar's Seal
+1 An Offer You Can't Refuse
+1 Mystic Sanctuary
+1 Swords to Plowshares
+1 Slash the Ranks
+1 Combat Research
+1 Monumental Henge
+1 Battle Mastery
+1 Ghostly Prison
+1 Single Combat
+1 Aqueous Form
+1 Daybreak Coronet
+1 Timely Ward
+1 Promise of Loyalty
+1 Twinblade Blessing
+1 Windfall
+1 Narset, Parter of Veils
+1 Grand Arbiter Augustin IV
+1 Brainstorm
+1 Blind Obedience
+1 Propaganda
+1 Stubborn Denial
+1 Sheltered by Ghosts
+1 Stroke of Midnight
+1 Flawless Maneuver
+1 Archaeomancer's Map
+1 Aura of Silence
+1 Idyllic Tutor
+1 Smothering Tithe
+1 Smuggler's Share
+12 Island
+1 Rogue's Passage
+1 Resculpt
+1 Slip Out the Back
+1 Haunted Cloak
+1 Tarrian's Soulcleaver
+1 Spirit Mantle
+1 Brainsurge
+1 Excalibur, Sword of Eden
+1 Arcane Signet
+1 Talisman of Progress
+1 Azorius Signet
+1 Mind Stone
+1 Ring of Thune
+1 Steelshaper's Gift
+1 Cyclonic Rift
+1 Thought Vessel
+12 Plains
+1 Fellwar Stone
+1 Auramancer's Guise
+1 Swan Song

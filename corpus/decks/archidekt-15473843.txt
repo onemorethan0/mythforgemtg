@@ -1,0 +1,81 @@
+# Archidekt — Tiamat wants to be your Dungeon Master
+# source: archidekt:15473843
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tiamat
+
+Deck:
+1 Ancient Bronze Dragon
+1 Command Tower
+1 Geode Golem
+1 Grave Endeavor
+1 Imoen, Mystic Trickster
+1 Intrepid Outlander
+1 Magic Missile
+1 Power Word Kill
+1 Safana, Calimport Cutthroat
+1 Share the Spoils
+1 Sol Ring
+1 Song of Inspiration
+1 Stirring Bard
+1 You Find Some Prisoners
+4 Forest
+8 Island
+6 Plains
+1 Terramorphic Expanse
+5 Mountain
+9 Swamp
+1 Dungeon Map
+1 Mimic
+1 The Deck of Many Things
+1 Dungeoneer's Pack
+1 The Book of Vile Darkness
+1 Neverwinter Dryad
+1 Bar the Gate
+1 Barrowin of Clan Undurr
+1 Caves of Chaos Adventurer
+1 Displacer Beast
+1 Eccentric Apprentice
+1 Ellywick Tumblestrum
+1 Fates' Reversal
+1 Fly
+1 Hama Pashar, Ruin Seeker
+1 Loot Dispute
+1 Ravenloft Adventurer
+1 Rilsa Rael, Kingpin
+1 You Find a Cursed Idol
+1 Yuan-Ti Malison
+1 You Happen On a Glade
+1 Eye of Vecna
+1 Valiant Endeavor
+1 Acererak the Archlich
+1 Arcane Signet
+1 Bucknard's Everfull Purse
+1 Arcane Endeavor
+1 Evolving Wilds
+1 From the Catacombs
+1 Hand of Vecna
+1 Midnight Pathlighter
+1 Ancient Brass Dragon
+1 Ancient Copper Dragon
+1 Nadaar, Selfless Paladin
+1 Sarevok's Tome
+1 Sefris of the Hidden Ways
+1 Temple of the Dragon Queen
+1 Tomb of Horrors Adventurer
+1 Treasure Vault
+1 Unexpected Windfall
+1 White Plume Adventurer
+1 Vorpal Sword
+1 You Find the Villains' Lair
+1 Triumphant Adventurer
+1 Ancient Gold Dragon
+1 Ancient Silver Dragon
+1 Decanter of Endless Water
+1 Sword of Hours
+1 Hurl Through Hell
+1 Radiant Solar
+1 Revivify
+1 Thorough Investigation

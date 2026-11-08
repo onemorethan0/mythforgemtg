@@ -1,0 +1,89 @@
+# Archidekt — Symbiote Secrets (TCC Precon Competition)
+# source: archidekt:15931634
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 2 allows none
+
+Commander:
+1 Symbiote Spider-Man
+
+Deck:
+1 Sol Ring
+13 Swamp
+1 Temple of Deceit
+9 Island
+1 Command Tower
+1 Arcane Signet
+1 Commander's Sphere
+1 Araumi of the Dead Tide
+1 Rise of the Dark Realms
+1 Mystic Sanctuary
+1 Alien Symbiosis
+1 Risky Research
+1 Vibrant Cityscape
+1 Talisman of Dominance
+1 Dimir Signet
+1 Syr Konrad, the Grim
+1 Deep Analysis
+1 Winged Boots
+1 Doom Whisperer
+1 Animate Dead
+1 Lazav, the Multifarious
+1 Dig Through Time
+1 Murderous Cut
+1 Choked Estuary
+1 Sunken Hollow
+1 Secret Identity
+1 Amazing Acrobatics
+1 Logic Knot
+1 Tombstalker
+1 Defiled Crypt // Cadaver Lab
+1 Inkwell Leviathan
+1 Teval's Judgment
+1 Millikin
+1 Fountainport Bell
+1 Drownyard Temple
+1 Hullbreaker Horror
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Port of Karfell
+1 Junji, the Midnight Sky
+1 Takenuma, Abandoned Mire
+1 Phyrexian Metamorph
+1 Archaeomancer
+1 Netherborn Altar
+1 Morbius the Living Vampire
+1 Consuming Aberration
+1 School Daze
+1 Kaito Shizuki
+1 Swiftfoot Boots
+1 Cruel Somnophage // Can't Wake Up
+1 Likeness Looter
+1 Wonder
+1 Rogue's Passage
+1 Obsessive Stitcher
+1 Withering Torment
+1 Spider-Man Noir
+1 Vat of Rebirth
+1 Countersquall
+1 Charcoal Diamond
+1 Sky Diamond
+1 Invisible Stalker
+1 Deadly Tempest
+1 Young Necromancer
+1 Terror Tide
+1 Palace Siege
+1 Dread Return
+1 Creeping Tar Pit
+1 Krydle of Baldur's Gate
+1 Horrid Shadowspinner
+1 Negate
+1 Tomebound Lich
+1 Cultist of the Absolute
+1 Eldrazi Monument
+1 Fain, the Broker
+1 Living Death
+1 Tormod, the Desecrator
+1 Treasure Cruise
+1 Darkwater Catacombs
+1 Sunken Ruins
+1 Sinister Hideout

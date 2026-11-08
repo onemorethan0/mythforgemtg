@@ -1,0 +1,95 @@
+# WotC precon — Arcane Maelstrom (C20, 2020-04-17)
+# source: mtgjson:ArcaneMaelstrom_C20
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Crop Rotation); Bracket 2 allows 0
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Kalamax, the Stormsire
+
+Deck:
+1 Arcane Signet
+1 Artifact Mutation
+1 Bonder's Ornament
+1 Channeled Force
+1 Chaos Warp
+1 Charmbreaker Devils
+1 Chemister's Insight
+1 Cinder Glade
+1 Clash of Titans
+1 Comet Storm
+1 Command Tower
+1 Commander's Sphere
+1 Commune with Lava
+1 Crackling Drake
+1 Crop Rotation
+1 Curious Herd
+1 Decoy Gambit
+1 Deflecting Swat
+1 Desolate Lighthouse
+1 Djinn Illuminatus
+1 Dualcaster Mage
+1 Eon Frolicker
+1 Etali, Primal Storm
+1 Evolution Charm
+1 Exotic Orchard
+8 Forest
+1 Frantic Search
+1 Frontier Bivouac
+1 Glademuse
+1 Goblin Dark-Dwellers
+1 Growth Spiral
+1 Gruul Turf
+1 Haldan, Avid Arcanist
+1 Halimar Depths
+1 Harrow
+1 Hunter's Insight
+1 Hunting Pack
+5 Island
+1 Izzet Boilerworks
+1 Jace, Architect of Thought
+1 Kessig Wolf Run
+1 Lavabrink Floodgates
+1 Lightning Greaves
+1 Lunar Mystic
+1 Melek, Izzet Paragon
+1 Mossfire Valley
+1 Mosswort Bridge
+5 Mountain
+1 Murmuring Mystic
+1 Myriad Landscape
+1 Nascent Metamorph
+1 Natural Connection
+1 Niblis of Frost
+1 Oran-Rief, the Vastwood
+1 Pako, Arcane Retriever
+1 Predatory Impetus
+1 Primal Empathy
+1 Prophetic Bolt
+1 Psychic Impetus
+1 Rashmi, Eternities Crafter
+1 Ravenous Gigantotherium
+1 Rugged Highlands
+1 Rupture Spire
+1 Scavenger Grounds
+1 Shiny Impetus
+1 Simic Growth Chamber
+1 Slice in Twain
+1 Sol Ring
+1 Solemn Simulacrum
+1 Starstorm
+1 Strength of the Tajuru
+1 Surreal Memoir
+1 Swarm Intelligence
+1 Swiftwater Cliffs
+1 Talrand, Sky Summoner
+1 Temur Charm
+1 Thornwood Falls
+1 Tribute to the Wild
+1 Twinning Staff
+1 Whiplash Trap
+1 Wilderness Reclamation
+1 Wort, the Raidmother
+1 Xyris, the Writhing Storm
+1 Yavimaya Coast

@@ -1,0 +1,88 @@
+# Archidekt — Dimir Crustaceans
+# source: archidekt:7785410
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Riverchurn Monument + Maddening Cacophony; Bracket 1 allows none
+
+Commander:
+1 Phenax, God of Deception
+
+Deck:
+1 Ponder
+1 Opt
+1 Geier Reach Sanitarium
+1 Time Stop
+1 Talion, the Kindly Lord
+1 Chromeshell Crab
+1 Go for the Throat
+12 Island
+1 King Crab
+1 Ruin Crab
+1 Shorecomber Crab
+1 Charix, the Raging Isle
+1 Wormfang Crab
+1 Purple-Crystal Crab
+1 Riverchurn Monument
+1 Giant Crab
+1 Fortress Crab
+1 Thassa's Emissary
+1 Scrabbling Skullcrab
+1 Canyon Crab
+1 Arcane Signet
+1 Breach the Multiverse
+1 Command Tower
+1 Consider
+1 Consuming Aberration
+1 Cruel Somnophage // Can't Wake Up
+1 Dimir Signet
+1 Doom Blade
+1 Dream Eater
+1 Dreamborn Muse
+1 Dress Down
+1 Drowned Catacomb
+1 Fabled Passage
+1 Gyruda, Doom of Depths
+1 Isochron Scepter
+1 Maddening Cacophony
+1 Mana Confluence
+1 Mesmeric Orb
+1 Mindcrank
+1 Morphic Pool
+1 Mystic Remora
+1 Nighthawk Scavenger
+1 Polluted Delta
+1 Search for Azcanta // Azcanta, the Sunken Ruin
+1 Sheoldred's Edict
+1 Shipwreck Marsh
+1 Sol Ring
+1 Sunken Hollow
+1 Syr Konrad, the Grim
+1 Tale's End
+1 Talisman of Dominance
+1 Underground River
+1 Artificial Evolution
+11 Swamp
+1 Jwari Scuttler
+1 Gloomlake Verge
+1 Crabomination
+1 Mirelurk Queen
+1 Horseshoe Crab
+1 Wishcoin Crab
+1 Mirrorshell Crab
+1 Ancient Crab
+1 Gilded Scuttler
+1 Crystacean
+1 Armored Cancrix
+1 Deepmuck Desperado
+1 Clearwater Pathway // Murkwater Pathway
+1 Uchuulon
+1 Hard Evidence
+1 Scuttletide
+1 Drownyard Behemoth
+1 Dreadlight Monstrosity
+1 Skittering Crustacean
+1 Oraxid
+1 Eddymurk Crab
+1 Salvage Scuttler
+1 Vexing Scuttler
+1 Hedron Crab

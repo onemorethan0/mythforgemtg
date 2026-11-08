@@ -1,0 +1,90 @@
+# Archidekt — Hakballin'
+# source: archidekt:5892428
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Hakbal of the Surging Soul
+
+Deck:
+1 Yavimaya Coast
+1 Bident of Thassa
+1 Kindred Discovery
+1 Herald of Secret Streams
+1 Kopala, Warden of Waves
+1 Hardened Scales
+1 Kiora's Follower
+1 Mindspring Merfolk
+1 Beast Within
+1 Merfolk Branchwalker
+1 Flooded Grove
+1 Tatyova, Benthic Druid
+1 Command Tower
+1 Hinterland Harbor
+1 Path of Ancestry
+1 Vineglimmer Snarl
+1 Rejuvenating Springs
+1 Dreamroot Cascade
+1 Overflowing Basin
+1 Ghost Quarter
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Willowrush Verge
+1 Arcane Signet
+1 Nicanzil, Current Conductor
+1 Three Visits
+1 Mystic Remora
+1 Sol Ring
+1 Svyelun of Sea and Sky
+1 Raise the Palisade
+1 Tishana's Tidebinder
+1 Collective Resistance
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Benthic Biomancer
+1 Ozolith, the Shattered Spire
+1 Cold-Eyed Selkie
+1 Seafloor Oracle
+1 Stonybrook Banneret
+1 Deeproot Pilgrimage
+1 Deeproot Waters
+1 Ripples of Potential
+1 Mist Dancer
+1 Overwhelming Stampede
+1 Counterspell
+1 Nature's Lore
+1 River Herald Scout
+1 Cenote Scout
+1 Pongify
+1 Sentinel of the Nameless City
+1 Breeding Pool
+1 Sink into Stupor // Soporific Springs
+1 Mist-Cloaked Herald
+1 Rogue's Passage
+7 Forest
+1 Misty Rainforest
+1 Topography Tracker
+1 An Offer You Can't Refuse
+1 Stubborn Denial
+1 Summon: Leviathan
+1 Innkeeper's Talent
+1 Triton Shorestalker
+1 Namor the Sub-Mariner
+1 Kiora, the Rising Tide
+1 Sphere Grid
+1 Lord of Atlantis
+1 March of Swirling Mist
+1 Lightning Greaves
+1 Thieving Skydiver
+1 Reef Shaman
+1 Temporal Trespass
+1 Treasure Cruise
+1 Dig Through Time
+1 Master of the Pearl Trident
+1 Fog
+1 Swiftfoot Boots
+1 Burgeoning
+1 Roaming Throne
+1 Exploration
+1 Triumph of the Hordes
+1 Attuma, Atlantean Warlord
+13 Island
+1 Tide Shaper

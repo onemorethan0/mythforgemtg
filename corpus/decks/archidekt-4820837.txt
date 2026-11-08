@@ -1,0 +1,109 @@
+# Archidekt — Infinite Shadow (Retired)
+# source: archidekt:4820837
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Leyline of Transformation
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Brainstorm
+1 Temporal Trespass
+1 Clearwater Pathway // Murkwater Pathway
+1 Command Tower
+1 Underground River
+1 Snow-Covered Island
+1 City of Brass
+1 Arcane Signet
+1 Sol Ring
+1 Ornithopter
+1 Dauthi Voidwalker
+1 Faerie Seer
+1 Ingenious Infiltrator
+1 Mistblade Shinobi
+1 Wingcrafter
+1 Prosperous Thief
+1 Sakashima's Student
+1 Shadow of Mortality
+1 Spectral Sailor
+1 Street Wraith
+1 Changeling Outcast
+1 Mothdust Changeling
+1 Thassa's Oracle
+1 Tetsuko Umezawa, Fugitive
+1 Thousand-Faced Shadow
+1 Mystic Remora
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Commandeer
+1 Dismember
+1 Lim-Dûl's Vault
+1 Mental Misstep
+1 Misdirection
+1 Mystical Tutor
+1 Snuff Out
+1 Otawara, Soaring City
+1 Demonic Consultation
+1 Island
+1 Swamp
+1 Shizo, Death's Storehouse
+1 Snow-Covered Swamp
+1 Fourth Bridge Prowler
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Morphic Pool
+1 Watery Grave
+1 Tainted Pact
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Misty Rainforest
+1 Opposition Agent
+1 Diabolic Intent
+1 Force of Negation
+1 Force of Will
+1 Mox Amber
+1 Ninja of the Deep Hours
+1 Vampiric Tutor
+1 Sunken Ruins
+1 Mana Confluence
+1 Rhystic Study
+1 Moon-Circuit Hacker
+1 Nanogene Conversion
+1 Flusterstorm
+1 Ingenious Prodigy
+1 Orochi Soul-Reaver
+1 Force of Despair
+1 Flooded Strand
+1 Mausoleum Wanderer
+1 Contagion
+1 Marsh Flats
+1 Gemstone Caverns
+1 Mindbreak Trap
+1 Satoru, the Infiltrator
+1 Chrome Mox
+1 Mox Opal
+1 Roaming Throne
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Waterlogged Teachings // Inundated Archive
+1 Boggart Trawler // Boggart Bog
+1 Bloodstained Mire
+1 Polluted Delta
+1 Flare of Malice
+1 Flare of Denial
+1 Consign // Oblivion
+1 Mockingbird
+1 Silver-Fur Master
+1 Skullsnatcher
+1 Subtlety
+1 Darkslick Shores
+1 Phyrexian Walker
+1 Memnite
+1 Mist-Syndicate Naga
+1 Kaito, Bane of Nightmares
+1 Lotus Petal
+1 Scroll Rack
+1 Covert Technician
+1 Hope of Ghirapur
+1 Silver Raven
+1 Cephalid Coliseum

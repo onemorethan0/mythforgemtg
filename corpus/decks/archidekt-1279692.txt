@@ -1,0 +1,105 @@
+# Archidekt — Zaxara, the Exemplary [P:5.5][T:2][cmc:4][c:3.13][b:402][c]
+# source: archidekt:1279692
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Zaxara, the Exemplary
+
+Deck:
+1 Reality Spasm
+1 Wildest Dreams
+1 Spell Rupture
+1 Strength of the Tajuru
+1 Replicating Ring
+1 Spell Burst
+1 Garruk's Uprising
+1 Open into Wonder
+1 Sand Silos
+1 Rushwood Grove
+1 Saprazzan Cove
+1 Study Hall
+1 Opal Palace
+1 Subterranean Hangar
+1 Secluded Courtyard
+1 Opulent Palace
+1 Heroes' Bane
+1 Kiora, Behemoth Beckoner
+1 Cone of Cold
+1 Icy Blast
+1 Gridlock
+1 Nissa, Genesis Mage
+1 Mage-Ring Network
+1 The Goose Mother
+1 Lifeblood Hydra
+1 Thassa's Intervention
+1 Hydra Broodmaster
+1 Simic Ascendancy
+1 Overwhelming Stampede
+1 Kiora's Follower
+1 Death Denied
+1 Syncopate
+1 Primal Empathy
+2 Forest
+1 Command Tower
+1 Dreadship Reef
+1 Death's Presence
+1 Path of Ancestry
+1 Hydroid Krasis
+1 Distorting Wake
+1 Darkwater Catacombs
+1 Unclaimed Territory
+1 Twilight Mire
+1 Flooded Grove
+1 Plasm Capture
+1 Vigor
+1 Kruphix, God of Horizons
+1 Inexorable Tide
+1 Managorger Hydra
+1 Nesting Grounds
+1 Overflowing Basin
+1 Viridescent Bog
+1 Undergrowth Stadium
+1 Dreamroot Cascade
+1 Morphic Pool
+1 Shipwreck Marsh
+1 Karn's Bastion
+1 Hungering Hydra
+1 Tendo Ice Bridge
+1 Mana Reflection
+1 Bottomless Vault
+1 Hollow Trees
+1 Rogue's Passage
+2 Swamp
+2 Island
+1 Deepglow Skate
+1 Heroic Intervention
+1 Zagoth Triome
+1 Silkguard
+1 Diabolic Revelation
+1 Exsanguinate
+1 Gargos, Vicious Watcher
+1 Decisive Denial
+1 Spinning Wheel Kick
+1 Kiora, Master of the Depths
+1 Nylea's Intervention
+1 Profane Command
+1 Elementalist's Palette
+1 Everflowing Chalice
+1 Wave Goodbye
+1 Unbound Flourishing
+1 Branching Evolution
+1 Primal Vigor
+1 Primordial Hydra
+1 Neverwinter Hydra
+1 The Great Henge
+1 Herald of Secret Streams
+1 Innkeeper's Talent
+1 Mana Drain
+1 Mutational Advantage
+1 Steelbane Hydra
+1 Kalonian Hydra
+1 Ripples of Potential
+1 Sunken Ruins
+1 Deathcap Glade
+1 Rejuvenating Springs

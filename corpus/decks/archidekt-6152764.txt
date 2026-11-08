@@ -1,0 +1,97 @@
+# Archidekt — Mazzy Queen of Auras
+# source: archidekt:6152764
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Mazzy, Truesword Paladin
+
+Deck:
+1 Sram, Senior Edificer
+1 Sythis, Harvest's Hand
+1 Heroic Intervention
+1 Mesa Enchantress
+1 Jetmir's Garden
+1 Sacred Foundry
+1 Open the Armory
+1 Kor Spiritdancer
+1 Verduran Enchantress
+1 Ethereal Armor
+1 Enchantress's Presence
+1 Setessan Champion
+1 Yavimaya, Cradle of Growth
+1 Rootbound Crag
+1 Brushland
+1 Sage's Reverie
+1 Krosan Grip
+1 Bountiful Promenade
+1 Canopy Vista
+1 Command Tower
+1 Spectator Seating
+1 Sunpetal Grove
+1 Hall of Heliod's Generosity
+1 Fabled Passage
+1 Karplusan Forest
+1 Temple Garden
+1 Stomping Ground
+1 Exotic Orchard
+1 Unbridled Growth
+1 Sticky Fingers
+1 Kodama of the West Tree
+1 Strong Back
+1 Grim Reaper's Sprint
+1 Calix, Guided by Fate
+1 One with Nature
+1 Bear Umbra
+1 Sanctum Weaver
+1 Satyr Enchanter
+1 Windswept Heath
+1 Wooded Foothills
+1 Wild Growth
+1 Ancestral Mask
+1 Winds of Rath
+1 Swords to Plowshares
+1 Untimely Malfunction
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Sylvan Library
+1 Path of Ancestry
+1 City of Brass
+1 Clifftop Retreat
+1 Retether
+1 Mantle of the Ancients
+1 Elvish Archivist
+3 Snow-Covered Forest
+7 Snow-Covered Plains
+1 Snow-Covered Mountain
+1 Taiga
+1 Jukai Naturalist
+1 Fertile Ground
+1 Path to Exile
+1 Sterling Grove
+1 Bothersome Quasit
+1 Collective Resistance
+1 Pearl-Ear, Imperial Advisor
+1 Springheart Nantuko
+1 Sheltered by Ghosts
+1 Gatherer of Graces
+1 Felidar Umbra
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Armadillo Cloak
+1 Transcendent Envoy
+1 Reyav, Master Smith
+1 Danitha Capashen, Paragon
+1 Legion Leadership // Legion Stronghold
+1 Brilliant Wings
+1 Alpha Authority
+1 Pain for All
+1 Hyena Umbra
+1 All That Glitters
+1 Battle Mastery
+1 Strength of the Harvest // Haven of the Harvest
+1 Briar Shield
+1 Unquestioned Authority
+1 Spirit Mantle
+1 Aspect of Mongoose
+1 Boseiju, Who Endures
+1 Hallowed Haunting
+1 Eidolon of Blossoms

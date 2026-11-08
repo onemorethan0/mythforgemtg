@@ -1,0 +1,108 @@
+# Archidekt — A Knight to Remember
+# source: archidekt:4259966
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sidar Jabari of Zhalfir
+
+Deck:
+1 Talisman of Progress
+1 Talisman of Hierarchy
+1 Werefox Bodyguard
+1 Anguished Unmaking
+1 Sea of Clouds
+1 Glacial Fortress
+1 Reflecting Pool
+1 Bojuka Bog
+1 Winds of Abandon
+1 Chivalric Alliance
+1 Plains
+1 Smitten Swordmaster // Curry Favor
+1 Virtue of Loyalty // Ardenvale Fealty
+1 Unsettled Mariner
+1 Knight of the Ebon Legion
+1 Watery Grave
+1 Suppressor Skyguard
+1 Shay Cormac
+1 Polluted Delta
+1 Skycloud Expanse
+1 Marsh Flats
+1 Talisman of Dominance
+1 Kinsbaile Cavalier
+1 Knight of the White Orchid
+1 Silverwing Squadron
+1 Haakon, Stromgald Scourge
+1 Knights' Charge
+1 Battle Angels of Tyr
+1 Guardian of Faith
+1 Knight of Dusk's Shadow
+1 Kindred Discovery
+1 Bident of Thassa
+1 Marshal of Zhalfir
+1 Herald's Horn
+1 Swamp
+1 Herald of Hoofbeats
+1 Vodalian Wave-Knight
+1 Exsanguinator Cavalry
+1 Swamp
+1 Island
+1 Plains
+1 Secluded Courtyard
+1 Eiganjo, Seat of the Empire
+1 Swiftfoot Boots
+1 Ayara's Oathsworn
+1 Raise the Palisade
+1 Moonshaker Cavalry
+1 Kindred Dominance
+1 Shattered Sanctum
+1 Deserted Beach
+1 Shipwreck Marsh
+1 Vault of Champions
+1 Morphic Pool
+1 Raffine's Tower
+1 Sol Ring
+1 Command Tower
+1 Exotic Orchard
+1 Arcane Signet
+1 Fellwar Stone
+1 Darkwater Catacombs
+1 Silverblade Paladin
+1 Knight Exemplar
+1 Wintermoor Commander
+1 Corpse Knight
+1 Minas Tirith
+1 Etchings of the Chosen
+1 Godless Shrine
+1 Hallowed Fountain
+1 Isolated Chapel
+1 Haytham Kenway
+1 Flooded Strand
+1 Conjurer's Mantle
+1 Bartolomé del Presidio
+1 Adeline, Resplendent Cathar
+1 Arcane Denial
+1 Skyhunter Strike Force
+1 An Offer You Can't Refuse
+1 Trouble in Pairs
+1 Flawless Maneuver
+1 Deadly Rollick
+1 Windfall
+1 Cover of Darkness
+1 Swords to Plowshares
+1 Generous Gift
+1 Summon: Knights of Round
+1 Summon: Primal Odin
+1 Dion, Bahamut's Dominant // Bahamut, Warden of Light
+1 The Council of Four
+1 Syr Vondam, the Lucent
+1 Syr Vondam, Sunstar Exemplar
+1 Plains
+1 Swamp
+1 Island
+1 Teferi's Ageless Insight
+1 Secret Tunnel
+1 Leadership Vacuum
+1 Prairie Stream
+1 Cyclonic Rift
+1 Gifts Ungiven

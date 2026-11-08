@@ -1,0 +1,83 @@
+# Archidekt — Sagittarii
+# source: archidekt:7170746
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ohabi Caleria
+
+Deck:
+1 Basilisk Collar
+13 Plains
+1 Gavony Township
+1 Detection Tower
+1 Silhana Starfletcher
+1 Reverent Hunter
+1 Fortified Village
+1 Temple Garden
+1 Stalking Leonin
+1 Greatbow Doyen
+1 Overgrown Farmland
+1 Wildborn Preserver
+1 Arcus Acolyte
+1 Bamboo Grove Archer
+1 Catti-brie of Mithral Hall
+1 Crossbow Infantry
+1 D'Avenant Archer
+1 Brigid, Hero of Kinsbaile
+1 Elvish Archers
+1 Femeref Archers
+1 Elite Archers
+1 Finneas, Ace Archer
+1 Legolas Greenleaf
+1 Longshot Squad
+1 Jagged-Scar Archers
+1 Lady Caleria
+1 Palazzo Archers
+1 Ranger en-Vec
+1 Metallic Mimic
+1 Nylea, Keen-Eyed
+1 Selesnya Sagittars
+1 Scrapshooter
+1 Scattershot Archer
+1 Skyway Sniper
+1 Titania's Chosen
+1 Thornweald Archer
+1 Bow of Nylea
+1 Trophy Hunter
+1 Trostani, Three Whispers
+1 Webstrike Elite
+1 Gorgon's Head
+1 Arcane Signet
+1 Hunter's Bow
+1 Masterwork of Ingenuity
+1 Patchwork Banner
+1 Swiftfoot Boots
+1 Viridian Longbow
+1 Hunter's Talent
+1 Awakening
+1 Dazzling Theater // Prop Room
+1 Vivien, Arkbow Ranger
+1 Dawn's Truce
+1 Heroic Intervention
+1 Vitalize
+1 Command Tower
+14 Forest
+1 Horizon Canopy
+1 Razorverge Thicket
+1 Krosan Verge
+1 Gorgon Flail
+1 Quietus Spike
+1 To Arms!
+1 Unbreakable Formation
+1 Clever Concealment
+1 Dragon Sniper
+1 G'raha Tia
+1 Halana, Kessig Ranger
+1 Brushland
+1 Legolas's Quick Reflexes
+1 Dawn's Light Archer
+1 Hawkeye, Clint Barton
+1 Stunning Shot
+1 Concordant Crossroads
+1 Nature's Chosen

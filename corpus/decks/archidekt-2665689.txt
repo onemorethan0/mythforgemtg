@@ -1,0 +1,107 @@
+# Archidekt — Chishiro: High power
+# source: archidekt:2665689
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Chishiro, the Shattered Blade
+
+Deck:
+1 Worldly Tutor
+1 Green Sun's Zenith
+1 Sword of Fire and Ice
+1 Silkguard
+1 Heroic Intervention
+1 Spire Garden
+1 Shadowspear
+1 Inspiring Call
+1 Zephyr Boots
+1 Kenrith's Transformation
+1 Whip Silk
+1 Gamble
+1 Pyroblast
+1 Mask of Memory
+1 Lightning Greaves
+1 Commander's Plate
+1 Sylvan Library
+1 Benevolent Hydra
+1 Deflecting Swat
+1 Carpet of Flowers
+1 Arid Mesa
+1 Conqueror's Flail
+1 Destiny Spinner
+1 Dragon's Rage Channeler
+1 The One Ring
+1 Mountain
+1 Rabbit Battery
+1 Sword of Truth and Justice
+1 Tangle Wire
+1 Tibalt's Trickery
+1 Manglehorn
+1 Arcane Signet
+1 Taiga
+1 Jeweled Lotus
+1 Mana Crypt
+1 Mox Diamond
+1 Gaea's Cradle
+1 Ancient Tomb
+1 Crop Rotation
+1 Delayed Blast Fireball
+1 Valakut Awakening // Valakut Stoneforge
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Gyre Sage
+1 Goldspan Dragon
+1 Rishkar, Peema Renegade
+1 Stomping Ground
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Professional Face-Breaker
+1 The Great Henge
+1 Sword of Feast and Famine
+1 Jeska's Will
+1 Sol Ring
+1 Fyndhorn Elves
+1 Delighted Halfling
+1 Wild Growth
+1 Birds of Paradise
+1 Devoted Druid
+1 Dockside Extortionist
+1 Urza's Saga
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Paradise Mantle
+1 Talon Gates of Madara
+1 Plaza of Heroes
+1 Urza's Cave
+1 Wooded Foothills
+1 Command Tower
+2 Forest
+1 Boseiju, Who Endures
+1 Gemstone Caverns
+1 Misty Rainforest
+1 Dryad Arbor
+1 Grove of the Burnwillows
+1 Mana Confluence
+1 Verdant Catacombs
+1 Karplusan Forest
+1 Windswept Heath
+1 Yavimaya, Cradle of Growth
+1 Llanowar Reborn
+1 Inventors' Fair
+1 Helm of the Host
+1 Godo, Bandit Warlord
+1 Combat Celebrant
+1 Chaos Warp
+1 Beast Within
+1 Toski, Bearer of Secrets
+1 Hammer of Nazahn
+1 Swiftfoot Boots
+1 Finale of Devastation
+1 Chord of Calling
+1 Haywire Mite
+1 Return of the Wildspeaker
+1 Goblin Engineer
+1 Embercleave
+1 Lizard Blades
+1 Metallic Mimic
+1 Mithril Coat
+1 Mox Opal
+1 Ohran Frostfang

@@ -1,0 +1,102 @@
+# Archidekt — Maralen: Elf & Faerie Tribal
+# source: archidekt:5311494
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Maralen, Fae Ascendant
+
+Deck:
+1 Archmage of Echoes
+1 Glen Elendra Archmage
+1 Kindred Discovery
+1 Talion, the Kindly Lord
+1 Bitterblossom
+1 Fetid Pools
+1 Exotic Orchard
+1 Faerie Conclave
+1 Bojuka Bog
+1 Command Tower
+1 Faerie Bladecrafter
+1 Faerie Formation
+1 Kindred Dominance
+1 Malleable Impostor
+1 Oona, Queen of the Fae
+1 Path of Ancestry
+1 Rankle, Master of Pranks
+1 Scion of Oona
+1 Secluded Glen
+1 Sower of Temptation
+1 Sunken Hollow
+3 Island
+1 Faerie Mastermind
+1 Mistbind Clique
+1 Raise the Palisade
+1 Spellstutter Sprite
+1 Black Market Connections
+1 Champions of the Perfect
+1 Tegwyll, Duke of Splendor
+1 Alela, Cunning Conqueror
+1 Three Tree City
+1 Titan of Littjara
+1 Mutable Explorer
+1 Elvish Mystic
+3 Swamp
+1 Obyra, Dreaming Duelist
+1 Llanowar Elves
+1 Fyndhorn Elves
+1 Maraleaf Pixie
+3 Forest
+1 Beast Whisperer
+1 Zagoth Triome
+1 Opulent Palace
+1 Dreamroot Cascade
+1 Beast Within
+1 Elves of Deep Shadow
+1 Deathcap Glade
+1 Reclamation Sage
+1 Assassin's Trophy
+1 Bitterbloom Bearer
+1 Chomping Changeling
+1 High Fae Trickster
+1 Banner of Kinship
+1 Underground River
+1 Yavimaya Coast
+1 Llanowar Wastes
+1 Flitterwing Nuisance
+1 Brazen Borrower // Petty Theft
+1 Guardian Project
+1 Circle of Dreams Druid
+1 Roaming Throne
+1 Druid of Purification
+1 Paradise Druid
+1 Elvish Archdruid
+1 Canopy Tactician
+1 Imperious Perfect
+1 Drowned Catacomb
+1 Shipwreck Marsh
+1 Abundant Countryside
+1 Eclipsed Realms
+1 Sunken Ruins
+1 Flooded Grove
+1 Twilight Mire
+1 Trenzalore Clocktower
+1 Urborg Elf
+1 Fabled Passage
+1 Bloom Tender
+1 Gilt-Leaf Palace
+1 Woodland Cemetery
+1 Hinterland Harbor
+1 Llanowar Loamspeaker
+1 Priest of Titania
+1 Bloodline Bidding
+1 Harmonized Crescendo
+1 Blasphemous Edict
+1 Selfless Safewright
+1 Patriarch's Bidding
+1 Skemfar Avenger
+1 Wolverine Riders
+1 Selvala, Heart of the Wilds
+1 Gwenna, Eyes of Gaea
+1 Distant Melody
+1 Glen Elendra Guardian

@@ -1,0 +1,91 @@
+# Archidekt — CZ 683 | Jetmir | The Best Tokens Commanders
+# source: archidekt:13625905
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Jetmir, Nexus of Revels
+
+Deck:
+1 Overgrown Farmland
+1 Welcoming Vampire
+1 Call the Coppercoats
+1 Rampant Growth
+1 Austere Command
+1 Windbrisk Heights
+1 Aura Mutation
+1 Artifact Mutation
+1 Path to Exile
+1 March of the Multitudes
+1 Pest Infestation
+1 Birds of Paradise
+1 Champion of Lambholt
+1 Swords to Plowshares
+1 Avacyn's Pilgrim
+1 Jinnie Fay, Jetmir's Second
+1 Toski, Bearer of Secrets
+1 Fyndhorn Elves
+1 Llanowar Elves
+1 Gala Greeters
+1 Farseek
+1 Song of Totentanz
+1 Tendershoot Dryad
+1 Avenger of Zendikar
+1 Blasphemous Act
+1 Felidar Retreat
+1 Rumor Gatherer
+1 Professional Face-Breaker
+1 Rite of Harmony
+1 Forth Eorlingas!
+1 Vandalblast
+1 Skullclamp
+1 Nature's Lore
+1 Impact Tremors
+1 Sunpetal Grove
+1 Rootbound Crag
+1 Idol of Oblivion
+1 Clifftop Retreat
+1 Rockfall Vale
+1 Exotic Orchard
+1 Tocasia's Welcome
+1 Jungle Shrine
+1 Cryptolith Rite
+1 Wand of the Worldsoul
+1 Canopy Vista
+1 Command Tower
+1 Cinder Glade
+1 Khalni Garden
+1 Sol Ring
+6 Mountain
+7 Forest
+1 Brushland
+1 Karplusan Forest
+7 Plains
+1 Battlefield Forge
+1 Bushwhack
+1 Will of the Mardu
+1 Ohran Frostfang
+1 Kher Keep
+1 Grand Crescendo
+1 Ainok Strike Leader
+1 Fountainport
+1 Kutzil, Malamet Exemplar
+1 Krenko, Tin Street Kingpin
+1 Adeline, Resplendent Cathar
+1 Jaheira, Friend of the Forest
+1 Baylen, the Haymaker
+1 Sakura-Tribe Elder
+1 Wildfire Awakener
+1 Shamanic Revelation
+1 King Darien XLVIII
+1 White Sun's Twilight
+1 Witty Roastmaster
+1 Hull Breach
+1 Collective Resistance
+1 Pick Your Poison
+1 Goblin Anarchomancer
+1 Mercadia's Downfall
+1 Farmer Cotton
+1 Halo Fountain
+1 Defend the Rider
+1 Secure the Wastes

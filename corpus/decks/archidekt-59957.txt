@@ -1,0 +1,98 @@
+# Archidekt — Mogis, God of Slaughter - Group Slug
+# source: archidekt:59957
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Mogis, God of Slaughter
+
+Deck:
+1 Ankh of Mishra
+1 Court of Ambition
+1 Fabled Passage
+1 Chandra, Awakened Inferno
+1 Protection Racket
+1 Mikokoro, Center of the Sea
+1 Solphim, Mayhem Dominus
+1 Baleful Mastery
+1 Descent into Avernus
+1 Rug of Smothering
+1 Sol Ring
+1 Graven Cairns
+1 Rampaging Ferocidon
+1 Disrupt Decorum
+1 Scavenger Grounds
+1 Night's Whisper
+1 Harsh Mentor
+1 Canyon Slough
+1 Zo-Zu the Punisher
+1 Blasphemous Act
+1 Kazuul, Tyrant of the Cliffs
+1 Fellwar Stone
+1 Command Tower
+1 Dragonskull Summit
+1 Sulfuric Vortex
+1 Vandalblast
+1 Archfiend of Depravity
+1 Bojuka Bog
+1 Kher Keep
+1 Manabarbs
+1 Spiteful Visions
+1 Spellshock
+1 Luxury Suite
+1 Sower of Discord
+1 Thespian's Stage
+1 Bedevil
+1 Rakdos Carnarium
+1 Rakdos Signet
+1 Temple of Malice
+1 Rakdos Charm
+1 Whip of Erebos
+1 Master of Cruelties
+1 Bloodthirsty Blade
+1 Fiendish Duo
+1 Brash Taunter
+1 Exquisite Blood
+1 Wound Reflection
+1 Valakut Awakening // Valakut Stoneforge
+1 Roiling Vortex
+1 Blightstep Pathway // Searstep Pathway
+1 Tibalt's Trickery
+1 Kardur, Doomscourge
+1 Heartless Hidetsugu
+1 Roadside Reliquary
+1 Takenuma, Abandoned Mire
+1 Raucous Theater
+1 Abrade
+1 Demolition Field
+1 Bloodsoaked Insight // Sanguine Morass
+1 Fell the Profane // Fell Mire
+1 Deadly Tempest
+1 Razorkin Needlehead
+1 Ash Barrens
+1 Withering Torment
+1 Spiked Corridor // Torture Pit
+1 Gleeful Arsonist
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Twinflame Tyrant
+1 Bloodthirsty Conqueror
+1 Scrawling Crawler
+1 Painful Quandary
+1 Valgavoth, Harrower of Souls
+1 Sokenzan, Crucible of Defiance
+1 Barbflare Gremlin
+1 Arcane Signet
+1 Mai, Scornful Striker
+1 Tree of Perdition
+1 Prisoner's Dilemma
+1 Olinda the Oblivious
+1 Haunted Ridge
+4 Swamp
+1 Turbulent Crater
+1 Talisman of Indulgence
+1 The Lord of Pain
+1 Mob Verdict
+1 Cast Away Doubt
+8 Mountain
+1 Gideon the Oathless
+1 Fate Unraveler

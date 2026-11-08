@@ -1,0 +1,108 @@
+# Archidekt — Teysa - Aristocrats / Combo
+# source: archidekt:5418607
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Teysa, Orzhov Scion
+
+Deck:
+1 Bartolomé del Presidio
+1 Batwing Brume
+1 Sol Ring
+1 Fetid Heath
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Caves of Koilos
+1 Command Tower
+1 Tormod, the Desecrator
+1 Bleachbone Verge
+1 Plains
+1 Vault of Champions
+1 Demonic Tutor
+1 Godless Shrine
+1 Endless Cockroaches
+1 Phyrexian Altar
+1 Warren Soultrader
+1 Phyrexian Tower
+1 Shattered Sanctum
+1 Marsh Flats
+1 Darkness
+1 Vampiric Tutor
+1 Diabolic Intent
+1 Reflecting Pool
+1 City of Brass
+1 Scrubland
+1 Enlightened Tutor
+1 Ad Nauseam
+1 Necropotence
+1 Viscera Seer
+1 Elas il-Kor, Sadistic Pilgrim
+1 Talisman of Hierarchy
+1 Arcane Signet
+1 Reassembling Skeleton
+1 Dark Ritual
+1 Kami of False Hope
+1 Soul Warden
+1 Carrion Feeder
+1 Relentless Dead
+1 Gravecrawler
+1 Soul's Attendant
+1 Children of Korlis
+1 Endrek Sahr, Master Breeder
+1 Kambal, Profiteering Mayor
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Plains
+1 Plains
+1 Plains
+1 Spellbook
+1 Erebos, Bleak-Hearted
+1 Holy Day
+1 Grim Tutor
+1 Drivnod, Carnage Dominus
+1 Isolated Chapel
+1 Silent Clearing
+1 Teysa Karlov
+1 Veinwitch Coven
+1 Tainted Field
+1 Suture Priest
+1 Midnight Reaper
+1 Cult Conscript
+1 Emptiness
+1 Enduring Renewal
+1 Corpse Knight
+1 Cruel Celebrant
+1 Bloodsoaked Champion
+1 Luminous Broodmoth
+1 Blood Artist
+1 Zulaport Cutthroat
+1 Skullclamp
+1 Pitiless Plunderer
+1 Orzhov Signet
+1 Phyrexian Reclamation
+1 Mox Amber
+1 Ashnod's Altar
+1 Blasting Station
+1 Painter's Servant
+1 Darkest Hour
+1 Bolas's Citadel
+1 Beseech the Mirror
+1 Lotus Petal
+1 Athreos, God of Passage
+1 Mana Confluence
+1 Amalia Benavides Aguirre
+1 Grave Pact
+1 Dictate of Erebos
+1 The Meathook Massacre
+1 Yawgmoth, Thran Physician
+1 Deadly Rollick

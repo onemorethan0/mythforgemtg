@@ -1,0 +1,95 @@
+# Archidekt — Capitoline Spirits
+# source: archidekt:9180856
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Iname, Death Aspect
+
+Deck:
+1 He Who Hungers
+1 Ghoulcaller Gisa
+1 Toxic Deluge
+1 Myojin of Grim Betrayal
+1 Whip of Erebos
+1 Thespian's Stage
+1 Night's Whisper
+1 Razaketh's Rite
+1 Nested Shambler
+1 Spirit of the Night
+1 The Capitoline Triad
+1 Junji, the Midnight Sky
+1 Kagemaro, First to Suffer
+1 Sidisi, Undead Vizier
+1 Diabolic Tutor
+1 Final Parting
+1 Grim Tutor
+1 Mastermind's Acquisition
+1 Beseech the Mirror
+1 Bojuka Bog
+1 Phyrexian Tower
+1 Takenuma, Abandoned Mire
+1 Witch's Cottage
+1 Withering Torment
+1 Army of the Damned
+1 Carrion
+1 Threefold Thunderhulk
+1 Giggling Skitterspike
+1 Insatiable Avarice
+1 Expedition Map
+1 Wayfarer's Bauble
+1 Fell the Profane // Fell Mire
+1 Mandate of Abaddon
+1 Disciple of Bolas
+1 Miren, the Moaning Well
+1 Shadowheart, Dark Justiciar
+1 Urza's Cave
+1 Hagra Mauling // Hagra Broodpit
+1 Burnished Hart
+1 Myojin of Night's Reach
+1 Nether Traitor
+1 Eerie Soultender
+1 Kalitas, Traitor of Ghet
+1 K'rrik, Son of Yawgmoth
+1 Canoptek Wraith
+1 Bloodghast
+1 Sign in Blood
+1 Diresight
+1 Crypt of Agadeem
+1 Demolition Field
+1 Revenge of the Rats
+1 Avenger of the Fallen
+1 The Final Days
+1 Susur Secundi, Void Altar
+1 Thran Dynamo
+1 Worn Powerstone
+1 Palladium Myr
+1 Zero Point Ballad
+1 Firdoch Core
+1 Splinter's Technique
+1 Realm of Koh
+1 Great Arashin City
+1 Koh, the Face Stealer
+1 Keys to the House
+1 Renegade Map
+1 World Map
+1 Wanderer's Twig
+1 Inscribed Tablet
+1 Mind Stone
+1 Shardless Outlander
+1 Branch of Vitu-Ghazi
+1 Fountainport
+1 Foot Chopper
+1 Kimoyo Beads
+1 Traveler's Amulet
+1 Rise of the Deathbringer
+1 Head of the Hunt
+14 Swamp
+1 Hidden Hideout
+1 Witch's Clinic
+1 Vito, Thorn of the Dusk Rose
+1 Crowded Crypt
+1 Nether Shadow
+1 Szat's Will
+1 Omarthis, Ghostfire Initiate
+1 Shredder's Technique

@@ -1,0 +1,92 @@
+# Archidekt — Yogg-Saron’s Chaos
+# source: archidekt:7472999
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Dynaheir, Invoker Adept
+
+Deck:
+1 Retreat to Coralhelm
+1 Timeless Dragon
+1 Fabricate
+1 Illusionist's Bracers
+1 Expel from Orazca
+1 Silver Myr
+1 Iron Myr
+1 Chaos Wand
+1 Omen Hawker
+1 Battlefield Forge
+1 Wand of Wonder
+1 Exotic Orchard
+1 Hidden Courtyard
+1 Arcanis the Omnipotent
+1 Gold Myr
+1 Ornithopter of Paradise
+1 Azorius Chancery
+1 Command Tower
+1 Oswald Fiddlebender
+1 Whir of Invention
+1 Hidden Volcano
+1 Clifftop Retreat
+1 Boros Garrison
+1 Hidden Cataract
+1 Glacial Fortress
+1 Trophy Mage
+1 Step Through
+1 Plargg, Dean of Chaos // Augusta, Dean of Order
+1 Contraband Livestock
+1 Chaos Warp
+1 Humble Defector
+1 Patriar's Seal
+1 Evolving Wilds
+1 Izzet Signet
+1 Nimbleclaw Adept
+1 Rewind
+1 Terramorphic Expanse
+1 Eye of the Storm
+1 Great Furnace
+1 Unwind
+1 Azorius Signet
+1 Inspired Ultimatum
+1 Boros Signet
+1 Transmutation Font
+1 Stick Together
+1 Arch of Orazca
+1 Clever Conjurer
+1 Mystic Monastery
+7 Island
+1 Seat of the Synod
+1 Apprentice Wizard
+1 Arcane Signet
+1 Dance with Calamity
+1 Trinket Mage
+1 Wizard's Spellbook
+1 Ral Zarek
+1 Tunnel Vision
+1 The Enigma Jewel // Locus of Enlightenment
+1 Mordenkainen
+1 Sulfur Falls
+1 Hidden Strings
+1 Sol Ring
+1 Dazzling Sphinx
+1 Tribute Mage
+7 Mountain
+1 Champion of Wits
+7 Plains
+1 Vhal, Candlekeep Researcher
+1 Adept Watershaper
+1 Palladium Myr
+1 Winnowing
+1 Prairie Stream
+1 Echo of Eons
+1 Heretic's Punishment
+1 Shadow of the Second Sun
+1 Invasion of Arcavios // Invocation of the Founders
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Displacer Kitten
+1 White Plume Adventurer
+1 Unbender Tine
+1 Rousing Refrain
+1 Ignite the Future
+1 Mana Geyser

@@ -1,0 +1,104 @@
+# Archidekt — Gale + Scion Token Thanksgiving
+# source: archidekt:3069713
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Scion of Halaster
+1 Gale, Waterdeep Prodigy
+
+Deck:
+1 Wizards of Thay
+1 Baral, Chief of Compliance
+1 Poppet Stitcher // Poppet Factory
+1 Sedgemoor Witch
+1 Talrand, Sky Summoner
+1 Docent of Perfection // Final Iteration
+1 Pact of Negation
+1 Counterspell
+1 Mystical Tutor
+1 Cyclonic Rift
+1 Force of Will
+1 Gush
+1 Sublime Epiphany
+1 Fierce Guardianship
+1 Gitaxian Probe
+1 Imperial Seal
+1 Ponder
+1 Preordain
+1 Serum Visions
+1 Sapphire Medallion
+1 Thought Vessel
+1 Primal Amulet // Primal Wellspring
+1 Dire Undercurrents
+1 Metallurgic Summonings
+1 Drowned Catacomb
+1 Mana Confluence
+1 Marsh Flats
+1 Misty Rainforest
+1 Morphic Pool
+1 Polluted Delta
+1 Reflecting Pool
+1 Mystic Sanctuary
+1 Otawara, Soaring City
+1 Negate
+1 Flooded Strand
+1 Mana Drain
+1 Force of Negation
+1 Deadly Rollick
+1 Rewind
+1 Snuff Out
+1 Demonic Tutor
+1 Night's Whisper
+1 See the Truth
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Drawn from Dreams
+1 Wash Out
+1 Time Warp
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Treasure Cruise
+1 Feed the Swarm
+1 Shark Typhoon
+1 Castle Vantress
+1 Takenuma, Abandoned Mire
+1 Command Tower
+1 Scalding Tarn
+1 Underground River
+1 Underground Sea
+1 Urborg, Tomb of Yawgmoth
+1 Verdant Catacombs
+1 Watery Grave
+1 Sunken Hollow
+1 Swamp
+1 Murmuring Mystic
+1 Reliquary Tower
+1 Personal Tutor
+1 Reset
+1 Mindsplice Apparatus
+1 Haughty Djinn
+1 Time Spiral
+1 Silver Scrutiny
+1 Lord of the Nazgûl
+1 Pile On
+1 Artistic Refusal
+1 Turnabout
+1 Silundi Vision // Silundi Isle
+1 Transcendent Message
+1 Invasion of Segovia // Caetus, Sea Tyrant of Segovia
+1 Fell the Profane // Fell Mire
+1 Case of the Ransacked Lab
+1 Three Steps Ahead
+1 Thunderclap Drake
+1 Waterlogged Teachings // Inundated Archive
+1 Sink into Stupor // Soporific Springs
+5 Island
+1 Gloomlake Verge
+1 Season of Weaving
+1 Valley Floodcaller
+1 Temporal Cleansing
+1 Vampiric Tutor
+1 Withering Torment
+1 Kaito, Cunning Infiltrator
+1 River's Rebuke
+1 Undercity Sewers
+1 Lórien Revealed

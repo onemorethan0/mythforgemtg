@@ -1,0 +1,102 @@
+# Archidekt — EDH Kruphix "Eldrazi"
+# source: archidekt:219096
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kruphix, God of Horizons
+
+Deck:
+1 One with the Multiverse
+1 Omniscience
+1 Temporal Manipulation
+1 Cyclonic Rift
+1 Expropriate
+1 Time Spiral
+1 Seedborn Muse
+1 Eternal Witness
+1 Force of Vigor
+1 Sol Ring
+1 Void Winnower
+1 Kodama's Reach
+1 Mystic Remora
+1 Arbor Elf
+1 Wild Growth
+1 Flood of Tears
+1 Carpet of Flowers
+1 Exploration
+1 Windfall
+1 Mana Drain
+1 Frontier Siege
+1 Ponder
+1 Rhystic Study
+1 Sylvan Library
+1 Command Tower
+1 Emrakul, the Promised End
+1 Cultivate
+1 Mana Vault
+1 Breeding Pool
+1 Tropical Island
+1 Kiora's Follower
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Show and Tell
+1 Wilderness Reclamation
+1 Rapid Hybridization
+1 Nexus of Fate
+1 Ugin, the Spirit Dragon
+1 Oko, Thief of Crowns
+1 Verdant Catacombs
+1 Echo of Eons
+1 Sire of Seven Deaths
+1 Mystical Tutor
+1 Up the Beanstalk
+1 Birds of Paradise
+1 Propaganda
+1 Portal to Phyrexia
+1 Fierce Guardianship
+1 Emrakul, the World Anew
+1 Kozilek, the Broken Reality
+1 Ulamog, the Defiler
+1 Nulldrifter
+1 Sink into Stupor // Soporific Springs
+1 Evacuation
+1 Null Elemental Blast
+1 Chimil, the Inner Sun
+1 Ugin's Binding
+1 Case of the Locked Hothouse
+1 Wandering Archaic // Explore the Vastlands
+1 Sowing Mycospawn
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+3 Forest
+1 Drowner of Truth // Drowned Jungle
+1 Three Visits
+1 Nature's Lore
+1 Yavimaya, Cradle of Growth
+1 Otawara, Soaring City
+1 Ancient Tomb
+1 Alchemist's Refuge
+1 Misty Rainforest
+1 Prismatic Vista
+1 Scalding Tarn
+1 Boseiju, Who Endures
+1 Windswept Heath
+1 Wooded Foothills
+1 Mystic Sanctuary
+1 Kozilek, Butcher of Truth
+1 Ulamog, the Infinite Gyre
+1 Kozilek, the Great Distortion
+1 Ulamog, the Ceaseless Hunger
+1 Planar Bridge
+1 Hedge Maze
+1 Ugin's Labyrinth
+1 Solve the Equation
+1 Brainstorm
+1 Memory Jar
+1 Treachery
+1 Ugin, Eye of the Storms
+1 Flooded Strand
+1 Polluted Delta
+1 Talon Gates of Madara
+1 Yavimaya Coast
+1 Turbulent Wilderness
+5 Island

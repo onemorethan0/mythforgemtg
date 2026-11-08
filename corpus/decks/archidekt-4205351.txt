@@ -1,0 +1,89 @@
+# Archidekt — Phelddagrif Happiness
+# source: archidekt:4205351
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Phelddagrif
+
+Deck:
+1 Rootweaver Druid
+1 Sylvan Offering
+1 Evolving Wilds
+1 Temple of Mystery
+1 Akroan Horse
+1 Skyscribing
+1 Hypergenesis
+1 Rites of Flourishing
+1 Ghostly Prison
+1 Heartbeat of Spring
+1 Thornwood Falls
+1 Benevolent Offering
+9 Island
+1 Edric, Spymaster of Trest
+1 Ghirapur Orrery
+1 Vow of Wildness
+1 Braids, Conjurer Adept
+6 Plains
+1 Oath of Druids
+1 Leyline of Anticipation
+1 Gate to the Aether
+1 Selesnya Sanctuary
+1 Otherworld Atlas
+1 Fecundity
+1 Selesnya Guildgate
+1 Karn's Bastion
+1 Sunpetal Grove
+1 Hunted Troll
+1 Flumph
+1 Selvala, Explorer Returned
+1 Temple Bell
+1 Collective Voyage
+1 Terramorphic Expanse
+1 Oath of Lieges
+1 Ash Barrens
+1 Vision Skeins
+1 Magus of the Vineyard
+1 Gluntch, the Bestower
+1 Tidal Barracuda
+1 Exotic Orchard
+1 Veteran Explorer
+1 Spectral Searchlight
+1 Simic Charm
+1 Victory Chimes
+1 Kwain, Itinerant Meddler
+1 Fall from Favor
+1 Tempt with Discovery
+1 Shizuko, Caller of Autumn
+1 Canopy Vista
+1 Seaside Citadel
+1 Simic Growth Chamber
+1 Intellectual Offering
+1 Dictate of Kruphix
+1 Howling Mine
+1 Weird Harvest
+1 Luminarch Ascension
+1 Sphere of Safety
+1 Eon Frolicker
+1 Nascent Metamorph
+1 Gor Muldrak, Amphinologist
+1 Archon of Coronation
+1 Island Sanctuary
+1 Pendant of Prosperity
+7 Forest
+1 Fractured Identity
+1 Propaganda
+1 Prairie Stream
+1 Tranquil Landscape
+1 The Second Doctor
+1 Eladamri's Vineyard
+1 Questing Phelddagrif
+1 Noble Benefactor
+1 Upwelling
+1 Tempting Wurm
+1 Helm of Awakening
+1 Struggle for Project Purity
+1 Folio of Fancies
+1 Minds Aglow
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Font of Mythos

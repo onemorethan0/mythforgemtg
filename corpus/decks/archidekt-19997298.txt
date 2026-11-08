@@ -1,0 +1,78 @@
+# Archidekt — DragonYourGraveyards
+# source: archidekt:19997298
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Junji, the Midnight Sky
+
+Deck:
+1 Walk the Plank
+1 Smallpox
+1 Delirium Skeins
+1 Discerning Taste
+1 Power Word Kill
+1 Infernal Grasp
+1 Unholy Indenture
+1 Drag to the Underworld
+1 Scion of Darkness
+1 Vile Mutilator
+1 Demon of Loathing
+1 Chainer, Dementia Master
+1 Noxious Gearhulk
+1 Bone Shards
+1 Nasty End
+1 Supernatural Stamina
+1 Feign Death
+1 Abnormal Endurance
+1 Adventurer's Inn
+1 The Eldest Reborn
+1 Everglades
+1 Lamentation
+1 Graveyard Trespasser // Graveyard Glutton
+1 Blackbloom Rogue // Blackbloom Bog
+1 Flay Essence
+1 Kaervek, the Punisher
+1 Shakedown Heavy
+31 Swamp
+1 Kothophed, Soul Hoarder
+1 Zero Point Ballad
+1 Myojin of Night's Reach
+1 Sauron, the Necromancer
+1 Vicious Rumors
+1 Tinybones Joins Up
+1 Clackbridge Troll
+1 Rush of Dread
+1 Plaguecrafter
+1 Shadowborn Demon
+1 Infernal Sovereign
+1 Necrogoyf
+1 Braids, Arisen Nightmare
+1 Fake Your Own Death
+1 Entropic Battlecruiser
+1 Mindslicer
+1 Rankle, Master of Pranks
+1 Lethal Throwdown
+1 Chorale of the Void
+1 Nighthawk Scavenger
+1 Underworld Sentinel
+1 Coalition Relic
+1 Bloodvial Purveyor
+1 Gray Merchant of Asphodel
+1 Sidisi, Regent of the Mire
+1 Fire Nation Salvagers
+1 Tormented Thoughts
+1 Nowhere to Run
+1 Arbiter of Woe
+1 Glistening Deluge
+1 Jecht, Reluctant Guardian // Braska's Final Aeon
+1 Malakir Rebirth // Malakir Mire
+1 Dusk Mangler
+1 Resentful Revelation
+1 Bismuth Mindrender
+1 Stitcher's Supplier
+1 Rakshasa Debaser
+1 Sepulchral Primordial
+1 Lorcan, Warlock Collector
+1 Armaggon, Future Shark
+1 Bloodline Culling

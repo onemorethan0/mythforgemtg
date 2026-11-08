@@ -1,0 +1,92 @@
+# Archidekt — Yoriko
+# source: archidekt:8634304
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Fourth Bridge Prowler
+1 Sink into Stupor // Soporific Springs
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Boggart Trawler // Boggart Bog
+1 Irma, Part-Time Mutant
+1 Ingenious Infiltrator
+1 Signal Pest
+1 Prosperous Thief
+1 An Offer You Can't Refuse
+1 Mockingbird
+1 Splinter, Hamato Yoshi
+1 Turtle Lair
+1 Illvoi Galeblade
+1 Lively Dirge
+1 Changeling Outcast
+1 Harrier Strix
+1 Dream Beavers
+1 Raise the Palisade
+1 Fell the Profane // Fell Mire
+1 Far // Away
+1 Into the Flood Maw
+1 Satoru, the Infiltrator
+1 Yuriko, Hope from the Shadows
+1 Underground River
+1 Lim-Dûl's Vault
+1 Faerie Seer
+1 Sol Ring
+1 Universal Automaton
+1 Baleful Mastery
+1 Wingcrafter
+1 Sakashima's Student
+1 Brainsurge
+1 Temporal Trespass
+1 Arcane Signet
+1 Windcaller Aven
+1 Cloud of Faeries
+6 Swamp
+1 Brainstorm
+1 Dig Through Time
+1 Thousand-Faced Shadow
+1 Undercity Sewers
+1 Flusterstorm
+1 Snap
+1 Drowned Catacomb
+1 Dismember
+1 Ninja of the Deep Hours
+1 Murderous Cut
+1 Command Tower
+1 Mistblade Shinobi
+1 Mausoleum Wanderer
+1 Fellwar Stone
+1 Ornithopter
+1 Dark Ritual
+1 Skullsnatcher
+1 Talisman of Dominance
+1 Spectral Sailor
+1 Network Disruptor
+12 Island
+1 Counterspell
+1 Silver-Fur Master
+1 Negate
+1 Wonder
+1 Dimir Signet
+1 Darkwater Catacombs
+1 Arcane Denial
+1 Crippling Fear
+1 Shadow of Mortality
+1 Consign // Oblivion
+1 Treasure Cruise
+1 Mothdust Changeling
+1 Gloomlake Verge
+1 Memnite
+1 Commandeer
+1 Splinter's Technique
+1 Curtains' Call
+1 Delay
+1 Polluted Delta
+1 Watery Grave
+1 Castle Vantress
+1 Moon-Circuit Hacker
+1 Street Wraith
+1 Kaito, Bane of Nightmares
+1 Dispel

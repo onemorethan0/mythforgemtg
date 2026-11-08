@@ -1,0 +1,110 @@
+# WotC precon — 20 Ways to Win (SLD, 2024-12-04)
+# source: mtgjson:20WaysToWin_SLD
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Seedborn Muse); Bracket 2 allows 0
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Go-Shintai of Life's Origin
+
+Deck:
+1 Alseid of Life's Bounty
+1 Approach of the Second Sun
+1 Arcane Signet
+1 Augur of Autumn
+1 Auriok Champion
+1 Austere Command
+1 Azorius Guildgate
+1 Baldur's Gate
+1 Biovisionary
+1 Black Dragon Gate
+1 Boros Guildgate
+1 Bountiful Promenade
+1 Brushland
+1 Chromatic Lantern
+1 Circuitous Route
+1 Citadel Gate
+1 Clever Concealment
+1 Cliffgate
+1 Command Tower
+1 Crib Swap
+1 Darksteel Citadel
+1 Darksteel Mutation
+1 Dimir Guildgate
+1 Drown in Dreams
+1 Dryad of the Ilysian Grove
+1 Eerie Ultimatum
+1 Exotic Orchard
+1 Faeburrow Elder
+1 Felidar Sovereign
+1 Fertile Ground
+1 Forbidden Orchard
+1 Forest
+1 Forgotten Ancient
+1 Gateway Plaza
+1 Ghostly Prison
+1 Ghoulish Impetus
+1 Golgari Guildgate
+1 Gond Gate
+1 Gruul Guildgate
+1 Halo Fountain
+1 Hangarback Walker
+1 Happily Ever After
+1 Heap Gate
+1 Heliod's Intervention
+1 Heliod, Sun-Crowned
+1 Helix Pinnacle
+1 Hellkite Tyrant
+1 Homeward Path
+1 Izzet Guildgate
+1 Kynaios and Tiro of Meletis
+1 Lightning Greaves
+1 Lignify
+1 Liliana's Contract
+1 Mangara, the Diplomat
+1 Manor Gate
+1 Maskwood Nexus
+1 Mayael's Aria
+1 Maze's End
+1 Mechanized Production
+1 Monologue Tax
+1 Morbid Opportunist
+1 Mystic Remora
+1 Orzhov Guildgate
+1 Overgrown Farmland
+1 Pariah
+1 Path of Ancestry
+1 Plains
+1 Plaza of Harmony
+1 Rakdos Guildgate
+1 Razorverge Thicket
+1 Reflecting Pool
+1 Revel in Riches
+1 Rite of Replication
+1 Sanctum Weaver
+1 Sea Gate
+1 Seedborn Muse
+1 Selesnya Guildgate
+1 Shalai, Voice of Plenty
+1 Shiny Impetus
+1 Simic Ascendancy
+1 Simic Guildgate
+1 Sol Ring
+1 Soul's Attendant
+1 Sphinx's Revelation
+1 Sun Titan
+1 Sunscorch Regent
+1 Supreme Verdict
+1 Taurean Mauler
+1 Test of Endurance
+1 The Eternal Wanderer
+1 The World Tree
+1 Thornglint Bridge
+1 Tireless Tracker
+1 Trace of Abundance
+1 Tragic Arrogance
+1 Triskaidekaphile
+1 Twenty-Toed Toad
+1 Wooded Bastion
+1 Yahenni, Undying Partisan

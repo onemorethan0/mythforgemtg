@@ -1,0 +1,88 @@
+# Archidekt — Yawgmoth, Thran Physician
+# source: archidekt:424210
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yawgmoth, Thran Physician
+
+Deck:
+1 Nest of Scarabs
+1 Weaponcraft Enthusiast
+1 Cabal Ritual
+1 Nykthos, Shrine to Nyx
+1 Butcher Ghoul
+1 Evernight Shade
+1 Geralf's Messenger
+1 Sightless Ghoul
+1 Snuff Out
+1 Bubbling Muck
+1 Reassembling Skeleton
+1 Genesis Chamber
+1 Urborg, Tomb of Yawgmoth
+1 Reanimate
+1 Mikaeus, the Unhallowed
+1 Dark Ritual
+1 Ancient Tomb
+1 Mana Vault
+1 Phyrexian Tower
+1 Ayara, First of Locthwain
+1 Mox Opal
+1 Chrome Mox
+1 Toxic Deluge
+1 Ophiomancer
+1 Vampiric Tutor
+1 Mox Diamond
+1 Opposition Agent
+1 Zulaport Cutthroat
+1 Pawn of Ulamog
+1 Culling the Weak
+1 Diabolic Intent
+1 Demonic Tutor
+1 Animate Dead
+1 Dauthi Voidwalker
+1 Deathgreeter
+1 Memnite
+1 Sheoldred, the Apocalypse
+1 Jet Medallion
+1 Blood Artist
+1 Sol Ring
+1 Defile
+1 Rain of Filth
+1 Dismember
+1 Lotus Petal
+1 Desecrated Tomb
+1 Phyrexian Altar
+1 Carrier Thrall
+1 Treacherous Pit-Dweller
+1 Ornithopter
+1 Gravecrawler
+1 Phyrexian Walker
+1 Shield Sphere
+1 Blood Pet
+1 Nested Shambler
+1 Blight Mound
+1 Necropotence
+1 Sifter of Skulls
+1 Bastion of Remembrance
+1 The Meathook Massacre
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Mausoleum Secrets
+1 Fatal Push
+1 Deadly Rollick
+1 Beseech the Mirror
+1 The One Ring
+1 Orcish Bowmasters
+1 Hancock, Ghoulish Mayor
+1 Nezumi Linkbreaker
+1 Nine-Lives Familiar
+1 Ulamog, the Infinite Gyre
+1 Songs of the Damned
+1 Feed the Swarm
+1 Marionette Apprentice
+1 Scheming Symmetry
+21 Swamp
+1 Cavern of Souls
+1 Command Beacon
+1 Urza's Saga
+1 Lake of the Dead

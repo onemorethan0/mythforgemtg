@@ -1,0 +1,102 @@
+# Archidekt — Norman Osborn (4+)
+# source: archidekt:4890054
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Norman Osborn // Green Goblin
+
+Deck:
+1 Demonic Tutor
+1 Sunken Ruins
+1 Rakdos Carnarium
+1 Luxury Suite
+1 Clearwater Pathway // Murkwater Pathway
+1 Stormcarved Coast
+1 Dimir Aqueduct
+1 Arcane Denial
+1 Graven Cairns
+1 Blackcleave Cliffs
+1 Watery Grave
+1 Spirebluff Canal
+1 Reverberate
+1 Scalding Tarn
+1 Training Center
+1 Sensei's Divining Top
+1 Arcane Signet
+1 Narset's Reversal
+1 Command Tower
+1 An Offer You Can't Refuse
+1 Windfall
+1 Cascade Bluffs
+1 Prismatic Vista
+1 Scroll Rack
+1 Morphic Pool
+1 Expropriate
+1 Command Beacon
+1 Temporal Mastery
+1 Toxic Deluge
+1 Deflecting Swat
+1 Detection Tower
+1 Riverglide Pathway // Lavaglide Pathway
+1 Izzet Boilerworks
+1 Wheel of Fate
+1 Path of Ancestry
+1 Razorkin Needlehead
+1 Blood Crypt
+3 Island
+3 Swamp
+3 Mountain
+1 Steam Vents
+1 Imperial Seal
+1 Sheoldred, the Apocalypse
+1 Redirect Lightning
+1 Kefka, Court Mage // Kefka, Ruler of Ruin
+1 Kess, Dissident Mage
+1 Reanimate
+1 Dauthi Voidwalker
+1 Swan Song
+1 Bender's Waterskin
+1 Cyclonic Rift
+1 Underworld Breach
+1 Orcish Bowmasters
+1 Heat Shimmer
+1 Force of Negation
+1 Fellwar Stone
+1 Force of Despair
+1 Blasphemous Edict
+1 Resculpt
+1 Stifle
+1 Disallow
+1 Imp's Mischief
+1 Chaos Warp
+1 Deadly Rollick
+1 Mystical Tutor
+1 Relic of Sauron
+1 Opposition Agent
+1 Sudden Substitution
+1 Malakir Rebirth // Malakir Mire
+1 Counterspell
+1 Jace, the Mind Sculptor
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Entomb
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Temporal Manipulation
+1 Rhystic Study
+1 No Mercy
+1 Victory Chimes
+1 Day's Undoing
+1 Time Warp
+1 Insurrection
+1 Echo of Eons
+1 Jeska's Will
+1 Torment of Hailfire
+1 Exsanguinate
+1 God-Eternal Kefnet
+1 Sulfur Falls
+1 Whispering Madness
+1 Flashback
+1 Pongify
+1 Dark Ritual
+1 Return the Favor
+1 Notion Thief

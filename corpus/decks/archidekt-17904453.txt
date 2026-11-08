@@ -1,0 +1,94 @@
+# Archidekt — Consent was the Apple
+# source: archidekt:17904453
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Eriette of the Charmed Apple
+
+Deck:
+1 Enduring Tenacity
+1 Killian, Ink Duelist
+1 Kor Spiritdancer
+1 Light-Paws, Emperor's Voice
+1 Pearl-Ear, Imperial Advisor
+1 Vito, Thorn of the Dusk Rose
+1 Mesa Enchantress
+1 Sol Ring
+1 Hateful Eidolon
+1 Arcane Signet
+1 Retether
+1 Gift of Immortality
+1 Songbirds' Blessing
+1 All That Glitters
+1 Animate Dead
+1 Starfield Mystic
+1 Timely Ward
+1 Lurrus of the Dream-Den
+1 Grim Guardian
+1 Petrify
+1 Pariah
+1 Spirit Loop
+1 Winds of Rath
+1 Hall of Heliod's Generosity
+1 Detection Tower
+1 Isolated Chapel
+1 Bleachbone Verge
+1 Godless Shrine
+1 Vampiric Link
+1 Spirit Link
+1 Nurgle's Rot
+1 Ghostly Prison
+1 Demotion
+1 Path to Exile
+1 Fetid Heath
+1 Lord Skitter's Blessing
+1 Swords to Plowshares
+1 Arcane Lighthouse
+1 Reprobation
+1 Bojuka Bog
+1 Planar Disruption
+1 Scavenger Grounds
+1 Shadowy Backstreet
+1 Codsworth, Handy Helper
+1 Anguished Unmaking
+1 Desolate Mire
+1 Vindicate
+1 Ethereal Armor
+1 Inkshield
+1 Darksteel Mutation
+1 Shineshadow Snarl
+1 Sram, Senior Edificer
+1 Tainted Field
+1 Command Tower
+1 Hero of Iroas
+1 Vault of Champions
+1 Shattered Sanctum
+1 Exquisite Blood
+1 Scrubland
+1 Demonic Tutor
+1 Serra's Sanctum
+1 Vampiric Tutor
+10 Plains
+6 Swamp
+1 Marsh Flats
+1 Eclipsed Steppe
+1 Maze of Ith
+1 Replenish
+1 Caves of Koilos
+1 Sage's Reverie
+1 Killian, Decisive Mentor
+1 Changing Loyalty
+1 Kaya's Ghostform
+1 Redemption Arc
+1 Light of Promise
+1 Eye of Nidhogg
+1 Visions of Brutality
+1 Sanguine Bond
+1 Parasitic Impetus
+1 Vow of Torment
+1 Ghoulish Impetus
+1 Sheltered by Ghosts
+1 Idyllic Tutor
+1 Stab Wound
+1 Flickering Ward

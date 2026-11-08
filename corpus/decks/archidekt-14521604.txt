@@ -1,0 +1,94 @@
+# Archidekt — Joey's Jenova - Undefeated - RIP July 2025
+# source: archidekt:14521604
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Jenova, Ancient Calamity
+
+Deck:
+1 Viscera Seer
+1 Rite of Consumption
+1 Yahenni, Undying Partisan
+1 Night's Whisper
+1 Read the Bones
+1 Branching Evolution
+1 Revitalizing Repast // Old-Growth Grove
+1 Boggart Trawler // Boggart Bog
+1 Gyre Sage
+1 Sakura-Tribe Elder
+1 Kami of Whispered Hopes
+1 Forgotten Ancient
+1 Return of the Wildspeaker
+1 Jarad, Golgari Lich Lord
+1 Snakeskin Veil
+1 Rishkar's Expertise
+1 Llanowar Reborn
+1 Swiftfoot Boots
+1 Command Tower
+1 Reliquary Tower
+7 Swamp
+1 Twilight Mire
+1 Temple of Malady
+1 Woodland Cemetery
+1 Tainted Wood
+1 Golgari Rot Farm
+1 Viridescent Bog
+1 Farseek
+1 Carrion Feeder
+1 Tear Asunder
+1 Mosswort Bridge
+1 Assassin's Trophy
+1 Fight Rigging
+1 Sol Ring
+1 Llanowar Wastes
+1 Iridescent Hornbeetle
+1 Overwhelming Stampede
+1 Rogue's Passage
+1 Royal Treatment
+1 Managorger Hydra
+1 Nesting Grounds
+1 Fangs of Kalonia
+1 The Ozolith
+1 Malakir Rebirth // Malakir Mire
+1 Haywire Mite
+1 Crystalline Crawler
+1 Collective Resistance
+1 Flare of Malice
+1 Come Back Wrong
+1 Ornithopter of Paradise
+1 Twitching Doll
+1 The Earth Crystal
+1 Pathbreaker Ibex
+1 Guardian Augmenter
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Heroic Intervention
+9 Forest
+1 Arcane Signet
+1 Corpsejack Menace
+1 Duskshell Crawler
+1 Kalonian Hydra
+1 High Market
+1 Golgari Charm
+1 Liquimetal Torque
+1 Faerie Bladecrafter
+1 Rancor
+1 Arachnogenesis
+1 Essence Harvest
+1 Champion's Helm
+1 Incubation Druid
+1 Thought Vessel
+1 Feral Ghoul
+1 Infernal Grasp
+1 Tamiyo's Safekeeping
+1 Tyvar's Stand
+1 Greater Good
+1 Maester Seymour
+1 Deadly Tempest
+1 Lazotep Quarry
+1 Overgrown Tomb
+1 Blasphemous Edict
+1 Ozolith, the Shattered Spire
+1 Disciple of Freyalise // Garden of Freyalise
+1 Ezuri's Predation
+1 Giggling Skitterspike

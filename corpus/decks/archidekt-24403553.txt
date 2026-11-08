@@ -1,7 +1,8 @@
 # Archidekt — Niv-Mizzet
 # source: archidekt:24403553
 # fetched: 2026-09-24
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Niv-Mizzet, Parun + Niv-Mizzet, Visionary; Bracket 2 allows none
 
 Commander:
 1 Niv-Mizzet, Visionary

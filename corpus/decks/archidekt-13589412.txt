@@ -1,0 +1,88 @@
+# Archidekt — Ye olden times
+# source: archidekt:13589412
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Super-Skrull
+
+Deck:
+1 Ancient Craving
+1 Arcane Denial
+1 Circle of Protection: Red
+1 Necromancy
+1 Impulse
+1 Gemstone Mine
+1 Righteous Aura
+1 Lotus Vale
+1 Flux
+1 Scorched Ruins
+1 Disenchant
+1 Fire Diamond
+1 Marble Diamond
+1 Mountain Valley
+1 Sky Diamond
+1 Quirion Elves
+1 Spirit of the Night
+1 Dandân
+1 Phelddagrif
+1 Wall of Roots
+1 Soldier of Fortune
+1 Brainstorm
+1 Thawing Glaciers
+1 Counterspell
+1 Fyndhorn Elves
+1 Karplusan Forest
+1 Mystic Remora
+1 Swords to Plowshares
+1 Wild Growth
+1 Thallid
+1 Dakkon Blackblade
+1 Darkness
+1 Stangg
+1 Winds of Change
+1 Man-o'-War
+1 Circle of Protection: Blue
+1 Circle of Protection: Green
+1 Circle of Protection: White
+1 Brushland
+5 Forest
+5 Mountain
+5 Plains
+5 Swamp
+5 Island
+1 Fellwar Stone
+1 Mind Stone
+1 Moss Diamond
+1 Retribution of the Meek
+1 Bad River
+1 Chain Lightning
+1 Death Ward
+1 Wrath of God
+1 Sulfurous Springs
+1 Underground River
+1 Wood Elves
+1 Charcoal Diamond
+1 Balance of Power
+1 Grasslands
+1 Rocky Tar Pit
+1 Flood Plain
+1 Storm Crow
+1 Portent
+1 Nature's Lore
+1 Elves of Deep Shadow
+1 Boomerang
+1 Circle of Protection: Black
+1 Relentless Assault
+1 Fog
+1 Tinder Wall
+1 Early Harvest
+1 Circle of Protection: Artifacts
+1 Honorable Passage
+1 False Summoning
+1 Vision Charm
+1 Dark Ritual
+1 Untamed Wilds
+1 Summer Bloom
+1 Blanket of Night
+1 Ashes to Ashes

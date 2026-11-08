@@ -1,0 +1,103 @@
+# Archidekt — Betor - LIFEGAIN REANIMATOR
+# source: archidekt:15097566
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Betor, Ancestor's Voice
+
+Deck:
+1 Arcane Signet
+1 Bojuka Bog
+1 Boseiju, Who Endures
+1 Bountiful Promenade
+1 Brushland
+1 Caves of Koilos
+1 Celestine, the Living Saint
+1 Command Tower
+1 Dark Confidant
+1 Exotic Orchard
+1 Exquisite Blood
+1 Fabled Passage
+1 Gathering Place
+1 Godless Shrine
+1 Gwenom, Remorseless
+1 Horizon Canopy
+1 Indatha Triome
+1 Isolated Chapel
+1 K'rrik, Son of Yawgmoth
+1 Lathiel, the Bounteous Dawn
+1 Llanowar Wastes
+1 Marsh Flats
+1 Nurturing Peatland
+1 Overgrown Tomb
+3 Plains
+1 Serra Ascendant
+1 Shattered Sanctum
+1 Silent Clearing
+1 Sol Ring
+1 Sunpetal Grove
+3 Swamp
+1 Sylvan Library
+1 Talisman of Resilience
+1 Talisman of Unity
+1 Temple Garden
+1 Toxic Deluge
+1 Undergrowth Stadium
+1 Vault of Champions
+1 Verdant Catacombs
+1 Vito, Thorn of the Dusk Rose
+1 Woodland Cemetery
+1 Dark Ritual
+1 Sakura-Tribe Elder
+1 Flawless Maneuver
+1 Swords to Plowshares
+1 Golgari Charm
+1 Buried Alive
+1 Beast Within
+1 Assassin's Trophy
+1 Authority of the Consuls
+1 Aetherflux Reservoir
+1 Kambal, Consul of Allocation
+1 Creeping Bloodsucker
+1 Exsanguinate
+1 Scheming Silvertongue // Sign in Blood
+1 Archangel of Thune
+1 Nature's Lore
+1 Three Visits
+1 Path to Exile
+1 Nature's Claim
+1 Essence Warden
+1 Soul Warden
+1 Heliod, Sun-Crowned
+1 Exemplar of Light
+1 Revival // Revenge
+1 Beacon of Immortality
+1 Black Market Connections
+1 Dina, Soul Steeper
+1 Talisman of Hierarchy
+1 Twilight Prophet
+1 Haliya, Guided by Light
+1 Kaya's Wrath
+1 Ripples of Undeath
+1 Selvala, Explorer Returned
+2 Forest
+1 Beledros Witherbloom
+1 Village Rites
+1 Abigale, Eloquent First-Year
+1 Mangara, the Diplomat
+1 Cloak and Dagger, Entwined
+1 Bitter Triumph
+1 Rhox Faithmender
+1 Defiling Daemogoth
+1 Abzan Charm
+1 Despark
+1 Infernal Grasp
+1 Reanimate
+1 Vilis, Broker of Blood
+1 Accomplished Alchemist
+1 Tymna the Weaver
+1 Trelasarra, Moon Dancer
+1 Gray Merchant of Asphodel
+1 Gollum, Obsessed Stalker
+1 Avacyn's Pilgrim

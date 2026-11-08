@@ -1,0 +1,91 @@
+# Archidekt — Mind Flayersss
+# source: archidekt:2827851
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 1 allows none
+
+Commander:
+1 Captain N'ghathrod
+
+Deck:
+1 Whispering Madness
+1 Illithid Harvester // Plant Tadpoles
+1 Intellect Devourer
+1 Brainstealer Dragon
+1 Into the Story
+1 Dark Ritual
+1 Fleshwrither
+1 Stitchwing Skaab
+1 Elder Brain
+1 Psionic Ritual
+1 Grell Philosopher
+1 Endless Evil
+1 Aboleth Spawn
+1 Uchuulon
+1 Zellix, Sanity Flayer
+1 Consuming Aberration
+1 Mind Stone
+11 Swamp
+9 Island
+1 Command Tower
+1 Arcane Signet
+1 Everflowing Chalice
+1 Dimir Signet
+1 Lightning Greaves
+1 Sol Ring
+1 Ash Barrens
+1 Choked Estuary
+1 Darkwater Catacombs
+1 Creeping Tar Pit
+1 Exotic Orchard
+1 Myriad Landscape
+1 Path of Ancestry
+1 Rogue's Passage
+1 Sunken Hollow
+1 Chasm Skulker
+1 Fact or Fiction
+1 Feed the Swarm
+1 Hullbreaker Horror
+1 Overcharged Amalgam
+1 Temple of Deceit
+1 Tainted Isle
+1 Dimir Aqueduct
+1 Talisman of Dominance
+1 Forgotten Creation
+1 Sludge Monster
+1 Mind Flayer
+1 Grazilaxx, Illithid Scholar
+1 Port of Karfell
+1 Herald's Horn
+1 Thought Vessel
+1 Phyrexian Rager
+1 Nighthowler
+1 In Garruk's Wake
+1 Spellskite
+1 Phyrexian Revoker
+1 Black Market
+1 Ravenous Chupacabra
+1 Nemesis of Reason
+1 Drown in the Loch
+1 Drownyard Temple
+1 Syphon Mind
+1 Dauthi Horror
+1 Plague Spitter
+1 Hunted Horror
+1 Nephalia Drownyard
+1 Wharf Infiltrator
+1 Pull from Tomorrow
+1 River of Tears
+1 Mindcrank
+1 Dimir Keyrune
+1 Stinging Cave Crawler
+1 Screaming Swarm
+1 Chupacabra Echo
+1 Diresight
+1 Mindslicer
+1 From the Catacombs
+1 Patriarch's Bidding
+1 Maskwood Nexus
+1 Arcane Adaptation
+1 Memory Plunder
+1 Gollum, Patient Plotter

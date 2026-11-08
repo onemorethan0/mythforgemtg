@@ -1,0 +1,83 @@
+# Archidekt — "What Are Those Neanderthals Doing? Can't They See I'm Spoiling Myself?"  Budget Squidward Draw + Spongebob stinks (7.22)
+# source: archidekt:11841179
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Grazilaxx, Illithid Scholar
+
+Deck:
+1 Spectral Deluge
+1 Hall of Storm Giants
+1 Decanter of Endless Water
+1 Ominous Seas
+1 The Indomitable
+1 Temporal Manipulation
+1 Cloud of Faeries
+1 Deadeye Navigator
+1 Aetherize
+1 Reliquary Tower
+1 Chart a Course
+1 Opt
+1 Chasm Skulker
+1 Propaganda
+1 Rapid Hybridization
+1 Mystic Remora
+1 Mystic Sanctuary
+1 Halimar Depths
+1 Coastal Piracy
+1 Curiosity
+1 Dissipation Field
+1 Ninja of the Deep Hours
+1 Thieving Skydiver
+1 Peregrine Drake
+1 Daze
+1 Dour Port-Mage
+1 Scourge of Fleets
+1 Thassa, God of the Sea
+1 Resculpt
+1 Ghostly Pilferer
+1 Preordain
+1 Counterspell
+1 Silent Hallcreeper
+1 Snap
+1 Arcane Signet
+1 Reconnaissance Mission
+1 Teferi, Temporal Pilgrim
+1 Archaeomancer
+1 Pongify
+1 Slither Blade
+1 Invisible Stalker
+1 Brainstorm
+1 Sol Ring
+1 Wizard Class
+1 An Offer You Can't Refuse
+1 Bident of Thassa
+1 Body of Knowledge
+1 Nadir Kraken
+1 Thought Vessel
+1 Mist-Cloaked Herald
+1 Faerie Seer
+1 Rogue's Passage
+1 Negate
+1 Ravenform
+1 Frantic Search
+1 Twenty-Toed Toad
+1 Lightning Greaves
+1 Arcane Denial
+1 Sapphire Medallion
+1 Enduring Curiosity
+1 Teferi's Ageless Insight
+1 Siren Stormtamer
+1 Wayfarer's Bauble
+1 High Tide
+1 Psychosis Crawler
+1 Swiftfoot Boots
+1 Triskaidekaphile
+26 Island
+1 Triton Shorestalker
+1 Malcolm, Alluring Scoundrel
+1 Reality Shift
+1 Myriad Landscape
+1 Aether Channeler
+1 Mind Stone

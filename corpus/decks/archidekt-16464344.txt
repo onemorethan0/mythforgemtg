@@ -1,0 +1,96 @@
+# Archidekt — Nekusar, the Mindrazer (Dank_Rubber_Ducky)
+# source: archidekt:16464344
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Nekusar, the Mindrazer
+
+Deck:
+1 Dark Deal
+1 Counterspell
+1 Fate Unraveler
+1 Ob Nixilis, the Hate-Twisted
+1 Magus of the Wheel
+1 Blasphemous Act
+1 Whispering Madness
+1 Solphim, Mayhem Dominus
+1 Swan Song
+1 Peer into the Abyss
+1 Teferi's Puzzle Box
+1 Propaganda
+1 Echo of Eons
+1 Reforge the Soul
+1 Mana Confluence
+1 Crumbling Necropolis
+1 Kederekt Parasite
+1 Molten Psyche
+1 Cascade Bluffs
+1 Shivan Reef
+1 Scrawling Crawler
+1 Mana Drain
+1 Jace's Archivist
+1 Graven Cairns
+1 Sunken Ruins
+1 Underground River
+1 Talisman of Dominance
+1 Talisman of Creativity
+1 Talisman of Indulgence
+1 Bloodchief Ascension
+1 Orcish Bowmasters
+1 Dimir Signet
+1 Waste Not
+1 Rakdos Signet
+2 Mountain
+2 Mountain
+2 Mountain
+2 Island
+2 Island
+2 Island
+2 Island
+2 Swamp
+2 Swamp
+2 Swamp
+2 Swamp
+1 Watery Grave
+1 Steam Vents
+1 Underworld Dreams
+2 Mountain
+1 No Mercy
+1 Underworld Breach
+1 Memory Jar
+1 Wheel and Deal
+1 Winds of Change
+1 Harmonic Prodigy
+1 Thought Vessel
+1 Cyclonic Rift
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Megrim
+1 Izzet Signet
+1 Forced Fruition
+1 Psychosis Crawler
+1 Ominous Seas
+1 Font of Mythos
+1 Damnation
+1 Chromatic Lantern
+1 Howling Mine
+1 Fellwar Stone
+1 Phyresis
+1 Dark Ritual
+1 Liliana's Caress
+1 Kami of the Crescent Moon
+1 Kess, Dissident Mage
+1 Blood Crypt
+1 Nightscape Familiar
+1 Arcane Signet
+1 Blasphemous Edict
+1 Razorkin Needlehead
+1 Sheoldred, the Apocalypse
+1 Deadly Rollick
+1 Command Tower
+1 City of Brass
+1 Wizard's Staff
+1 Sol Ring
+1 Windfall
+1 Niv-Mizzet, Parun

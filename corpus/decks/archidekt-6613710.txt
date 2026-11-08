@@ -1,0 +1,90 @@
+# Archidekt — Chaos GOAT
+# source: archidekt:6613710
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Farewell); Bracket 1 allows 0
+
+Commander:
+1 Zedruu the Greathearted
+
+Deck:
+1 Sulfur Falls
+1 Raugrin Triome
+1 Sea of Clouds
+1 Training Center
+1 Austere Command
+1 Talisman of Conviction
+1 Puca's Mischief
+1 Delaying Shield
+1 Treasure Nabber
+1 Out of Time
+1 An Offer You Can't Refuse
+1 Talisman of Creativity
+1 Scholarship Sponsor
+1 Dissipation Field
+1 Oath of Lieges
+1 Thought Lash
+1 Detention Sphere
+1 Public Enemy
+1 Oblation
+1 Mirror-Sigil Sergeant
+1 Psychic Vortex
+1 Rainbow Vale
+1 Experimental Frenzy
+1 Wild Research
+1 Role Reversal
+1 Volatile Stormdrake
+1 Idyllic Tutor
+1 Vanishing
+1 Shifting Grift
+1 Bazaar Trader
+1 Bucknard's Everfull Purse
+1 Moderation
+1 Illusions of Grandeur
+1 Keeper of the Accord
+1 Sudden Substitution
+1 Glacial Fortress
+1 Goblin Cadets
+1 Nine Lives
+9 Plains
+1 Azorius Chancery
+1 Boros Garrison
+1 Hithlain Rope
+1 Clifftop Retreat
+1 Hall of Heliod's Generosity
+1 Exotic Orchard
+1 Chaos Warp
+1 Aggressive Mining
+1 Avaricious Dragon
+1 Farewell
+1 Thieves' Auction
+1 Enduring Renewal
+1 Harmless Offering
+1 Eruth, Tormented Prophet
+1 Humble Defector
+1 Reins of Power
+1 Clever Impersonator
+1 Extravagant Replication
+1 Mirrormade
+1 Izzet Boilerworks
+6 Mountain
+1 Command Tower
+7 Island
+1 Spectator Seating
+1 Ghostly Prison
+1 Propaganda
+1 Solitary Confinement
+1 Arcane Signet
+1 Pendant of Prosperity
+1 Pentad Prism
+1 Sol Ring
+1 Talisman of Progress
+1 Wayfarer's Bauble
+1 Weathered Wayfarer
+1 Banishing Light
+1 Fractured Identity
+1 Grasp of Fate
+1 Sphere of the Suns
+1 Dance of the Manse
+1 Fires of Invention
+1 High Fae Trickster

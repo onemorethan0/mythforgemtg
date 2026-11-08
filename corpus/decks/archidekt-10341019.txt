@@ -1,0 +1,82 @@
+# Archidekt — Tatyova, Common Druid
+# source: archidekt:10341019
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tatyova, Benthic Druid
+
+Deck:
+1 Growth Spiral
+1 Essence Scatter
+1 Tamiyo's Epiphany
+1 Grow from the Ashes
+1 Library Larcenist
+1 Clear the Mind
+1 Water Wings
+1 Mysteries of the Deep
+1 Coiling Oracle
+1 Windrider Eel
+1 Jaddi Offshoot
+1 Sporemound
+1 Slippery Bogle
+1 Grazing Gladehart
+1 Calcite Snapper
+1 Kazandu Nectarpot
+1 Territorial Scythecat
+1 Eureka Moment
+1 Erudite Wizard
+1 Brave the Wilds
+1 Explore
+1 Tamiyo's Safekeeping
+1 Evolving Wilds
+1 Groundswell
+1 Refute
+1 Giant Growth
+1 Terramorphic Expanse
+1 Staggering Size
+1 Greater Tanuki
+1 Shoal Serpent
+1 Simic Guildgate
+1 Crystal Grotto
+1 Promising Vein
+1 Radiant Fountain
+1 Thriving Grove
+1 Mystic Sanctuary
+1 Gingerbread Cabin
+1 Frantic Strength
+1 Gnarled Sage
+1 Opt
+1 Marauding Brinefang
+1 Winged Coatl
+1 Canopy Baloth
+1 Peregrine Drake
+1 Counterspell
+1 Snap
+1 Cloud of Faeries
+1 Werebear
+1 Krosan Restorer
+1 Beanstalk Wurm // Plant Beans
+14 Island
+13 Forest
+1 Gust of Wind
+1 Glimmerburst
+1 Cancel
+1 Spined Megalodon
+1 Elfsworn Giant
+1 Return from the Wilds
+1 Thirsting Roots
+1 Titanic Growth
+1 Thornwood Falls
+1 Ior Ruin Expedition
+1 Khalni Heart Expedition
+1 Territorial Baloth
+1 Wave-Wing Elemental
+1 Shielding Plax
+1 Arcane Signet
+1 Simic Growth Chamber
+1 Command Tower
+1 Sakura-Tribe Scout
+1 Slavering Branchsnapper
+1 Daggermaw Megalodon
+1 Mocking Sprite

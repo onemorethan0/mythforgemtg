@@ -1,0 +1,108 @@
+# Archidekt — Jodah's Legen-Dairy
+# source: archidekt:5326386
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jodah, the Unifier
+
+Deck:
+1 Delighted Halfling
+1 Spectator Seating
+1 Command Tower
+1 Arcane Signet
+1 Faeburrow Elder
+1 Path of Ancestry
+1 Reflecting Pool
+1 Hajar, Loyal Bodyguard
+1 Overgrown Tomb
+1 An Offer You Can't Refuse
+1 Assassin's Trophy
+1 Rhystic Study
+1 Mystic Remora
+1 Birds of Paradise
+1 Cyclonic Rift
+1 Sol Ring
+1 Relic of Legends
+1 Force of Will
+1 Training Center
+1 Watery Grave
+1 Verdant Catacombs
+1 Deadly Rollick
+1 Swords to Plowshares
+1 Misdirection
+1 Bloom Tender
+1 Mental Misstep
+1 Plaza of Heroes
+1 Vault of Champions
+1 Arid Mesa
+1 Leyline Binding
+1 Undergrowth Stadium
+1 Marsh Flats
+1 Cavern of Souls
+1 Stomping Ground
+1 Temple Garden
+1 Boseiju, Who Endures
+1 Path to Exile
+1 Sea of Clouds
+1 Fierce Guardianship
+1 Chrome Mox
+1 Deflecting Swat
+1 Oko, Thief of Crowns
+1 Selvala, Heart of the Wilds
+1 Sisay, Weatherlight Captain
+1 Stubborn Denial
+1 Otawara, Soaring City
+1 Mox Diamond
+1 Force of Negation
+1 Flawless Maneuver
+1 Shanid, Sleepers' Scourge
+1 Gwenna, Eyes of Gaea
+1 Talion, the Kindly Lord
+1 Aragorn, the Uniter
+1 Chulane, Teller of Tales
+1 Smothering Tithe
+1 Jhoira, Weatherlight Captain
+1 Dihada, Binder of Wills
+1 Reki, the History of Kamigawa
+1 Pippin, Guard of the Citadel
+1 Bloodstained Mire
+1 Blood Crypt
+1 Flooded Strand
+1 Breeding Pool
+1 Godless Shrine
+1 Hallowed Fountain
+1 Polluted Delta
+1 Mana Confluence
+1 Misty Rainforest
+1 Scalding Tarn
+1 Sacred Foundry
+1 Steam Vents
+1 Wooded Foothills
+1 Windswept Heath
+1 Fellwar Stone
+1 Kutzil, Malamet Exemplar
+1 Gisela, Blade of Goldnight
+1 Harmonic Prodigy
+1 Winota, Joiner of Forces
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Kraum, Ludevic's Opus
+1 Dovin's Veto
+1 Mount Doom
+1 Exotic Orchard
+1 Sun Quan, Lord of Wu
+1 Mox Amber
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Prosper, Tome-Bound
+1 The Great Henge
+1 The One Ring
+1 Samut, Voice of Dissent
+1 Basim Ibn Ishaq
+1 Lotho, Corrupt Shirriff
+1 Urza's Ruinous Blast
+1 Timeless Lotus
+1 Kellan, the Kid
+1 Linvala, Shield of Sea Gate
+1 Kethis, the Hidden Hand
+1 Annie Joins Up
+1 Loran of the Third Path

@@ -1,0 +1,92 @@
+# Archidekt — Snow Time
+# source: archidekt:4011966
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jorn, God of Winter // Kaldring, the Rimestaff
+
+Deck:
+1 Future Sight
+1 Archmage's Charm
+1 Leyline of Anticipation
+1 The Gitrog Monster
+1 Muldrotha, the Gravetide
+1 Mana Drain
+1 Thespian's Stage
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Snow-Covered Swamp
+1 Field of the Dead
+1 Harrow
+1 Lightning Greaves
+1 Spirit of the Aldergard
+1 Reliquary Tower
+1 Coldsteel Heart
+1 Wizard Class
+1 Ice Tunnel
+1 Walk the Aeons
+1 Boseiju, Who Endures
+1 Emry, Lurker of the Loch
+1 Strip Mine
+1 Emergent Ultimatum
+1 Sensei's Divining Top
+1 The Reality Chip
+1 Crucible of Worlds
+1 Command Tower
+1 Kodama of the West Tree
+1 Saryth, the Viper's Fang
+1 Trade Routes
+1 Time Stretch
+1 Mystical Tutor
+1 Maze of Ith
+1 Dark Depths
+1 Snow-Covered Swamp
+1 Eternal Witness
+1 Woodland Chasm
+1 Tyrite Sanctum
+1 Force of Negation
+1 Conduit of Worlds
+1 Darksteel Plate
+1 Into the North
+1 Sol Ring
+1 Rimewood Falls
+1 Faerie Mastermind
+1 Mithril Coat
+1 Sunstone
+1 Azusa, Lost but Seeking
+1 Mystic Sanctuary
+1 Brainstorm
+1 Snow-Covered Island
+1 Expedition Map
+1 Fabled Passage
+1 Toski, Bearer of Secrets
+1 Rhystic Study
+1 Archdruid's Charm
+1 Blackblade Reforged
+1 Snow-Covered Forest
+1 Six
+1 Windfall
+1 Splendid Reclamation
+1 Seedborn Muse
+1 Swiftfoot Boots
+1 Braids, Arisen Nightmare
+1 Ponder
+1 Jin-Gitaxias, Progress Tyrant
+1 Chromatic Lantern
+1 Crop Rotation
+1 Vampiric Tutor
+1 Cyclonic Rift
+1 Squandered Resources
+9 Snow-Covered Island
+1 Constant Mists
+9 Snow-Covered Forest
+1 Torment of Hailfire
+1 Tear Asunder
+1 Dead of Winter
+1 Assassin's Trophy
+1 Exploration
+1 Glaring Fleshraker
+1 Mole Man, Moloid Master
+1 Elvish Reclaimer
+1 Eldritch Evolution
+1 Wasteland

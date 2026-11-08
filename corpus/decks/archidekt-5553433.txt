@@ -1,0 +1,106 @@
+# Archidekt — Ellivere of the Hateful Court [cEDH]
+# source: archidekt:5553433
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ellivere of the Wild Court
+
+Deck:
+1 Destiny Spinner
+1 Aven Mindcensor
+1 Eiganjo, Seat of the Empire
+1 Mox Diamond
+1 Roaming Throne
+1 Containment Priest
+1 Springheart Nantuko
+1 Cavern of Souls
+1 Arcane Signet
+1 Ancient Tomb
+1 Enlightened Tutor
+1 Archon of Emeria
+1 Archon of Valor's Reach
+1 Arid Mesa
+1 City of Brass
+1 City of Traitors
+1 Collector Ouphe
+1 Command Tower
+1 Deafening Silence
+1 Drannith Magistrate
+1 Eidolon of Rhetoric
+1 Elesh Norn, Mother of Machines
+1 Exploration
+1 Flooded Strand
+1 Gaea's Cradle
+1 Gemstone Caverns
+1 Boseiju, Who Endures
+1 Bountiful Promenade
+1 Carpet of Flowers
+1 Linvala, Keeper of Silence
+1 Marsh Flats
+1 Misty Rainforest
+1 Sanctum Prelate
+1 Sanctum Weaver
+1 Savannah
+1 Serra's Sanctum
+1 Setessan Champion
+1 Silence
+1 Urza's Saga
+1 Stony Silence
+1 Nevermore
+1 Toski, Bearer of Secrets
+1 Verdant Catacombs
+1 Wild Growth
+1 Windswept Heath
+1 Wooded Foothills
+1 Worldly Tutor
+1 Grafdigger's Cage
+1 Chrome Mox
+1 Kutzil, Malamet Exemplar
+1 Yasharn, Implacable Earth
+1 Suppression Field
+1 Rest in Peace
+1 Sol Ring
+1 Temple Garden
+1 Utopia Sprawl
+1 Ocelot Pride
+1 Doorkeeper Thrull
+1 Aven Interrupter
+1 Flare of Fortitude
+1 Birds of Paradise
+1 Avacyn's Pilgrim
+1 Esper Sentinel
+1 Survival of the Fittest
+1 Greater Auramancy
+1 Blind Obedience
+1 Shifting Woodland
+1 Lush Portico
+1 Sigarda, Font of Blessings
+1 Fanatic of Rhonas
+1 Shalai, Voice of Plenty
+1 Halvar, God of Battle // Sword of the Realms
+1 Talon Gates of Madara
+2 Forest
+1 Trailtracker Scout
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+2 Plains
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Trouble in Pairs
+1 Orim's Chant
+1 Trickster's Elk
+1 Kodama of the West Tree
+1 Delighted Halfling
+1 Horizon Canopy
+1 Clarion Conqueror
+1 Calamity's Wake
+1 Angel's Grace
+1 Mana Confluence
+1 Alseid of Life's Bounty
+1 Ethersworn Canonist
+1 Ashaya, Soul of the Wild
+1 Wandering Archaic // Explore the Vastlands
+1 Burgeoning
+1 Kataki, War's Wage
+1 Soulless Jailer
+1 Reprieve
+1 Crop Rotation

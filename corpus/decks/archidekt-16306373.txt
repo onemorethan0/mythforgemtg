@@ -1,0 +1,86 @@
+# Archidekt — Bracket 4: Kratos, God of Salt
+# source: archidekt:16306373
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kratos, God of War
+
+Deck:
+1 Twinflame Tyrant
+1 Lion's Eye Diamond
+20 Mountain
+1 Blood Moon
+1 Blasphemous Act
+1 Gamble
+1 Seething Song
+1 Sol Ring
+1 Tyrite Sanctum
+1 Valakut, the Molten Pinnacle
+1 Aggravated Assault
+1 Fiery Emancipation
+1 Nykthos, Shrine to Nyx
+1 Sulfuric Vortex
+1 Bedlam
+1 Crawlspace
+1 Smoke
+1 Static Orb
+1 Bloodthirster
+1 Silent Arbiter
+1 Jeska's Will
+1 World at War
+1 Arena of Glory
+1 The Reaver Cleaver
+1 Red Elemental Blast
+1 Commander's Plate
+1 Torbran, Thane of Red Fell
+1 Winds of Change
+1 Shadowspear
+1 Rite of Flame
+1 Ruby Medallion
+1 Vandalblast
+1 Karlach, Fury of Avernus
+1 Rogue's Passage
+1 The One Ring
+1 Buster Sword
+1 Deflecting Swat
+1 Pyrohemia
+1 Etali, Primal Storm
+1 Kediss, Emberclaw Familiar
+1 Wheel of Fortune
+1 Ensnaring Bridge
+1 Redirect Lightning
+1 Devastation
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Imperial Recruiter
+1 Underworld Breach
+1 Arid Mesa
+1 Bloodstained Mire
+1 War's Toll
+1 Price of Glory
+1 Obliterate
+1 Jokulhaups
+1 Decree of Annihilation
+1 Tectonic Break
+1 Wake of Destruction
+1 Ancient Copper Dragon
+1 Apocalypse
+1 Sword of the Animist
+1 Mox Amber
+1 Mox Diamond
+1 Grim Monolith
+1 Valakut Awakening // Valakut Stoneforge
+1 Mox Opal
+1 Wooded Foothills
+1 Urza's Saga
+1 Lotus Petal
+1 Worldfire
+1 Ancient Tomb
+1 Excalibur, Sword of Eden
+1 Winter Moon
+1 Mana Vault
+1 Chrome Mox
+1 Urabrask the Hidden
+1 Sword of Feast and Famine
+1 Seize the Day
+1 Treasonous Ogre

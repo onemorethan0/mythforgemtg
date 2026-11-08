@@ -1,0 +1,106 @@
+# Archidekt — Mycotyrant's Gravepurge Gallivant
+# source: archidekt:5934048
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Mycotyrant
+
+Deck:
+1 Snow-Covered Swamp
+1 Snow-Covered Forest
+1 Disciple of Freyalise // Garden of Freyalise
+2 Swamp
+1 Undercity Informer
+1 Massacre Girl
+1 Eternal Witness
+1 Mycoloth
+1 Izoni, Thousand-Eyed
+1 Nyx Weaver
+1 Footbottom Feast
+1 Boseiju, Who Endures
+1 Ravenous Gigantotherium
+1 Squirming Emergence
+1 Argoth, Sanctum of Nature
+1 Oversold Cemetery
+1 Tortured Existence
+1 Mesmeric Orb
+1 Marsh Flats
+1 Misty Rainforest
+1 Command Tower
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Out of the Tombs
+1 Undergrowth Stadium
+1 Perpetual Timepiece
+1 Verdant Catacombs
+1 Urborg, Tomb of Yawgmoth
+1 Graaz, Unstoppable Juggernaut
+1 Hermit Druid
+1 Diregraf Rebirth
+1 Skyfisher Spider
+1 Field of the Dead
+1 Aftermath Analyst
+1 Underground Mortuary
+1 Haywire Mite
+1 Timeless Witness
+1 Doom Whisperer
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Overgrown Tomb
+1 Twilight Mire
+1 Yavimaya, Cradle of Growth
+1 Dread Return
+1 Back for Seconds
+1 Altar of the Wretched // Wretched Bonemass
+1 Bayou
+1 Nurturing Peatland
+1 Elven Chorus
+1 Takenuma, Abandoned Mire
+1 Woodland Cemetery
+1 Phyrexian Tower
+1 Rise of the Witch-king
+1 Blossoming Tortoise
+1 Tato Farmer
+1 Brawn
+1 Lurking Predators
+1 Putrid Imp
+1 Old Rutstein
+1 Sewer Nemesis
+1 Angel of Suffering
+1 Syr Konrad, the Grim
+1 Grist, the Hunger Tide
+1 Cemetery Tampering
+1 Sakura-Tribe Elder
+1 Satyr Wayfinder
+2 Forest
+1 Three Tree City
+1 Honest Rutstein
+1 Shifting Woodland
+1 Six
+1 Wight of the Reliquary
+1 Spymaster's Vault
+1 Ripples of Undeath
+1 Volrath's Stronghold
+1 Hedge Shredder
+1 Enduring Vitality
+1 Dryad Arbor
+1 Broodheart Engine
+1 Aatchik, Emerald Radian
+1 Wastewood Verge
+1 Colossal Grave-Reaver
+1 Midgar, City of Mako // Reactor Raid
+1 Evendo, Waking Haven
+1 Echoing Deeps
+1 Seedship Broodtender
+1 Skull Prophet
+1 Champion of Stray Souls
+1 Umbral Collar Zealot
+1 Titania, Voice of Gaea
+1 Gravepurge
+1 Cauldron of Essence
+1 Grave Researcher // Reanimate
+1 Crypt of Agadeem
+1 Mole Man, Moloid Master
+1 Return of the Mole Man
+1 Turbulent Fen
+1 Liliana the Repentant
+1 Immoral Bargain

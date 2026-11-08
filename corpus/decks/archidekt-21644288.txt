@@ -1,0 +1,106 @@
+# Archidekt — Optimized  Combo
+# source: archidekt:21644288
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zimone, Infinite Analyst
+
+Deck:
+2 Island
+1 Fyndhorn Elves
+1 Boseiju, Who Endures
+1 Gemstone Caverns
+1 Mathemagics
+1 Force of Will
+1 Elvish Mystic
+1 Delighted Halfling
+1 Chrome Mox
+1 Breeding Pool
+1 Misty Rainforest
+1 Otawara, Soaring City
+1 Strength of Will
+1 Llanowar Elves
+1 Tropical Island
+1 Sol Ring
+1 Branching Evolution
+1 Wan Shi Tong, Librarian
+1 Mistrise Village
+1 Command Tower
+1 Mana Vault
+1 Birds of Paradise
+1 Ingenious Prodigy
+1 Flooded Strand
+1 Polluted Delta
+1 Windswept Heath
+1 Wooded Foothills
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Hedge Maze
+1 Rite of Passage
+1 Kami of Whispered Hopes
+1 Triskelion
+1 Braingeyser
+1 Pull from Tomorrow
+1 Nature's Rhythm
+1 Finale of Devastation
+1 Mana Confluence
+1 March of Swirling Mist
+1 Change of Plans
+1 Silkguard
+1 Vigor
+1 Walking Ballista
+1 Power Sink
+1 Syncopate
+1 Repulsive Mutation
+1 Finale of Revelation
+1 City of Traitors
+1 Mox Diamond
+1 Ancient Tomb
+1 Mystic Remora
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Rhystic Study
+1 Fierce Guardianship
+1 Misdirection
+1 Force of Negation
+1 Seedborn Muse
+1 Mindbreak Trap
+1 Hydroid Krasis
+1 Thassa's Intervention
+1 Flusterstorm
+1 Pact of Negation
+1 Astral Cornucopia
+1 Carpet of Flowers
+2 Forest
+1 Badgermole Cub
+1 Hullbreaker Horror
+1 Thassa's Oracle
+1 Grim Monolith
+1 Mox Amber
+1 The Cabbage Merchant
+1 Defense of the Heart
+1 Sink into Stupor // Soporific Springs
+1 Rejuvenating Springs
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Disciple of Freyalise // Garden of Freyalise
+1 Jwari Disruption // Jwari Ruins
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Mystical Tutor
+1 Worldly Tutor
+1 The One Ring
+1 Innkeeper's Talent
+1 Dr. Joseph M'Benga
+1 Bilbo, Thief in the Night
+1 Geist of Saint Thalia
+1 Gaea's Cradle
+1 Crop Rotation
+1 Baral, Chief of Compliance
+1 Evendo, Waking Haven
+1 Boreal Druid
+1 Shang-Chi, Master of Kung Fu
+1 Bloom Tender
+1 Mirrormade
+1 Clever Impersonator
+1 Silver Scrutiny
+1 Even the Score

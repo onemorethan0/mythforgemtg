@@ -1,0 +1,95 @@
+# Archidekt — Meren Final Form
+# source: archidekt:1671792
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Meren of Clan Nel Toth
+
+Deck:
+1 Twilight Mire
+1 Elderfang Disciple
+1 Woodland Cemetery
+1 Yahenni, Undying Partisan
+1 Carrion Feeder
+1 Command Tower
+1 Viscera Seer
+1 Grave Pact
+1 Plaguecrafter
+1 Caustic Caterpillar
+1 Foundation Breaker
+1 Mindslicer
+1 Sidisi, Undead Vizier
+1 Torment of Hailfire
+1 Undergrowth Stadium
+1 Farhaven Elf
+1 Blooming Marsh
+1 Victimize
+1 Sakura-Tribe Elder
+1 Skullclamp
+1 Ashnod's Altar
+1 Spore Frog
+1 Eternal Witness
+1 Birds of Paradise
+1 High Market
+1 Necroblossom Snarl
+1 Phyrexian Tower
+1 Demonic Tutor
+1 Buried Ruin
+1 Buried Alive
+1 Arcane Signet
+1 Birthing Pod
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Animate Dead
+1 Sol Ring
+1 Phyrexian Altar
+1 Shizo, Death's Storehouse
+1 Killing Wave
+1 Bane of Progress
+1 Awakening Zone
+1 Reanimate
+1 Pattern of Rebirth
+1 Llanowar Elves
+1 Dauthi Voidwalker
+1 Life's Legacy
+1 Boseiju, Who Endures
+1 Damnation
+1 Dark Ritual
+1 Callous Bloodmage
+1 Deadly Dispute
+1 Temple of Malady
+6 Forest
+1 Protean Hulk
+1 Necromancy
+8 Swamp
+1 Village Rites
+1 Diabolic Intent
+1 Dictate of Erebos
+1 Golgari Signet
+1 Overgrown Tomb
+1 Syr Konrad, the Grim
+1 Mikaeus, the Unhallowed
+1 Reckoner's Bargain
+1 Blood Artist
+1 Mitotic Slime
+1 Exsanguinate
+1 Walking Ballista
+1 Gray Merchant of Asphodel
+1 The Meathook Massacre
+1 Zulaport Cutthroat
+1 Vindictive Vampire
+1 Kokusho, the Evening Star
+1 Urborg, Tomb of Yawgmoth
+1 Yavimaya, Cradle of Growth
+1 Daemogoth Woe-Eater
+1 Entomb
+1 Vindictive Lich
+1 Wastewood Verge
+1 Accursed Marauder
+1 Festering Gulch
+1 Daemogoth Titan
+1 Gravecrawler
+1 Pitiless Plunderer
+1 Golgari Rot Farm
+1 Whispersilk Cloak
+1 Massacre Wurm

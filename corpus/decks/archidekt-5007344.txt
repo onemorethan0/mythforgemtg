@@ -1,0 +1,79 @@
+# Archidekt — The Dead of Winter
+# source: archidekt:5007344
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Narfi, Betrayer King
+
+Deck:
+1 Grim Draugr
+1 Hailstorm Valkyrie
+1 Icebind Pillar
+1 Marit Lage's Slumber
+1 Icehide Golem
+1 Iceberg Cancrix
+1 Frostpeak Yeti
+1 Coldsteel Heart
+1 Frost Raptor
+1 Frost Augur
+1 Rimefeather Owl
+1 Time of Ice
+1 Diabolic Vision
+1 Chilling Grasp
+1 Priest of the Haunted Edge
+1 Dead of Winter
+1 Queen of Ice // Rage of Winter
+1 Frozen Aether
+1 Frozen Solid
+1 Frost Titan
+1 Icy Blast
+1 Deliberate
+1 Winter Moon
+1 Counterspell
+1 Frost Marsh
+1 Permafrost Trap
+1 Graven Lore
+1 Stop Cold
+1 Freeze in Place
+1 Cone of Cold
+1 Ice Tunnel
+1 Early Winter
+15 Snow-Covered Island
+1 Shimmerdrift Vale
+1 Faceless Haven
+1 Bitter Chill
+1 Blizzard Specter
+1 Berg Strider
+1 Avalanche Caller
+1 Rime Transfusion
+1 Deathmark
+1 Raise the Draugr
+1 Blood on the Snow
+1 Scrying Sheets
+1 Mouth of Ronom
+1 Frostwalk Bastion
+1 Chill to the Bone
+1 Winter's Chill
+1 Succumb to the Cold
+1 Snow Devil
+1 Ice Over
+1 Ice Cage
+1 Out Cold
+1 Ice Out
+1 Grim Harvest
+1 Chill of the Grave
+1 Frost Breath
+1 Winter's Rest
+1 Zombie Musher
+1 Rimebound Dead
+1 Pilfering Hawk
+1 Draugr Necromancer
+1 Relic of Legends
+1 Icebreaker Kraken
+1 Chilling Shade
+1 Drift of the Dead
+1 Ascendant Spirit
+1 Blizzard Strix
+1 Hylda's Crown of Winter
+16 Snow-Covered Swamp

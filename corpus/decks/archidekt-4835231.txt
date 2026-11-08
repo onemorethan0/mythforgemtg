@@ -1,0 +1,90 @@
+# Archidekt — The Choice is Yours
+# source: archidekt:4835231
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Gifts Ungiven, Rhystic Study); Bracket 1 allows 0
+
+Commander:
+1 Atris, Oracle of Half-Truths
+
+Deck:
+1 Rhystic Scrying
+1 Rhystic Tutor
+1 Rhystic Cave
+1 Sphinx Ambassador
+1 Extract Brain
+1 Burning-Rune Demon
+1 Manifold Insights
+1 Epiphany at the Drownyard
+1 Rags // Riches
+1 Fatespinner
+1 Coercive Portal
+1 Unesh, Criosphinx Sovereign
+1 Necrotic Plague
+1 Sphinx of Clear Skies
+1 Sphinx of Uthuun
+1 Split Decision
+1 Fact or Fiction
+1 Fortune's Favor
+1 Hostile Negotiations
+1 Deliver Unto Evil
+1 Sakashima's Will
+1 Make an Example
+1 Plea for Power
+1 Boneyard Parley
+1 Sauron's Ransom
+1 Archfiend of Depravity
+1 Gollum, Scheming Guide
+1 Liar's Pendulum
+1 Master of Predicaments
+14 Island
+7 Swamp
+1 Thought Vessel
+1 Mind Stone
+1 Sol Ring
+1 Wayfarer's Bauble
+1 Arcane Signet
+1 Dimir Signet
+1 Talisman of Dominance
+1 Sunken Hollow
+1 Watery Grave
+1 Demolition Field
+1 Shipwreck Marsh
+1 Drowned Catacomb
+1 Morphic Pool
+1 Command Tower
+1 Darkslick Shores
+1 Malakir Rebirth // Malakir Mire
+1 Hagra Mauling // Hagra Broodpit
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Call to the Void
+1 Scheming Symmetry
+1 Palantír of Orthanc
+1 Covenant of Minds
+1 Hive Mind
+1 Death Match
+1 Wandering Archaic // Explore the Vastlands
+1 Mire in Misery
+1 Virtus's Maneuver
+1 Liliana's Triumph
+1 Vona's Hunger
+1 Innocent Blood
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Conundrum Sphinx
+1 Exhume
+1 Fraying Line
+1 Order of Succession
+1 Pain's Reward
+1 Rhystic Study
+1 Dark Ritual
+1 Hunted by The Family
+1 Great Intelligence's Plan
+1 Intrude on the Mind
+1 Sadistic Shell Game
+1 Curator of Destinies
+1 Memories Returning
+1 Rejoin the Fight
+1 Gifts Ungiven
+1 Abstract Performance
+1 Undercity Sewers
+1 Distant Memories

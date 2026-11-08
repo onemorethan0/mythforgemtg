@@ -1,0 +1,89 @@
+# Archidekt — Silverquill Poli-Sci
+# source: archidekt:1335411
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Breena, the Demagogue
+
+Deck:
+1 Sign in Blood
+1 Bloodtracker
+1 Isolated Chapel
+10 Swamp
+1 Norn's Annex
+1 Akroma's Will
+1 Wandering Archaic // Explore the Vastlands
+1 Gix, Yawgmoth Praetor
+10 Plains
+1 Loran of the Third Path
+1 Master of Ceremonies
+1 Phyrexian Arena
+1 Slaughter Specialist
+1 Protection Racket
+1 Smothering Tithe
+1 Fellwar Stone
+1 Lightning Greaves
+1 Exhume
+1 Wishclaw Talisman
+1 Path of Ancestry
+1 Tymna the Weaver
+1 Wayfarer's Bauble
+1 Archfiend of Depravity
+1 Overseer of the Damned
+1 Debt to the Deathless
+1 Austere Command
+1 Anguished Unmaking
+1 Thriving Moor
+1 Thriving Heath
+1 Exotic Orchard
+1 Rogue's Passage
+1 Myriad Landscape
+1 Opal Palace
+1 Command Tower
+1 Secret Rendezvous
+1 Silverquill Campus
+1 Study Hall
+1 Arcane Signet
+1 Sol Ring
+1 Mind Stone
+1 Felisa, Fang of Silverquill
+1 Windborn Muse
+1 Selfless Squire
+1 Oblation
+1 Orzhov Advokist
+1 Ghostly Prison
+1 Knight of the White Orchid
+1 Duelist's Heritage
+1 Infernal Offering
+1 Utter End
+1 Deathbringer Liege
+1 Pendant of Prosperity
+1 Orzhov Signet
+1 Coveted Jewel
+1 Temple of Silence
+1 Tainted Field
+1 Caves of Koilos
+1 Mikokoro, Center of the Sea
+1 Bojuka Bog
+1 Inkshield
+1 Promise of Loyalty
+1 Scholarship Sponsor
+1 Kambal, Consul of Allocation
+1 Scheming Symmetry
+1 Mangara, the Diplomat
+1 Shadrix Silverquill
+1 Wand of Orcus
+1 Seizan, Perverter of Truth
+1 Ghoulish Impetus
+1 Batwing Brume
+1 Glasswing Grace // Age-Graced Chapel
+1 Plague Wind
+1 Scholar of New Horizons
+1 Kambal, Profiteering Mayor
+1 Abigale, Eloquent First-Year
+1 Dauntless Scrapbot
+1 Elesh Norn // The Argent Etchings
+1 Trouble in Pairs
+1 Decorum Dissertation
+1 Esper Sentinel

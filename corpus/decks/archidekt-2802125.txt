@@ -1,0 +1,101 @@
+# Archidekt — Elven Madness
+# source: archidekt:2802125
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lathril, Blade of the Elves
+
+Deck:
+1 Reclamation Sage
+1 Shamanic Revelation
+1 Skyshroud Claim
+1 Ohran Frostfang
+1 Grim Backwoods
+1 Opal Palace
+1 Imperious Perfect
+1 Command Tower
+1 Myriad Landscape
+1 Swiftfoot Boots
+1 Beast Whisperer
+1 Skullclamp
+1 Lightning Greaves
+1 Forest
+1 Rogue's Passage
+1 Path of Ancestry
+1 Asceticism
+1 Mana Reflection
+1 Vitalize
+1 Staff of Domination
+1 Essence Warden
+1 Saryth, the Viper's Fang
+1 Elvish Harbinger
+1 Elvish Warmaster
+1 Tyvar Kell
+1 Elven Ambush
+1 Kindred Summons
+1 Elvish Promenade
+1 Quest for Renewal
+1 Tyvar's Stand
+1 Phyrexian Arena
+1 Diabolic Revelation
+1 Llanowar Wastes
+1 Unclaimed Territory
+1 Secluded Courtyard
+1 Tainted Wood
+1 Oubliette
+1 Necroblossom Snarl
+1 Priest of Titania
+1 Kodama's Reach
+1 Dig Up
+1 Llanowar Reborn
+1 Wolverine Riders
+1 Assassin's Trophy
+1 Ezuri, Renegade Leader
+1 Woodland Cemetery
+1 Heritage Reclamation
+1 Formidable Speaker
+1 Umbral Mantle
+1 Sol Ring
+1 Familiar Ground
+1 Herald's Horn
+1 Fallen Ideal
+1 Alpha Status
+1 Elvish Guidance
+1 Allosaurus Shepherd
+1 Circle of Dreams Druid
+1 Elvish Archdruid
+1 Alpha Authority
+1 Dina's Guidance
+1 Worldly Tutor
+1 Wirewood Symbiote
+1 Marwyn, the Nurturer
+1 Wirewood Channeler
+1 Seedborn Muse
+1 Deserted Temple
+1 Wirewood Lodge
+4 Swamp
+1 Arcane Signet
+1 Pact of the Serpent
+1 Eclipsed Realms
+1 Overgrown Tomb
+1 Exotic Orchard
+1 Gaea's Blessing
+1 Selfless Safewright
+1 Champions of the Perfect
+1 Survivors' Encampment
+1 Deathcap Glade
+1 Abrupt Decay
+1 Llanowar Elves
+1 Kindred Dominance
+1 Bitter Triumph
+5 Forest
+1 Festering Thicket
+1 Twilight Mire
+1 Night's Whisper
+1 Collective Resistance
+1 Whispersilk Cloak
+1 Vernal Fen
+1 Elves of Deep Shadow
+1 Necrodominance
+1 Elven Passage

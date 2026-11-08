@@ -1,0 +1,91 @@
+# Archidekt — You'd better pay attention now, 'cause I'm the Boogie Man!
+# source: archidekt:4233288
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Grist, the Hunger Tide
+
+Deck:
+1 Stinging Cave Crawler
+1 Spring-Leaf Avenger
+1 Giant Ladybug
+1 Haywire Mite
+1 Loam Larva
+1 Venomous Changeling
+1 Caustic Wasps
+1 Skittering Heartstopper
+1 Zask, Skittering Swarmlord
+1 Mazirek, Kraul Death Priest
+10 Swamp
+1 Forever Young
+1 Battlefly Swarm
+1 Blightbeetle
+1 Bond Beetle
+1 Canoptek Tomb Sentinel
+1 Duskshell Crawler
+1 Hornet Queen
+1 Ironshell Beetle
+1 Hornet Nest
+1 Guardian Gladewalker
+1 Xantid Swarm
+1 Nantuko Tracer
+1 Nessian Hornbeetle
+1 Scute Mob
+1 Swarm of Bloodflies
+1 Graveshifter
+1 Kraul Whipcracker
+1 Brain Maggot
+1 Canoptek Scarab Swarm
+1 Circuit Mender
+1 Nameless Inversion
+1 Footbottom Feast
+1 Gravepurge
+1 Liliana's Talent
+1 Bone Harvest
+1 Bilious Skulldweller
+1 Masked Vandal
+1 Caustic Caterpillar
+1 Mortician Beetle
+1 Nantuko Husk
+1 Nantuko Elder
+1 Stirge
+1 Bayou Dragonfly
+1 Ant Queen
+1 Amzu, Swarm's Hunger
+1 Aatchik, Emerald Radian
+1 Chitin Gravestalker
+1 Molt Tender
+1 Webstrike Elite
+1 Kraul Harpooner
+1 Realmwalker
+1 Plague Beetle
+1 Pestilent Syphoner
+1 Kozilek, Butcher of Truth
+1 Carrion Beetles
+1 Virus Beetle
+1 Infesting Radroach
+1 Bloatfly Swarm
+1 Saber Ants
+1 Skylasher
+1 Plague Stinger
+1 Swamp Mosquito
+1 Thelonite Monk
+1 Springheart Nantuko
+1 Blister Beetle
+1 Formless Genesis
+1 Fumulus, the Infestation
+1 Swarmyard
+1 Grist, Voracious Larva // Grist, the Plague Swarm
+1 Altanak, the Thrice-Called
+1 Meltstrider Eulogist
+1 Seedship Agrarian
+1 Seedship Broodtender
+1 Gene Pollinator
+1 Icetill Explorer
+1 Thawbringer
+1 Path of Ancestry
+1 Eumidian Terrabotanist
+1 Swarm Culler
+1 Dread Return
+9 Forest

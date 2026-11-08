@@ -1,0 +1,103 @@
+# Archidekt — uuuuuuuuugggggggggggguuuuuuuuuuuuuu
+# source: archidekt:25083639
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Uugguu, the Omniplasm
+
+Deck:
+1 March of the World Ooze
+1 Fabled Passage
+1 Corrupted Zendikon
+1 Phyrexian Metamorph
+1 Lightning Greaves
+1 Lazotep Quarry
+1 Glasspool Mimic // Glasspool Shore
+1 Flesh Duplicate
+1 Stunt Double
+1 Clever Impersonator
+1 Raise the Palisade
+1 Harmonized Crescendo
+1 Bloodline Bidding
+1 Pact of the Serpent
+1 Phantasmal Image
+1 Clone
+1 Mirrorhall Mimic // Ghastly Mimicry
+1 Vizier of Many Faces
+1 Naga Fleshcrafter
+1 Omni-Changeling
+1 Pirated Copy
+1 Gigantoplasm
+1 Copycrook
+1 Visage Bandit
+1 Evil Twin
+1 Vesuvan Shapeshifter
+1 Animate Dead
+1 Malakir Rebirth // Malakir Mire
+1 Victimize
+1 Not Dead After All
+1 Undying Malice
+1 Feign Death
+1 Persist
+1 Shallow Grave
+1 Corpse Dance
+1 Necromancy
+1 Reanimate
+1 Dance of the Dead
+1 Heroic Intervention
+1 Dread Return
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Perplexing Test
+1 Yawgmoth, Thran Physician
+1 Phyrexian Altar
+1 Sol Ring
+1 Mutavault
+1 Mutable Explorer
+1 Selfless Safewright
+1 Boseiju, Who Endures
+1 Otawara, Soaring City
+1 Three Tree City
+1 Talon Gates of Madara
+1 Phyrexian Tower
+1 Takenuma, Abandoned Mire
+1 Evendo, Waking Haven
+1 High Market
+1 Breeding Pool
+1 Bojuka Bog
+1 Verdant Catacombs
+1 Command Tower
+1 Misty Rainforest
+1 Watery Grave
+1 Overgrown Tomb
+1 Underground Sea
+1 Tropical Island
+1 Nykthos, Shrine to Nyx
+1 Bayou
+2 Island
+4 Forest
+2 Swamp
+1 Harvest Season
+1 Black Market Connections
+1 Soulstone Sanctuary
+1 Earthcraft
+1 Alchemist's Refuge
+1 Toxic Deluge
+1 Damnation
+1 Chthonian Nightmare
+1 Shifting Woodland
+1 Elvish Mystic
+1 Delighted Halfling
+1 Birds of Paradise
+1 Llanowar Elves
+1 Sakura-Tribe Elder
+1 Bloom Tender
+1 Transcendent Message
+1 Blasphemous Edict
+1 The Meathook Massacre
+1 Mirrorform
+1 Maskwood Nexus
+1 Arcane Adaptation
+1 Prismatic Vista
+1 Gladewalker Ritualist
+1 Firdoch Core

@@ -1,0 +1,89 @@
+# Archidekt — Death? Haven't heard of it - Hildibrand EDH
+# source: archidekt:13263853
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Hildibrand Manderville // Gentleman's Rise
+
+Deck:
+1 Cruel Celebrant
+1 Blood Artist
+1 Orzhov Basilica
+1 Caves of Koilos
+1 Temple of Silence
+1 Village Rites
+1 Bastion of Remembrance
+13 Plains
+1 Wanderer's Twig
+1 Tome of Legends
+1 Command Tower
+1 Solemn Simulacrum
+1 Evolving Wilds
+1 On Wings of Gold
+1 Inspiring Leader
+1 Exalted Sunborn
+1 Reprieve
+1 Finale of Glory
+1 Bartolomé del Presidio
+1 Invasion of Tolvada // The Broken Sky
+1 Path to Exile
+1 Swords to Plowshares
+1 Elesh Norn, Grand Cenobite
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Elspeth, Storm Slayer
+1 Denethor, Ruling Steward
+1 Moogles' Valor
+1 Cathar Commando
+1 Make Your Move
+1 Elder Arthur Maxson
+1 Summon: Knights of Round
+1 Fanatical Offering
+1 Decanter of Endless Water
+1 Life Insurance
+1 Arcane Signet
+1 Orzhov Signet
+1 Fake Your Own Death
+1 Inkshield
+1 Sol Ring
+1 Intangible Virtue
+1 Wayfarer's Bauble
+1 Halo Fountain
+1 Return to Action
+1 Fleshtaker
+1 Falkenrath Noble
+1 Mirkwood Bats
+1 Carrion Feeder
+1 Altar's Reap
+1 Baron Bertram Graywater
+1 Dramatic Finale
+1 Teysa Karlov
+1 Blot Out the Sky
+1 Starry-Eyed Skyrider
+1 Xathrid Necromancer
+1 Vault of the Archangel
+1 Midgar, City of Mako // Reactor Raid
+1 Nasty End
+1 Deadly Dispute
+1 Minas Tirith
+1 Krav, the Unredeemed
+1 Rogue's Passage
+1 Terramorphic Expanse
+1 Divine Visitation
+1 Zulaport Cutthroat
+1 Thraben Charm
+1 Blessed Reversal
+1 Costly Plunder
+1 Corrupted Conviction
+1 Escape Tunnel
+1 High Market
+1 Promise of Bunrei
+1 Godless Shrine
+1 Syr Konrad, the Grim
+1 Soul Warden
+1 Tainted Field
+1 Sun Titan
+1 Hold the Line
+8 Swamp
+1 Village Bell-Ringer
+1 Reliquary Tower

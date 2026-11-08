@@ -1,0 +1,95 @@
+# Archidekt — Hosts of Mordor Upgrade
+# source: archidekt:4694645
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Sauron, the Dark Lord
+
+Deck:
+1 Arcane Denial
+1 Sol Ring
+1 Crumbling Necropolis
+1 Rogue's Passage
+1 Too Greedily, Too Deep
+1 Living Death
+1 Smoldering Marsh
+1 Lord Xander, the Collector
+1 Call of the Ring
+1 Virtue of Persistence // Locthwain Scorn
+1 Combustible Gearhulk
+1 Toxrill, the Corrosive
+1 Doom Whisperer
+1 The Great Goblin
+1 Great Goblin, Foul-Hearted
+1 Along the Crooked Way
+1 Sepulchral Primordial
+1 Palantír of Orthanc
+1 Stormcarved Coast
+1 Bolg, Erebor's Reckoning
+1 Troop of Ponies
+4 Island
+5 Mountain
+7 Swamp
+1 In the Darkness Bind Them
+1 Feed the Swarm
+1 Terramorphic Expanse
+1 Go for the Throat
+1 Orcish Bowmasters
+1 Talisman of Dominance
+1 Drowned Catacomb
+1 Moria Scavenger
+1 Victimize
+1 Escape Tunnel
+1 The Balrog of Moria
+1 Wonder
+1 Demand Answers
+1 Dragonskull Summit
+1 Evolving Wilds
+1 Barad-dûr
+1 Thrill of Possibility
+1 Orcish Siegemaster
+1 Nasty End
+1 Path of Ancestry
+1 Arcane Signet
+1 Scourge of the Throne
+1 Sunken Hollow
+1 Talisman of Creativity
+1 Archfiend of Ifnir
+1 Feldon of the Third Path
+1 Foreboding Ruins
+1 The Balrog, Durin's Bane
+1 The Black Gate
+1 The One Ring
+1 Animate Dead
+1 Sauron, Lord of the Rings
+1 Baleful Strix
+1 Saruman, the White Hand
+1 Seething Landscape
+1 Tibalt's Trickery
+1 Chainer, Nightmare Adept
+1 Archon of Cruelty
+1 Fierce Guardianship
+1 One Ring to Rule Them All
+1 Cavern-Hoard Dragon
+1 Relic of Sauron
+1 Grave Researcher // Reanimate
+1 Desolate Lighthouse
+1 Corsairs of Umbar
+1 Reanimate
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Underground River
+1 Fact or Fiction
+1 Anger
+1 Command Tower
+1 Talisman of Indulgence
+1 Sauron's Ransom
+1 Wayfarer's Bauble
+1 Witch-king of Angmar
+1 Deadly Rollick
+1 Shivan Reef
+1 Rampaging War Mammoth
+1 Riddles in the Dark
+1 Withering Torment
+1 Witch-king, Bringer of Ruin

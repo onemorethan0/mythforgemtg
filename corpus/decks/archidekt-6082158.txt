@@ -1,0 +1,108 @@
+# Archidekt — Buttercup, Provincial Princess (Sisay, Weatherlight Captain)
+# source: archidekt:6082158
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Birds of Paradise
+1 Force of Will
+1 Defense Grid
+1 Ignoble Hierarch
+1 Deafening Silence
+1 Force of Negation
+1 Arcane Signet
+1 Samut, Voice of Dissent
+1 Tyvar, Jubilant Brawler
+1 Blind Obedience
+1 Lotho, Corrupt Shirriff
+1 Tear Asunder
+1 Spell Pierce
+1 Sol Ring
+1 Suspend
+1 Command Tower
+1 Swamp
+1 Island
+1 Plains
+1 Noxious Revival
+1 Bloom Tender
+1 Faeburrow Elder
+1 Lavinia, Azorius Renegade
+1 Kinnan, Bonder Prodigy
+1 Mox Amber
+1 Deathrite Shaman
+1 Kiora, Behemoth Beckoner
+1 Aminatou, the Fateshifter
+1 Vampiric Tutor
+1 Dauntless Dismantler
+1 Plaza of Heroes
+1 Urza's Saga
+1 Boseiju, Who Endures
+1 Mana Confluence
+1 Drannith Magistrate
+1 Derevi, Empyrial Tactician
+1 Delighted Halfling
+1 Plateau
+1 Bloodstained Mire
+1 Arid Mesa
+1 Misty Rainforest
+1 Taiga
+1 Esper Sentinel
+1 Najeela, the Blade-Blossom
+1 Veil of Summer
+1 Teferi, Time Raveler
+1 Swan Song
+1 Rhystic Study
+1 Carpet of Flowers
+1 Tarnished Citadel
+1 Otawara, Soaring City
+1 The One Ring
+1 Lotus Petal
+1 Gemstone Caverns
+1 Fierce Guardianship
+1 Mana Vault
+1 Ancient Tomb
+1 Mox Diamond
+1 Marsh Flats
+1 Wooded Foothills
+1 Windswept Heath
+1 Gaea's Cradle
+1 Verdant Catacombs
+1 Flooded Strand
+1 City of Brass
+1 Mount Doom
+1 Legolas's Quick Reflexes
+1 Rule of Law
+1 Talion, the Kindly Lord
+1 Mystic Remora
+1 High Noon
+1 Cyclonic Rift
+1 Deflecting Swat
+1 Sneak Attack
+1 Rest in Peace
+1 Fellwar Stone
+1 Noble Hierarch
+1 Mental Misstep
+1 Ertai Resurrected
+1 Avacyn's Pilgrim
+1 Deadly Rollick
+1 Hajar, Loyal Bodyguard
+1 Skrelv, Defector Mite
+1 Volcanic Island
+1 Tundra
+1 Tropical Island
+1 Scrubland
+1 Savannah
+1 Chrome Mox
+1 Ioreth of the Healing House
+1 Kutzil, Malamet Exemplar
+1 Silence
+1 Assassin's Trophy
+1 Path to Exile
+1 Swords to Plowshares
+1 Emiel the Blessed
+1 Relic of Legends
+1 Marvin, Murderous Mimic
+1 Lightning Greaves

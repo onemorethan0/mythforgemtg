@@ -1,0 +1,96 @@
+# WotC precon — Avengers Assemble (MSC, 2026-06-26)
+# source: mtgjson:AvengersAssemble_MSC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Captain America, Team Leader
+
+Deck:
+1 Ant-Man, Elusive Avenger
+1 Arcane Denial
+1 Arcane Signet
+1 Austere Command
+1 Avenge
+1 Avengers Quinjet
+1 Avengers Tower
+1 Bastion Protector
+1 Black Widow, Agile Avenger
+1 Captain America, Living Legend
+1 Captain Mar-Vell, Space-Born
+1 Captain Marvel, Apex Avenger
+1 Clifftop Retreat
+1 Coastal Peak
+1 Command Tower
+1 Destroy Evil
+1 Director Nick Fury
+1 Dismantling Wave
+1 Door of Destinies
+1 Exotic Orchard
+1 Falcon and Redwing
+1 Fellwar Stone
+1 Firebird, Blazing Ranger
+1 Folk Hero
+1 Frostboil Snarl
+1 Furycalm Snarl
+1 Gift of Immortality
+1 Glacial Fortress
+1 Glittering Massif
+1 Hawkeye, Avenging Archer
+1 Herald's Horn
+1 Hercules, Olympian Hero
+1 Hero's Blade
+1 Heroic Return
+1 Heroic Sacrifice
+1 Hulkbuster Armor
+1 Iron Man, Armored Avenger
+1 Irrigated Farmland
+5 Island
+1 Jarvis, Earth's Mightiest Butler
+1 Jocasta, Automaton Avenger
+1 Kindred Discovery
+1 Love on the Battlefield
+1 Make Your Move
+1 Metallic Mimic
+1 Methods of the Mighty
+5 Mountain
+1 Mystic Monastery
+1 Path of Ancestry
+1 Patriot, Shield Wielder
+1 Photon, Mighty Marvel
+6 Plains
+1 Plaza of Heroes
+1 Port Town
+1 Prairie Stream
+1 Professor Hulk
+1 Quicksilver, Speedster
+1 Radiant Summit
+1 Raise the Palisade
+1 Reconnaissance Mission
+1 Relic of Legends
+1 Rescue, Pepper Potts
+1 Rip Apart
+1 Scarlet Witch, Chaotic Avenger
+1 Scavenger Grounds
+1 Scorched Geyser
+1 Secluded Courtyard
+1 Shang-Chi and the Ten Rings
+1 She-Hulk, Wallbreaker
+1 Sol Ring
+1 Spectator Seating
+1 Speed, Young Avenger
+1 Sulfur Falls
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Talisman of Progress
+1 The Wasp, Winsome Avenger
+1 Thor, Asgard's Avenger
+1 Thought Vessel
+1 Tome of Legends
+1 Unclaimed Territory
+1 Vision, Synthezoid Avenger
+1 War Machine, Avenging Arsenal
+1 West Coast Expansion
+1 Winter Soldier, Reborn Avenger

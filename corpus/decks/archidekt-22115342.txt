@@ -1,0 +1,94 @@
+# Archidekt — SUP Mendicant Core, Guidelight
+# source: archidekt:22115342
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Mendicant Core, Guidelight
+
+Deck:
+1 Thran Dynamo
+1 Desynchronization
+1 Voyage Home
+1 Sai, Master Thopterist
+1 Shimmer Myr
+1 Silver Myr
+1 Gold Myr
+1 Phyrexian Metamorph
+1 Research Thief
+1 Steel Overseer
+1 Solemn Simulacrum
+1 The Reality Chip
+1 Emry, Lurker of the Loch
+1 Riptide Gearhulk
+1 Path to Exile
+1 Azorius Signet
+1 Diversion Unit
+1 Thought Monitor
+1 K-9, Mark I
+1 Karn, Legacy Reforged
+1 Thoughtcast
+1 Illustrious Wanderglyph
+1 Lightning Greaves
+1 Kappa Cannoneer
+1 Master Transmuter
+1 Padeem, Consul of Innovation
+1 Bronze Guardian
+1 Foundry Inspector
+1 Master of Etherium
+1 Etherium Sculptor
+1 Organic Extinction
+1 Vedalken Archmage
+1 Scrawling Crawler
+1 Jhoira's Familiar
+1 Losheel, Clockwork Scholar
+1 Cyberdrive Awakener
+1 Fabricate
+1 Talisman of Progress
+1 Ornithopter of Paradise
+1 Generous Gift
+1 Arcane Denial
+1 Brilliant Restoration
+1 Thopter Spy Network
+1 Command Tower
+1 Mana Drain
+1 Counterspell
+1 Swan Song
+1 Cloud Key
+1 Sol Ring
+1 Swords to Plowshares
+1 Lavaspur Boots
+1 Dovin's Veto
+1 Darksteel Citadel
+1 Fierce Guardianship
+1 Dispatch
+1 Fellwar Stone
+1 Efficient Construction
+1 Mystic Forge
+1 Arcane Signet
+1 Unwinding Clock
+1 Mechanized Production
+1 Swiftfoot Boots
+8 Plains
+1 Fomori Vault
+1 Adarkar Wastes
+1 Crystal Skull, Isu Spyglass
+1 Archway of Innovation
+1 Sculpting Steel
+1 Simulacrum Synthesizer
+1 Sea of Clouds
+1 Academy Ruins
+1 Reliquary Tower
+1 Artificer Class
+8 Island
+1 Ancient Den
+1 Muraganda Raceway
+1 Hallowed Fountain
+1 Scalding Tarn
+1 Otawara, Soaring City
+1 Spire of Industry
+1 Treasure Vault
+1 Amonkhet Raceway
+1 Seat of the Synod
+1 Inventors' Fair
+1 Urza's Saga

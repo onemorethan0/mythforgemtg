@@ -1,0 +1,101 @@
+# Archidekt — The Tenth Doctor Suspend
+# source: archidekt:15238546
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo The Tenth Doctor + Rousing Refrain; Bracket 1 allows none
+
+Commander:
+1 The Tenth Doctor
+1 Tegan Jovanka
+
+Deck:
+1 Mistveil Plains
+1 Arid Mesa
+1 Command Tower
+1 Elegant Parlor
+1 Fabled Passage
+1 Flooded Strand
+1 Path of Ancestry
+1 Plateau
+1 Prismatic Vista
+1 Raugrin Triome
+1 Sacred Foundry
+1 Scalding Tarn
+1 Steam Vents
+1 Thespian's Stage
+1 Thundering Falls
+1 Trenzalore Clocktower
+1 Tundra
+1 Chronozoa
+1 Iraxxa, Empress of Mars
+1 Ith, High Arcanist
+1 Judoon Enforcers
+1 Paradox Haze
+1 Jhoira of the Ghitu
+1 Shadow of the Second Sun
+1 The Girl in the Fireplace
+1 The Lost and the Damned
+1 The Parting of the Ways
+1 Time Beetle
+1 Triple Triad
+1 Volcanic Island
+1 Urianger Augurelt
+1 Flaming Tyrannosaurus
+1 Rose Tyler
+1 Sphinx of the Second Sun
+1 Overlord of the Mistmoors
+1 Overlord of the Floodpits
+1 The Wedding of River Song
+1 Vega, the Watcher
+1 Wild-Magic Sorcerer
+1 Rotating Fireplace
+1 Hourglass of the Lost
+1 Crack in Time
+1 The Eleventh Doctor
+1 Rousing Refrain
+1 Mirror Room // Fractured Realm
+1 Etali, Primal Storm
+1 Mind's Dilation
+1 Inspiring Refrain
+1 The Ninth Doctor
+1 Delayed Blast Fireball
+1 Overlord of the Boilerbilges
+1 Sinister Concierge
+1 Wand of Wonder
+1 Amy Pond
+1 Chronomantic Escape
+1 Star Whale
+1 Hallowed Fountain
+1 Meticulous Archive
+1 Rory Williams
+1 Spider-Verse
+1 As Foretold
+1 Quintorius Kand
+1 Extraordinary Journey
+1 Monk Gyatso
+1 Appa, Steadfast Guardian
+1 Improvisation Capstone
+1 Restoration Seminar
+1 Reflecting Pool
+1 Court of Ardenvale
+1 Glimpse the Impossible
+1 Ragavan, Nimble Pilferer
+1 Four Knocks
+1 Jacob Hauken, Inspector // Hauken's Insight
+1 Shadow of the Goblin
+1 Avatar's Wrath
+1 Windbrisk Heights
+1 Clive's Hideaway
+1 Mox Tantalite
+1 Sol Talisman
+1 Atraxi Warden
+4 Mountain
+1 Doom's Time Platform
+1 Regenerations Restored
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 The War Doctor
+1 Valakut Awakening // Valakut Stoneforge
+4 Island
+3 Plains
+1 Lotus Bloom

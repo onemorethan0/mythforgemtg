@@ -1,0 +1,96 @@
+# Archidekt — Willie, Unassuming Mailman
+# source: archidekt:23822448
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Gifts Ungiven); Bracket 2 allows 0
+
+Commander:
+1 Willie Lumpkin, Postman
+
+Deck:
+1 Friendly Neighborhood
+1 Tome of Legends
+1 The Mighty Thor, Jane Foster
+1 Command Tower
+1 April O'Neil, Hacktivist
+1 Arcane Signet
+1 Kindly Customer
+1 Vibrant Cityscape
+1 Fishing Gear
+1 Idolized
+1 University Campus
+1 Late to Dinner
+1 Wrong Turn
+1 Get Lost
+1 Duelist's Heritage
+1 Letter of Acceptance
+1 Wedding Announcement // Wedding Festivity
+1 Tidings
+7 Plains
+1 Everett K. Ross, Hapless Attaché
+1 Zack Fair
+1 The Council of Four
+1 Sarah Jane Smith
+1 Gifts Ungiven
+1 Crossroads Village
+1 Greymond, Avacyn's Stalwart
+1 Honest Work
+1 Study
+1 Dispatch
+1 Delay
+1 Eldrazi Conscription
+1 Glacial Fortress
+1 Exchange of Words
+1 Righteous Authority
+1 Helping Hand
+1 Irma, Part-Time Mutant
+1 Fountainport
+1 Witness Protection
+1 Belladonna Took
+1 Ransom Note
+1 Feywild Visitor
+1 Rabble Rousing
+1 Azorius Signet
+1 Sol Ring
+1 Flaming Fist
+1 Stand // Deliver
+1 Wedding Invitation
+1 Skateboard
+1 Hot Dog Cart
+1 Misleading Signpost
+1 Inherited Envelope
+1 Dollmaker's Shop // Porcelain Gallery
+1 Four Knocks
+1 Brave the Elements
+1 Promise of Loyalty
+1 Slip Out the Back
+1 Envelop
+1 The Second Doctor
+1 Gregor, Shrewd Magistrate
+1 Delivery Moogle
+1 Loran of the Third Path
+1 Bard's Company
+1 Phelia, Exuberant Shepherd
+1 Helpful Hunter
+6 Island
+1 Demolition Field
+1 Sea of Clouds
+1 Adarkar Wastes
+1 Flooded Strand
+1 Prairie Stream
+1 Hallowed Fountain
+1 Deserted Beach
+1 Irrigated Farmland
+1 Skybridge Towers
+1 Port Town
+1 Baxter Building
+2 Snow-Covered Island
+2 Snow-Covered Plains
+1 Noble Heritage
+1 Grand Crescendo
+1 By Invitation Only
+1 Talisman of Progress
+1 Rout
+1 Toby, Beastie Befriender
+1 Spirited Companion
+1 Exotic Orchard

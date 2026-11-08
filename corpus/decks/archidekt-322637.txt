@@ -1,0 +1,94 @@
+# Archidekt — PwLvL 8.0 Nekusar Wizards of the Roast
+# source: archidekt:322637
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Nekusar, the Mindrazer
+
+Deck:
+1 Reanimate
+1 Talisman of Indulgence
+1 Damnation
+1 Waste Not
+1 Whispering Madness
+1 Dack Fayden
+1 Dark Deal
+1 Bloodstained Mire
+1 Polluted Delta
+1 Molten Psyche
+1 Liliana's Caress
+1 Bloodchief Ascension
+5 Mountain
+1 Burning Inquiry
+1 Kederekt Parasite
+1 Watery Grave
+1 Wheel and Deal
+1 Standstill
+1 Cephalid Coliseum
+1 Sigil of Sleep
+1 Memory Jar
+1 Winds of Change
+1 Anvil of Bogardan
+1 Wheel of Fortune
+1 Morphic Pool
+1 Luxury Suite
+1 Steam Vents
+1 Urborg, Tomb of Yawgmoth
+1 Demonic Tutor
+1 Blood Crypt
+1 Talisman of Creativity
+1 Command Tower
+1 Bojuka Bog
+1 Underworld Breach
+1 Arcane Signet
+1 Cyclonic Rift
+1 Maze of Ith
+1 Toxic Deluge
+5 Swamp
+5 Island
+1 Command Beacon
+1 Mana Drain
+1 Unearth
+1 Chrome Mox
+1 Jeska's Will
+1 Harmonic Prodigy
+1 Talisman of Dominance
+1 Ghyrson Starn, Kelermorph
+1 Sheoldred, the Apocalypse
+1 Infernal Grasp
+1 Lion's Eye Diamond
+1 Cut Down
+1 Echo of Eons
+1 Mystical Tutor
+1 Vampiric Tutor
+1 Drown in the Loch
+1 Faerie Mastermind
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Lotus Petal
+1 Orcish Bowmasters
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Razorkin Needlehead
+1 Witch's Clinic
+1 Sanctum of Eternity
+1 City of Brass
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Riptide Laboratory
+1 Reforge the Soul
+1 Cursed Totem
+1 Torpor Orb
+1 Scrawling Crawler
+1 Monument to Endurance
+1 Xander's Lounge
+1 Sol Ring
+1 Mindcrank
+1 Decorum Dissertation
+1 Tomik, Izzet Sparkmage
+1 Tinybones, Pocket Nuisance
+1 Wizard's Staff
+1 Curiosity
+1 Arcane Heist
+1 Solve the Equation
+1 Windfall
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Multiply by Zero

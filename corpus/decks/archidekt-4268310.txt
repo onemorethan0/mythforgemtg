@@ -1,0 +1,108 @@
+# Archidekt — Idea/Intent
+# source: archidekt:4268310
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zimone and Dina
+
+Deck:
+1 Nissa, Voice of Zendikar
+1 Spelunking
+1 Awakening Zone
+1 Necroblossom Snarl
+1 Retreat to Coralhelm
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Divide by Zero
+1 Oracle of Mul Daya
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Pact of Negation
+1 Bloodghast
+1 Cascading Cataracts
+1 Breeding Pool
+1 Watery Grave
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Reflecting Pool
+1 Swamp
+1 Field of the Dead
+1 Sylvan Scrying
+1 Crop Rotation
+1 Alchemist's Refuge
+1 Boseiju, Who Endures
+1 Blessed Respite
+1 Conduit of Worlds
+1 Darkmoss Bridge
+1 Mortality Spear
+1 Nissa of Shadowed Boughs
+1 Nissa, Vastwood Seer // Nissa, Sage Animist
+1 Nissa, Vital Force
+1 Nissa, Who Shakes the World
+1 Part the Waterveil
+1 Simic Charm
+1 Golgari Rot Farm
+1 Tanglepool Bridge
+1 Heroic Intervention
+1 Growth Spiral
+1 Nissa, Resurgent Animist
+1 Awaken the Woods
+1 Darkbore Pathway // Slitherbore Pathway
+1 Clearwater Pathway // Murkwater Pathway
+1 Yavimaya, Cradle of Growth
+1 Overgrown Tomb
+1 Exotic Orchard
+1 Emergent Ultimatum
+1 In Garruk's Wake
+1 Otawara, Soaring City
+1 Invasion of Zendikar // Awakened Skyclave
+1 Vineglimmer Snarl
+1 Archdruid's Charm
+1 Zagoth Triome
+1 Ashaya, Soul of the Wild
+1 Malakir Rebirth // Malakir Mire
+1 Disorienting Choice
+1 Rhystic Study
+1 Counterspell
+1 Forest
+1 Mistrise Village
+1 Doubling Season
+1 Foreboding Landscape
+1 Zendikar's Roil
+1 Dryad Arbor
+1 Quest for Renewal
+1 Decisive Denial
+1 Wilderness Reclamation
+1 Auroral Procession
+1 Constant Mists
+1 Island
+1 Shifting Woodland
+1 Nissa, Ascended Animist
+1 Takenuma, Abandoned Mire
+1 Simic Growth Chamber
+1 Snow-Covered Forest
+1 Green Sun's Zenith
+1 Snow-Covered Island
+1 Snow-Covered Swamp
+1 Solve the Equation
+1 Mythos of Brokkos
+1 Open the Way
+1 Endurance
+1 Tolaria West
+1 Bojuka Bog
+1 Swiftfoot Boots
+1 Cyclonic Rift
+1 Nissa, Steward of Elements
+1 Fabled Passage
+1 Sink into Stupor // Soporific Springs
+1 Cauldron of Essence
+1 Invasion of Arcavios // Invocation of the Founders
+1 Mathemagics
+1 Witherbloom Charm
+1 Veil of Summer
+1 Mind into Matter
+1 Command Tower
+1 Marwyn, the Preserver
+1 Mind Grind
+1 Revival Experiment
+1 Retreat to Hagra
+1 Abundance
+1 Seedborn Muse

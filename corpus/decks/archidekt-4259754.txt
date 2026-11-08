@@ -1,0 +1,108 @@
+# Archidekt — Hidetsugu and Kairi Combo
+# source: archidekt:4259754
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Hidetsugu and Kairi
+
+Deck:
+1 Dark Ritual
+1 Arcane Signet
+1 Morphic Pool
+1 Command Tower
+1 Shipwreck Marsh
+1 Mystic Sanctuary
+1 Connive // Concoct
+1 Bojuka Bog
+1 Grave Endeavor
+1 Rivendell
+1 Imperial Seal
+1 Fabled Passage
+1 High Market
+1 Polluted Delta
+1 Underground River
+1 Path of Ancestry
+1 Darkslick Shores
+1 Fetid Pools
+1 Rise of the Dark Realms
+1 Tishana's Tidebinder
+1 Chrome Mox
+1 Mana Drain
+1 Three Steps Ahead
+1 Fierce Guardianship
+1 Cavern of Souls
+1 Undercity Sewers
+1 Remand
+1 Misty Rainforest
+1 Scalding Tarn
+1 Ashiok, Dream Render
+1 Dress Down
+1 Sol Ring
+1 Clearwater Pathway // Murkwater Pathway
+1 Decree of Pain
+1 Mystical Tutor
+1 Reality Shift
+1 Rise of the Eldrazi
+1 Aminatou's Augury
+1 Woe Strider
+1 Arcane Denial
+1 Toxic Deluge
+1 Clever Impersonator
+1 Reanimate
+1 Phantasmal Image
+1 Rhystic Study
+1 Flooded Strand
+1 Deadly Rollick
+1 Gitaxian Probe
+1 Snuff Out
+1 Vampiric Tutor
+1 Frantic Search
+1 Takenuma, Abandoned Mire
+1 Otawara, Soaring City
+1 Watery Grave
+1 Opposition Agent
+1 Force of Will
+1 Ancient Tomb
+1 Brainstorm
+1 Marsh Flats
+1 Glasspool Mimic // Glasspool Shore
+1 Orcish Bowmasters
+1 Psychic Corrosion
+1 Altar of Dementia
+1 See Double
+1 Lim-Dûl's Vault
+1 Peer into the Abyss
+1 Viscera Seer
+1 Resculpt
+1 Lotus Petal
+1 Narset, Parter of Veils
+1 Phyrexian Metamorph
+1 Swan Song
+1 Phyrexian Tower
+1 Flare of Malice
+1 Personal Tutor
+1 Muddle the Mixture
+1 Diabolic Intent
+1 Tainted Pact
+1 Island
+1 Swamp
+1 Dauthi Voidwalker
+1 Tainted Isle
+1 Drowned Catacomb
+1 Flesh Duplicate
+1 Sunken Ruins
+1 Season of Weaving
+1 Flusterstorm
+1 Bloodstained Mire
+1 Gloomlake Verge
+1 Gemstone Caverns
+1 Thassa's Oracle
+1 Enter the Infinite
+1 Mistrise Village
+1 Afterlife from the Loam
+1 Behold the Sinister Six!
+1 Louisoix's Sacrifice
+1 Aberrant Return
+1 Flare of Denial
+1 Hidden Lair

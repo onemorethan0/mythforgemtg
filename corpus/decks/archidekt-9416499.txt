@@ -1,0 +1,95 @@
+# Archidekt — Bears And Bears And Bears
+# source: archidekt:9416499
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Wilson, Refined Grizzly
+1 Folk Hero
+
+Deck:
+1 Ayula's Influence
+1 Grizzly Fate
+1 Words of Wilding
+1 Sol Ring
+1 Surrak and Goreclaw
+1 Werebear
+1 Ashcoat Bear
+1 Owlbear
+1 Owlbear Cub
+1 Mother Bear
+1 Owlbear Shepherd
+1 Druid's Familiar
+1 Ruxa, Patient Professor
+1 Balduvian Bears
+1 Runeclaw Bear
+1 Drover Grizzly
+1 Striped Bears
+1 Dragon-Scarred Bear
+1 Goreclaw, Terror of Qal Sisma
+1 Professor of Zoomancy
+1 Masked Vandal
+1 Vivien's Grizzly
+1 Evercoat Ursine
+1 Awaken the Bear
+1 Grizzly Bears
+1 Friendly Teddy
+1 Generous Gift
+1 Overrun
+1 Savage Punch
+1 Savage Swipe
+1 Kamahl's Summons
+1 Hibernation's End
+1 Reclusive Taxidermist
+1 Harmony of Nature
+1 Predatory Urge
+1 Outmuscle
+1 Wild Onslaught
+1 Syr Faren, the Hengehammer
+1 Quirion Beastcaller
+1 Somberwald Sage
+1 Roaring Earth
+1 Stormkeld Vanguard // Bear Down
+1 Return to Nature
+1 Arcane Signet
+1 Ayula, Queen Among Bears
+1 Oran-Rief, the Vastwood
+1 Argoth, Sanctum of Nature
+1 Hidden Nursery
+1 The Hunter Maze
+1 Llanowar Reborn
+1 Vivid Grove
+1 Plains
+1 Sapseep Forest
+1 Etched Cornfield
+1 Botanical Plaza
+1 Bear Trap
+1 Titania's Command
+1 Copper Host Crusher
+1 Rampaging Yao Guai
+1 Rishkar, Peema Renegade
+1 Ulvenwald Bear
+1 Stuffed Bear
+1 Heraldic Banner
+1 Swords to Plowshares
+1 Mosswort Bridge
+1 Razorverge Thicket
+1 Temple of Plenty
+1 Opal Palace
+1 Diamond City
+1 Fortified Village
+1 Patched Plaything
+1 Grow from the Ashes
+1 Tanuki Transplanter
+1 Bear Umbra
+1 Alpine Grizzly
+1 Kudo, King Among Bears
+1 Command Tower
+1 Canopy Vista
+15 Forest
+1 Sungrass Prairie
+1 Evolving Wilds
+1 Rumor Gatherer
+1 Path of Ancestry
+1 Fade from History
+1 Hornet Nest

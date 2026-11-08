@@ -1,0 +1,106 @@
+# Archidekt — Kenrith, the Returned King
+# source: archidekt:3676270
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Teferi's Protection); Bracket 1 allows 0
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Angel of the Dire Hour
+1 Ashen Rider
+1 Arid Mesa
+1 Bloodstained Mire
+1 Luminate Primordial
+1 Patron of the Vein
+1 Phyrexian Ingester
+1 Polluted Delta
+1 Woodfall Primus
+1 Wooded Foothills
+1 Atraxa, Grand Unifier
+1 World Breaker
+1 Rhythm of the Wild
+1 Temur Ascendancy
+1 Three Visits
+1 Farseek
+1 Spoils of Victory
+1 Ranger's Path
+1 Garruk's Uprising
+1 Abstruse Appropriation
+1 Alpha Deathclaw
+1 Cavalier of Dawn
+1 Mistrise Village
+1 The Meathook Massacre
+1 Ziatora's Proving Ground
+1 Zagoth Triome
+1 Jetmir's Garden
+1 Ketria Triome
+1 Savai Triome
+1 Xander's Lounge
+2 Forest
+1 Kodama's Reach
+1 Cultivate
+2 Plains
+2 Swamp
+1 Hunting Wilds
+1 Overseer of the Damned
+1 Rune-Scarred Demon
+1 Toxic Deluge
+1 Nature's Lore
+1 Inevitable Defeat
+1 Noxious Gearhulk
+1 Vaultborn Tyrant
+1 Sin, Spira's Punishment
+1 Crucible of Worlds
+1 Angel of the Ruins
+1 Archon of Cruelty
+1 Utter End
+1 Void Rend
+1 Cityscape Leveler
+1 Marsh Flats
+1 Indatha Triome
+1 Flooded Strand
+1 Misty Rainforest
+1 Raugrin Triome
+1 Scalding Tarn
+1 Spara's Headquarters
+1 Raffine's Tower
+1 Verdant Catacombs
+1 Damnation
+1 Windswept Heath
+1 Wrath of God
+1 Supreme Verdict
+1 Teleportation Circle
+1 Nahiri's Resolve
+1 Conjurer's Closet
+1 Damn
+1 Skyshroud Claim
+1 Anguished Unmaking
+1 Thassa, Deep-Dwelling
+1 Summon: Bahamut
+1 Canyon Slough
+1 Sheltered Thicket
+1 Scattered Groves
+1 Irrigated Farmland
+1 Festering Thicket
+1 Rain-Slicked Copse
+1 Fetid Pools
+1 Glittering Massif
+1 Coastal Peak
+1 Umbral Expanse
+1 Amulet of Vigor
+1 Titan of Industry
+1 Clever Concealment
+1 Flawless Maneuver
+1 Sylvan Library
+1 The Great Henge
+1 Authority of the Consuls
+1 Conduit of Worlds
+1 Angel of Despair
+1 Solitude
+1 Chromatic Lantern
+1 Ephemerate
+1 Heroic Intervention
+1 Teferi's Protection
+1 Mithril Coat

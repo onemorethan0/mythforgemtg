@@ -1,0 +1,97 @@
+# Archidekt — B1: Blinking Web Shot, Starring Sensational Spider-Man
+# source: archidekt:21006813
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sensational Spider-Man
+
+Deck:
+1 Hengegate Pathway // Mistgate Pathway
+1 Mystic Gate
+1 Sea of Clouds
+1 Flooded Strand
+1 Deserted Beach
+1 Adarkar Wastes
+1 Floodfarm Verge
+1 Clever Impersonator
+1 Multiversal Passage
+1 Peter Parker's Camera
+1 Solitary Sanctuary
+1 Fractured Identity
+1 Gleaming Bastion
+1 Grateful Apparition
+1 Sol Ring
+1 Sink into Stupor // Soporific Springs
+1 Prairie Stream
+1 Path to Exile
+1 Comeuppance
+1 Archaeomancer
+1 Teleportation Circle
+1 Arcane Signet
+1 Watcher for Tomorrow
+1 Future Flight
+1 Swords to Plowshares
+1 Thassa, Deep-Dwelling
+1 Ambling Stormshell
+1 Swarmyard
+1 Lulu, Stern Guardian
+1 Phelia, Exuberant Shepherd
+1 Sudden Strike
+1 Spider-Man 2099, Miguel O'Hara
+1 Ephemerate
+1 Ponder
+1 Azorius Signet
+1 Talisman of Progress
+1 Command Tower
+1 Fellwar Stone
+1 Wedding Ring
+1 Skyclave Apparition
+1 Abandoned Air Temple
+1 Fabled Passage
+1 Thwip!
+1 Spectacular Tactics
+1 Patrolling Peacemaker
+1 Spider-Sense
+1 The Ooze
+1 Glacial Fortress
+1 Brainstorm
+1 Amazing Acrobatics
+1 Don & Leo, Problem Solvers
+1 Spider-Man No More
+1 Costume Closet
+1 Meteor Golem
+1 Karmic Guide
+1 Eiganjo, Seat of the Empire
+6 Plains
+1 Freeze in Place
+1 Helm of the Host
+1 Secret Invasion
+1 Recruiter of the Guard
+1 The Mind Stone
+1 Agent Phil Coulson
+1 Karn's Bastion
+7 Island
+1 Witch Enchanter // Witch-Blessed Meadow
+1 SP//dr, Piloted by Peni
+1 Thought Vessel
+1 Thrummingbird
+1 The Clone Saga
+1 Jill, Shiva's Dominant // Shiva, Warden of Ice
+1 Tome of Legends
+1 Trouble in Pairs
+1 Impostor Syndrome
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Kitnap
+1 Dreamtide Whale
+1 Hylda of the Icy Crown
+1 Daily Bugle Building
+1 Glasspool Mimic // Glasspool Shore
+1 Kor Haven
+1 Rite of Replication
+1 Reprieve
+1 Mystic Confluence
+1 Verity Circle
+1 Hallowed Fountain
+1 Y'shtola Rhul
+1 Web Up

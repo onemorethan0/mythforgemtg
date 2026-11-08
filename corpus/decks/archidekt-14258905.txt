@@ -1,0 +1,100 @@
+# Archidekt — Don't Touch Miku She Has the Power of Gods and Anime
+# source: archidekt:14258905
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Child of Alara
+
+Deck:
+1 Altar of the Pantheon
+1 Bane, Lord of Darkness
+1 Command Tower
+1 Chromatic Lantern
+1 Darksteel Citadel
+1 Darksteel Ingot
+1 Enchantress's Presence
+1 Ephara, God of the Polis
+1 God-Eternal Kefnet
+1 Great Hall of the Citadel
+1 Heliod, God of the Sun
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Inga and Esika
+1 Karametra, God of Harvests
+1 Kefnet the Mindful
+1 Klothys, God of Destiny
+1 Kolvori, God of Kinship // The Ringhart Crest
+1 Kruphix, God of Horizons
+1 Maelstrom Nexus
+1 Nylea, Keen-Eyed
+1 Primevals' Glorious Rebirth
+1 Prismatic Lens
+1 Prophetic Prism
+1 Sanctum Weaver
+1 Search for Tomorrow
+1 Sultai Charm
+1 Temple of the False God
+1 Thassa, God of the Sea
+1 The World Tree
+1 Yawgmoth's Vile Offering
+1 Swan Song
+1 Counterspell
+1 Harmonize
+1 Chord of Calling
+1 Diabolic Tutor
+1 Song of Creation
+1 Thespian's Stage
+1 Inspiring Vantage
+1 Polluted Bonds
+1 Avacyn, Angel of Hope
+1 Elvish Mystic
+1 Commander's Sphere
+1 Azusa, Lost but Seeking
+1 Sol Ring
+1 Kindred Discovery
+1 Sab-Sunen, Luxa Embodied
+2 Mountain
+3 Plains
+1 Secret Rendezvous
+1 Think Twice
+1 Arcane Signet
+1 Burnt Offering
+1 Fabled Passage
+1 Birds of Paradise
+1 Alrund, God of the Cosmos // Hakka, Whispering Raven
+1 Cultivate
+1 Omniscience
+1 Nasty End
+1 Venat, Heart of Hydaelyn // Hydaelyn, the Mothercrystal
+1 Chandra's Ignition
+1 Thassa, Deep-Dwelling
+1 Oketra the True
+1 Jukai Naturalist
+1 Rhonas the Indomitable
+1 Arid Mesa
+3 Island
+2 Swamp
+1 Blood Crypt
+3 Forest
+1 Luxury Suite
+1 Sea of Clouds
+1 Spectator Seating
+1 Morphic Pool
+1 Undergrowth Stadium
+1 Vault of Champions
+1 Breeding Pool
+1 Exotic Orchard
+1 Godless Shrine
+1 Hallowed Fountain
+1 High Market
+1 Path of Ancestry
+1 Rejuvenating Springs
+1 Bountiful Promenade
+1 Sylvan Scrying
+1 Esika, God of the Tree // The Prismatic Bridge
+1 Deflecting Swat
+1 Avacyn's Memorial
+1 Heroic Intervention
+1 The Soul Stone
+1 Worthy Cause
+1 Greater Auramancy

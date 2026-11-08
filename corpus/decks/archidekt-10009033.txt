@@ -1,0 +1,96 @@
+# Archidekt — King - Husband's Deck
+# source: archidekt:10009033
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Aragorn, King of Gondor
+
+Deck:
+1 Exotic Orchard
+1 Faramir, Prince of Ithilien
+1 Faramir, Steward of Gondor
+1 Fealty to the Realm
+1 Forth Eorlingas!
+1 Glacial Fortress
+1 Mystic Monastery
+1 Palace Jailer
+1 Path of Ancestry
+1 Path to Exile
+7 Plains
+1 Prince Imrahil the Fair
+1 Raugrin Triome
+1 Rogue's Passage
+1 Selfless Squire
+1 Sol Ring
+1 Sulfur Falls
+1 Swords to Plowshares
+1 Take the Bait
+1 Talisman of Conviction
+1 Talisman of Progress
+1 Taunt from the Rampart
+1 Thought Vessel
+1 Untimely Malfunction
+1 Éomer, King of Rohan
+1 Azorius Signet
+1 Boros Signet
+1 River's Rebuke
+1 Sunscorch Regent
+1 Duelist's Heritage
+1 Cursed Mirror
+1 Izzet Signet
+1 Comeuppance
+1 Blackblade Reforged
+1 Arcane Signet
+1 Archivist of Gondor
+1 Archon of Coronation
+1 Battlefield Forge
+1 Boros Charm
+1 Champions of Minas Tirith
+1 Clifftop Retreat
+1 Command Tower
+1 Court of Grace
+1 Court of Ire
+1 Talisman of Creativity
+1 Fellwar Stone
+1 Perilous Landscape
+1 Decanter of Endless Water
+1 Reflect Damage
+1 Boros Fury-Shield
+1 Bloodthirsty Blade
+1 Ghostly Prison
+1 Sea of Clouds
+1 Propaganda
+1 Stormcarved Coast
+1 Taurean Mauler
+1 Fog Bank
+1 Reliquary Tower
+1 Luminarch Ascension
+1 Training Center
+1 Disrupt Decorum
+1 Promise of Loyalty
+1 Reality Shift
+1 Stroke of Midnight
+1 Aurelia, the Warleader
+1 Shivan Reef
+1 Blasphemous Act
+1 Heliod's Intervention
+1 Karlach, Fury of Avernus
+1 Deflecting Palm
+1 Temple of Enlightenment
+1 Aetherspouts
+1 Scavenger Grounds
+1 Protector of the Crown
+1 Loran of the Third Path
+1 Guard Gomazoa
+1 Brash Taunter
+1 The Second Doctor
+1 Temple of Epiphany
+1 Odric, Lunarch Marshal
+1 Sundown Pass
+1 Adarkar Wastes
+1 Spectator Seating
+1 Deserted Beach
+1 Temple of Triumph
+4 Island
+4 Mountain

@@ -1,0 +1,105 @@
+# Archidekt — Player delete Vampires
+# source: archidekt:5765183
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Elenda, the Dusk Rose
+1 Captivating Vampire
+1 Vona, Butcher of Magan
+1 Tainted Remedy
+1 Godless Shrine
+1 Sacred Foundry
+1 Arid Mesa
+1 Haunted Ridge
+1 Yawgmoth's Will
+1 Welcoming Vampire
+1 Blood Artist
+1 Drana and Linvala
+1 Anguished Unmaking
+1 Glacial Chasm
+1 Ancient Tomb
+1 Arcane Signet
+1 Pristine Talisman
+1 Skullclamp
+1 Swords to Plowshares
+1 Isolated Chapel
+1 Demonic Tutor
+1 Reliquary Tower
+1 Inkshield
+1 Exotic Orchard
+1 New Blood
+1 Cavern of Souls
+1 Bloodline Keeper // Lord of Lineage
+1 Kindred Dominance
+1 Blazemire Verge
+1 The Meathook Massacre
+1 Exsanguinate
+1 Grim Tutor
+1 Bleachbone Verge
+2 Plains
+1 Profane Tutor
+1 Dragonskull Summit
+1 Bloodthirsty Conqueror
+1 Cliffhaven Vampire
+1 Exquisite Blood
+1 Blood Tribute
+1 Cordial Vampire
+1 Bojuka Bog
+1 Grave Pact
+1 Smothering Tithe
+1 Castle Locthwain
+1 Jet Medallion
+1 Dark Ritual
+1 Battlefield Forge
+1 Vein Ripper
+1 Plains
+1 Sensei's Divining Top
+1 No Mercy
+1 Imp's Mischief
+1 Fellwar Stone
+1 Bolas's Citadel
+1 Vault of Champions
+1 Urza's Saga
+1 Vesuva
+1 Three Tree City
+1 Teferi's Protection
+3 Swamp
+1 Blood Crypt
+1 Lotus Petal
+1 Oubliette
+1 Command Tower
+1 Vandalblast
+1 Vampiric Tutor
+1 Fix What's Broken
+1 Gilded Lotus
+1 Deflecting Palm
+1 Culling the Weak
+1 Phyrexian Tower
+1 Shattered Sanctum
+1 Reflecting Pool
+1 Butcher of Malakir
+1 Great Furnace
+1 Hammerheim
+1 Urborg, Tomb of Yawgmoth
+1 Diabolic Intent
+1 Torment of Hailfire
+1 The One Ring
+1 Charismatic Conqueror
+1 Vito, Thorn of the Dusk Rose
+1 Temporal Extortion
+1 Emeritus of Woe // Demonic Tutor
+1 Enlightened Tutor
+1 Sol Ring
+1 Reanimate
+1 Alhammarret's Archive
+1 Astarion, the Decadent
+1 Bloodletter of Aclazotz
+1 Wound Reflection
+1 Enduring Tenacity
+1 Marauding Blight-Priest
+1 Sanguine Bond
+1 Epicure of Blood

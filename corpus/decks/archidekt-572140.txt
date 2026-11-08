@@ -1,0 +1,104 @@
+# Archidekt — Kumena, Fishy Combos
+# source: archidekt:572140
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kumena, Tyrant of Orazca
+
+Deck:
+1 Swan Song
+1 Otawara, Soaring City
+1 Boseiju, Who Endures
+1 Rejuvenating Springs
+1 Flooded Grove
+1 Yavimaya Coast
+1 Misty Rainforest
+1 Breeding Pool
+1 Rapid Hybridization
+1 Yavimaya, Cradle of Growth
+1 Quest for Renewal
+1 Lullmage Mentor
+1 Kiora's Follower
+1 Merrow Commerce
+1 Intruder Alarm
+1 Alchemist's Refuge
+1 Command Tower
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Tide Shaper
+1 Abjure
+1 Cursecatcher
+1 Singer of Swift Rivers
+1 Vodalian Hexcatcher
+1 Flare of Denial
+1 Three Tree City
+1 Rhystic Study
+1 Thrasios, Triton Hero
+1 Merrow Reejerey
+1 Stonybrook Banneret
+1 Fierce Guardianship
+1 Tishana's Tidebinder
+1 Mana Drain
+1 Floodpits Drowner
+1 Enduring Vitality
+1 Pongify
+1 Rishadan Dockhand
+1 Cryptolith Rite
+1 Seedborn Muse
+1 Dramatic Reversal
+1 Tidal Warrior
+1 Force of Vigor
+1 Sink into Stupor // Soporific Springs
+1 Muddle the Mixture
+1 Chord of Calling
+1 Gaea's Cradle
+1 Force of Will
+1 Force of Negation
+1 Mistcaller
+1 Cyclonic Rift
+1 Thieving Skydiver
+1 Reef Shaman
+1 Sylvan Library
+1 Sol Ring
+1 Sylvan Scrying
+1 Cenote Scout
+1 Merfolk Trickster
+1 Emperor Mihail II
+1 Sigil Tracer
+1 Deeproot Pilgrimage
+1 Deeproot Waters
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Crop Rotation
+1 Thassa's Oracle
+1 Paradise Mantle
+1 Worldly Tutor
+1 Nykthos, Shrine to Nyx
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Springleaf Drum
+1 Song of Freyalise
+1 Simic Growth Chamber
+1 Tishana, Voice of Thunder
+1 Mutable Explorer
+1 Mindspring Merfolk
+1 Mistrise Village
+1 Silvergill Mentor
+1 Jungleborn Pioneer
+1 Silvergill Adept
+1 Mutavault
+1 Harmonized Crescendo
+1 Drowner of Secrets
+1 Drift of Phantasms
+1 Eldritch Evolution
+1 Tropical Island
+2 Forest
+1 Nature's Rhythm
+1 Darting Merfolk
+1 Harmonized Trio // Brainstorm
+1 Polluted Delta
+1 Scalding Tarn
+1 Flooded Strand
+4 Island
+1 Burgeoning
+1 Pact of Negation
+1 Finale of Devastation
+1 Green Sun's Zenith

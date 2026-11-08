@@ -1,0 +1,76 @@
+# Archidekt — Just let me resolve Bahamut
+# source: archidekt:27840574
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Y'shtola Rhul
+
+Deck:
+1 Archaeomancer
+1 Pact of Negation
+1 Thran Dynamo
+1 Cloudkin Seer
+1 Frantic Search
+1 Pongify
+1 Fierce Guardianship
+1 High Tide
+1 Waterbender's Restoration
+1 Extraplanar Lens
+1 Displacer Kitten
+1 H.E.R.B.I.E. Scout Unit
+1 Retraced Image
+1 Agent of Treachery
+1 Palantír of Orthanc
+1 Panharmonicon
+1 Thought Vessel
+1 Gauntlet of Power
+1 Chimil, the Inner Sun
+1 Overlord of the Floodpits
+1 Aether Channeler
+1 Mulldrifter
+1 Fblthp, the Lost
+1 Summon: Bahamut
+1 Urza, Lord High Artificer
+1 Master of Waves
+1 Vendilion Clique
+1 Deadeye Navigator
+1 Solemn Simulacrum
+1 Hide on the Ceiling
+1 Rapid Hybridization
+1 Swan Song
+1 Aetherize
+1 Negate
+1 Dour Port-Mage
+1 Nykthos, Shrine to Nyx
+1 Brainstorm
+1 Cyclonic Rift
+1 Command Beacon
+1 Ponder
+1 Force of Will
+1 Capsize
+1 An Offer You Can't Refuse
+1 Altar of Dementia
+1 Force of Negation
+1 Ghostly Flicker
+1 Fabled Passage
+1 Serum Visionary
+1 Starfield Vocalist
+1 Rite of Replication
+33 Snow-Covered Island
+1 Scourge of Fleets
+1 Kiora, the Rising Tide
+1 Snapcaster Mage
+1 Summon: Valefor
+1 Sapphire Medallion
+1 Sol Ring
+1 Arcane Signet
+1 Fellwar Stone
+1 Mind Stone
+1 Thought Monitor
+1 Peregrine Drake
+1 Merchant of Secrets
+1 Sicarian Infiltrator
+1 Marang River Regent // Coil and Catch
+1 Fear of Sleep Paralysis
+1 Snap

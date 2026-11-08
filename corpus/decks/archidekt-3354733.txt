@@ -1,0 +1,104 @@
+# Archidekt — Chatterfang, Squirrel Tokens - Bracket 4
+# source: archidekt:3354733
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Birds of Paradise
+1 Avenger of Zendikar
+1 Natural Order
+1 Darkbore Pathway // Slitherbore Pathway
+1 Sign in Blood
+1 Malakir Rebirth // Malakir Mire
+1 Academy Manufactor
+1 Verdant Catacombs
+1 Arbor Elf
+1 Arcane Signet
+1 Black Market Connections
+1 Skullclamp
+1 Field of the Dead
+1 Bastion of Remembrance
+1 Beledros Witherbloom
+1 Yavimaya, Cradle of Growth
+1 Woodland Cemetery
+1 Deranged Hermit
+1 Swarmyard
+1 Urza's Saga
+1 Phyrexian Tower
+1 Deadly Dispute
+1 Utopia Sprawl
+1 Boseiju, Who Endures
+1 Awaken the Woods
+1 Old Gnawbone
+1 Peregrin Took
+1 The Meathook Massacre
+1 Mirkwood Bats
+1 Command Tower
+1 Reanimate
+1 Lightning Greaves
+3 Forest
+1 Urborg, Tomb of Yawgmoth
+1 Llanowar Wastes
+1 Overgrown Tomb
+1 Reflecting Pool
+2 Snow-Covered Swamp
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Pest Infestation
+1 Deathcap Glade
+1 Deadly Rollick
+1 Sol Ring
+1 Grim Hireling
+1 Wolverine Riders
+1 Fell the Profane // Fell Mire
+1 Audience with Trostani
+1 Victimize
+1 Cavern of Souls
+1 Nadier's Nightblade
+1 Heroic Intervention
+1 Second Harvest
+1 Phyrexian Altar
+1 Marionette Apprentice
+1 Gala Greeters
+1 Warren Soultrader
+1 Revitalizing Repast // Old-Growth Grove
+1 Spymaster's Vault
+1 Elvish Mystic
+1 Westvale Abbey // Ormendahl, Profane Prince
+2 Swamp
+1 Springheart Nantuko
+1 Sylvan Library
+1 Earthcraft
+1 Gilded Goose
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Morbid Opportunist
+1 Saw in Half
+1 Tendershoot Dryad
+1 Pitiless Plunderer
+1 Disciple of Freyalise // Garden of Freyalise
+1 Three Tree City
+1 Finale of Devastation
+1 Craterhoof Behemoth
+1 Tireless Provisioner
+1 Funeral Room // Awakening Hall
+1 Swarmyard Massacre
+1 Parallel Lives
+1 Springleaf Parade
+1 Feed the Swarm
+1 Assassin's Trophy
+2 Snow-Covered Forest
+1 Ancient Tomb
+1 The Cabbage Merchant
+1 Obsessive Pursuit
+1 Camellia, the Seedmiser
+1 Nuka-Cola Vending Machine
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Llanowar Elves
+1 The One Ring
+1 Orcrist, Goblin-cleaver
+1 Zulaport Cutthroat
+1 The Sackville-Bagginses

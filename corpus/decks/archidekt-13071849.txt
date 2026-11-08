@@ -1,0 +1,77 @@
+# Archidekt — Tarl Ranch
+# source: archidekt:13071849
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Bruse Tarl, Roving Rancher
+
+Deck:
+16 Mountain
+15 Plains
+2 Plains
+1 Purphoros's Emissary
+1 Holy Cow
+1 Bartered Cow
+1 Rumor Gatherer
+1 Sandstorm Verge
+1 Take Up the Shield
+1 Subira, Tulzidi Caravanner
+1 Tome of Legends
+1 Pyretic Charge
+1 Ambitious Farmhand // Seasoned Cathar
+1 Abraded Bluffs
+1 Bonder's Ornament
+1 Lantern of Revealing
+1 Contraband Livestock
+1 Honored Heirloom
+1 Ox of Agonas
+1 Cultivator's Caravan
+1 Liberated Livestock
+1 Steer Clear
+1 Restless Bivouac
+1 Earth-Origin Yak
+1 Oasis Gardener
+1 Makindi Ox
+1 Moonshaker Cavalry
+1 Sharpened Pitchfork
+1 Rustler Rampage
+1 Giant Ox
+1 Stampede Rider
+1 Charging Cinderhorn
+1 Yoked Ox
+1 Inquisitor's Ox
+1 Longhorn Firebeast
+1 Pillarfield Ox
+1 Taurean Mauler
+1 Arc Runner
+1 Dalkovan Packbeasts
+1 Harness by Force
+1 Great Train Heist
+1 Makindi Stampede // Makindi Mesas
+1 Chaos Warp
+1 Mobile Homestead
+1 Search the Premises
+1 Trading Post
+1 Sand Scout
+1 Bucolic Ranch
+1 Conduit Pylons
+1 Claim Jumper
+1 Ox Drover
+1 Transmogrifying Wand
+1 Fell the Mighty
+1 Fortunate Few
+1 Animal Sanctuary
+1 Weathered Wayfarer
+1 Dust Bowl
+1 Tectonic Edge
+1 Scavenger Grounds
+1 Swords to Plowshares
+1 Path to Exile
+1 Goblin Bombardment
+1 Summon: Kujata
+1 Renegade Bull
+1 Curious Farm Animals
+1 Spirit Mascot
+1 Bulwark Ox
+1 Bovine Intervention

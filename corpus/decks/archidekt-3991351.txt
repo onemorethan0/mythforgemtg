@@ -1,0 +1,85 @@
+# Archidekt — House of Memories
+# source: archidekt:3991351
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Notion Thief); Bracket 1 allows 0
+
+Commander:
+1 Lazav, Dimir Mastermind
+
+Deck:
+1 Long Goodbye
+1 Psychic Drain
+1 Watery Grave
+1 Dimir Doppelganger
+1 Whispering Madness
+1 Induce Paranoia
+16 Island
+1 Mind Grind
+1 Blood Operative
+1 Thief of Sanity
+1 Duskmantle, House of Shadow
+1 Enhanced Surveillance
+1 Nightveil Specter
+1 Bond of Insight
+1 Dimir Signet
+1 Etrata, the Silencer
+1 Dimir Spybug
+1 Undercity Sewers
+1 Doom Whisperer
+1 Dimir Cluestone
+1 Dimir Locket
+1 Rogue's Passage
+1 Dimir Guildgate
+1 The Haunt of Hightower
+1 Dimir Keyrune
+1 Duskmantle Guildmage
+1 Dimir Charm
+1 Pilfered Plans
+1 Muddle the Mixture
+1 Mass Manipulation
+1 Notion Thief
+1 Wight of Precinct Six
+1 Nightveil Predator
+1 Far // Away
+1 Discovery // Dispersal
+1 Nightveil Sprite
+1 Whispering Snitch
+1 Followed Footsteps
+1 Drowned Secrets
+1 Hired Poisoner
+1 Midnight Recovery
+1 Psychic Strike
+1 Price of Fame
+1 Disinformation Campaign
+1 Perplex
+1 Dimir Aqueduct
+1 Underworld Connections
+1 Consult the Necrosages
+1 Sinister Sabotage
+1 Mission Briefing
+1 Mnemonic Betrayal
+1 Notion Rain
+1 Stolen Identity
+1 Szadek, Lord of Secrets
+1 Mindleech Mass
+1 Coerced to Kill
+1 Outrageous Robbery
+1 Lazav, Wearer of Faces
+1 Dimir Strandcatcher
+1 Drag the Canal
+1 Cryptex
+1 Etrata, Deadly Fugitive
+1 Victimize
+1 Dark Confidant
+1 Mastermind Plum
+1 Unauthorized Exit
+1 Darkblade Agent
+1 Mirko, Obsessive Theorist
+1 Marvo, Deep Operative
+1 Lazav, the Multifarious
+1 Drown in the Loch
+1 Memory Vampire
+1 Consuming Aberration
+10 Swamp
+1 Chromatic Lantern

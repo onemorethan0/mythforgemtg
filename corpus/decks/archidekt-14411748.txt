@@ -1,0 +1,109 @@
+# Archidekt — cEDH Terra- Reanimator? I Barely Know Her!
+# source: archidekt:14411748
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Terra, Herald of Hope
+
+Deck:
+1 Smothering Tithe
+1 Vile Entomber
+1 Agatha's Soul Cauldron
+1 Ancient Tomb
+1 Animate Dead
+1 Arcane Signet
+1 Archivist of Oghma
+1 Arid Mesa
+1 Asmodeus the Archfiend
+1 Badlands
+1 Bazaar of Baghdad
+1 Blood Crypt
+1 Bloodstained Mire
+1 Buried Alive
+1 Burnt Offering
+1 Cavern of Souls
+1 Chrome Mox
+1 City of Brass
+1 Command Tower
+1 Dance of the Dead
+1 Dark Ritual
+1 Deadly Rollick
+1 Deflecting Swat
+1 Delney, Streetwise Lookout
+1 Demonic Tutor
+1 Diabolic Intent
+1 Enlightened Tutor
+1 Entomb
+1 Esper Sentinel
+1 Faithless Looting
+1 Felidar Guardian
+1 Gamble
+1 Godless Shrine
+1 Grinding Station
+1 Hexing Squelcher
+1 Hoarding Broodlord
+1 Imperial Recruiter
+1 Imperial Seal
+1 Karmic Guide
+1 Kiki-Jiki, Mirror Breaker
+1 Lightning Bolt
+1 Lion's Eye Diamond
+1 Lively Dirge
+1 Lotho, Corrupt Shirriff
+1 Lotus Petal
+1 Luxury Suite
+1 Mana Confluence
+1 Mana Vault
+1 Marsh Flats
+1 Mayhem Devil
+1 Mox Diamond
+1 Necrotic Ooze
+1 Orcish Bowmasters
+1 Orim's Chant
+1 Phyrexian Delver
+1 Phyrexian Devourer
+1 Plateau
+1 Polluted Delta
+1 Pyroblast
+1 Ragavan, Nimble Pilferer
+1 Ranger-Captain of Eos
+1 Raucous Theater
+1 Reanimate
+1 Recruiter of the Guard
+1 Red Elemental Blast
+1 Ripples of Undeath
+1 Sacred Foundry
+1 Saw in Half
+1 Scalding Tarn
+1 Scrubland
+1 Seasoned Pyromancer
+1 Sevinne's Reclamation
+1 Silence
+1 Simian Spirit Guide
+1 Skirge Familiar
+1 Sol Ring
+1 Spectator Seating
+1 Starting Town
+1 Swords to Plowshares
+1 Tainted Pact
+1 Takenuma, Abandoned Mire
+1 Talisman of Hierarchy
+1 Talisman of Indulgence
+1 Tarnished Citadel
+1 Tataru Taru
+1 Triskelion
+1 Underworld Breach
+1 Unmarked Grave
+1 Urborg, Tomb of Yawgmoth
+1 Vampiric Tutor
+1 Vault of Champions
+1 Verdant Catacombs
+1 Voice of Victory
+1 Walking Ballista
+1 Wheel of Fortune
+1 Windswept Heath
+1 Wishclaw Talisman
+1 Wooded Foothills
+1 Tymna the Weaver
+1 Phyrexian Dragon Engine

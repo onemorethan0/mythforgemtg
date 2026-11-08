@@ -1,0 +1,89 @@
+# Archidekt — EDH Tyranids Precon
+# source: archidekt:3583062
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Magus Lucea Kane
+
+Deck:
+1 Starstorm
+1 The First Tyrannic War
+1 Shadow in the Warp
+1 Inspiring Call
+1 Harrow
+1 Arcane Signet
+1 Acolyte Hybrid
+1 Aetherize
+1 Evolving Wilds
+1 Gargoyle Flock
+1 Genestealer Locus
+1 Overgrowth
+7 Mountain
+1 Opal Palace
+1 Path of Ancestry
+1 Rugged Highlands
+1 Nexos
+1 Old One Eye
+1 Purestrain Genestealer
+1 Ravener
+1 New Horizons
+1 Rampant Growth
+1 Atalan Jackal
+1 Biophagus
+1 Ash Barrens
+1 Bone Sabres
+1 Aberrant
+1 Abundance
+1 Exocrine
+1 Death's Presence
+1 Command Tower
+1 Broodlord
+1 Bred for the Hunt
+1 Exotic Orchard
+1 Cave of Temptation
+1 Cultivate
+1 Goliath Truck
+1 Herald's Horn
+1 Hierophant Bio-Titan
+1 Malanthrope
+1 Toxicrene
+1 Trygon Prime
+1 Frontier Bivouac
+1 Game Trail
+1 Temple of Abandon
+1 Temple of Epiphany
+1 Explore
+1 Farseek
+1 Hull Breach
+1 Tyranid Invasion
+1 Sol Ring
+1 Genestealer Patriarch
+1 Ghyrson Starn, Kelermorph
+1 Haruspex
+1 Hormagaunt Horde
+1 Mawloc
+1 Screamer-Killer
+1 Sporocyst
+1 Termagant Swarm
+1 Tervigon
+1 The Red Terror
+1 Tyranid Harridan
+1 Hardened Scales
+8 Forest
+7 Island
+1 Temple of Mystery
+1 Terramorphic Expanse
+1 Thornwood Falls
+1 Winged Hive Tyrant
+1 Zoanthrope
+1 Unclaimed Territory
+1 Tyranid Prime
+1 Tyrant Guard
+1 Venomthrope
+1 Cinder Glade
+1 Icon of Ancestry
+1 Clamavus
+1 Deathleaper, Terror Weapon
+1 Lictor
+1 The Swarmlord

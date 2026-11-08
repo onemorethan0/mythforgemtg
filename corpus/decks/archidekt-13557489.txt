@@ -1,0 +1,101 @@
+# Archidekt — Zidane - Honor Among Thieves
+# source: archidekt:13557489
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Zidane, Tantalus Thief
+
+Deck:
+1 Esper Sentinel
+1 Chaos Warp
+1 Iroh, Tea Master
+1 Amy Rose
+1 Claim the Firstborn
+1 Yes Man, Personal Securitron
+1 Sword of Light and Shadow
+1 Inspiring Vantage
+1 Conjurer's Closet
+1 Buster Sword
+1 Alexios, Deimos of Kosmos
+1 Arcane Signet
+1 Battlefield Forge
+1 Bitterthorn, Nissa's Animus
+1 Blasphemous Act
+1 Boros Charm
+1 Clifftop Retreat
+1 Cloud, Midgar Mercenary
+1 Command Tower
+1 Boros Garrison
+1 Yuffie, Materia Hunter
+1 Swords to Plowshares
+1 Sword of Fire and Ice
+1 Freya Crescent
+1 Frodo, Determined Hero
+1 Homeward Path
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Khârn the Betrayer
+1 Loran of the Third Path
+1 Mistveil Plains
+1 Mountain
+1 Ragavan, Nimble Pilferer
+1 Recruiter of the Guard
+1 Restoration Angel
+1 Rugged Prairie
+1 Sacred Foundry
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Stiltzkin, Moogle Merchant
+1 Sunforger
+1 Sword of Hearth and Home
+1 Tibalt's Trickery
+1 Tithe
+1 Valakut Awakening // Valakut Stoneforge
+1 Wear // Tear
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Sol Ring
+1 Imperial Recruiter
+1 Temple of Triumph
+1 Phelia, Exuberant Shepherd
+1 Pinnacle Monk // Mystic Peak
+1 Talisman of Conviction
+1 Legion Leadership // Legion Stronghold
+1 Stoneforge Mystic
+1 Spectator Seating
+1 Sword of the Animist
+1 Slayers' Stronghold
+1 Sundown Pass
+1 Sunbaked Canyon
+1 Hithlain Rope
+1 Humble Defector
+1 Dawn's Truce
+1 Sunhome, Fortress of the Legion
+1 Kari Zev's Expertise
+1 Sunbillow Verge
+1 Elegant Parlor
+1 Comeuppance
+1 Sevinne's Reclamation
+1 Arid Mesa
+1 Flooded Strand
+1 Windswept Heath
+1 Marsh Flats
+1 Radiant Summit
+1 Starfield Shepherd
+1 Glittering Massif
+1 Deflecting Palm
+1 Pumpkin Bombs
+1 The Seriema
+1 Joined Researchers // Secret Rendezvous
+1 Black Widow, Agile Avenger
+1 Alicia Masters, Skilled Sculptor
+1 Austere Command
+8 Plains
+1 Bucknard's Everfull Purse
+1 Sokka, Swordmaster
+1 Fishing Gear
+1 Cloudshift
+1 Take the Bait
+1 Loki's Scepter
+1 Sword of War and Peace
+1 Cori-Steel Cutter
+1 Thalia's Lancers
+1 Brand

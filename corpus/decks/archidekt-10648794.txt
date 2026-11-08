@@ -1,0 +1,108 @@
+# Archidekt — One Shot, One Kill | Stella Lee, Wild Card - CEDH
+# source: archidekt:10648794
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Stella Lee, Wild Card
+
+Deck:
+1 Riverpyre Verge
+1 Wheel of Fortune
+1 Personal Tutor
+1 Pollywog Prodigy
+1 An Offer You Can't Refuse
+1 Ancient Tomb
+1 Bloodstained Mire
+1 Borne Upon a Wind
+1 Cerulean Wisps
+1 Chrome Mox
+1 Final Fortune
+1 Flooded Strand
+1 Jeska's Will
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Mana Confluence
+1 Merchant Scroll
+1 Mindbreak Trap
+1 Mox Amber
+1 Mox Diamond
+1 Mystic Remora
+1 Muddle the Mixture
+1 Otawara, Soaring City
+1 Rhystic Study
+1 Pyretic Ritual
+1 Seething Song
+1 Sink into Stupor // Soporific Springs
+1 Steam Vents
+1 Twisted Fealty
+1 Volcanic Island
+1 Volatile Stormdrake
+1 Refocus
+1 Shore Up
+1 Intuition
+1 Thundering Falls
+1 Expedite
+1 Cavern of Souls
+1 Island
+1 Crimson Wisps
+1 Cephalid Coliseum
+1 Mana Vault
+1 Peek
+1 Pyroblast
+1 Hidden Strings
+1 Red Elemental Blast
+1 Mirrormade
+1 Emergence Zone
+1 Tidal Bore
+1 Spellskite
+1 Jolt
+1 Teardrop Kami
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Twitch
+1 Sensei's Divining Top
+1 Infuse
+1 Dizzy Spell
+1 Gut Shot
+1 Scalding Tarn
+1 Command Tower
+1 Polluted Delta
+1 Urza's Saga
+1 Dragon's Rage Channeler
+1 Fellwar Stone
+1 Arcane Signet
+1 Mox Opal
+1 Sol Ring
+1 Marvin, Murderous Mimic
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Mockingbird
+1 Brain Freeze
+1 Simian Spirit Guide
+1 Ragavan, Nimble Pilferer
+1 Valley Floodcaller
+1 Commandeer
+1 Dramatic Reversal
+1 Deflecting Swat
+1 Snap
+1 Force of Will
+1 Fierce Guardianship
+1 Underworld Breach
+1 Flusterstorm
+1 Misdirection
+1 Into the Flood Maw
+1 Frantic Search
+1 March of Swirling Mist
+1 Mental Misstep
+1 Pact of Negation
+1 Mystical Tutor
+1 Fiery Islet
+1 Swan Song
+1 Training Center
+1 City of Brass
+1 Shivan Reef
+1 Tarnished Citadel
+1 Strike It Rich
+1 Misty Rainforest
+1 Gamble
+1 Minamo, School at Water's Edge
+1 Rite of Flame

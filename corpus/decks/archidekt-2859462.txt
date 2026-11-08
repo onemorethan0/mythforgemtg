@@ -1,0 +1,96 @@
+# Archidekt — Una Terra Tira l'Altra, ma ad Aesi non Basta
+# source: archidekt:2859462
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Aesi, Tyrant of Gyre Strait
+
+Deck:
+1 Escape Tunnel
+1 Thwart
+1 Temple of the False God
+1 Kodama of the East Tree
+1 Scute Swarm
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Beast Within
+1 Harrow
+1 Stone-Seeder Hierophant
+1 Case of the Locked Hothouse
+1 Resculpt
+1 Simic Growth Chamber
+1 Guildless Commons
+1 Arid Archway
+1 Khalni Ambush // Khalni Territory
+1 Spelunking
+1 Famished Worldsire
+1 Vorinclex, Voice of Hunger
+1 Nature's Lore
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Amphibian Downpour
+1 Cyber Conversion
+1 Tatyova, Benthic Druid
+1 Mana Breach
+1 Lightning Greaves
+1 Sol Ring
+1 Walk the Aeons
+1 Whelming Wave
+1 Sakura-Tribe Elder
+1 Sylvan Safekeeper
+1 Entish Restoration
+1 Deprive
+1 Broken Bond
+1 Lotus Cobra
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Tireless Provisioner
+1 Azusa, Lost but Seeking
+1 Counterspell
+1 Brokers Hideout
+1 Mystic Sanctuary
+1 Myriad Landscape
+1 Fabled Passage
+1 Walk-In Closet // Forgotten Cellar
+1 Icetill Explorer
+1 Wayward Swordtooth
+1 Traverse the Outlands
+1 Strip Mine
+1 Oko, Thief of Crowns
+1 Mystical Tutor
+1 Cephalid Coliseum
+1 Dryad of the Ilysian Grove
+1 Archdruid's Charm
+1 Conduit of Worlds
+1 Ancient Greenwarden
+1 Pongify
+1 The Endstone
+1 Long River's Pull
+1 Thespian's Stage
+1 Uro, Titan of Nature's Wrath
+1 Starfield Vocalist
+1 Far Wanderings
+1 Consuming Tide
+1 Summon: Leviathan
+1 Glacierwood Siege
+1 Tooth and Nail
+1 Lotus Field
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Horizon of Progress
+1 Loot, Exuberant Explorer
+1 Vibrant Cityscape
+1 Crop Rotation
+1 Overburden
+1 Tempt with Discovery
+1 Horizon Explorer
+1 Field of the Dead
+7 Forest
+7 Island
+1 Urza's Cave
+1 Scavenger Grounds
+1 Swan Song
+1 Command Tower
+1 Waterlogged Grove
+1 Reshape the Earth
+1 Planar Engineering
+1 An Offer You Can't Refuse
+1 Swiftfoot Boots

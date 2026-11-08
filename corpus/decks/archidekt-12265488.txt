@@ -1,0 +1,107 @@
+# Archidekt — cEDH Deadpool
+# source: archidekt:12265488
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Deadpool, Trading Card
+
+Deck:
+1 Mox Diamond
+1 Chrome Mox
+1 Mox Opal
+1 Arcane Signet
+1 Sol Ring
+1 Grim Monolith
+1 Mana Vault
+1 Animate Dead
+1 Gamble
+1 Worldgorger Dragon
+1 Entomb
+1 Vampiric Tutor
+1 Demonic Tutor
+1 Imperial Seal
+1 Buried Alive
+1 Reanimate
+1 Unmarked Grave
+1 Jeska's Will
+1 Red Elemental Blast
+1 Pyroblast
+1 Dance of the Dead
+1 Necromancy
+1 Lightning Bolt
+1 Simian Spirit Guide
+1 Blood Pet
+1 Skirk Prospector
+1 Pinnacle Monk // Mystic Peak
+1 Saw in Half
+1 Lotus Petal
+1 Cabal Ritual
+1 Burnt Offering
+1 Culling the Weak
+1 Flare of Duplication
+1 Deflecting Swat
+1 Sacrifice
+1 Hoarding Broodlord
+1 Dark Ritual
+1 Wishclaw Talisman
+1 The One Ring
+1 Deadly Rollick
+1 Ricochet Trap
+1 Rite of Flame
+1 Snuff Out
+1 Beseech the Mirror
+1 Diabolic Intent
+1 Molten Duplication
+1 Praetor's Grasp
+1 Demonic Consultation
+1 Underworld Breach
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Conqueror's Flail
+1 Vexing Bauble
+1 Tainted Pact
+1 Dualcaster Mage
+1 Twinflame
+1 Emergence Zone
+1 Imperial Recruiter
+1 Mount Doom
+1 Forbidden Orchard
+1 Lion's Eye Diamond
+1 Ancient Tomb
+1 Wooded Foothills
+1 Defense Grid
+1 Bloodstained Mire
+1 City of Brass
+1 Talisman of Indulgence
+1 Urza's Saga
+1 Mana Confluence
+1 Sulfurous Springs
+1 Fellwar Stone
+1 Marsh Flats
+1 Arid Mesa
+1 Blood Crypt
+1 Badlands
+1 Exotic Orchard
+1 Luxury Suite
+1 City of Traitors
+1 Scalding Tarn
+1 Command Tower
+1 Raucous Theater
+1 Gemstone Caverns
+1 Yawgmoth's Will
+1 Polluted Delta
+1 Verdant Catacombs
+1 Mountain
+1 Mayhem Devil
+1 Infernal Plunge
+1 _____ Goblin
+1 Swamp
+1 Necropotence
+1 Wheel of Fortune
+1 Dauthi Voidwalker
+1 Ragavan, Nimble Pilferer
+1 Jagged Barrens
+1 Faithless Looting
+1 Grinding Station
+1 Peer into the Abyss

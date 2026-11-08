@@ -1,0 +1,83 @@
+# Archidekt — Unfinity!
+# source: archidekt:6840727
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Vorthos, Steward of Myth
+
+Deck:
+1 Watery Grave
+1 Stomping Ground
+6 Mountain
+1 Ticket Turbotubes
+6 Island
+6 Plains
+6 Swamp
+1 Greatest Show in the Multiverse
+1 Urza's Fun House
+1 Nearby Planet
+1 The Big Top
+6 Forest
+1 The Most Dangerous Gamer
+1 Truss, Chief Engineer
+1 Dee Kay, Finder of the Lost
+1 "Brims" Barone, Midway Mobster
+1 Draconian Gate-Bot
+1 Strength-Testing Hammer
+1 Monoxa, Midway Manager
+1 Bar Entry
+1 Claire D'Loon, Joy Sculptor
+1 Pietra, Crafter of Clowns
+1 Park Map
+1 Meet and Greet "Sisay"
+1 Celebr-8000
+1 Spinnerette, Arachnobat
+1 The Space Family Goblinson
+1 Pair o' Dice Lost
+1 Coming Attraction
+1 Mistakes Were Made
+1 Tchotchke Elemental
+1 Vegetation Abomination
+1 An Incident Has Occurred
+1 Petting Zookeeper
+1 Eelectrocute
+1 Slight Malfunction
+1 Impounding Lot-Bot
+1 Circuits Act
+1 Line Cutter
+1 Well Done
+1 Amped Up
+1 Trigger Happy
+1 Goblin Blastronauts
+1 Rad Rascal
+1 Monitor Monitor
+1 Busted!
+1 Bag Check
+1 Super-Duper Lost
+1 Complaints Clerk
+1 Ride Guide
+1 Trapeze Artist
+1 A Good Day to Pie
+1 Squirrel Squatters
+1 Spelling Bee
+1 Command Performance
+1 Seasoned Buttoneer
+1 Mobile Clone
+1 Boing!
+1 Animate Object
+1 Step Right Up
+1 Main Event Horizon
+1 T.A.P.P.E.R.
+1 Saw in Half
+1 Disemvowel
+1 Soul Swindler
+1 Deadbeat Attendant
+1 Six-Sided Die
+1 Discourtesy Clerk
+1 Down for Repairs
+1 Omniclown Colossus // Pie-roclasm
+1 Blufferfish
+1 Non-Human Cannonball
+1 Scooch
+1 Atomwheel Acrobats

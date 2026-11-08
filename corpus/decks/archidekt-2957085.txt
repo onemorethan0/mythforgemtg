@@ -1,0 +1,83 @@
+# Archidekt — Breath of the Undying
+# source: archidekt:2957085
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Mikaeus, the Unhallowed
+
+Deck:
+1 Marionette Apprentice
+1 Fell Stinger
+1 Castle Locthwain
+1 Dark Ritual
+1 High Market
+1 Crystalline Crawler
+1 Walking Ballista
+1 Altar of the Brood
+1 Heartless Summoning
+1 Rain of Filth
+1 Baleful Mastery
+1 Duress
+1 Cavern of Souls
+1 Thran Dynamo
+1 Cabal Stronghold
+1 Defile
+1 Tragic Slip
+1 Skullclamp
+1 Blasting Station
+1 Bastion of Remembrance
+1 Cryptic Trilobite
+1 Spincrusher
+1 Bubbling Muck
+1 Mind Stone
+1 Woe Strider
+1 Infernal Grasp
+1 Inquisition of Kozilek
+1 Detection Tower
+1 War Room
+1 Sol Ring
+1 Arcane Signet
+1 Blood Artist
+1 Night's Whisper
+1 Altar of Dementia
+1 Ashnod's Altar
+1 Carrion Feeder
+1 Lesser Masticore
+1 Putrid Goblin
+1 Viscera Seer
+1 Read the Bones
+1 Zulaport Cutthroat
+1 Sign in Blood
+1 Village Rites
+1 Grim Haruspex
+1 Magus of the Coffers
+1 Undying Malice
+1 Supernatural Stamina
+1 Barren Moor
+1 K'rrik, Son of Yawgmoth
+1 Susurian Voidborn
+1 Imp's Mischief
+1 Sacrifice
+1 Withering Torment
+1 Phyrexian Altar
+1 Vengeful Bloodwitch
+1 Moonsilver Key
+1 Diabolic Tutor
+1 Diabolic Intent
+1 Jet Medallion
+1 Crypt Ghast
+1 Insatiable Avarice
+1 Diresight
+1 Dark Privilege
+1 Culling the Weak
+1 Umbral Collar Zealot
+1 Tezzeret, Cruel Captain
+1 Ancient Tomb
+1 Fellwar Stone
+1 Everflowing Chalice
+1 Phyrexian Arena
+1 Greed
+24 Swamp
+1 Wishclaw Talisman
+1 Demonic Bargain

@@ -1,7 +1,8 @@
 # Archidekt — just according to keikaku
 # source: archidekt:25694824
 # fetched: 2026-08-26
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Ad Nauseam, Necropotence); Bracket 1 allows 0; two-card infinite combo Ad Nauseam + Lich; Bracket 1 allows none
 
 Commander:
 1 Phage the Untouchable

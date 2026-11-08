@@ -1,0 +1,81 @@
+# Archidekt — A.I.T.B.T.M.O.D.A.N.A.M.S.W.B.T.B.T.R.U.T.C.B.W.G.O.E
+# source: archidekt:12050291
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Queen Marchesa
+
+Deck:
+10 Mountain
+10 Plains
+10 Swamp
+1 Gastal Thrillseeker
+1 Amonkhet Raceway
+1 Command Tower
+1 Muraganda Raceway
+1 Hour of Victory
+1 Endrider Catalyzer
+1 Avishkar Raceway
+1 Far Fortune, End Boss
+1 Embalmed Ascendant
+1 Court of Ambition
+1 Court of Ardenvale
+1 Throne Warden
+1 Palace Jailer
+1 Throne of the High City
+1 Marchesa's Decree
+1 Garrulous Sycophant
+1 Knights of the Black Rose
+1 Ghostly Prison
+1 Skyline Despot
+1 Custodi Lich
+1 White Plume Adventurer
+1 Archon of Coronation
+1 Loot Dispute
+1 Ravenloft Adventurer
+1 Undercellar Sweep
+1 Caves of Chaos Adventurer
+1 Sol Ring
+1 Passageway Seer
+1 Sarevok's Tome
+1 Stirring Bard
+1 Dungeoneer's Pack
+1 Seasoned Dungeoneer
+1 Safana, Calimport Cutthroat
+1 Arcane Signet
+1 Vicious Battlerager
+1 Brimstone Vandal
+1 Brutal Cathar // Moonrage Brute
+1 Curse of Leeches // Leeching Lurker
+1 The Celestus
+1 Graveyard Trespasser // Graveyard Glutton
+1 Lambholt Raconteur // Lambholt Ravager
+1 Ill-Tempered Loner // Howlpack Avenger
+1 Village Watch // Village Reavers
+1 Reckless Stormseeker // Storm-Charged Slasher
+1 Weary Prisoner // Wrathful Jailbreaker
+1 Champions of Minas Tirith
+1 Disrupt Decorum
+1 Kardur, Doomscourge
+1 Deflecting Palm
+1 Take the Bait
+1 Inkshield
+1 Comeuppance
+1 Crackling Doom
+1 Rogue's Passage
+1 Boros Charm
+1 Dawn Charm
+1 Ruinous Ultimatum
+1 Tyrant's Choice
+1 Taunt from the Rampart
+1 Mana Tithe
+1 Rohirrim Lancer
+1 Inherited Envelope
+1 Took Reaper
+1 Call of the Ring
+1 Witch-king of Angmar
+1 Twilight Prophet
+1 Golden Demise
+1 Radiant Destiny
+1 Chandra, Awakened Inferno

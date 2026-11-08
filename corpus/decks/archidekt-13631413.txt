@@ -1,0 +1,90 @@
+# Archidekt — CZ 683 | Chatterfang | The Best Token Commanders
+# source: archidekt:13631413
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Warren Soultrader
+1 Toski, Bearer of Secrets
+1 Braids, Arisen Nightmare
+1 Fanatical Offering
+1 Pointed Discussion
+1 Unearth
+1 Great Arashin City
+1 Al Bhed Salvagers
+1 Vraan, Executioner Thane
+1 Peregrin Took
+1 Pitiless Plunderer
+1 Hazel of the Rootbloom
+1 Skullclamp
+1 Swarmyard Massacre
+1 Osteomancer Adept
+1 Thornvault Forager
+1 Species Specialist
+1 Mirkwood Bats
+1 Nadier's Nightblade
+1 Zulaport Cutthroat
+1 Marionette Apprentice
+1 Abrupt Decay
+1 Revitalizing Repast // Old-Growth Grove
+1 Verdant Command
+1 Putrefy
+1 Tear Asunder
+1 Infernal Grasp
+1 Bojuka Bog
+1 Khalni Garden
+1 Sol Ring
+1 Wild Growth
+1 Fountainport
+1 Command Tower
+1 Idol of Oblivion
+1 Swarmyard
+1 Utopia Sprawl
+1 Llanowar Wastes
+1 Exotic Orchard
+1 Path of Ancestry
+1 Wastewood Verge
+1 Woodland Cemetery
+1 Generous Ent
+8 Swamp
+1 Tireless Provisioner
+12 Forest
+1 Squirrel Nest
+1 Deadly Dispute
+1 Gilded Goose
+1 Deep Forest Hermit
+1 Hazel's Brewmaster
+1 Gala Greeters
+1 Plumb the Forbidden
+1 Chatterstorm
+1 Assassin's Trophy
+1 Twilight Mire
+1 Necroblossom Snarl
+1 Jadar, Ghoulcaller of Nephalia
+1 Bastion of Remembrance
+1 Tainted Wood
+1 Temple of Malady
+1 Woe Strider
+1 Elves of Deep Shadow
+1 Priest of Forgotten Gods
+1 Arbor Elf
+1 Freestrider Lookout
+1 Cache Grab
+1 Malevolent Rumble
+1 Morbid Opportunist
+1 Blood Artist
+1 Many Partings
+1 Tireless Tracker
+1 Toxic Deluge
+1 Insidious Roots
+1 Chatter of the Squirrel
+1 Emrakul's Evangel
+1 Culling Ritual
+1 Baleful Mastery
+1 Vinereap Mentor
+1 Lethal Scheme
+1 Collective Resistance
+1 Night's Whisper

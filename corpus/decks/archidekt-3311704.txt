@@ -1,0 +1,94 @@
+# Archidekt — 6. Nahiri, Forged in Fury
+# source: archidekt:3311704
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Nahiri, Forged in Fury
+
+Deck:
+1 Alpine Meadow
+1 Clifftop Retreat
+1 Command Tower
+1 Axgard Armory
+6 Mountain
+1 Sacred Peaks
+1 Explorer's Scope
+1 Sword of the Animist
+1 Forge Anew
+1 Bladehold War-Whip
+1 Astor, Bearer of Blades
+1 Swords to Plowshares
+1 Hexplate Wallbreaker
+1 Fiendlash
+1 Talisman of Conviction
+1 Swiftfoot Boots
+1 Scavenger Grounds
+1 Inventory Management
+1 Codsworth, Handy Helper
+1 Mantle of the Ancients
+1 Inspiring Vantage
+1 Dragonwing Glider
+1 Slayers' Stronghold
+1 Plaza of Heroes
+1 Akiri, Fearless Voyager
+1 Sunhome, Fortress of the Legion
+1 Mithril Coat
+7 Plains
+1 Brotherhood Regalia
+1 Halvar, God of Battle // Sword of the Realms
+1 Shadowspear
+1 Conqueror's Flail
+1 Scroll Rack
+1 Glimmer Lens
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Umezawa's Jitte
+1 Bruenor Battlehammer
+1 Arcane Signet
+1 Puresteel Paladin
+1 Sram, Senior Edificer
+1 Basilisk Collar
+1 Ardenn, Intrepid Archaeologist
+1 Toggo, Goblin Weaponsmith
+1 Bitterthorn, Nissa's Animus
+1 Sigarda's Aid
+1 Hammer of Nazahn
+1 Sol Ring
+1 The Reaver Cleaver
+1 Bloodforged Battle-Axe
+1 Embercleave
+1 Buried Ruin
+1 Fabled Passage
+1 Nettlecyst
+1 Masterwork of Ingenuity
+1 Rugged Prairie
+1 Nahiri, Heir of the Ancients
+1 Inventors' Fair
+1 Great Furnace
+1 Elegant Parlor
+1 Sundown Pass
+1 Demolition Field
+1 Colossus Hammer
+1 Bureau Headmaster
+1 Battlefield Improvisation
+1 Sejiri Shelter // Sejiri Glacier
+1 Chainsaw
+1 Nahiri, the Unforgiving
+1 Two-Handed Axe // Sweeping Cleave
+1 Needleverge Pathway // Pillarverge Pathway
+1 Untimely Malfunction
+1 Caduceus, Staff of Hermes
+1 Leyline Axe
+1 Celestial Armor
+1 Dawn's Truce
+1 Aettir and Priwen
+1 Cloud, Midgar Mercenary
+1 Nibelheim Aflame
+1 Restoration Magic
+1 Sacred Foundry
+1 Radiant Summit
+1 Legion Leadership // Legion Stronghold
+1 The Lonely Mountain
+1 Eivor, Battle-Ready
+1 Single Combat
+1 Tarrian's Soulcleaver

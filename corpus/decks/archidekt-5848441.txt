@@ -1,0 +1,93 @@
+# Archidekt — Chaos Theory | Ian Malcolm, Chaotician
+# source: archidekt:5848441
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Curiosity + Niv-Mizzet, Parun; Bracket 2 allows none
+
+Commander:
+1 Ian Malcolm, Chaotician
+
+Deck:
+1 Riverpyre Verge
+1 Ferrous Lake
+1 Whims of the Fates
+9 Mountain
+1 Midnight Clock
+1 Zenith Chronicler
+1 Valakut Awakening // Valakut Stoneforge
+1 Perplexing Chimera
+1 Command Tower
+1 Cascade Bluffs
+1 Lore Broker
+1 Kami of the Crescent Moon
+1 Jace's Archivist
+1 Mikokoro, Center of the Sea
+1 Izzet Boilerworks
+9 Island
+1 Reliquary Tower
+1 Riverglide Pathway // Lavaglide Pathway
+1 Plargg and Nassari
+1 Howling Mine
+1 Geier Reach Sanitarium
+1 Sol Ring
+1 Shivan Reef
+1 Guff Rewrites History
+1 The Locust God
+1 Arcane Denial
+1 Vision Skeins
+1 Fevered Visions
+1 Niv-Mizzet, Parun
+1 Frostboil Snarl
+1 Folio of Fancies
+1 Arcane Signet
+1 Thought Vessel
+1 Stormcarved Coast
+1 Sulfur Falls
+1 Training Center
+1 Homeward Path
+1 Will of the Jeskai
+1 Flaming Tyrannosaurus
+1 Zurzoth, Chaos Rider
+1 Well of Ideas
+1 Magus of the Wheel
+1 An Offer You Can't Refuse
+1 Niv-Mizzet, the Firemind
+1 Braids, Conjurer Adept
+1 Steam Vents
+1 Coveted Jewel
+1 Dakra Mystic
+1 Disrupt Decorum
+1 Chef's Kiss
+1 Long River's Pull
+1 Faerie Mastermind
+1 Storm Fleet Negotiator
+1 Temple Bell
+1 Cutthroat Negotiator
+1 Laboratory Maniac
+1 Ludevic, Necro-Alchemist
+1 Tempt with Mayhem
+1 Dictate of Kruphix
+1 Descent into Avernus
+1 Chaos Warp
+1 Dream Fracture
+1 Molten Psyche
+1 Tasha's Hideous Laughter
+1 Razorkin Needlehead
+1 Scrawling Crawler
+1 Step Between Worlds
+1 Reins of Power
+1 Shifting Grift
+1 Mana Geyser
+1 Remand
+1 Ghostly Pilferer
+1 Sink into Stupor // Soporific Springs
+1 Irencrag Pyromancer
+1 Khorvath's Fury
+1 Balor
+1 Fiery Islet
+1 Fortune Teller's Talent
+1 Stolen Strategy
+1 Curiosity
+1 Wheel of Fate
+1 Windfall
+1 Memory Worm

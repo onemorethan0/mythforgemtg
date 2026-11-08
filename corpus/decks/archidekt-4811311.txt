@@ -1,0 +1,104 @@
+# Archidekt — (retired) Kyler and the Gang
+# source: archidekt:4811311
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Kyler, Sigardian Emissary
+
+Deck:
+1 Laid to Rest
+1 Coppercoat Vanguard
+1 King Darien XLVIII
+1 For the Ancestors
+1 Savannah
+3 Forest
+1 Wooded Foothills
+1 Secluded Courtyard
+1 Flooded Strand
+1 Misty Rainforest
+1 Ulvenwald Mysteries
+1 Greymond, Avacyn's Stalwart
+1 Blasting Station
+1 Mithril Coat
+1 Horizon Canopy
+1 Selesnya Sanctuary
+1 Path of Ancestry
+1 Overgrown Farmland
+1 Rogue's Passage
+1 Command Tower
+1 Sungrass Prairie
+1 Temple Garden
+1 Krosan Verge
+1 Castle Ardenvale
+1 Scattered Groves
+1 Temple of Plenty
+1 Blighted Woodland
+1 Mutavault
+1 Myriad Landscape
+1 Demolition Field
+1 Strip Mine
+1 Canopy Vista
+1 Brushland
+1 Minas Tirith
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Woodland Acolyte // Mend the Wilds
+1 Recruiter of the Guard
+1 Return from the Wilds
+1 Kodama's Reach
+1 Finale of Devastation
+1 Herald's Horn
+1 Smothering Tithe
+1 Doubling Season
+1 Cemetery Protector
+1 Saffi Eriksdotter
+1 Thalia's Lieutenant
+1 And They Shall Know No Fear
+1 Torens, Fist of the Angels
+1 Harmonize
+1 Slippery Bogbonder
+1 Three Visits
+1 Shamanic Revelation
+1 Moorland Rescuer
+1 Swords to Plowshares
+1 Eternal Witness
+1 Join the Dance
+1 Wild Beastmaster
+1 Boromir, Warden of the Tower
+1 Heronblade Elite
+1 Bastion Protector
+1 Arcane Signet
+1 Omen of the Sun
+1 Heron's Grace Champion
+1 Tireless Tracker
+1 Katilda, Dawnhart Prime
+1 Loran of the Third Path
+1 Realmwalker
+1 Odric, Master Tactician
+1 Sol Ring
+1 Path to Exile
+1 Repel the Abominable
+1 Vanquisher's Banner
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Lightning Greaves
+1 Swiftfoot Boots
+1 Windswept Heath
+1 Verdant Catacombs
+1 Maja, Bretagard Protector
+1 Bess, Soul Nourisher
+1 Adeline, Resplendent Cathar
+1 Flawless Maneuver
+1 Camaraderie
+1 Avacyn's Pilgrim
+1 Champion of Lambholt
+1 Cleansing Nova
+1 Call the Coppercoats
+1 Renegade Rallier
+1 Stalwart Pathlighter
+1 Beast Within
+1 Horn of Gondor
+1 Concordant Crossroads
+1 Galadriel's Dismissal
+3 Plains
+1 Shifting Woodland
+1 Lush Portico

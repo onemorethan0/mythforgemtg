@@ -1,0 +1,98 @@
+# Archidekt — Auntie Blyte Vmax (3rd dagree)
+# source: archidekt:4547078
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Auntie Blyte, Bad Influence + Volcano Hellion; Bracket 2 allows none
+
+Commander:
+1 Auntie Blyte, Bad Influence
+
+Deck:
+1 Chandra's Ignition
+1 Tarnished Citadel
+1 Kediss, Emberclaw Familiar
+1 Witch's Clinic
+1 Mines of Moria
+1 Shinka, the Bloodsoaked Keep
+1 Goblin Welder
+1 Goblin Engineer
+1 Barbarian Ring
+1 City of Brass
+1 Zo-Zu the Punisher
+1 Brash Taunter
+1 Price of Progress
+1 Uncivil Unrest
+1 Generous Plunderer
+1 The Sound of Drums
+1 Creative Technique
+1 Miren, the Moaning Well
+1 Nykthos, Shrine to Nyx
+1 Patriar's Seal
+1 War Room
+1 Audacious Reshapers
+1 Grand Coliseum
+1 Plaza of Heroes
+1 Artist's Talent
+1 Urza's Saga
+1 Solphim, Mayhem Dominus
+1 Batterskull
+1 Resurrection Orb
+1 Seize the Spotlight
+1 Sol Ring
+1 Blasphemous Act
+1 Furnace of Rath
+1 Mikokoro, Center of the Sea
+1 Talon Gates of Madara
+1 Arena of Glory
+1 Volcano Hellion
+1 Great Furnace
+1 Nuka-Cola Vending Machine
+1 Demolition Field
+1 Diamond Valley
+1 Commander's Plate
+1 Balor
+1 Geier Reach Sanitarium
+10 Mountain
+1 Eternity Vessel
+1 Scavenger Grounds
+1 Thespian's Stage
+1 Big Score
+1 Throne of Eldraine
+1 Vesuva
+1 Valakut Awakening // Valakut Stoneforge
+1 Acidic Soil
+1 Spellshock
+1 Wheel of Misfortune
+1 Roiling Vortex
+1 Cemetery Gatekeeper
+1 Ankh of Mishra
+1 Descent into Avernus
+1 Burning Earth
+1 Madcap Experiment
+1 Manabarbs
+1 Pyrohemia
+1 Maximum Carnage
+1 Ruby Medallion
+1 Bonders' Enclave
+1 Horizon of Progress
+1 Tyrite Sanctum
+1 The Endstone
+1 Basilisk Collar
+1 Sensei's Divining Top
+1 Powerbalance
+1 Shadowspear
+1 Repercussion
+1 Seething Song
+1 Fault Line
+1 Arcbond
+1 Scavenged Brawler
+1 Hidden Hideout
+1 Ashling the Pilgrim
+1 Alexios, Deimos of Kosmos
+1 Sword of Wealth and Power
+1 Earthquake
+1 Scrawling Crawler
+1 Vicious Shadows
+1 Screaming Nemesis
+1 Wheel of Fortune
+1 Pain for All

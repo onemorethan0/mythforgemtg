@@ -1,0 +1,96 @@
+# Archidekt — Meteor Tribal
+# source: archidekt:2646986
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Roxanne, Starfall Savant
+
+Deck:
+1 Command Tower
+1 Survivors' Encampment
+1 Crawling Barrens
+1 Drannith Ruins
+1 Fire Prophecy
+1 Fire Servant
+1 From the Ashes
+1 Hall of Oracles
+1 Meteor Blast
+1 Bonds of Mortality
+1 Blast Zone
+1 Ojer Axonil, Deepest Might // Temple of Power
+1 Krosan Restorer
+6 Forest
+1 Chandra's Incinerator
+1 Decimate
+1 Leyline of Punishment
+1 Restore
+1 Volcanic Fallout
+1 Meteoric Mace
+1 Buried Ruin
+8 Mountain
+1 Stone Rain
+1 Meteorite
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Star of Extinction
+1 Junktown
+1 Wreck and Rebuild
+1 Mad Prophet
+1 Seer's Sundial
+1 Rain of Embers
+1 Scorching Missile
+1 Smoldering Crater
+1 Meteor Shower
+1 Fireball
+1 Blasted Landscape
+1 Brimstone Volley
+1 Grow from the Ashes
+1 Omen of the Forge
+1 Primal Amulet // Primal Wellspring
+1 Prophetic Flamespeaker
+1 Pyromancer's Gauntlet
+1 Meteor Crater
+1 Bonfire of the Damned
+1 Svella, Ice Shaper
+1 Meteor Golem
+1 Meteor Swarm
+1 Demolition Field
+1 Heaven // Earth
+1 Regrowth
+1 Road // Ruin
+1 Stomping Ground
+1 Anger of the Gods
+1 Comet Storm
+1 Cinder Glade
+1 Rockfall Vale
+1 Starstorm
+1 Entish Restoration
+1 Ash Barrens
+1 Cultivate
+1 Temple of Abandon
+1 Rampant Growth
+1 Vedalken Orrery
+1 Mana Reflection
+1 Molten Rain
+1 Sea Gate Wreckage
+1 Roiling Regrowth
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Shivan Meteor
+1 Farseek
+1 Pyromancer's Goggles
+1 Sol Ring
+1 Sunspine Lynx
+1 Festival of Embers
+1 Mizzium Mortars
+1 Explosive Singularity
+1 Ryusei, the Falling Star
+1 The Millennium Calendar
+1 Arcane Signet
+1 City on Fire
+1 Rosheen Meanderer
+1 Oracle of Mul Daya
+1 Nissa, Vastwood Seer // Nissa, Sage Animist
+1 Skycrash
+1 Augur of Autumn
+1 The Celestus

@@ -1,0 +1,87 @@
+# Archidekt — Eluge
+# source: archidekt:13410710
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Eluge, the Shoreless Sea
+
+Deck:
+1 Cyclonic Rift
+1 Blatant Thievery
+1 Command Beacon
+1 Conjurer's Closet
+1 Counterspell
+1 Desertion
+1 Engulf the Shore
+1 Expropriate
+1 Finale of Revelation
+1 Flow of Knowledge
+1 Frantic Search
+1 Irenicus's Vile Duplication
+22 Island
+1 Leyline of Anticipation
+1 Mana Drain
+1 Metallurgic Summonings
+1 Mistrise Village
+1 Mystic Sanctuary
+1 Mystical Tutor
+1 Narset's Reversal
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Fierce Guardianship
+1 Ponder
+1 Primal Amulet // Primal Wellspring
+1 Pull from Tomorrow
+1 Reliquary Tower
+1 Rivendell
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Shark Typhoon
+1 Sink into Stupor // Soporific Springs
+1 Solve the Equation
+1 Spectral Deluge
+1 Sublime Epiphany
+1 Swan Song
+1 Thought Vessel
+1 Throne of Eldraine
+1 Jace, the Mind Sculptor
+1 Teferi, Master of Time
+1 Displacer Kitten
+1 Archaeomancer
+1 Homunculus Horde
+1 Hullbreaker Horror
+1 Jin-Gitaxias, Progress Tyrant
+1 Nezahal, Primal Tide
+1 Ojer Pakpatiq, Deepest Epoch // Temple of Cyclical Time
+1 Spellseeker
+1 Talrand, Sky Summoner
+1 Spark Double
+1 Subtlety
+1 Agna Qel'a
+1 Force of Negation
+1 The Unagi of Kyoshi Island
+1 Terrain Generator
+1 Essence Flux
+1 The One Ring
+1 Narset, Parter of Veils
+1 Force of Will
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Snapcaster Mage
+1 Snap
+1 Teferi's Time Twist
+1 Negate
+1 Nexus of Fate
+1 Commandeer
+1 Mnemonic Deluge
+1 Slip Out the Back
+1 Isochron Scepter
+1 Teferi's Ageless Insight
+1 Sol Ring
+1 Rogue's Passage
+1 Beacon of Tomorrows
+1 Time Warp
+1 Thassa, Deep-Dwelling
+1 Rhystic Study
+1 Mystic Remora
+1 Blue Sun's Zenith
+1 Archmage Emeritus

@@ -1,0 +1,95 @@
+# Archidekt — The Mycotyrant, Fun Guys
+# source: archidekt:5914702
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Sporemound + Life and Limb; Bracket 1 allows none
+
+Commander:
+1 The Mycotyrant
+
+Deck:
+1 Myconid Spore Tender
+1 Blooming Marsh
+1 Gemstone Mine
+1 Necrogenesis
+1 Khalni Garden
+1 Overgrown Tomb
+1 Deathcap Glade
+1 Second Harvest
+1 Bojuka Bog
+1 Tainted Wood
+1 Necroblossom Snarl
+1 Undercellar Myconid
+1 Cankerbloom
+1 Temple of Malady
+1 Command Tower
+1 Fungal Fortitude
+1 Placid Rottentail
+1 Broodrage Mycoid
+1 Fungal Infection
+1 Spore Crawler
+1 Akawalli, the Seething Tower
+1 Entish Restoration
+1 Woodland Cemetery
+1 Restless Cottage
+1 Seed of Hope
+1 Choking Miasma
+1 Fungal Rebirth
+1 Village Rites
+1 Grapple with the Past
+1 Wand of Vertebrae
+1 Harrow
+1 Tamiyo's Safekeeping
+1 Spore Swarm
+1 Cryptolith Rite
+1 Deathbonnet Sprout // Deathbonnet Hulk
+1 Malakir Rebirth // Malakir Mire
+1 Darkbore Pathway // Slitherbore Pathway
+1 Takenuma, Abandoned Mire
+1 Exotic Orchard
+1 Saproling Symbiosis
+1 Tyvar's Stand
+1 Sporecrown Thallid
+1 Myriad Landscape
+1 Evolving Wilds
+1 Deathcap Marionette
+1 Breach the Multiverse
+1 Cemetery Tampering
+1 Sprout Swarm
+1 Fungal Plots
+1 The Skullspore Nexus
+1 Golgari Signet
+1 Conduit of Worlds
+1 Talisman of Resilience
+1 Sol Ring
+1 Arcane Signet
+1 Moldervine Reclamation
+1 Heroic Intervention
+1 Grave Pact
+1 Spore Frog
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Corpse Churn
+1 Bone Shards
+1 Druidic Satchel
+1 Grisly Salvage
+1 Perpetual Timepiece
+1 Revitalizing Repast // Old-Growth Grove
+1 Primal Might
+1 Go for the Throat
+1 Season of Loss
+1 Sowing Mycospawn
+1 Ripples of Undeath
+1 Squirming Emergence
+1 Insidious Roots
+1 Verdant Embrace
+1 Plumb the Forbidden
+1 Rise of the Witch-king
+1 Phyrexian Tower
+1 Shifting Woodland
+1 Fabled Passage
+1 Sporemound
+1 Underground Mortuary
+1 Lich-Knights' Conquest
+1 Life and Limb
+8 Forest
+8 Swamp

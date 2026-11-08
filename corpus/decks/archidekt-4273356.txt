@@ -1,0 +1,96 @@
+# Archidekt — Ezuri  2025
+# source: archidekt:4273356
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ezuri, Claw of Progress
+
+Deck:
+1 Scute Swarm
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Beast Whisperer
+1 Fyndhorn Elves
+1 Natural Order
+1 Rhystic Study
+1 Birds of Paradise
+1 Eternal Witness
+1 Nest Invader
+1 Sol Ring
+1 Ohran Frostfang
+1 Deep Forest Hermit
+1 Evolution Sage
+1 Avenger of Zendikar
+1 Llanowar Elves
+1 Sylvan Library
+1 Lightning Greaves
+1 Joraga Treespeaker
+1 Fauna Shaman
+1 Blighted Agent
+1 Alchemist's Refuge
+1 Craterhoof Behemoth
+1 Fathom Mage
+1 Gyre Sage
+1 Cold-Eyed Selkie
+1 Temple of Mystery
+1 Bane of Progress
+1 Sage of Hours
+1 Yavimaya Coast
+1 Chord of Calling
+1 Command Tower
+1 Mosswort Bridge
+1 Rishkar, Peema Renegade
+1 Cyclonic Rift
+1 Glen Elendra Archmage
+1 Green Sun's Zenith
+1 Burgeoning
+1 Kodama of the West Tree
+1 Arcane Signet
+1 Talisman of Curiosity
+1 An Offer You Can't Refuse
+1 Thrummingbird
+1 Yavimaya, Cradle of Growth
+1 Waterlogged Grove
+1 Flooded Grove
+1 Mystic Remora
+1 Devoted Druid
+1 Collector Ouphe
+1 Counterspell
+1 Exotic Orchard
+1 Birthing Pod
+1 Delighted Halfling
+1 Worldly Tutor
+1 Sakura-Tribe Elder
+1 Rejuvenating Springs
+1 Misty Rainforest
+1 Pongify
+1 Breeding Pool
+1 Bristly Bill, Spine Sower
+1 Hedge Maze
+1 Fierce Guardianship
+1 Sink into Stupor // Soporific Springs
+1 Elvish Mystic
+1 Reclamation Sage
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Beast Within
+1 Pollywog Prodigy
+1 Dryad Arbor
+1 Survival of the Fittest
+1 Flooded Strand
+1 Ancient Tomb
+8 Forest
+1 Windswept Heath
+5 Island
+1 Simic Growth Chamber
+1 Mana Drain
+1 Heroic Intervention
+1 Hinterland Harbor
+1 Nature's Lore
+1 Three Visits
+1 Arbor Elf
+1 Incubation Druid
+1 Finale of Devastation
+1 Swan Song
+1 Mistrise Village
+1 Willowrush Verge
+1 Frenzied Baloth

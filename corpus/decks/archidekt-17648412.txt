@@ -1,0 +1,97 @@
+# Archidekt — Ozai, the Phoenix King
+# source: archidekt:17648412
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Ozai, the Phoenix King
+
+Deck:
+1 Abrade
+1 Aggravated Assault
+1 Arcane Signet
+1 Ashling, Flame Dancer
+1 Avatar Roku, Firebender
+1 Azula, On the Hunt
+1 Azula, Ruthless Firebender
+1 Banefire
+1 Bedevil
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blazemire Verge
+1 Blightstep Pathway // Searstep Pathway
+1 Blood Crypt
+1 Bloodstained Mire
+1 Boiling Rock Prison
+1 Chandra's Ignition
+1 Chaos Warp
+1 Combustion Man
+1 Comet Storm
+1 Command Tower
+1 Crackle with Power
+1 Deadly Dispute
+1 Dragonskull Summit
+1 Emergence Zone
+1 Faithless Looting
+1 Fated Firepower
+1 Fellwar Stone
+1 Fireball
+1 Fire Lord Ozai
+1 Fire Nation Palace
+1 Foreboding Ruins
+1 Graven Cairns
+1 Haunted Ridge
+1 Hellkite Charger
+1 Inferno of the Star Mounts
+1 Iroh, Dragon of the West
+1 Jaya's Immolating Inferno
+1 Jeska's Will
+1 Leyline Tyrant
+1 Lightning Bolt
+1 Lightning Greaves
+1 Luxury Suite
+1 Mind Stone
+7 Mountain
+1 Night's Whisper
+1 No Mercy
+1 Price of Freedom
+1 Raucous Theater
+1 Realm of Koh
+1 Reliquary Tower
+1 Shizo, Death's Storehouse
+1 Sign in Blood
+1 Smoldering Marsh
+1 Sol Ring
+1 Sulfurous Springs
+1 Swiftfoot Boots
+1 Tainted Peak
+1 The Last Agni Kai
+1 The Legend of Roku // Avatar Roku
+1 The Rise of Sozin // Fire Lord Sozin
+1 Torment of Hailfire
+1 Toxic Deluge
+1 Urborg, Tomb of Yawgmoth
+1 Vandalblast
+1 Withering Torment
+1 Zuko, Exiled Prince
+1 Zuko, Firebending Master
+1 Dismember
+1 Infernal Grasp
+1 Zhao, the Moon Slayer
+1 Vedalken Orrery
+1 Mana Geyser
+1 Seething Song
+1 Big Score
+1 Costly Plunder
+1 Reckoner's Bargain
+1 Unexpected Windfall
+1 Damnation
+6 Swamp
+1 Neheb, the Eternal
+1 Blasphemous Act
+1 Castle Locthwain
+1 Talisman of Indulgence
+1 Fire Nation Turret
+1 Doubling Cube
+1 Professional Face-Breaker
+1 Relentless Assault
+1 Exsanguinate

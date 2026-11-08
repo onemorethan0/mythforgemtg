@@ -1,0 +1,84 @@
+# Archidekt — Kruphix, Natural Disaster
+# source: archidekt:3159709
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kruphix, God of Horizons
+
+Deck:
+1 Dreamroot Cascade
+1 Squall Line
+1 Hinterland Harbor
+1 Curse of the Swine
+1 Flooded Grove
+1 Mystical Tutor
+1 Doubling Cube
+1 Ulamog, the Defiler
+13 Island
+1 Planar Bridge
+1 Vorinclex, Voice of Hunger
+1 Alchemist's Refuge
+13 Forest
+1 Sol Ring
+1 Arcane Signet
+1 Thran Dynamo
+1 Omniscience
+1 Rejuvenating Springs
+1 Horizon Stone
+1 Heartbeat of Spring
+1 Urza's Cave
+1 Dark Depths
+1 Yavimaya Coast
+1 Thespian's Stage
+1 Maze of Ith
+1 Shadow of the Second Sun
+1 Consign to Memory
+1 Sakura-Tribe Elder
+1 Defense of the Heart
+1 Kydele, Chosen of Kruphix
+1 Portal to Phyrexia
+1 Koma, Cosmos Serpent
+1 Tidal Barracuda
+1 Seedborn Muse
+1 Nyxbloom Ancient
+1 Eternity Vessel
+1 Sylvan Scrying
+1 Thought Vessel
+1 Chromatic Orrery
+1 Gilded Lotus
+1 Meekstone
+1 Unbound Flourishing
+1 Lich's Mirror
+1 Pongify
+1 Spore Frog
+1 Solve the Equation
+1 Hydroid Krasis
+1 Oracle of Mul Daya
+1 Wilderness Reclamation
+1 Leyline of Anticipation
+1 Archdruid's Charm
+1 Hurricane
+1 March of Swirling Mist
+1 Constant Mists
+1 Drown in Dreams
+1 Finale of Revelation
+1 Animist's Awakening
+1 Harrow
+1 Capsize
+1 Stroke of Genius
+1 Nissa, Ascended Animist
+1 Unwind
+1 Glacial Chasm
+1 Reliquary Tower
+1 Blast Zone
+1 An Offer You Can't Refuse
+1 Witness Protection
+1 Trade Routes
+1 Shark Typhoon
+1 Amphibian Downpour
+1 Mists of Lórien
+1 Mass Manipulation
+1 Eternal Witness
+1 Talisman of Curiosity
+1 Crop Rotation

@@ -1,0 +1,101 @@
+# Archidekt — Upgraded Y’shtola Precon
+# source: archidekt:13119869
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Authority of the Consuls
+1 Talisman of Hierarchy
+1 Command Tower
+1 Demolition Field
+1 Desolate Mire
+1 Drowned Catacomb
+1 Murderous Rider // Swift End
+1 Papalymo Totolymo
+1 Exotic Orchard
+1 Eye of Nidhogg
+1 Fetid Heath
+3 Island
+2 Plains
+1 Propaganda
+1 Relic of Legends
+1 Sol Ring
+1 Swords to Plowshares
+1 Talisman of Dominance
+1 Bolas's Citadel
+1 Reliquary Tower
+1 Mathise, Surge Channeler
+1 Dismember
+1 Sink into Stupor // Soporific Springs
+1 Deep Analysis
+1 Lotho, Corrupt Shirriff
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Snuff Out
+1 Sygg, River Cutthroat
+1 Jin-Gitaxias // The Great Synthesis
+1 Helm of the Ghastlord
+1 Unwind
+1 Ophidian Eye
+1 Bloodthirsty Conqueror
+1 Scavenger Grounds
+1 Sunken Ruins
+1 Talisman of Progress
+1 Necropotence
+1 Arcane Signet
+1 Underground River
+1 Swiftfoot Boots
+1 Enduring Tenacity
+1 Vito, Thorn of the Dusk Rose
+5 Swamp
+1 Deserted Beach
+1 Floodfarm Verge
+1 Mystic Gate
+1 Gloomlake Verge
+1 Fabled Passage
+1 Seachrome Coast
+1 Raffine's Tower
+1 Reflecting Pool
+1 Caves of Koilos
+1 Lightning Greaves
+1 Fellwar Stone
+1 Dimir Signet
+1 Smothering Tithe
+1 Farewell
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Watery Grave
+1 Esper Sentinel
+1 Mithril Coat
+1 Alphinaud Leveilleur
+1 Teferi, Time Raveler
+1 Toxic Deluge
+1 Chromatic Lantern
+1 Decanter of Endless Water
+1 Delney, Streetwise Lookout
+1 Marauding Blight-Priest
+1 High Fae Trickster
+1 Sheoldred, the Apocalypse
+1 Talion, the Kindly Lord
+1 Oubliette
+1 Exquisite Blood
+1 Anguished Unmaking
+1 Sudden Spoiling
+1 Bojuka Bog
+1 Katara's Reversal
+1 Waterlogged Teachings // Inundated Archive
+1 Quantum Misalignment
+1 Kambal, Consul of Allocation
+1 Alisaie Leveilleur
+1 Force of Negation
+1 Cyclonic Rift
+1 Treachery
+1 Imprisoned in the Moon
+1 Rhystic Study
+1 Hallowed Fountain
+1 Ghostly Prison
+1 Spark Double
+1 Plaza of Heroes
+1 Command Beacon

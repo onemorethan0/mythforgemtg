@@ -1,0 +1,106 @@
+# Archidekt — Rakdos riot
+# source: archidekt:5118771
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Rakdos, Lord of Riots
+
+Deck:
+1 Swamp
+1 Burnt Offering
+1 Stormfist Crusader
+1 Valakut Awakening // Valakut Stoneforge
+1 Void Winnower
+1 Sower of Discord
+1 Archfiend of Despair
+1 Sanctum of Stone Fangs
+1 Infernal Sovereign
+1 Withering Torment
+1 Heartless Hidetsugu
+1 Dragonskull Summit
+1 Blood Crypt
+1 Arcane Signet
+1 Dark Ritual
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Spear Spewer
+1 Swiftfoot Boots
+1 Emrakul, the Promised End
+1 Conduit of Ruin
+1 Boltwave
+2 Mountain
+1 Chaos Warp
+1 Florian, Voldaren Scion
+1 Ulamog, the Ceaseless Hunger
+1 Command Tower
+1 Rakdos Signet
+1 Terror of the Peaks
+1 Orcus, Prince of Undeath
+1 Walking Ballista
+1 Jagged Barrens
+1 Keen Duelist
+1 Scrawling Crawler
+1 Haunted Ridge
+1 Graven Cairns
+1 Bloodstained Mire
+1 Jeska's Will
+1 Twinflame Tyrant
+1 Ancient Cellarspawn
+1 Sulfurous Springs
+1 Urborg, Tomb of Yawgmoth
+1 Bedevil
+1 Sire of Seven Deaths
+1 Ulamog, the Defiler
+1 Anger
+1 Reanimate
+1 Blightstep Pathway // Searstep Pathway
+1 Blazemire Verge
+1 Swamp
+1 Swamp
+1 Grab the Prize
+1 Mount Doom
+1 Shizo, Death's Storehouse
+1 Lightning Greaves
+1 Creeping Bloodsucker
+1 Sundering Eruption // Volcanic Fissure
+1 Malakir Rebirth // Malakir Mire
+1 Luxury Suite
+1 Raucous Theater
+1 Bloodletter of Aclazotz
+1 Mountain
+1 Deflecting Swat
+1 Vandalblast
+1 Faithless Looting
+1 Knollspine Dragon
+1 Descent into Avernus
+1 Necropotence
+1 Plague Spitter
+1 Scheming Symmetry
+1 Tibalt's Trickery
+1 Fell the Profane // Fell Mire
+2 Swamp
+1 Prismatic Vista
+1 Sandstone Oracle
+1 Deadly Rollick
+1 Mountain
+1 Gamble
+1 Arena of Glory
+1 Untimely Malfunction
+1 Takenuma, Abandoned Mire
+1 Cavern of Souls
+1 Rakdos, the Showstopper
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Kozilek, Butcher of Truth
+1 Light Up the Stage
+1 Animate Dead
+1 Rune-Scarred Demon
+1 Gray Merchant of Asphodel
+1 Nettle Drone
+1 Thermo-Alchemist
+1 Wandering Archaic // Explore the Vastlands
+1 Temporal Extortion
+1 Emrakul, the Exigent Doom
+1 Darksteel Angel
+1 Spinerock Knoll
+1 Badlands
+1 Tree of Perdition

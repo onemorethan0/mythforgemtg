@@ -1,0 +1,86 @@
+# Archidekt — Erinis, Gloom Stalker//Street Urchin
+# source: archidekt:8064846
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Street Urchin
+1 Erinis, Gloom Stalker
+
+Deck:
+1 Evolving Wilds
+1 Mind Stone
+1 Patron of the Arts
+1 Kazuul, Tyrant of the Cliffs
+1 Bandit's Haul
+1 Enterprising Scallywag
+1 Slagwoods Bridge
+1 Guild Artisan
+1 Terramorphic Expanse
+1 Demand Answers
+1 Mycosynth Wellspring
+1 Ichor Wellspring
+1 Implement of Ferocity
+1 Implement of Combustion
+1 Myr Sire
+1 Sparring Collar
+1 Skittering Precursor
+1 Viridian Claw
+1 Hunter's Talent
+1 Roadside Reliquary
+1 Liquimetal Coating
+1 Crawling Sensation
+1 Escape Tunnel
+1 Hardbristle Bandit
+1 Redrock Sentinel
+1 Chromatic Star
+1 Heaped Harvest
+1 Servo Schematic
+12 Mountain
+1 Undercellar Myconid
+1 Horned Helm
+1 Goblin Morningstar
+1 Llanowar Mentor
+1 Ring of Kalonia
+1 Terrarion
+1 Loyal Apprentice
+1 Harrow
+1 Zhalfirin Void
+1 Forgotten Cave
+1 Smoldering Crater
+1 Slippery Karst
+1 Gruul Guildgate
+1 Tranquil Thicket
+1 Ash Barrens
+1 Abrade
+1 Pit Automaton
+1 Nimblewright Schematic
+1 Prized Statue
+1 Eldrazi Repurposer
+1 Freestrider Lookout
+1 Spitfire Lagac
+1 Tunneling Geopede
+1 Peregrin Took
+1 Quina, Qu Gourmet
+1 Brandywine Farmer
+1 Exhibition Magician
+1 Cryptic Caves
+1 Skyclave Pick-Axe
+1 Adventuring Gear
+1 Arbalest Engineers
+1 Prophetic Prism
+1 Thrill of Possibility
+1 Heritage Reclamation
+1 Chocobo Racetrack
+1 Elfsworn Giant
+1 Sabotender
+1 Rydia, Summoner of Mist
+1 Toggo, Goblin Weaponsmith
+12 Forest
+1 Tannuk, Memorial Ensign
+1 Eusocial Engineering
+1 Demolition Field
+1 Slagdrill Scrapper
+1 Silverglade Pathfinder
+1 Stone of Erech
+1 Wayfarer's Bauble

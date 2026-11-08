@@ -1,0 +1,100 @@
+# WotC precon — Odds and Ends (SLD, 2026-09-28)
+# source: mtgjson:OddsAndEnds_SLD
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Yennett, Cryptic Sovereign
+
+Deck:
+1 Aboleth Spawn
+1 Adarkar Wastes
+1 Aeon Engine
+1 Aerial Extortionist
+1 Aminatou, the Fateshifter
+1 Approach of the Second Sun
+1 Arcane Sanctum
+1 Arcane Signet
+1 Brainstorm
+1 Breach the Multiverse
+1 Breena, the Demagogue
+1 Caves of Koilos
+1 Chaos Wand
+1 Claim Jumper
+1 Coalition Relic
+1 Command Beacon
+1 Command Tower
+1 Commander's Sphere
+1 Contaminated Landscape
+1 Dazzling Sphinx
+1 Doom Whisperer
+1 Drowned Catacomb
+1 Enigma Sphinx
+1 Esper Sentinel
+1 Ethersworn Sphinx
+1 Evolving Wilds
+1 Exchange of Words
+1 Exotic Orchard
+1 Extinction Event
+1 Fabled Passage
+1 Fatespinner
+1 Fractured Identity
+1 Glacial Fortress
+1 Imprisoned in the Moon
+1 Inniaz, the Gale Force
+4 Island
+1 Isolated Chapel
+1 Jeskai Infiltrator
+1 Leadership Vacuum
+1 Loran of the Third Path
+1 Marvo, Deep Operative
+1 Master of Predicaments
+1 Mirage Mirror
+1 Misleading Signpost
+1 Myriad Landscape
+1 Mystic Gate
+1 Nadir Kraken
+1 Oubliette
+1 Path of Ancestry
+4 Plains
+1 Planeswalker's Mischief
+1 Ponder
+1 Prairie Stream
+1 Profane Transfusion
+1 Promise of Loyalty
+1 Psychic Battle
+1 Rapid Hybridization
+1 Reconnaissance
+1 Reliquary Tower
+1 Sensei's Divining Top
+1 Shadrix Silverquill
+1 Shared Fate
+1 Silent Clearing
+1 Skyclave Apparition
+1 Skyclave Relic
+1 Smuggler's Share
+1 Sol Ring
+1 Soothsaying
+1 Space Beleren
+1 Sunken Hollow
+4 Swamp
+1 Swift Reconfiguration
+1 Swords to Plowshares
+1 Talisman of Progress
+1 Temple of Deceit
+1 Temple of Enlightenment
+1 Temple of Silence
+1 Terramorphic Expanse
+1 Thief of Sanity
+1 Time Stop
+1 Toxrill, the Corrosive
+1 Underground River
+1 Vega, the Watcher
+1 Venser's Journal
+1 Vesuvan Drifter
+1 Virtue of Persistence // Locthwain Scorn
+1 Void Winnower
+1 Wayfarer's Bauble
+1 Weathered Wayfarer
+1 Yavimaya, Cradle of Growth

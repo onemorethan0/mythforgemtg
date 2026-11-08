@@ -1,0 +1,101 @@
+# Archidekt — Korvold, Fae-Cursed King: Treasure Tyrant
+# source: archidekt:7284452
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Korvold, Fae-Cursed King
+
+Deck:
+1 Goldlust Triad
+1 Veil of Summer
+1 Lightning Greaves
+1 Bottle-Cap Blast
+1 Mithril Coat
+1 Knuckles the Echidna
+1 Reckless Endeavor
+1 Entish Restoration
+1 Mastermind Plum
+1 Rhythm of the Wild
+1 Tireless Provisioner
+1 Arena of Glory
+1 Command Tower
+1 Untimely Malfunction
+1 Generous Plunderer
+1 Xorn
+1 Pitiless Plunderer
+1 Arcane Signet
+1 Professional Face-Breaker
+1 Grim Hireling
+1 Goldspan Dragon
+1 Birds of Paradise
+1 Ancient Copper Dragon
+1 Old Gnawbone
+1 Assassin's Trophy
+1 Deadly Dispute
+1 Cavern-Hoard Dragon
+1 Black Market Connections
+1 Revel in Riches
+1 Chaos Warp
+1 Ragavan, Nimble Pilferer
+1 Heroic Intervention
+1 Deflecting Swat
+1 Jeska's Will
+1 Overgrown Tomb
+1 Bloodstained Mire
+1 Blood Crypt
+1 Ziatora's Proving Ground
+1 Spire Garden
+1 Verdant Catacombs
+1 Karplusan Forest
+1 Stomping Ground
+1 Undergrowth Stadium
+1 Luxury Suite
+1 Sulfurous Springs
+1 Hellkite Tyrant
+1 Blood Money
+1 Ignoble Hierarch
+1 Llanowar Wastes
+1 Command Beacon
+1 Toxic Deluge
+1 Warren Soultrader
+1 Treasure Vault
+1 Reflecting Pool
+1 Withering Torment
+1 Selvala, Heart of the Wilds
+1 Fanatic of Rhonas
+1 Planar Engineering
+1 Dragon-Cursed Halls
+1 Biotech Specialist
+1 The Reaver Cleaver
+1 Smaug the Magnificent
+1 Braids, Arisen Nightmare
+1 Mines of Moria
+1 Smaug, Wicked Worm
+1 Rain of Riches
+1 Fountainport
+1 Sol Ring
+1 Harrow
+1 Mayhem Devil
+4 Mountain
+3 Forest
+3 Swamp
+1 Beast Within
+1 Fellwar Stone
+1 Descent into Avernus
+1 Alchemist's Talent
+1 Marionette Apprentice
+1 The Sackville-Bagginses
+1 Reckless Fireweaver
+1 Mirkwood Bats
+1 Exotic Orchard
+1 Hedron Detonator
+1 The One Ring
+1 Sakura-Tribe Elder
+1 City of Brass
+1 The Great Henge
+1 Ancient Tomb
+1 Wooded Foothills
+1 Weftstalker Ardent
+1 Prismatic Vista
+1 Smuggler's Surprise

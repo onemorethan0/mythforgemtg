@@ -1,0 +1,108 @@
+# Archidekt — Kinnan Flips
+# source: archidekt:3009040
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kinnan, Bonder Prodigy
+
+Deck:
+1 Wan Shi Tong, Librarian
+1 Mox Amber
+1 Snow-Covered Island
+1 Mox Opal
+1 Consecrated Sphinx
+1 Nezahal, Primal Tide
+1 Mirrormade
+1 Commandeer
+1 Delighted Halfling
+1 Faerie Mastermind
+1 Chord of Calling
+1 Clever Impersonator
+1 Endurance
+1 Crop Rotation
+1 Verdant Catacombs
+1 Ancient Tomb
+1 Arcane Signet
+1 Basalt Monolith
+1 Birds of Paradise
+1 Boseiju, Who Endures
+1 Breeding Pool
+1 Chrome Mox
+1 Command Tower
+1 Cyclonic Rift
+1 Elvish Mystic
+1 Fellwar Stone
+1 Fierce Guardianship
+1 Finale of Devastation
+1 Flooded Strand
+1 Force of Negation
+1 Force of Will
+1 Fyndhorn Elves
+1 Gaea's Cradle
+1 Gemstone Caverns
+1 Grim Monolith
+1 Hullbreaker Horror
+1 Llanowar Elves
+1 Lotus Petal
+1 Mana Vault
+1 Mental Misstep
+1 Mindbreak Trap
+1 Mirage Mirror
+1 Misty Rainforest
+1 Mox Diamond
+1 Mystic Remora
+1 Nyxbloom Ancient
+1 Otawara, Soaring City
+1 Pact of Negation
+1 Phyrexian Metamorph
+1 Polluted Delta
+1 Rejuvenating Springs
+1 Rhystic Study
+1 Scalding Tarn
+1 Seedborn Muse
+1 Simic Signet
+1 Sol Ring
+1 Springleaf Drum
+1 Swan Song
+1 Talisman of Curiosity
+1 Thrasios, Triton Hero
+1 Transmute Artifact
+1 Treasure Vault
+1 Tropical Island
+1 Wandering Archaic // Explore the Vastlands
+1 Waterlogged Grove
+1 Yavimaya Coast
+1 Tezzeret the Seeker
+1 City of Brass
+1 Tidespout Tyrant
+1 Mana Confluence
+1 Minamo, School at Water's Edge
+1 Spellskite
+1 Emergence Zone
+1 Machine God's Effigy
+1 Shifting Woodland
+1 Sink into Stupor // Soporific Springs
+1 Dramatic Reversal
+1 Talon Gates of Madara
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Enduring Vitality
+1 Green Sun's Zenith
+1 Elvish Spirit Guide
+1 High Fae Trickster
+1 Misdirection
+1 Valley Floodcaller
+1 Mistrise Village
+1 Nature's Rhythm
+1 Veil of Summer
+1 Astral Dragon
+1 Scour for Scrap
+1 Trinisphere
+1 Devoted Druid
+1 Trophy Mage
+1 Flesh Duplicate
+1 Teferi, Mage of Zhalfir
+1 Flusterstorm
+1 Mockingbird
+1 Flash Photography
+1 The Unagi of Kyoshi Island

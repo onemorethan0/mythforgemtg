@@ -1,0 +1,88 @@
+# Archidekt — The Solemnace Galleries
+# source: archidekt:3567791
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Trazyn the Infinite
+
+Deck:
+1 Sensei's Divining Top
+1 Aetherflux Reservoir
+1 Altar of Dementia
+1 Arcane Signet
+1 Basalt Monolith
+1 Cloud Key
+1 Codex Shredder
+1 Endless Atlas
+1 Gilded Lotus
+1 Key to the City
+1 Mesmeric Orb
+1 Mind Stone
+1 Moonsilver Key
+1 Nevinyrral's Disk
+1 Palantír of Orthanc
+1 Perpetual Timepiece
+1 Sceptre of Eternal Glory
+1 Sol Ring
+1 Staff of Domination
+1 Thought Vessel
+1 Thran Dynamo
+1 Amaranthine Wall
+1 Angel of Suffering
+1 Cryptothrall
+1 Farmstead Gleaner
+1 Flayed One
+1 Foundry Inspector
+1 Golem Artisan
+1 Millikin
+1 Necron Deathmark
+1 Pili-Pala
+1 Stinkweed Imp
+1 Stitcher's Supplier
+1 Vile Entomber
+1 Voltaic Construct
+1 Animate Dead
+1 Out of the Tombs
+1 Phyrexian Scriptures
+1 Dark Ritual
+1 Defile
+1 Darkblast
+1 Entomb
+1 Go for the Throat
+1 Mausoleum Secrets
+1 Dakmor Salvage
+21 Swamp
+1 Tomb Fortress
+1 The Mycosynth Gardens
+1 Vault of Whispers
+1 Ugin, the Ineffable
+1 Final Parting
+1 Diabolic Intent
+1 Mutilate
+1 Demonic Tutor
+1 Their Name Is Death
+1 Their Number Is Legion
+1 Unmarked Grave
+1 Lightning Greaves
+1 Mystic Forge
+1 Hedron Archive
+1 Swiftfoot Boots
+1 Bolas's Citadel
+1 Chronomancer
+1 Reliquary Tower
+1 Darkness
+1 Cabal Coffers
+1 Phyrexian Arena
+1 Urborg, Tomb of Yawgmoth
+1 Cabal Stronghold
+1 Golgari Thug
+1 Reanimate
+1 Crucible of Worlds
+1 Argivian Avenger
+1 Wayfarer's Bauble
+1 No Mercy
+1 Buried Ruin
+1 The Underworld Cookbook
+1 Rings of Brighthearth
+1 Walking Ballista

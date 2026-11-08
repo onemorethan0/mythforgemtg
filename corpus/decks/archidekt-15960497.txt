@@ -1,0 +1,108 @@
+# Archidekt — I Should breezeCall Her
+# source: archidekt:15960497
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rograkh, Son of Rohgahh
+1 Thrasios, Triton Hero
+
+Deck:
+1 Mystical Tutor
+1 Arbor Elf
+1 Deserted Temple
+1 Gaea's Cradle
+1 Formidable Speaker
+1 Magus of the Candelabra
+1 Finale of Devastation
+1 Gene Pollinator
+1 Mindbreak Trap
+1 Biomancer's Familiar
+1 Enduring Vitality
+1 Birds of Paradise
+1 Candelabra of Tawnos
+1 Flare of Duplication
+1 Flesh Duplicate
+1 Mental Misstep
+1 Mockingbird
+1 Oboro Breezecaller
+1 Otawara, Soaring City
+1 Shifting Woodland
+1 Veil of Summer
+1 Force of Will
+1 Flusterstorm
+1 Mox Amber
+1 Chord of Calling
+1 Cloud of Faeries
+1 Dryad Arbor
+1 Lotus Petal
+1 Mystic Remora
+1 Crop Rotation
+1 Snap
+1 Sowing Mycospawn
+1 Wild Growth
+1 Borne Upon a Wind
+1 Frantic Search
+1 Earthcraft
+1 Chrome Mox
+1 Wooded Foothills
+1 Fierce Guardianship
+1 Swan Song
+1 Elvish Spirit Guide
+1 Springheart Nantuko
+1 Brain Freeze
+1 Volcanic Island
+1 Taiga
+1 Sol Ring
+1 Once Upon a Time
+1 Badgermole Cub
+1 Summoner's Pact
+1 Vibrance
+1 Springleaf Drum
+1 Paradise Mantle
+1 Emerald Charm
+1 Clever Impersonator
+1 Faerie Mastermind
+1 Malevolent Rumble
+1 Training Grounds
+1 Expedition Map
+1 Talon Gates of Madara
+1 Prismatic Vista
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Island
+1 Scatter the Seeds
+1 Alchemist's Refuge
+1 Nature's Rhythm
+1 Green Sun's Zenith
+1 Flooded Grove
+1 Yavimaya, Cradle of Growth
+1 Polluted Delta
+1 Forest
+1 Breeding Pool
+1 Chatterstorm
+1 Emergence Zone
+1 Windswept Heath
+1 Tropical Island
+1 Minamo, School at Water's Edge
+1 Boseiju, Who Endures
+1 Sylvan Scrying
+1 Flooded Strand
+1 Misty Rainforest
+1 Ancient Tomb
+1 Eternal Witness
+1 Pact of Negation
+1 Underworld Breach
+1 Deflecting Swat
+1 Rhystic Study
+1 Phantasmal Image
+1 Spellseeker
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Arboreal Grazer
+1 Lion's Eye Diamond
+1 Pia, Aether Ascetic
+1 Shang-Chi, Master of Kung Fu
+1 Arid Mesa
+1 Cryptolith Rite
+1 Nykthos, Shrine to Nyx
+1 Samut, Tyrant of Naktamun

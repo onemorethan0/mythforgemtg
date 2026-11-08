@@ -1,0 +1,97 @@
+# Archidekt — Koma, Cosmos Serpent
+# source: archidekt:3646160
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Koma, Cosmos Serpent
+
+Deck:
+1 Filter Out
+1 Defabricate
+1 Consuming Tide
+1 Natural Connection
+1 Eureka Moment
+1 Counterbalance
+1 Boseiju, Who Endures
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Into the Flood Maw
+1 Tangled Islet
+1 Stubborn Denial
+1 Return to Nature
+1 Kenrith's Transformation
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Dreamroot Cascade
+1 Waterlogged Grove
+1 Colossal Skyturtle
+1 Lórien Revealed
+1 Uro, Titan of Nature's Wrath
+1 Spelunking
+1 Rejuvenating Springs
+1 Farsight Ritual
+1 Blessed Respite
+1 Joint Exploration
+1 Rhystic Study
+1 Freestrider Lookout
+1 March of Swirling Mist
+1 Sink into Stupor // Soporific Springs
+1 Collective Resistance
+1 Strix Serenade
+1 Planar Genesis
+1 Long River's Pull
+1 Tribute to the World Tree
+1 Rashmi, Eternities Crafter
+1 Hedge Maze
+1 Simic Growth Chamber
+1 Rimewood Falls
+1 Breeding Pool
+1 Yavimaya Coast
+4 Forest
+9 Island
+1 Hinterland Harbor
+1 Mystic Sanctuary
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Temple of Mystery
+1 Command Tower
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Nature's Claim
+1 Remand
+1 Delay
+1 Farseek
+1 Arcane Denial
+1 Counterspell
+1 Rampant Growth
+1 Cyclonic Rift
+1 Disdainful Stroke
+1 Negate
+1 Nature's Lore
+1 Three Visits
+1 Kodama's Reach
+1 Search for Tomorrow
+1 Verity Circle
+1 Cultivate
+1 Elemental Bond
+1 Beast Within
+1 Nimble Obstructionist
+1 Whelming Wave
+1 Skyshroud Claim
+1 Overwhelming Stampede
+1 Mystic Remora
+1 Noxious Revival
+1 Tatyova, Benthic Druid
+1 Fact or Fiction
+1 Vineglimmer Snarl
+1 Flooded Grove
+1 Mystical Tutor
+1 Harrow
+1 Roiling Regrowth
+1 Castle Vantress
+1 Worldly Tutor
+1 Sylvan Library
+1 Archdruid's Charm
+1 Sensei's Divining Top
+1 Evacuation
+1 Misdirection
+1 Cephalid Coliseum
+1 Brainsurge

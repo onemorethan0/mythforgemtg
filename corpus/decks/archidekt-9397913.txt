@@ -1,0 +1,108 @@
+# Archidekt — Tymna Thrass Good Stuff Cedh
+# source: archidekt:9397913
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Thrasios, Triton Hero
+1 Tymna the Weaver
+
+Deck:
+1 Ancient Tomb
+1 Faerie Mastermind
+1 Flooded Strand
+1 Misty Rainforest
+1 Marsh Flats
+1 Scalding Tarn
+1 Vampiric Tutor
+1 Silence
+1 Tundra
+1 Sol Ring
+1 Tropical Island
+1 Into the Flood Maw
+1 Otawara, Soaring City
+1 Scrubland
+1 Gemstone Caverns
+1 Command Tower
+1 City of Brass
+1 Starting Town
+1 Polluted Delta
+1 Gaea's Cradle
+1 Force of Negation
+1 Kinnan, Bonder Prodigy
+1 The Cabbage Merchant
+1 Valley Floodcaller
+1 Mox Diamond
+1 Crop Rotation
+1 Flusterstorm
+1 Mindbreak Trap
+1 Thassa's Oracle
+1 Diabolic Intent
+1 Sevinne's Reclamation
+1 Finale of Devastation
+1 Arcane Signet
+1 Bayou
+1 Rhystic Study
+1 Mana Confluence
+1 Underground Sea
+1 Mystic Remora
+1 Mana Vault
+1 Tainted Pact
+1 Verdant Catacombs
+1 Boseiju, Who Endures
+1 Wooded Foothills
+1 Lotus Petal
+1 Nature's Rhythm
+1 Demonic Tutor
+1 Chrome Mox
+1 Swift Reconfiguration
+1 Lotho, Corrupt Shirriff
+1 Esper Sentinel
+1 Orcish Bowmasters
+1 Mockingbird
+1 Devoted Druid
+1 Borne Upon a Wind
+1 Enlightened Tutor
+1 Pact of Negation
+1 Fierce Guardianship
+1 Force of Will
+1 Veil of Summer
+1 Swan Song
+1 Chord of Calling
+1 Mental Misstep
+1 Dark Ritual
+1 City of Traitors
+1 Mox Opal
+1 Tataru Taru
+1 An Offer You Can't Refuse
+1 Mox Amber
+1 Elvish Spirit Guide
+1 Emergence Zone
+1 Orim's Chant
+1 Carpet of Flowers
+1 Wan Shi Tong, Librarian
+1 Delney, Streetwise Lookout
+1 Smothering Tithe
+1 Chain of Vapor
+1 Exotic Orchard
+1 Flesh Duplicate
+1 Voice of Victory
+1 Copy Enchantment
+1 Mirrormade
+1 Clever Impersonator
+1 Imposter Mech
+1 Phyrexian Metamorph
+1 Commandeer
+1 Crystal Vein
+1 King T'Challa // Black Panther, Hope Enduring
+1 Flash Photography
+1 Shang-Chi, Master of Kung Fu
+1 Birds of Paradise
+1 Disrupting Shoal
+1 The Queen of Dale
+1 Enduring Vitality
+1 Biomancer's Familiar
+1 Angel's Grace
+1 Green Sun's Zenith
+1 Steal Enchantment
+1 Misdirection

@@ -1,0 +1,97 @@
+# Archidekt — WG Archers
+# source: archidekt:4483145
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ohabi Caleria
+
+Deck:
+1 Mystifying Maze
+1 Maze of Ith
+1 Thaumatic Compass // Spires of Orazca
+1 The Hunter Maze
+1 Sejiri Shelter // Sejiri Glacier
+1 Botanical Plaza
+1 The Fair Basilica
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Canopy Vista
+1 Temple of Plenty
+1 Scattered Groves
+1 Tribute to the Wild
+1 Emeria, the Sky Ruin
+1 Silhana Starfletcher
+1 Bretagard Stronghold
+1 Arch of Orazca
+1 Branchloft Pathway // Boulderloft Pathway
+1 Eiganjo, Seat of the Empire
+1 Krosan Verge
+1 Bloodthirsty Blade
+1 Rogue's Passage
+1 Sunpetal Grove
+1 Secluded Steppe
+1 Crossbow Infantry
+1 Elvish Hunter
+1 D'Avenant Archer
+1 Quietus Spike
+1 Saryth, the Viper's Fang
+1 Austere Command
+1 Thornweald Archer
+1 Trophy Hunter
+1 Femeref Archers
+1 Halana, Kessig Ranger
+1 Hankyu
+1 Gorgon Flail
+1 Basilisk Collar
+1 Path to Exile
+1 Skyway Sniper
+1 Jagged-Scar Archers
+1 Lurking Predators
+1 Scattershot Archer
+1 Matsu-Tribe Sniper
+1 Greatbow Doyen
+1 Sawblade Slinger
+1 Brigid, Hero of Kinsbaile
+1 Shalai, Voice of Plenty
+1 Gorgon's Head
+1 Lightning Greaves
+1 Farseek
+1 Arcus Acolyte
+1 Nature's Lore
+1 Elite Archers
+1 Vivien Reid
+1 Viridian Longbow
+1 Pathway Arrows
+1 Temple Garden
+3 Forest
+1 Arcane Lighthouse
+1 Bountiful Promenade
+6 Plains
+1 Brushland
+1 Yavimaya, Cradle of Growth
+1 Tranquil Thicket
+1 Castle Garenbrig
+1 Command Tower
+1 Swords to Plowshares
+1 Memorial to Unity
+1 Shadowspear
+1 Dusk // Dawn
+1 D'Avenant Healer
+1 Flying Carpet
+1 Odric, Lunarch Marshal
+1 Flawless Maneuver
+1 Eerie Interlude
+1 Heroic Intervention
+1 Kodama's Reach
+1 Cultivate
+1 Dawn of Hope
+1 Catti-brie of Mithral Hall
+1 Cryptolith Rite
+1 Radiant Grove
+1 Windbrisk Heights
+1 Legolas's Quick Reflexes
+1 Palazzo Archers
+1 Hunter's Bow
+1 Hushwood Verge
+1 Akroma's Memorial
+1 Elven Chorus

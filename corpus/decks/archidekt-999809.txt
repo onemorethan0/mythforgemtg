@@ -1,0 +1,81 @@
+# Archidekt — Snakes of Kamigawa
+# source: archidekt:999809
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Seshiro the Anointed
+
+Deck:
+1 Sachi, Daughter of Seshiro
+1 Kashi-Tribe Elite
+1 Sakura-Tribe Scout
+1 Sasaya, Orochi Ascendant // Sasaya's Essence
+1 Matsu-Tribe Sniper
+1 Sakiko, Mother of Summer
+1 Sakura-Tribe Springcaller
+1 Shizuko, Caller of Autumn
+1 Orochi Leafcaller
+1 Orochi Sustainer
+1 Sosuke, Son of Seshiro
+1 Sakura-Tribe Elder
+1 Dense Canopy
+1 Dosan's Oldest Chant
+1 Endless Swarm
+1 Inner Calm, Outer Strength
+1 Matsu-Tribe Birdstalker
+1 Molting Skin
+1 Rending Vines
+1 Seed the Land
+1 Seek the Horizon
+1 Enshrined Memories
+1 Genju of the Cedars
+1 Lifegift
+1 Mark of Sakiko
+1 Nourishing Shoal
+1 Roar of Jukai
+1 Sosuke's Summons
+1 Uproot
+1 Vital Surge
+1 Commune with Nature
+1 Feast of Worms
+1 Gale Force
+1 Glimpse of Nature
+1 Heartbeat of Spring
+1 Joyous Respite
+1 Jugan, the Rising Star
+1 Kashi-Tribe Reaver
+1 Kashi-Tribe Warriors
+1 Kodama's Might
+1 Kodama's Reach
+1 Lure
+1 Matsu-Tribe Decoy
+1 Orochi Eggwatcher // Shidako, Broodmistress
+1 Orochi Ranger
+1 Serpent Skin
+1 Shisato, Whispering Hunter
+1 Strength of Cedars
+1 Time of Need
+1 Wear Away
+1 Okina, Temple to the Grandfathers
+1 Manriki-Gusari
+1 O-Naginata
+1 Mikokoro, Center of the Sea
+1 Miren, the Moaning Well
+1 Umezawa's Jitte
+1 Honor-Worn Shaku
+1 Journeyer's Kite
+1 Konda's Banner
+1 No-Dachi
+1 Oathkeeper, Takeno's Daisho
+1 Orochi Hatchery
+1 Reito Lantern
+1 Sensei's Divining Top
+1 Boseiju, Who Shelters All
+1 Untaidake, the Cloud Keeper
+8 Forest
+11 Forest
+1 Nature's Will
+1 Blood Clock
+5 Forest
+8 Forest

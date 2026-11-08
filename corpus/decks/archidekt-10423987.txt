@@ -1,0 +1,74 @@
+# Archidekt — Drinks on Me!
+# source: archidekt:10423987
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ash, Party Crasher
+
+Deck:
+1 Lassoed by the Law
+1 Mystical Tether
+1 Rohirrim Lancer
+1 Drillworks Mole
+1 Sparring Construct
+1 Wyrm's Crossing Patrol
+1 Nurturing Presence
+1 Squire's Devotion
+1 Breaking of the Fellowship
+1 Ranger's Firebrand
+1 Duke Ulder Ravengard
+1 Fountainport Bell
+1 Lightning Spear
+1 Etali's Favor
+1 Hexgold Halberd
+1 Ramosian Greatsword
+1 Flaming Fist
+1 Goblin Morningstar
+1 Javelin of Lightning
+1 Quarrel's End
+1 Jump Scare
+1 Backup Agent
+1 Gallant Pie-Wielder
+1 Belligerent of the Ball
+1 Cut In
+1 Bespoke Battlegarb
+1 Raging Battle Mouse
+1 Charmed Clothier
+1 Stroke of Midnight
+1 Veteran Soldier
+1 Guild Artisan
+1 Become Brutes
+1 Witch's Mark
+1 Return Triumphant
+1 Spellbook Vendor
+1 Spare Supplies
+1 Outlaw Medic
+1 Errand-Rider of Gondor
+1 Prickly Pair
+1 Inscribed Tablet
+1 Branch of Vitu-Ghazi
+1 Zoetic Cavern
+1 Monk of the Open Hand
+1 Lightwheel Enhancements
+1 Wedding Invitation
+1 Traveling Minister
+1 Shield of the Realm
+1 Iron League Steed
+1 Inherited Envelope
+1 Mentor of the Meek
+1 Parish-Blade Trainee
+1 Evolving Wilds
+18 Mountain
+1 Baffling End
+1 Samwise the Stouthearted
+1 Dub
+1 Expel the Interlopers
+1 Healer's Hawk
+18 Plains
+1 Wind-Scarred Crag
+1 Lightning Talons
+1 Dragon Mantle
+1 Cartouche of Solidarity
+1 We Ride at Dawn
+1 Ancestral Anger

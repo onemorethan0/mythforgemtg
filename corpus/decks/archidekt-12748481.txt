@@ -1,0 +1,72 @@
+# Archidekt — Bracketology - "Colorless" Five-Color with The Reaper King
+# source: archidekt:12748481
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Reaper King
+
+Deck:
+37 Wastes
+1 Flame Javelin
+1 Advice from the Fae
+1 Beseech the Queen
+1 Defibrillating Current
+1 Dragonclaw Strike
+1 Frogmyr Enforcer
+1 Autonomous Assembler
+1 Fallaji Dragon Engine
+1 Depth Charge Colossus
+1 Blitz Automaton
+1 Boulderbranch Golem
+1 Combat Thresher
+1 Hulking Metamorph
+1 Goring Warplow
+1 Iron-Craw Crusher
+1 Phyrexian Fleshgorger
+1 Woodcaller Automaton
+1 Steel Seraph
+1 Rust Goliath
+1 Rootwire Amalgam
+1 Skitterbeam Battalion
+1 Kin-Tree Severance
+1 Gurmag Nightwatch
+1 Rakshasa's Bargain
+1 Monastery Messenger
+1 Reigning Victor
+1 Reputable Merchant
+1 Riverwheel Sweep
+1 Tower Above
+1 Spectral Procession
+1 Temur Tawnyback
+1 Elder Deep-Fiend
+1 Lashweed Lurker
+1 Twisted Riddlekeeper
+1 Abundant Maw
+1 Drownyard Behemoth
+1 Wretched Gryff
+1 Mockery of Nature
+1 Vexing Scuttler
+1 Gitaxian Probe
+1 Vault Skirge
+1 Noxious Revival
+1 Postmortem Lunge
+1 Synthesis Pod
+1 Porcelain Legionnaire
+1 Cathedral Membrane
+1 Norn's Annex
+1 Rage Extractor
+1 Gut Shot
+1 Tezzeret's Gambit
+1 Corrosive Gale
+1 Thundering Tanadon
+1 Apostle's Blessing
+1 Act of Aggression
+1 Moltensteel Dragon
+1 Dismember
+1 Spined Thopter
+1 Marrow Shards
+1 Pith Driller
+1 Ruthless Invasion
+1 Slash Panther
+1 Phyrexian Metamorph

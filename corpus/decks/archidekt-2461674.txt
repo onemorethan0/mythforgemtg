@@ -1,0 +1,85 @@
+# Archidekt — Aeve, Devoted to Slime - ARCHIVED
+# source: archidekt:2461674
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Aeve, Progenitor Ooze
+
+Deck:
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Havenwood Battleground
+1 Winding Canyons
+1 Sanctum of Eternity
+1 Yavimaya, Cradle of Growth
+1 Llanowar Druid
+1 Llanowar Elves
+1 Elvish Mystic
+1 Fauna Shaman
+1 Nyx Lotus
+1 Expedition Map
+1 Vivien, Monsters' Advocate
+1 Green Sun's Zenith
+1 Abundant Harvest
+1 Krosan Restorer
+1 Circle of Dreams Druid
+1 Evolutionary Leap
+1 Temur Sabertooth
+1 Scavenging Ooze
+1 Sylvan Library
+1 Emerald Charm
+1 Eternal Witness
+1 Kogla, the Titan Ape
+1 Llanowar Visionary
+1 Elvish Visionary
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Early Harvest
+1 Concordant Crossroads
+1 Squall Line
+1 Scavenger Grounds
+1 Triumph of the Hordes
+1 Multani's Acolyte
+1 Petrified Field
+1 Beast Whisperer
+1 Birds of Paradise
+1 Malachite Talisman
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Guardian Project
+1 Castle Garenbrig
+24 Forest
+1 Temple of the False God
+1 Acidic Slime
+1 Beast Within
+1 Sakura-Tribe Elder
+1 Worldly Tutor
+1 Arbor Elf
+1 Nylea, Keen-Eyed
+1 Oracle of Mul Daya
+1 Dryad Arbor
+1 Karametra's Acolyte
+1 Benefactor's Draught
+1 Voyaging Satyr
+1 Reclamation Sage
+1 Apex Devastator
+1 Crop Rotation
+1 Quirion Ranger
+1 Sol Ring
+1 Finale of Devastation
+1 Wall of Blossoms
+1 Fyndhorn Elves
+1 Boseiju, Who Endures
+1 Joraga Treespeaker
+1 Armored Scrapgorger
+1 Scryb Ranger
+1 Silvanus's Invoker
+1 Ashaya, Soul of the Wild
+1 Craterhoof Behemoth
+1 Silverback Elder
+1 Defiler of Vigor
+1 Glimpse of Nature
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Chrome Mox
+1 Kenrith's Transformation
+1 Gaea's Touch
+1 Augur of Autumn
+1 Nykthos, Shrine to Nyx

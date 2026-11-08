@@ -1,0 +1,100 @@
+# Archidekt — It's Not a Snack, It's Emiel!
+# source: archidekt:4616620
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Emiel the Blessed
+
+Deck:
+1 The Earth King
+1 Arachnogenesis
+1 Canopy Vista
+1 Aven Interrupter
+1 Bramble Sovereign
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Grey Host Reinforcements
+1 Dalkovan Encampment
+1 Enlightened Tutor
+1 Temple Garden
+1 Avatar's Wrath
+1 Luminous Broodmoth
+5 Forest
+1 Trostani Discordant
+1 Arcane Signet
+1 Castle Ardenvale
+1 The Great Henge
+1 Ohran Frostfang
+1 Strip Mine
+1 Wood Elves
+1 Nature's Lore
+1 Aura Shards
+1 Sylvan Library
+1 Guardian Project
+1 Smothering Tithe
+1 Knight of Autumn
+1 Craterhoof Behemoth
+1 Krosan Verge
+1 Manglehorn
+1 Scattered Groves
+1 Elvish Visionary
+1 Brushland
+1 Swords to Plowshares
+1 Birds of Paradise
+1 Regrowth
+1 Savannah
+1 Sol Ring
+1 Farseek
+1 Tranquil Thicket
+1 Windswept Heath
+1 Panharmonicon
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Horizon Canopy
+1 Command Tower
+1 Sunpetal Grove
+1 Gavony Township
+1 Harmonize
+1 Path to Exile
+1 Yasharn, Implacable Earth
+1 Selesnya Sanctuary
+1 Three Visits
+1 Akroma's Will
+1 Restoration Angel
+1 Palace Jailer
+1 Beast Whisperer
+1 Eternal Witness
+1 Reclamation Sage
+1 Overgrown Farmland
+1 Rite of Harmony
+1 Temple of Plenty
+1 Spirited Companion
+1 Demolition Field
+1 Loran of the Third Path
+1 Bountiful Promenade
+1 Woodland Acolyte // Mend the Wilds
+1 Legion Loyalty
+1 Elesh Norn, Mother of Machines
+1 Moonshaker Cavalry
+1 Mirari's Wake
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Werefox Bodyguard
+1 Lae'zel's Acrobatics
+1 Llanowar Visionary
+1 Teleportation Circle
+1 Topiary Stomper
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Radiant Grove
+1 Lush Portico
+1 Shifting Woodland
+1 Guardian of Faith
+1 Angel of Indemnity
+1 Dryad Arbor
+1 Hushwood Verge
+1 Eerie Interlude
+1 Appa, Steadfast Guardian
+5 Plains
+1 Formidable Speaker
+1 Warden of the Grove
+1 Tribute to the World Tree
+1 The Eagles Are Coming!
+1 Sally Pride, Lioness Leader

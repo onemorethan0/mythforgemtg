@@ -1,0 +1,107 @@
+# Archidekt — The Sinister Menagerie of Gentlemanly Warfare
+# source: archidekt:27394663
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Mr. Foxglove
+
+Deck:
+1 Ajani, the Greathearted
+1 Always Watching
+1 Amonkhet Raceway
+1 Angelic Destiny
+1 Angelic Field Marshal
+1 Arcane Signet
+1 Avacyn's Pilgrim
+1 Avishkar Raceway
+1 Beast Within
+1 Canopy Vista
+1 Castle Vantress
+1 Combat Calligrapher
+1 Command Tower
+1 Crashing Drawbridge
+1 Darksteel Colossus
+1 Dazzling Angel
+1 Deny Entry
+1 Dragonlord Dromoka
+1 Drogskol Reaver
+1 Drumbellower
+1 Elemental Bond
+1 Exotic Orchard
+1 Fabled Passage
+1 Fierce Empath
+1 Flooded Grove
+1 Forest
+1 Forest
+1 Forest
+1 Fortified Village
+1 Garruk's Uprising
+1 Ghost Quarter
+1 Ghostly Prison
+1 Gift of Immortality
+1 Guardian Augmenter
+1 Guardian of Faith
+1 Herald of Eternal Dawn
+1 Hinterland Harbor
+1 Hushwood Verge
+1 Island
+1 Island
+1 Island
+1 Kodama of the East Tree
+1 Lifecreed Duo
+1 Lightning Greaves
+1 Llanowar Elves
+1 Martial Impetus
+1 Moonshaker Cavalry
+1 Muraganda Raceway
+1 Myriad Landscape
+1 Nature's Lore
+1 Nyx-Fleece Ram
+1 Ohran Frostfang
+1 Overgrown Farmland
+1 Oviya, Automech Artisan
+1 Pelakka Wurm
+2 Plains
+1 Plains
+1 Prime Speaker Zegana
+1 Propaganda
+1 Redemption Arc
+1 Refute
+1 Reliquary Tower
+1 Return of the Wildspeaker
+1 Rhox Faithmender
+1 Riot Control
+1 Rogue's Passage
+1 Selfless Spirit
+1 Selvala's Stampede
+1 Selvala, Heart of the Wilds
+1 Shalai, Voice of Plenty
+1 Sheltered by Ghosts
+1 Shielded by Faith
+1 Sodden Verdure
+1 Sol Ring
+1 Spirit Mantle
+1 Stock Up
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Sunscorch Regent
+1 Surrak, the Hunt Caller
+1 Swords to Plowshares
+1 Tatyova, Benthic Druid
+1 Temple of the False God
+1 Thought Vessel
+1 Three Visits
+1 Tranquil Landscape
+1 Triplicate Titan
+1 Unstoppable Plan
+1 Veil of Summer
+1 Vigor
+1 Vineglimmer Snarl
+1 Wall of Reverence
+1 War Room
+1 Wilderness Reclamation
+1 Wilt-Leaf Liege
+1 Worldspine Wurm
+1 Yavimaya Coast
+1 Zetalpa, Primal Dawn

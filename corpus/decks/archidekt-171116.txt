@@ -1,0 +1,100 @@
+# Archidekt — Xantcha, Sleeper Agent
+# source: archidekt:171116
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Xantcha, Sleeper Agent
+
+Deck:
+1 Backlash
+1 Phyrexian Scriptures
+1 Neheb, the Eternal
+1 Canyon Slough
+1 Opal Palace
+1 Necromantic Selection
+1 Everflowing Chalice
+1 Blackcleave Cliffs
+1 Dragonskull Summit
+1 Lavaclaw Reaches
+1 Syphon Mind
+1 Smoldering Marsh
+1 Shadowblood Ridge
+1 Psychosis Crawler
+1 Blasphemous Act
+1 Deathbringer Thoctar
+1 Graven Cairns
+1 Urborg, Tomb of Yawgmoth
+1 Sudden Spoiling
+1 Balduvian Warlord
+1 Mana Geyser
+1 Tainted Peak
+1 Thran Turbine
+1 Cannibalize
+1 Dauthi Trapper
+1 Dauthi Embrace
+1 Maddening Imp
+1 Molten Slagheap
+1 War's Toll
+1 Forge of Heroes
+1 Guildmages' Forum
+1 Gift of Doom
+1 Shiny Impetus
+1 Agitator Ant
+1 Daring Fiendbonder
+1 Parasitic Impetus
+1 Brash Taunter
+1 Total War
+1 Rakdos Carnarium
+1 Temple of Malice
+1 Talisman of Indulgence
+1 Rakdos Signet
+1 Magnetic Web
+1 Rakdos Charm
+1 Bedevil
+1 Chaos Warp
+1 Sol Ring
+1 Wayfarer's Bauble
+1 Bojuka Bog
+1 Command Tower
+1 Crawlspace
+1 The Brothers' War
+5 Swamp
+5 Mountain
+1 Heartstone
+1 Maze of Ith
+1 Phyrexian Arena
+1 Phyrexian Tower
+1 Stuffy Doll
+1 Mishra, Claimed by Gix
+1 Tome of Legends
+1 Crypt Ghast
+1 Phyrexian Dragon Engine
+1 Crown of Doom
+1 Bloodthirsty Blade
+1 Kaervek the Merciless
+1 Victory Chimes
+1 Karazikar, the Eye Tyrant
+1 Treasonous Ogre
+1 Kazuul, Tyrant of the Cliffs
+1 Sanctum of Eternity
+1 Kardur, Doomscourge
+1 Curse of Opulence
+1 Activated Sleeper
+1 Aether Membrane
+1 Evolved Sleeper
+1 Sulfurous Springs
+1 Visions of Phyrexia
+1 Offer Immortality
+1 Malakir Rebirth // Malakir Mire
+1 Foreboding Ruins
+1 Tyrite Sanctum
+1 Blood Crypt
+1 Sunset Saboteur
+1 Bloodstained Mire
+1 Frontier Warmonger
+1 Zero Point Ballad
+1 Arena of Glory
+1 Rogue's Passage
+1 Koskun Falls
+1 Sleeper Agent

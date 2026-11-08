@@ -1,0 +1,82 @@
+# Archidekt — Sidecent
+# source: archidekt:13963753
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Gravecrawler + Phyrexian Altar; Bracket 2 allows none
+
+Commander:
+1 Sidisi, Regent of the Mire
+
+Deck:
+1 Elixir
+1 Accursed Marauder
+1 Altar of Dementia
+1 Arcane Signet
+1 Ayara, First of Locthwain
+1 Bastion of Remembrance
+1 Black Market
+1 Body Launderer
+1 Bog Witch
+1 Boggart Trawler // Boggart Bog
+1 Buried Alive
+1 Buried Ruin
+1 Cabal Coffers
+1 Callous Bloodmage
+1 Codex Shredder
+1 Crypt of Agadeem
+1 Junk Diver
+1 Diabolic Tutor
+1 Enduring Tenacity
+1 Entomb
+1 Fellwar Stone
+1 Footbottom Feast
+1 Funeral Room // Awakening Hall
+1 Golgari Thug
+1 Grave Pact
+1 Gravebreaker Lamia
+1 Gravecrawler
+1 Grindstone
+1 Hidden Grotto
+1 Jet Medallion
+1 Junji, the Midnight Sky
+1 Kokusho, the Evening Star
+1 Lively Dirge
+1 Magewright's Stone
+1 Metamorphosis Fanatic
+1 Morality Shift
+1 Nether Traitor
+1 Nine-Lives Familiar
+1 Nykthos, Shrine to Nyx
+1 Oriq Loremage
+1 Out of the Tombs
+1 Perpetual Timepiece
+1 Pestilence Demon
+1 Phyrexian Altar
+1 Ravenous Chupacabra
+1 Returned Reveler
+1 Ripples of Undeath
+1 Sidisi, Undead Vizier
+1 Solemn Simulacrum
+1 Songs of the Damned
+1 Stinkweed Imp
+1 Stitcher's Supplier
+28 Swamp
+1 Swiftfoot Boots
+1 Syr Konrad, the Grim
+1 Teval's Judgment
+1 The Meathook Massacre
+1 Thornbite Staff
+1 Thousand-Year Elixir
+1 Tomb Fortress
+1 Undead Butler
+1 Unmarked Grave
+1 Vile Entomber
+1 Gray Merchant of Asphodel
+1 Damnation
+1 Cabal Ritual
+1 Patriar's Seal
+1 Cabal Stronghold
+1 Staff of Domination
+1 Beseech the Queen
+1 Rings of Brighthearth
+1 Bone Shredder

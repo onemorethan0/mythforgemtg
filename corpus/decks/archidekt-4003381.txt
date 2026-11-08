@@ -1,0 +1,96 @@
+# Archidekt — 🔵⚫️ boku no beefcake harem 🐄🍰
+# source: archidekt:4003381
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Satoru Umezawa
+
+Deck:
+1 Leaden Myr
+1 Sunken Ruins
+1 Grazilaxx, Illithid Scholar
+1 Mistvein Borderpost
+1 Astral Dragon
+1 Reflecting Pool
+1 Kaito, Bane of Nightmares
+1 Taeko, the Patient Avalanche
+1 Dimir Keyrune
+1 Mind Stone
+1 Chromatic Lantern
+1 Midnight Clock
+1 Thousand-Faced Shadow
+1 Satoru, the Infiltrator
+1 Void Winnower
+1 Hissing Miasma
+1 Kaito Shizuki
+1 Invisible Stalker
+1 Vampire Cutthroat
+1 Brainstorm
+11 Island
+1 Wayfarer's Bauble
+1 Silver-Fur Master
+1 Ancient Silver Dragon
+1 Rancid Rats
+1 Morphic Pool
+1 Shipwreck Marsh
+1 Arcane Signet
+1 Lightning Greaves
+1 Commander's Plate
+1 Talisman of Dominance
+1 Rogue's Passage
+1 Dark Ritual
+1 Phyrexian Arena
+1 Frantic Search
+1 Silver Myr
+1 Underground River
+1 Ponder
+1 Drowned Catacomb
+1 Watery Grave
+1 Imp's Mischief
+1 Deadeye Navigator
+1 Ornithopter of Paradise
+1 Urborg, Tomb of Yawgmoth
+1 Malakir Rebirth // Malakir Mire
+1 Clearwater Pathway // Murkwater Pathway
+1 Preordain
+1 Dragonlord Silumgar
+1 Reconnaissance Mission
+1 Chromatic Sphere
+1 Dissipation Field
+1 Gloomlake Verge
+1 Misleading Signpost
+1 Amulet of Vigor
+1 Archetype of Finality
+1 Siren Stormtamer
+1 Baleful Strix
+1 Mystic Sanctuary
+1 Castle Locthwain
+1 Fallen Shinobi
+1 Silent-Blade Oni
+1 Ancient Brass Dragon
+1 Lord of the Void
+1 Mindleech Mass
+1 Palinchron
+1 Fell the Profane // Fell Mire
+1 Tetsuko Umezawa, Fugitive
+1 Withering Torment
+1 Tainted Isle
+1 Dimir Infiltrator
+1 Darkslick Shores
+1 Otawara, Soaring City
+1 Polluted Delta
+1 Temple of Deceit
+1 River of Tears
+3 Swamp
+1 Alora, Merry Thief
+1 Undercity Sewers
+1 Creeping Tar Pit
+1 Shizo, Death's Storehouse
+1 Unstoppable Slasher
+1 Witch's Cottage
+1 Command Tower
+1 Sign in Blood
+1 Kaito, Cunning Infiltrator
+1 Kaito, Dancing Shadow
+1 Aetherplasm

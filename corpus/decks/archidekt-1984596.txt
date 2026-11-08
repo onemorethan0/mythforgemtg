@@ -1,0 +1,100 @@
+# Archidekt — Jorn, God of Iceage
+# source: archidekt:1984596
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jorn, God of Winter // Kaldring, the Rimestaff
+
+Deck:
+1 Farseek
+2 Snow-Covered Forest
+1 Pernicious Deed
+1 Winter Orb
+1 Villainous Wealth
+1 Vampire Hexmage
+1 Chilling Shade
+1 Mystic Remora
+1 Brine Shaman
+1 Ice Tunnel
+2 Snow-Covered Island
+1 Glacial Revelation
+1 Collector Ouphe
+1 Dead of Winter
+1 Marit Lage's Slumber
+1 Expropriate
+1 Thespian's Stage
+1 Frost Titan
+1 Into the North
+1 Snow-Covered Island
+1 Binding the Old Gods
+1 Woodland Chasm
+1 Rimewood Falls
+1 Glittering Frost
+1 Sculptor of Winter
+1 Blizzard Brawl
+1 Spirit of the Aldergard
+1 Replicating Ring
+1 Draugr Necromancer
+1 Moritte of the Frost
+1 Boreal Outrider
+1 Pilfering Hawk
+1 Narfi, Betrayer King
+1 Frost Augur
+1 Graven Lore
+1 Blessing of Frost
+1 Shimmerdrift Vale
+1 Blood on the Snow
+1 Icehide Troll
+1 The Three Seasons
+1 Icebreaker Kraken
+1 Casualties of War
+1 Uro, Titan of Nature's Wrath
+1 Fabled Passage
+1 Wild Growth
+1 Carpet of Flowers
+1 Rogue's Passage
+1 Priest of the Haunted Edge
+1 Snow-Covered Forest
+1 Arcum's Astrolabe
+1 Rime Tender
+1 Brainstorm
+1 Mouth of Ronom
+1 Access Tunnel
+1 Abominable Treefolk
+1 Ice-Fang Coatl
+1 Winter's Rest
+1 Scrying Sheets
+1 Kruphix, God of Horizons
+1 Nature's Lore
+3 Snow-Covered Forest
+1 Blizzard Strix
+3 Snow-Covered Swamp
+1 Simic Ascendancy
+1 Tyrite Sanctum
+1 Dark Depths
+1 Fyndhorn Elves
+2 Snow-Covered Island
+1 Coldsteel Heart
+1 Faceless Haven
+1 Ohran Viper
+1 Snow-Covered Island
+1 Underworld Connections
+1 Exsanguinate
+1 Ascendant Spirit
+1 Utopia Sprawl
+1 Snow-Covered Island
+1 Ohran Frostfang
+2 Snow-Covered Swamp
+1 Snow-Covered Swamp
+1 Snow-Covered Forest
+1 Rampant Growth
+1 Boreal Druid
+1 Foreboding Landscape
+1 Winter Moon
+1 Sakura-Tribe Elder
+1 Open the Way
+1 Energy Flux
+1 Snow-Covered Forest
+1 Snow-Covered Forest
+1 Three Visits

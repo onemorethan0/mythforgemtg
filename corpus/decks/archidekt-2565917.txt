@@ -1,0 +1,90 @@
+# Archidekt — Imagine Dragons
+# source: archidekt:2565917
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Goro-Goro and Satoru
+
+Deck:
+1 Coastal Piracy
+1 Perplexing Test
+1 An Offer You Can't Refuse
+1 Xander's Lounge
+1 Watery Grave
+1 Blood Crypt
+1 Clearwater Pathway // Murkwater Pathway
+1 Rogue's Passage
+1 Loyal Apprentice
+1 Crux of Fate
+1 Alora, Merry Thief
+1 Daring Piracy
+1 Bident of Thassa
+1 Triton Shorestalker
+1 Strionic Resonator
+1 Sokenzan, Crucible of Defiance
+1 Orthion, Hero of Lavabrink
+1 Determined Iteration
+1 Terminate
+1 Fellwar Stone
+1 Bedevil
+1 Mistblade Shinobi
+1 Nashi, Moon Sage's Scion
+1 Ninja of the Deep Hours
+1 Prosperous Thief
+1 Fallen Shinobi
+1 Grim Hireling
+1 Steam Vents
+1 Thousand-Faced Shadow
+1 Arcane Signet
+1 Dimir Signet
+1 Talisman of Creativity
+1 Chaos Warp
+1 Izzet Signet
+1 Command Tower
+1 Blightstep Pathway // Searstep Pathway
+1 Talisman of Dominance
+1 Grazilaxx, Illithid Scholar
+1 Elturel Survivors
+1 Professional Face-Breaker
+1 Bojuka Bog
+1 Rakdos Signet
+1 Urabrask's Forge
+1 Slither Blade
+1 Fabled Passage
+1 Riverglide Pathway // Lavaglide Pathway
+1 Kolaghan, the Storm's Fury
+1 Ardoz, Cobbler of War
+1 Reinforced Ronin
+1 Warstorm Surge
+1 Moon-Circuit Hacker
+1 Baleful Strix
+1 Ash Barrens
+1 Exotic Orchard
+1 Dragon Tempest
+1 Reconnaissance Mission
+1 Ghost Quarter
+1 Pongify
+1 The Reality Chip
+1 Rapid Hybridization
+1 Arni Metalbrow
+1 Anzrag's Rampage
+1 Corporeal Projection
+1 Reality Shift
+1 Saheeli, the Sun's Brilliance
+1 Orochi Soul-Reaver
+1 Escape Detection
+1 Rose Room Treasurer
+1 Relic of Legends
+5 Swamp
+1 Nether Traitor
+1 Enduring Courage
+5 Mountain
+11 Island
+1 Enduring Curiosity
+1 Changeling Outcast
+1 Fire Navy Trebuchet
+1 Gingerbrute
+1 Midnight Clock
+1 Consult the Star Charts
+1 Phoenix Chick

@@ -1,0 +1,94 @@
+# Archidekt — Tinybones Meta-Buster cEDH
+# source: archidekt:7061125
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Tinybones, Trinket Thief
+
+Deck:
+1 Necrotic Ooze
+1 Asmodeus the Archfiend
+1 Hoarding Broodlord
+1 Buried Alive
+1 Sacrifice
+1 Nykthos, Shrine to Nyx
+1 Necropotence
+1 Reanimate
+1 Wishclaw Talisman
+1 Urborg, Tomb of Yawgmoth
+1 The One Ring
+1 Toxic Deluge
+1 Phyrexian Tower
+1 Professor Onyx
+1 Vicious Rumors
+1 Chain of Smog
+1 Dismember
+1 Mana Vault
+1 Chrome Mox
+1 Mind Rake
+1 Vampiric Tutor
+1 Thoughtseize
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Sol Ring
+1 Burglar Rat
+1 Geier Reach Sanitarium
+1 Necrogen Mists
+1 Arterial Flow
+1 Rotting Rats
+1 Mox Opal
+1 Bottomless Pit
+1 Jet Medallion
+1 Urza's Saga
+1 Anvil of Bogardan
+1 Demonic Tutor
+1 Syphon Mind
+1 Waste Not
+1 Grim Tutor
+1 Dark Ritual
+1 Imperial Seal
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Dauthi Voidwalker
+1 Liliana of the Veil
+1 Takenuma, Abandoned Mire
+1 Deadly Rollick
+1 Lotus Petal
+1 Hopeless Nightmare
+1 Orcish Bowmasters
+1 Animate Dead
+1 Feed the Swarm
+1 Mox Amber
+1 Cabal Ritual
+1 Oppression
+1 Arcane Signet
+1 Peer into the Abyss
+1 Opposition Agent
+1 Culling the Weak
+1 Vault of Whispers
+1 Cabal Pit
+1 Necromancy
+1 Tinybones Joins Up
+1 Tinybones, the Pickpocket
+1 Faith of the Devoted
+1 Skirge Familiar
+1 Entomb
+1 Saw in Half
+1 Blood Pet
+1 Grief
+1 Bitter Triumph
+1 Beseech the Mirror
+1 Tinybones, Bauble Burglar
+15 Swamp
+1 Yawgmoth's Will
+1 Dance of the Dead
+1 Snuff Out
+1 Blast Zone
+1 Prismatic Vista
+1 Diabolic Intent
+1 Dark Confidant
+1 Inquisition of Kozilek
+1 Crystal Vein
+1 Demonic Counsel
+1 Mox Diamond
+1 Command Tower

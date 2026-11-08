@@ -1,0 +1,97 @@
+# WotC precon — Grand Larceny (OTC, 2024-04-19)
+# source: mtgjson:GrandLarceny_OTC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Gonti, Canny Acquisitor
+
+Deck:
+1 Access Tunnel
+1 Arcane Heist
+1 Arcane Signet
+1 Baleful Mastery
+1 Baleful Strix
+1 Bladegriff Prototype
+1 Brainstealer Dragon
+1 Cazur, Ruthless Stalker
+1 Chaos Wand
+1 Cold-Eyed Selkie
+1 Command Tower
+1 Culling Ritual
+1 Cunning Rhetoric
+1 Curse of the Swine
+1 Darkslick Shores
+1 Darksteel Ingot
+1 Darkwater Catacombs
+1 Dazzling Sphinx
+1 Diluvian Primordial
+1 Dimir Aqueduct
+1 Doc Aurlock, Grizzled Genius
+1 Dream-Thief's Bandana
+1 Drowned Catacomb
+1 Edric, Spymaster of Trest
+1 Exotic Orchard
+1 Extract Brain
+1 Fallen Shinobi
+1 Feed the Swarm
+1 Felix Five-Boots
+1 Fellwar Stone
+1 Fetid Pools
+1 Flooded Grove
+4 Forest
+1 Ghostly Pilferer
+1 Gonti, Lord of Luxury
+1 Heartless Conscription
+1 Hinterland Harbor
+1 Hostage Taker
+5 Island
+1 Kodama's Reach
+1 Llanowar Wastes
+1 Mind's Dilation
+1 Nashi, Moon Sage's Scion
+1 Oblivion Sower
+1 Ohran Frostfang
+1 Opulent Palace
+1 Orochi Soul-Reaver
+1 Overflowing Basin
+1 Plasm Capture
+1 Predators' Hour
+1 Prismatic Lens
+1 Putrefy
+1 Rampant Growth
+1 Reliquary Tower
+1 Sage of the Beyond
+1 Savvy Trader
+1 Shadowmage Infiltrator
+1 Silent-Blade Oni
+1 Silhana Ledgewalker
+1 Siphon Insight
+1 Slither Blade
+1 Smirking Spelljacker
+1 Sol Ring
+1 Stolen Goods
+1 Sunken Hollow
+6 Swamp
+1 Temple of Deceit
+1 Temple of Malady
+1 Temple of Mystery
+1 The Mimeoplasm
+1 Thief of Sanity
+1 Thieving Amalgam
+1 Thieving Skydiver
+1 Thieving Varmint
+1 Three Visits
+1 Tower Winder
+1 Triton Shorestalker
+1 Trygon Predator
+1 Twilight Mire
+1 Ukkima, Stalking Shadow
+1 Underground River
+1 Villainous Wealth
+1 Viridescent Bog
+1 Void Attendant
+1 Whirler Rogue
+1 Woodland Cemetery
+1 Yavimaya Coast

@@ -1,0 +1,100 @@
+# Archidekt — Teysa Karlov - Death is a Fashion Statement
+# source: archidekt:4399248
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Teysa Karlov
+
+Deck:
+1 Priest of Forgotten Gods
+1 Reanimate
+1 Charismatic Conqueror
+1 Talisman of Hierarchy
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Concealed Courtyard
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Fetid Heath
+1 Phyrexian Altar
+1 Bartolomé del Presidio
+1 Liliana, Dreadhorde General
+1 Command Tower
+1 Luminous Broodmoth
+1 Marionette Apprentice
+1 Funeral Room // Awakening Hall
+1 Phyrexian Tower
+1 Blood Artist
+1 Cruel Celebrant
+1 Elas il-Kor, Sadistic Pilgrim
+1 Bojuka Bog
+1 Ashnod's Altar
+1 Takenuma, Abandoned Mire
+1 Deadly Dispute
+1 Orzhov Signet
+1 Anguished Unmaking
+1 Village Rites
+1 Pitiless Plunderer
+1 Zulaport Cutthroat
+1 Woe Strider
+1 Sol Ring
+1 Vault of the Archangel
+1 Damn
+1 Reassembling Skeleton
+1 Victimize
+1 Bastion of Remembrance
+1 Braids, Arisen Nightmare
+1 Teysa, Orzhov Scion
+1 Shattered Sanctum
+1 Temple of Silence
+1 Rite of Oblivion
+1 Skullclamp
+1 Ophiomancer
+4 Plains
+1 Isolated Chapel
+1 Exotic Orchard
+1 Swords to Plowshares
+1 Arcane Signet
+1 Caves of Koilos
+1 Phyrexian Arena
+1 Athreos, God of Passage
+1 Viscera Seer
+1 Godless Shrine
+1 Tainted Field
+1 Vault of Champions
+1 High Market
+1 Orzhov Basilica
+1 Pawn of Ulamog
+1 Dictate of Erebos
+1 Hallowed Spiritkeeper
+1 Path to Exile
+1 Doomed Traveler
+1 Midnight Reaper
+1 Shineshadow Snarl
+1 Castle Locthwain
+1 Castle Ardenvale
+1 Eiganjo, Seat of the Empire
+1 Grave Pact
+1 Grim Haruspex
+1 Ministrant of Obligation
+1 Smothering Tithe
+1 Yahenni, Undying Partisan
+1 Bolas's Citadel
+1 The Meathook Massacre
+1 Hunted Witness
+1 Orzhov Enforcer
+1 Black Market Connections
+1 Stroke of Midnight
+1 Kambal, Profiteering Mayor
+1 Reliquary Tower
+1 Court of Ardenvale
+1 Feed the Swarm
+1 Generous Gift
+1 Boggart Trawler // Boggart Bog
+6 Swamp
+1 Fell the Profane // Fell Mire
+1 Elspeth, Storm Slayer
+1 Elenda, the Dusk Rose
+1 Anafenza, Unyielding Lineage
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Land Tax
+1 Living Death

@@ -1,0 +1,83 @@
+# Archidekt — Can Azami Draw All Cards? (417)
+# source: archidekt:1608674
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Azami, Lady of Scrolls
+
+Deck:
+1 Mind Over Matter
+1 Consecrated Sphinx
+1 Toothy, Imaginary Friend
+1 Arcanis the Omnipotent
+1 Opt
+1 Barrin, Tolarian Archmage
+1 Ominous Seas
+1 Teferi's Tutelage
+1 Teferi, Mage of Zhalfir
+1 Cloudkin Seer
+1 Leveler
+1 Laboratory Maniac
+1 Jace's Archivist
+1 Sower of Temptation
+1 Isochron Scepter
+1 Nykthos, Shrine to Nyx
+1 Temple of the False God
+1 Cavern of Souls
+1 Sol Ring
+1 Boseiju, Who Shelters All
+1 Reliquary Tower
+1 Path of Ancestry
+1 Brainstorm
+1 Psychic Corrosion
+1 Lightning Greaves
+1 Resculpt
+1 Force of Will
+1 Pongify
+1 Counterspell
+1 Snapcaster Mage
+1 Sage's Row Savant
+1 Omenspeaker
+1 Archmage's Charm
+1 Archmage of Echoes
+1 Aetherize
+1 Swiftfoot Boots
+1 Tormod's Crypt
+1 Midnight Clock
+1 Thassa's Oracle
+1 Arcane Denial
+1 Teferi's Ageless Insight
+1 Myriad Landscape
+1 Negate
+1 Merchant of Secrets
+1 Rhystic Study
+1 Micromancer
+1 Step Between Worlds
+1 Archaeomancer
+1 Augur of Bolas
+1 High Tide
+1 Thought Vessel
+1 Harbinger of the Seas
+1 Portal Mage
+1 Archmage Emeritus
+1 Unctus, Grand Metatect
+1 Capture of Jingzhou
+1 Leyline of Anticipation
+1 Jin-Gitaxias // The Great Synthesis
+1 Reality Shift
+1 Confounding Conundrum
+1 Windfall
+1 Statecraft
+1 Preordain
+1 Worn Powerstone
+1 Patron Wizard
+1 Gilded Lotus
+1 Sphinx's Tutelage
+1 Mystic Sanctuary
+1 Mischievous Mystic
+1 High Fae Trickster
+1 Wizard's Retort
+1 Tishana's Tidebinder
+1 March of Swirling Mist
+26 Island

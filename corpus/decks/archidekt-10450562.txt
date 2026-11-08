@@ -1,0 +1,97 @@
+# Archidekt — (Budget $55) Redwall Mouse Deck
+# source: archidekt:10450562
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Mabel, Heir to Cragflame
+
+Deck:
+1 Path of Ancestry
+1 Wind-Scarred Crag
+1 Canyon Jerboa
+1 Fire Diamond
+1 Blacksmith's Talent
+1 Boros Signet
+1 Brambleguard Captain
+1 Brave-Kin Duo
+1 Cavalcade of Calamity
+1 Crumb and Get It
+1 Diamond Pick-Axe
+1 Echoing Assault
+1 Emerge from the Cocoon
+1 Felidar Retreat
+1 Flowerfoot Swordmaster
+1 Heartfire Hero
+1 Hidden Grotto
+1 Loyal Unicorn
+1 Lupinflower Village
+1 Mabel's Mettle
+1 Manifold Mouse
+1 Might of the Meek
+1 Mouse Trapper
+1 Nettle Guard
+1 Outflank
+1 Outpost Siege
+1 Patchwork Banner
+1 Pests of Honor
+1 Rabid Gnaw
+1 Raccoon Rallier
+1 Raging Battle Mouse
+1 Rally the Ranks
+1 Raucous Carnival
+1 Repel Calamity
+1 Rockface Village
+1 Roughshod Duo
+1 Rugged Prairie
+1 Season of the Bold
+1 Season of the Burrow
+1 Seedglaive Mentor
+1 Short Bow
+1 Slayers' Stronghold
+1 Steelburr Champion
+1 Stone Quarry
+1 Sunhome, Fortress of the Legion
+1 Sunscorched Divide
+1 Surge of Salvation
+1 Sword of the Squeak
+1 Thistledown Players
+1 Three Blind Mice
+1 Unclaimed Territory
+1 Veteran Guardmouse
+1 War Squeak
+1 Whiskerquill Scribe
+1 Whiskervale Forerunner
+1 Mentor of the Meek
+1 Clifftop Retreat
+1 Mind Stone
+1 Shared Animosity
+1 Temple of Triumph
+1 The Irencrag
+1 Unbreakable Formation
+1 All That Glitters
+1 Arcane Signet
+1 Banner of Kinship
+1 Battlefield Forge
+1 Boros Garrison
+1 Brave the Elements
+1 Command Tower
+1 Emberheart Challenger
+1 Exotic Orchard
+1 Furycalm Snarl
+1 Icon of Ancestry
+1 Lightning Greaves
+1 Martial Glory
+1 Mirror Entity
+6 Mountain
+1 Myriad Landscape
+1 Path to Exile
+7 Plains
+1 Professional Face-Breaker
+1 Secluded Courtyard
+1 Sol Ring
+1 Starfall Invocation
+1 Swiftfoot Boots
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Valley Questcaller

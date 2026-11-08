@@ -1,0 +1,105 @@
+# Archidekt — Volo, Haunted One Combo
+# source: archidekt:2814992
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Volo, Itinerant Scholar
+1 Haunted One
+
+Deck:
+1 Thassa's Oracle
+1 Azami, Lady of Scrolls
+1 Malevolent Hermit // Benevolent Geist
+1 Dramatic Reversal
+1 Opposition Agent
+1 Yawgmoth, Thran Physician
+1 Underground River
+1 Mind Over Matter
+1 Otawara, Soaring City
+1 Mothdust Changeling
+1 Glen Elendra Archmage
+1 Patron Wizard
+1 Mystic Remora
+1 Sigil Tracer
+1 Deadly Rollick
+1 Cyclonic Rift
+1 Force of Will
+1 Force of Negation
+1 Flare of Denial
+1 Fierce Guardianship
+1 Wan Shi Tong, Librarian
+1 An Offer You Can't Refuse
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Sink into Stupor // Soporific Springs
+1 Mox Diamond
+1 Mental Misstep
+1 Verdant Catacombs
+1 Watery Grave
+1 Bloodstained Mire
+1 Polluted Delta
+1 Mana Confluence
+1 The One Ring
+1 Vampiric Tutor
+1 Ancient Tomb
+1 Flooded Strand
+1 City of Brass
+1 Cavern of Souls
+1 Gemstone Caverns
+1 Marsh Flats
+1 Scalding Tarn
+1 Dauthi Voidwalker
+1 Flusterstorm
+1 Urza's Saga
+1 Demonic Tutor
+1 Mindbreak Trap
+1 Spellseeker
+1 Tainted Pact
+1 Undercity Sewers
+1 Misty Rainforest
+1 Fellwar Stone
+1 Command Tower
+1 Grim Monolith
+1 Viscera Seer
+1 Lively Dirge
+1 Diabolic Intent
+1 Dark Ritual
+1 Chrome Mox
+1 Arcane Signet
+1 Mox Amber
+1 Mana Vault
+1 Relic of Legends
+1 Honor-Worn Shaku
+1 Talisman of Dominance
+1 Springleaf Drum
+1 Lotus Petal
+1 Necropotence
+1 City of Traitors
+1 Swan Song
+1 Phyrexian Metamorph
+1 Beseech the Mirror
+1 Commandeer
+1 Valley Floodcaller
+1 Louisoix's Sacrifice
+1 Soul Diviner
+1 Survivors' Encampment
+1 Mox Opal
+1 O'aka, Traveling Merchant
+1 Faces of the Past
+1 Underground Sea
+1 Sol Ring
+1 Notion Thief
+1 Clever Impersonator
+1 Rhystic Study
+1 Culling the Weak
+1 Samut, Tyrant of Naktamun
+1 Aphetto Alchemist
+1 Warren Soultrader
+1 Phyrexian Altar
+1 Tishana's Tidebinder
+1 Unstoppable Plan
+1 Island
+1 Swamp
+1 Phyrexian Tower
+1 Saprazzan Skerry
+1 Morphic Pool

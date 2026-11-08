@@ -1,0 +1,75 @@
+# Archidekt — Textless Tribal V2
+# source: archidekt:8198525
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Omnath, Locus of Creation
+
+Deck:
+1 Command Tower
+1 Jedit Ojanen
+1 Burst Lightning
+1 Day of Judgment
+1 Hinder
+1 Pyroclasm
+1 Ponder
+1 Rampant Growth
+1 Treasure Hunt
+1 Wrath of God
+1 Harmonize
+1 Tidings
+1 Recollect
+1 Moonshaker Cavalry
+1 Lier, Disciple of the Drowned
+1 Brave the Elements
+1 Celestial Purge
+1 Condemn
+1 Cryptic Command
+1 Disenchant
+1 Flame Javelin
+1 Giant Growth
+1 Harrow
+1 Incinerate
+1 Mana Leak
+1 Mana Tithe
+1 Oxidize
+1 Path to Exile
+1 Psionic Blast
+1 Reciprocate
+1 Remove Soul
+1 Searing Blaze
+1 Volcanic Fallout
+1 Cancel
+1 Negate
+1 Lightning Bolt
+1 Lightning Helix
+1 Fireball
+1 Counterspell
+1 Avacyn's Pilgrim
+9 Island
+1 Void Winnower
+1 Snow-Covered Mountain
+1 Snow-Covered Plains
+1 Vengevine
+1 Snow-Covered Forest
+1 Snow-Covered Island
+1 Sakura-Tribe Elder
+1 Urza's Saga
+1 Gigantosaurus
+1 Goddric, Cloaked Reveler
+9 Plains
+1 Ocelot Pride
+1 Farseek
+1 Abhorrent Oculus
+1 Fyndhorn Elves
+1 Utopia Sprawl
+10 Forest
+1 Vendilion Clique
+1 Kozilek's Command
+9 Mountain
+1 Preordain
+1 Prismatic Ending
+1 Sol Ring
+1 Wayfarer's Bauble
+1 Emeritus of Ideation // Ancestral Recall

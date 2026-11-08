@@ -1,0 +1,105 @@
+# Archidekt — Epic: The Musical Theme Deck
+# source: archidekt:10712148
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Tireless Tracker
+1 Darkmoss Bridge
+1 Alluring Siren
+1 Adventurous Impulse
+1 Akroan Horse
+1 Eye Gouge
+1 Nessian Boar
+1 Cyclops of Eternal Fury
+1 Bident of Thassa
+1 Curse of the Swine
+1 Daxos of Meletis
+1 Oracle's Insight
+1 Siren of the Fanged Coast
+1 Dulcet Sirens
+1 Nessian Wilds Ravager
+1 Sea God's Revenge
+1 Thassa, God of the Sea
+1 Medomai's Prophecy
+1 Bag of Holding
+1 Atris, Oracle of Half-Truths
+1 Voyage's End
+1 Nadir Kraken
+1 Sea God's Scorn
+1 Portent of Betrayal
+1 The Akroan War
+1 Storm's Wrath
+1 Festival of the Guildpact
+1 Ephara, God of the Polis
+1 Herbal Poultice
+1 Charming Prince
+1 Ephara's Enlightenment
+1 Hunter's Bow
+1 Thalia's Lieutenant
+1 Release to Memory
+1 Children of Korlis
+1 Long Goodbye
+1 Ruthless Sniper
+1 Windshaper Planetar
+1 Ruthless Winnower
+1 Puppeteer Clique
+1 Beast Within
+1 Underworld Connections
+1 Dubious Challenge
+1 Holy Cow
+1 Mass Mutiny
+1 Mutiny
+1 Mark of Mutiny
+1 Ornithopter of Paradise
+1 Young Wolf
+1 Paradise Druid
+1 Let's Play a Game
+1 Return from the Wilds
+1 Armed // Dangerous
+1 Scout the Wilderness
+1 Harrow
+1 Road // Ruin
+1 Far Wanderings
+1 Spring // Mind
+1 Alluring Suitor // Deadly Dancer
+1 Gift of Paradise
+1 New Horizons
+1 Sandsteppe Citadel
+1 Jungle Shrine
+1 Mountain
+1 Frontier Bivouac
+1 Command Tower
+1 Nomad Outpost
+1 Public Thoroughfare
+1 Vivid Meadow
+1 Pit of Offerings
+1 Crumbling Necropolis
+1 Opulent Palace
+1 Path of Ancestry
+1 Grand Coliseum
+1 Cascading Cataracts
+1 Savage Lands
+2 Island
+1 Exotic Orchard
+1 The World Tree
+1 Plains
+1 Swamp
+1 Seaside Citadel
+3 Forest
+1 Vivid Crag
+1 Vivid Marsh
+1 Arcane Sanctum
+1 Mystic Monastery
+1 Vivid Creek
+1 Vivid Grove
+1 Tendo Ice Bridge
+1 Rupture Spire
+1 Archway Commons
+1 Transguild Promenade
+1 Gateway Plaza
+1 Warriors' Lesson
+1 Borne Upon a Wind

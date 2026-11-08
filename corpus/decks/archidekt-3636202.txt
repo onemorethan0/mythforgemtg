@@ -1,0 +1,103 @@
+# Archidekt — Queen Marchesa Aikido
+# source: archidekt:3636202
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Queen Marchesa
+
+Deck:
+1 Ghostly Prison
+1 Kambal, Consul of Allocation
+1 Talisman of Conviction
+1 Comeuppance
+1 Command Tower
+1 Kardur, Doomscourge
+1 Swords to Plowshares
+1 Ruinous Ultimatum
+1 Anguished Unmaking
+1 Talisman of Hierarchy
+1 Sol Ring
+1 Bojuka Bog
+1 Tibalt's Trickery
+1 Taunt from the Rampart
+1 Talisman of Indulgence
+1 Exotic Orchard
+1 Luxury Suite
+1 Fellwar Stone
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Champions of Minas Tirith
+1 Shattered Landscape
+1 Fell the Profane // Fell Mire
+1 Blind Obedience
+1 Generous Gift
+1 Blood Crypt
+1 Authority of the Consuls
+1 Loran of the Third Path
+1 Breena, the Demagogue
+1 Bloodstained Mire
+1 Inkshield
+1 Maze of Ith
+1 Godless Shrine
+1 Kor Haven
+1 Sacred Foundry
+1 Spectator Seating
+1 Marsh Flats
+1 Savai Triome
+1 Vault of Champions
+1 Raucous Theater
+1 Shadowy Backstreet
+1 Temple of Triumph
+1 Temple of Silence
+1 Archon of Coronation
+1 Xantcha, Sleeper Agent
+1 Rakdos Charm
+1 Legion Leadership // Legion Stronghold
+1 Arcane Signet
+1 Alexios, Deimos of Kosmos
+1 Kambal, Profiteering Mayor
+1 Malakir Rebirth // Malakir Mire
+1 Batwing Brume
+1 Humble Defector
+1 Lotho, Corrupt Shirriff
+1 Kaervek the Merciless
+1 The Lord of Pain
+1 Black Market Connections
+1 Nils, Discipline Enforcer
+1 Elegant Parlor
+1 Arid Mesa
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Valakut Awakening // Valakut Stoneforge
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Life of the Party
+1 Turbulent Moor
+2 Mountain
+4 Plains
+1 Cursed Mirror
+1 Tataru Taru
+1 Gisela, Blade of Goldnight
+1 Kefka, Dancing Mad
+1 Turbulent Steppe
+1 Chaos Warp
+1 Deflecting Palm
+1 Trouble in Pairs
+1 Ginger, Queen of Sweets
+1 Gleaming Splendor
+1 Turbulent Crater
+1 Sunforger
+1 Brash Taunter
+1 No Mercy
+1 Dauthi Voidwalker
+1 Shadrix Silverquill
+1 Tamiyo, Upriser Crowned
+1 Scriv, the Obligator
+1 Boros Charm
+1 Blasphemous Act
+1 Hour of Revelation
+1 Abstruse Appropriation
+1 Scrawling Crawler
+1 Everybody Lives!
+2 Swamp
+1 Stroke of Midnight
+1 Darksteel Mutation
+1 Redirect Lightning

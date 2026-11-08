@@ -1,0 +1,84 @@
+# Archidekt — General Marhault Elsdragon
+# source: archidekt:4333158
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 General Marhault Elsdragon
+
+Deck:
+1 Bloodthirster
+1 Frenzied Saddlebrute
+1 Breaker of Armies
+1 Blood Mist
+1 Rootbound Crag
+1 Rockfall Vale
+1 Karplusan Forest
+1 Kessig Wolf Run
+1 Garruk's Uprising
+1 Owlbear Shepherd
+1 Neyith of the Dire Hunt
+1 Cultivate
+1 Grand Warlord Radha
+1 Grumgully, the Generous
+1 Nature's Lore
+1 Khenra Charioteer
+1 Gaea's Protector
+1 Noble Quarry
+1 Prized Unicorn
+1 Taunting Elf
+1 Compelled Duel
+1 Irresistible Prey
+1 Roar of Challenge
+1 You Look Upon the Tarrasque
+1 Goldvein Hydra
+1 Halana and Alena, Partners
+1 Sunder Shaman
+1 Domri, Anarch of Bolas
+1 Sticky Fingers
+1 Goblin Anarchomancer
+1 Kodama's Reach
+1 Ferocity of the Wilds
+1 Nylea, God of the Hunt
+1 Toski, Bearer of Secrets
+1 Three Visits
+1 Ripjaw Raptor
+1 Barroom Brawl
+1 Tyrranax Rex
+1 Copperline Gorge
+1 Stomping Ground
+1 Cinder Glade
+1 Riveteers Overlook
+1 Nessian Boar
+1 Riveteers Decoy
+1 Shinen of Life's Roar
+1 Archetype of Aggression
+1 Footfall Crater
+1 Soul Immolation
+1 Vigor
+1 Combustion Man
+1 The Earth King
+1 The Boulder, Ready to Rumble
+13 Mountain
+1 Entish Restoration
+13 Forest
+1 Mithril Coat
+1 Rampant Growth
+1 Quilled Greatwurm
+1 Soul's Fire
+1 Red Elemental Blast
+1 Berserker's Frenzy
+1 Kazuul's Fury // Kazuul's Cliffs
+1 Fling
+1 Stump Stomp // Burnwillow Clearing
+1 Sunspine Lynx
+1 Fiendish Duo
+1 Valakut Awakening // Valakut Stoneforge
+1 Price of Progress
+1 Resurrection Orb
+1 Pirate's Pillage
+1 Life's Legacy
+1 Elemental Bond
+1 Big Score
+1 Dragonborn Champion
+1 Desert Were-Worm

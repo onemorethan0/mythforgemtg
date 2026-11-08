@@ -1,0 +1,79 @@
+# Archidekt — Ken, Agent of Orange
+# source: archidekt:7278749
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Aisha of Sparks and Smoke
+
+Deck:
+1 Sundering Eruption // Volcanic Fissure
+1 Glimpse the Impossible
+1 Your Temple Is Under Attack
+1 Rogue's Passage
+1 Overmaster
+1 Radiant Scrollwielder
+1 Roiling Terrain
+1 Tectonic Rift
+1 Seismic Spike
+1 Craterize
+1 Dwarven Landslide
+1 Stone Rain
+1 Earth Rift
+1 Flowstone Flood
+1 Melt Terrain
+1 Memorial to War
+1 Seismic Shift
+1 Molten Rain
+1 Lay Waste
+1 Rubble Reading
+1 Volcanic Awakening
+1 Survey the Wreckage
+1 Implode
+1 Blood Mist
+1 Flaming Fist
+1 Chaos Terminator Lord
+1 Rain of Salt
+1 Pillage
+1 Rumbling Crescendo
+1 Detritivore
+1 Dwarven Blastminer
+1 Demolish
+1 Icefall
+1 Sunder from Within
+1 Dwarven Miner
+1 Violent Impact
+1 Raiyuu, Storm's Edge
+1 Lizard Blades
+1 Charmbreaker Devils
+1 Efreet Flamepainter
+1 Cut a Deal
+1 Witch's Mark
+1 Secret Rendezvous
+1 Tormenting Voice
+1 Fire of Orthanc
+1 Magmatic Insight
+1 Cathartic Reunion
+1 Pirate's Pillage
+1 Mob Verdict
+1 Seize the Spoils
+1 Furycalm Snarl
+1 Clifftop Retreat
+1 Evolving Wilds
+1 Boros Garrison
+1 Figure of Destiny
+1 Volcanic Offering
+1 Dragon's Rage Channeler
+1 Dualcaster Mage
+1 Faithless Looting
+1 Secluded Steppe
+1 Terramorphic Expanse
+1 Tectonic Edge
+1 Obsidian Charmaw
+1 Drifting Meadow
+1 Wake of Destruction
+1 Unquestioned Authority
+19 Mountain
+7 Plains
+1 Twinblade Blessing
+1 Grab the Prize

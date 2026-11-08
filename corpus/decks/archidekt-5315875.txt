@@ -1,0 +1,89 @@
+# Archidekt — death by 1000 pecks
+# source: archidekt:5315875
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kastral, the Windcrested
+
+Deck:
+1 Azorius Locket
+1 Thrummingbird
+1 Coast Watcher
+1 Sterling Supplier
+1 Speakeasy Server
+1 Miner's Guidewing
+1 Tine Shrike
+1 Mist Raven
+1 Ichthyomorphosis
+1 Frogify
+1 Thriving Isle
+1 Escape Tunnel
+1 Azorius Guildgate
+1 Seize the Secrets
+1 Dazzling Denial
+1 Quick Study
+1 Reasonable Doubt
+1 Take Up the Shield
+1 Lifecreed Duo
+1 Aerie Auxiliary
+1 Gwaihir the Windlord
+1 Make Your Move
+1 Spell Stutter
+1 Mystic Familiar
+1 Aven Cloudchaser
+1 Clear the Mind
+1 Empyrean Eagle
+1 Murmuration
+1 Steady Progress
+11 Island
+1 Kykar, Zephyr Awakener
+1 Razortide Bridge
+1 Celestial Colonnade
+1 Clinquant Skymage
+1 Esior, Wardwing Familiar
+1 Jackdaw Savior
+1 Shrike Force
+1 Salvation Swan
+1 Scouting Hawk
+1 Supply-Line Cranes
+1 Sawtooth Loon
+1 Mesmerizing Dose
+1 Contentious Plan
+1 Fuel for the Cause
+1 Brace for Impact
+1 In the Trenches
+1 Icon of Ancestry
+1 Favorable Winds
+1 Azorius Keyrune
+1 Eagle of Deliverance
+1 Azorius Signet
+1 Apex Hawks
+1 Azorius Cluestone
+1 Bonder's Ornament
+1 Ice Out
+1 Distant Melody
+1 Psychic Impetus
+1 Sage Aven
+1 Shriek Raptor
+1 Command Tower
+1 Metastatic Evangel
+1 Sage Owl
+10 Plains
+1 Warden of Evos Isle
+1 Thriving Heath
+1 Path of Ancestry
+1 Azorius Chancery
+1 Deep Analysis
+1 Irrigated Farmland
+1 Port Town
+1 Cloudfin Raptor
+1 Soulcatcher
+1 Tezzeret's Gambit
+1 Wanderer's Strike
+1 Essence Capture
+1 Prairie Stream
+1 Temple of Enlightenment
+1 Glacial Fortress
+1 Restless Anchorage
+1 Soulcatchers' Aerie

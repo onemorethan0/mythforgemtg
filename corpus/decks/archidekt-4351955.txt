@@ -1,0 +1,94 @@
+# Archidekt — Wife Aggro - Millicent, Restless Revenant
+# source: archidekt:4351955
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Millicent, Restless Revenant
+
+Deck:
+1 Nebelgast Herald
+1 Spectral Adversary
+1 Deserted Beach
+1 Reconnaissance Mission
+1 Anointed Procession
+1 Supreme Phantom
+1 Rattlechains
+1 Selfless Spirit
+1 Mirror Entity
+1 Empyrean Eagle
+1 Mondrak, Glory Dominus
+1 Roaming Throne
+1 Kabira Takedown // Kabira Plateau
+1 Nimbus Maze
+1 Nikko-Onna
+1 Hanged Executioner
+1 Remorseful Cleric
+1 Skyclave Apparition
+1 Distant Melody
+1 Beckoning Will-o'-Wisp
+1 Topplegeist
+1 Departed Deckhand
+1 Staff of the Storyteller
+1 Patrician Geist
+1 Bident of Thassa
+1 Keep Watch
+1 Raise the Palisade
+1 Flare of Fortitude
+1 Mockingbird
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Sea of Clouds
+1 Mystic Gate
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Sink into Stupor // Soporific Springs
+1 Adarkar Wastes
+1 Lazotep Quarry
+1 Ghost Quarter
+1 Drogskol Captain
+1 Katilda, Dawnhart Martyr // Katilda's Rising Dawn
+1 Junk Winder
+1 Mausoleum Wanderer
+1 Hengegate Pathway // Mistgate Pathway
+1 Three Tree City
+1 Niblis of the Urn
+1 Pteron Ghost
+1 Flitterstep Eidolon
+1 Sol Ring
+1 Spectral Sailor
+1 Mindshrieker
+1 Mystic Reflection
+1 Stonerise Spirit
+1 Clever Concealment
+1 Coastal Piracy
+1 Lantern Kami
+1 Exotic Orchard
+1 Buried Ruin
+1 Dust Animus
+1 Lantern Bearer // Lanterns' Lift
+1 Shacklegeist
+1 Spell Queller
+1 Spark Double
+1 Reliquary Tower
+1 The Indomitable
+1 Strixhaven Stadium
+1 Throne of the God-Pharaoh
+1 Eldrazi Monument
+1 Ghostly Pilferer
+1 Enduring Curiosity
+1 Skullclamp
+1 Ascend from Avernus
+1 Storm of Souls
+1 Galadriel's Dismissal
+1 Enlightened Tutor
+1 Mystical Tutor
+1 Teferi's Protection
+1 Kira, Great Glass-Spinner
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Command Tower
+1 Champions from Beyond
+1 Waterbender Ascension
+1 Tundra
+9 Island
+7 Plains
+1 Geist of Saint Thalia

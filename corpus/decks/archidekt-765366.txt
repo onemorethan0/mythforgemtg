@@ -1,0 +1,94 @@
+# Archidekt — Charix, the Raging Isle - (Is)lands Matter Voltron
+# source: archidekt:765366
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Charix, the Raging Isle
+
+Deck:
+1 Flow of Knowledge
+1 War Room
+1 Meloku the Clouded Mirror
+1 Trench Behemoth
+1 Cosima, God of the Voyage // The Omenkeel
+1 Curse of the Swine
+1 Tolaria West
+1 Sword of Hearth and Home
+1 Resculpt
+1 The Mycosynth Gardens
+1 Tiller Engine
+1 Terrain Generator
+1 Academy Ruins
+1 Three Steps Ahead
+1 Wayfarer's Bauble
+1 Blackblade Reforged
+1 Arcane Denial
+1 Pull from Tomorrow
+1 Myriad Landscape
+1 Body Double
+1 Scavenger Grounds
+1 Ghostly Flicker
+1 Inspiring Statuary
+1 Solemn Simulacrum
+1 Sol Ring
+1 Buried Ruin
+1 Rogue's Passage
+1 Drownyard Temple
+1 Burnished Hart
+1 Oblivion Sower
+1 Retreat to Coralhelm
+1 Sword of the Animist
+1 Scourge of Fleets
+1 Gush
+1 Altar of the Brood
+1 Roil Elemental
+1 Patron of the Moon
+1 Trade Routes
+1 Mystic Confluence
+1 Fumble
+1 Thespian's Stage
+1 Dreamscape Artist
+1 Fact or Fiction
+1 Scaretiller
+1 Reliquary Tower
+1 Thassa, God of the Sea
+1 Expedition Map
+1 Hammer of Nazahn
+1 Sword of Feast and Famine
+1 Ruin Crab
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Glasspool Mimic // Glasspool Shore
+1 Hedron Crab
+1 Phyrexian Metamorph
+1 Preordain
+1 Bitterthorn, Nissa's Animus
+1 Otawara, Soaring City
+1 Oboro, Palace in the Clouds
+1 Thought Vessel
+1 Forensic Gadgeteer
+1 Mystic Sanctuary
+1 Demolition Field
+1 Urza's Cave
+1 Arid Archway
+1 Horizon of Progress
+1 Wonderscape Sage
+1 Lazotep Quarry
+1 Talon Gates of Madara
+1 Swiftfoot Boots
+1 Brainstorm
+1 Sapphire Medallion
+1 Shadowspear
+1 Eluge, the Shoreless Sea
+1 Mind Stone
+1 Reality Shift
+1 Kefnet the Mindful
+1 Emry, Lurker of the Loch
+1 PuPu UFO
+1 Dauntless Scrapbot
+1 Adaptive Omnitool
+15 Island
+1 Imprisoned in the Moon
+1 Gandalf, Shadow's Foe
+1 Ghostly Pilferer
+1 Crucible of Worlds

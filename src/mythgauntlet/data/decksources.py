@@ -123,6 +123,7 @@ def archidekt_top(
     order: str = "-viewCount",
     format_id: int = ARCHIDEKT_EDH_FORMAT,
     bracket: int | None = None,
+    page: int = 1,
 ) -> list[ArchidektDeckMeta]:
     """Search popular Commander decks. order: -viewCount, -createdAt, -updatedAt...
 
@@ -133,6 +134,8 @@ def archidekt_top(
     """
     time.sleep(_THROTTLE_S)
     params: dict = {"orderBy": order, "formats": format_id, "pageSize": page_size}
+    if page > 1:
+        params["page"] = page   # 60 rows a page upstream; the search caps at 1,000 results
     if bracket is not None:
         params["edhBracket"] = bracket
     resp = requests.get(

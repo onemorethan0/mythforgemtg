@@ -1,0 +1,104 @@
+# Archidekt — Rakdos Big Idiots
+# source: archidekt:3162302
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Florian, Voldaren Scion
+1 Rakdos, Lord of Riots
+
+Deck:
+1 Incarnation Technique
+1 Karlach, Fury of Avernus
+1 Rakdos, the Muscle
+1 Sulfurous Springs
+1 Shadowblood Ridge
+1 Demolition Field
+1 Exotic Orchard
+1 Blood Crypt
+1 Blast-Furnace Hellkite
+1 Shizo, Death's Storehouse
+1 Luxury Suite
+1 Graven Cairns
+1 Haunted Ridge
+1 Sokenzan, Crucible of Defiance
+1 Command Tower
+1 Chaos Warp
+1 Archfiend of Despair
+1 Mount Doom
+1 Raucous Theater
+1 Chainer, Nightmare Adept
+1 Reflecting Pool
+1 Nullpriest of Oblivion
+1 Horizon of Progress
+1 Ob Nixilis, the Adversary
+1 Fell the Profane // Fell Mire
+1 Tibalt's Trickery
+1 Anzrag's Rampage
+1 Clive, Ifrit's Dominant // Ifrit, Warden of Inferno
+1 Arena of Glory
+1 The Infamous Cruelclaw
+1 Broadside Bombardiers
+1 Rakdos, Patron of Chaos
+1 Inti, Seneschal of the Sun
+1 Cityscape Leveler
+1 Knollspine Dragon
+1 Twinflame Tyrant
+1 Rakdos Charm
+1 Darkness
+1 Blazemire Verge
+1 Secluded Courtyard
+1 Wooded Foothills
+1 Path of Ancestry
+1 City of Brass
+1 Summon: Bahamut
+1 Phyrexian Tower
+1 Takenuma, Abandoned Mire
+1 Metamorphosis Fanatic
+1 Detective's Phoenix
+1 Shadowspear
+1 Overlord of the Balemurk
+1 Sol Ring
+1 Steel Hellkite
+1 Dragonhawk, Fate's Tempest
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Bloodsoaked Insight // Sanguine Morass
+1 Boggart Trawler // Boggart Bog
+1 Sundering Eruption // Volcanic Fissure
+1 Return the Favor
+1 Cryptolith Fragment // Aurora of Emrakul
+1 Malakir Rebirth // Malakir Mire
+1 Plaza of Heroes
+1 Chaos Defiler
+1 Exocrine
+3 Mountain
+3 Swamp
+1 Oliphaunt
+1 Troll of Khazad-dûm
+1 Exsanguinator Cavalry
+1 Grief
+1 Primaris Eliminator
+1 Valgavoth, Terror Eater
+1 Moraug, Fury of Akoum
+1 Balthor the Defiled
+1 Foot Chopper
+1 Veronica, Dissident Scribe
+1 Headliner Scarlett
+1 Archon of Cruelty
+1 Barrowgoyf
+1 Enduring Courage
+1 Laelia, the Blade Reforged
+1 Undying Evil
+1 Rush of Vitality
+1 Changing Loyalty
+1 Massacre Wurm
+1 Return to Action
+1 Lively Dirge
+1 Professional Face-Breaker
+1 Kardur, Doomscourge
+1 Disciple of Bolas
+1 Archive Arbiter
+1 Avacyn, Angel of Horror
+1 Turbulent Crater
+1 Dark Fortress
+1 Venser, Fervent Forger

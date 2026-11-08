@@ -1,0 +1,94 @@
+# Archidekt — Goblin Horde
+# source: archidekt:25068923
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Bolg, Erebor's Reckoning
+
+Deck:
+1 Fellwar Stone
+1 Along the Crooked Way
+1 Assault on Osgiliath
+1 Barad-dûr
+1 Blasphemous Edict
+1 Boggart Cursecrafter
+1 Boggart Mischief
+1 Boggart Mob
+1 Boggart Trawler // Boggart Bog
+1 Bojuka Bog
+1 Bolg's Company
+1 Bonders' Enclave
+1 Canyon Slough
+1 Deadly Dispute
+1 Dragonskull Summit
+1 Eclipsed Boggart
+1 Exotic Orchard
+1 Fabled Passage
+1 Foreboding Ruins
+1 Fountainport
+1 General Kreat, the Boltbringer
+1 Goblin Matron
+1 Goblin Ringleader
+1 Gorbag of Minas Morgul
+1 Grave Venerations
+1 Graven Cairns
+1 Great Goblin, Foul-Hearted
+1 Grub, Storied Matriarch // Grub, Notorious Auntie
+1 Hobbit Hole
+1 Howlsquad Heavy
+1 Idol of Oblivion
+1 Krenko, Mob Boss
+1 Krenko's Command
+1 Legion Loyalist
+1 Moria Marauder
+1 Path of Ancestry
+1 Port Razer
+1 Rundvelt Hordemaster
+1 Searslicer Goblin
+1 Shadowblood Ridge
+1 Siege-Gang Commander
+1 Skirk Prospector
+1 Skullclamp
+1 Tainted Peak
+1 Talisman of Indulgence
+1 War Room
+1 Warg Rider
+1 Witch's Cottage
+1 Arcane Signet
+1 Blasphemous Act
+1 Blasting Station
+1 Brightstone Ritual
+1 Command Tower
+1 Feed the Swarm
+1 Frogtosser Banneret
+1 Goblin Assassin
+1 Goblin Bombardment
+1 Goblin Chieftain
+1 Goblin Chirurgeon
+1 Goblin Grenade
+1 Goblin King
+1 Goblin Lackey
+1 Goblin Piledriver
+1 Goblin Trashmaster
+1 Goblin Warchief
+1 Impact Tremors
+1 Impulsive Pilferer
+1 Krenko, Tin Street Kingpin
+1 Merciless Executioner
+1 Munitions Expert
+1 Muxus, Goblin Grandee
+1 Orcish Siegemaster
+1 Pashalik Mons
+1 Rakdos Carnarium
+1 Rakdos Signet
+1 Relentless Assault
+1 Rogue's Passage
+1 Siege-Gang Lieutenant
+1 Sling-Gang Lieutenant
+1 Smoldering Marsh
+1 Sol Ring
+1 Sulfurous Springs
+6 Swamp
+1 Champion of the Weird
+10 Mountain

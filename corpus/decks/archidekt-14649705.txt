@@ -1,0 +1,74 @@
+# Archidekt — Minimum wage
+# source: archidekt:14649705
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Ragost, Deft Gastronaut
+
+Deck:
+18 Mountain
+1 Of Herbs and Stewed Rabbit
+1 Urza's Chalice
+1 Second Breakfast
+1 Speakeasy Server
+1 Witch's Oven
+1 Grand Ball Guest
+1 Three Bowls of Porridge
+1 Towashi Songshaper
+1 Pin Collection
+1 Market Gnome
+1 Hot Soup
+1 Featherbrained Filcher
+1 Call In a Professional
+1 Krovod Haunch
+1 Knife
+1 Case of the Uneaten Feast
+1 The Underworld Cookbook
+1 Chef's Kiss
+1 Late to Dinner
+1 City Pigeon
+1 Hot Dog Cart
+1 Bagel and Schmear
+1 Char
+1 Butcher's Cleaver
+1 Instant Ramen
+1 Stiltzkin, Moogle Merchant
+1 Skewer Slinger
+1 Merry Bards
+1 Vault 101: Birthday Party
+1 Gallant Pie-Wielder
+1 Mentor of the Meek
+1 Prized Statue
+1 Sol Ring
+1 Coin of Fate
+1 Devilish Valet
+1 Carrot Cake
+1 Arcane Signet
+1 Bumbleflower's Sharepot
+1 Dingus Egg
+1 Harvestrite Host
+18 Plains
+1 Cut a Deal
+1 Bartered Cow
+1 Wine of Blood and Iron
+1 Blessed Wine
+1 Heart-Shaped Herb
+1 Food Fight
+1 Crumb and Get It
+1 Sunfire Torch
+1 Omni-Cheese Pizza
+1 Disrupt Decorum
+1 Nuka-Cola Vending Machine
+1 Lembas
+1 Currency Converter
+1 Bazaar Trader
+1 Field-Tested Frying Pan
+1 Spicy Oatmeal Pizza
+1 Street Urchin
+1 Take Out the Trash
+1 Nutrient Block
+1 Bag End Banquet
+1 Well-Worn Spatula
+1 Overcooked
+1 Tea, Earl Grey, Hot

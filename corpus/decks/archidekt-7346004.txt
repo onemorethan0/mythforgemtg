@@ -1,0 +1,96 @@
+# Archidekt — Urza, CEDH
+# source: archidekt:7346004
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Urza, Lord High Artificer
+
+Deck:
+1 Otawara, Soaring City
+1 Force of Negation
+1 Swan Song
+1 Mystic Remora
+1 Manifold Key
+1 Voltaic Key
+1 Merchant Scroll
+1 Seat of the Synod
+1 Jeweled Amulet
+1 Force of Will
+1 Phyrexian Metamorph
+1 Mox Opal
+1 Mana Vault
+1 Chrome Mox
+1 Reshape
+1 Whir of Invention
+1 Forensic Gadgeteer
+1 Rhystic Study
+1 Codex Shredder
+1 Faerie Mastermind
+1 Lotus Petal
+1 Chain of Vapor
+1 Flusterstorm
+1 Urza's Saga
+1 Mental Misstep
+1 Sink into Stupor // Soporific Springs
+1 Unwinding Clock
+1 Sapphire Medallion
+1 Everflowing Chalice
+1 Arcane Signet
+1 Foil
+1 An Offer You Can't Refuse
+12 Island
+1 Fierce Guardianship
+1 Mox Diamond
+1 Grim Monolith
+1 Transmute Artifact
+1 Power Artifact
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Valley Floodcaller
+1 Tezzeret the Seeker
+1 Mockingbird
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Retraction Helix
+1 Mirrormade
+1 Commandeer
+1 Misdirection
+1 Hullbreaker Horror
+1 Emergence Zone
+1 Borne Upon a Wind
+1 Banishing Knack
+1 Fellwar Stone
+1 Copy Artifact
+1 Pact of Negation
+1 Tezzeret, Cruel Captain
+1 Sol Ring
+1 Crystal Vein
+1 Repurposing Bay
+1 Academy Ruins
+1 The One Ring
+1 Mystical Tutor
+1 Basalt Monolith
+1 Battered Golem
+1 April O'Neil, Human Element
+1 Prized Statue
+1 Sewer-veillance Cam
+1 Dizzy Spell
+1 Urza's Bauble
+1 Submerge
+1 Aether Spellbomb
+1 Mindbreak Trap
+1 Sensei's Divining Top
+1 Saprazzan Skerry
+1 Scour for Scrap
+1 The Reality Chip
+1 Geist of Saint Thalia
+1 Stubborn Denial
+1 Svyelunite Temple
+1 Moonsilver Key
+1 Spellskite
+1 Consecrated Sphinx
+1 Treasure Vault
+1 Dramatic Reversal
+1 Copy Enchantment
+1 Crystal Skull, Isu Spyglass
+1 The Mechanist, Aerial Artisan

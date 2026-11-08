@@ -1,0 +1,90 @@
+# Archidekt — B3 Lesson Storm 50€
+# source: archidekt:17474539
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Iroh, Grand Lotus
+
+Deck:
+1 Frontier Bivouac
+1 Abandon Attachments
+1 Containment Breach
+1 Cycle of Renewal
+1 How to Start a Riot
+1 Introduction to Prophecy
+1 Mercurial Transformation
+1 Overwhelming Victory
+1 Price of Freedom
+1 Waterbending Lesson
+1 Solstice Revelations
+1 Whirlwind Technique
+1 Accumulate Wisdom
+1 Energybending
+1 Octopus Form
+1 Origin of Metalbending
+1 It'll Quench Ya!
+1 Elemental Teachings
+1 Windrider Wizard
+1 Hermitic Herbalist
+1 Doc Aurlock, Grizzled Genius
+1 Ral, Monsoon Mage // Ral, Leyline Prodigy
+1 Pinnacle Monk // Mystic Peak
+1 Mana Geyser
+1 Case of the Ransacked Lab
+1 Strike It Rich
+1 Reckless Barbarian
+1 Emblem of the Warmind
+1 Caldera Lake
+1 Racers' Ring
+1 Waterlogged Grove
+1 Skyshroud Forest
+1 True Ancestry
+1 Guru Pathik
+1 Sokka's Haiku
+1 Archmage of Runes
+1 Desperate Ritual
+1 Catalyst Stone
+1 Archmage Emeritus
+1 Storm of Memories
+1 Cathartic Reunion
+1 Stormscale Scion
+1 Stormsplitter
+1 Runaway Steam-Kin
+1 The Last Agni Kai
+1 Rite of Flame
+1 Shared Roots
+1 Stormcatch Mentor
+1 Shivan Reef
+1 Breakthrough
+1 Illuminate History
+1 Teachings of the Archaics
+1 Goblin Electromancer
+1 Storm-Kiln Artist
+1 Frantic Search
+1 Narset's Reversal
+1 Faithless Looting
+1 Blasphemous Act
+1 Anger
+1 Bitter Reunion
+1 Seething Song
+1 Rising of the Day
+1 Elemental Eruption
+1 Aeve, Progenitor Ooze
+1 Spreading Insurrection
+1 Command Tower
+1 Exotic Orchard
+1 Terramorphic Expanse
+1 Evolving Wilds
+1 Ash Barrens
+7 Island
+9 Mountain
+5 Forest
+1 Karplusan Forest
+1 Yavimaya Coast
+1 Baral and Kari Zev
+1 Magus of the Wheel
+1 Sokka, Bold Boomeranger
+1 Chakra Meditation
+1 Windfall
+1 Sulfur Falls

@@ -1,0 +1,89 @@
+# Archidekt — The Last Ride (CEDH) v2
+# source: archidekt:19676347
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 The Last Ride
+
+Deck:
+1 Snuff Out
+1 Black Market Connections
+1 Orcish Bowmasters
+1 Demonic Tutor
+1 Imperial Seal
+1 Cabal Ritual
+1 Beseech the Queen
+1 Bolas's Citadel
+1 Dark Ritual
+1 Thought Vessel
+1 Vampiric Tutor
+1 Necropotence
+1 Wishclaw Talisman
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Lotus Petal
+1 Talon Gates of Madara
+20 Swamp
+1 Urza's Saga
+1 The Soul Stone
+1 Awaken the Erstwhile
+1 Dauthi Voidwalker
+1 Disruptor Flute
+1 Opposition Agent
+1 Tangle Wire
+1 Deadly Rollick
+1 Aetherflux Reservoir
+1 Sensei's Divining Top
+1 Final Parting
+1 March of Wretched Sorrow
+1 Jet Medallion
+1 Skirge Familiar
+1 Ad Nauseam
+1 Sheoldred, the Apocalypse
+1 Beseech the Mirror
+1 The One Ring
+1 Cruelclaw's Heist
+1 Torpor Orb
+1 Priest of Gix
+1 Chthonian Nightmare
+1 Reliquary Tower
+1 Rain of Filth
+1 Mana Vault
+1 Mox Diamond
+1 Mox Opal
+1 Praetor's Grasp
+1 Everflowing Chalice
+1 City of Traitors
+1 Cavern of Souls
+1 Emergence Zone
+1 Nykthos, Shrine to Nyx
+1 Chrome Mox
+1 Withering Boon
+1 Scheming Symmetry
+1 Thran Dynamo
+1 Grim Tutor
+1 Font of Agonies
+1 Dismember
+1 Exsanguinate
+1 Necrologia
+1 Sol Ring
+1 Arcane Signet
+1 Force of Despair
+1 Gray Merchant of Asphodel
+1 Imp's Mischief
+1 Insatiable Avarice
+1 K'rrik, Son of Yawgmoth
+1 Hellish Sideswipe
+1 The Darkness Crystal
+1 Toxic Deluge
+1 Erebos's Intervention
+1 Blood Pet
+1 Outrageous Robbery
+1 Greedy Freebooter
+1 Blood Artist
+1 Warren Soultrader
+1 Phyrexian Altar
+1 Forsaken Miner
+1 Stridehangar Automaton
+1 Mornsong Aria

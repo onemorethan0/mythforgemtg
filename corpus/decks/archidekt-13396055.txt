@@ -1,0 +1,88 @@
+# Archidekt — The Most Prickly Commander Deck
+# source: archidekt:13396055
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kirri, Talented Sprout
+
+Deck:
+1 Claim Jumper
+1 Ancient Cornucopia
+1 Colossal Rattlewurm
+1 Hardbristle Bandit
+1 Wreck and Rebuild
+1 Freestrider Lookout
+1 Map the Frontier
+1 Bandit's Haul
+1 Goldvein Hydra
+1 Angelic Sell-Sword
+1 Oasis Gardener
+1 Cactarantula
+1 Outcaster Trailblazer
+1 Tome of Legends
+1 Reach for the Sky
+1 Yuma, Proud Protector
+1 Throw from the Saddle
+1 Lassoed by the Law
+1 Force of Vigor
+1 Crackle with Power
+1 Decimate
+1 Pest Infestation
+1 Primal Might
+1 Path to Exile
+1 Jumbo Cactuar
+1 Fierce Retribution
+1 Electrodominance
+1 Bristly Bill, Spine Sower
+1 Bristlebud Farmer
+1 Armored Armadillo
+1 Bristlepack Sentry
+1 Cactusfolk Sureshot
+1 Aloe Alchemist
+1 Dune Chanter
+1 Embrace the Unknown
+1 Fell the Mighty
+1 Final Showdown
+1 Jackalope Herd
+1 Full Steam Ahead
+1 Nurturing Pixie
+1 Snakeskin Veil
+1 Luxurious Locomotive
+1 Prickly Pair
+1 Rumbleweed
+1 Raucous Entertainer
+1 Spinewoods Armadillo
+1 Vengeful Regrowth
+1 Magebane Lizard
+1 Stingerback Terror
+1 Ornery Tumblewagg
+1 Miriam, Herd Whisperer
+1 Irascible Wolverine
+1 Cunning Coyote
+1 Ertha Jo, Frontier Mentor
+1 Contagion Engine
+1 Form a Posse
+1 Ferocification
+1 Angel of Indemnity
+1 Hellspur Brute
+1 Brushland
+1 Stubborn Burrowfiend
+1 Silver Deputy
+1 Bristling Backwoods
+1 Arid Archway
+1 Mirage Mesa
+1 Cactus Preserve
+1 Conduit Pylons
+1 Creosote Heath
+1 Dust Bowl
+1 Desert
+1 Inspiring Vantage
+1 Fomori Vault
+1 Mogg Hollows
+1 Sandstorm Verge
+1 Sunscorched Divide
+11 Forest
+6 Mountain
+5 Plains
+1 Cactuar

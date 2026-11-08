@@ -1,0 +1,89 @@
+# Archidekt — Simic 5-Color
+# source: archidekt:4307454
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Nael, Avizoa Aeronaut
+
+Deck:
+1 Rogue's Passage
+1 Tangled Islet
+1 Nishoba Brawler
+1 Mystic Sanctuary
+1 Vineglimmer Snarl
+1 Counterspell
+1 Thran Portal
+1 Copy Land
+1 Realmwright
+1 Beast Within
+1 Cultivate
+1 Dryad of the Ilysian Grove
+1 Glinting Creeper
+1 Prismatic Omen
+1 Convincing Mirage
+1 Wild Nacatl
+1 Evasive Action
+1 Dream Thrush
+1 Nylea's Presence
+10 Island
+1 Escape Tunnel
+1 Unstable Frontier
+1 Scion of Draco
+1 Reclamation Sage
+1 Hinterland Harbor
+1 Rimewood Falls
+1 Wildvine Pummeler
+1 Tam, Mindful First-Year
+1 Vesuva
+1 Planar Genesis
+1 Political Trickery
+1 Pixie Illusionist
+1 Vedalken Plotter
+1 Grixis Illusionist
+1 Sakura-Tribe Elder
+1 Song of the Dryads
+1 World Map
+1 Rain-Slicked Copse
+1 Thespian's Stage
+1 Dark Depths
+1 Multiversal Passage
+1 Overlord of the Hauntwoods
+1 Uncle's Musings
+1 Collective Restraint
+1 Briar Hydra
+1 Arachnogenesis
+1 Aetherize
+1 Tromp the Domains
+1 Rootweaver Druid
+1 Worldly Counsel
+1 Bring to Light
+1 Time of Need
+1 Prismatic Undercurrents
+1 Nature's Rhythm
+1 Aurora Awakener
+1 Frantic Search
+1 Conduit of Worlds
+1 Expedition Map
+11 Forest
+1 Sylvan Scrying
+1 Voda Sea Scavenger
+1 Glister Bairn
+1 Rogue's Gloves
+1 Kodama's Reach
+1 Sodden Verdure
+1 Together as One
+1 Step Through
+1 Muddle the Mixture
+1 Shinestriker
+1 Fallaji Wayfarer
+1 Urza's Cave
+1 Allied Strategies
+1 Bloom Tender
+1 Moment's Peace
+1 Prismabasher
+1 Turbulent Wilderness
+1 Banishing Betrayal
+1 Sundering Archaic
+1 Wildgrowth Archaic
+1 Fblthp, Knows the Way

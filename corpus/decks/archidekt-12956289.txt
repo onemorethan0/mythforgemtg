@@ -1,0 +1,97 @@
+# Archidekt — Ephara Builds a City
+# source: archidekt:12956289
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Ephara, God of the Polis
+
+Deck:
+1 Prismatic Vista
+1 Sol Ring
+1 Talisman of Progress
+1 Thought Vessel
+1 Venser, the Sojourner
+1 Aether Channeler
+1 The Watcher in the Water
+1 Dovin's Veto
+1 Path to Exile
+1 Reality Shift
+1 Render Silent
+1 Swan Song
+1 Swords to Plowshares
+1 Soulherder
+1 Adarkar Wastes
+1 Angel of Finality
+1 Azorius Signet
+1 Celestial Colonnade
+1 Command Tower
+1 Conjurer's Closet
+1 Faerie Artisans
+1 Flooded Strand
+7 Plains
+1 Hallowed Fountain
+1 Irrigated Farmland
+1 Marble Diamond
+1 Mind Stone
+1 Moorland Haunt
+1 Myriad Landscape
+1 Niko, Light of Hope
+1 Pearl Medallion
+1 Reliquary Tower
+1 Saltskitter
+1 Sapphire Medallion
+1 Sea of Clouds
+1 Seachrome Coast
+1 Temple of Enlightenment
+1 Time Wipe
+1 Wavebreak Hippocamp
+1 Wayfarer's Bauble
+1 Flood Plain
+1 Whitemane Lion
+1 Mulldrifter
+1 Venser, Shaper Savant
+1 Solemn Simulacrum
+1 Glen Elendra Archmage
+1 Stonecloaker
+1 Archaeomancer
+1 Restricted Office // Lecture Hall
+1 Tribute Mage
+1 Luminarch Ascension
+1 Skyclave Apparition
+1 Enduring Innocence
+1 Coldsteel Heart
+1 Glacial Fortress
+1 Sky Diamond
+1 Port Town
+1 Charming Prince
+1 Sink into Stupor // Soporific Springs
+1 Prairie Stream
+1 Floodfarm Verge
+1 Hengegate Pathway // Mistgate Pathway
+1 Fblthp, the Lost
+1 Abuelo, Ancestral Echo
+1 Thassa, Deep-Dwelling
+1 Supreme Verdict
+1 Welcoming Vampire
+1 Mirror Entity
+1 Eldrazi Displacer
+1 Panharmonicon
+1 Selfless Squire
+1 Spirited Companion
+1 Wall of Omens
+1 Nadir Kraken
+1 Riptide Gearhulk
+1 Nimbus Maze
+6 Island
+1 Mystic Gate
+1 Restless Anchorage
+1 Agent of Treachery
+1 Heliod's Intervention
+1 Rogue's Passage
+1 Austere Command
+1 High Fae Trickster
+1 Loran of the Third Path
+1 Cavalier of Dawn
+1 Knight of the White Orchid
+1 Skycloud Expanse

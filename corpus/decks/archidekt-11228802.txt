@@ -1,0 +1,72 @@
+# Archidekt — Tayam & the Not So Secret Hare(s)
+# source: archidekt:11228802
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tayam, Luminous Enigma
+
+Deck:
+1 Finneas, Ace Archer
+1 Lupinflower Village
+1 Studious First-Year // Rampant Growth
+9 Plains
+1 Fortified Village
+1 Vault of the Archangel
+1 Sunpetal Grove
+1 Command Tower
+1 Overgrown Farmland
+1 Exotic Orchard
+1 Three Tree City
+1 Undergrowth Stadium
+1 Indatha Triome
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Canopy Vista
+1 Reflecting Pool
+5 Swamp
+1 Caretaker's Talent
+1 Second Harvest
+1 Roaming Throne
+1 Skullclamp
+1 Anointed Procession
+1 Claim Jumper
+1 Ephemerate
+1 Thrumming Stone
+1 Enduring Innocence
+1 Pattern Matcher
+1 Dewdrop Cure
+1 Bloodbond March
+1 Eerie Interlude
+1 Justiciar's Portal
+1 Flicker of Fate
+1 Raise the Past
+1 Parting Gust
+1 Jacked Rabbit
+1 Cloudshift
+1 Helpful Hunter
+1 Tragic Slip
+1 Solemn Simulacrum
+1 Abdel Adrian, Gorion's Ward
+1 Charming Prince
+1 Skullwinder
+1 Diabolic Intent
+1 Kodama's Reach
+1 Mentor of the Meek
+1 Cultivate
+6 Forest
+1 Tempt with Bunnies
+1 Season of the Burrow
+1 Panharmonicon
+1 Brushland
+1 Strength of the Harvest // Haven of the Harvest
+20 Hare Apparent
+1 Teleportation Circle
+1 Doubling Season
+1 Selesnya Signet
+1 Assassin's Trophy
+1 Valley Mightcaller
+1 Valley Questcaller
+1 Warren Warleader
+1 Mirkwood Bats
+1 Shattered Sanctum

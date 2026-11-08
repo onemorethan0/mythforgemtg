@@ -1,0 +1,85 @@
+# Archidekt — Nine to Five
+# source: archidekt:23989631
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Jegantha, the Wellspring
+
+Deck:
+1 Shield-Wall Sentinel
+1 Twenty-Toed Toad
+1 Fist of Suns
+1 Crystal Quarry
+1 Jenson Carthalion, Druid Exile
+1 Iridescent Tiger
+1 Timeless Lotus
+1 Jodah, Archmage Eternal
+1 Leyline of Mutation
+1 Bringer of the Blue Dawn
+1 Bringer of the White Dawn
+1 Bringer of the Red Dawn
+1 Bringer of the Green Dawn
+1 Channel the Suns
+1 Bringer of the Black Dawn
+1 Grozoth
+1 Rise of the Dark Realms
+1 Blasphemous Act
+1 Portal to Phyrexia
+1 The Great Henge
+1 Apex Altisaur
+1 Summon: Bahamut
+1 Dusk // Dawn
+1 Myojin of Life's Web
+1 Zacama, Primal Calamity
+1 Reshape the Earth
+1 Reya Dawnbringer
+1 Heroes Remembered
+1 Cavern-Hoard Dragon
+1 Clone Legion
+1 Chromatic Lantern
+1 The World Tree
+1 Farseek
+1 Cultivate
+1 Arcane Signet
+1 Kodama's Reach
+1 Insatiable Avarice
+1 Profane Tutor
+1 Fierce Empath
+1 Shigeki, Jukai Visionary
+10 Forest
+4 Mountain
+1 Howling Mine
+1 Formidable Speaker
+7 Island
+3 Swamp
+4 Plains
+1 Fellwar Stone
+1 Sol Ring
+1 Boseiju, Who Endures
+1 An Offer You Can't Refuse
+1 Arcane Denial
+1 Heroic Intervention
+1 Black Market Connections
+1 Widespread Thieving
+1 Prismatic Vista
+1 Fabled Passage
+1 Toxic Deluge
+1 Expedition Map
+1 Flawless Maneuver
+1 Mistrise Village
+1 Tempt with Discovery
+1 Wishclaw Talisman
+1 Tolarian Winds
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Windfall
+1 Wheel of Fortune
+1 Eternal Witness
+1 Regrowth
+1 Smuggler's Share
+1 Beast Within
+1 Animate Dead
+1 Triplicate Titan
+1 Cascading Cataracts
+1 Urborg, Tomb of Yawgmoth
+1 Command Tower

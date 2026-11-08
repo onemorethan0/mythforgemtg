@@ -1,0 +1,105 @@
+# Archidekt — My Little Pony: Magic is Friendship
+# source: archidekt:7034967
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Rainbow Dash
+
+Deck:
+1 Princess Twilight Sparkle
+1 Thriving Heath
+1 Raugrin Triome
+1 Savai Triome
+1 Zagoth Triome
+1 Diamond Mare
+1 Boreas Charger
+1 Rainbow Vale
+1 Shimmerdrift Vale
+1 Fabled Passage
+1 Thundering Mightmare
+1 Spara's Headquarters
+1 Sea of Clouds
+1 Park Heights Pegasus
+1 Rarity
+1 Nightmare Moon // Princess Luna
+1 Loyal Unicorn
+1 Mana Confluence
+1 Terramorphic Expanse
+1 Exotic Orchard
+1 Lathiel, the Bounteous Dawn
+1 Crested Sunmare
+1 Command Tower
+1 Capashen Unicorn
+1 Gild
+1 Immovable Rod
+1 Keleth, Sunmane Familiar
+1 Phantasmal Mount
+1 Armored Pegasus
+1 Mesa Pegasus
+1 Shadowfax, Lord of Horses
+1 Swords to Plowshares
+1 Uncharted Haven
+1 Indatha Triome
+1 Ketria Triome
+1 Thriving Bluff
+1 Thriving Grove
+1 Thriving Isle
+1 Devastation Tide
+1 Overrun
+1 Plains
+1 Temple Garden
+1 Sacred Mesa
+1 Parasitic Impetus
+1 Forbidden Orchard
+1 Blessed Sanctuary
+1 Vivid Creek
+1 Vivid Grove
+1 Sungrace Pegasus
+1 Evolving Wilds
+1 Ronom Unicorn
+1 Archon of Sun's Grace
+1 Thriving Moor
+1 Bountiful Promenade
+1 Moonshaker Cavalry
+1 Life's Legacy
+1 Storm Herd
+1 Cavalry Pegasus
+1 Mistral Charger
+1 Applejack
+1 Vivid Meadow
+1 Fluttershy
+1 Pinkie Pie
+1 Concordia Pegasus
+1 Smuggler's Surprise
+1 Nyxborn Unicorn
+1 Thurid, Mare of Destiny
+1 Good-Fortune Unicorn
+1 Guardian Sunmare
+1 Deadly Rollick
+1 Cathars' Crusade
+1 Riding the Dilu Horse
+1 Sol Ring
+1 Reconnaissance Mission
+1 Defense of the Heart
+1 Arcane Signet
+1 Relic of Legends
+1 Generous Gift
+1 Night's Whisper
+1 Island
+1 Loch Mare
+1 Summon: Ixion
+2 Forest
+1 Island
+2 Mountain
+2 Plains
+1 Vivien's Stampede
+1 Troop of Ponies
+1 Plains
+1 Caustic Bronco
+1 Loyal Pegasus
+1 Excava, the Risen Past
+1 Stormfront Pegasus
+1 Pegasus Stampede
+1 Sisay, Weatherlight Captain
+1 Shepherd of the Clouds

@@ -1,0 +1,82 @@
+# Archidekt — Sméagol Flavour Mill
+# source: archidekt:4721920
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sméagol, Helpful Guide
+
+Deck:
+1 Bitter Downfall
+1 Ringwraiths
+1 Rise of the Witch-king
+1 Sam's Desperate Rescue
+1 Peregrin Took
+1 Mirrormere Guardian
+1 Claim the Precious
+1 Enraged Huorn
+1 Inherited Envelope
+1 Cirith Ungol Patrol
+1 Uruk-hai Berserker
+1 Orcish Medicine
+1 Dúnedain Rangers
+1 Nazgûl
+1 Gollum, Scheming Guide
+1 Shire Terrace
+1 Haunted Mire
+1 Rampaging Baloths
+1 Lobelia Sackville-Baggins
+1 Meriadoc Brandybuck
+1 Shadow of the Enemy
+1 Barad-dûr
+1 Netherborn Phalanx
+1 Zendikar's Roil
+1 Voracious Fell Beast
+1 Nasty End
+1 Old Man Willow
+1 Generous Ent
+1 Gríma Wormtongue
+1 Revive the Shire
+1 Dimir House Guard
+1 Night of the Sweets' Revenge
+1 The Black Breath
+1 Many Partings
+1 Bombadil's Song
+1 Gollum's Bite
+1 Shelob's Ambush
+1 One Ring to Rule Them All
+1 The Ring Goes South
+1 Lobelia, Defender of Bag End
+1 Decree of Pain
+1 Fell Beast of Mordor
+1 Tempt with Discovery
+1 Shelob, Dread Weaver
+1 The Torment of Gollum
+1 Hithlain Rope
+1 Sporemound
+1 Witch-king of Angmar
+1 Go for the Throat
+1 Haunt of the Dead Marshes
+1 Night's Whisper
+1 Call of the Ring
+1 Nazgûl
+1 The Shire
+1 Field of Ruin
+1 Grim Backwoods
+12 Forest
+1 Shortcut to Mushrooms
+1 Trepanation Blade
+1 Balustrade Spy
+1 Temple of Malady
+1 Stitch Together
+1 Destroy the Evidence
+1 Deadly Cover-Up
+1 Undercity Informer
+1 Gollum, Patient Plotter
+1 Strands of Night
+1 Viridian Revel
+1 Chocobo Racetrack
+1 Feed the Swarm
+1 Crypt Incursion
+1 Gollum, Obsessed Stalker
+16 Swamp

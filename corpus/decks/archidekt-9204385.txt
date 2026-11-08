@@ -1,0 +1,104 @@
+# Archidekt — “Grin and bear it.” - Valgavoth, Harrower of Souls
+# source: archidekt:9204385
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Valgavoth, Harrower of Souls
+
+Deck:
+1 Raucous Theater
+1 Underworld Dreams
+1 Bloodstained Mire
+1 Lightning Bolt
+1 Peer into the Abyss
+1 Swamp
+1 Mountain
+1 Blazemire Verge
+1 Rampaging Ferocidon
+1 Dragonskull Summit
+1 Blasphemous Act
+1 Fate Unraveler
+1 Graven Cairns
+1 Kederekt Parasite
+1 Command Tower
+1 Sulfurous Springs
+1 Tainted Peak
+1 Witch's Clinic
+1 Cabal Coffers
+1 Blightstep Pathway // Searstep Pathway
+1 Urborg, Tomb of Yawgmoth
+1 Blood Moon
+1 Bloodsoaked Insight // Sanguine Morass
+1 Exquisite Blood
+1 Grim Tutor
+1 Mount Doom
+1 Rug of Smothering
+1 Snuff Out
+1 Urza's Cave
+1 Ob Nixilis, Captive Kingpin
+1 Razorkin Needlehead
+1 Rakdos Charm
+1 Rakdos Signet
+1 Shivan Gorge
+1 Teferi's Puzzle Box
+1 Dark Deal
+1 Withering Torment
+1 Harsh Mentor
+1 Night's Whisper
+1 Dark Ritual
+1 Starscream, Power Hungry // Starscream, Seeker Leader
+1 Simian Spirit Guide
+1 Deflecting Swat
+1 Jeska's Will
+1 Roiling Vortex
+1 Lightning Greaves
+1 Deadly Rollick
+1 Arena of Glory
+1 Bloodthirsty Conqueror
+1 Orcish Bowmasters
+1 Blood Crypt
+1 Sheoldred, the Apocalypse
+1 Blood Artist
+1 Vampiric Tutor
+1 Swamp
+1 Fabled Passage
+1 Cavern of Souls
+1 Swamp
+1 Swamp
+1 Swamp
+1 Swamp
+1 Reflecting Pool
+1 City of Brass
+1 Mountain
+1 Mountain
+1 Mountain
+1 Mountain
+1 Chaos Warp
+1 The One Ring
+1 Sol Ring
+1 Mai, Scornful Striker
+1 Hexing Squelcher
+1 Rite of Flame
+1 Sign in Blood
+1 Talisman of Indulgence
+1 Scrawling Crawler
+1 Dark Petition
+1 Beseech the Mirror
+1 Mountain
+1 Mountain
+1 Magus of the Wheel
+1 Flashback
+1 Gleeful Arsonist
+1 Arcane Signet
+1 Bitterthorn, Nissa's Animus
+1 Ragavan, Nimble Pilferer
+1 Luxury Suite
+1 Tibalt's Trickery
+1 Wheel of Fortune
+1 Crypt Ghast
+1 Sanguine Bond
+1 Magus of the Moon
+1 Demonic Tutor
+1 Gideon the Oathless
+1 Turbulent Crater

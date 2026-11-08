@@ -1,0 +1,101 @@
+# Archidekt — Sharuum | Noctis
+# source: archidekt:266037
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Sharuum the Hegemon
+
+Deck:
+1 Teferi's Protection
+1 Cataclysmic Gearhulk
+1 Raffine's Tower
+1 Morphic Pool
+1 Sea of Clouds
+1 Chronomancer
+1 Arcane Signet
+1 Watery Grave
+1 Uthros, Titanic Godcore
+1 Angel of the Ruins
+1 Dispeller's Capsule
+1 Esper Sentinel
+1 Whir of Invention
+1 Spire of Industry
+1 Chief Engineer
+1 Vedalken Engineer
+1 Sphinx Summoner
+1 Saheeli's Artistry
+2 Plains
+2 Swamp
+1 Polluted Delta
+1 Crawlspace
+1 Academy Ruins
+1 Trading Post
+1 Solemn Simulacrum
+1 Grand Architect
+1 Kuldotha Forgemaster
+1 Magister Sphinx
+1 Master Transmuter
+1 Thirst for Knowledge
+1 Skullclamp
+1 Lightning Greaves
+1 Phyrexia's Core
+1 Wurmcoil Engine
+1 Buried Ruin
+1 Arcane Sanctum
+1 Etherium Sculptor
+1 Urza, Lord High Artificer
+1 Sol Ring
+1 Command Tower
+1 Mirrodin's Core
+1 Hallowed Fountain
+1 Engineered Explosives
+1 The Mycosynth Gardens
+1 Glimmervoid
+1 The One Ring
+1 Flooded Strand
+4 Island
+1 Razortide Bridge
+1 Coveted Jewel
+1 Stern Lesson
+1 Ornithopter of Paradise
+1 Urza's Saga
+1 Sink into Stupor // Soporific Springs
+1 Swords to Plowshares
+1 Thaumatic Compass // Spires of Orazca
+1 Inventors' Fair
+1 Deserted Beach
+1 Demonic Junker
+1 Riptide Gearhulk
+1 Rhystic Study
+1 Psychomancer
+1 Midgar, City of Mako // Reactor Raid
+1 Nihil Spellbomb
+1 Steel Hellkite
+1 Otawara, Soaring City
+1 Fact or Fiction
+1 Mistvault Bridge
+1 Ondu Inversion // Ondu Skyruins
+1 Godless Shrine
+1 Shipwreck Marsh
+1 Phyrexian Metamorph
+1 Mirrodin Besieged
+1 Cyclonic Rift
+1 Desynchronization
+1 Baleful Strix
+1 Cryogen Relic
+1 Ephemerate
+1 Thopter Foundry
+1 Shuri, Wakandan Inventor
+1 Ultron, Artificial Malevolence
+1 Futurist Forge
+1 The Mind Stone
+1 Fellwar Stone
+1 Iron Man, Bleeding Edge
+1 Emry, Lurker of the Loch
+1 Thran Spider
+1 Castle Doom
+1 Silent Arbiter
+1 Scrap Trawler
+1 Sphinx of the Steel Wind
+1 Archive Arbiter

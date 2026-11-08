@@ -1,0 +1,101 @@
+# Archidekt — Dr. Satya Sahee Li, Energy Specialist
+# source: archidekt:12921094
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Satya, Aetherflux Genius
+
+Deck:
+1 Electrosiphon
+1 Aether Theorist
+1 Whirler Virtuoso
+1 Aethertorch Renegade
+1 Bespoke Battlewagon
+1 Solemn Simulacrum
+1 Everflowing Chalice
+1 Sol Ring
+1 Behemoth of Vault 0
+1 Decoction Module
+1 Chromatic Lantern
+1 Era of Innovation
+1 Arcane Signet
+1 Automated Assembly Line
+1 Solar Transformer
+1 Talisman of Progress
+1 Talisman of Creativity
+1 Talisman of Conviction
+1 Mechanized Production
+1 Thought Vessel
+1 Mystic Forge
+1 Aetherworks Marvel
+1 Panharmonicon
+1 Aetherflux Conduit
+1 Spire of Industry
+1 Temple of Enlightenment
+1 Temple of Epiphany
+1 Buried Ruin
+1 Command Tower
+1 Ash Barrens
+1 Sulfur Falls
+1 Path of Ancestry
+1 Prairie Stream
+1 Clifftop Retreat
+1 Mystic Monastery
+1 Glacial Fortress
+1 Ferrous Lake
+1 Irrigated Farmland
+1 Frostboil Snarl
+1 Shivan Reef
+1 Academy Ruins
+1 Skycloud Expanse
+5 Island
+3 Mountain
+1 Daretti, Scrap Savant
+1 Sai, Master Thopterist
+2 Plains
+1 Chief Engineer
+1 Storm the Vault // Vault of Catlacan
+1 Tezzeret the Seeker
+1 Master Transmuter
+1 Mystic Gate
+1 Jhoira, Ageless Innovator
+1 Sharding Sphinx
+1 Vedalken Engineer
+1 Thaumatic Compass // Spires of Orazca
+1 Naya Panorama
+1 Whirler Rogue
+1 Swords to Plowshares
+1 Counterspell
+1 Skullclamp
+1 Inspiring Statuary
+1 Disallow
+1 Cultivator's Caravan
+1 Pia and Kiran Nalaar
+1 Smuggler's Copter
+1 Mirrorworks
+1 Thran Dynamo
+1 Idyllic Beachfront
+1 Molten Tributary
+1 Grand Architect
+1 Dalakos, Crafter of Wonders
+1 Oswald Fiddlebender
+1 Dr. Madison Li
+1 Bident of Thassa
+1 Stone Idol Generator
+1 Cayth, Famed Mechanist
+1 Brudiclad, Telchor Engineer
+1 Izzet Generatorium
+1 Emry, Lurker of the Loch
+1 Adarkar Wastes
+1 Furycalm Snarl
+1 Aether Refinery
+1 Demolition Field
+1 Temple of Triumph
+1 Port Town
+1 Eldrazi Monument
+1 Battlefield Forge
+1 Grenzo, Havoc Raiser
+1 Amulet of Vigor
+1 Junk Diver
+1 Myr Retriever

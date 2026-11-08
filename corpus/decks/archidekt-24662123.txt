@@ -1,0 +1,95 @@
+# Archidekt — CZ 757 | Thranduil, the Elvenking
+# source: archidekt:24662123
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Thranduil, the Elvenking
+
+Deck:
+1 Bloodline Bidding
+1 Momir Vig, Simic Visionary
+1 Gloom Ripper
+1 Imperious Perfect
+1 Leaf-Crowned Visionary
+1 Abomination of Llanowar
+1 Aftermath Analyst
+1 Arcane Denial
+1 Awaken the Honored Dead
+1 Buried Alive
+1 Cephalid Coliseum
+1 Champions of the Perfect
+1 Choked Estuary
+1 Dawnhand Dissident
+1 Deathcap Glade
+1 Dionus, Elvish Archdruid
+1 Disciple of Freyalise // Garden of Freyalise
+1 Drowned Catacomb
+1 Eclipsed Realms
+1 Exotic Orchard
+1 Fabled Passage
+1 Fact or Fiction
+1 Fauna Shaman
+1 Foreboding Landscape
+1 Fyndhorn Elves
+1 Glowspore Shaman
+1 Gnarlroot Trapper
+1 Grisly Salvage
+1 Harald Unites the Elves
+1 Immaculate Magistrate
+1 Iron-Shield Elf
+1 Izoni, Thousand-Eyed
+1 Jarad, Golgari Lich Lord
+1 Lathril, Blade of the Elves
+1 Necroblossom Snarl
+1 Opulent Palace
+1 Path of Ancestry
+1 Prime Speaker Vannifar
+1 Pyre of Heroes
+1 Quirion Ranger
+1 Rejuvenating Springs
+1 Roots of Wisdom
+1 Selvala, Heart of the Wilds
+1 Shadowheart, Dark Justiciar
+1 Sol Ring
+1 Squirming Emergence
+1 Topiary Lecturer
+1 Trystan, Callous Cultivator // Trystan, Penitent Culler
+1 Tyvar, the Pummeler
+1 Undergrowth Stadium
+1 Underrealm Lich
+1 Urborg Elf
+1 Viridian Joiner
+1 Wirewood Channeler
+4 Island
+1 Kagha, Shadow Archdruid
+1 Llanowar Elves
+1 Llanowar Wastes
+1 Marvin, Murderous Mimic
+1 Glissa Sunslayer
+1 Assassin's Trophy
+1 Command Tower
+1 Deathbloom Ritualist
+1 Drag to the Roots
+1 Dreamroot Cascade
+1 Elves of Deep Shadow
+1 Elvish Archdruid
+1 Elvish Mystic
+1 Ezuri, Claw of Progress
+7 Forest
+1 Formidable Speaker
+1 Frantic Search
+1 Hinterland Harbor
+1 Lluwen, Imperfect Naturalist
+1 Marwyn, the Nurturer
+1 Otherworldly Gaze
+1 Priest of Titania
+1 Seeker of Skybreak
+1 Stillness in Motion
+1 Sunken Hollow
+5 Swamp
+1 Tyvar, Jubilant Brawler
+1 Vineglimmer Snarl
+1 Woodland Cemetery
+1 Yavimaya Coast
+1 Beast Whisperer

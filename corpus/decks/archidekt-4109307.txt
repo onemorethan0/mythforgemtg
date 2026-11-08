@@ -1,0 +1,100 @@
+# Archidekt — Henzle Kenzle Marie
+# source: archidekt:4109307
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Henzie "Toolbox" Torre
+
+Deck:
+1 Greater Good
+1 Chainer, Nightmare Adept
+1 Jaxis, the Troublemaker
+1 Burnt Offering
+1 Prowling Geistcatcher
+1 Ojer Kaslem, Deepest Growth // Temple of Cultivation
+1 Disciple of Bolas
+1 Phyrexian Tower
+1 Trumpeting Carnosaur
+1 Cavalier of Flame
+1 Phyrexian Plaguelord
+1 Emergent Woodwurm
+1 Metamorphosis
+1 Overgrown Tomb
+1 Yavimaya, Cradle of Growth
+1 Badlands
+1 Ashaya, Soul of the Wild
+1 Avatar of Growth
+1 Marsh Flats
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Smoldering Marsh
+1 Polluted Delta
+1 Wooded Foothills
+1 Command Tower
+1 Verdant Catacombs
+1 Bloodstained Mire
+1 Saw in Half
+1 Misty Rainforest
+1 Animate Dead
+1 Thermopod
+1 Songs of the Damned
+1 Urborg, Tomb of Yawgmoth
+1 Shifting Woodland
+1 Seedguide Ash
+1 Ruthless Technomancer
+1 Timeless Witness
+1 Titania, Protector of Argoth
+1 Commercial District
+1 Cavalier of Thorns
+1 Sludge Titan
+1 World Shaper
+1 Primeval Herald
+1 Terror of the Peaks
+1 Vaultborn Tyrant
+1 Roxanne, Starfall Savant
+1 Pillage the Bog
+1 Paleoloth
+1 Rampant Rejuvenator
+2 Mountain
+4 Swamp
+1 Apex Devastator
+5 Forest
+1 Bayou
+1 Taiga
+1 Blood Crypt
+1 Blossoming Tortoise
+1 Cinder Glade
+1 Windswept Heath
+1 Stomping Ground
+1 Culling the Weak
+1 The Gitrog Monster
+1 Geological Appraiser
+1 Raucous Theater
+1 Underground Mortuary
+1 Squandered Resources
+1 Lumra, Bellow of the Woods
+1 Solemn Simulacrum
+1 Galadriel, Gift-Giver
+1 Doom Whisperer
+1 Rain of Filth
+1 Arid Mesa
+1 Neheb, Dreadhorde Champion
+1 Scalding Tarn
+1 Overlord of the Hauntwoods
+1 Atsushi, the Blazing Sky
+1 Disciple of Freyalise // Garden of Freyalise
+1 Noxious Revival
+1 Sacrifice
+1 Archon of Cruelty
+1 Druid of Purification
+1 Grim Servant
+1 Goldlust Triad
+1 Emissary Green
+1 Overlord of the Balemurk
+1 Overwhelming Remorse
+1 Vernal Fen
+1 Rottenmouth Viper
+1 Fury
+1 Aerid Konstrari
+1 Drag to the Roots
+1 Tear Asunder

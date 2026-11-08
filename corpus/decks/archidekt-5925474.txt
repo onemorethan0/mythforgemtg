@@ -1,0 +1,84 @@
+# Archidekt — Magic in the Air
+# source: archidekt:5925474
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Inniaz, the Gale Force
+
+Deck:
+1 Selfless Spirit
+1 Mind Stone
+1 Stroke of Midnight
+1 Terramorphic Expanse
+1 Skycat Sovereign
+1 Detention Vortex
+1 Pride of the Clouds
+1 Faerie Seer
+1 Esior, Wardwing Familiar
+1 Silver Raven
+1 Windborn Muse
+1 Stormscape Familiar
+1 Watcher of the Spheres
+1 Ornithopter
+1 Command Tower
+1 Ghostly Prison
+1 Propaganda
+1 Talrand's Invocation
+1 Nine Lives
+1 Arcane Signet
+1 Archetype of Imagination
+1 Empyrean Eagle
+1 Firemane Commando
+1 Jubilant Skybonder
+1 Bygone Bishop
+1 Dream Trawler
+1 Storm Fleet Negotiator
+1 Malcolm, Alluring Scoundrel
+1 Sephara, Sky's Blade
+1 Wrong Turn
+1 Occult Epiphany
+1 Waterwind Scout
+1 Hushbringer
+1 Helm of Awakening
+1 Aven Mindcensor
+1 Spyglass Siren
+1 Restless Anchorage
+1 Gold-Forged Thopteryx
+1 Ornithopter of Paradise
+1 Cloud of Faeries
+1 Launch Mishap
+1 Kangee's Lieutenant
+1 Darksteel Mutation
+1 Faerie Mastermind
+1 Brackish Blunder
+1 Ethereal Investigator
+1 Idyllic Beachfront
+1 Faerie Conclave
+1 Sol Ring
+1 Temple of Enlightenment
+1 Gust of Wind
+1 Meandering River
+1 Evolving Wilds
+1 Skystrike Officer
+1 Magus of the Moat
+1 Skyhunter Strike Force
+1 Contested Game Ball
+1 Warden of Evos Isle
+1 Faerie Artisans
+1 Kinjalli's Sunwing
+1 Kitesail Larcenist
+1 Archangel of Tithes
+1 Counterspell
+1 Steamcore Scholar
+1 Wojek Investigator
+1 Spectacular Pileup
+1 No More Lies
+13 Plains
+13 Island
+1 Lonely Arroyo
+1 Tranquil Cove
+1 Archon of Emeria
+1 Bottomless Pool // Locker Room
+1 Day of Judgment
+1 Sabotage Strategist

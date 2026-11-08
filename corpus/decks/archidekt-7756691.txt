@@ -1,0 +1,92 @@
+# Archidekt — Shilgengar Bleeding Angels
+# source: archidekt:7756691
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Shilgengar, Sire of Famine
+
+Deck:
+1 Morbid Opportunist
+1 Marionette Apprentice
+1 Dark Prophecy
+1 Drana and Linvala
+1 Serra's Emissary
+1 Giada, Font of Hope
+1 Sol Ring
+1 Thought Vessel
+1 Austere Command
+1 Angel of Suffering
+1 Archangel of Tithes
+1 Righteous Valkyrie
+1 Smothering Tithe
+1 Seraph Sanctuary
+1 Heliod's Intervention
+1 Serra Paragon
+1 Angelic Field Marshal
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Divine Visitation
+1 Bruna, the Fading Light
+1 Breathkeeper Seraph
+1 Battle Angels of Tyr
+1 Avacyn, Angel of Hope
+1 Sephara, Sky's Blade
+1 Arcane Signet
+1 Disenchant
+1 Gisela, the Broken Blade
+1 Solemnity
+1 Youthful Valkyrie
+1 Urza's Incubator
+1 Generous Gift
+1 Lyra Dawnbringer
+1 Starnheim Aspirant
+1 Sword of the Animist
+1 Firemane Commando
+11 Plains
+1 Bishop of Wings
+1 Vault of Champions
+1 Buried Alive
+1 Shattered Sanctum
+1 Marsh Flats
+1 Isolated Chapel
+1 Godless Shrine
+1 Command Tower
+1 Caves of Koilos
+7 Swamp
+1 Rampage of the Valkyries
+1 Thief of Blood
+1 Anointed Procession
+1 Restoration Angel
+1 Deadly Rollick
+1 Feed the Swarm
+1 Angel of the Ruins
+1 Priest of Gix
+1 Malakir Bloodwitch
+1 Grim Haruspex
+1 Entomb
+1 Command Beacon
+1 Demonic Tutor
+1 Path to Exile
+1 Swords to Plowshares
+1 Firja, Judge of Valor
+1 Monumental Corruption
+1 Talisman of Hierarchy
+1 Cavern of Souls
+1 Marionette Master
+1 Etchings of the Chosen
+1 Herald's Horn
+1 Mirkwood Bats
+1 Vampiric Tutor
+1 Renegade Reaper
+1 Platinum Angel
+1 Linvala, Keeper of Silence
+1 Sejiri Shelter // Sejiri Glacier
+1 Hostile Negotiations
+1 Corpse Churn
+1 Thraben Watcher
+1 Dark Ritual
+1 Nesting Grounds
+1 Shadowy Backstreet
+1 Eiganjo Castle
+1 Fetid Heath
+1 Fomori Vault

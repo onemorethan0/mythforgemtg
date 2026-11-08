@@ -1,0 +1,80 @@
+# Archidekt — Vintage Aquarium | March 2025 Deckbuilding Contest
+# source: archidekt:11741290
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Reveka, Wizard Savant
+
+Deck:
+1 Thawing Glaciers
+1 Thalakos Mistfolk
+1 Reef Shaman
+1 Tidal Warrior
+1 Merfolk Looter
+1 Wall of Kelp
+1 Apprentice Wizard
+1 Saprazzan Heir
+1 Whirlpool Rider
+1 Walking Sponge
+1 Vodalian Soldiers
+1 Kukemssa Serpent
+1 Slipstream Eel
+1 Giant Oyster
+1 Homarid
+1 Spiny Starfish
+1 Vodalian Mage
+1 Chromeshell Crab
+1 Keep Watch
+1 Narwhal
+1 Benthic Behemoth
+1 Deep Spawn
+1 King Crab
+1 Flux
+1 Rush of Knowledge
+1 Theft of Dreams
+1 Energy Tap
+1 Churning Eddy
+1 Scent of Brine
+1 Part Water
+1 Blue Mana Battery
+1 High Tide
+1 Arcane Denial
+1 Helm of Awakening
+1 Tidal Influence
+1 Sunken City
+1 Eye of Ramos
+1 Lilting Refrain
+1 Howling Mine
+1 Well of Knowledge
+1 Iceberg
+1 Tangle Kelp
+1 Mystic Veil
+1 Teferi's Isle
+1 Traveler's Cloak
+1 Sand Silos
+1 Saprazzan Skerry
+1 Lonely Sandbar
+1 Svyelunite Temple
+1 Coral Atoll
+1 Wash Out
+1 Fishliver Oil
+1 Coastal Piracy
+1 Fellwar Stone
+1 Coral Reef
+1 Lingering Mirage
+1 Marjhan
+1 Sea Scryer
+1 Veiled Serpent
+1 Merseine
+1 Chain Stasis
+1 Tidal Flats
+1 War Barge
+1 Sol Ring
+1 Dandân
+1 Arcane Signet
+1 Coral Eel
+28 Island
+1 Man-o'-War
+1 Reef Pirates
+1 Sea Serpent

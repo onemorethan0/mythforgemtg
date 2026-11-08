@@ -1,0 +1,108 @@
+# Archidekt — Tibalt's Epic  Sliver Cascade EDH
+# source: archidekt:2213454
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Field of the Dead); Bracket 1 allows 0
+
+Commander:
+1 The First Sliver
+
+Deck:
+1 Tendo Ice Bridge
+1 Stensia Bloodhall
+1 Memorial to Glory
+1 Desert
+1 Tibalt's Trickery
+1 Command Tower
+1 Darkbore Pathway // Slitherbore Pathway
+1 Thespian's Stage
+1 Waterveil Cavern
+1 Branchloft Pathway // Boulderloft Pathway
+1 Stalking Stones
+1 Battlefield Forge
+1 Magosi, the Waterveil
+1 Watery Grave
+1 Mishra's Factory
+1 Urza's Factory
+1 Gargoyle Castle
+1 Shambling Vent
+1 Lumbering Falls
+1 Blightstep Pathway // Searstep Pathway
+1 Hallowed Fountain
+1 Ghitu Encampment
+1 Dread Statuary
+1 Field of Ruin
+1 Field of the Dead
+1 Woodland Cemetery
+1 Faerie Conclave
+1 Rockfall Vale
+1 Needleverge Pathway // Pillarverge Pathway
+1 Slayers' Stronghold
+1 Lavaclaw Reaches
+1 Stirring Wildwood
+1 Cloudcrest Lake
+1 Pinecrest Ridge
+1 Aether Hub
+1 Treetop Village
+1 Foundry of the Consuls
+1 Tolaria West
+1 Overgrown Tomb
+1 Temple Garden
+1 Stomping Ground
+1 Blood Crypt
+1 Tree of Tales
+1 Labyrinth of Skophos
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Hall of Storm Giants
+1 Dreamroot Cascade
+1 Grove of the Burnwillows
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Spawning Pool
+1 Tomb of Urami
+1 Mirrodin's Core
+1 Riverglide Pathway // Lavaglide Pathway
+1 Needle Spires
+1 Surtland Frostpyre
+1 Ancient Den
+1 Shivan Reef
+1 Cave of the Frost Dragon
+1 Lair of the Hydra
+1 Unclaimed Territory
+1 Forbidding Watchtower
+1 Blinkmoth Nexus
+1 Llanowar Wastes
+1 Sacred Foundry
+2 Mountain
+1 Forsaken City
+1 Rath's Edge
+1 Gnottvold Slumbermound
+1 Deserted Beach
+1 Nantuko Monastery
+1 Cephalid Coliseum
+1 Rootwater Depths
+1 Underground River
+1 Seat of the Synod
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Clearwater Pathway // Murkwater Pathway
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Caves of Koilos
+1 Island
+1 Eternal Dominion
+1 Castle Ardenvale
+1 Hengegate Pathway // Mistgate Pathway
+1 Mogg Hollows
+1 Raging Ravine
+1 Overgrown Farmland
+1 Steam Vents
+1 Wandering Fumarole
+1 Hive of the Eye Tyrant
+1 Den of the Bugbear
+1 Otawara, Soaring City
+1 Secluded Courtyard
+1 Boseiju, Who Endures
+1 Eiganjo, Seat of the Empire
+1 Restless Bivouac
+1 Restless Cottage
+1 Restless Fortress
+1 Restless Vinestalk
+1 Hellion Crucible

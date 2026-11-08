@@ -1,0 +1,93 @@
+# Archidekt — A Monumental Secret
+# source: archidekt:9363812
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Oswald Fiddlebender
+
+Deck:
+1 Dawn's Truce
+1 Vesuva
+1 Bag of Holding
+1 Ichor Wellspring
+1 Darksteel Citadel
+1 Thespian's Stage
+1 Ancient Den
+1 Geier Reach Sanitarium
+1 Currency Converter
+1 Memory Jar
+1 Ash Barrens
+1 Secluded Steppe
+1 Ultron, Artificial Malevolence
+1 Esper Sentinel
+1 Urza's Cave
+1 Fomori Vault
+1 The Celestus
+1 Eiganjo, Seat of the Empire
+1 Demolition Field
+1 Patchwork Gnomes
+1 Splitskin Doll
+1 Mycosynth Wellspring
+1 Containment Construct
+1 Monument to Endurance
+1 Alhammarret's Archive
+1 Archaeomancer's Map
+1 Solemn Simulacrum
+1 Dispatch
+1 The Mycosynth Gardens
+1 Spectacular Pileup
+1 Monumental Henge
+16 Plains
+1 Expedition Map
+1 Abolish
+1 Angel of the Ruins
+1 Burst of Energy
+1 Manifold Key
+1 Argent Dais
+1 Adagia, Windswept Bastion
+1 Network Terminal
+1 Sliversmith
+1 Collector's Vault
+1 Wurmcoil Engine
+1 Thousand Moons Smithy // Barracks of the Thousand
+1 Sculpting Steel
+1 Tomb Trawler
+1 Drifting Meadow
+1 Prized Statue
+1 Vengeful Dreams
+1 Dauntless Scrapbot
+1 The Ten Rings
+1 Market Gnome
+1 Dusk Rose Reliquary
+1 Ecologist's Terrarium
+1 Inventors' Fair
+1 Urza's Saga
+1 The Mightstone and Weakstone
+1 Sonic Screwdriver
+1 Perilous Snare
+1 Deal Broker
+1 Matzalantli, the Great Door // The Core
+1 Smuggler's Copter
+1 The Queen of Dale
+1 Thrór's Map
+1 Buried Ruin
+1 Mistveil Plains
+1 Hourglass of the Lost
+1 Fabrication Foundry
+1 Conjurer's Bauble
+1 Gerrard's Hourglass Pendant
+1 Myr Retriever
+1 Scrap Trawler
+1 Unwinding Clock
+1 Illustrious Wanderglyph
+1 Sevinne's Reclamation
+1 Junk Diver
+1 White Auracite
+1 Restoration Magic
+1 Sanctum Gargoyle
+1 Servo Schematic
+1 Marvin, Murderous Mimic
+1 Desert of the True
+1 Murmuring Volume
+1 The Echoverse Fulcrum

@@ -1,0 +1,88 @@
+# Archidekt — Shark Shaman CEDH
+# source: archidekt:4949409
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Shabraz, the Skyshark
+1 Brallin, Skyshark Rider
+
+Deck:
+1 Wheel of Fortune
+1 Sensei's Divining Top
+1 Talisman of Progress
+1 Narset, Parter of Veils
+1 Mystical Tutor
+1 Enlightened Tutor
+1 Idyllic Tutor
+1 Blood Moon
+1 Underworld Breach
+1 Deflecting Swat
+1 Sacred Foundry
+1 Gitaxian Probe
+1 Imperial Recruiter
+1 Archivist of Oghma
+1 Aven Mindcensor
+1 Magus of the Wheel
+1 Glint-Horn Buccaneer
+1 Tireless Tribe
+1 Ranger-Captain of Eos
+1 Smothering Tithe
+1 Curiosity
+1 Rhystic Study
+1 Esper Sentinel
+1 Ophidian Eye
+1 Drannith Magistrate
+1 Talisman of Creativity
+1 Fellwar Stone
+1 Gamble
+1 Wheel of Misfortune
+1 Swords to Plowshares
+1 Steam Vents
+6 Mountain
+1 Ghostly Pilferer
+1 Mystic Remora
+1 Sol Ring
+1 Sevinne's Reclamation
+1 Ledger Shredder
+1 Frantic Search
+1 Dovin's Veto
+1 Thrill of Possibility
+1 Disallow
+1 Preordain
+1 Opt
+1 Muddle the Mixture
+1 An Offer You Can't Refuse
+1 Jeska's Will
+1 Grand Abolisher
+1 Brainstorm
+1 Negate
+1 Generous Gift
+1 Command Tower
+8 Plains
+1 Raugrin Triome
+1 Thassa's Oracle
+1 Open the Armory
+1 Windfall
+1 Hallowed Fountain
+1 Silence
+1 Fierce Guardianship
+1 Lotus Petal
+1 Blind Obedience
+1 Flooded Strand
+1 Arid Mesa
+1 Scalding Tarn
+1 Arcane Signet
+1 Brain Freeze
+1 Lion's Eye Diamond
+1 Mana Drain
+1 Cyclonic Rift
+1 Mana Vault
+1 Archon of Emeria
+1 The One Ring
+1 Force of Will
+1 Otawara, Soaring City
+9 Island
+1 Ancient Tomb
+1 Ragavan, Nimble Pilferer
+1 Ponder

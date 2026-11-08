@@ -1,0 +1,108 @@
+# Archidekt — Hold The Line
+# source: archidekt:5253514
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Council of Four
+
+Deck:
+1 Novice Knight
+1 Dub
+1 Hold the Gates
+1 Island
+1 Ethereal Armor
+1 Gate Colossus
+1 Azorius Guildgate
+1 Island
+1 Guardian of Faith
+1 Swords to Plowshares
+1 Herald of Hoofbeats
+1 Irrigated Farmland
+1 Baldur's Gate
+1 Citadel Gate
+1 Sea Gate
+1 Heap Gate
+1 Gond Gate
+1 Gateway Plaza
+1 Plains
+1 Silver Knight
+1 Azorius Charm
+1 Surge of Salvation
+1 Westfold Rider
+1 Call the Cavalry
+1 Minas Tirith
+1 Venerable Knight
+1 Shining Armor
+1 Herald's Horn
+1 Norn's Annex
+1 Vanquisher's Banner
+1 Sigiled Sword of Valeron
+1 Rally the Ranks
+1 The Circle of Loyalty
+1 Swiftfoot Boots
+1 Righteous Authority
+1 Heirloom Blade
+1 Prairie Stream
+1 Deserted Beach
+1 Azorius Locket
+1 Sol Ring
+1 Coastal Tower
+1 Honor of the Pure
+1 Holy Day
+1 Arcane Signet
+1 Wrath of God
+1 Mass Appeal
+1 Defiant Strike
+1 Opt
+1 Union of the Third Path
+1 Idyllic Beachfront
+1 Castle Vantress
+1 Commander's Sphere
+1 Memorial to Glory
+1 True Conviction
+1 Flowering of the White Tree
+1 Plate Armor
+1 Valorous Stance
+1 Path to Exile
+1 Moment of Valor
+1 Temple of Enlightenment
+1 Navigation Orb
+1 Rivendell
+1 Glacial Fortress
+1 Attended Knight
+1 Pristine Talisman
+1 Plaza of Harmony
+1 Castle Ardenvale
+1 Tranquil Cove
+1 Adarkar Wastes
+1 Azorius Chancery
+1 Plains
+1 Island
+1 Worthy Knight
+1 Fiendslayer Paladin
+1 Knights of Dol Amroth
+1 Basilisk Gate
+1 Court of Grace
+1 Akroma's Will
+1 Open the Armory
+1 Plains
+1 Plains
+1 White Shield Crusader
+1 Dauntless Bodyguard
+1 Cloud Crusader
+1 Plains
+1 Plains
+1 Gallant Cavalry
+1 Azorius Cluestone
+1 Azorius Signet
+1 Forebear's Blade
+1 Marshal of Zhalfir
+1 To Arms!
+1 Skycloud Expanse
+1 Knight Exemplar
+1 Protector of the Crown
+1 Holy Strength
+1 Command Tower
+1 Chivalric Alliance
+1 Disenchant

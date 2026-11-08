@@ -1,0 +1,88 @@
+# Archidekt — Krenko and the Goblin Horde
+# source: archidekt:17916164
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Krenko, Mob Boss
+
+Deck:
+1 Goblin Sharpshooter
+1 Goblin Matron
+1 Molten Gatekeeper
+1 Moria Marauder
+1 Ancient Tomb
+1 Lightning Bolt
+1 Gamble
+1 Sol Ring
+1 Torch Courier
+1 Deflecting Swat
+1 Urza's Saga
+1 Cavern of Souls
+1 Skullclamp
+1 General Kreat, the Boltbringer
+1 Howlsquad Heavy
+1 Siege-Gang Commander
+1 Ruby Medallion
+1 Goblin Motivator
+1 War Room
+1 Battle Hymn
+1 Rite of Flame
+1 Simian Spirit Guide
+1 Impact Tremors
+1 Goblin Lackey
+1 Brightstone Ritual
+1 Goblin Warchief
+1 Treasure Nabber
+1 Liquimetal Torque
+1 Swiftfoot Boots
+1 Scuzzback Scrounger
+1 Jeska's Will
+1 Pinnacle Monk // Mystic Peak
+1 Gemstone Caverns
+1 Pashalik Mons
+1 Goblin Chirurgeon
+1 Arcane Signet
+1 Three Tree City
+1 Hobgoblin Bandit Lord
+1 Goblin War Strike
+1 Goblin Trashmaster
+1 Goblin Bombardment
+1 Imperial Recruiter
+1 Chaos Warp
+1 Kiki-Jiki, Mirror Breaker
+1 Lightning Greaves
+1 Warren Torchmaster
+1 Goblin Chieftain
+1 Rundvelt Hordemaster
+1 Goblin Engineer
+1 Conspicuous Snoop
+1 Muxus, Goblin Grandee
+1 Goblin Ringleader
+1 Hexing Squelcher
+1 Goro-Goro, Disciple of Ryusei
+1 Goblin Piledriver
+1 Sundering Eruption // Volcanic Fissure
+1 Volley Veteran
+1 Goblin King
+1 Castle Embereth
+1 Arena of Glory
+1 Krenko, Tin Street Kingpin
+1 Diamond City
+1 Marvin, Murderous Mimic
+1 Crystal Vein
+1 Command Beacon
+1 Goblin Bushwhacker
+1 Battle Cry Goblin
+1 Valakut Awakening // Valakut Stoneforge
+1 Skirk Prospector
+1 Warren Instigator
+1 Shared Animosity
+1 Goblin Grenade
+1 Mass Hysteria
+21 Mountain
+1 Fountainport
+1 Last-Ditch Effort
+1 Lotus Petal
+1 Grenzo, Havoc Raiser
+1 Goblin Recruiter

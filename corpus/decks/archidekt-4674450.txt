@@ -1,0 +1,95 @@
+# Archidekt — Heliod Stax Ballista
+# source: archidekt:4674450
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Heliod, Sun-Crowned
+
+Deck:
+1 Mother of Runes
+1 Weathered Wayfarer
+1 Aven Mindcensor
+1 Land Tax
+1 Blast Zone
+1 Emergence Zone
+14 Plains
+1 Nykthos, Shrine to Nyx
+1 War Room
+1 Scavenger Grounds
+1 Grafdigger's Cage
+1 Enlightened Tutor
+1 Teferi's Protection
+1 Smothering Tithe
+1 Demolition Field
+1 Esper Sentinel
+1 Deafening Silence
+1 The One Ring
+1 Eidolon of Rhetoric
+1 The Mycosynth Gardens
+1 Giver of Runes
+1 Urza's Saga
+1 Linvala, Keeper of Silence
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Mana Vault
+1 Hall of Heliod's Generosity
+1 Buried Ruin
+1 Agatha's Soul Cauldron
+1 Monumental Henge
+1 Voice of Victory
+1 Mox Diamond
+1 Walking Ballista
+1 Surge of Salvation
+1 Archivist of Oghma
+1 Mox Opal
+1 March of Otherworldly Light
+1 Chrome Mox
+1 Lotus Petal
+1 Sol Ring
+1 Pearl Medallion
+1 Reprieve
+1 Path to Exile
+1 Drannith Magistrate
+1 Triskelion
+1 Solitude
+1 Touch the Spirit Realm
+1 Swords to Plowshares
+1 Silence
+1 Winds of Abandon
+1 Loran of the Third Path
+1 Rest in Peace
+1 Rule of Law
+1 Dauntless Dismantler
+1 Scrapyard Recombiner
+1 Grand Abolisher
+1 Ethersworn Canonist
+1 Ranger of Eos
+1 Ranger-Captain of Eos
+1 Recruiter of the Guard
+1 Serra Ascendant
+1 Calamity's Wake
+1 Blind Obedience
+1 Boromir, Warden of the Tower
+1 Archon of Emeria
+1 Phyrexian Censor
+1 Eiganjo, Seat of the Empire
+1 Luminarch Ascension
+1 Inventors' Fair
+1 Karn, the Great Creator
+1 Arcane Signet
+1 Grim Monolith
+1 Vexing Bauble
+1 Soulless Jailer
+1 City of Traitors
+1 Chalice of the Void
+1 Hushbringer
+1 Orim's Chant
+1 Cavern of Souls
+1 Trouble in Pairs
+1 Tataru Taru
+1 Sanctum Prelate
+1 Trinisphere
+1 Aven Interrupter
+1 Oswald Fiddlebender
+1 Starfield Shepherd

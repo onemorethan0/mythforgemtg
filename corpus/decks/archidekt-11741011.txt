@@ -1,0 +1,78 @@
+# Archidekt — The Very Hungry Kathril-pillar
+# source: archidekt:11741011
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kathril, Aspect Warper
+
+Deck:
+1 Nylea, Keen-Eyed
+1 Toski, Bearer of Secrets
+1 Dune Chanter
+1 Six
+1 Nyx Weaver
+1 Gutless Plunderer
+1 Acidic Slime
+1 Mire Triton
+1 Nightshade Dryad
+1 Deathbloom Gardener
+1 Umori, the Collector
+1 Birds of Paradise
+1 Silhana Starfletcher
+1 Enduring Vitality
+1 Faeburrow Elder
+1 Steward of Valeron
+1 Ornithopter of Paradise
+1 Sylvan Caryatid
+1 Mindwrack Harpy
+1 Nezumi Freewheeler // Hideous Fleshwheeler
+1 Grim Flayer
+1 Tomb Robber
+1 Angel of Suffering
+1 Splinterfright
+1 Rampant Frogantua
+1 Creepy Doll
+1 Kinjalli's Dawnrunner
+1 Queen's Agent
+1 Bounty Agent
+1 Loran of the Third Path
+1 Voracious Varmint
+1 Angel of the Ruins
+1 Noxious Gearhulk
+1 Osseous Sticktwister
+1 God-Eternal Oketra
+1 Murderous Rider // Swift End
+1 Nullhide Ferox
+1 Slippery Bogbonder
+1 Thrun, the Last Troll
+1 Blex, Vexing Pest // Search for Blex
+1 Old Stickfingers
+1 Avenging Druid
+1 Siege Striker
+1 Deeproot Wayfinder
+1 Deadeye Tracker
+1 Seeker of Sunlight
+1 Jadelight Spelunker
+1 Hermit Druid
+1 Kagha, Shadow Archdruid
+1 Satyr Wayfinder
+1 Sinister Starfish
+1 Shigeki, Jukai Visionary
+1 Accursed Marauder
+1 Cathar Commando
+1 Banisher Priest
+1 Reclamation Sage
+1 Caustic Caterpillar
+1 Fleshbag Marauder
+11 Plains
+1 Demon's Disciple
+1 Plaguecrafter
+12 Forest
+1 Indatha Triome
+1 Exotic Orchard
+1 Fabled Passage
+1 Swarmyard
+1 Evolving Wilds
+1 Terramorphic Expanse
+11 Swamp

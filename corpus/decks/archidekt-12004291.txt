@@ -1,0 +1,104 @@
+# Archidekt — Ureni dragon tribal
+# source: archidekt:12004291
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Ureni of the Unwritten
+
+Deck:
+1 Talisman of Creativity
+1 Temur Battlecrier
+1 Wild Growth
+1 Ganax, Astral Hunter
+1 Nature's Claim
+1 Hellkite Courser
+1 Wooded Foothills
+1 Breeding Pool
+1 Temur Ascendancy
+1 Path of Ancestry
+1 Haven of the Spirit Dragon
+1 Bonehoard Dracosaur
+1 Terror of the Peaks
+1 Urza's Incubator
+1 Shivan Reef
+1 Talisman of Impulse
+1 Scourge of Valkas
+1 Stomping Ground
+1 Old Gnawbone
+1 Dragon Tempest
+3 Mountain
+1 Exotic Orchard
+1 Arcane Signet
+1 Sol Ring
+1 Nature's Lore
+1 Utvara Hellkite
+1 Rhythm of the Wild
+1 Birds of Paradise
+1 Rockfall Vale
+1 Dreamroot Cascade
+1 Goldspan Dragon
+1 An Offer You Can't Refuse
+1 Karplusan Forest
+1 Farseek
+1 Frostcliff Siege
+1 Sarkhan, Soul Aflame
+1 Yavimaya Coast
+1 Kiora, Behemoth Beckoner
+1 Lightning Greaves
+1 Ancient Copper Dragon
+1 Three Visits
+1 Ancient Silver Dragon
+1 Blast-Furnace Hellkite
+1 Aggravated Assault
+1 Worldly Tutor
+1 Goldlust Triad
+1 Maelstrom of the Spirit Dragon
+1 Fellwar Stone
+1 Parapet Thrasher
+1 Selvala, Heart of the Wilds
+1 Dragonhawk, Fate's Tempest
+1 Twinflame Tyrant
+1 City of Brass
+1 Steely Resolve
+1 Swan Song
+1 Deceptive Frostkite
+1 Arena of Glory
+1 Broodcaller Scourge
+1 Rejuvenating Springs
+1 Marang River Regent // Coil and Catch
+1 Spire Garden
+1 Overpowering Attack
+1 Dragonspeaker Shaman
+1 Boseiju, Who Endures
+1 The One Ring
+1 Command Tower
+1 Disciple of Freyalise // Garden of Freyalise
+1 Horizon of Progress
+1 Klauth, Unrivaled Ancient
+1 Delighted Halfling
+1 Misty Rainforest
+1 Cyclonic Rift
+1 Island
+1 Scalding Tarn
+1 Steam Vents
+1 Mana Confluence
+1 Cavern of Souls
+1 Training Center
+1 Bloom Tender
+1 Iymrith, Desert Doom
+1 Ketria Triome
+1 Fanatic of Rhonas
+1 Roaming Throne
+1 Stubborn Denial
+1 Reflecting Pool
+1 Sylvan Library
+1 Smuggler's Surprise
+1 Miirym, Sentinel Wyrm
+1 Dragonborn Champion
+1 Smaug the Magnificent
+1 World War Hulk
+1 Lathliss, Dragon Queen
+3 Forest
+1 Commercial District
+1 Bonders' Enclave

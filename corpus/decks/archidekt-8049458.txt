@@ -1,0 +1,94 @@
+# Archidekt — Neyith/Princess Mononoke
+# source: archidekt:8049458
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Neyith of the Dire Hunt
+
+Deck:
+1 Skarrg, the Rage Pits
+1 Unnatural Growth
+1 End-Raze Forerunners
+1 Emerald Medallion
+1 Mass Hysteria
+1 Wolfir Silverheart
+1 Command Tower
+1 Blighted Woodland
+1 Lightning Mauler
+1 Stomping Ground
+1 Mwonvuli Acid-Moss
+1 Ambush Wolf
+1 Hide in Plain Sight
+1 Leaping Ambush
+1 Dawntreader Elk
+1 Decimator of the Provinces
+1 Beast Within
+1 Kodama's Reach
+1 Rhythm of the Wild
+1 Shared Summons
+1 Silverback Elder
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Unclaimed Territory
+1 Contagious Vorrac
+1 Ilharg, the Raze-Boar
+1 Sunset Strikemaster
+1 Grove of the Burnwillows
+1 Forest
+1 Verdant Outrider
+1 Lightning Bolt
+1 Kogla, the Titan Ape
+1 Endurance
+1 Rolling Earthquake
+1 Bounding Wolf
+1 Stampede Surfer
+1 Smuggler's Surprise
+1 Regrowth
+1 Hollowhenge Overlord
+1 Werewolf Pack Leader
+1 Hall of the Bandit Lord
+1 Elemental Bond
+1 Rishkar's Expertise
+1 Unnatural Moonrise
+1 Tooth and Nail
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Hanweir Battlements
+1 Arena of Glory
+1 Kessig Wolf Run
+1 Castle Embereth
+1 Castle Garenbrig
+1 Cemetery Prowler
+1 Social Climber
+1 Dawnglade Regent
+1 Nessian Boar
+1 Legion Loyalist
+1 Channeler Initiate
+1 Nature's Claim
+1 Kogla and Yidaro
+1 Ignite the Future
+1 Kenrith's Transformation
+1 Stump Stomp // Burnwillow Clearing
+1 Elvish Herder
+1 Tribute to the World Tree
+1 Humble Defector
+1 Ascendant Packleader
+1 Smellerbee, Rebel Fighter
+1 Ironhoof Boar
+1 Defense of the Heart
+1 Bejeweled Warg
+1 Blessed Respite
+1 Summon: Fenrir
+1 Wargling
+1 Rockfall Vale
+1 Tangled Florahedron // Tangled Vale
+1 Torgal, A Fine Hound
+1 Watchful Radstag
+1 Fog
+1 Herd Heirloom
+1 Fire-Lit Thicket
+1 Karplusan Forest
+1 Copperline Gorge
+1 Trickster's Elk
+1 Ancient Grudge
+11 Forest
+5 Mountain

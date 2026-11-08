@@ -1,0 +1,100 @@
+# WotC precon — Family Matters (BLC, 2024-08-02)
+# source: mtgjson:FamilyMatters_BLC
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Combat Celebrant + Helm of the Host; Bracket 2 allows none
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Zinnia, Valley's Voice
+
+Deck:
+1 Adarkar Wastes
+1 Aether Channeler
+1 Aetherize
+1 Agate Instigator
+1 Angel of the Ruins
+1 Arcane Signet
+1 Arthur, Marigold Knight
+1 Azorius Signet
+1 Battlefield Forge
+1 Bident of Thassa
+1 Blade Splicer
+1 Boros Signet
+1 Boss's Chauffeur
+1 Calamity of Cinders
+1 Cascade Bluffs
+1 Castle Ardenvale
+1 Chart a Course
+1 Circuit Mender
+1 Clifftop Retreat
+1 Cloudblazer
+1 Combat Celebrant
+1 Command Tower
+1 Curiosity Crafter
+1 Cut a Deal
+1 Devilish Valet
+1 Dusk // Dawn
+1 Echoing Assault
+1 Elspeth, Sun's Champion
+1 Evolving Wilds
+1 Exotic Orchard
+1 Fellwar Stone
+1 Ferrous Lake
+1 Fortune Teller's Talent
+1 Glacial Fortress
+1 Hanged Executioner
+1 Helm of the Host
+1 Illusory Ambusher
+1 Inferno Titan
+1 Inspiring Overseer
+4 Island
+1 Izzet Signet
+1 Jacked Rabbit
+1 Jazal Goldmane
+1 Junk Winder
+1 Loyal Warhound
+1 Luminous Broodmoth
+1 Martial Coup
+1 Mind Stone
+4 Mountain
+1 Murmuration
+1 Mystic Monastery
+1 Ornithopter of Paradise
+1 Path of Ancestry
+1 Path to Exile
+5 Plains
+1 Plumecreed Escort
+1 Pollywog Prodigy
+1 Pull from Tomorrow
+1 Rapid Augmenter
+1 Rapid Hybridization
+1 Restoration Angel
+1 Rose Room Treasurer
+1 Rowdy Research
+1 Rugged Prairie
+1 Seachrome Coast
+1 Selfless Spirit
+1 Shield Broker
+1 Shivan Reef
+1 Siege-Gang Commander
+1 Skyclave Apparition
+1 Skycloud Expanse
+1 Sol Ring
+1 Solemn Simulacrum
+1 Spirited Companion
+1 Stolen by the Fae
+1 Storm of Souls
+1 Sulfur Falls
+1 Sun Titan
+1 Sunscorched Divide
+1 Temple of Enlightenment
+1 Temple of Epiphany
+1 Temple of Triumph
+1 Terramorphic Expanse
+1 Tetsuko Umezawa, Fugitive
+1 Thopter Engineer
+1 Thriving Bluff
+1 Thriving Heath
+1 Thriving Isle
+1 Time Wipe

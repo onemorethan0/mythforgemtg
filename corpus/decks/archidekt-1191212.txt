@@ -1,0 +1,108 @@
+# Archidekt — Queen Kong
+# source: archidekt:1191212
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Queen Marchesa
+
+Deck:
+1 Dauthi Voidwalker
+1 Rakdos Charm
+1 Generous Gift
+1 Smothering Tithe
+1 Underworld Breach
+1 Sunforger
+1 Talisman of Hierarchy
+1 Talisman of Conviction
+1 Grand Abolisher
+1 Reforge the Soul
+1 Sevinne's Reclamation
+1 Stoneforge Mystic
+1 Imperial Recruiter
+1 Tymna the Weaver
+1 Scheming Symmetry
+1 Luxury Suite
+1 Teferi's Protection
+1 Esper Sentinel
+1 Savai Triome
+1 Magda, Brazen Outlaw
+1 Mother of Runes
+1 Sword of Hearth and Home
+1 Eiganjo, Seat of the Empire
+1 Sword of Fire and Ice
+1 Fellwar Stone
+1 Path to Exile
+1 Grim Hireling
+1 Forbidden Orchard
+1 Sulfurous Springs
+1 Professional Face-Breaker
+1 Charismatic Conqueror
+1 Ragavan, Nimble Pilferer
+1 City of Brass
+1 Exotic Orchard
+1 Talisman of Indulgence
+1 Marsh Flats
+1 Aven Interrupter
+1 Arid Mesa
+1 Enlightened Tutor
+1 Boros Charm
+1 Akroma's Will
+1 Swords to Plowshares
+1 Farewell
+1 Mana Confluence
+1 Shinka, the Bloodsoaked Keep
+1 Shizo, Death's Storehouse
+1 Sacred Foundry
+1 Godless Shrine
+1 Blood Crypt
+1 Vault of Champions
+1 Spectator Seating
+1 Battlefield Forge
+1 Maze of Ith
+1 Caves of Koilos
+1 Shadowspear
+1 Land Tax
+1 Dark Ritual
+1 Silent Clearing
+1 Kambal, Consul of Allocation
+1 Hanweir Battlements
+1 Sol Ring
+1 Deflecting Swat
+1 Mangara, the Diplomat
+1 Sword of Feast and Famine
+1 Aggravated Assault
+1 Inkshield
+1 Serra Ascendant
+1 Anguished Unmaking
+1 Skullclamp
+1 Command Tower
+1 Valakut Awakening // Valakut Stoneforge
+1 Orcish Bowmasters
+1 Sunbaked Canyon
+1 Tibalt's Trickery
+1 Fighter Class
+1 Arcane Signet
+1 Breena, the Demagogue
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Lotho, Corrupt Shirriff
+1 Bloodstained Mire
+1 Weathered Wayfarer
+1 Generous Plunderer
+1 Swamp
+1 Return the Favor
+1 Cut // Ribbons
+1 Twinflame
+1 Mountain
+1 Mountain
+1 Plains
+1 Plains
+1 Swamp
+1 Ephemerate
+1 Mayhem Devil
+1 Demonic Tutor
+1 Baeloth Barrityl, Entertainer
+1 Swamp
+1 Plains
+1 Mountain
+1 Dualcaster Mage

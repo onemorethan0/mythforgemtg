@@ -1,7 +1,8 @@
 # Archidekt — Chunky
 # source: archidekt:24785648
 # fetched: 2026-07-28
-# bracket: 3
+# bracket_claimed: 3
+# label_audit: fails the official Bracket 3 gates: 4 Game Changers (Gaea's Cradle, Jeska's Will, The One Ring, Underworld Breach); Bracket 3 allows 3
 
 Commander:
 1 Etali, Primal Conqueror // Etali, Primal Sickness

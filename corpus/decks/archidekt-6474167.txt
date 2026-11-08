@@ -1,0 +1,100 @@
+# Archidekt — Goad Goats
+# source: archidekt:6474167
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kitt Kanto, Mayhem Diva
+
+Deck:
+1 Arid Mesa
+1 Branchloft Pathway // Boulderloft Pathway
+1 Cragcrown Pathway // Timbercrown Pathway
+1 Flamekin Village
+1 Hall of the Bandit Lord
+1 Krosan Verge
+1 Needleverge Pathway // Pillarverge Pathway
+1 Plateau
+1 Savannah
+1 Spectator Seating
+1 Spire Garden
+1 Taiga
+1 Windswept Heath
+1 Austere Command
+1 Mirror Entity
+1 Nobilis of War
+1 Landscaper Colos
+1 Pathbreaker Ibex
+1 Rumor Gatherer
+1 Retribution of the Meek
+1 Animal Sanctuary
+1 Access Tunnel
+1 Creeperhulk
+1 Ohran Frostfang
+1 Canopy Vista
+1 Jetmir's Garden
+1 Lush Portico
+1 Sacred Peaks
+1 Radiant Grove
+1 Trading Post
+1 Geode Rager
+1 Gigantomancer
+1 Crested Craghorn
+1 Caprichrome
+1 Komainu Battle Armor
+1 Wild Colos
+1 Subira, Tulzidi Caravanner
+1 Vengeful Ancestor
+1 Generous Gift
+1 Dusk // Dawn
+1 Beast Within
+1 Solar Tide
+1 Command Tower
+1 Balefire Liege
+1 Privileged Position
+1 Marisi, Breaker of the Coil
+1 Zodiac Goat
+1 Tribal Forcemage
+5 Plains
+1 Pit of Offerings
+4 Mountain
+1 Scavenger Grounds
+1 Elegant Parlor
+1 Mob Justice
+1 Sidar Kondo of Jamuraa
+1 Mountain Goat
+1 Grenzo, Havoc Raiser
+1 Break Through the Line
+1 Nelly Borca, Impulsive Accuser
+1 Agitator Ant
+1 Scattered Groves
+1 Bothersome Quasit
+1 Sacred Foundry
+1 Springjack Pasture
+1 Sontaran General
+2 Forest
+1 Stomping Ground
+1 Temple Garden
+1 Sandsower
+1 Diversionary Tactics
+1 Capricopian
+1 Baeloth Barrityl, Entertainer
+1 Colos Yearling
+1 Glare of Subdual
+1 Harmonize
+1 Tocasia's Welcome
+1 Norn's Wellspring
+1 Discerning Financier
+1 Possessed Goat
+1 Four Knocks
+1 Master of Ceremonies
+1 Secret Rendezvous
+1 Prosperous Partnership
+1 Battering Craghorn
+1 Park Bleater
+1 Springjack Shepherd
+1 Stormwild Capridor
+1 Taurean Mauler
+1 Thriving Ibex
+1 Frantic Scapegoat
+1 Flopsie, Bumi's Buddy

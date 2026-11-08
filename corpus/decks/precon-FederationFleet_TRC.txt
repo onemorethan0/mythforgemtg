@@ -1,0 +1,99 @@
+# WotC precon — Federation Fleet (TRC, 2026-11-13)
+# source: mtgjson:FederationFleet_TRC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Jean-Luc Picard, Luminary
+
+Deck:
+1 Abrade
+1 Alhammarret's Archive
+1 Ambassador K'Ehleyr
+1 Arcane Signet
+1 B'Elanna Torres, Scrapper
+1 Battlefield Forge
+1 Beverly Crusher, Ship's Doctor
+1 Captain Janeway, Endgame
+1 Chain Reaction
+1 Chief Miles O'Brien
+1 Chronomantic Escape
+1 Clifftop Retreat
+1 Cmdr. Troi, Outgoing Empath
+1 Coastal Peak
+1 Command Beacon
+1 Command Tower
+1 Commander William Riker
+1 Commander's Sphere
+1 Cryptic Command
+1 Data, Exploring Humanity
+1 Desolate Lighthouse
+1 Dr. Pulaski, Cynical Clinician
+1 Ensign Harry Kim, Operations
+1 Evolving Wilds
+1 Exotic Orchard
+1 Ezri Dax, Newly Joined
+1 Fabled Passage
+1 Faithful Mending
+1 Fevered Visions
+1 Fractured Identity
+1 Frantic Search
+1 Frostboil Snarl
+1 Furycalm Snarl
+1 Geordi La Forge, Innovator
+1 Glacial Fortress
+1 Glittering Massif
+1 Grand Crescendo
+1 Guinan, Ancient Advisor
+1 Hedron Archive
+1 Howling Mine
+1 Irrigated Farmland
+5 Island
+1 Julian Bashir, Frontier Doctor
+1 Kes, Evolving Telepath
+1 Loran of the Third Path
+1 Malfunctioning Holodeck
+1 Mind Stone
+4 Mountain
+1 Mystic Monastery
+1 Negate
+1 On the Shoulders of Giants
+1 Path of Ancestry
+1 Perilous Landscape
+4 Plains
+1 Pongify
+1 Port Town
+1 Prairie Stream
+1 Promise of Loyalty
+1 Radiant Summit
+1 Reg Barclay, Fidgety Fantasist
+1 Reliquary Tower
+1 Ro Laren, Double Agent
+1 Rom and Leeta, Unlikely Pair
+1 Scorched Geyser
+1 Seven of Nine, Tertiary Adjunct
+1 Sol Ring
+1 Spot, Felis catus
+1 Stonespeaker Crystal
+1 Sulfur Falls
+1 Supreme Verdict
+1 Swords to Plowshares
+1 Talisman of Conviction
+1 Talisman of Creativity
+1 Talisman of Progress
+1 Temporal Tribulation
+1 Terramorphic Expanse
+1 Thought Vessel
+1 Thrill of Possibility
+1 Tom Paris, Risk-Taker
+1 Training Center
+1 Tuvok, Chief Tactical Officer
+1 U.S.S. Defiant, Tough Little Ship
+1 U.S.S. Enterprise-C, Time-Tossed
+1 U.S.S. Enterprise-E, Sovereign
+1 U.S.S. Prometheus, Prototype
+1 U.S.S. Stargazer, Here and There
+1 Unification
+1 Vic Fontaine, One Night Only
+1 Worf, Son of Mogh

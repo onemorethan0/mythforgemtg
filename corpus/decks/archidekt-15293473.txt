@@ -1,0 +1,90 @@
+# Archidekt — Role-Playing Deck
+# source: archidekt:15293473
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Travel the Overworld
+1 Critical Hit
+1 Overkill
+1 Combat Tutorial
+1 Random Encounter
+1 Adventurer's Inn
+1 Capital City
+1 Battle Menu
+1 Crossroads Village
+1 Item Shopkeep
+1 Sidequest: Card Collection // Magicked Card
+1 Sidequest: Catch a Fish // Cooking Campsite
+1 Sidequest: Hunt the Mark // Yiazmat, Ultimate Mark
+1 Town Greeter
+1 Weapons Vendor
+1 World Map
+1 Guadosalam, Farplane Gateway
+1 Gongaga, Reactor Town
+1 Gohn, Town of Ruin
+1 Insomnia, Crown City
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Baron, Airship Kingdom
+1 Rabanastre, Royal City
+1 Sharlayan, Nation of Scholars
+1 Treno, Dark City
+1 Windurst, Federation Center
+1 Vector, Imperial Capital
+1 Barbarian Class
+1 +2 Mace
+1 Bag of Holding
+1 Choose Your Weapon
+1 Treasure Chest
+1 Delver's Torch
+1 Dungeon Map
+1 Fifty Feet of Rope
+1 Grim Wanderer
+1 High Market
+1 Leather Armor
+1 Mimic
+1 Monk Class
+1 Paladin Class
+1 Ranger Class
+1 Pixie Guide
+1 Potion of Healing
+1 Split the Party
+1 You Come to a River
+1 You Come to the Gnoll Camp
+1 You Find a Cursed Idol
+1 You Find the Villains' Lair
+1 You Find Some Prisoners
+1 Warlock Class
+1 You Hear Something on Watch
+1 You Meet in a Tavern
+1 You're Ambushed on the Road
+1 You See a Guard Approach
+1 You See a Pair of Goblins
+1 You Happen On a Glade
+1 Veteran Dungeoneer
+1 Triumphant Adventurer
+1 Eccentric Apprentice
+1 Wandering Troubadour
+1 Secret Door
+1 Intrepid Outlander
+1 Midnight Pathlighter
+1 Shortcut Seeker
+1 Aberrant Mind Sorcerer
+1 Djinni Windseer
+1 Hoarding Ogre
+1 Loathsome Troll
+1 Swarming Goblins
+1 Nadaar, Selfless Paladin
+1 Chaos Dragon
+1 Sefris of the Hidden Ways
+1 Varis, Silverymoon Ranger
+1 Barrowin of Clan Undurr
+1 Zodiark, Umbral God
+6 Plains
+7 Island
+4 Swamp
+3 Mountain
+3 Forest

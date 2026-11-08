@@ -1,0 +1,98 @@
+# Archidekt — Gev, Scaled Scorch
+# source: archidekt:8806057
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Gev, Scaled Scorch
+
+Deck:
+1 Bontu's Monument
+1 Imp's Mischief
+1 Lotus Petal
+1 Jeska's Will
+1 Hexing Squelcher
+1 Eventide's Shadow
+1 Ragavan, Nimble Pilferer
+7 Mountain
+1 Blazemire Verge
+1 The Reaver Cleaver
+1 Sulfurous Springs
+1 Starting Town
+1 Samut, Hazoret's Champion
+1 Sinister Gnarlbark
+1 Bebop, Skull & Crossbones
+1 Return the Favor
+1 Savanti Romero, Time's Exile
+1 Sanctum of Stone Fangs
+1 Ingris Stingerquill
+1 Ajani's Anguish
+1 Hall of Echoes
+1 Rise of the Deathbringer
+1 Mindclaw Shaman
+5 Swamp
+1 Scales of Shale
+1 Florian, Voldaren Scion
+1 Rakdos, Lord of Riots
+1 Smoldering Marsh
+1 Bojuka Bog
+1 Command Tower
+1 Dragonskull Summit
+1 Creeping Bloodsucker
+1 Rakdos, Patron of Chaos
+1 Casey Jones, Back Alley Brute
+1 Bedevil
+1 Fell the Profane // Fell Mire
+1 Dagger Caster
+1 Thundering Raiju
+1 Bonehoard Dracosaur
+1 Ruby Medallion
+1 Lightning Greaves
+1 K'rrik, Son of Yawgmoth
+1 Neheb, the Eternal
+1 Stormfist Crusader
+1 Vandalblast
+1 Party Thrasher
+1 Grab the Prize
+1 Bloodletter of Aclazotz
+1 Uncivil Unrest
+1 Blackcleave Cliffs
+1 Haunted Ridge
+1 Mount Doom
+1 Bloodstained Mire
+1 Beseech the Mirror
+1 Alesha, Who Laughs at Fate
+1 All Will Be One
+1 Bolas's Citadel
+1 Mardu Shadowspear
+1 The Red Terror
+1 Rakdos Charm
+1 Leechridden Swamp
+1 Blightstep Pathway // Searstep Pathway
+1 Karn's Bastion
+1 Whisper of the Dross
+1 Baeloth Barrityl, Entertainer
+1 Sundering Eruption // Volcanic Fissure
+1 Arena of Glory
+1 Shizo, Death's Storehouse
+1 Shinka, the Bloodsoaked Keep
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Minas Morgul, Dark Fortress
+1 War Elemental
+1 Fire Covenant
+1 Malakir Rebirth // Malakir Mire
+1 Reverberate
+1 Black Market Connections
+1 Massacre Wurm
+1 Scrawling Crawler
+1 Karlach, Fury of Avernus
+1 Faithless Looting
+1 Connecting the Dots
+1 Disciple of Bolas
+1 Rabid Attack
+1 Terror of the Peaks
+1 Blood Crypt
+1 Whip of Erebos
+1 Untimely Malfunction
+1 Frenzied Gorespawn
+1 Descent into Avernus

@@ -1,0 +1,109 @@
+# Archidekt — Legends of the Multiverse 🔮
+# source: archidekt:7336042
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Fierce Guardianship); Bracket 1 allows 0; two-card infinite combo Najeela, the Blade-Blossom + Selvala, Heart of the Wilds; Bracket 1 allows none
+
+Commander:
+1 Sisay, Weatherlight Captain
+
+Deck:
+1 Abstergo Entertainment
+1 Black Panther, Wakandan King
+1 Galadriel, Light of Valinor
+1 Yggdrasil, Rebirth Engine
+1 Bojuka Bog
+1 Into the Time Vortex
+1 Selvala, Heart of the Wilds
+1 Call Forth the Tempest
+1 Let the Galaxy Burn
+1 Throes of Chaos
+1 The Ozolith
+1 Fling
+1 Ellie and Alan, Paleontologists
+1 Gimli of the Glittering Caves
+1 Havi, the All-Father
+1 Immard, the Stormcleaver
+1 Lotho, Corrupt Shirriff
+1 Malik, Grim Manipulator
+1 Najeela, the Blade-Blossom
+1 Senu, Keen-Eyed Protector
+1 Soundwave, Sonic Spy // Soundwave, Superior Captain
+1 Gisa's Favorite Shovel
+1 Excalibur, Sword of Eden
+1 Passionate Archaeologist
+1 Atla Palani, Nest Tender
+1 Arcane Sanctum
+1 Arcane Signet
+1 Assassin's Trophy
+1 Baldur's Gate
+1 Black Dragon Gate
+1 Chromatic Lantern
+1 Citadel Gate
+1 Cliffgate
+1 Command Tower
+1 Commander's Sphere
+1 Crumbling Necropolis
+1 Dreamroot Cascade
+1 Exotic Orchard
+1 Fatal Push
+1 Frontier Bivouac
+1 Gond Gate
+1 Great Hall of the Citadel
+1 Basim Ibn Ishaq
+1 Go for the Throat
+1 By Force
+1 Heroes' Podium
+1 Brotherhood Regalia
+1 Haystack
+1 Bard Class
+1 Caduceus, Staff of Hermes
+1 Manor Gate
+1 Mystic Monastery
+1 Nomad Outpost
+1 Path of Ancestry
+1 Path to Exile
+1 Plaza of Heroes
+1 Prairie Stream
+1 Jegantha, the Wellspring
+1 Sea Gate
+1 Seaside Citadel
+1 Laelia, the Blade Reforged
+1 Skycloud Expanse
+1 Sol Ring
+1 Swords to Plowshares
+1 Temple of Enlightenment
+1 Temple of Plenty
+1 Temple of Triumph
+1 Panharmonicon
+1 Swiftfoot Boots
+1 Legolas Greenleaf
+1 Permission Denied
+1 The Fourth Doctor
+1 Éowyn, Fearless Knight
+1 The Grey Havens
+1 Thriving Bluff
+1 Thriving Heath
+1 Thriving Isle
+1 The Day of the Doctor
+1 Whispersilk Cloak
+1 Dynaheir, Invoker Adept
+1 The Animus
+1 Rings of Brighthearth
+1 Boromir, Warden of the Tower
+1 Jodah, the Unifier
+1 Talon Gates of Madara
+1 Island
+1 Forest
+1 Plains
+1 Mountain
+1 Swamp
+1 Robe of the Archmagi
+1 Minsc & Boo, Timeless Heroes
+1 The Sixth Doctor
+1 The War Doctor
+1 Desynchronization
+1 Fierce Guardianship
+1 Crystal Skull, Isu Spyglass
+1 Overpowering Attack
+1 Reverse the Polarity

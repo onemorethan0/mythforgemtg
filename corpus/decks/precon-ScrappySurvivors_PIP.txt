@@ -1,0 +1,100 @@
+# WotC precon — Scrappy Survivors (PIP, 2024-03-08)
+# source: mtgjson:ScrappySurvivors_PIP
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Dogmeat, Ever Loyal
+
+Deck:
+1 Abundant Growth
+1 Acquired Mutation
+1 Agility Bobblehead
+1 All That Glitters
+1 Almost Perfect
+1 Animal Friend
+1 Arcane Signet
+1 Armory Paladin
+1 Ash Barrens
+1 Basilisk Collar
+1 Behemoth Sledge
+1 Bighorner Rancher
+1 Blasphemous Act
+1 Bloodforged Battle-Axe
+1 Brass Knuckles
+1 Break Down
+1 Brotherhood Outcast
+1 Buried Ruin
+1 Cait, Cage Brawler
+1 Canopy Vista
+1 Cass, Hand of Vengeance
+1 Champion's Helm
+1 Chaos Warp
+1 Cinder Glade
+1 Clifftop Retreat
+1 Codsworth, Handy Helper
+1 Command Tower
+1 Commander Sofia Daguerre
+1 Crimson Caravaneer
+1 Duchess, Wayward Tavernkeep
+1 Evolving Wilds
+1 Exotic Orchard
+1 Explorer's Scope
+1 Fertile Ground
+1 Fireshrieker
+4 Forest
+1 Grim Reaper's Sprint
+1 Gunner Conscript
+1 Heroic Intervention
+1 Ian the Reckless
+1 Idolized
+1 Inventory Management
+1 Jungle Shrine
+1 Junk Jet
+1 Junktown
+1 Mantle of the Ancients
+1 Masterwork of Ingenuity
+1 Megaton's Fate
+1 Mister Gutsy
+1 Moira Brown, Guide Author
+1 Mossfire Valley
+4 Mountain
+1 Path of Ancestry
+1 Path to Exile
+1 Perception Bobblehead
+1 Pip-Boy 3000
+4 Plains
+1 Pre-War Formalwear
+1 Preston Garvey, Minuteman
+1 Puresteel Paladin
+1 Rancor
+1 Roadside Reliquary
+1 Rogue's Passage
+1 Rootbound Crag
+1 Scattered Groves
+1 Scavenger Grounds
+1 Sheltered Thicket
+1 Silver Shroud Costume
+1 Single Combat
+1 Sol Ring
+1 Squirrel Nest
+1 Sticky Fingers
+1 Strong Back
+1 Sungrass Prairie
+1 Sunpetal Grove
+1 Sunscorched Divide
+1 Super Mutant Scavenger
+1 Swiftfoot Boots
+1 Temple of Abandon
+1 Temple of Plenty
+1 Temple of Triumph
+1 Temple of the False God
+1 Terramorphic Expanse
+1 Three Dog, Galaxy News DJ
+1 Valorous Stance
+1 Vault 101: Birthday Party
+1 Vault 21: House Gambit
+1 Veronica, Dissident Scribe
+1 Well Rested
+1 Wild Growth

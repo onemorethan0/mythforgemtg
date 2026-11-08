@@ -1,0 +1,105 @@
+# Archidekt — Peter Parker
+# source: archidekt:15667889
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Farewell); Bracket 2 allows 0
+
+Commander:
+1 Peter Parker // Amazing Spider-Man
+
+Deck:
+1 Adagia, Windswept Bastion
+1 Akroma's Memorial
+1 Amateur Hero
+1 Arcane Signet
+1 Aunt May
+1 Avacyn, Angel of Hope
+1 Avacyn's Memorial
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Bountiful Promenade
+1 Breeding Pool
+1 Canopy Vista
+1 Command Tower
+1 Counterspell
+1 Cultivate
+1 Daily Bugle Building
+1 Deserted Beach
+1 Dreamroot Cascade
+1 Exotic Orchard
+1 Farseek
+1 Flooded Strand
+1 Flowering of the White Tree
+3 Forest
+1 Future Flight
+1 Galadriel, Light of Valinor
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Hinterland Harbor
+1 Inga and Esika
+1 Iron Spider, Stark Upgrade
+1 Kodama's Reach
+1 Lightning Greaves
+1 Lyla, Holographic Assistant
+1 Misty Rainforest
+1 Multiversal Passage
+1 Overgrown Farmland
+1 Path to Exile
+3 Plains
+1 Prairie Stream
+1 Rejuvenating Springs
+1 Relic of Legends
+1 Reliquary Tower
+1 Sea of Clouds
+1 Seaside Citadel
+1 Sensational Spider-Man
+1 Sol Ring
+1 SP//dr, Piloted by Peni
+1 Spara's Headquarters
+1 Spectacular Spider-Man
+1 Spider-Ham, Peter Porker
+1 Spider-Man 2099, Miguel O'Hara
+1 Spider-Man India
+1 Spider-Man, Brooklyn Visionary
+1 Spider-Man, Miles Morales
+1 Spider-Man, Peter Parker
+1 Spider-Man, Web-Slinger
+1 Sunpetal Grove
+1 Swarmyard
+1 Swords to Plowshares
+1 Temple Garden
+1 Urza's Ruinous Blast
+1 Uthros, Titanic Godcore
+1 Venom Blast
+1 Windswept Heath
+3 Island
+1 Springleaf Drum
+1 Negate
+1 Beast Within
+1 Birds of Paradise
+1 Farewell
+1 Cryptolith Rite
+1 Koma, Cosmos Serpent
+1 Ghalta and Mavren
+1 Ghalta, Stampede Tyrant
+1 Origin of Spider-Man
+1 Amazing Alliance
+1 The Clone Saga
+1 With Great Power . . .
+1 Primal Vigor
+1 Guy in the Chair
+1 Anti-Venom, Horrifying Healer
+1 Enduring Vitality
+1 Nature's Lore
+1 Spider-Sense
+1 Spider-UK
+1 Arachnogenesis
+1 Alchemax Slayer-Bots
+1 Spider-Byte, Web Warden
+1 Spiders-Man, Heroic Horde
+1 Heroes' Podium
+1 Heroic Intervention
+1 Elven Chorus
+1 Prowler, Misguided Mentor
+1 Spider-Girl, Legacy Hero
+1 Silk, Web Weaver
+1 Absolute Virtue

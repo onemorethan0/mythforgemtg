@@ -1,0 +1,102 @@
+# Archidekt — Sonic Heroes
+# source: archidekt:14130161
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Sonic the Hedgehog
+
+Deck:
+1 Return the Favor
+1 Ty Lee, Chi Blocker
+1 Spiteful Banditry
+1 Talisman of Progress
+1 Sicarian Infiltrator
+1 The Indomitable
+1 Talisman of Creativity
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Sink into Stupor // Soporific Springs
+1 Starting Town
+1 Unexpected Windfall
+1 Fiery Islet
+1 Skitterbeam Battalion
+1 Kilo, Apogee Mind
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Captain Lannery Storm
+1 Diamond Pick-Axe
+1 Gingerbrute
+1 Bomat Courier
+1 Clockwork Percussionist
+1 Red Herring
+1 Bessie, the Doctor's Roadster
+1 Reckoner Bankbuster
+1 Liberator, Urza's Battlethopter
+1 Gastal Thrillroller
+1 Jackdaw
+1 Smuggler's Copter
+1 Razortide Bridge
+1 Command Tower
+1 Great Furnace
+1 Ancient Den
+1 Mechanized Production
+1 Rustvale Bridge
+1 Seat of the Synod
+1 Silverbluff Bridge
+1 Razorgrass Ambush // Razorgrass Field
+1 Valakut Awakening // Valakut Stoneforge
+1 Path to Exile
+1 Shadowspear
+1 Spire of Industry
+1 Amy Rose
+1 Super State
+1 Weatherlight
+1 Fabricate
+1 Open the Armory
+1 Generous Gift
+1 Caltrops
+1 Swiftfoot Boots
+1 Lightning Greaves
+1 Sol Ring
+1 Knuckles the Echidna
+1 Miles "Tails" Prower
+6 Mountain
+1 Plains
+2 Island
+1 Hammer of Nazahn
+1 The Reaver Cleaver
+1 Glimmervoid
+1 Mistrise Village
+1 Masako the Humorless
+1 Dispatch
+1 Iron Man, Titan of Innovation
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Battlefield Forge
+1 Rabbit Battery
+1 Talisman of Conviction
+1 Kabira Takedown // Kabira Plateau
+1 Assimilation Aegis
+1 Thopter Spy Network
+1 Arcane Signet
+1 Adarkar Wastes
+1 Shivan Reef
+1 Research Thief
+1 Beamtown Beatstick
+1 The Belligerent
+1 Jaws, Relentless Predator
+1 Otawara, Soaring City
+1 Eiganjo, Seat of the Empire
+1 Cascade Bluffs
+1 Rugged Prairie
+1 Perilous Snare
+1 Guardian of Faith
+1 Riverglide Pathway // Lavaglide Pathway
+1 Spirebluff Canal
+1 Inspiring Vantage
+1 Sunbaked Canyon
+1 Faerie Mastermind
+1 Raugrin Triome
+1 Mithril Coat
+1 Akroma's Will
+1 Jeska's Will
+1 Sarpadian Simulacrum
+1 Smaug the Magnificent

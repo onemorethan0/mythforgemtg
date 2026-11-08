@@ -1,0 +1,85 @@
+# Archidekt — Braids, Conjurer of Chaos
+# source: archidekt:3622508
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Braids, Conjurer Adept
+
+Deck:
+1 Sapphire Medallion
+1 Vanishing
+1 Leyline of Anticipation
+1 Lonely Sandbar
+1 Isochron Scepter
+1 Arcane Signet
+1 Sky Diamond
+1 Stunt Double
+1 Force of Will
+1 Fatespinner
+1 Jin-Gitaxias, Progress Tyrant
+1 Fellwar Stone
+1 Mocking Doppelganger
+1 Dramatic Reversal
+1 Sakashima's Will
+1 Stormtide Leviathan
+1 Archetype of Imagination
+1 Sol Ring
+1 Thought Vessel
+1 Nyx Lotus
+1 Aetherize
+1 Myriad Landscape
+1 Reliquary Tower
+1 Arcanis the Omnipotent
+1 Clever Impersonator
+1 Phantasmal Image
+1 Phyrexian Metamorph
+1 Omniscience
+1 Sphinx of the Second Sun
+1 Agent of Treachery
+1 Hullbreaker Horror
+1 Jin-Gitaxias, Core Augur
+1 Caged Sun
+24 Island
+1 Halimar Depths
+1 Riptide Laboratory
+1 Kira, Great Glass-Spinner
+1 Treasure Mage
+1 Arcane Denial
+1 Field of Ruin
+1 Brainstorm
+1 Disallow
+1 Azami, Lady of Scrolls
+1 Ancient Silver Dragon
+1 The Magic Mirror
+1 Rite of Replication
+1 Defiler of Dreams
+1 Fierce Guardianship
+1 Crashing Drawbridge
+1 Mystic Sanctuary
+1 Sakashima's Student
+1 Scourge of Fleets
+1 Cyclonic Rift
+1 Tribute Mage
+1 Flare of Denial
+1 Bribery
+1 Mind Stone
+1 Snap
+1 Chromatic Orrery
+1 Lightning Greaves
+1 Consecrated Sphinx
+1 Fabricate
+1 Rhystic Study
+1 Mystical Tutor
+1 Chimil, the Inner Sun
+1 Mana Drain
+1 Imprisoned in the Moon
+1 Theoretical Duplication
+1 Otawara, Soaring City
+1 Gitaxian Probe
+1 Reality Shift
+1 Pact of Negation
+1 Tidespout Tyrant
+1 Platinum Emperion
+1 Blightsteel Colossus
+1 Counterspell

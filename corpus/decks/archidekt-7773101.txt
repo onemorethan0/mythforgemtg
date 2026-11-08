@@ -1,0 +1,101 @@
+# Archidekt — Ezio, Brotherhood Mentor
+# source: archidekt:7773101
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Ezio Auditore da Firenze
+
+Deck:
+1 Bleeding Effect
+1 Ramses, Assassin Lord
+1 Abstergo Entertainment
+1 Olivia, Opulent Outlaw
+1 Mari, the Killing Quill
+1 Queen Marchesa
+1 Kelsien, the Plague
+1 Arcane Sanctum
+1 Black Market Connections
+1 Reconnaissance
+1 Island
+1 Arcane Signet
+1 Evolving Wilds
+1 Opulent Palace
+1 Crumbling Necropolis
+1 Smoke Bomb
+1 Auditore Ambush
+1 Become Anonymous
+1 Viewpoint Synchronization
+1 Hidden Blade
+1 Desynchronization
+1 Chain Assassination
+1 Eagle Vision
+1 Ezio, Blade of Vengeance
+1 Brotherhood Regalia
+1 Forest
+1 Nomad Outpost
+1 Sandsteppe Citadel
+1 Vraska Joins Up
+1 Savage Lands
+1 Command Tower
+1 Royal Assassin
+1 Cover of Darkness
+1 Brotherhood Headquarters
+1 Mountain
+1 Achilles Davenport
+1 Secluded Courtyard
+1 Terramorphic Expanse
+1 Coastal Piracy
+1 Whispersilk Cloak
+1 Path of Ancestry
+1 Sol Ring
+1 Etrata, Deadly Fugitive
+1 Exotic Orchard
+1 Farseek
+1 Edward Kenway
+1 Arno Dorian
+1 Path to Exile
+1 Fellwar Stone
+1 Massacre Girl, Known Killer
+1 Tainted Isle
+1 Silent Clearing
+1 Waterlogged Grove
+1 Nurturing Peatland
+1 Distract the Guards
+1 Fiery Islet
+1 Chromatic Lantern
+1 Etrata, the Silencer
+1 Sunbaked Canyon
+1 Discreet Retreat
+1 Vihaan, Goldwaker
+1 Mask of Riddles
+1 Reconnaissance Mission
+1 Hidden Footblade
+1 Lightning Greaves
+1 Plains
+1 Firdoch Core
+1 Phyrexian Arena
+1 Combustion Man
+1 Thriving Heath
+1 Kindred Dominance
+1 Haystack
+1 Evie Frye
+1 Desmond Miles
+1 Lydia Frye
+1 Massacre Girl
+1 Layla Hassan
+1 Thriving Bluff
+1 Thriving Moor
+1 Thriving Isle
+7 Swamp
+1 Great Hall of the Citadel
+1 Aya of Alexandria
+1 Basim Ibn Ishaq
+1 Jacob Frye
+1 Kindred Judgment
+1 Restart Sequence
+1 Brotherhood Spy
+1 Vraska, the Cutting Glare
+1 Viper, Cruel Conspirator
+1 At Knifepoint
+1 Bayek of Siwa

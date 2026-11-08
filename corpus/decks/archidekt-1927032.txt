@@ -1,0 +1,90 @@
+# Archidekt — EVERYONE HAS A PLAN 'TILL THEY GET PUNCHED IN THE MOUTH - TYSON
+# source: archidekt:1927032
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sythis, Harvest's Hand
+
+Deck:
+1 Wild Growth
+1 Angel's Grace
+1 Paladin Class
+1 Llanowar Elves
+1 Meticulous Excavation
+1 Crop Rotation
+1 Serra's Sanctum
+1 Whip Silk
+1 Gaea's Cradle
+1 Verdant Catacombs
+1 Brightglass Gearhulk
+1 Windswept Heath
+1 Aura Shards
+1 Eladamri's Call
+1 Sterling Grove
+1 Flickering Ward
+1 Rest in Peace
+1 On Thin Ice
+1 Delighted Halfling
+1 Exploration
+1 Fertile Ground
+1 Savannah
+1 Argothian Enchantress
+1 Sanctum Weaver
+1 Revelation
+1 Concordant Crossroads
+1 Elvish Mystic
+1 Avacyn's Pilgrim
+1 Esper Sentinel
+1 Fyndhorn Elves
+1 Earthcraft
+1 Boseiju, Who Endures
+1 Carpet of Flowers
+1 Prismatic Vista
+1 Allosaurus Shepherd
+1 Birds of Paradise
+1 Destiny Spinner
+1 Grand Abolisher
+1 Seedcradle Witch
+1 Utopia Sprawl
+1 Sylvan Library
+1 Wolfwillow Haven
+1 Arid Mesa
+1 Bountiful Promenade
+1 Flooded Strand
+1 Command Tower
+1 Misty Rainforest
+1 Temple Garden
+1 Sunpetal Grove
+1 Blind Obedience
+1 Wooded Foothills
+1 Gleaming Splendor
+1 Sowing Mycospawn
+1 Orim's Chant
+1 Silence
+1 Seedtime
+1 Once Upon a Time
+1 Legolas's Quick Reflexes
+1 Nature's Chosen
+1 Elvish Spirit Guide
+1 Enlightened Tutor
+1 Lotus Petal
+1 Chrome Mox
+12 Forest
+5 Plains
+1 Shimmerwilds Growth
+1 Arbor Elf
+1 Ancestral Mask
+1 Serra Ascendant
+1 Mox Diamond
+1 Oath of Nissa
+1 Mirri's Guile
+1 Instill Energy
+1 Noxious Revival
+1 Slumbering Keepguard
+1 Mox Amber
+1 Hidden Gibbons
+1 Burgeoning
+1 Gemstone Caverns
+1 Worldly Tutor
+1 Multani's Harmony

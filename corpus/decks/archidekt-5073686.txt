@@ -1,0 +1,107 @@
+# Archidekt — Tymna and Halana - Hulk
+# source: archidekt:5073686
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Halana, Kessig Ranger
+1 Tymna the Weaver
+
+Deck:
+1 Assassin's Trophy
+1 Boseiju, Who Endures
+1 Chord of Calling
+1 Elves of Deep Shadow
+1 Entomb
+1 Gaea's Cradle
+1 Gemstone Caverns
+1 Misty Rainforest
+1 Esper Sentinel
+1 Finale of Devastation
+1 Flooded Strand
+1 Overgrown Tomb
+1 Pattern of Rebirth
+1 Ranger-Captain of Eos
+1 Temple Garden
+1 Undergrowth Stadium
+1 Verdant Catacombs
+1 Windswept Heath
+1 Worldly Tutor
+1 Boromir, Warden of the Tower
+1 Priest of Fell Rites
+1 Buried Alive
+1 Chrome Mox
+1 Grand Abolisher
+1 Viscera Seer
+1 Mana Vault
+1 Llanowar Elves
+1 Ancient Tomb
+1 Carrion Feeder
+1 Eladamri's Call
+1 Eldritch Evolution
+1 Abrupt Decay
+1 Diabolic Intent
+1 City of Brass
+1 Command Tower
+1 Dark Ritual
+1 Deathrite Shaman
+1 Demonic Tutor
+1 Academy Rector
+1 Necromancy
+1 Lotho, Corrupt Shirriff
+1 Lotus Petal
+1 Voice of Victory
+1 Birds of Paradise
+1 Opposition Agent
+1 Silence
+1 Orcish Bowmasters
+1 Wooded Foothills
+1 Survival of the Fittest
+1 Polluted Delta
+1 Collector Ouphe
+1 Scrubland
+1 Reanimate
+1 Marsh Flats
+1 Phyrexian Tower
+1 Delighted Halfling
+1 Protean Hulk
+1 Bloodstained Mire
+1 Mox Diamond
+1 Godless Shrine
+1 Enlightened Tutor
+1 Nature's Rhythm
+1 Vampiric Tutor
+1 Elvish Spirit Guide
+1 Cauldron Familiar
+1 Crop Rotation
+1 Sol Ring
+1 Samwise Gamgee
+1 Avacyn's Pilgrim
+1 Natural Order
+1 Badgermole Cub
+1 Culling Ritual
+1 Lazotep Quarry
+1 Drannith Magistrate
+1 Forsaken Miner
+1 Bloom Tender
+1 Shifting Woodland
+1 Allosaurus Shepherd
+1 Imperial Seal
+1 Dina's Guidance
+1 Chain of Smog
+1 Exotic Orchard
+1 Sylvan Safekeeper
+1 Underground Mortuary
+1 Warren Soultrader
+1 Gollum, Patient Plotter
+1 Legolas's Quick Reflexes
+1 Starting Town
+1 Bayou
+1 Vengeful Bloodwitch
+1 Animate Dead
+1 Swords to Plowshares
+1 Witherbloom Apprentice
+1 Veil of Summer
+1 Savannah
+1 Lively Dirge
+1 Culling the Weak

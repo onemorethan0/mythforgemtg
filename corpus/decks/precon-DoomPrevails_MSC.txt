@@ -1,0 +1,97 @@
+# WotC precon — Doom Prevails (MSC, 2026-06-26)
+# source: mtgjson:DoomPrevails_MSC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Doctor Doom, King of Latveria
+
+Deck:
+1 Abomination, World Ravager
+1 Age of Ultron
+1 Arcane Signet
+1 Archnemesis
+1 Baron Strucker, HYDRA Overlord
+1 Batroc the Leaper
+1 Bedevil
+1 Black Market Connections
+1 Blasphemous Act
+1 Canyon Slough
+1 Chameleon, Master of Disguise
+1 Chaos Warp
+1 Choked Estuary
+1 Coastal Peak
+1 Command Tower
+1 Containment Construct
+1 Crumbling Necropolis
+1 Currency Converter
+1 Damocles Base, Sword of Kang
+1 Doom's Time Platform
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Endless Ranks of HYDRA
+1 Exotic Orchard
+1 Extract Power
+1 Fetid Pools
+1 Foreboding Ruins
+1 Frostboil Snarl
+1 Glorious Purpose
+1 Helmut Zemo, Mastermind
+1 Iron Monger, Sadistic Tycoon
+4 Island
+1 Kang Dynasty
+1 Kang Prime
+1 Kang, Temporal Tyrant
+1 Killmonger, Ruthless Usurper
+1 Kindred Dominance
+1 Klaw, Master of Sound
+1 Lady Loki, Agent of Chaos
+1 Lethal Scheme
+1 Living Laser
+1 Loki's Scepter
+1 Loki, the Deceiver
+1 Luxury Suite
+1 Madame Hydra
+1 Molecule Man
+1 Moonstone, Harsh Mistress
+5 Mountain
+1 Night's Whisper
+1 Patchwork Banner
+1 Path of Ancestry
+1 Progenitor's Icon
+1 Propaganda
+1 Prowler, Clawed Thief
+1 Puppet Master, String Puller
+1 Red Ghost, Intangible Genius
+1 Scavenger Grounds
+1 Scorched Geyser
+1 Secluded Courtyard
+1 Skullclamp
+1 Smoldering Marsh
+1 Sol Ring
+1 Spark Double
+1 Stilt-Man, Towering Terror
+1 Sulfur Falls
+1 Sunken Hollow
+1 Superior Foes of Spider-Man
+6 Swamp
+1 Swiftfoot Boots
+1 Syphon Mind
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Terminate
+1 Terramorphic Expanse
+1 The Frightful Four
+1 The Squadron Sinister
+1 Titan of Littjara
+1 Titania, Proud Pummeler
+1 Tombstone, Career Criminal
+1 Toxic Deluge
+1 Tri-Sentinel, Act of Vengeance
+1 Typhoid Mary, Fractured
+1 Ultron, Unlimited
+1 Unclaimed Territory
+1 Vandalblast
+1 Villainous Hideout
+1 Withering Torment

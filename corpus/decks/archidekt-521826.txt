@@ -1,0 +1,100 @@
+# Archidekt — PwLvL 7.5 Elfball
+# source: archidekt:521826
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Edric, Spymaster of Trest
+
+Deck:
+1 Cavern of Souls
+1 Allosaurus Shepherd
+1 Concordant Crossroads
+1 Beast Whisperer
+1 Elvish Warmaster
+1 Elvish Champion
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Yavimaya, Cradle of Growth
+1 Ezuri, Renegade Leader
+1 Craterhoof Behemoth
+1 Elvish Archdruid
+1 Metallic Mimic
+1 Door of Destinies
+1 Yavimaya Coast
+1 Joraga Warcaller
+1 Marwyn, the Nurturer
+1 Adaptive Automaton
+1 Elvish Harbinger
+1 Wirewood Lodge
+1 Imperious Perfect
+1 Krosan Grip
+1 Barkchannel Pathway // Tidechannel Pathway
+1 Stroke of Genius
+1 Fabled Passage
+1 Oakhame Adversary
+1 Elven Ambush
+1 Triumph of the Hordes
+1 Elvish Mystic
+1 Silverback Elder
+1 Leaf-Crowned Visionary
+1 Tribute to the World Tree
+1 Guardian Project
+1 Joraga Treespeaker
+1 Boseiju, Who Endures
+1 Hinterland Harbor
+1 Priest of Titania
+1 Pull from Tomorrow
+1 Cyclonic Rift
+1 Heroic Intervention
+1 Botanical Sanctum
+1 Windswept Heath
+1 Sol Ring
+1 Breeding Pool
+1 Alchemist's Refuge
+1 Tropical Island
+1 Ponder
+1 Incubation Druid
+1 Finale of Devastation
+1 Waterlogged Grove
+1 Talisman of Curiosity
+1 Veil of Summer
+1 Seedborn Muse
+1 Oko, Thief of Crowns
+1 Bloom Tender
+1 Birds of Paradise
+1 Sylvan Tutor
+4 Forest
+6 Island
+1 Intruder Alarm
+1 Command Tower
+1 Reclamation Sage
+1 Brainstorm
+1 Rejuvenating Springs
+1 Misty Rainforest
+1 Fyndhorn Elves
+1 Arcane Signet
+1 Selvala, Heart of the Wilds
+1 Coat of Arms
+1 Eladamri, Lord of Leaves
+1 Raise the Palisade
+1 Arwen, Weaver of Hope
+1 Galadhrim Ambush
+1 Windswift Slice
+1 Lothlórien Blade
+1 Haldir, Lórien Lieutenant
+1 Cultivate
+1 Kodama's Reach
+1 Heritage Druid
+1 Eternal Witness
+1 Kindred Discovery
+1 Realmwalker
+1 Herald's Horn
+1 Vanquisher's Banner
+1 Distant Melody
+1 Vineglimmer Snarl
+1 Canopy Gargantuan
+1 Three Tree City
+1 Eladamri, Korvecdal
+1 Dionus, Elvish Archdruid
+1 Chronicle of Victory
+1 Nykthos, Shrine to Nyx

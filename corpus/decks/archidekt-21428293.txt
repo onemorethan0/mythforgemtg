@@ -1,0 +1,109 @@
+# Archidekt — Auntie Ool only in this house party beatdown
+# source: archidekt:21428293
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Ancient Tomb, Chrome Mox); Bracket 1 allows 0
+
+Commander:
+1 Auntie Ool, Cursewretch
+
+Deck:
+1 Feign Death
+1 Grasping Dunes
+1 Persistent Constrictor
+1 Ancient Tomb
+1 Tibalt's Trickery
+1 Persist
+1 Carnifex Demon
+1 Village Pillagers
+1 Spitting Dilophosaurus
+1 Dread Tiller
+1 Eventide's Shadow
+1 Dusk Urchins
+1 Arcane Signet
+1 Command Tower
+1 Blowfly Infestation
+1 Oft-Nabbed Goat
+1 Contagion Engine
+1 Skinrender
+1 Incremental Blight
+1 Grim Poppet
+1 Aberrant Return
+1 Black Sun's Zenith
+1 Serrated Biskelion
+1 Overgrown Tomb
+1 Verdant Catacombs
+1 Undergrowth Stadium
+1 Raucous Theater
+1 Underground Mortuary
+1 Bloodsoaked Insight // Sanguine Morass
+1 City of Brass
+1 Boggart Ram-Gang
+1 Attempted Murder
+1 Obelisk Spider
+1 Defiant Greatmaw
+1 Undying Malice
+1 Redirect Lightning
+1 Chaos Warp
+1 Turbulent Fen
+1 Moonshadow
+1 Bile-Vial Boggart
+1 Dawnhand Dissident
+1 Bogslither's Embrace
+1 Tarnished Citadel
+1 Bristlebane Battler
+1 Shadow Urchin
+1 Scuzzback Scrounger
+1 Chrome Mox
+1 Mana Crypt
+1 Sol Ring
+1 Blighted Blackthorn
+1 Darkness Descends
+1 Massacre Girl, Known Killer
+1 Deflecting Swat
+1 Bloodstained Mire
+1 Bayou
+1 Blood Crypt
+1 Badlands
+1 Mana Confluence
+1 Reflecting Pool
+1 Haunted Ridge
+1 Luxury Suite
+1 Exotic Orchard
+1 Scuzzback Scrapper
+1 Soul Immolation
+1 Torment of Venom
+1 Malakir Rebirth // Malakir Mire
+1 Nesting Grounds
+1 Urza's Saga
+1 Ziatora's Proving Ground
+1 Karn's Bastion
+1 Plaza of Heroes
+1 Champion of the Weird
+1 Chaos Spewer
+1 Grub, Storied Matriarch // Grub, Notorious Auntie
+1 Heirloom Auntie
+1 Blight Rot
+1 Sting-Slinger
+1 Soul Snuffers
+1 Rustrazor Butcher
+1 Sinister Gnarlbark
+1 The Scorpion God
+1 Mountain
+1 Swamp
+1 Urborg, Tomb of Yawgmoth
+1 Ifnir Deadlands
+1 Lasting Tarfire
+1 Sulfurous Springs
+1 Starting Town
+1 Multiversal Passage
+1 Taiga
+1 Llanowar Wastes
+1 Talisman of Resilience
+1 Talisman of Indulgence
+1 This Is How It Ends
+1 Descent into Avernus
+1 The Walls of Ba Sing Se
+1 Imp's Mischief
+1 Fellwar Stone
+1 Dark Ritual

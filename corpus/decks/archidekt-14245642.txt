@@ -1,0 +1,96 @@
+# Archidekt — Atraxa / Stolas Control (cEDH)
+# source: archidekt:14245642
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Atraxa, Grand Unifier
+
+Deck:
+1 Teferi, Time Raveler
+1 Arcane Signet
+1 Sol Ring
+1 Rhystic Study
+1 Turnabout
+1 Cyclonic Rift
+1 Elesh Norn, Mother of Machines
+1 Omniscience
+1 Hallowed Fountain
+1 Mistrise Village
+1 Urza's Saga
+1 Chromatic Lantern
+1 Mana Drain
+1 Fierce Guardianship
+1 Stasis
+1 Mana Vault
+1 Dark Ritual
+1 Jin-Gitaxias, Core Augur
+1 Temple Garden
+1 Godless Shrine
+1 Show and Tell
+1 Overgrown Tomb
+1 Watery Grave
+1 Sylvan Library
+1 Breeding Pool
+1 Command Beacon
+1 Opposition Agent
+1 Thassa's Oracle
+1 Demonic Consultation
+1 Polluted Delta
+1 Force of Negation
+1 Narset, Parter of Veils
+1 Worldly Tutor
+1 Demonic Tutor
+1 Lotus Petal
+1 Bolas's Citadel
+1 Chrome Mox
+1 Displacer Kitten
+1 Fellwar Stone
+1 Force of Will
+1 Avacyn's Pilgrim
+1 Consecrated Sphinx
+1 Angel's Grace
+1 Enlightened Tutor
+1 Mystical Tutor
+1 Drannith Magistrate
+1 Mystic Remora
+1 Grand Arbiter Augustin IV
+1 Concordant Crossroads
+1 Ephemerate
+1 Essence Flux
+1 Esper Sentinel
+1 Crop Rotation
+1 Gitaxian Probe
+1 Scholar of the Ages
+1 Mental Misstep
+1 Food Chain
+1 Wood Elves
+4 Island
+4 Forest
+4 Swamp
+1 Marsh Flats
+1 Path to Exile
+1 Windfall
+1 Brainstorm
+1 Misty Rainforest
+1 Command Tower
+1 Exotic Orchard
+1 Cloudshift
+1 Birds of Paradise
+1 Papalymo Totolymo
+1 Tamiyo's Safekeeping
+1 Krosan Grip
+1 Nature's Claim
+1 Toby, Beastie Befriender
+1 Thought Vessel
+1 Fyndhorn Elves
+1 Noble Hierarch
+1 Regrowth
+4 Plains
+1 Disfigure
+1 Index
+1 Sensei's Divining Top
+1 Pact of Negation
+1 Panharmonicon
+1 Eternal Scourge
+1 Swan Song

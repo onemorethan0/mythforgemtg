@@ -1,0 +1,108 @@
+# Archidekt — Sauron
+# source: archidekt:4734773
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Sauron, the Dark Lord
+
+Deck:
+1 Isengard Unleashed
+1 Nazgûl
+1 Lord of the Nazgûl
+1 Sauron, Lord of the Rings
+1 The Black Gate
+1 Sunken Hollow
+1 Sulfurous Springs
+1 Sulfur Falls
+1 Smoldering Marsh
+1 Rogue's Passage
+1 Path of Ancestry
+1 Mountain
+1 Treasure Nabber
+1 Worn Powerstone
+1 Sol Ring
+1 Field of Ruin
+1 Drowned Catacomb
+1 Dragonskull Summit
+1 Crumbling Necropolis
+1 Command Tower
+1 Frostboil Snarl
+1 Foreboding Ruins
+1 Fact or Fiction
+1 Consider
+1 Living Death
+1 Feed the Swarm
+1 Decree of Pain
+1 Commander's Sphere
+1 Choked Estuary
+1 Summons of Saruman
+1 In the Darkness Bind Them
+1 Orcish Siegemaster
+1 Moria Scavenger
+1 Saruman, the White Hand
+1 Too Greedily, Too Deep
+1 Shelob, Dread Weaver
+1 Wake the Dragon
+1 Blasphemous Act
+1 The Balrog of Moria
+1 Relic of Sauron
+1 Arcane Signet
+1 Barad-dûr
+1 Sauron, the Necromancer
+1 Ringsight
+1 Sauron's Ransom
+1 Spiteful Banditry
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Warg Rider
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Witch-king of Angmar
+1 Mauhúr, Uruk-hai Captain
+1 Witch-king, Sky Scourge
+1 Call Forth the Tempest
+1 Mordor on the March
+1 Minas Morgul, Dark Fortress
+1 Ringwraiths
+1 Fell Beast of Mordor
+1 Rising of the Day
+1 Call of the Ring
+1 Island
+1 Gothmog, Morgul Lieutenant
+1 Swamp
+1 Troll of Khazad-dûm
+1 Mines of Moria
+1 Goblin-town
+1 Chromatic Lantern
+1 Ash Barrens
+1 Troop of Ponies
+1 Oliphaunt
+1 March from the Black Gate
+1 Cast into the Fire
+1 Gríma, Saruman's Footman
+1 Nazgûl Battle-Mace
+1 The Great Goblin
+1 Scroll of Isildur
+1 Anger
+1 Assault on Osgiliath
+1 Mind Stone
+1 Thrill of Possibility
+1 Deep Analysis
+1 Mountain
+1 Mountain
+1 Swamp
+1 Island
+1 Island
+1 Swamp
+1 Swamp
+1 Island
+1 Swamp
+1 Swamp
+1 Mountain
+1 Mountain
+1 Swamp

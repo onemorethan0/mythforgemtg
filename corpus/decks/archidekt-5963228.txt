@@ -1,0 +1,108 @@
+# Archidekt — dragons
+# source: archidekt:5963228
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Morophon, the Boundless
+
+Deck:
+1 Boseiju, Who Endures
+1 Force of Will
+1 Tiamat
+1 Ancient Brass Dragon
+1 Smothering Tithe
+1 Fist of Suns
+1 Worldly Tutor
+1 Forbidden Orchard
+1 Deflecting Swat
+1 Last Chance
+1 Mana Drain
+1 Sylvan Library
+1 Imperial Seal
+1 Chrome Mox
+1 Sylvan Tutor
+1 Sensei's Divining Top
+1 Enlightened Tutor
+1 Terror of the Peaks
+1 Demonic Tutor
+1 The Ur-Dragon
+1 Old Gnawbone
+1 Ancient Silver Dragon
+1 Cavern of Souls
+1 Exotic Orchard
+1 Vampiric Tutor
+1 Cyclonic Rift
+1 Mana Confluence
+1 Polluted Delta
+1 Bloodstained Mire
+1 Flooded Strand
+1 Twinflame Tyrant
+1 Ugin's Binding
+1 Sol Ring
+1 The One Ring
+1 Pact of Negation
+1 Miirym, Sentinel Wyrm
+1 Blood Crypt
+1 Watery Grave
+1 Steam Vents
+1 Sacred Foundry
+1 Temple Garden
+1 Godless Shrine
+1 Breeding Pool
+1 Hallowed Fountain
+1 Gemstone Caverns
+1 Overgrown Tomb
+1 Stomping Ground
+1 Urza's Saga
+1 Force of Negation
+1 Fierce Guardianship
+1 Birds of Paradise
+1 Arcane Signet
+1 City of Brass
+1 Leyline of Mutation
+1 Wooded Foothills
+1 Windswept Heath
+1 Mystic Remora
+1 The Theorist, Jace Beleren
+1 Arid Mesa
+1 Marsh Flats
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Rhystic Study
+1 Tataru Taru
+1 Mox Opal
+1 Reflecting Pool
+1 Bloom Tender
+1 Ancient Tomb
+1 Mana Vault
+1 Lotus Petal
+1 Swan Song
+1 Dark Ritual
+1 Jeska's Will
+1 Wan Shi Tong, Librarian
+1 Vivi Ornitier
+1 Mystical Tutor
+1 Ancient Copper Dragon
+1 Dark Confidant
+1 Sheoldred, the Apocalypse
+1 Finale of Devastation
+1 Grand Abolisher
+1 Dauthi Voidwalker
+1 Command Tower
+1 Opposition Agent
+1 Thassa's Oracle
+1 Tainted Pact
+1 Enduring Tenacity
+1 Exquisite Blood
+1 Bloodthirsty Conqueror
+1 Drannith Magistrate
+1 Necropotence
+1 Gleaming Splendor
+1 Birthing Pod
+1 Orcish Bowmasters
+1 Assassin's Trophy
+1 Vito, Thorn of the Dusk Rose
+1 Esper Sentinel
+1 Eldrazi Temple

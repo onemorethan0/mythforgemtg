@@ -1,0 +1,96 @@
+# Archidekt — Nazgul, Pure LotR Deck
+# source: archidekt:4744420
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Lord of the Nazgûl
+
+Deck:
+1 Ash Barrens
+1 Rivendell
+1 Bojuka Bog
+1 Call of the Ring
+1 Rangers of Ithilien
+1 Cavern of Souls
+1 Arcane Denial
+1 Urborg
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Barad-dûr
+1 Choked Estuary
+1 Claim the Precious
+1 Commander's Sphere
+1 Command Tower
+1 Decree of Pain
+1 Devastation Tide
+1 Drowned Catacomb
+1 Evolving Wilds
+1 Exotic Orchard
+1 Feed the Swarm
+1 Field of Ruin
+1 Ghost Quarter
+1 Go for the Throat
+1 Gríma, Saruman's Footman
+1 Inherited Envelope
+1 Languish
+1 Lightning Greaves
+1 Mystic Confluence
+1 Night's Whisper
+1 Path of Ancestry
+1 Raise the Palisade
+1 Reanimate
+1 Ringsight
+1 Ringwraiths
+1 Sauron's Ransom
+1 Sauron, the Necromancer
+1 Secluded Courtyard
+1 Shadow of the Enemy
+1 Sol Ring
+1 Sunken Hollow
+1 Terramorphic Expanse
+1 The Black Gate
+1 Thought Vessel
+1 Toxic Deluge
+1 Underground River
+1 Vanquisher's Banner
+1 Witch-king, Bringer of Ruin
+1 Witch-king of Angmar
+1 Worn Powerstone
+7 Island
+7 Swamp
+1 Shire Terrace
+1 Consider
+1 Opt
+1 Sword of the Animist
+1 Sword of Hearth and Home
+1 Swan Song
+1 Minas Morgul, Dark Fortress
+1 Fell Beast of Mordor
+1 Rogue's Passage
+1 Nazgûl Battle-Mace
+1 Andúril, Narsil Reforged
+1 Mirkwood Bats
+1 Arcane Signet
+1 Slip Out the Back
+1 Imp's Mischief
+1 Riddles in the Dark
+1 Defile
+1 Read the Bones
+1 Dread Return
+1 Curiosity
+1 Orcrist, Goblin-cleaver
+1 Inside Information
+1 Contentious Plan
+1 Arcane Heist
+1 Plumb the Forbidden
+1 Windfall
+1 Solve the Equation
+1 Diabolic Intent

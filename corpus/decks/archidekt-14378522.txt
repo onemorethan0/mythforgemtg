@@ -1,0 +1,98 @@
+# Archidekt — Xavier Sal, Fun Guy
+# source: archidekt:14378522
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Xavier Sal, Infested Captain
+
+Deck:
+1 Sporogenesis
+1 Eaten Alive
+1 Expand the Sphere
+1 Hero's Downfall
+1 Hinterland Harbor
+1 Overflowing Basin
+1 Strangled Cemetery
+1 Botanical Sanctum
+1 Vineglimmer Snarl
+1 Dreamroot Cascade
+1 Woodland Cemetery
+1 Shipwreck Marsh
+1 Blooming Marsh
+1 Llanowar Reborn
+1 Path of Ancestry
+1 Slimefoot, the Stowaway
+1 Rot Shambler
+1 Cryptolith Rite
+1 Vampiric Rites
+1 Terror
+1 Village Rites
+1 Shamanic Revelation
+1 Staff of Compleation
+1 Fecundity
+1 Aphetto Alchemist
+1 Cankerbloom
+1 Thallid Shell-Dweller
+1 Winding Constrictor
+1 Ezuri, Stalker of Spheres
+1 Nemata, Primeval Warden
+1 Brightcap Badger // Fungus Frolic
+1 Tekuthal, Inquiry Dominus
+1 Skullclamp
+1 Tendershoot Dryad
+1 Essence Capture
+1 Intruder Alarm
+1 Mazirek, Kraul Death Priest
+1 Command Tower
+1 Necroblossom Snarl
+1 Evolving Wilds
+6 Forest
+1 Terramorphic Expanse
+3 Island
+4 Swamp
+1 Replicating Ring
+1 Everflowing Chalice
+1 Tukatongue Thallid
+1 Wild Growth
+1 Ice Tunnel
+1 Temple of Malady
+1 Temple of Mystery
+1 Reliquary Tower
+1 Castle Garenbrig
+1 Darkmoss Bridge
+1 Karn's Bastion
+1 Temple of Deceit
+1 Instill Energy
+1 Cultivate
+1 Undercellar Myconid
+1 Inexorable Tide
+1 Vorel of the Hull Clade
+1 Binding the Old Gods
+1 Fuel for the Cause
+1 Dread Return
+1 Black Sun's Zenith
+1 Curse of Bounty
+1 Body Count
+1 Scavenging Ooze
+1 Infectious Inquiry
+1 Damnable Pact
+1 Gobbling Ooze
+1 Astral Cornucopia
+1 Roaming Throne
+1 Unnatural Restoration
+1 Atomize
+1 Carnivorous Canopy
+1 Sylvan Anthem
+1 Thallid
+1 Deathspore Thallid
+1 Psychotrope Thallid
+1 Utopia Mycon
+1 Elvish Farmer
+1 Vitaspore Thallid
+1 Sporoloth Ancient
+1 Sporesower Thallid
+1 Thallid Germinator
+1 Savage Thallid
+1 Mycoloth
+1 Thallid Soothsayer

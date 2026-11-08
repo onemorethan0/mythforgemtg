@@ -1,0 +1,95 @@
+# Archidekt — Cdeh Druid ball
+# source: archidekt:3204764
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Seton, Krosan Protector
+
+Deck:
+1 Kogla, the Titan Ape
+1 Hope Tender
+1 Masked Vandal
+1 Crop Rotation
+1 Beast Whisperer
+1 Birthing Pod
+1 Wirewood Symbiote
+1 Voyaging Satyr
+1 Pyre of Heroes
+1 Cloudstone Curio
+1 Realmwalker
+1 Carpet of Flowers
+1 Concordant Crossroads
+1 Elvish Archdruid
+1 Druid Lyrist
+1 Mobilize
+1 Llanowar Druid
+1 Llanowar Elves
+1 Krosan Wayfarer
+1 Fyndhorn Elves
+1 Karametra's Acolyte
+1 Elvish Pioneer
+1 Quirion Ranger
+1 Vitalize
+1 Worldly Tutor
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Elvish Mystic
+1 Collective Unconscious
+1 Shamanic Revelation
+1 Pendelhaven
+1 Ashaya, Soul of the Wild
+1 Nykthos, Shrine to Nyx
+1 Green Sun's Zenith
+1 Circle of Dreams Druid
+1 Castle Garenbrig
+1 Village Elder
+1 Voice of Many
+1 Natural Order
+1 Temur Sabertooth
+1 Augur of Autumn
+1 Staff of Domination
+1 Treefolk Harbinger
+1 Aluren
+1 Finale of Devastation
+1 Glimpse of Nature
+1 Devoted Druid
+1 Dryad Arbor
+1 Gilt-Leaf Archdruid
+1 Joraga Treespeaker
+1 Beast Within
+1 Yisan, the Wanderer Bard
+1 Elvish Harbinger
+1 Shigeki, Jukai Visionary
+1 Wooded Foothills
+1 Wirewood Lodge
+1 Survival of the Fittest
+1 Windswept Heath
+1 Boseiju, Who Endures
+1 Priest of Titania
+1 Thousand-Year Elixir
+1 Gaea's Cradle
+1 Lotus Petal
+1 Umbral Mantle
+1 Scryb Ranger
+1 Summoner's Pact
+1 Eternal Witness
+14 Forest
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Tooth and Nail
+1 Sylvan Library
+1 The One Ring
+1 Weird Harvest
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Venerated Rotpriest
+1 Wild Growth
+1 Sylvan Scrying
+1 Skullclamp
+1 Great Oak Guardian
+1 Cavern of Souls
+1 Regal Force
+1 Three Tree City
+1 The Great Henge
+1 Sowing Mycospawn
+1 Archdruid's Charm
+1 Arbor Elf

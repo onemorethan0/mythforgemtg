@@ -1,0 +1,88 @@
+# Archidekt — Activation Successful
+# source: archidekt:11662304
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Tazri, Stalwart Survivor
+
+Deck:
+1 Macabre Waltz
+1 Shigeki, Jukai Visionary
+1 Zirda, the Dawnwaker
+1 Azorius Guildmage
+1 Ethersworn Adjudicator
+1 Commander's Sphere
+1 Biomancer's Familiar
+1 Svella, Ice Shaper
+1 Dynaheir, Invoker Adept
+1 Command Tower
+1 Cultivate
+5 Mountain
+6 Plains
+1 Nightshade Dryad
+1 Fires of Yavimaya
+1 Selvala, Eager Trailblazer
+1 Ash Barrens
+1 Prairie Stream
+1 Painful Truths
+1 Cinder Glade
+1 Sunken Hollow
+1 Smoldering Marsh
+1 Mirage Mirror
+1 Simic Ascendancy
+1 Soul of Innistrad
+1 Soul of New Phyrexia
+1 Pit of Offerings
+1 To Arms!
+1 Mystic Archaeologist
+1 Veteran Beastrider
+1 Faerie Formation
+1 Wildest Dreams
+1 Patrol Signaler
+1 Arcane Signet
+1 Replicating Ring
+1 Jegantha, the Wellspring
+1 Canopy Vista
+1 Soul of Shandalar
+1 Talisman of Impulse
+1 Soul of Zendikar
+1 Evolution Witness
+1 Exotic Orchard
+1 Talisman of Unity
+1 Reliquary Tower
+1 Burnished Hart
+1 Tyvar, Jubilant Brawler
+1 Steel Hellkite
+1 Chromatic Lantern
+1 Path of Ancestry
+5 Island
+1 Selfless Spirit
+1 Agatha of the Vile Cauldron
+1 Faeburrow Elder
+1 Cosmic Rebirth
+1 Zacama, Primal Calamity
+1 Damn
+1 Triskaidekaphile
+1 Wear Down
+1 Dauntless Dismantler
+3 Swamp
+7 Forest
+1 Rustler Rampage
+1 Ioreth of the Healing House
+1 Hateflayer
+1 Silkbind Faerie
+1 Goro-Goro, Disciple of Ryusei
+1 Knacksaw Clique
+1 Shalai, Voice of Plenty
+1 Path to Exile
+1 Allied Strategies
+1 Soul of Theros
+1 Soul of Ravnica
+1 Fauna Shaman
+1 Magewright's Stone
+1 Crashing Drawbridge
+1 Kenrith, the Returned King
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Gwenna, Eyes of Gaea
+1 PuPu UFO

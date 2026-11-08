@@ -1,0 +1,108 @@
+# Archidekt — Opera S(l)inger [cEDH] (Power 5)
+# source: archidekt:15061039
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Celes, Rune Knight
+
+Deck:
+1 Mox Diamond
+1 Boggart Trawler // Boggart Bog
+1 Jeska's Will
+1 Lively Dirge
+1 Ephemerate
+1 Scrubland
+1 Scalding Tarn
+1 Polluted Delta
+1 Wooded Foothills
+1 Windswept Heath
+1 Dualcaster Mage
+1 Mana Confluence
+1 City of Brass
+1 Necromancy
+1 Esper Sentinel
+1 Lotho, Corrupt Shirriff
+1 Demonic Tutor
+1 Enlightened Tutor
+1 Chrome Mox
+1 Ancient Tomb
+1 Vampiric Tutor
+1 Gemstone Caverns
+1 Lotus Petal
+1 Arid Mesa
+1 Bloodstained Mire
+1 Blood Crypt
+1 Godless Shrine
+1 Sacred Foundry
+1 Wheel of Fortune
+1 Gamble
+1 Wishclaw Talisman
+1 Marsh Flats
+1 Verdant Catacombs
+1 Imperial Seal
+1 Ragavan, Nimble Pilferer
+1 Mox Opal
+1 Simian Spirit Guide
+1 Cavern of Souls
+1 Rite of Flame
+1 Diabolic Intent
+1 Necropotence
+1 Entomb
+1 Animate Dead
+1 City of Traitors
+1 Flooded Strand
+1 Badlands
+1 Plateau
+1 Sevinne's Reclamation
+1 Raucous Theater
+1 Archivist of Oghma
+1 Reanimate
+1 Underworld Breach
+1 Lion's Eye Diamond
+1 Hoarding Broodlord
+1 Dragon's Rage Channeler
+1 Sol Ring
+1 Red Elemental Blast
+1 Beseech the Mirror
+1 Springleaf Drum
+1 Touch the Spirit Realm
+1 Tarnished Citadel
+1 Abdel Adrian, Gorion's Ward
+1 Drannith Magistrate
+1 Redirect Lightning
+1 Cabal Ritual
+1 Hexing Squelcher
+1 Voice of Victory
+1 Grand Abolisher
+1 Flashback
+1 Yawgmoth's Will
+1 Dark Ritual
+1 Fire Covenant
+1 Silence
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Mana Vault
+1 Swords to Plowshares
+1 Goblin Bombardment
+1 Deflecting Swat
+1 Command Tower
+1 Arcane Signet
+1 Vexing Bauble
+1 Saw in Half
+1 Smothering Tithe
+1 Lesser Masticore
+1 Culling the Weak
+1 Orcish Bowmasters
+1 Cloudshift
+1 Pyroblast
+1 Grinding Station
+1 Gleaming Splendor
+1 Talisman of Indulgence
+1 Ranger-Captain of Eos
+1 Praetor's Grasp
+1 The Queen of Dale
+1 Tataru Taru
+1 The One Ring
+1 Final Fortune
+1 Ad Nauseam
+1 Molten Duplication

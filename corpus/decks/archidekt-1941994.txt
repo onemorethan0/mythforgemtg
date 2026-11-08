@@ -1,0 +1,103 @@
+# Archidekt — Dina's Tea Party - Bracket 3 Lifegain/Aristocrats
+# source: archidekt:1941994
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Dina, Soul Steeper
+
+Deck:
+1 Ashnod's Altar
+1 Reprocess
+1 Braids, Arisen Nightmare
+1 Bastion of Remembrance
+1 Zulaport Cutthroat
+1 Malakir Rebirth // Malakir Mire
+1 Tamiyo's Safekeeping
+1 Prosperous Innkeeper
+1 Beast Within
+1 Dross Harvester
+1 Pest Infestation
+1 Plumb the Forbidden
+1 Essence Warden
+1 The Meathook Massacre
+1 Bitterblossom
+1 Jadar, Ghoulcaller of Nephalia
+1 Wolverine Riders
+1 Grist, the Hunger Tide
+1 Beledros Witherbloom
+1 Trudge Garden
+1 Skullclamp
+1 Smothering Abomination
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Veinwitch Coven
+1 Yawgmoth, Thran Physician
+1 Funeral Room // Awakening Hall
+1 Windswept Heath
+1 Llanowar Wastes
+1 Phyrexian Tower
+1 Misty Rainforest
+1 Overgrown Tomb
+1 Undergrowth Stadium
+1 Woodland Cemetery
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Command Tower
+1 Fabled Passage
+1 Marsh Flats
+1 Boseiju, Who Endures
+1 Takenuma, Abandoned Mire
+1 Verdant Catacombs
+1 Volrath's Stronghold
+1 Bloodstained Mire
+1 City of Brass
+1 Moldervine Reclamation
+1 Phyrexian Altar
+1 Twitching Doll
+1 Wriggling Grub
+1 Revitalizing Repast // Old-Growth Grove
+1 Blasphemous Edict
+1 Enduring Vitality
+1 Emrakul's Evangel
+1 Quina, Qu Gourmet
+1 Earthcraft
+1 Culling Ritual
+3 Swamp
+1 Yavimaya, Cradle of Growth
+1 Polluted Delta
+1 Wastewood Verge
+1 Fyndhorn Elves
+1 Boggart Trawler // Boggart Bog
+1 Carrion Feeder
+1 Llanowar Elves
+1 Birds of Paradise
+1 Cryptolith Rite
+1 Insidious Roots
+1 Deathgreeter
+1 Bitterbloom Bearer
+1 Social Climber
+1 Tombstone Stairwell
+1 Virulent Emissary
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Springleaf Parade
+1 Pawn of Ulamog
+1 Mitotic Slime
+1 Blight Mound
+1 Plague of Vermin
+1 Well of Lost Dreams
+1 Plague Drone
+1 Pitiless Carnage
+1 Springheart Nantuko
+1 Infestation Sage
+1 Eldrazi Repurposer
+1 Withering Curse
+1 Deathcap Glade
+1 Witherbloom Charm
+1 Immoral Bargain
+1 Cauldron of Essence
+1 Underground Mortuary
+1 Bogwater Lumaret
+1 Tendershoot Dryad
+1 Nurturing Peatland
+4 Forest
+1 Carpet of Flowers
+1 Grave Venerations

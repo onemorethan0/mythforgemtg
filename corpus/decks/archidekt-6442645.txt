@@ -1,0 +1,108 @@
+# Archidekt — WotC, Print More Wolves
+# source: archidekt:6442645
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Voja, Jaws of the Conclave
+
+Deck:
+1 Lavaspur Boots
+1 Tolsimir, Midnight's Light
+1 Devoted Druid
+1 Priest of Titania
+1 Teferi's Protection
+1 Damning Verdict
+1 Heroic Intervention
+1 Shalai and Hallar
+1 Inspiring Call
+1 Hushwood Verge
+1 Rhythm of the Wild
+1 Fyndhorn Elves
+1 Aurelia, the Warleader
+1 Get Lost
+1 Sunbaked Canyon
+1 Boros Charm
+1 Llanowar Elves
+1 Elvish Mystic
+1 Gyre Sage
+1 Paradise Druid
+1 Marwyn, the Nurturer
+1 Elvish Warmaster
+1 Incubation Druid
+1 Mountain
+1 Disciple of Freyalise // Garden of Freyalise
+1 Beastcaller Savant
+1 Quirion Elves
+1 Overgrown Zealot
+1 Battlefield Forge
+1 Cavern of Souls
+1 Reclamation Sage
+1 Brushland
+1 Arwen, Weaver of Hope
+1 Swords to Plowshares
+1 Lightning Greaves
+1 Command Tower
+1 Sunbillow Verge
+1 Arena of Glory
+1 Forest
+1 Jetmir's Garden
+1 Plains
+1 Boreal Druid
+1 Path to Exile
+1 Druid of the Anima
+1 Llanowar Loamspeaker
+1 Dawn's Truce
+1 Elvish Archdruid
+1 Mithril Coat
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Windswift Slice
+1 Tyvar, the Pummeler
+1 Sutina, Speaker of the Tajuru
+1 Beast Whisperer
+1 Dionus, Elvish Archdruid
+1 All Will Be One
+1 Evolution Witness
+1 Stump Stomp // Burnwillow Clearing
+1 Legion Leadership // Legion Stronghold
+1 Annie Joins Up
+1 Maester Seymour
+1 Tromell, Seymour's Butler
+1 Galadriel's Dismissal
+1 Sol Ring
+1 Eiganjo, Seat of the Empire
+1 Summon: Fenrir
+1 Torgal, A Fine Hound
+1 Stomping Ground
+1 Karplusan Forest
+1 Flawless Maneuver
+1 Untimely Malfunction
+1 Champions of the Perfect
+1 Sundering Eruption // Volcanic Fissure
+1 Allosaurus Shepherd
+1 Arid Mesa
+1 Spectator Seating
+1 Bountiful Promenade
+1 Cemetery Prowler
+1 Skyshroud Elf
+1 Gogo, Mysterious Mime
+1 Realmwalker
+1 Roaming Throne
+1 Final Showdown
+1 Chomping Changeling
+1 Selvala, Heart of the Wilds
+1 Thornspire Verge
+1 Mutable Explorer
+1 Mutavault
+1 Bloom Tender
+1 Deflecting Swat
+1 Spire Garden
+1 Temple Garden
+1 Sacred Foundry
+1 Windswept Heath
+1 Wooded Foothills
+1 Boseiju, Who Endures
+1 Ancient Tomb
+1 City of Brass
+1 Mana Confluence
+1 Starting Town

@@ -1,0 +1,96 @@
+# Archidekt — 🪦 Gitrog Reanimator
+# source: archidekt:4107144
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 The Gitrog Monster
+
+Deck:
+1 Overwhelming Remorse
+1 Old Rutstein
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Blossoming Tortoise
+1 Alpha Deathclaw
+1 Breach the Multiverse
+1 Incarnation Technique
+1 Entish Restoration
+1 Zuran Orb
+1 From the Catacombs
+1 Satyr Wayfinder
+1 Massacre Wurm
+1 Twilight Mire
+1 Sakura-Tribe Scout
+1 Ripples of Undeath
+1 Lazotep Quarry
+1 Rise of the Witch-king
+1 Fell the Profane // Fell Mire
+1 Tomb of Urami
+1 Polukranos, Unchained
+1 Hedge Shredder
+1 Lumra, Bellow of the Woods
+1 Fanatic of Rhonas
+1 Harrow
+1 Shifting Woodland
+1 Perpetual Timepiece
+1 Wight of the Reliquary
+1 Deathrite Shaman
+1 Golgari Thug
+1 Skyfisher Spider
+1 Llanowar Wastes
+1 Honest Rutstein
+1 Demolition Field
+1 Will of the Sultai
+1 Tireless Provisioner
+1 Darkblast
+1 Colossal Grave-Reaver
+1 Eternal Witness
+1 Living Death
+1 Clifftop Lookout
+1 Silverback Elder
+1 Aftermath Analyst
+1 Skull Prophet
+8 Forest
+1 Dakmor Salvage
+1 Command Tower
+1 Sakura-Tribe Elder
+1 Lotus Cobra
+1 Syr Konrad, the Grim
+1 Lethal Scheme
+1 Culling Ritual
+6 Swamp
+1 Golgari Rot Farm
+1 Geier Reach Sanitarium
+1 Bojuka Bog
+1 Ash Barrens
+1 Shigeki, Jukai Visionary
+1 Stitcher's Supplier
+1 Scute Swarm
+1 Bramble Familiar // Fetch Quest
+1 Arboreal Grazer
+1 Bane of Progress
+1 Grist, the Hunger Tide
+1 Myriad Landscape
+1 Sylvan Safekeeper
+1 Ghost Quarter
+1 Springbloom Druid
+1 Victimize
+1 Jarad, Golgari Lich Lord
+1 Ob Nixilis, the Fallen
+1 Fabled Passage
+1 Deathcap Glade
+1 Underground Mortuary
+1 Takenuma, Abandoned Mire
+1 Evolving Wilds
+1 Nurturing Peatland
+1 Boseiju, Who Endures
+1 Verdant Catacombs
+1 Prismatic Vista
+1 Undergrowth Stadium
+1 Overgrown Tomb
+1 Life from the Loam
+1 Six
+1 Springheart Nantuko
+1 Icetill Explorer
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Barrowgoyf

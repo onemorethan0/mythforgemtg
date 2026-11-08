@@ -1,0 +1,92 @@
+# Archidekt — 🪦 Pia Planeswalkers
+# source: archidekt:6009380
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Pia Nalaar, Consul of Revival
+
+Deck:
+1 Thraben Charm
+1 Wrenn's Resolve
+1 Rob the Archives
+1 Chandra, Bold Pyromancer
+1 Galvanic Relay
+1 Creative Technique
+1 Jaya's Phoenix
+1 Inti, Seneschal of the Sun
+1 Prosperous Partnership
+1 Elspeth's Talent
+1 Experimental Synthesizer
+1 Chandra, Fire Artisan
+1 Impending Flux
+1 Surge to Victory
+1 Inspired Tinkering
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Springleaf Drum
+1 Spikefield Hazard // Spikefield Cave
+1 Shefet Dunes
+1 Scavenger Grounds
+1 Delayed Blast Fireball
+1 Sunscorched Divide
+1 Unstable Amulet
+1 Jaya Ballard
+1 Kabira Takedown // Kabira Plateau
+1 Chandra's Regulator
+1 Chandra, Legacy of Fire
+1 Teyo, Geometric Tactician
+1 Quintorius Kand
+1 Chandra, Hope's Beacon
+1 Ajani Steadfast
+1 Pinnacle Monk // Mystic Peak
+1 Nesting Grounds
+1 Magmatic Channeler
+1 Embrace the Unknown
+1 Glimpse the Impossible
+1 Chandra, Flame's Catalyst
+1 Mizzix's Mastery
+1 Chandra, Dressed to Kill
+1 Laelia, the Blade Reforged
+1 Sundering Eruption // Volcanic Fissure
+1 Elspeth, Sun's Champion
+1 March of Reckless Joy
+1 Party Thrasher
+1 Mishra's Research Desk
+1 Wild Wasteland
+1 Chandra, Acolyte of Flame
+1 Reckless Impulse
+1 Rugged Prairie
+1 Chandra, Pyromaster
+1 Chandra, the Firebrand
+1 Chandra, Flameshaper
+1 Clifftop Retreat
+1 Spinerock Knoll
+1 Chandra, Awakened Inferno
+1 Staff of Compleation
+10 Mountain
+1 Mana Geyser
+1 Battlefield Forge
+1 Castle Embereth
+1 Professional Face-Breaker
+1 Sol Ring
+8 Plains
+1 Windbrisk Heights
+1 Cori Mountain Monastery
+1 Spire of Industry
+1 Volcanic Torrent
+1 Command Tower
+1 Chandra, Torch of Defiance
+1 Ignite the Future
+1 Swords to Plowshares
+1 Karn's Bastion
+1 Light Up the Stage
+1 Jeska's Will
+1 Vandalblast
+1 Ruby Medallion
+1 Furycalm Snarl
+1 Chandra, Heart of Fire
+1 Jaya, Fiery Negotiator
+1 Ashling, Flame Dancer
+1 Infernal Plunge
+1 Immolating Gyre
+1 Battle Hymn

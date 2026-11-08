@@ -1,0 +1,110 @@
+# Archidekt — Esika Superfriends
+# source: archidekt:1666302
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Snow-Covered Plains
+1 Kaya the Inexorable
+1 Nicol Bolas, Dragon-God
+1 Ugin, the Spirit Dragon
+1 Wrath of God
+1 Swords to Plowshares
+1 Assassin's Trophy
+1 Anguished Unmaking
+1 Jace, Unraveler of Secrets
+1 Oath of Teferi
+1 The Chain Veil
+1 Doubling Season
+1 Chandra, Torch of Defiance
+1 Teferi, Temporal Archmage
+1 Temple Garden
+1 Sacred Foundry
+1 Hallowed Fountain
+1 Godless Shrine
+1 Watery Grave
+1 Steam Vents
+1 Breeding Pool
+1 Overgrown Tomb
+1 Stomping Ground
+1 City of Brass
+1 Mana Confluence
+1 Command Tower
+1 Ketria Triome
+1 Raugrin Triome
+1 Savai Triome
+1 Zagoth Triome
+1 Indatha Triome
+1 Vault of Champions
+1 Undergrowth Stadium
+1 Training Center
+1 Spectator Seating
+1 Rejuvenating Springs
+1 Reflecting Pool
+1 Fabled Passage
+1 Dragonskull Summit
+1 Glacial Fortress
+1 Drowned Catacomb
+1 Rootbound Crag
+1 Sunpetal Grove
+1 Teferi, Who Slows the Sunset
+1 Carth the Lion
+1 Snow-Covered Swamp
+1 Snow-Covered Forest
+1 Snow-Covered Mountain
+1 Arcane Signet
+1 Chromatic Lantern
+1 Scroll Rack
+1 Faeburrow Elder
+1 Bloom Tender
+1 Rampant Growth
+1 Nature's Lore
+1 Three Visits
+1 Farseek
+1 Aminatou, the Fateshifter
+1 Supreme Verdict
+1 Path to Exile
+1 The World Tree
+1 Narset Transcendent
+1 Teferi, Hero of Dominaria
+1 Teferi, Master of Time
+1 Ashiok, Dream Render
+1 Blasphemous Act
+1 Snow-Covered Island
+1 Teferi, Time Raveler
+1 Vanquish the Horde
+1 Vorinclex, Monstrous Raider
+1 Into the North
+1 Sisay, Weatherlight Captain
+1 Spreading Plague
+1 Arena Rector
+1 Blood Crypt
+1 Kodama's Reach
+1 Plaza of Heroes
+1 All Will Be One
+1 Ichormoon Gauntlet
+1 Sarkhan the Masterless
+1 Vraska, Betrayal's Sting
+1 Commodore Guff
+1 Chandra, Legacy of Fire
+1 The Peregrine Dynamo
+1 Farewell
+1 Sphinx of the Second Sun
+1 Damn
+1 The Eternal Wanderer
+1 Toxic Deluge
+1 Cultivate
+1 Sol Ring
+1 Ripples of Potential
+1 Sterling Grove
+1 The Theorist, Jace Beleren
+1 Overwrite the Multiverse
+1 Loyal Tutor
+1 Oko, Thief of Crowns
+1 Sanctum Lurker
+1 Tam, the Possibility
+1 Chandra, Chill of Compliance
+1 Aetheric Amplifier

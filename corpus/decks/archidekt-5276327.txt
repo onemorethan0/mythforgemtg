@@ -1,0 +1,90 @@
+# Archidekt — The Cold Never Bothered Hylda
+# source: archidekt:5276327
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Hylda of the Icy Crown
+
+Deck:
+1 Hengegate Pathway // Mistgate Pathway
+1 Victory Chimes
+1 Adarkar Wastes
+1 Blustersquall
+1 Bond of Discipline
+1 Borrowing 100,000 Arrows
+1 Command Tower
+1 Cone of Cold
+1 Verity Circle
+1 Sharae of Numbing Depths
+1 Sejiri Shelter // Sejiri Glacier
+1 Solitary Sanctuary
+1 Theft of Dreams
+1 Ojutai Exemplars
+1 Azorius Chancery
+1 Generous Gift
+1 Stroke of Midnight
+1 Freeze in Place
+1 Deserted Beach
+1 Glacial Fortress
+1 Illithid Harvester // Plant Tadpoles
+1 Frost Breath
+1 Skycloud Expanse
+1 Detection Tower
+1 Forbidden Orchard
+1 Time of Ice
+1 Reliquary Tower
+1 Port Town
+1 Citadel Siege
+1 Prairie Stream
+1 Sea of Clouds
+10 Snow-Covered Island
+1 Crippling Chill
+1 Niblis of Frost
+1 Sigarda's Summons
+1 Hallowed Fountain
+1 Cryptic Command
+1 Timin, Youthful Geist
+1 Heliod's Intervention
+1 Knight of the White Orchid
+1 Mjölnir, Storm Hammer
+1 Unwind
+1 Relic of Legends
+1 Ornithopter of Paradise
+1 Ice Out
+1 Rewind
+1 Mind Spiral
+1 Azorius Signet
+1 Thought Vessel
+1 Sol Ring
+1 Court Street Denizen
+1 Hylda's Crown of Winter
+1 Mind Stone
+1 Junk Winder
+1 Arcane Signet
+1 Lossarnach Captain
+1 Heraldic Banner
+1 Talisman of Progress
+1 Gadwick, the Wizened
+1 Willbreaker
+1 Dreamshackle Geist
+1 Elite Scaleguard
+1 Plunge into Winter
+1 Icy Blast
+1 Succumb to the Cold
+1 Out Cold
+1 Opposition
+1 Permafrost Trap
+1 Temple of the False God
+1 Split Up
+1 Kapsho Kitefins
+1 Floodfarm Verge
+10 Snow-Covered Plains
+1 Githzerai Monk
+1 Tamiyo, the Moon Sage
+1 Ballynock Trapper
+1 Summon: Shiva
+1 Retreat to Coralhelm
+1 Supreme Verdict
+1 Bender's Waterskin
+1 Dovin's Veto

@@ -1,0 +1,85 @@
+# Archidekt — "The most fun commander deck ever"
+# source: archidekt:15535139
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 1 allows none
+
+Commander:
+1 Kodama of the East Tree
+1 Ludevic, Necro-Alchemist
+
+Deck:
+1 Telepathy
+1 Teferi's Puzzle Box
+1 Tsunami
+1 Omen Machine
+1 Apocalypse
+1 Winter Orb
+1 Rising Waters
+1 Mindslaver
+1 Mana Breach
+1 Sunder
+1 Thieves' Auction
+1 Smokestack
+1 Winter Moon
+1 Boil
+1 Possibility Storm
+1 Curse of Unbinding
+1 Timesifter
+1 Boiling Seas
+1 Flashfires
+1 Possessed Portal
+1 Bend or Break
+1 Hullbreaker Horror
+1 Embargo
+1 Braids, Conjurer Adept
+1 Dream Tides
+1 Beast Within
+1 Chaos Warp
+1 Rapid Hybridization
+1 Cultivate
+1 Rampant Growth
+1 Pongify
+9 Island
+9 Mountain
+1 Descent into Avernus
+1 Etali, Primal Storm
+1 Plargg and Nassari
+1 Jin-Gitaxias, Core Augur
+1 Arcane Laboratory
+1 Shared Fate
+1 Jhoira of the Ghitu
+1 Knowledge Pool
+1 Kiora's Follower
+1 Inevitable Betrayal
+1 Omnath, Locus of Rage
+1 Sakura-Tribe Elder
+1 Koma, World-Eater
+1 Koma, Cosmos Serpent
+1 Ruric Thar, the Unbowed
+1 Giggling Skitterspike
+1 Goblin Anarchomancer
+1 Jolrael, Empress of Beasts
+1 Sol Ring
+1 Eruth, Tormented Prophet
+1 Arcane Signet
+1 Gruul Signet
+1 Fellwar Stone
+1 Simic Signet
+1 Izzet Signet
+1 Mind's Dilation
+1 Kaseto, Orochi Archmage
+1 Edric, Spymaster of Trest
+1 Alaundo the Seer
+1 Frontier Bivouac
+1 Command Tower
+1 Exotic Orchard
+9 Forest
+1 Mossfire Valley
+1 Yavimaya Coast
+1 Ferrous Lake
+1 Overflowing Basin
+1 Karplusan Forest
+1 Shivan Reef
+1 Curse of the Nightly Hunt
+1 Ankh of Mishra

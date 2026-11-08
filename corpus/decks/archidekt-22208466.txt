@@ -1,0 +1,108 @@
+# Archidekt — The Art of Inevitability
+# source: archidekt:22208466
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Zur the Enchanter
+
+Deck:
+1 Counterspell
+1 Mana Drain
+1 Pact of Negation
+1 Sevinne's Reclamation
+1 Flusterstorm
+1 Talisman of Progress
+1 Vampiric Tutor
+1 Mana Confluence
+1 Teferi, Time Raveler
+1 Necropotence
+1 Grand Abolisher
+1 Silence
+1 Drannith Magistrate
+1 Enlightened Tutor
+1 Vexing Bauble
+1 Dark Ritual
+1 Lotus Petal
+1 Esper Sentinel
+1 Demonic Tutor
+1 Chrome Mox
+1 Force of Will
+1 Ad Nauseam
+1 Flooded Strand
+1 Reanimate
+1 Demonic Consultation
+1 Fierce Guardianship
+1 Ranger-Captain of Eos
+1 Talisman of Dominance
+1 Godless Shrine
+1 Mox Opal
+1 Polluted Delta
+1 Watery Grave
+1 Mental Misstep
+1 Mystic Remora
+1 Swamp
+1 Wishclaw Talisman
+1 Swan Song
+1 Path to Exile
+1 Tainted Pact
+1 Imperial Seal
+1 Mana Vault
+1 Island
+1 Sol Ring
+1 Cyclonic Rift
+1 Ancient Tomb
+1 Gemstone Caverns
+1 City of Brass
+1 Plains
+1 Gitaxian Probe
+1 Arcane Signet
+1 Opposition Agent
+1 Jace, Wielder of Mysteries
+1 Spellseeker
+1 Mindbreak Trap
+1 Yawgmoth's Will
+1 Talisman of Hierarchy
+1 Thassa's Oracle
+1 Windfall
+1 Copy Artifact
+1 Orcish Bowmasters
+1 Reflecting Pool
+1 Lotho, Corrupt Shirriff
+1 Lavinia, Azorius Renegade
+1 Blind Obedience
+1 Mox Amber
+1 Force of Negation
+1 Cabal Ritual
+1 Grasp of Fate
+1 Mirrormade
+1 Into the Flood Maw
+1 Underground Sea
+1 Rhystic Study
+1 Chain of Vapor
+1 Tataru Taru
+1 Swords to Plowshares
+1 Cavern of Souls
+1 Tundra
+1 An Offer You Can't Refuse
+1 Copy Enchantment
+1 Dauthi Voidwalker
+1 Archivist of Oghma
+1 Prismatic Vista
+1 Hall of the Bandit Lord
+1 Shadowy Backstreet
+1 Meticulous Archive
+1 Misty Rainforest
+1 Gleaming Splendor
+1 Windswept Heath
+1 Arid Mesa
+1 Snow-Covered Island
+1 Verdant Catacombs
+1 Snow-Covered Plains
+1 Marsh Flats
+1 Bloodstained Mire
+1 Mystical Tutor
+1 Mox Diamond
+1 Smothering Tithe
+1 Hallowed Fountain
+1 The One Ring

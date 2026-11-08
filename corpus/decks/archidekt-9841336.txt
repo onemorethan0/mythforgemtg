@@ -1,0 +1,79 @@
+# Archidekt — Stop Attacking My Chandras
+# source: archidekt:9841336
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Chandra, Fire of Kaladesh // Chandra, Roaring Flame
+
+Deck:
+1 Blasphemous Act
+1 Chandra Ablaze
+1 Chandra Nalaar
+1 Chandra, Acolyte of Flame
+1 Chandra, Awakened Inferno
+1 Chandra, Bold Pyromancer
+1 Chandra, Dressed to Kill
+1 Chandra, Fire Artisan
+1 Chandra, Flame's Catalyst
+1 Chandra, Flame's Fury
+1 Chandra, Flamecaller
+1 Chandra, Heart of Fire
+1 Chandra, Hope's Beacon
+1 Chandra, Legacy of Fire
+1 Chandra, Novice Pyromancer
+1 Chandra, Pyrogenius
+1 Chandra, Pyromaster
+1 Chandra, the Firebrand
+1 Chandra's Embercat
+1 Chandra's Regulator
+1 Chaos Warp
+1 Fiery Emancipation
+1 Chandra, Torch of Defiance
+1 Interplanar Beacon
+1 Jaya's Phoenix
+1 Karn's Bastion
+1 Oath of Chandra
+1 Ruby Medallion
+1 Spinerock Knoll
+1 Valakut, the Molten Pinnacle
+1 War Room
+1 Insult // Injury
+1 Chandra, Flameshaper
+1 Chandra, Spark Hunter
+1 Toralf, God of Fury // Toralf's Hammer
+1 Gauntlet of Power
+1 Untimely Malfunction
+1 Silent Arbiter
+1 Heart of Kiran
+1 Arcane Signet
+1 Shivan Gorge
+1 Ojer Axonil, Deepest Might // Temple of Power
+30 Mountain
+1 Solphim, Mayhem Dominus
+1 Sunset Strikemaster
+1 Rite of Flame
+1 Obsidian Fireheart
+1 Chandra's Flame Wave
+1 Chandra's Firemaw
+1 Chandra's Fury
+1 Chandra's Outrage
+1 Chandra's Pyrohelix
+1 Chandra's Revolution
+1 Chandra's Triumph
+1 Pyroblast
+1 Chandra's Outburst
+1 Chandra's Ignition
+1 Chandra's Magmutt
+1 Solemn Simulacrum
+1 Chandra's Incinerator
+1 Chandra's Pyreling
+1 Chandra's Phoenix
+1 Chandra's Spitfire
+1 Pyromancer's Goggles
+1 Screaming Nemesis
+1 Demand Answers
+1 Wrenn's Resolve
+1 Contagion Clasp
+1 Staff of Compleation
+1 Vandalblast

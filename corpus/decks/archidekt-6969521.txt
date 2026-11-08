@@ -1,0 +1,85 @@
+# Archidekt — Iroh, Master T
+# source: archidekt:6969521
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Iroh, Tea Master
+
+Deck:
+1 Slicer, Hired Muscle // Slicer, High-Speed Antagonist
+1 Contested War Zone
+1 Dwarven Mine
+1 Command Tower
+1 Kjeldoran Outpost
+1 Plateau
+1 Prismatic Vista
+1 Rainbow Vale
+1 Act of Authority
+1 Avarice Amulet
+1 Avarice Totem
+1 Bazaar Trader
+1 Bronze Bombshell
+1 Chaos Lord
+1 Crag Saurian
+1 Crown of Doom
+1 Custody Battle
+1 Detainment Spell
+1 Drooling Ogre
+1 Emberwilde Djinn
+1 Fickle Efreet
+1 Fractured Loyalty
+1 Goblin Festival
+1 Loxodon Peacekeeper
+1 Rogue Skycaptain
+1 Samurai of the Pale Curtain
+1 Sokenzan Renegade
+1 Thoughtbound Primoc
+1 Sacred Foundry
+1 Kher Keep
+13 Mountain
+12 Plains
+1 Akroan Horse
+1 Angel of Finality
+1 Sacred Peaks
+1 Elegant Parlor
+1 Glittering Massif
+1 Radiant Summit
+1 Zidane, Tantalus Thief
+1 Stiltzkin, Moogle Merchant
+1 Harmless Offering
+1 Illicit Auction
+1 Yes Man, Personal Securitron
+1 Bucknard's Everfull Purse
+1 Contested Game Ball
+1 Confusion in the Ranks
+1 Alexios, Deimos of Kosmos
+1 Hithlain Rope
+1 Goblin Cadets
+1 Turf War
+1 Khârn the Betrayer
+1 Faith's Fetters
+1 Castle Ardenvale
+1 Assault Suit
+1 Coveted Jewel
+1 Gauntlets of Chaos
+1 Generous Gift
+1 Humble Defector
+1 Land Tax
+1 Path to Exile
+1 Recumbent Bliss
+1 Revoke Existence
+1 Risky Move
+1 Starke of Rath
+1 Stonecloaker
+1 Swords to Plowshares
+1 Three Dreams
+1 Vow of Duty
+1 Vow of Lightning
+1 Weathered Wayfarer
+1 Witch Hunt
+1 Pendant of Prosperity
+1 Arid Mesa
+1 Darksteel Relic
+1 Discerning Financier
+1 Tuktuk Scrapper

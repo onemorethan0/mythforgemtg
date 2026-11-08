@@ -1,0 +1,88 @@
+# Archidekt — Migloz, Maze Crusher
+# source: archidekt:11897005
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Migloz, Maze Crusher
+
+Deck:
+1 Free from Flesh
+1 Magmatic Sprinter
+1 Urabrask's Anointer
+1 Evolving Adaptive
+1 Karn's Bastion
+1 Tablet of Compleation
+1 Churning Reservoir
+1 Exuberant Fuseling
+1 Furnace Skullbomb
+1 Incubation Sac
+1 Armored Scrapgorger
+1 Atraxa's Skitterfang
+1 Sawblade Scamp
+1 Ichorplate Golem
+1 Contagious Vorrac
+1 Thirsting Roots
+1 Evolution Sage
+1 Courage in Crisis
+1 Pollenbright Druid
+1 Smell Fear
+1 Command Tower
+1 Garruk's Uprising
+1 Copper Longlegs
+1 Green Sun's Twilight
+1 Vindictive Flamestoker
+1 Path of Ancestry
+1 Rampant Growth
+1 Thrill of Possibility
+1 Nesting Grounds
+1 Cinderslash Ravager
+1 Rustvine Cultivator
+1 The Filigree Sylex
+1 The Monumental Facade
+1 Bloated Contaminator
+1 Cacophony Scamp
+1 Cankerbloom
+1 Expand the Sphere
+1 Park Heights Maverick
+1 Unnatural Restoration
+1 Sol Ring
+1 Planewide Celebration
+1 Evolved Spinoderm
+1 Rhythm of the Wild
+1 The Seedcore
+1 The Mycosynth Gardens
+1 Tyvar's Stand
+1 Invigorating Hot Spring
+1 Gruul Signet
+1 Contested Cliffs
+9 Mountain
+1 Snakeskin Veil
+1 Spider Umbra
+1 Sixth Sense
+1 Cinder Glade
+1 Mossfire Valley
+1 Everflowing Chalice
+1 Hunter's Bow
+13 Forest
+1 Diamond Pick-Axe
+1 Gift of the Woods
+1 One with Nature
+1 Rope
+1 Lion Umbra
+1 Restless Ridgeline
+1 Herd Heirloom
+1 Stomping Ground
+1 Arcane Signet
+1 Colossal Majesty
+1 Tenza, Godo's Maul
+1 Reckless Handling
+1 Goblin Anarchomancer
+1 Temple of Abandon
+1 Oil-Gorger Troll
+1 Sazacap's Brew
+1 Capricious Hellraiser
+1 Conduit of Worlds
+1 Volt Charge
+1 Carnivorous Canopy
+1 Rhino's Rampage

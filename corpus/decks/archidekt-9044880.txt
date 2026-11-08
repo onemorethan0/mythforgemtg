@@ -1,0 +1,84 @@
+# Archidekt — Cleon, The New Heir
+# source: archidekt:9044880
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Cleon, Merry Champion
+
+Deck:
+1 Commander's Plate
+1 Mountain
+1 Mountain
+1 Mechanical Glider
+1 Furious Bellow
+1 Command Beacon
+1 Swiftfoot Boots
+1 Silver Shroud Costume
+1 Invigorated Rampage
+1 Dragon Mantle
+1 Claws of Valakut
+1 Granite Grip
+1 Monstrous Rage
+1 Untimely Malfunction
+1 Brotherhood Regalia
+1 Lotus Petal
+1 Wedding Invitation
+1 Redirect Lightning
+1 Last Chance
+1 Sundering Eruption // Volcanic Fissure
+1 Cliffhaven Kitesail
+1 Haste Magic
+1 Reckless Ransacking
+1 Infuriate
+1 Brute Force
+1 Wings of Hubris
+1 Madcap Skills
+1 Seething Anger
+1 Fists of the Anvil
+1 Antagonize
+1 Kediss, Emberclaw Familiar
+1 Pyretic Ritual
+1 Rite of Flame
+1 Desperate Ritual
+1 Full Bore
+1 Built to Smash
+1 Borrowed Hostility
+1 Smoke Bomb
+1 Sandstone Needle
+1 Combat Celebrant
+1 Desperate Gambit
+1 Falter
+1 Consuming Fervor
+1 Tilonalli's Crown
+1 Flashback
+1 Blood Lust
+1 Escape Tunnel
+1 Key to the City
+1 Wild Ride
+1 Blazing Crescendo
+1 Crown of Flames
+1 Turn Inside Out
+1 Reckless Charge
+1 Nuka-Nuke Launcher
+1 Cathedral of War
+1 Overpowering Attack
+1 Downhill Charge
+1 Simian Spirit Guide
+1 Fury of the Horde
+1 Deflecting Swat
+1 Bulk Up
+1 Lightning Talons
+1 Goldhound
+1 Tibalt's Trickery
+1 Maze of Ith
+1 Unleash Fury
+1 Titan's Strength
+1 Inordinate Rage
+1 Rubblebelt Maaka
+1 Crawlspace
+1 Dust Corona
+1 Hero's Blade
+1 Zhalfirin Void
+1 Fire Nation Palace
+25 Mountain

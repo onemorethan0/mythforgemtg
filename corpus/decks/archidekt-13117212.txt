@@ -1,0 +1,108 @@
+# Archidekt — Yuna cEDH
+# source: archidekt:13117212
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuna, Grand Summoner
+
+Deck:
+1 Sage of Hours
+1 Eternal Witness
+1 Crop Rotation
+1 Kutzil, Malamet Exemplar
+1 Mystic Remora
+1 Force of Negation
+1 Walking Ballista
+1 Silence
+1 Enlightened Tutor
+1 Finale of Devastation
+1 Boseiju, Who Endures
+1 Delighted Halfling
+1 Esper Sentinel
+1 Bloom Tender
+1 Swan Song
+1 Birds of Paradise
+1 Mana Vault
+1 Ranger-Captain of Eos
+1 Pact of Negation
+1 Pemmin's Aura
+1 Chrome Mox
+1 Noble Hierarch
+1 Thrasios, Triton Hero
+1 Freed from the Real
+1 Mox Diamond
+1 Gaea's Cradle
+1 Force of Will
+1 Kinnan, Bonder Prodigy
+1 Fierce Guardianship
+1 The One Ring
+1 Rhystic Study
+1 Heliod, Sun-Crowned
+1 Recruiter of the Guard
+1 Cyclonic Rift
+1 An Offer You Can't Refuse
+1 Path to Exile
+1 Thassa's Oracle
+1 Spellskite
+1 Counterspell
+1 Moon-Blessed Cleric
+1 Worldly Tutor
+1 Eladamri's Call
+1 Legolas's Quick Reflexes
+1 Mystical Tutor
+1 Gifts Ungiven
+1 Sevinne's Reclamation
+1 Intuition
+1 Dramatic Reversal
+1 Fabricate
+1 Teferi's Protection
+1 Muddle the Mixture
+1 Sink into Stupor // Soporific Springs
+1 Agatha's Soul Cauldron
+1 Idyllic Tutor
+1 Life's Legacy
+1 Green Sun's Zenith
+1 Sylvan Tutor
+1 Lotus Petal
+1 Isochron Scepter
+1 Narset, Parter of Veils
+1 Teferi, Time Raveler
+1 Kami of Whispered Hopes
+1 Otawara, Soaring City
+1 Ancient Tomb
+1 Urza's Saga
+1 Yavimaya, Cradle of Growth
+1 Shifting Woodland
+1 Sol Ring
+1 Arcane Signet
+1 Tundra
+1 City of Brass
+1 Tropical Island
+1 Windswept Heath
+1 Savannah
+1 Misty Rainforest
+1 Flooded Strand
+1 Breeding Pool
+1 Gemstone Caverns
+1 Mana Confluence
+1 Plains
+1 Temple Garden
+1 Rejuvenating Springs
+1 Sea of Clouds
+1 Forest
+1 Island
+1 Devoted Druid
+1 Swords to Plowshares
+1 Incubation Druid
+1 Hallowed Fountain
+1 Command Tower
+1 Bountiful Promenade
+1 Reliquary Tower
+1 Hall of Heliod's Generosity
+1 Faerie Mastermind
+1 Trouble in Pairs
+1 Faeburrow Elder
+1 Heroic Intervention
+1 High Fae Trickster
+1 Veil of Summer

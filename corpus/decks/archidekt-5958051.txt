@@ -1,0 +1,100 @@
+# Archidekt — Gossamer Bonds
+# source: archidekt:5958051
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Shelob, Child of Ungoliant
+
+Deck:
+1 Druid of Purification
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Soulstone Sanctuary
+1 Karn, Silver Golem
+1 Hazel of the Rootbloom
+1 Hunter's Bow
+1 Insatiable Frugivore
+1 Faceless Haven
+1 Garruk, Savage Herald
+1 Gingerbread Cabin
+1 Tangled Florahedron // Tangled Vale
+1 You Look Upon the Tarrasque
+1 Mutavault
+1 Restless Cottage
+1 The Shire
+1 Boggart Trawler // Boggart Bog
+1 Revitalizing Repast // Old-Growth Grove
+1 Khalni Ambush // Khalni Territory
+1 Peregrin Took
+1 Night of the Sweets' Revenge
+1 Revenge of the Hunted
+1 Roaming Throne
+1 Howling Mine
+1 Twitching Doll
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Gaze of Pain
+1 Bojuka Bog
+1 Oath of Druids
+1 Canyon Crawler
+1 Savvy Hunter
+1 Izoni, Center of the Web
+1 Destined // Lead
+1 Tireless Provisioner
+1 Maskwood Nexus
+1 Kamahl's Will
+1 Campsite Cuisine
+1 Spider Food
+1 Stew the Coneys
+1 Pippin, Warden of Isengard
+1 Black Market Connections
+1 Rites of Flourishing
+1 Otherworld Atlas
+1 Seizan, Perverter of Truth
+1 Halsin, Emerald Archdruid
+1 Generous Ent
+1 Vastwood Fortification // Vastwood Thicket
+1 Vernal Fen
+1 Tranquil Frillback
+1 Bushwhack
+1 Prismatic Vista
+1 Arasta of the Endless Web
+1 Xenic Poltergeist
+1 Spinning Wheel Kick
+1 Heartwood Storyteller
+1 Malakir Rebirth // Malakir Mire
+1 Arachnogenesis
+1 Avatar of Growth
+1 Barroom Brawl
+1 Collective Voyage
+1 Magus of the Vineyard
+1 Urborg, Tomb of Yawgmoth
+1 Yavimaya, Cradle of Growth
+1 Gyome, Master Chef
+1 Temple Bell
+1 Oviya, Automech Artisan
+1 Innocuous Researcher
+1 Horn of Greed
+1 Eladamri's Vineyard
+1 Veteran Explorer
+1 Fabled Passage
+1 Secluded Starforge
+2 Snow-Covered Swamp
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Nature's Way
+1 Turbulent Fen
+1 Underground Mortuary
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+7 Snow-Covered Forest
+1 Many Partings
+1 Contest of Claws
+1 Feral Encounter
+1 Vivien, Arkbow Ranger
+1 Hunter's Talent
+1 Displaced Dinosaurs
+1 Swarmyard
+1 Ripples of Undeath
+1 Super Combo
+1 Yavimaya Hollow
+1 Tyvar's Stand
+1 Caravan Vigil
+1 Font of Mythos

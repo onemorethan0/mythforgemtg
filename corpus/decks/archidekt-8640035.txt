@@ -1,0 +1,107 @@
+# Archidekt — Flubs For Breakfast CEDH
+# source: archidekt:8640035
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Flubs, the Fool
+
+Deck:
+1 Underworld Breach
+1 Dark Sphere
+1 Pact of Negation
+1 Borne Upon a Wind
+1 Simian Spirit Guide
+1 Scalding Tarn
+1 Aluren
+1 Gaea's Cradle
+1 Ornithopter
+1 Mishra's Workshop
+1 Shield Sphere
+1 Sylvan Library
+1 Brain Freeze
+1 Elvish Spirit Guide
+1 Emergence Zone
+1 Lion's Eye Diamond
+1 Gemstone Caverns
+1 Sol Ring
+1 Paradise Mantle
+1 Chrome Mox
+1 Gustha's Scepter
+1 Mox Amber
+1 Noxious Revival
+1 Polluted Delta
+1 Mountain
+1 Misty Rainforest
+1 Island
+1 Flooded Strand
+1 Arid Mesa
+1 Gitaxian Probe
+1 Kobolds of Kher Keep
+1 Earthcraft
+1 Chain of Vapor
+1 Dramatic Reversal
+1 Mystical Tutor
+1 Mana Confluence
+1 Shrieking Drake
+1 Rograkh, Son of Rohgahh
+1 Phyrexian Walker
+1 Memnite
+1 Inti, Seneschal of the Sun
+1 Springleaf Drum
+1 Mox Diamond
+1 Lotus Petal
+1 Jeweled Amulet
+1 Mana Vault
+1 Crookshank Kobolds
+1 Crimson Kobolds
+1 Crop Rotation
+1 Command Tower
+1 Gamble
+1 Wild Growth
+1 Sylvan Tutor
+1 Veil of Summer
+1 Wheel of Fortune
+1 Wooded Foothills
+1 Windswept Heath
+1 Volcanic Island
+1 Verdant Catacombs
+1 Taiga
+1 Tropical Island
+1 Tinder Wall
+1 The One Ring
+1 Worldly Tutor
+1 Urza's Bauble
+1 Utopia Sprawl
+1 Food Chain
+1 Ancient Tomb
+1 Forest
+1 Displacer Kitten
+1 Jeska's Will
+1 Chord of Calling
+1 Survival of the Fittest
+1 Strike It Rich
+1 Exploration
+1 Cloudstone Curio
+1 Eldritch Evolution
+1 Land Grant
+1 Faithless Looting
+1 Finale of Devastation
+1 Grim Monolith
+1 Mox Opal
+1 Six
+1 Squee, the Immortal
+1 Breeding Pool
+1 Mishra's Bauble
+1 Prismatic Vista
+1 Eruth, Tormented Prophet
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Steam Vents
+1 Engineered Explosives
+1 Stomping Ground
+1 Song of Creation
+1 Sensei's Divining Top
+1 Containment Construct
+1 Ragavan, Nimble Pilferer
+1 Cloud of Faeries
+1 Walking Ballista

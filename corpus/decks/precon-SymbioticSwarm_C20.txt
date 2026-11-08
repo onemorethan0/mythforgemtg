@@ -1,0 +1,94 @@
+# WotC precon — Symbiotic Swarm (C20, 2020-04-17)
+# source: mtgjson:SymbioticSwarm_C20
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Kathril, Aspect Warper
+
+Deck:
+1 Abzan Ascendancy
+1 Abzan Charm
+1 Acidic Slime
+1 Aerial Responder
+1 Ajani Unyielding
+1 Akroma, Angel of Wrath
+1 Angel of Finality
+1 Arcane Signet
+1 Archon of Valor's Reach
+1 Avenging Huntbonder
+1 Blighted Woodland
+1 Blood Curdle
+1 Blossoming Sands
+1 Bonder's Ornament
+1 Cairn Wanderer
+1 Canopy Vista
+1 Cartographer's Hawk
+1 Cataclysmic Gearhulk
+1 Caves of Koilos
+1 Command Tower
+1 Commander's Sphere
+1 Cultivate
+1 Daring Fiendbonder
+1 Deadbridge Chant
+1 Deathsprout
+1 Despark
+1 Duneblast
+1 Ever After
+1 Evolving Wilds
+1 Exotic Orchard
+4 Forest
+1 Gavony Township
+1 Golgari Rot Farm
+1 Grim Backwoods
+1 Grisly Salvage
+1 Harmonize
+1 Hornet Queen
+1 Jungle Hollow
+1 Kalemne's Captain
+1 Karametra, God of Harvests
+1 Krosan Verge
+1 Majestic Myriarch
+1 Martial Impetus
+1 Memorial to Folly
+1 Mimic Vat
+1 Myriad Landscape
+1 Nesting Grounds
+1 Netherborn Altar
+1 Nikara, Lair Scavenger
+1 Nyx Weaver
+1 Obscuring Haze
+1 Odric, Lunarch Marshal
+1 Orzhov Basilica
+1 Parasitic Impetus
+7 Plains
+1 Predatory Impetus
+1 Reveillark
+1 Sakura-Tribe Elder
+1 Sandsteppe Citadel
+1 Satyr Wayfinder
+1 Scoured Barrens
+1 Selective Adaptation
+1 Selesnya Sanctuary
+1 Skullwinder
+1 Slippery Bogbonder
+1 Sol Ring
+1 Solemn Recruit
+1 Soul of Innistrad
+1 Soulflayer
+1 Splinterfright
+1 Sunblast Angel
+1 Sungrass Prairie
+7 Swamp
+1 Swiftfoot Boots
+1 Tayam, Luminous Enigma
+1 Titanoth Rex
+1 Together Forever
+1 Unbreakable Bond
+1 Unburial Rites
+1 Vampire Nighthawk
+1 Vitality Hunter
+1 Void Beckoner
+1 Yannik, Scavenging Sentinel
+1 Zetalpa, Primal Dawn

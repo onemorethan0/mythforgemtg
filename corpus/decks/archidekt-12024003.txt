@@ -1,0 +1,76 @@
+# Archidekt — Rakdos Guild Horror Show
+# source: archidekt:12024003
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Rakdos, Patron of Chaos
+
+Deck:
+1 Rakdos Firewheeler
+1 Dreadbore
+1 Massacre Girl, Known Killer
+1 Rakdos Signet
+1 Rakdos the Defiler
+1 Skewer the Critics
+1 Bladebrand
+1 Rakdos Augermage
+1 Rakdos's Return
+1 Rakdos Keyrune
+1 Rakdos Guildmage
+1 Rakdos Locket
+1 Rakdos, the Showstopper
+1 Macabre Mockery
+1 Judith, Carnage Connoisseur
+1 Get the Point
+1 Captive Audience
+1 Cult Guildmage
+1 Cry of the Carnarium
+1 Bedeck // Bedazzle
+1 Cryptborn Horror
+1 Rix Maadi Guildmage
+1 Massacre Girl
+1 Rakdos Roustabout
+1 Pain Magnification
+1 Havoc Jester
+1 Blade Juggler
+1 Spawn of Mayhem
+1 Drill Bit
+1 Rix Maadi Reveler
+1 Rakdos Guildgate
+1 Theater of Horrors
+1 Exava, Rakdos Blood Witch
+1 Judith, the Scourge Diva
+1 Blim, Comedic Genius
+1 Slice from the Shadows
+1 Clear the Stage
+1 Bloodfray Giant
+1 Carnival // Carnage
+1 Mayhem Devil
+1 Light Up the Stage
+1 Bedevil
+1 Showstopping Surprise
+1 Thrill-Kill Assassin
+1 Rix Maadi, Dungeon Palace
+1 Hackrobat
+1 Dead Revels
+1 Wrecking Ball
+1 Sire of Insanity
+1 Rafter Demon
+1 Rakdos Cluestone
+1 Barbed Servitor
+1 Juri, Master of the Revue
+1 Auger Spree
+1 Havoc Festival
+1 Blood Crypt
+1 Raucous Theater
+16 Mountain
+1 Perforating Artist
+1 Act of Treason
+1 Rakdos, Lord of Riots
+1 Rakdos Carnarium
+1 Tempt with Mayhem
+1 Carnage Gladiator
+1 Convenient Target
+1 Bond of Revival
+16 Swamp

@@ -1,0 +1,87 @@
+# Archidekt — Ellivere 500 BRL
+# source: archidekt:14062503
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ellivere of the Wild Court
+
+Deck:
+1 Sol Ring
+1 Shalai, Voice of Plenty
+1 Utopia Sprawl
+1 Archon of the Wild Rose
+1 Oviya, Automech Artisan
+1 Dollmaker's Shop // Porcelain Gallery
+1 Path to Exile
+1 Soul Partition
+1 Wild Growth
+1 One with Nature
+1 Wild Beastmaster
+1 Blind Obedience
+1 Static Prison
+1 Unwanted Remake
+1 Swords to Plowshares
+1 Grasp of Fate
+1 Nature's Claim
+1 Razorgrass Ambush // Razorgrass Field
+1 Sigarda, Font of Blessings
+1 Trickster's Elk
+1 Chord of Calling
+1 Destiny Spinner
+1 Starlight Spectacular
+1 Alseid of Life's Bounty
+1 Gilded Goose
+1 Setessan Champion
+1 Elvish Archivist
+1 Armored Scrapgorger
+1 Sunpetal Grove
+1 Sanctum Weaver
+1 Command Tower
+11 Plains
+12 Forest
+1 Thraben Charm
+1 Gaddock Teeg
+1 Aven Mindcensor
+1 Duty Beyond Death
+1 Fauna Shaman
+1 Scattered Groves
+1 Yasharn, Implacable Earth
+1 Thalia, Guardian of Thraben
+1 Suppression Field
+1 Kutzil, Malamet Exemplar
+1 Collective Resistance
+1 Congregation at Dawn
+1 Champion of Lambholt
+1 Split Up
+1 Canopy Vista
+1 Fortified Village
+1 Llanowar Elves
+1 Avacyn's Pilgrim
+1 Elvish Mystic
+1 Birds of Paradise
+1 Arbor Elf
+1 Sylvan Safekeeper
+1 Selfless Spirit
+1 Benevolent Bodyguard
+1 Taunting Elf
+1 Restoration Magic
+1 Deafening Silence
+1 Archon of Emeria
+1 Stony Silence
+1 Hushbringer
+1 Soulless Jailer
+1 Sheltered by Ghosts
+1 Strength of the Harvest // Haven of the Harvest
+1 Kabira Takedown // Kabira Plateau
+1 Kona, Rescue Beastie
+1 Reprieve
+1 Clarion Conqueror
+1 Rest in Peace
+1 Containment Priest
+1 Rule of Law
+1 Grafdigger's Cage
+1 Phyrexian Censor
+1 Doorkeeper Thrull
+1 Eidolon of Rhetoric
+1 Collector Ouphe

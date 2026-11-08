@@ -1,0 +1,88 @@
+# Archidekt — Hakbal: Wide and Unblockable
+# source: archidekt:6231856
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Hakbal of the Surging Soul
+
+Deck:
+1 Command Tower
+1 Roaming Throne
+1 Mystic Sanctuary
+1 Merfolk Mistbinder
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Kiora's Follower
+1 Rhystic Study
+1 Topography Tracker
+1 Nicanzil, Current Conductor
+1 Deeproot Waters
+1 Kindred Discovery
+1 Beast Within
+1 Arcane Signet
+1 Mistrise Village
+1 Misty Rainforest
+1 Hardened Scales
+1 Breeding Pool
+1 Cold-Eyed Selkie
+1 Seafloor Oracle
+1 Inspiring Call
+1 Sol Ring
+1 Stonybrook Banneret
+1 Rapid Hybridization
+1 Thieving Skydiver
+1 Herald of Secret Streams
+1 Master of the Pearl Trident
+1 Kopala, Warden of Waves
+1 Singer of Swift Rivers
+1 Svyelun of Sea and Sky
+1 Simic Growth Chamber
+1 Vineglimmer Snarl
+1 Deeproot Pilgrimage
+1 Tatyova, Benthic Druid
+1 Yavimaya Coast
+1 Rejuvenating Springs
+1 Arcane Denial
+1 Cyclonic Rift
+1 Ozolith, the Shattered Spire
+1 Heroic Intervention
+1 Stubborn Denial
+1 Sink into Stupor // Soporific Springs
+1 Collective Resistance
+1 Mystic Remora
+1 Burgeoning
+1 Dreamroot Cascade
+1 Willowrush Verge
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Merrow Reejerey
+1 Danny Pink
+1 Kodama of the West Tree
+1 Ripples of Potential
+1 Hinterland Harbor
+1 Summon: Leviathan
+1 Sphere Grid
+1 Exploration
+1 Otawara, Soaring City
+1 Mutational Advantage
+9 Forest
+1 Lord of Atlantis
+1 Overwhelming Stampede
+1 Merfolk Skydiver
+1 Sodden Verdure
+1 Namor, Scourge of the Seas
+1 Triumph of the Hordes
+1 Attuma, Atlantean Warlord
+1 Innkeeper's Talent
+1 Raise the Palisade
+10 Island
+1 Emperor Mihail II
+1 Deeproot Elite
+1 Daughter of the Deep
+1 Flare of Denial
+1 Silvergill Adept
+1 Hedge Maze
+1 Forensic Researcher
+1 Tishana's Tidebinder
+1 An Offer You Can't Refuse
+1 Fierce Guardianship
+1 Vodalian Hexcatcher

@@ -1,0 +1,93 @@
+# Archidekt — In Latin, JENOVA begins with an "I"
+# source: archidekt:13946136
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Jenova, Ancient Calamity
+
+Deck:
+1 Mortuary Mire
+1 Deadly Brew
+1 Atomize
+1 Vincent Valentine // Galian Beast
+1 Yawgmoth, Thran Physician
+1 Dark Ritual
+1 Portal to Phyrexia
+1 Beseech the Mirror
+1 Skullclamp
+1 Nature's Lore
+1 Sol Ring
+1 Pitiless Plunderer
+1 Cultivate
+1 Reanimate
+1 Insidious Roots
+1 Nadier's Nightblade
+1 Bojuka Bog
+1 Phyrexian Altar
+1 Overgrown Tomb
+5 Swamp
+1 Ashnod's Altar
+1 Command Tower
+1 Llanowar Wastes
+1 Yavimaya, Cradle of Growth
+12 Forest
+1 The Ozolith
+1 Agent Frank Horrigan
+1 Corpsejack Menace
+1 Alpha Deathclaw
+1 Rampaging Yao Guai
+1 Fabled Passage
+1 Feral Ghoul
+1 Exotic Orchard
+1 Undergrowth Stadium
+1 Evolution Witness
+1 Chatterfang, Squirrel General
+1 Tarrian's Soulcleaver
+1 Basking Broodscale
+1 Worldly Tutor
+1 Skyshroud Claim
+1 Haunted Mire
+1 Oran-Rief, the Vastwood
+1 Grim Backwoods
+1 Animate Dead
+1 Forgotten Ancient
+1 Blade of the Bloodchief
+1 Wildest Dreams
+1 Hancock, Ghoulish Mayor
+1 Urborg Repossession
+1 Glowing One
+1 Culling Ritual
+1 Infesting Radroach
+1 Zulaport Cutthroat
+1 Lily Bowen, Raging Grandma
+1 The Darkness Crystal
+1 High Market
+1 Blooming Marsh
+1 Necroblossom Snarl
+1 Tainted Wood
+1 Temple of Malady
+1 Woodland Cemetery
+1 Snakeskin Veil
+1 Traverse the Outlands
+1 Gift of the Viper
+1 Hardened Scales
+1 Altar of Dementia
+1 Grave Pact
+1 Bastion of Remembrance
+1 Primal Vigor
+1 Contagion Engine
+1 Diabolic Intent
+1 Carpet of Flowers
+1 Natural Order
+1 Revitalizing Repast // Old-Growth Grove
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 The Skullspore Nexus
+1 Second Harvest
+1 Eldrazi Monument
+1 Mirkwood Bats
+1 Branching Evolution
+1 Squirrel Nest
+1 Arcane Signet
+1 Earthcraft
+1 The Ghoul, Gunslinger

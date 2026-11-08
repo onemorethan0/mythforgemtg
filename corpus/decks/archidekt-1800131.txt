@@ -1,0 +1,109 @@
+# Archidekt — T1: Esika, God of the Tree - 5C Theros God Tribal
+# source: archidekt:1800131
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Esika, God of the Tree // The Prismatic Bridge
+
+Deck:
+1 Sanctum Weaver
+1 Calix, Destiny's Hand
+1 Command Tower
+1 Temple of Plenty
+1 Temple of Triumph
+1 Starfield of Nyx
+1 Ephara, God of the Polis
+1 Purphoros, Bronze-Blooded
+1 Verduran Enchantress
+1 Cavern of Souls
+1 Reflecting Pool
+1 Jetmir's Garden
+1 Ketria Triome
+1 Misty Rainforest
+1 Verdant Catacombs
+1 Windswept Heath
+1 Wooded Foothills
+1 Zagoth Triome
+1 Ziatora's Proving Ground
+1 Indatha Triome
+1 Marsh Flats
+1 Arid Mesa
+1 Flooded Strand
+1 Spara's Headquarters
+1 Extinguish All Hope
+1 Enchantress's Presence
+1 Sterling Grove
+1 Altar of the Pantheon
+1 Daxos, Blessed by the Sun
+1 Destiny Spinner
+1 Nessian Wanderer
+1 Sylvan Caryatid
+1 Sythis, Harvest's Hand
+1 Tymaret, Chosen from Death
+1 Anax, Hardened in the Forge
+1 Archetype of Aggression
+1 Archetype of Courage
+1 Callaphe, Beloved of the Sea
+1 Dryad of the Ilysian Grove
+1 Satyr Enchanter
+1 Setessan Champion
+1 Eidolon of Blossoms
+1 Renata, Called to the Hunt
+1 Archetype of Finality
+1 Archetype of Imagination
+1 Archetype of Endurance
+1 Hall of Heliod's Generosity
+1 The World Tree
+1 Temple of Abandon
+1 Temple of Enlightenment
+1 Temple of Deceit
+1 Temple of Epiphany
+1 Temple of Malady
+1 Temple of Malice
+1 Temple of Mystery
+1 Temple of Silence
+1 Path of Ancestry
+1 Nylea, God of the Hunt
+1 Athreos, Shroud-Veiled
+1 Erebos, Bleak-Hearted
+1 Heliod, Sun-Crowned
+1 Klothys, God of Destiny
+1 Pharika, God of Affliction
+1 Thassa, God of the Sea
+1 Iroas, God of Victory
+1 Mogis, God of Slaughter
+1 Nylea, Keen-Eyed
+1 Keranos, God of Storms
+1 Composer of Spring
+1 Patchwork Banner
+1 Commander's Sphere
+1 Nature's Lore
+1 Three Visits
+1 Arcane Signet
+1 Farseek
+1 Xander's Lounge
+1 Scalding Tarn
+1 Savai Triome
+1 Raugrin Triome
+1 Raffine's Tower
+1 Polluted Delta
+1 Plaza of Heroes
+1 Bloodstained Mire
+1 Decanter of Endless Water
+1 Purphoros, God of the Forge
+1 Thassa, Deep-Dwelling
+1 Karametra, God of Harvests
+1 Kruphix, God of Horizons
+1 Beast Within
+1 Generous Gift
+1 Chromanticore
+1 Thought Vessel
+1 Heliod, God of the Sun
+1 Athreos, God of Passage
+1 Xenagos, God of Revels
+1 Erebos, God of the Dead
+1 Phenax, God of Deception
+1 Mesa Enchantress
+1 Wrath of God
+1 Cacophony Unleashed

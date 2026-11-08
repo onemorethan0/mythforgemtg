@@ -1,0 +1,100 @@
+# Archidekt — Chatterfang, Squirrel General - Golgari Token Swarm
+# source: archidekt:1553069
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Chatterfang, Squirrel General
+
+Deck:
+1 Pitiless Plunderer
+1 Deep Forest Hermit
+1 Yavimaya, Cradle of Growth
+1 Mirkwood Bats
+1 Scurry of Squirrels
+1 Command Tower
+1 Ivy Lane Denizen
+2 Swamp
+1 Deranged Hermit
+1 Scurry Oak
+1 Tireless Provisioner
+1 Syr Konrad, the Grim
+1 Yavimaya Hollow
+1 Sol Ring
+1 Blooming Marsh
+1 Skullclamp
+1 Arcane Signet
+1 Attrition
+1 Tireless Tracker
+1 Llanowar Wastes
+1 Tainted Wood
+1 Undergrowth Stadium
+1 Galadhrim Ambush
+1 Restless Cottage
+1 Archdruid's Charm
+1 Bojuka Bog
+1 Yawgmoth, Thran Physician
+1 Eldrazi Monument
+1 Exotic Orchard
+1 Woodland Cemetery
+1 Crop Rotation
+1 Chittering Dispatcher
+1 Beastmaster Ascension
+1 Tendershoot Dryad
+1 Second Harvest
+1 Nurturing Peatland
+1 Arachnogenesis
+1 Khalni Garden
+1 Wight of the Reliquary
+1 Grist, the Hunger Tide
+1 Enduring Vitality
+1 Boggart Trawler // Boggart Bog
+1 Diabolic Intent
+1 Horizon of Progress
+1 Bastion of Remembrance
+1 Peregrin Took
+1 Arasta of the Endless Web
+1 Morbid Opportunist
+1 Warren Soultrader
+2 Snow-Covered Swamp
+1 Malevolent Rumble
+1 Titania, Protector of Argoth
+1 Nadier's Nightblade
+1 Elegy Acolyte
+2 Snow-Covered Forest
+1 Zulaport Cutthroat
+1 Bloodroot Apothecary
+1 Jaheira, Friend of the Forest
+1 Urza's Cave
+1 Twilight Mire
+1 Reclamation Sage
+1 Abrupt Decay
+1 Hazel's Brewmaster
+1 Devoted Druid
+1 Culling Ritual
+1 Finale of Devastation
+1 Worldly Tutor
+1 Eldritch Evolution
+1 Springleaf Parade
+1 Ad Nauseam
+1 Mudflat Village
+1 Deathcap Glade
+1 Rabid Attack
+1 Scavenger Grounds
+1 Assassin's Trophy
+1 Fountainport
+2 Forest
+1 Sylvan Library
+1 Birds of Paradise
+1 Elvish Mystic
+1 Llanowar Elves
+1 Elves of Deep Shadow
+1 Fyndhorn Elves
+1 Supportive Parents
+1 Swamp
+4 Forest
+1 Overgrown Tomb
+1 Dismember
+1 Horn of the Mark
+1 Jiang Yanggu, Never Alone
+1 Swamp

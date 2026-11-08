@@ -1,0 +1,96 @@
+# Archidekt — 12 BKK - Benevolent King Kenrith
+# source: archidekt:4136144
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Veteran Explorer
+1 Dictate of Kruphix
+1 Arcane Denial
+1 Yavimaya, Cradle of Growth
+1 Heliod, the Radiant Dawn // Heliod, the Warped Eclipse
+1 Permission Denied
+1 City of Brass
+1 Avatar of Growth
+1 Winds of Abandon
+1 Minds Aglow
+1 Forbidden Orchard
+1 Cyclonic Rift
+1 Teferi's Protection
+2 Plains
+1 Kwain, Itinerant Meddler
+1 Bountiful Promenade
+1 Whispering Madness
+1 Walking Archive
+1 Hall of Heliod's Generosity
+1 Sea of Clouds
+1 Exploration
+1 Temple Bell
+1 Kami of the Crescent Moon
+1 Vision Skeins
+1 Windfall
+1 Breeding Pool
+1 Mind Grind
+1 Temple Garden
+1 Hallowed Fountain
+1 Cabal Coffers
+1 Flooded Strand
+1 Mana Confluence
+1 Reliquary Tower
+1 Words of Wisdom
+1 Skyscribing
+1 New Frontiers
+1 Swamp
+1 Selvala, Explorer Returned
+4 Forest
+1 Command Tower
+1 Urborg, Tomb of Yawgmoth
+1 Dovin's Veto
+1 Oblation
+1 Exotic Orchard
+1 Spore Frog
+1 Howling Mine
+1 Collective Voyage
+1 Gluntch, the Bestower
+1 Rejuvenating Springs
+1 Final Showdown
+1 Windswept Heath
+1 Forced Fruition
+1 Farewell
+1 Smothering Tithe
+1 Wishclaw Talisman
+1 Training Grounds
+1 Path to Exile
+1 The Second Doctor
+1 Mistrise Village
+1 Horn of Greed
+1 Dryad of the Ilysian Grove
+1 Prosperity
+1 Font of Mythos
+1 Silence
+1 Folio of Fancies
+1 Misty Rainforest
+1 Tundra
+1 Tropical Island
+1 Savannah
+1 Rites of Flourishing
+1 Tempt with Discovery
+1 Swan Song
+1 Wooded Foothills
+1 Ketria Triome
+4 Island
+1 Reflecting Pool
+1 Polluted Delta
+1 Agatha of the Vile Cauldron
+1 Sokrates, Athenian Teacher
+1 Anvil of Bogardan
+1 Birds of Paradise
+1 Orcish Bowmasters
+1 Skullwinder
+1 Enlightened Tutor
+1 Demonic Tutor
+1 Chromatic Lantern
+1 Teferi's Reproach

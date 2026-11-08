@@ -1,0 +1,102 @@
+# Archidekt — Nicol Bolas // Mishra
+# source: archidekt:3605612
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Mishra, Eminent One
+
+Deck:
+1 The Mightstone and Weakstone
+1 Forsaken Monument
+1 Academy Ruins
+1 Sulfurous Springs
+1 Shivan Reef
+1 Underground River
+1 Graven Cairns
+1 Cascade Bluffs
+1 Sunken Ruins
+1 Darksteel Citadel
+1 Vault of Whispers
+1 Silverbluff Bridge
+1 Seat of the Synod
+1 Mistvault Bridge
+1 Great Furnace
+1 Drossforge Bridge
+1 Terisiare's Devastation
+1 Farid, Enterprising Salvager
+1 Audacious Reshapers
+1 Ichor Wellspring
+1 Mind Stone
+1 Strionic Resonator
+1 Lithoform Engine
+3 Island
+1 Emry, Lurker of the Loch
+1 Spire of Industry
+1 Aether Hub
+3 Swamp
+1 Replication Specialist
+1 Oni-Cult Anvil
+1 Foundry Inspector
+1 Mirrorworks
+1 Scrap Trawler
+1 Myr Retriever
+1 All Is Dust
+1 Talisman of Indulgence
+1 Idol of Oblivion
+1 Nimblewright Schematic
+1 Prized Statue
+1 Aether Spellbomb
+1 Shrine of the Forsaken Gods
+1 Nautiloid Ship
+1 Darkwater Catacombs
+1 Shadowblood Ridge
+1 Skysovereign, Consul Flagship
+1 Goblin Welder
+1 Servo Schematic
+1 Braids, Arisen Nightmare
+1 Cyberdrive Awakener
+1 Weatherlight
+1 Tendo Ice Bridge
+1 Blightstep Pathway // Searstep Pathway
+1 Pyrite Spellbomb
+1 Tezzeret, Agent of Bolas
+1 Daretti, Ingenious Iconoclast
+1 Talisman of Creativity
+1 Talisman of Dominance
+1 Phyrexian Metamorph
+1 Sculpting Steel
+1 Spine of Ish Sah
+1 Chaos Warp
+1 Honor-Worn Shaku
+1 Scrap Welder
+1 Liquimetal Torque
+1 Feed the Swarm
+1 Rings of Brighthearth
+1 Skyswimmer Koi
+1 Quicksmith Genius
+3 Mountain
+1 The Mycosynth Gardens
+1 Smelting Vat
+1 Oblivion Stone
+1 Volatile Fault
+1 Mephitic Draught
+1 Dowsing Device // Geode Grotto
+1 Undercity Sewers
+1 Raucous Theater
+1 Thundering Falls
+1 Fomori Vault
+1 Esoteric Duplicator
+1 Mirrex
+1 Rolling Hamsphere
+1 Demonic Junker
+1 Cryogen Relic
+1 Pinnacle Emissary
+1 Uthros Research Craft
+1 Warmaker Gunship
+1 Monoist Circuit-Feeder
+1 Secluded Starforge
+1 Umbral Collar Zealot
+1 Depthshaker Titan
+1 Hall of Echoes
+1 The Echoverse Fulcrum

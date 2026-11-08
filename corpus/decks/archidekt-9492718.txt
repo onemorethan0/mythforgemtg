@@ -1,0 +1,107 @@
+# Archidekt — Sly Cooper
+# source: archidekt:9492718
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Codie, Vociferous Codex
+
+Deck:
+1 Belt of Giant Strength
+1 Great Train Heist
+1 Muerra, Trash Tactician
+1 Keruga, the Macrosage
+1 Archelos, Lagoon Mystic
+1 Kogla, the Titan Ape
+1 Francisco, Fowl Marauder
+1 Falco Spara, Pactweaver
+1 Breena, the Demagogue
+1 Maha, Its Feathers Night
+1 Dack Fayden
+1 Mask of Avacyn
+1 Denry Klin, Editor in Chief
+1 Phabine, Boss's Confidant
+1 Zar Ojanen, Scion of Efrava
+1 Lolth, Spider Queen
+1 Yurlok of Scorch Thrash
+1 Goreclaw, Terror of Qal Sisma
+1 Hamza, Guardian of Arashin
+1 Glarb, Calamity's Augur
+1 Arthur, Marigold Knight
+1 Ornery Tumblewagg
+1 Moraug, Fury of Akoum
+1 Hoard Hauler
+1 Mystery Key
+1 Grappling Hook
+1 High-Speed Hoverbike
+1 Smoke Bomb
+1 Collective Effort
+1 The Key to the Vault
+1 Omenpath Journey
+1 Reconnaissance
+1 Pyrite Spellbomb
+1 Black Market Connections
+1 Black Market
+1 Fists of Flame
+1 Unstoppable Plan
+1 Smuggler's Copter
+1 Sol Ring
+1 Mastermind's Acquisition
+1 Rogue Class
+1 Loot, Exuberant Explorer
+1 Chromatic Lantern
+1 Secret Rendezvous
+1 Murder
+1 Jedit Ojanen of Efrava
+1 Interceptor, Shadow's Hound
+1 Brainwash
+1 Arcane Signet
+1 Counterspell
+1 Become Anonymous
+1 Brawl
+1 Clever Concealment
+1 Farseek
+1 Treasure Map // Treasure Cove
+1 Leatherhead, Swamp Stalker
+1 Continue?
+1 Mr. Foxglove
+1 Arid Mesa
+1 Bloodstained Mire
+1 Bountiful Promenade
+1 Breeding Pool
+1 City of Brass
+1 Command Tower
+1 Exotic Orchard
+1 Fabled Passage
+1 Flooded Strand
+2 Forest
+1 Godless Shrine
+1 Luxury Suite
+1 Mana Confluence
+1 Marsh Flats
+1 Misty Rainforest
+1 Morphic Pool
+1 Overgrown Tomb
+1 Polluted Delta
+1 Prismatic Vista
+1 Reflecting Pool
+1 Rejuvenating Springs
+1 Scalding Tarn
+1 Spire Garden
+1 Stomping Ground
+1 Swamp
+1 Temple Garden
+1 Undergrowth Stadium
+1 Urborg, Tomb of Yawgmoth
+1 Vault of Champions
+1 Verdant Catacombs
+1 Watery Grave
+1 Windswept Heath
+1 Wooded Foothills
+1 Yavimaya, Cradle of Growth
+1 Forbidden Orchard
+1 Hei Bai, Spirit of Balance
+1 Goggles of Night
+1 Artificer Class
+1 Fighter Class
+1 Olinda the Oblivious

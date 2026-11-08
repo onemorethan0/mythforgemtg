@@ -1,0 +1,108 @@
+# Archidekt — Yuriko - cEDH Stax/Control
+# source: archidekt:2098461
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Wingcrafter
+1 Lotus Petal
+1 Lim-Dûl's Vault
+1 Prosperous Thief
+1 Thousand-Faced Shadow
+1 Gemstone Caverns
+1 Chrome Mox
+1 Shizo, Death's Storehouse
+1 Brainstorm
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Faerie Seer
+1 Changeling Outcast
+1 Demonic Tutor
+1 Vampiric Tutor
+1 Snuff Out
+1 Submerge
+1 Command Tower
+1 Ornithopter
+1 Otawara, Soaring City
+1 Opposition Agent
+1 Polluted Delta
+1 Flooded Strand
+1 Bloodstained Mire
+1 Scalding Tarn
+1 Marsh Flats
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Morphic Pool
+1 Force of Will
+1 Deadly Rollick
+1 Mist-Syndicate Naga
+1 Ingenious Infiltrator
+1 Island
+1 Swamp
+1 Mystical Tutor
+1 Underground Sea
+1 Temporal Trespass
+1 Watery Grave
+1 Mox Amber
+1 Flusterstorm
+1 Mana Confluence
+1 Mothdust Changeling
+1 Memnite
+1 Commandeer
+1 Cover of Darkness
+1 Demonic Consultation
+1 Force of Negation
+1 Grafdigger's Cage
+1 Thassa's Oracle
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Tainted Pact
+1 Dauthi Voidwalker
+1 Imperial Seal
+1 Null Rod
+1 Snow-Covered Swamp
+1 Snow-Covered Island
+1 Silver-Fur Master
+1 Mindbreak Trap
+1 City of Brass
+1 Underground River
+1 Shadow of Mortality
+1 Cursed Totem
+1 Enter the Infinite
+1 Nashi, Moon Sage's Scion
+1 March of Swirling Mist
+1 Fierce Guardianship
+1 Orcish Bowmasters
+1 Dark Ritual
+1 Rhystic Study
+1 Mystic Remora
+1 Misdirection
+1 Bloodchief Ascension
+1 Toxic Deluge
+1 Flare of Malice
+1 Flare of Denial
+1 Sink into Stupor // Soporific Springs
+1 Mausoleum Wanderer
+1 Covert Technician
+1 Universal Automaton
+1 Orochi Soul-Reaver
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Imposter Mech
+1 Subtlety
+1 Roaming Throne
+1 Torpor Orb
+1 Undercity Sewers
+1 Mockingbird
+1 Wan Shi Tong, Librarian
+1 Dream Beavers
+1 Mental Misstep
+1 Sol Ring
+1 Mai, Scornful Striker
+1 Counterbalance
+1 Fblthp, Impossibly Lost
+1 Spyglass Siren
+1 Karn, Argent Defender
+1 Illvoi Galeblade
+1 Tetsuko Umezawa, Fugitive
+1 Yuriko, Hope from the Shadows

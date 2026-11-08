@@ -1,0 +1,84 @@
+# WotC precon — Exquisite Invention (C18, 2018-08-10)
+# source: mtgjson:ExquisiteInvention_C18
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Saheeli, the Gifted
+
+Deck:
+1 Aether Gale
+1 Ancient Stone Idol
+1 Blasphemous Act
+1 Blinkmoth Urn
+1 Bosh, Iron Golem
+1 Brudiclad, Telchor Engineer
+1 Buried Ruin
+1 Chaos Warp
+1 Chief of the Foundry
+1 Command Tower
+1 Commander's Sphere
+1 Coveted Jewel
+1 Darksteel Citadel
+1 Darksteel Juggernaut
+1 Dreamstone Hedron
+1 Duplicant
+1 Echo Storm
+1 Enchanter's Bane
+1 Endless Atlas
+1 Etherium Sculptor
+1 Forge of Heroes
+1 Foundry of the Consuls
+1 Geode Golem
+1 Great Furnace
+1 Hedron Archive
+1 Hellkite Igniter
+1 Highland Lake
+1 Inkwell Leviathan
+1 Into the Roil
+15 Island
+1 Izzet Boilerworks
+1 Izzet Guildgate
+1 Izzet Signet
+1 Loyal Apprentice
+1 Loyal Drake
+1 Magmaquake
+1 Magnifying Glass
+1 Maverick Thopterist
+1 Mimic Vat
+1 Mind Stone
+1 Mirrorworks
+12 Mountain
+1 Myr Battlesphere
+1 Pilgrim's Eye
+1 Prismatic Lens
+1 Prototype Portal
+1 Psychosis Crawler
+1 Retrofitter Foundry
+1 Reverse Engineer
+1 Saheeli's Artistry
+1 Saheeli's Directive
+1 Scrabbling Claws
+1 Scuttling Doom Engine
+1 Seat of the Synod
+1 Sharding Sphinx
+1 Sol Ring
+1 Soul of New Phyrexia
+1 Steel Hellkite
+1 Swiftfoot Boots
+1 Swiftwater Cliffs
+1 Tawnos, Urza's Apprentice
+1 Thirst for Knowledge
+1 Thopter Assembly
+1 Thopter Engineer
+1 Thopter Spy Network
+1 Tidings
+1 Treasure Nabber
+1 Unstable Obelisk
+1 Unwinding Clock
+1 Varchild, Betrayer of Kjeldor
+1 Vedalken Humiliator
+1 Vessel of Endless Rest
+1 Whirler Rogue
+1 Worn Powerstone

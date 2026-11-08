@@ -1,0 +1,73 @@
+# Archidekt — Lord of the Rings: Ents
+# source: archidekt:6945344
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Fangorn, Tree Shepherd
+
+Deck:
+1 Orchard Strider
+1 Bosk Banneret
+1 Seedguide Ash
+1 Entish Restoration
+1 Kodama's Reach
+1 Rampant Growth
+1 Edge of Autumn
+1 Timberland Ancient
+1 Ezzaroot Channeler
+1 Everbark Shaman
+1 Wild Growth
+1 Nature's Lore
+1 Yedora, Grave Gardener
+1 Verdeloth the Ancient
+1 Wildwood Mentor
+1 Last March of the Ents
+1 Treetop Defense
+1 Unstoppable Ash
+1 Treefolk Umbra
+1 Assemble the Entmoot
+1 Dormant Grove // Gnarled Grovestrider
+1 Sylvan Offering
+1 Awaken the Woods
+1 Regrowth
+1 Treefolk Harbinger
+1 Rishkar's Expertise
+1 Leaf-Crowned Elder
+1 Bushwhack
+1 Majestic Genesis
+1 Ent's Fury
+1 Harmonize
+1 Ghastbark Twins
+1 Rootgrapple
+1 Orchard Warden
+1 Generous Ent
+1 Reach of Branches
+1 Lumberknot
+1 Warden of the Woods
+1 Rootless Yew
+1 Ghoultree
+1 Scurry Oak
+1 Deadwood Treefolk
+1 Treefolk Seedlings
+1 Dungrove Elder
+1 Wickerbough Elder
+1 Great Oak Guardian
+1 Battlewand Oak
+1 Heartwood Storyteller
+1 Dauntless Dourbark
+1 Ulvenwald Observer
+1 Woodfall Primus
+1 Gnarlroot Pallbearer
+1 Lignify
+1 Quickbeam, Upstart Ent
+1 Kalonian Twingrove
+1 Rowan Treefolk
+1 Great Forest Druid
+1 Spry and Mighty
+1 Timber Protector
+37 Forest
+1 Tend the Sprigs
+1 Midnight Tilling
+1 Sapling Nursery
+1 Redwood Treefolk

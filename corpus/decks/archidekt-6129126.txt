@@ -1,0 +1,80 @@
+# Archidekt — (UN) Happy Holidays!
+# source: archidekt:6129126
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Meet and Greet "Sisay"
+
+Deck:
+1 Two-Handed Axe // Sweeping Cleave
+1 Season's Beatings
+1 Yule Ooze
+1 Audacious Swap
+1 Chaos Confetti
+1 Crack Open
+1 Stocking Tiger
+1 Bag of Tricks
+1 Heartwood Storyteller
+1 Inspired Tinkering
+1 Temple Bell
+1 Share the Spoils
+1 Elvish House Party
+1 Highland Weald
+1 Gingerbread Cabin
+1 Bonder's Ornament
+1 Burnished Hart
+1 Goblin Snowman
+1 Kenrith's Transformation
+1 Key to the City
+1 Tough Cookie
+1 Reforge the Soul
+15 Snow-Covered Mountain
+15 Snow-Covered Forest
+1 Fruitcake Elemental
+1 Goblin Sleigh Ride
+1 Goblin Smuggler
+1 Academy Manufactor
+1 Pendant of Prosperity
+1 Treasure Chest
+1 Exponential Growth
+1 Stampeding Elk Herd
+1 Feldon of the Third Path
+1 Sculptor of Winter
+1 Pinecrest Ridge
+1 Coldsteel Heart
+1 Wall of Pine Needles
+1 Gift of Strength
+1 Rime Tender
+1 Hoard Hauler
+1 Karplusan Forest
+1 Tranquil Domain
+1 Xenagos, God of Revels
+1 Candles of Leng
+1 Cathartic Reunion
+1 Heirloom Epic
+1 Season of Gathering
+1 Trading Post
+1 Chaos Wrap
+1 Manakin
+1 Life of the Party
+1 Tchotchke Elemental
+1 Might of the Masses
+1 Blessing of Frost
+1 Angelic Armaments
+1 Jaheira, Friend of the Forest
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Into the North
+1 Ghost Quarter
+1 Chorus of Might
+1 The Sound of Drums
+1 Fyndhorn Elves
+1 Syr Ginger, the Meal Ender
+1 Rain of Riches
+1 Tread Upon
+1 Bootleggers' Stash
+1 Enduring Vitality
+1 Myntasha, Honored One
+1 Genesis Storm
+1 Larger Than Life
+1 Threefold Thunderhulk

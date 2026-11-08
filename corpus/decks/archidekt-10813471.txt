@@ -1,0 +1,94 @@
+# Archidekt — A strategy worth dying for
+# source: archidekt:10813471
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Teysa Karlov
+
+Deck:
+1 Spawning Pit
+1 Cartel Aristocrat
+1 Fetid Heath
+1 Demonic Tutor
+1 Mirkwood Bats
+1 Midnight Reaper
+1 Bojuka Bog
+1 Path to Exile
+1 Viscera Seer
+1 Skullclamp
+1 Anguished Unmaking
+1 Fracture
+1 Ashnod's Altar
+1 Blood Artist
+1 Caves of Koilos
+1 Dark Prophecy
+1 Arcane Signet
+1 Morbid Opportunist
+1 Requiem Angel
+1 Shambling Ghast
+1 Path of Ancestry
+1 Command Tower
+1 Westvale Abbey // Ormendahl, Profane Prince
+1 Elenda, the Dusk Rose
+1 Cruel Celebrant
+1 Swords to Plowshares
+1 Bastion of Remembrance
+1 Orzhov Basilica
+1 Hunted Witness
+1 Ministrant of Obligation
+1 Exotic Orchard
+1 Hallowed Spiritkeeper
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Tainted Field
+1 Sol Ring
+1 Pitiless Plunderer
+1 Isolated Chapel
+1 Diabolic Intent
+1 Zulaport Cutthroat
+1 Black Market Connections
+1 Yawgmoth, Thran Physician
+1 The Meathook Massacre
+1 Teferi's Protection
+1 Phyrexian Altar
+1 Ao, the Dawn Sky
+1 Kokusho, the Evening Star
+1 Despark
+1 Ash Barrens
+1 Vault of Champions
+1 Shineshadow Snarl
+1 Stroke of Midnight
+1 Talisman of Hierarchy
+1 Bartolomé del Presidio
+1 Bolas's Citadel
+1 Marionette Apprentice
+1 Mortify
+1 Jet Medallion
+1 Greedy Freebooter
+1 Phyrexian Tower
+1 Generous Gift
+1 Dire Tactics
+1 Funeral Room // Awakening Hall
+1 Carrier Thrall
+1 Lightning Greaves
+1 Garrison Cat
+1 Dark Confidant
+9 Swamp
+8 Plains
+1 Infestation Sage
+1 Wriggling Grub
+1 Godless Shrine
+1 Liliana, Dreadhorde General
+1 Dark Ritual
+1 Altar of Dementia
+1 Warren Soultrader
+1 Umbral Collar Zealot
+1 Not Dead After All
+1 Marsh Flats
+1 Crawling Chorus
+1 Grim Haruspex
+1 Smothering Tithe
+1 Lake-town Lookout
+1 Susurian Voidborn
+1 Blasphemous Edict
+1 Deadly Dispute

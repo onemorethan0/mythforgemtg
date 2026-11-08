@@ -1,0 +1,89 @@
+# Archidekt — Where No Man Has Gone Before
+# source: archidekt:5436356
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Farewell); Bracket 1 allows 0
+
+Commander:
+1 Captain Rex Nebula
+
+Deck:
+1 Cybership
+1 Alibou, Ancient Witness
+1 Arcane Signet
+1 Austere Command
+1 Baffling End
+1 Banishing Light
+1 Barren Glory
+1 Weatherlight
+1 Big Score
+1 Boros Charm
+1 Boros Signet
+1 Call the Coppercoats
+1 Chance for Glory
+1 Clifftop Retreat
+1 Comet, Stellar Pup
+1 Command Tower
+1 Commander's Sphere
+1 Conclave Tribunal
+1 Cursed Mirror
+1 Cut a Deal
+1 Defense Grid
+1 Disintegrate
+1 Entrapment Maneuver
+1 Esper Sentinel
+1 Fable of the Mirror-Breaker // Reflection of Kiki-Jiki
+1 Farewell
+1 Fellwar Stone
+1 Finale of Glory
+1 Dimensional Breach
+1 Foundry Inspector
+1 Goblin Engineer
+1 Goblin Welder
+1 Gonti's Aether Heart
+1 Ichor Wellspring
+1 Knowledge Vault
+1 Lashknife Barrier
+1 Losheel, Clockwork Scholar
+1 Inventors' Fair
+1 Mech Hangar
+1 Mentor of the Meek
+1 Mirage Mirror
+10 Mountain
+1 Mycosynth Wellspring
+1 Myrel, Shield of Argive
+1 Needleverge Pathway // Pillarverge Pathway
+1 Odric, Master Tactician
+1 Osgir, the Reconstructor
+1 Oswald Fiddlebender
+1 Parhelion II
+12 Plains
+1 Raise the Alarm
+1 Rogue's Passage
+1 Rugged Prairie
+1 Sacred Foundry
+1 Sculpting Steel
+1 Sevinne's Reclamation
+1 Skysovereign, Consul Flagship
+1 Slayers' Stronghold
+1 Solemn Simulacrum
+1 Spectator Seating
+1 Sunhome, Fortress of the Legion
+1 Swiftfoot Boots
+1 Temple of Triumph
+1 Thespian's Stage
+1 Thran Dynamo
+1 Thunderhawk Gunship
+1 Timely Reinforcements
+1 Unexpected Windfall
+1 Tahngarth, Talruum Hero
+1 Urza's Armor
+1 Galadriel's Dismissal
+1 Valakut Awakening // Valakut Stoneforge
+1 Banish to Another Universe
+1 Trouble in Pairs
+1 Talisman of Conviction
+1 Sram, Senior Edificer
+1 Arid Mesa
+1 Thrilling Discovery
+1 Illustrious Wanderglyph

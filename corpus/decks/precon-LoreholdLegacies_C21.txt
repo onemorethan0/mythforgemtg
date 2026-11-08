@@ -1,0 +1,91 @@
+# WotC precon — Lorehold Legacies (C21, 2021-04-23)
+# source: mtgjson:LoreholdLegacies_C21
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Osgir, the Reconstructor
+
+Deck:
+1 Alibou, Ancient Witness
+1 Ancient Den
+1 Angel of the Ruins
+1 Arcane Signet
+1 Archaeomancer's Map
+1 Audacious Reshapers
+1 Battlefield Forge
+1 Battlemage's Bracers
+1 Boros Charm
+1 Boros Garrison
+1 Boros Locket
+1 Bosh, Iron Golem
+1 Bronze Guardian
+1 Burnished Hart
+1 Chain Reaction
+1 Cleansing Nova
+1 Combustible Gearhulk
+1 Command Tower
+1 Commander's Sphere
+1 Cursed Mirror
+1 Daretti, Scrap Savant
+1 Darksteel Citadel
+1 Darksteel Mutation
+1 Digsite Engineer
+1 Dispatch
+1 Dispeller's Capsule
+1 Duplicant
+1 Excavation Technique
+1 Exotic Orchard
+1 Faithless Looting
+1 Feldon of the Third Path
+1 Forgotten Cave
+1 Great Furnace
+1 Hedron Archive
+1 Hellkite Igniter
+1 Hellkite Tyrant
+1 Hoard-Smelter Dragon
+1 Ichor Wellspring
+1 Jor Kadeen, the Prevailer
+1 Key to the City
+1 Laelia, the Blade Reforged
+1 Lorehold Campus
+1 Losheel, Clockwork Scholar
+1 Meteor Golem
+1 Mind Stone
+1 Monologue Tax
+12 Mountain
+1 Mycosynth Wellspring
+1 Myr Battlesphere
+1 Myriad Landscape
+1 Phyrexia's Core
+1 Pia Nalaar
+1 Pilgrim's Eye
+8 Plains
+1 Quicksmith Genius
+1 Reconstruct History
+1 Return to Dust
+1 Rip Apart
+1 Rogue's Passage
+1 Rout
+1 Ruin Grinder
+1 Sanctum Gargoyle
+1 Scrap Trawler
+1 Sculpting Steel
+1 Secluded Steppe
+1 Secret Rendezvous
+1 Slayers' Stronghold
+1 Sol Ring
+1 Solemn Simulacrum
+1 Steel Hellkite
+1 Steel Overseer
+1 Study Hall
+1 Sun Titan
+1 Sunhome, Fortress of the Legion
+1 Temple of Triumph
+1 Temple of the False God
+1 Thopter Engineer
+1 Thousand-Year Elixir
+1 Triplicate Titan
+1 Unstable Obelisk
+1 Wake the Past

@@ -1,0 +1,89 @@
+# Archidekt — Play Mates
+# source: archidekt:8878813
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Farewell); Bracket 1 allows 0
+
+Commander:
+1 Urza, Academy Headmaster
+
+Deck:
+1 Gluntch, the Bestower
+1 Forced Fruition
+1 Replicating Ring
+1 Lotus Ring
+1 Sol Ring
+1 Loran of the Third Path
+1 Agitator Ant
+1 Illicit Auction
+1 Kwain, Itinerant Meddler
+1 Howling Mine
+1 Phabine, Boss's Confidant
+1 Share the Spoils
+1 Wedding Ring
+1 Faerie Mastermind
+1 Alliance of Arms
+1 Crypt Champion
+1 Call to the Void
+1 Collision of Realms
+1 Centaur Peacemaker
+1 Cutthroat Negotiator
+1 Custodi Squire
+1 Druid of Purification
+1 Ghirapur Orrery
+1 Field of Ruin
+1 Jungle Wayfinder
+1 Friendly Teddy
+1 Living End
+1 Marching Duodrone
+1 Over the Top
+1 Ian Malcolm, Chaotician
+1 Inniaz, the Gale Force
+1 Rocco, Street Chef
+1 Pir's Whim
+1 Storm Fleet Negotiator
+1 Temporary Truce
+1 Selvala, Explorer Returned
+1 Teferi's Puzzle Box
+1 Vaevictis Asmadi, the Dire
+1 Veteran Explorer
+1 Font of Mythos
+1 Blossoming Sands
+5 Plains
+5 Mountain
+5 Forest
+1 Jungle Hollow
+1 Swiftwater Cliffs
+1 Bloodfell Caves
+5 Island
+5 Swamp
+1 Dismal Backwater
+1 Rugged Highlands
+1 Thornwood Falls
+1 Wind-Scarred Crag
+1 Scoured Barrens
+1 Tranquil Cove
+1 Kibo, Uktabi Prince
+1 Your Temple Is Under Attack
+1 Flux
+1 Minds Aglow
+1 Rites of Flourishing
+1 Command Tower
+1 Arcane Signet
+1 Flumph
+1 Wishmonger
+1 Barroom Brawl
+1 Buried in the Garden
+1 Forbidden Orchard
+1 Farewell
+1 Myrkul, Lord of Bones
+1 Master of Ceremonies
+1 Questing Phelddagrif
+1 Kynaios and Tiro of Meletis
+1 Tempt with Discovery
+1 Círdan the Shipwright
+1 Folio of Fancies
+1 Orzhov Advokist
+1 Collective Voyage
+1 Helm of Awakening
+1 Concordant Crossroads

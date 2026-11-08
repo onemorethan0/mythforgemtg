@@ -1,0 +1,78 @@
+# Archidekt — EDH Massacre Girl
+# source: archidekt:2069367
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Massacre Girl
+
+Deck:
+1 Crowded Crypt
+1 Sign in Blood
+1 Read the Bones
+1 Funeral Rites
+1 Dread Presence
+1 Swarm of Bloodflies
+1 Black Market
+1 Sengir, the Dark Baron
+1 Burnished Hart
+1 Feed the Swarm
+1 Sadistic Glee
+1 Expedition Map
+1 Massacre
+1 Clackbridge Troll
+1 Myriad Landscape
+1 Victimize
+1 Everflowing Chalice
+1 Guardian Idol
+33 Swamp
+1 Reassembling Skeleton
+1 Necromancy
+1 Reanimate
+1 Scion of Darkness
+1 Lord of the Void
+1 Millikin
+1 Cabal Coffers
+1 Vampiric Rites
+1 Infernal Genesis
+1 Hecatomb
+1 Bastion of Remembrance
+1 Slaughter Specialist
+1 Akroan Horse
+1 Genesis Chamber
+1 Lazotep Reaver
+1 Phyrexian Reclamation
+1 Szat's Will
+1 Skullport Merchant
+1 Chittering Witch
+1 Rise of the Dread Marn
+1 Massacre Wurm
+1 Falkenrath Noble
+1 Sanctum of Eternity
+1 Carrier Thrall
+1 Bubbling Muck
+1 The Meathook Massacre
+1 Damnable Pact
+1 Finale of Eternity
+1 Dreadhound
+1 Syr Konrad, the Grim
+1 Zulaport Cutthroat
+1 Gruesome Realization
+1 Meteor Golem
+1 Unstable Obelisk
+1 Prismatic Lens
+1 Endless Atlas
+1 Ob Nixilis, Unshackled
+1 Trading Post
+1 Endrek Sahr, Master Breeder
+1 Phyrexian Arena
+1 Invasion of Ulgrotha // Grandmother Ravi Sengir
+1 Spoils of Blood
+1 Vilis, Broker of Blood
+1 Venomcrawler
+1 Tarrian's Soulcleaver
+1 Yahenni, Undying Partisan
+1 Blade of the Bloodchief
+1 Rise of the Dark Realms
+1 Thief of Blood
+1 Blasphemous Edict

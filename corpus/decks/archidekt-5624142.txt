@@ -1,0 +1,94 @@
+# Archidekt — Another Sliver Overlord Deck
+# source: archidekt:5624142
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Sliver Queen + Basal Sliver; Bracket 1 allows none
+
+Commander:
+1 Sliver Overlord
+
+Deck:
+1 Golgari Guildgate
+1 Azorius Guildgate
+1 Basal Sliver
+1 Bonescythe Sliver
+1 Boros Guildgate
+1 City of Brass
+1 Dimir Guildgate
+1 Constricting Sliver
+1 Crypt Sliver
+1 Crystalline Sliver
+1 Diffusion Sliver
+1 Chromatic Lantern
+1 Chromatic Orrery
+1 Cryptic Gateway
+1 Dregscape Sliver
+1 Brood Sliver
+1 Cloudshredder Sliver
+1 Evolving Wilds
+1 Fabled Passage
+1 Firewake Sliver
+6 Forest
+1 Frenetic Sliver
+1 Gemhide Sliver
+1 Gruul Guildgate
+3 Island
+1 Homing Sliver
+1 Helm of the Host
+1 Izzet Guildgate
+1 Lavabelly Sliver
+1 Maze's End
+3 Mountain
+1 Mutavault
+1 Orzhov Guildgate
+5 Plains
+1 Opaline Sliver
+1 Necrotic Sliver
+1 Manaweft Sliver
+1 Megantic Sliver
+1 Psionic Sliver
+1 Pulmonic Sliver
+1 Quick Sliver
+1 Quilled Sliver
+1 Rakdos Guildgate
+1 Root Sliver
+1 Sedge Sliver
+1 Screeching Sliver
+1 Selesnya Guildgate
+1 Sentinel Sliver
+1 Shimmering Grotto
+1 Simic Guildgate
+1 Sliver Hive
+1 Sliver Queen
+3 Swamp
+1 Synapse Sliver
+1 Spiteful Sliver
+1 Spinneret Sliver
+1 Terramorphic Expanse
+1 Unknown Shores
+1 Telekinetic Sliver
+1 Prophetic Prism
+1 Spectral Searchlight
+1 Predatory Sliver
+1 Sidewinder Sliver
+1 Sliver Legion
+1 The First Sliver
+1 Shifting Sliver
+1 Sliver Hivelord
+1 Belligerent Sliver
+1 Blur Sliver
+1 Darkheart Sliver
+1 Essence Sliver
+1 First Sliver's Chosen
+1 Frenzy Sliver
+1 Fungus Sliver
+1 Galerider Sliver
+1 Groundshaker Sliver
+1 Scuttling Sliver
+1 Striking Sliver
+1 Syphon Sliver
+1 Vampiric Sliver
+1 Venom Sliver
+1 Virulent Sliver
+1 Leeching Sliver
+1 Thorncaster Sliver

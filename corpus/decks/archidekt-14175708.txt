@@ -1,0 +1,89 @@
+# Archidekt — MTV presents - The Mind Goblin Game Show
+# source: archidekt:14175708
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Vial Smasher the Fierce
+
+Deck:
+1 Descent into Avernus
+1 Head Games
+1 Chef's Kiss
+1 Parker Luck
+1 Gollum, Scheming Guide
+1 Chaos Warp
+1 Graven Cairns
+1 Haunted Ridge
+1 Sulfur Falls
+1 Tempting Contract
+1 Jalum Grifter
+1 Share the Spoils
+1 Command Tower
+1 Chromatic Lantern
+1 Relic of Sauron
+1 Talisman of Dominance
+1 Tibalt's Trickery
+1 Spinerock Knoll
+1 Midnight Clock
+1 Dance with Calamity
+1 Choice of Damnations
+1 Scheming Symmetry
+1 Hithlain Rope
+1 The Lord of Pain
+1 Mages' Contest
+1 Seething Landscape
+1 Generous Plunderer
+1 Tempt with Mayhem
+1 Machine God's Effigy
+1 Exhume
+1 Keen Duelist
+1 Game of Chaos
+1 Guff Rewrites History
+1 Riverglide Pathway // Lavaglide Pathway
+1 Blightstep Pathway // Searstep Pathway
+1 Arcane Signet
+1 Exotic Orchard
+1 Shipwreck Marsh
+1 Entirely Normal Armchair
+1 Propaganda
+1 Impulsive Maneuvers
+1 Yet Another Aether Vortex
+6 Island
+8 Mountain
+1 Fellwar Stone
+1 Wild Magic Surge
+1 Sol Ring
+1 Cascade Bluffs
+1 Sulfurous Springs
+1 Shivan Reef
+1 Prisoner's Dilemma
+1 Liar's Pendulum
+1 Mob Verdict
+1 Perplexing Chimera
+1 Jinxed Choker
+1 Psychic Battle
+1 Crumbling Necropolis
+1 Invert Polarity
+1 Gonti, Night Minister
+1 Dragonskull Summit
+1 Yusri, Fortune's Flame
+1 Drowned Catacomb
+1 Underground River
+1 Stormcarved Coast
+1 Ricochet
+1 Bronze Calendar
+1 Humble Defector
+1 Common Courtesy
+1 Censorship
+1 Hangman
+1 Mouth to Mouth
+1 My First Tome
+1 Talisman of Indulgence
+1 Talisman of Creativity
+1 Autograph Book
+1 Bucknard's Everfull Purse
+1 Cruel Entertainment
+6 Swamp
+1 Explosion of Riches
+1 Brazen Bluff

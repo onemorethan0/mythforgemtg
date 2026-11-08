@@ -1,0 +1,101 @@
+# Archidekt — Galadriel's Alliance - Bant Elf
+# source: archidekt:5457534
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Galadriel, Light of Valinor
+
+Deck:
+1 Hardened Scales
+1 Heroic Intervention
+1 Ripples of Potential
+1 Elvish Harbinger
+1 Elvish Archdruid
+1 Beast Whisperer
+1 Counterspell
+1 Windswift Slice
+1 Swan Song
+1 Elvish Mystic
+1 Lys Alana Huntmaster
+1 Rhys the Redeemed
+1 Sol Ring
+1 Reclamation Sage
+1 Galadhrim Brigade
+1 Elven Chorus
+1 Galadriel of Lothlórien
+1 Imperious Perfect
+1 Overwhelming Stampede
+1 Incubation Druid
+1 Swords to Plowshares
+1 Raise the Palisade
+1 Marwyn, the Nurturer
+1 Galadriel's Dismissal
+1 Ezuri, Renegade Leader
+1 Wolverine Riders
+1 Rumor Gatherer
+1 Rishkar, Peema Renegade
+1 Titan of Littjara
+1 Hushwood Verge
+1 Wave Goodbye
+1 Beast Within
+1 Joraga Warcaller
+1 Innkeeper's Talent
+1 Secluded Courtyard
+1 Hinterland Harbor
+1 Rejuvenating Springs
+1 Command Tower
+1 Exotic Orchard
+1 Seaside Citadel
+1 Spara's Headquarters
+1 Unclaimed Territory
+2 Plains
+2 Island
+1 Rivendell
+1 Deserted Beach
+1 Leaf-Crowned Visionary
+1 Damning Verdict
+1 Flooded Grove
+1 Karn's Bastion
+1 Armorcraft Judge
+1 Lightning Greaves
+1 Oran-Rief, the Vastwood
+1 Sejiri Shelter // Sejiri Glacier
+1 Ephemerate
+1 Priest of Titania
+1 Elvish Warmaster
+1 Werefox Bodyguard
+1 Path of Ancestry
+1 The Grey Havens
+1 Ghost Quarter
+1 Gyre Sage
+1 Wood Elves
+1 Overflowing Basin
+1 Evolution Witness
+1 Elrond, Master of Healing
+1 Spark Double
+1 Wirewood Symbiote
+1 Flooded Strand
+1 Galadhrim Ambush
+1 Razorverge Thicket
+1 Lush Portico
+6 Forest
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Arcane Denial
+1 Hallowed Fountain
+1 Swiftfoot Boots
+1 Inspiring Call
+1 Stroke of Midnight
+1 Formidable Speaker
+1 Disciple of Freyalise // Garden of Freyalise
+1 Elven Ambush
+1 Selfless Safewright
+1 Smuggler's Surprise
+1 Three Steps Ahead
+1 Germination Practicum
+1 Bramblewood Paragon
+1 Arwen, Weaver of Hope
+1 Kindred Discovery
+1 Elrond, Moon-Reader
+1 Thranduil, Sindarin Liege // Silvan Rally
+1 Elven Passage

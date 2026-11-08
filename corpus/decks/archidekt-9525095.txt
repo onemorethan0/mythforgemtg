@@ -1,0 +1,96 @@
+# Archidekt — Nalia Party
+# source: archidekt:9525095
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Nalia de'Arnise
+
+Deck:
+1 Burakos, Party Leader
+1 Changeling Wayfinder
+1 Giver of Runes
+1 Dawn's Truce
+1 Flare of Fortitude
+1 Selfless Glyphweaver // Deadly Vanity
+1 Urdnan, Dromoka Warrior
+1 Damning Verdict
+1 White Plume Adventurer
+1 Primaris Eliminator
+1 Gisa, Glorious Resurrector
+1 Lae'zel, Vlaakith's Champion
+1 Guide of Souls
+1 Coveted Prize
+1 Jacked Rabbit
+1 Envoy of the Ancestors
+1 Stick Together
+1 Squad Commander
+1 Ascend from Avernus
+1 Keen Duelist
+1 Weathered Wayfarer
+1 Dark Confidant
+1 Black Market Connections
+1 Harper Recruiter
+1 Pain Seer
+1 Seasoned Dungeoneer
+1 Impostor of the Sixth Pride
+1 Lightstall Inquisitor
+1 Deep Gnome Terramancer
+1 Changeling Outcast
+1 Assault Intercessor
+1 Aven Mindcensor
+1 Dreamstealer
+1 Zoraline, Cosmos Caller
+1 Ollenbock Escort
+1 Selfless Spirit
+1 Mother of Runes
+1 Mindblade Render
+7 Plains
+1 Archpriest of Iona
+1 Austere Command
+1 Galadriel's Dismissal
+1 Shrouded Shepherd // Cleave Shadows
+1 Clever Concealment
+1 Nullpriest of Oblivion
+1 Caves of Koilos
+1 Burrenton Forge-Tender
+1 Swords to Plowshares
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Metastatic Evangel
+1 Twinblade Geist // Twinblade Invocation
+1 Joined Researchers // Secret Rendezvous
+1 Split Up
+1 Adept Watershaper
+1 Isolated Chapel
+1 Bilbo's Gambit
+1 Rumor Gatherer
+1 Make an Example
+1 Felisa, Fang of Silverquill
+1 Archivist of Oghma
+1 Ainok Strike Leader
+1 True Conviction
+1 Akroma's Will
+1 Winds of Abandon
+1 Ash Barrens
+1 Command Tower
+1 Skyclave Cleric // Skyclave Basilica
+7 Swamp
+1 Vault of the Archangel
+1 Mutavault
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Concealed Courtyard
+1 Godless Shrine
+1 Marsh Flats
+1 Shadowy Backstreet
+1 Prismatic Vista
+1 Fabled Passage
+1 Shattered Sanctum
+1 Vault of Champions
+1 Abundant Countryside
+1 Bleachbone Verge
+1 Turbulent Moor
+1 Abandoned Air Temple
+1 Silent Clearing
+1 Fetid Heath
+1 Bloodsoaked Champion
+1 Invasion of Gobakhan // Lightshield Array

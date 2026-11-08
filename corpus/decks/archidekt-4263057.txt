@@ -1,0 +1,105 @@
+# Archidekt — Raffine Reanimator
+# source: archidekt:4263057
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Raffine, Scheming Seer
+
+Deck:
+1 Voice of Victory
+1 Faerie Mastermind
+1 Hallowed Fountain
+1 Godless Shrine
+1 Razaketh, the Foulblooded
+1 Command Tower
+1 Elesh Norn, Grand Cenobite
+1 Priest of Fell Rites
+1 Watery Grave
+1 Reanimate
+1 Otawara, Soaring City
+1 Urborg, Tomb of Yawgmoth
+1 Buried Alive
+1 Stitch Together
+1 Rhystic Study
+1 Victimize
+1 Consecrated Sphinx
+1 Morphic Pool
+1 Vault of Champions
+1 Sea of Clouds
+1 Ledger Shredder
+1 Mana Confluence
+1 Esper Sentinel
+1 Jin-Gitaxias, Core Augur
+1 Raffine's Tower
+1 Vampiric Tutor
+1 Cyclonic Rift
+1 Swords to Plowshares
+1 Force of Will
+1 Demonic Tutor
+1 City of Brass
+1 Arid Mesa
+1 Bloodstained Mire
+1 Marsh Flats
+1 Polluted Delta
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Prismatic Vista
+1 Serra Ascendant
+1 Force of Negation
+1 Teferi's Protection
+1 Misty Rainforest
+1 Deadly Rollick
+1 Dauthi Voidwalker
+1 Jin-Gitaxias, Progress Tyrant
+1 Fierce Guardianship
+1 Toxrill, the Corrosive
+1 Psychic Frog
+1 Pollywog Prodigy
+1 Dark Ritual
+1 Sol Ring
+1 Lotus Petal
+1 Enduring Curiosity
+1 Windswept Heath
+1 Undercity Sewers
+1 Shadowy Backstreet
+1 Plains
+1 Valgavoth, Terror Eater
+1 Drannith Magistrate
+1 Boggart Trawler // Boggart Bog
+1 Mystic Remora
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Abhorrent Oculus
+1 Will of the Abzan
+1 Living Death
+1 Dovin's Veto
+1 Mana Drain
+1 Adeline, Resplendent Cathar
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Void Rend
+1 Void Winnower
+1 Lotho, Corrupt Shirriff
+1 Mystical Tutor
+1 Supreme Verdict
+2 Island
+1 Selfless Spirit
+1 Path to Exile
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 An Offer You Can't Refuse
+1 Generous Gift
+1 Chrome Mox
+1 Wan Shi Tong, Librarian
+1 Swan Song
+1 Abdel Adrian, Gorion's Ward
+1 Sink into Stupor // Soporific Springs
+1 Reconnaissance
+3 Swamp
+1 Eiganjo, Seat of the Empire
+1 Entomb
+1 Dance of the Dead
+1 Animate Dead
+1 Necromancy
+1 Orcish Bowmasters
+1 Opposition Agent
+1 Flooded Strand
+1 Smothering Tithe

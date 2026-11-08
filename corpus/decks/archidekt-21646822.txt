@@ -1,0 +1,75 @@
+# Archidekt — The Deck Stands Alone
+# source: archidekt:21646822
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 5 Game Changers (Demonic Tutor, Enlightened Tutor, Farewell, Glacial Chasm, Vampiric Tutor); Bracket 1 allows 0
+
+Commander:
+1 Breena, the Demagogue
+
+Deck:
+1 Barren Glory
+1 Zuran Orb
+1 Aura Fracture
+1 Glacial Chasm
+1 Troubled Healer
+1 Trenching Steed
+1 Arcane Signet
+1 Command Tower
+1 Mind Stone
+1 Ghostly Prison
+1 Fellwar Stone
+1 Orzhov Signet
+1 Talisman of Hierarchy
+1 Sol Ring
+28 Plains
+1 Farewell
+1 Austere Command
+1 Commander's Sphere
+1 Aerial Surveyor
+1 Enlightened Tutor
+1 Idyllic Tutor
+1 Knight of the White Orchid
+1 Admonition Angel
+1 Hour of Revelation
+1 Devastating Mastery
+1 Boompile
+1 Ondu Inversion // Ondu Skyruins
+1 Planar Cleansing
+1 Clever Concealment
+1 Putrid Imp
+1 No Mercy
+1 Damn
+1 Crystal Barricade
+8 Swamp
+1 Koskun Falls
+1 Karmic Justice
+1 Demonic Tutor
+1 Oblivion Ring
+1 Reanimate
+1 Rhystic Tutor
+1 Vampiric Tutor
+1 Profane Tutor
+1 Cruel Tutor
+1 Grim Tutor
+1 Diabolic Tutor
+1 Emeritus of Woe // Demonic Tutor
+1 Kaervek's Spite
+1 Claws of Gix
+1 Vedalken Orrery
+1 Nevinyrral's Disk
+1 Magus of the Disk
+1 Armageddon
+1 Inner Demons Gangsters
+1 Hell Mongrel
+1 Grotesque Hybrid
+1 Academy Rector
+1 Entomb
+1 Unmarked Grave
+1 Necromancy
+1 Buried Alive
+1 Oriq Loremage
+1 Damnation
+1 Beseech the Queen
+1 Heliod's Intervention
+1 Armillary Sphere

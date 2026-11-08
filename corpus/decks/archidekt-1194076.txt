@@ -1,0 +1,82 @@
+# Archidekt — Lady Evangela's Ladies
+# source: archidekt:1194076
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Lady Evangela
+
+Deck:
+1 Glacial Fortress
+1 Thief of Blood
+1 Ink-Eyes, Servant of Oni
+1 Windborn Muse
+1 Malicious Affliction
+1 Teysa, Envoy of Ghosts
+1 Profound Journey
+1 Angelic Field Marshal
+1 Magister of Worth
+1 Custodi Squire
+1 Rout
+1 Traveler's Cloak
+1 Godsend
+1 Karmic Guide
+1 Sydri, Galvanic Genius
+1 Triad of Fates
+1 Angelic Skirmisher
+1 Safe Passage
+1 Evolving Wilds
+1 Martyr's Bond
+1 Hero of Bladehold
+1 Doom Blade
+1 Punish Ignorance
+1 Ethereal Usher
+1 Hinder
+1 Pristine Angel
+1 Turn the Tables
+1 Sun Droplet
+1 Righteous Cause
+1 Auramancer
+1 Angelic Shield
+1 Avatar of Woe
+1 Daring Apprentice
+1 Congregate
+1 Humble
+1 Serra's Liturgy
+1 Miss Demeanor
+1 Angelic Renewal
+1 Sisay's Ring
+1 Mana Prism
+1 Swords to Plowshares
+1 Counterspell
+1 Merieke Ri Berit
+1 Spirit Link
+1 Seat of the Synod
+1 Enigma Sphinx
+1 Bruna, Light of Alabaster
+1 Saheeli's Artistry
+1 Always Watching
+1 Isperia the Inscrutable
+1 Kasmina, Enigmatic Mentor
+1 Orzhov Guildgate
+1 Arcane Sanctum
+1 Ghostblade Eidolon
+1 Celestial Mantle
+1 Lena, Selfless Champion
+1 Vampire Hexmage
+1 Hanna, Ship's Navigator
+10 Island
+1 Dismal Backwater
+1 Jwar Isle Refuge
+1 Vow of Flight
+1 Terramorphic Expanse
+1 Curse of the Swine
+1 Azorius Guildgate
+8 Swamp
+11 Plains
+1 Blinding Angel
+1 Kaya, Intangible Slayer
+1 Dawnbreak Reclaimer
+1 Herald of the Host
+1 Queza, Augur of Agonies
+1 Neyam Shai Murad

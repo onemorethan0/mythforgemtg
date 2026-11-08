@@ -1,0 +1,103 @@
+# Archidekt — Exercitus de Mortem
+# source: archidekt:6118628
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Path of Ancestry
+1 Nomad Outpost
+1 Captivating Vampire
+1 Malakir Bloodwitch
+1 Sanctum Seeker
+1 Master of Dark Rites
+1 Welcoming Vampire
+1 Fetid Heath
+1 Mount Doom
+1 Orzhov Basilica
+1 Vault of the Archangel
+1 Cover of Darkness
+1 Viscera Seer
+1 Orzhov Signet
+1 Marsh Flats
+1 Blood Seeker
+1 Voldaren Estate
+1 Rakdos Signet
+1 Godless Shrine
+1 Caves of Koilos
+1 Savai Triome
+1 Sulfurous Springs
+1 Vault of Champions
+1 Silent Clearing
+2 Swamp
+1 Forerunner of the Legion
+1 Blade of the Bloodchief
+1 Talisman of Hierarchy
+1 Plumb the Forbidden
+1 Command Tower
+1 Patchwork Banner
+1 Vampire of the Dire Moon
+1 Swords to Plowshares
+1 Creeping Bloodsucker
+1 The Meathook Massacre
+1 Attrition
+1 Bloodline Keeper // Lord of Lineage
+1 Village Rites
+1 Grave Pact
+1 Infernal Grasp
+1 Black Market Connections
+1 Path to Exile
+1 Indulgent Aristocrat
+1 Charismatic Conqueror
+1 Bloodletter of Aclazotz
+1 Cordial Vampire
+1 Knight of the Ebon Legion
+1 Vito, Thorn of the Dusk Rose
+1 Cruel Celebrant
+1 Impact Tremors
+1 Akroma's Will
+1 Idol of Oblivion
+1 Deadly Dispute
+1 Fell the Profane // Fell Mire
+1 Clavileño, First of the Blessed
+1 Vampire Gourmand
+1 Vengeful Bloodwitch
+1 Mountain
+1 Plains
+1 Isolated Chapel
+1 Roaming Throne
+1 Marauding Blight-Priest
+1 Warleader's Call
+1 Dark Ritual
+1 Accursed Duneyard
+1 Three Tree City
+1 Bolas's Citadel
+1 And They Shall Know No Fear
+1 Blood Artist
+1 Sorin, Imperious Bloodlord
+1 Luxury Suite
+1 Swamp
+1 Graven Cairns
+1 Vault of Whispers
+1 Arcane Signet
+1 Sol Ring
+1 Bloodthirsty Conqueror
+1 Skullclamp
+1 Mass Hysteria
+1 Emeritus of Woe // Demonic Tutor
+1 The One Ring
+1 Whip of Erebos
+1 Drana, Liberator of Malakir
+1 Stromkirk Captain
+1 Legion Lieutenant
+1 Falkenrath Pit Fighter
+1 Vampire Socialite
+1 Scheming Silvertongue // Sign in Blood
+2 Swamp
+4 Swamp
+1 Olivia's Wrath
+1 Throne of the God-Pharaoh
+1 Stensian Sanguinist // Exsanguinate
+1 Bleachbone Verge

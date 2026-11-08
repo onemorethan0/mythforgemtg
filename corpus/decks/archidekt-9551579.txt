@@ -1,0 +1,86 @@
+# Archidekt — Black swarm
+# source: archidekt:9551579
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Gix, Yawgmoth Praetor
+
+Deck:
+1 Malakir Rebirth // Malakir Mire
+1 Rise of the Dread Marn
+1 Vengeful Reaper
+1 Blight Mound
+1 Evolved Sleeper
+1 Assassin Initiate
+1 Faerie Dreamthief
+1 Vault Skirge
+1 Vampire Cutthroat
+1 Stirge
+1 Bitterblossom
+1 Grim Hireling
+1 Dauthi Slayer
+1 Vilis, Broker of Blood
+1 Graaz, Unstoppable Juggernaut
+1 Canoptek Wraith
+1 Gingerbrute
+1 Black Market
+1 Signal Pest
+1 Basilica Screecher
+1 Battlefly Swarm
+1 Urborg, Tomb of Yawgmoth
+1 Shadow Alley Denizen
+1 Snarling Gorehound
+1 Phyrexian Tower
+1 Dauthi Ghoul
+1 Witch's Cottage
+1 Urza's Cave
+1 Reliquary Tower
+1 Cabal Coffers
+1 Takenuma, Abandoned Mire
+1 Abhorrent Overlord
+1 Vorpal Sword
+1 Gray Merchant of Asphodel
+1 Paragon of Open Graves
+1 Crypt Ghast
+1 Murderous Rider // Swift End
+1 Reiver Demon
+1 Stalactite Stalker
+1 Vesuva
+1 Overwhelming Forces
+1 Virtue of Persistence // Locthwain Scorn
+1 Dauthi Voidwalker
+1 Darkness
+1 Ascendant Evincar
+1 Deserted Temple
+1 Infernal Grasp
+23 Swamp
+1 Prickly Boggart
+1 Case of the Stashed Skeleton
+1 Ayara's Oathsworn
+1 Tinybones, the Pickpocket
+1 Vampire of the Dire Moon
+1 Heraldic Banner
+1 Defile
+1 Necropolis Regent
+1 Changeling Outcast
+1 Tormented Soul
+1 Nether Traitor
+1 Bad Moon
+1 Sheoldred, the Apocalypse
+1 Bojuka Bog
+1 Nykthos, Shrine to Nyx
+1 Shizo, Death's Storehouse
+1 Jadar, Ghoulcaller of Nephalia
+1 Dreadhorde Invasion
+1 Thought Vessel
+1 Feed the Swarm
+1 Phyrexian Reclamation
+1 Grave Titan
+1 Mikaeus, the Unhallowed
+1 Rise of the Dark Realms
+1 Sword of Feast and Famine
+1 Thespian's Stage
+1 Expedition Map
+1 Qarsi Revenant
+1 Font of Agonies

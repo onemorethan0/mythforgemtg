@@ -1,0 +1,86 @@
+# Archidekt — Kaima aktuell
+# source: archidekt:2547514
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Kaima, the Fractured Calm
+
+Deck:
+1 Kessig Wolf Run
+1 Bitter Reunion
+1 Lure
+1 Karplusan Forest
+1 Spire Garden
+1 Draconic Destiny
+1 Keen Sense
+1 Kenrith's Transformation
+1 Bequeathal
+1 Seal of Primordium
+1 Sanctum Weaver
+1 Royal Treatment
+1 Tanglespan Lookout
+1 Nyxborn Behemoth
+1 Whiptongue Hydra
+1 Grove of the Burnwillows
+1 Elvish Archivist
+1 Unquenchable Fury
+1 Smoke Spirits' Aid
+1 Mossfire Valley
+1 Mark of Fury
+1 Escape Velocity
+1 Become Brutes
+1 Sol Ring
+1 Aspect of Mongoose
+1 Fertile Ground
+1 Colossal Majesty
+1 Disrupt Decorum
+14 Forest
+1 Eidolon of Blossoms
+1 Cinder Glade
+1 Beast Within
+1 Chandra's Ignition
+1 Command Tower
+1 Tamiyo's Safekeeping
+1 Rogue's Passage
+1 Enchantress's Presence
+1 Rancor
+1 Vengeful Ancestor
+1 Path of Ancestry
+1 Radiant Performer
+1 Rootbound Crag
+1 Bothersome Quasit
+1 Skarrg, the Rage Pits
+1 Dragon Fangs
+1 Crown of Flames
+1 Whip Silk
+1 Sluggishness
+1 Ancestral Mask
+1 Setessan Champion
+1 Destiny Spinner
+1 Utopia Sprawl
+1 Wild Growth
+1 Verduran Enchantress
+1 Havoc Eater
+1 Convenient Target
+1 Trickster's Elk
+1 Cindervines
+1 Stump Stomp // Burnwillow Clearing
+1 Collective Resistance
+1 Demonic Ruckus
+1 Rockfall Vale
+1 Rishkar's Expertise
+1 Nessian Wanderer
+1 Klothys, God of Destiny
+1 Thornspire Verge
+1 Brotherhood's End
+1 Spectacular Showdown
+1 Seedling Charm
+1 Blasphemous Act
+1 Accursed Duneyard
+1 Wildsear, Scouring Maw
+1 Lignify
+1 Audacity
+1 Soul Immolation
+1 Nyxborn Hydra
+8 Mountain

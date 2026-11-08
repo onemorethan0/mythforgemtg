@@ -1,0 +1,101 @@
+# Archidekt — Selvala
+# source: archidekt:3189848
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Selvala, Heart of the Wilds
+
+Deck:
+1 Instill Energy
+1 Sol Ring
+1 Invigorate
+1 Legolas's Quick Reflexes
+1 Temur Sabertooth
+1 Eternal Witness
+1 Ghalta, Primal Hunger
+1 Woodland Bellower
+1 Land Grant
+1 Kodama of the East Tree
+1 Sylvan Safekeeper
+1 Allosaurus Shepherd
+1 Three Visits
+1 Goldvein Hydra
+1 Smuggler's Surprise
+1 Great Oak Guardian
+1 Disciple of Freyalise // Garden of Freyalise
+1 Eladamri, Korvecdal
+1 Flare of Cultivation
+1 Fanatic of Rhonas
+1 The Great Henge
+1 Vorinclex, Voice of Hunger
+1 Greater Good
+1 Natural Order
+1 Phyrexian Dreadnought
+1 Lupine Prototype
+1 Walking Ballista
+1 Regrowth
+1 Heroic Intervention
+1 Castle Garenbrig
+1 Beast Within
+1 Wirewood Lodge
+1 Primordial Hydra
+1 Birds of Paradise
+1 Ashaya, Soul of the Wild
+1 Scryb Ranger
+1 Voracious Hydra
+1 Worldly Tutor
+1 Managorger Hydra
+1 Nature's Claim
+1 Umbral Mantle
+1 Sylvan Library
+1 Quirion Ranger
+1 Wild Growth
+1 Concordant Crossroads
+1 Yavimaya, Cradle of Growth
+1 Karametra's Acolyte
+1 Nykthos, Shrine to Nyx
+1 Staff of Domination
+1 Kogla, the Titan Ape
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Omnath, Locus of Mana
+1 Rhonas the Indomitable
+1 Vitalize
+1 Lightning Greaves
+1 Arbor Elf
+1 Gaea's Cradle
+1 Kozilek, Butcher of Truth
+1 Finale of Devastation
+1 Elvish Spirit Guide
+1 Summoner's Pact
+1 Veil of Summer
+1 Dryad Arbor
+1 Archdruid's Charm
+1 Shifting Woodland
+1 Mistcutter Hydra
+1 Boseiju, Who Endures
+1 Windswept Heath
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Kona, Rescue Beastie
+1 The One Ring
+1 Force of Vigor
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+8 Forest
+1 Lotus Petal
+1 Ancient Tomb
+1 Benefactor's Draught
+1 Endurance
+1 Oviya, Automech Artisan
+1 Void Winnower
+1 Nature's Rhythm
+1 Nature's Lore
+1 Bygone Colossus
+1 Green Sun's Zenith
+1 Formidable Speaker
+1 Heartwood Storyteller
+1 Strip Mine
+1 Slumbering Trudge
+1 Shang-Chi, Master of Kung Fu
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria

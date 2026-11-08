@@ -1,0 +1,103 @@
+# Archidekt — Y'shtola (Bracket 4)
+# source: archidekt:15241076
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Y'shtola, Night's Blessed
+
+Deck:
+1 Talion, the Kindly Lord
+1 Malevolent Hermit // Benevolent Geist
+1 Tataru Taru
+1 Helm of the Ghastlord
+1 Snuff Out
+1 Command Tower
+1 Flooded Strand
+1 Exotic Orchard
+1 Wash Away
+1 Marsh Flats
+1 Polluted Delta
+1 Deserted Beach
+1 Hallowed Fountain
+1 Raffine's Tower
+1 Godless Shrine
+1 Watery Grave
+1 Morphic Pool
+1 Vault of Champions
+1 Sea of Clouds
+1 Shadowy Backstreet
+1 Shattered Sanctum
+1 Shipwreck Marsh
+1 Undercity Sewers
+1 Bojuka Bog
+1 Meticulous Archive
+2 Swamp
+1 Reliquary Tower
+1 Otawara, Soaring City
+3 Plains
+3 Island
+1 Gloomlake Verge
+1 Floodfarm Verge
+1 Eiganjo, Seat of the Empire
+1 Black Market Connections
+1 Grand Arbiter Augustin IV
+1 Relic of Legends
+1 Unwind
+1 Primal Amulet // Primal Wellspring
+1 Windfall
+1 Sol Ring
+1 Arcane Signet
+1 Decanter of Endless Water
+1 Frantic Search
+1 Curiosity
+1 Anguished Unmaking
+1 Swords to Plowshares
+1 Fierce Guardianship
+1 Rewind
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Toxic Deluge
+1 Disallow
+1 Wash Out
+1 Damn
+1 Kambal, Consul of Allocation
+1 Sheoldred, the Apocalypse
+1 Spark Double
+1 Delney, Streetwise Lookout
+1 Ghostly Prison
+1 An Offer You Can't Refuse
+1 Narset, Parter of Veils
+1 Deadly Rollick
+1 Dismember
+1 Yahenni's Expertise
+1 March of Swirling Mist
+1 March of Wretched Sorrow
+1 March of Otherworldly Light
+1 Ophidian Eye
+1 Murderous Cut
+1 Baleful Mastery
+1 Rhystic Study
+1 Force of Negation
+1 Teferi's Protection
+1 Cyclonic Rift
+1 Sygg, River Cutthroat
+1 Lórien Revealed
+1 Smothering Tithe
+1 Dizzy Spell
+1 Laboratory Maniac
+1 Misdirection
+1 Drannith Magistrate
+1 Queza, Augur of Agonies
+1 Drogskol Reaver
+1 Mystic Sanctuary
+1 Dawn's Truce
+1 Mystical Dispute
+1 Lim-Dûl's Vault
+1 Tandem Lookout
+1 Fellwar Stone
+1 Teferi, Time Raveler
+1 Sevinne's Reclamation
+1 Esper Sentinel
+1 Waterlogged Teachings // Inundated Archive
+1 Propaganda

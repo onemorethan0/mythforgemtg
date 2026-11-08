@@ -1,0 +1,104 @@
+# WotC precon — Landing Party (TRC, 2026-11-13)
+# source: mtgjson:LandingParty_TRC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Commander Spock
+
+Deck:
+1 Amanda Grayson, Logic's Link
+1 Ancient Greenwarden
+1 Arcane Signet
+1 Augur of Autumn
+1 Austere Command
+1 Balance of Terror
+1 Beast Within
+1 Brainstorm
+1 Canopy Vista
+1 Captain Kirk, Boldly Going
+1 Chief Kyle, Transporter Tech
+1 Chief Montgomery Scott
+1 Christine Chapel, Combat Medic
+1 Cold-Blooded Crew
+1 Colossal Clone Master
+1 Command Chair
+1 Command Tower
+1 Cultivate
+1 Earth, Sector 001
+1 Echo of Eons
+1 Evolving Wilds
+1 Exotic Orchard
+1 Exploration
+1 Fabled Passage
+1 Farseek
+1 Fleet Captain Christopher Pike
+4 Forest
+1 Fortified Village
+1 Giant Space Amoeba
+1 Glacial Fortress
+1 Growth Spiral
+1 Guardian Project
+1 Harmonize
+1 Heroic Intervention
+1 Hinterland Harbor
+1 Irrigated Farmland
+2 Island
+1 Janice Rand, Essential Aide
+1 Jefferies Tube
+1 Lieutenant Hikaru Sulu
+1 Lieutenant Nyota Uhura
+1 Lotus Cobra
+1 Lt. Arex, Ever-Adapting
+1 M'Ress, Crew Coordinator
+1 McCoy, Not a Bricklayer
+1 Merciful Mandate
+1 Mosswort Bridge
+1 Mutavault
+1 Nature's Lore
+1 Path of Ancestry
+1 Path to Exile
+1 Pavel Chekov, First Posting
+2 Plains
+1 Planet Killer
+1 Ponder
+1 Port Town
+1 Prairie Stream
+1 Rain-Slicked Copse
+1 Rampant Growth
+1 Reality Shift
+1 Reliquary Tower
+1 Risa
+1 S.S. Botany Bay
+1 Sam Kirk, Xenoanthropologist
+1 Satyr Wayfinder
+1 Scattered Groves
+1 Scute Swarm
+1 Sea of Clouds
+1 Seaside Citadel
+1 Shore Leave Planet
+1 Shuttlecraft Galileo
+1 Sodden Verdure
+1 Sol Ring
+1 Starfleet Communicator
+1 Starship Enterprise
+1 Sun Titan
+1 Sunpetal Grove
+1 Syndicate Liquidators
+1 T'Pring, Never Parted
+1 Temple of Enlightenment
+1 Temple of Mystery
+1 Temple of Plenty
+1 Temple of the False God
+1 Temporal Tribulation
+1 Terramorphic Expanse
+1 The Guardian of Forever
+1 Tireless Tracker
+1 Tranquil Landscape
+1 Tribble Cluster
+1 U.S.S. Defiant, Mirror Migrant
+1 U.S.S. Farragut, Bold Explorer
+1 Vineglimmer Snarl
+1 Vulcan
+1 Wrath of God

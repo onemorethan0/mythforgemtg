@@ -1,0 +1,103 @@
+# Archidekt — Let Me See Your Bones
+# source: archidekt:3130403
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Ancient Tomb, The One Ring); Bracket 1 allows 0
+
+Commander:
+1 Myrkul, Lord of Bones
+
+Deck:
+1 Gisa, Glorious Resurrector
+1 Ghouls' Night Out
+1 Ashnod's Altar
+1 Greater Good
+1 Moldervine Reclamation
+1 Pull from Eternity
+1 Coffin Queen
+1 Visions of Dread
+1 Elves of Deep Shadow
+1 Fyndhorn Elves
+1 Far Wanderings
+1 Llanowar Elves
+1 Timeless Witness
+1 Sakura-Tribe Elder
+1 Altar of Dementia
+1 Braids, Arisen Nightmare
+1 Danse Macabre
+1 Dredge the Mire
+1 Geth, Lord of the Vault
+1 Mindwrack Harpy
+1 Mindcrank
+1 Altar of the Brood
+1 Ghoulcaller's Bell
+1 Birds of Paradise
+1 Sepulchral Primordial
+1 Sol Ring
+1 Arcane Signet
+1 Chainer, Dementia Master
+1 Drownyard Temple
+1 Command Beacon
+1 Phyrexian Tower
+1 Vault of Champions
+1 Undergrowth Stadium
+1 Command Tower
+1 Bountiful Promenade
+1 Woodland Cemetery
+1 Isolated Chapel
+1 Godless Shrine
+1 Temple Garden
+1 Overgrown Tomb
+1 Canopy Vista
+1 Sunpetal Grove
+1 Shattered Sanctum
+1 Deathcap Glade
+1 Overgrown Farmland
+1 Indatha Triome
+1 Haunted Mire
+1 Radiant Grove
+1 Binding the Old Gods
+1 Reanimate
+1 Nature's Lore
+1 Farseek
+3 Forest
+2 Plains
+4 Swamp
+1 Mesmeric Orb
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Ondu Inversion // Ondu Skyruins
+1 Malakir Rebirth // Malakir Mire
+1 Ancient Tomb
+1 Temple of the False God
+1 Helm of Possession
+1 Breach the Multiverse
+1 Rise of the Dark Realms
+1 Sméagol, Helpful Guide
+1 Entish Restoration
+1 Rise of the Witch-king
+1 The One Ring
+1 Compost
+1 Virtue of Persistence // Locthwain Scorn
+1 Underground Mortuary
+1 Fanatic of Rhonas
+1 Emperor of Bones
+1 Wight of the Reliquary
+1 Disciple of Freyalise // Garden of Freyalise
+1 Shifting Woodland
+1 Insidious Fungus
+1 Hedge Shredder
+1 Come Back Wrong
+1 Ancient Brass Dragon
+1 Ketramose, the New Dawn
+1 Teval's Judgment
+1 Afterlife from the Loam
+1 Chorale of the Void
+1 Lightning Greaves
+1 Aberrant Return
+1 Ruthless Lawbringer
+1 Twilight Diviner
+1 Black Market Connections
+1 Vastlands Scavenger // Bind to Life
+1 Immoral Bargain
+1 The Master of Lake-town
+1 Grave Researcher // Reanimate

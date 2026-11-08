@@ -1,0 +1,96 @@
+# Archidekt — Otterball Storm
+# source: archidekt:8463899
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Bria, Riptide Rogue
+
+Deck:
+1 Boltwave
+1 Frantic Search
+1 Sol Ring
+1 Stormcatch Mentor
+1 Stormchaser's Talent
+1 Valley Floodcaller
+1 Lightning Bolt
+1 Coruscation Mage
+1 Season of Weaving
+1 Thundertrap Trainer
+1 Frolicking Familiar // Blow Off Steam
+1 Eon Frolicker
+1 Strix Serenade
+1 Swan Song
+1 Sulfur Falls
+1 Snap
+1 Deflecting Swat
+1 Arcane Signet
+1 Steam Vents
+1 Expedite
+1 Fierce Guardianship
+1 Sorcerer Class
+1 Stormcarved Coast
+1 Training Center
+1 Patchwork Banner
+1 Rapid Hybridization
+1 Blasphemous Act
+1 Chaos Warp
+1 Command Tower
+1 Case of the Ransacked Lab
+1 Mystic Remora
+1 Fabled Passage
+1 High Tide
+1 Reiterate
+1 Mystic Sanctuary
+1 Arena of Glory
+1 Kindred Discovery
+1 Haze of Rage
+1 Season of the Bold
+1 Thousand-Year Storm
+1 Ral, Crackling Wit
+1 Valakut Awakening // Valakut Stoneforge
+1 Sink into Stupor // Soporific Springs
+1 Kitsa, Otterball Elite
+1 Bident of Thassa
+1 Stormsplitter
+1 Amphibian Downpour
+3 Island
+3 Island
+3 Island
+3 Island
+2 Mountain
+2 Mountain
+2 Mountain
+1 Thundering Falls
+2 Mountain
+1 Riverpyre Verge
+1 Lutri, the Spellchaser
+1 Cyclonic Rift
+1 Suspend
+1 Alania, Divergent Storm
+1 Frostcliff Siege
+1 Pongify
+1 Jeska's Will
+1 Scalding Tarn
+1 Impolite Entrance
+1 Flusterstorm
+1 Mind's Desire
+1 Brainstorm
+1 Turbulent Springs
+1 Scorched Geyser
+1 Preordain
+1 Ponder
+1 Mizzix's Mastery
+1 Sleight of Hand
+1 Artist's Talent
+1 Windfall
+1 Tolabow, Loch Rascal
+1 Sword of Fire and Ice
+1 Wizard's Staff
+1 Talisman of Creativity
+1 Prismari, the Inspiration
+1 Swiftfoot Boots
+1 Reforge the Soul
+1 Ruby Medallion
+1 Sapphire Medallion
+1 Expressive Iteration

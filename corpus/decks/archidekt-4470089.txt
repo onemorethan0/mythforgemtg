@@ -1,0 +1,81 @@
+# Archidekt — Kiora, Sovereign of the Deep
+# source: archidekt:4470089
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 2 allows none
+
+Commander:
+1 Kiora, Sovereign of the Deep
+
+Deck:
+1 Heroic Intervention
+1 Traverse the Outlands
+1 Mosswort Bridge
+1 Archmage's Charm
+1 Arixmethes, Slumbering Isle
+1 Arcane Signet
+1 Sol Ring
+1 Lorthos, the Tidemaker
+1 Serpent of Yawning Depths
+1 Slinn Voda, the Rising Deep
+1 Whelming Wave
+1 Elder Deep-Fiend
+1 Aesi, Tyrant of Gyre Strait
+1 Brinelin, the Moon Kraken
+1 Hullbreaker Horror
+1 Scourge of Fleets
+1 Spawning Kraken
+1 Tromokratis
+1 Inkwell Leviathan
+1 Simic Charm
+1 Sword Coast Serpent // Capsizing Wave
+1 Imprisoned in the Moon
+1 Garruk's Uprising
+1 Cultivate
+1 Farseek
+1 Kodama's Reach
+1 Rampant Growth
+1 Return of the Wildspeaker
+1 One with the Multiverse
+1 Command Tower
+1 Leyline Immersion
+1 Kiora's Follower
+1 Swiftfoot Boots
+1 Gwenna, Eyes of Gaea
+1 Tolarian Terror
+1 Ilysian Caryatid
+1 Breaching Leviathan
+1 Cryptic Serpent
+1 Trench Gorger
+1 Monstrosity of the Lake
+1 Kiora, Behemoth Beckoner
+1 Selvala, Heart of the Wilds
+1 Otawara, Soaring City
+1 Rishkar's Expertise
+1 Zendikar Resurgent
+1 Cryptic Command
+1 Koma, Cosmos Serpent
+1 Reliquary Tower
+1 Utopia Sprawl
+1 Lightning Greaves
+1 Oko, Thief of Crowns
+1 Reverse the Polarity
+1 Song of the Dryads
+1 Urza's Rebuff
+1 Troyan, Gutsy Explorer
+1 Up the Beanstalk
+1 Icebreaker Kraken
+15 Snow-Covered Island
+15 Snow-Covered Forest
+1 The Key to the Vault
+1 Thickest in the Thicket
+1 Koma, World-Eater
+1 Levitation
+1 Fanatic of Rhonas
+1 Grappling Kraken
+1 Kozilek's Unsealing
+1 Sin, Unending Cataclysm
+1 Summon: Leviathan
+1 The Unagi of Kyoshi Island
+1 Benthic Anomaly
+1 Starwinder

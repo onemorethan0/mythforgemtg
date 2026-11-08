@@ -1,0 +1,102 @@
+# Archidekt — Alela: Faerie Unnatural
+# source: archidekt:2376104
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Alela, Artful Provocateur
+
+Deck:
+1 Morphic Pool
+3 Island
+3 Plains
+1 Exotic Orchard
+1 Sol Ring
+1 Swiftfoot Boots
+1 Counterspell
+1 Bitterblossom
+3 Swamp
+1 Talisman of Hierarchy
+1 Mana Drain
+1 Command Tower
+1 Arcane Signet
+1 Bident of Thassa
+1 Lightning Greaves
+1 Spellstutter Sprite
+1 Fabled Passage
+1 Path of Ancestry
+1 Kindred Discovery
+1 Raffine's Tower
+1 Talisman of Dominance
+1 Talisman of Progress
+1 Smothering Tithe
+1 Favorable Winds
+1 Cavern of Souls
+1 Kindred Dominance
+1 Akroma's Will
+1 Arcane Sanctum
+1 Path to Exile
+1 Reconnaissance Mission
+1 Sensei's Divining Top
+1 Bojuka Bog
+1 Faerie Mastermind
+1 Talion, the Kindly Lord
+1 Flowering of the White Tree
+1 Marsh Flats
+1 Flooded Strand
+1 Hallowed Fountain
+1 Godless Shrine
+1 Watery Grave
+1 Polluted Delta
+1 Anointed Procession
+1 Castle Locthwain
+1 Raise the Palisade
+1 Fellwar Stone
+1 Banner of Kinship
+1 Elesh Norn, Grand Cenobite
+1 Isolated Chapel
+1 Drowned Catacomb
+1 Glacial Fortress
+1 Bitterbloom Bearer
+1 Undercity Sewers
+1 Otawara, Soaring City
+1 Three Tree City
+1 Shadowy Backstreet
+1 Meticulous Archive
+1 Scion of Oona
+1 Swords to Plowshares
+1 Minas Tirith
+1 Azorius Signet
+1 Orzhov Signet
+1 Dimir Signet
+1 Roaming Throne
+1 Sea of Clouds
+1 Vault of Champions
+1 Cyclonic Rift
+1 Shared Triumph
+1 Rally the Ranks
+1 Enduring Curiosity
+1 Patchwork Banner
+1 Sword of Feast and Famine
+1 Arcane Denial
+1 Ornithopter of Paradise
+1 Deadly Rollick
+1 Fierce Guardianship
+1 Flawless Maneuver
+1 Buster Sword
+1 Galadriel's Dismissal
+1 Brazen Borrower // Petty Theft
+1 Tegwyll, Duke of Splendor
+1 Coastal Piracy
+1 Air Nomad Legacy
+1 Esper Sentinel
+1 Inkshield
+1 True Conviction
+1 The Indomitable
+1 Waterbender Ascension
+1 Flickering Ward
+1 Ethereal Absolution
+1 Orcrist, Goblin-cleaver
+1 Kindred Judgment
+1 Winnowing
+1 Oubliette

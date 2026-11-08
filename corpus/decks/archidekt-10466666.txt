@@ -1,0 +1,88 @@
+# Archidekt — Exploring the 7 Seas
+# source: archidekt:10466666
+# fetched: 2026-11-08
+# bracket_claimed: 3
+# label_audit: fails the official Bracket 3 gates: 4 Game Changers (Ancient Tomb, Cyclonic Rift, Fierce Guardianship, Rhystic Study); Bracket 3 allows 3
+
+Commander:
+1 Hakbal of the Surging Soul
+
+Deck:
+1 The Ozolith
+1 Three Visits
+1 Swiftfoot Boots
+1 Counterspell
+1 Lightning Greaves
+1 Nature's Lore
+1 Wave Goodbye
+1 Deeproot Pilgrimage
+1 Deeproot Waters
+1 Merrow Commerce
+1 Mana Drain
+1 Kindred Discovery
+1 Cyclonic Rift
+1 Ripples of Potential
+1 Branching Evolution
+1 Raise the Palisade
+1 Intruder Alarm
+1 Simic Ascendancy
+1 Hardened Scales
+1 Innkeeper's Talent
+1 Ozolith, the Shattered Spire
+1 Patchwork Banner
+1 Harbinger of the Seas
+1 Path of Discovery
+1 Deeproot Elite
+1 Benthic Biomancer
+1 Kumena, Tyrant of Orazca
+1 Cenote Scout
+1 Cryptolith Rite
+1 Herald of Secret Streams
+1 Emperor Mihail II
+1 Kiora, the Rising Tide
+1 Master of the Pearl Trident
+1 Merfolk Sovereign
+1 Lord of Atlantis
+1 Merfolk Mistbinder
+1 Svyelun of Sea and Sky
+1 Merrow Reejerey
+1 Nicanzil, Current Conductor
+1 Seafloor Oracle
+1 Tatyova, Benthic Druid
+1 Stonybrook Banneret
+1 Singer of Swift Rivers
+1 Topography Tracker
+1 Vodalian Hexcatcher
+1 Thieving Skydiver
+1 Ancient Tomb
+1 Boseiju, Who Endures
+1 Zegana, Utopian Speaker
+1 Otawara, Soaring City
+1 Misty Rainforest
+1 Tropical Island
+2 Forest
+1 Reflecting Pool
+1 Bident of Thassa
+1 Herald's Horn
+1 Arcane Signet
+1 Sol Ring
+1 Rhystic Study
+1 Cavern of Souls
+1 Thrasios, Triton Hero
+1 Adrix and Nev, Twincasters
+1 Burgeoning
+1 Exploration
+1 Deeproot Historian
+1 Vorel of the Hull Clade
+1 True-Name Nemesis
+1 Reliquary Tower
+1 Fierce Guardianship
+1 Rejuvenating Springs
+1 Yavimaya Coast
+1 Dreamroot Cascade
+1 Hinterland Harbor
+1 Command Tower
+1 Breeding Pool
+1 Merfolk Looter
+1 Yavimaya, Cradle of Growth
+21 Island

@@ -1,0 +1,88 @@
+# Archidekt — Godzilla "Let Them Fight"
+# source: archidekt:13087612
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Progenitus
+
+Deck:
+1 Lifecrafter's Bestiary
+1 Chaos Warp
+1 Overwhelming Stampede
+1 Kogla, the Titan Ape
+1 Hulking Raptor
+1 Sol Ring
+1 Roar of Challenge
+1 Cultivate
+1 Ram Through
+1 Command Tower
+1 Stonehoof Chieftain
+1 Kodama's Reach
+1 Explosive Vegetation
+1 Yidaro, Wandering Monster
+1 Xenagos, God of Revels
+1 Titanoth Rex
+1 Unnatural Growth
+1 The Skullspore Nexus
+1 Rampant Growth
+1 Arcane Signet
+1 Darksteel Colossus
+1 Zilortha, Strength Incarnate
+1 Brokkos, Apex of Forever
+1 Luminous Broodmoth
+1 Everquill Phoenix
+1 Void Beckoner
+1 Gyruda, Doom of Depths
+1 Hangarback Walker
+1 Crystalline Giant
+1 Dirge Bat
+1 Snapdax, Apex of the Hunt
+1 Pollywog Symbiote
+1 Gemrazer
+1 Nethroi, Apex of Death
+1 Huntmaster Liger
+1 Sprite Dragon
+1 Vadrok, Apex of Thunder
+1 Garruk's Uprising
+1 Keeper of Progenitus
+1 Chromatic Lantern
+1 Thran Dynamo
+1 Opulent Palace
+1 Leyline of the Guildpact
+5 Plains
+5 Island
+5 Mountain
+5 Swamp
+5 Forest
+1 Myriad Landscape
+1 Temple of the False God
+1 Jungle Shrine
+1 Path of Ancestry
+1 Frontier Bivouac
+1 Cascade Bluffs
+1 Mossfire Valley
+1 Fiery Islet
+1 Golgari Rot Farm
+1 Simic Growth Chamber
+1 Vizier of the Menagerie
+1 Up the Beanstalk
+1 Oracle of Mul Daya
+1 Sakura-Tribe Elder
+1 Explore
+1 Boxing Ring
+1 Return of the Wildspeaker
+1 Contest of Claws
+1 Special Move
+1 Double Jump // Flying Kick
+1 Super Combo
+1 Illuna, Apex of Wishes
+1 Colossal Whale
+1 Dryad of the Ilysian Grove
+1 Heartbeat of Spring
+1 Arixmethes, Slumbering Isle
+1 Thantis, the Warweaver
+1 Herd Heirloom
+1 Rishkar's Expertise
+1 Genesis Wave
+1 Zhur-Taa Ancient

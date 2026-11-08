@@ -1,0 +1,78 @@
+# Archidekt — Kemba, Voltron (2010)
+# source: archidekt:20637396
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Kemba, Kha Regent
+
+Deck:
+1 Mishra's Factory
+1 Jazal Goldmane
+1 Shelter
+1 Marshal's Anthem
+1 Restoration Angel
+1 Sunfall
+1 Oblivion Ring
+1 Unquestioned Authority
+1 Cut a Deal
+1 Inheritance
+1 Sunspear Shikari
+1 Land Tax
+1 Open the Armory
+1 Explorer's Scope
+1 Grafted Wargear
+1 Hero's Blade
+1 Inquisitor's Flail
+1 Fireshrieker
+1 Armory of Iroas
+1 Forebear's Blade
+1 Umezawa's Jitte
+1 Celestial Crusader
+1 Dowsing Dagger // Lost Vale
+1 Solemn Simulacrum
+1 Wrath of God
+1 Council's Judgment
+1 Danitha Capashen, Paragon
+1 Reconnaissance
+1 Mask of Avacyn
+1 Heavenly Blademaster
+1 Ancestral Blade
+1 Veteran's Armaments
+1 Elspeth, Knight-Errant
+1 Slash the Ranks
+1 Soul Snare
+1 Basilisk Collar
+1 Wayfarer's Bauble
+1 Brave the Sands
+1 Deconstruction Hammer
+1 Flickering Ward
+1 Star Compass
+1 Sun Titan
+1 Path to Exile
+1 Coldsteel Heart
+1 Brass Knuckles
+1 Trailblazer's Boots
+1 Yes Man, Personal Securitron
+1 Marble Diamond
+1 Baneslayer Angel
+1 Fleetfeather Sandals
+1 Armored Skyhunter
+1 Commander's Sphere
+1 Lyra Dawnbringer
+1 Caged Sun
+1 Silverblade Paladin
+1 Opal Palace
+1 Thespian's Stage
+1 Heliod, God of the Sun
+1 Mace of the Valiant
+1 Blacksmith's Skill
+1 Assault Suit
+1 Myriad Landscape
+31 Plains
+1 Day of Judgment
+1 Sphere of Safety
+1 Suture Priest
+1 Secluded Steppe
+1 Mangara, the Diplomat
+1 Everflowing Chalice

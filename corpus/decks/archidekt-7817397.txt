@@ -1,0 +1,108 @@
+# Archidekt — Fist of the North Star ✨
+# source: archidekt:7817397
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Silas Renn, Seeker Adept
+1 Rograkh, Son of Rohgahh
+
+Deck:
+1 Borne Upon a Wind
+1 Ancient Tomb
+1 Brainstorm
+1 Chain of Vapor
+1 Cabal Ritual
+1 Bloodstained Mire
+1 Chrome Mox
+1 Arcane Signet
+1 Brain Freeze
+1 Ad Nauseam
+1 Arid Mesa
+1 Rite of Flame
+1 Mana Vault
+1 Diabolic Intent
+1 Culling the Weak
+1 Dark Ritual
+1 Demonic Consultation
+1 Deadly Rollick
+1 Underground Sea
+1 Mox Diamond
+1 Mox Amber
+1 Mystic Remora
+1 Marsh Flats
+1 Otawara, Soaring City
+1 Mental Misstep
+1 Lion's Eye Diamond
+1 Red Elemental Blast
+1 Mox Opal
+1 Volcanic Island
+1 Necropotence
+1 Orcish Bowmasters
+1 Mystical Tutor
+1 Scalding Tarn
+1 Polluted Delta
+1 The One Ring
+1 Sol Ring
+1 Ragavan, Nimble Pilferer
+1 Simian Spirit Guide
+1 Opposition Agent
+1 Gemstone Mine
+1 Luxury Suite
+1 Grim Tutor
+1 City of Brass
+1 Yawgmoth's Will
+1 Force of Will
+1 Verdant Catacombs
+1 Steam Vents
+1 Gemstone Caverns
+1 Tainted Pact
+1 Wheel of Fortune
+1 Imperial Seal
+1 Underworld Breach
+1 Thassa's Oracle
+1 Watery Grave
+1 Command Tower
+1 Timetwister
+1 Flusterstorm
+1 Grim Monolith
+1 Rhystic Study
+1 Cyclonic Rift
+1 Pyroblast
+1 Paradise Mantle
+1 Spell Pierce
+1 Muddle the Mixture
+1 An Offer You Can't Refuse
+1 Strike It Rich
+1 City of Traitors
+1 Necrodominance
+1 Snap
+1 Takenuma, Abandoned Mire
+1 Beseech the Mirror
+1 Misty Rainforest
+1 Mana Confluence
+1 Badlands
+1 Blood Crypt
+1 Deflecting Swat
+1 Flooded Strand
+1 Pact of Negation
+1 Swan Song
+1 Vampiric Tutor
+1 Morphic Pool
+1 Training Center
+1 Windfall
+1 Forbidden Orchard
+1 Grinding Station
+1 Fierce Guardianship
+1 Tarnished Citadel
+1 Vedalken Orrery
+1 Miscast
+1 Valley Floodcaller
+1 Lotus Petal
+1 Toxic Deluge
+1 Underground River
+1 Flare of Denial
+1 Urza's Saga
+1 Demonic Tutor
+1 Grindstone
+1 Painter's Servant

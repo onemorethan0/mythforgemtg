@@ -1,0 +1,99 @@
+# Archidekt — I love stealing, I love taking things.
+# source: archidekt:5891109
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+
+Deck:
+1 Eternal Scourge
+1 Command Beacon
+1 Taiga
+1 Sanctum of Eternity
+1 Stomping Ground
+1 Spire Garden
+1 Prismatic Vista
+1 Bloodstained Mire
+1 Arid Mesa
+1 Misty Rainforest
+1 Scalding Tarn
+1 Wooded Foothills
+1 Windswept Heath
+1 Verdant Catacombs
+1 Tinder Wall
+1 Nature's Claim
+1 Mox Diamond
+1 Hellkite Courser
+1 Lotus Petal
+1 Metamorphosis
+1 Disciple of Freyalise // Garden of Freyalise
+1 Imperial Recruiter
+1 Goldspan Dragon
+1 Molten Duplication
+1 Faithless Looting
+1 City of Brass
+1 Elvish Mystic
+1 Mana Geyser
+1 Nature's Lore
+1 Infernal Plunge
+1 Desperate Ritual
+1 Treasonous Ogre
+1 Ancient Tomb
+7 Forest
+1 Urza's Saga
+1 Command Tower
+1 Commercial District
+1 Geosurge
+1 Food Chain
+1 Three Visits
+1 Concordant Crossroads
+1 Cursed Mirror
+1 Sol Ring
+1 Pyroblast
+1 Orthion, Hero of Lavabrink
+1 Delighted Halfling
+1 Deflecting Swat
+1 Fanatic of Rhonas
+1 Ragavan, Nimble Pilferer
+1 Mox Opal
+1 Birds of Paradise
+1 Electroduplicate
+1 Mana Vault
+1 Red Elemental Blast
+1 Seething Song
+1 Arcane Signet
+1 Boseiju, Who Endures
+1 Gamble
+1 Llanowar Elves
+1 Rhythm of the Wild
+1 Redirect Lightning
+1 Squee, the Immortal
+1 Tibalt's Trickery
+1 Force of Vigor
+1 Jeska's Will
+1 Chrome Mox
+1 Twinflame
+1 Cavern of Souls
+1 Mass Hysteria
+1 Talisman of Impulse
+1 Wheel of Fortune
+1 Lightning Bolt
+1 Heat Shimmer
+1 Simian Spirit Guide
+1 Elvish Spirit Guide
+1 Pyretic Ritual
+1 Rite of Flame
+1 Beast Within
+1 Manamorphose
+1 Gemstone Caverns
+1 Arena of Glory
+1 Hunting Velociraptor
+1 Dualcaster Mage
+1 Roaming Throne
+4 Mountain
+1 Formidable Speaker
+1 Underworld Breach
+1 Lion's Eye Diamond
+1 Blightsteel Colossus
+1 Worldly Tutor

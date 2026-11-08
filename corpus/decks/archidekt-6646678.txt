@@ -1,0 +1,91 @@
+# Archidekt — Sheoldred, CEDH Mono Black Midrange
+# source: archidekt:6646678
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Sheoldred, the Apocalypse
+
+Deck:
+1 Demonic Tutor
+1 Orcish Bowmasters
+1 Geier Reach Sanitarium
+1 Vampiric Tutor
+1 Toxic Deluge
+1 Malakir Rebirth // Malakir Mire
+1 Skirge Familiar
+1 Memory Jar
+1 Temple Bell
+1 Wishclaw Talisman
+1 Bolas's Citadel
+1 Necropotence
+1 Sign in Blood
+1 Dark Deal
+1 Arcane Signet
+1 K'rrik, Son of Yawgmoth
+1 Phyrexian Arena
+1 Erebos, God of the Dead
+1 Beseech the Queen
+1 Night's Whisper
+1 Mindcrank
+1 Black Market Connections
+1 Animate Dead
+1 Thought Vessel
+1 Lotus Petal
+1 Insatiable Avarice
+1 Chain of Smog
+1 Reliquary Tower
+1 Feed the Swarm
+1 Dark Ritual
+1 Reanimate
+1 Grim Tutor
+1 Peer into the Abyss
+1 Sensei's Divining Top
+1 Jet Medallion
+1 Bubbling Muck
+1 Imp's Mischief
+1 Dismember
+1 Rain of Filth
+1 Sol Ring
+1 Praetor's Grasp
+1 Dauthi Voidwalker
+1 Mana Vault
+1 Dark Confidant
+1 Defense Grid
+1 The One Ring
+1 Bloodchief Ascension
+1 Professor Onyx
+1 Takenuma, Abandoned Mire
+1 Cabal Coffers
+1 Mikokoro, Center of the Sea
+1 Necrodominance
+1 Spellbook
+1 Urborg, Tomb of Yawgmoth
+1 Boseiju, Who Shelters All
+1 Crystal Vein
+1 War Room
+1 Fellwar Stone
+1 Culling the Weak
+1 Bitter Triumph
+1 Aetherflux Reservoir
+1 Cabal Ritual
+18 Swamp
+1 Imperial Seal
+1 Teferi's Puzzle Box
+1 Withering Torment
+1 Boggart Trawler // Boggart Bog
+1 Fell the Profane // Fell Mire
+1 Urza's Saga
+1 Snuff Out
+1 Force of Despair
+1 Ad Nauseam
+1 Mox Opal
+1 Mox Amber
+1 Mox Diamond
+1 Chrome Mox
+1 Yawgmoth's Will
+1 Deadly Rollick
+1 Ancient Tomb
+1 Scheming Symmetry
+1 Opposition Agent
+1 Greed

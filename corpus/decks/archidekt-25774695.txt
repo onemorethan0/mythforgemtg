@@ -1,7 +1,8 @@
 # Archidekt — Card Draw
 # source: archidekt:25774695
 # fetched: 2026-08-26
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 3 Game Changers (Consecrated Sphinx, Cyclonic Rift, Rhystic Study); Bracket 2 allows 0; two-card infinite combo Jace, Wielder of Mysteries + Enter the Infinite; Bracket 2 allows none
 
 Commander:
 1 Keiga, the Tide Star

@@ -1,0 +1,80 @@
+# Archidekt — Snow tribal
+# source: archidekt:2533500
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Jorn, God of Winter // Kaldring, the Rimestaff
+
+Deck:
+1 Snowblind
+1 Iceberg Cancrix
+1 Gangrenous Zombies
+1 Rime Transfusion
+1 Snow Devil
+1 Rimebound Dead
+1 Withering Wisps
+1 Icehide Troll
+1 Moritte of the Frost
+1 Chilling Shade
+1 Icebind Pillar
+1 The Three Seasons
+1 Priest of the Haunted Edge
+1 Shimmerdrift Vale
+1 Frost Augur
+1 Avalanche Caller
+1 Pilfering Hawk
+1 Boreal Outrider
+1 Spirit of the Aldergard
+1 Blizzard Brawl
+1 Hailstorm Valkyrie
+1 Sculptor of Winter
+1 Glittering Frost
+1 Ice Tunnel
+1 Woodland Chasm
+1 Into the North
+1 Drift of the Dead
+1 Arcum's Astrolabe
+1 Blizzard Strix
+1 Winter's Rest
+1 Conifer Wurm
+1 Rime Tender
+1 Dead of Winter
+1 Glacial Revelation
+1 Frostwalk Bastion
+1 Abominable Treefolk
+1 Boreal Druid
+1 Gutless Ghoul
+1 Chill to the Bone
+1 Rimewind Taskmage
+1 Rimewind Cryomancer
+1 Heidar, Rimewind Master
+1 Balduvian Frostwaker
+1 Centaur Omenreader
+1 Frost Marsh
+1 Blizzard Specter
+1 Viscerid Drone
+1 Icebreaker Kraken
+1 Blood on the Snow
+1 Blessing of Frost
+1 Ascendant Spirit
+1 Faceless Haven
+1 Draugr Necromancer
+11 Snow-Covered Forest
+7 Snow-Covered Swamp
+1 Mouth of Ronom
+1 Sunstone
+1 Grim Draugr
+1 Frostweb Spider
+1 Rimefeather Owl
+13 Snow-Covered Island
+1 Ohran Viper
+1 Graven Lore
+1 Ice-Fang Coatl
+1 Scrying Sheets
+1 Replicating Ring
+1 Marit Lage's Slumber
+1 Ohran Frostfang
+1 Narfi, Betrayer King
+1 Rimewood Falls
+1 Coldsteel Heart

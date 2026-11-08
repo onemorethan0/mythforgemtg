@@ -1,0 +1,11 @@
+# Archidekt — Landfall Azusa ramp
+# source: archidekt:6887186
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Azusa, Lost but Seeking
+
+Deck:
+98 Forest
+1 Yavimaya, Cradle of Growth

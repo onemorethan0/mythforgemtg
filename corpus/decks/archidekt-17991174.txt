@@ -1,0 +1,107 @@
+# Archidekt — CEDH Emo Tribal
+# source: archidekt:17991174
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rowan, Scion of War
+
+Deck:
+1 Dark Ritual
+1 Disciple of Bolas
+1 Dismember
+1 Fell the Profane // Fell Mire
+1 Gut Shot
+1 Red Elemental Blast
+1 Redirect Lightning
+1 The Black Gate
+1 Peat Bog
+1 Sundering Eruption // Volcanic Fissure
+1 Street Wraith
+1 Searing Touch
+1 Vendetta
+1 Storm-Kiln Artist
+1 Inspired Tinkering
+1 Barbarian Ring
+1 Beseech the Queen
+1 Badlands
+1 Blood Crypt
+1 Invasion of Kaldheim // Pyre of the World Tree
+1 Demonic Collusion
+1 Diabolic Intent
+1 Ifnir Deadlands
+1 Coveted Prize
+1 Lively Dirge
+1 Multiversal Passage
+1 Pinnacle Monk // Mystic Peak
+1 Plunge into Darkness
+1 Ignite the Future
+1 Ragavan, Nimble Pilferer
+1 Tainted Pact
+1 City of Brass
+1 Final Parting
+1 Peer into the Abyss
+1 Dark Petition
+1 Grim Servant
+1 Skirk Prospector
+1 Past in Flames
+1 Vilis, Broker of Blood
+1 Thran Portal
+1 Vampiric Tutor
+1 Tibalt's Trickery
+1 Feed the Swarm
+1 Reanimate
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Starting Town
+1 Boggart Trawler // Boggart Bog
+1 Big Score
+1 Increasing Ambition
+1 Cabal Pit
+1 Lightning Bolt
+1 Ulcerate
+1 K'rrik, Son of Yawgmoth
+1 Deflecting Swat
+1 Blood Pet
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Sol Ring
+1 Pyroblast
+1 Diabolic Revelation
+1 Sandstone Needle
+1 Strike It Rich
+1 Surgical Extraction
+1 Pirate's Pillage
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Snuff Out
+1 Sulfurous Springs
+1 Mount Doom
+1 Rite of Flame
+1 Treasonous Ogre
+1 Jeska's Will
+1 Will of the Jeskai
+1 Thoughtseize
+1 Wooded Foothills
+1 Imperial Recruiter
+1 Splinter's Technique
+1 Sorceress's Schemes
+1 Spider-Punk
+1 Tarnished Citadel
+1 Lotus Petal
+1 Flare of Duplication
+1 M.O.D.O.K.
+1 Behold the Beyond
+1 Illicit Shipment
+1 Mana Vault
+1 Mox Amber
+1 Gemstone Caverns
+1 Sheoldred, the Apocalypse
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Polluted Delta
+1 Mana Confluence
+1 Reiterate
+1 Demonic Tutor
+1 Hexing Squelcher
+1 Chrome Mox
+1 Bloodstained Mire
+1 Hex Magic
+1 Simian Spirit Guide

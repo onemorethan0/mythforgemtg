@@ -1,0 +1,104 @@
+# Archidekt — L5R Homage: Enlightenment
+# source: archidekt:10175155
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Garth One-Eye
+
+Deck:
+1 Greater Good
+1 Azusa, Lost but Seeking
+1 Budoka Gardener // Dokai, Weaver of Life
+1 Dosan the Falling Leaf
+1 Harmonic Prodigy
+1 Heroic Intervention
+1 Narset's Reversal
+1 Ponder
+1 Deflecting Palm
+1 Erase
+1 Arcane Signet
+1 Fellwar Stone
+1 Chromatic Lantern
+1 Devout Chaplain
+1 Forsake the Worldly
+1 Return to Nature
+1 Monastery Swiftspear
+1 Monastery Mentor
+1 Plea for Guidance
+1 Brainstorm
+1 Serene Master
+1 Sight Beyond Sight
+1 Tatsumasa, the Dragon's Fang
+1 Jukai Naturalist
+1 Center Soul
+1 Zethi, Arcane Blademaster
+1 Behold the Beyond
+1 Spinning Wheel Kick
+1 Command Tower
+1 Exotic Orchard
+1 Final Flourish
+1 Snakeskin Veil
+1 Spara's Headquarters
+1 Ketria Triome
+1 Temple Garden
+1 Jetmir's Garden
+1 Wooded Foothills
+1 Windswept Heath
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Regrowth
+1 Temple of Plenty
+1 Temple of Mystery
+1 Temple of Enlightenment
+1 Temple of Abandon
+1 Temple of Malice
+1 Temple of Epiphany
+1 Temple of Malady
+1 Temple of Deceit
+1 Temple of Silence
+1 Temple of Triumph
+1 Nature's Lore
+1 Sylvan Library
+1 Monk Class
+1 Swords to Plowshares
+1 Harmonize
+1 Consider
+1 Propaganda
+1 Tolarian Winds
+1 Ghostly Prison
+1 Sphere of Safety
+1 Three Visits
+1 Path to Exile
+1 Solve the Equation
+1 Idyllic Tutor
+1 Wild Research
+1 Riku of Two Reflections
+1 Sterling Grove
+1 Sythis, Harvest's Hand
+1 Yenna, Redtooth Regent
+1 Verduran Enchantress
+1 Argothian Enchantress
+1 O-Kagachi, Vengeful Kami
+1 Leaping Master
+1 Monk of the Open Hand
+1 Moon-Blessed Cleric
+1 Mystical Teachings
+1 Waterlogged Teachings // Inundated Archive
+1 Ziatora's Proving Ground
+1 Fabled Passage
+2 Plains
+1 Path of Ancestry
+1 Mountain
+3 Forest
+1 Swamp
+1 Evolving Wilds
+1 Terramorphic Expanse
+1 Pull from Eternity
+1 Research // Development
+1 Fact or Fiction
+1 Eternal Witness
+1 Merchant Scroll
+1 Spellseeker
+2 Island
+1 Hall of Heliod's Generosity

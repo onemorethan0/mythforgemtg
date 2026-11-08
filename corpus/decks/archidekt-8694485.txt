@@ -1,0 +1,88 @@
+# Archidekt — K'rrik, Son of Yawgmoth
+# source: archidekt:8694485
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 K'rrik, Son of Yawgmoth
+
+Deck:
+1 Bolas's Citadel
+1 Dismember
+1 Peat Bog
+1 Phyrexian Tower
+1 Withering Torment
+1 Cabal Coffers
+1 Crystal Vein
+1 Jet Medallion
+1 Arcane Signet
+1 Vilis, Broker of Blood
+1 Deserted Temple
+1 Entomb
+1 Mutavault
+1 Everflowing Chalice
+1 Chainer, Dementia Master
+1 Vampiric Tutor
+1 Asmodeus the Archfiend
+1 Necrotic Ooze
+1 Skirge Familiar
+1 Reanimate
+1 Vile Entomber
+1 Exhume
+1 Rain of Filth
+1 Final Parting
+1 Beseech the Queen
+1 Emergence Zone
+1 Urborg, Tomb of Yawgmoth
+1 Dread Return
+1 Necropotence
+1 Peer into the Abyss
+1 Mind Stone
+1 Boseiju, Who Shelters All
+1 Culling the Weak
+1 Dance of the Dead
+1 Necromancy
+1 Chthonian Nightmare
+1 Imp's Mischief
+1 Snuff Out
+1 Force of Despair
+1 Sacrifice
+1 Grim Servant
+1 Praetor's Grasp
+1 Cabal Ritual
+1 Orcish Bowmasters
+1 Demonic Tutor
+1 Sol Ring
+1 Animate Dead
+1 Buried Alive
+1 Deadly Rollick
+1 Braids, Arisen Nightmare
+1 Sheoldred, the Apocalypse
+1 Hoarding Broodlord
+1 Lotus Petal
+1 Lake of the Dead
+1 Insatiable Avarice
+1 Dimir House Guard
+1 Malakir Rebirth // Malakir Mire
+1 Blast Zone
+1 Exsanguinate
+1 Soldevi Adnate
+1 Dauthi Voidwalker
+1 Blood Celebrant
+1 Balthor the Defiled
+1 Fleshwrither
+21 Swamp
+1 Blood Pet
+1 Putrid Imp
+1 Saw in Half
+1 Beseech the Mirror
+1 Razaketh, the Foulblooded
+1 Gray Merchant of Asphodel
+1 Dark Ritual
+1 Unmarked Grave
+1 Springleaf Drum
+1 Stargaze
+1 Overeager Apprentice
+1 Heartless Summoning
+1 Twilight Diviner
+1 Gix, Yawgmoth Praetor

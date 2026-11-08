@@ -1,0 +1,71 @@
+# Archidekt — War Beards
+# source: archidekt:7163856
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Barktooth Warbeard
+
+Deck:
+1 Conspiracy Theorist
+1 Crimson Manticore
+1 Curse of Disturbance
+1 Curse of Opulence
+1 Demolish
+1 Dusk Legion Zealot
+1 Draugr Necromancer
+1 Dream Devourer
+1 Dwarven Driller
+1 Dwarven Grunt
+1 Dwarven Miner
+1 Electrostatic Infantry
+1 Enthralling Victor
+1 Fearless Liberator
+1 Endrek Sahr, Master Breeder
+1 Faithless Looting
+1 Falkenrath Marauders
+1 Feed the Swarm
+1 Grenzo, Dungeon Warden
+1 Fit of Rage
+1 Furnace Host Charger
+1 Furor of the Bitten
+1 Giant's Skewer
+1 Greedy Freebooter
+1 Gruesome Fate
+1 Inevitable End
+1 Insufferable Balladeer
+1 Herald of Leshrac
+1 Howl of the Horde
+1 Hurloon Minotaur
+1 Impatience
+1 Joven
+1 Inferno Titan
+1 Kargan Intimidator
+1 Mad Prophet
+1 Mardu Strike Leader
+1 Messenger's Speed
+1 Mutiny
+1 Order of the Ebon Hand
+1 Reckless Reveler
+1 Sigiled Sword of Valeron
+1 Threaten
+1 Murder
+1 Walk the Plank
+1 Trumpet Blast
+1 Mind's Eye
+1 Weapon Surge
+1 Shock
+1 Fling
+1 Guardian Idol
+16 Swamp
+1 Brawl
+1 Ambition's Cost
+1 Arcane Teachings
+1 Boldwyr Intimidator
+1 Ashes to Ashes
+1 Arni Metalbrow
+1 Blood Aspirant
+1 Balthor the Stout
+1 Balduvian War-Makers
+1 Uncle Istvan
+23 Mountain

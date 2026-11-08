@@ -1,0 +1,108 @@
+# Archidekt — Kess, Dissident Mage CEDH
+# source: archidekt:15790440
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Kess, Dissident Mage
+
+Deck:
+1 Wan Shi Tong, Librarian
+1 Longshot, Rebel Bowman
+1 Orcish Bowmasters
+1 Brainstorm
+1 Sol Ring
+1 Command Tower
+1 Consult the Star Charts
+1 Lion's Eye Diamond
+1 Resentful Revelation
+1 Fork
+1 Faithless Looting
+1 Bloodstained Mire
+1 Demonic Consultation
+1 Thassa's Oracle
+1 Mox Diamond
+1 Ponder
+1 Mindbreak Trap
+1 Vandalblast
+1 Cavern-Hoard Dragon
+1 Wheel of Fortune
+1 Grapeshot
+1 Dualcaster Mage
+1 Phyrexian Metamorph
+1 Swan Song
+1 Volcanic Island
+1 Reflecting Pool
+1 Mana Confluence
+1 Jeska's Will
+1 Gamble
+1 Hide on the Ceiling
+1 Raucous Theater
+1 Morphic Pool
+1 Talisman of Creativity
+1 Valley Floodcaller
+1 Chrome Mox
+1 Grim Monolith
+1 Black Market Connections
+1 Ancient Tomb
+1 Gemstone Caverns
+1 Talisman of Dominance
+1 Xander's Lounge
+1 Blood Crypt
+1 Flusterstorm
+1 The One Ring
+1 Simian Spirit Guide
+1 Brain Freeze
+1 Vampiric Tutor
+1 Lotus Petal
+1 Mana Vault
+1 Fierce Guardianship
+1 Mana Drain
+1 Ragavan, Nimble Pilferer
+1 Redirect Lightning
+1 Deflecting Swat
+1 Force of Will
+1 Exsanguinate
+1 Tainted Pact
+1 Force of Negation
+1 An Offer You Can't Refuse
+1 Demonic Tutor
+1 Ad Nauseam
+1 Stock Up
+1 Luxury Suite
+1 Bojuka Bog
+1 Arcane Signet
+1 Training Center
+1 Underworld Breach
+1 Visions of Beyond
+1 Chromatic Lantern
+1 Watery Grave
+1 Cabal Ritual
+1 Mistrise Village
+1 Mockingbird
+1 Multiversal Passage
+1 Demand Answers
+1 Flesh Duplicate
+1 Exotic Orchard
+1 Shadow of the Goblin
+1 Consider
+1 Eden, Seat of the Sanctum
+1 Swamp
+1 Snow-Covered Swamp
+1 Cyclonic Rift
+1 Dark Ritual
+1 Mystic Remora
+1 Imperial Seal
+1 Polluted Delta
+1 Wasteland
+1 Treasonous Ogre
+1 Rhystic Study
+1 Undercity Sewers
+1 Badlands
+1 Underground Sea
+1 Vivi Ornitier
+1 Hexing Squelcher
+1 Dauthi Voidwalker
+1 Bloodchief Ascension
+1 Geist of Saint Thalia
+1 Urza's Saga

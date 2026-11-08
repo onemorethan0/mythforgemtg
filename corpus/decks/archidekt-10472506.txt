@@ -1,0 +1,101 @@
+# Archidekt — Prick-xis
+# source: archidekt:10472506
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kess, Dissident Mage
+
+Deck:
+1 Victimize
+1 An Offer You Can't Refuse
+1 Gloomlake Verge
+1 Vilis, Broker of Blood
+1 Lotus Petal
+1 Steam Vents
+1 Lightning Greaves
+1 Training Center
+1 Animate Dead
+1 Frantic Search
+1 Songs of the Damned
+1 Entomb
+1 Buried Alive
+1 Tergrid, God of Fright // Tergrid's Lantern
+1 Bloodchief Ascension
+1 Necromancy
+1 Undercity Sewers
+1 Cephalid Coliseum
+1 Exhume
+1 Faithless Looting
+1 Feed the Swarm
+1 Sheoldred, the Apocalypse
+1 Force of Will
+1 Mistrise Village
+1 Luxury Suite
+1 Raucous Theater
+1 Death Cloud
+1 Reanimate
+1 Orcish Bowmasters
+1 Junji, the Midnight Sky
+1 Dark Deal
+1 Kokusho, the Evening Star
+1 Ancient Tomb
+1 Otawara, Soaring City
+1 Malakir Rebirth // Malakir Mire
+1 Cabal Ritual
+1 Burnt Offering
+1 Arcane Signet
+1 Toxrill, the Corrosive
+1 Lim-Dûl's Vault
+1 Demonic Tutor
+1 Valgavoth, Terror Eater
+1 Flusterstorm
+1 Vampiric Tutor
+1 Snapcaster Mage
+1 Underworld Breach
+1 Spellskite
+1 Mountain
+1 Prince of Thralls
+4 Island
+1 Toxic Deluge
+1 Blazemire Verge
+1 Opposition Agent
+1 Fierce Guardianship
+5 Swamp
+1 Goryo's Vengeance
+1 Imp's Mischief
+1 Diabolic Intent
+1 Exotic Orchard
+1 Morphic Pool
+1 Torment of Hailfire
+1 Command Tower
+1 Jeska's Will
+1 Blood Crypt
+1 Cabal Coffers
+1 Phyrexian Tower
+1 Windfall
+1 Sacrifice
+1 Gifts Ungiven
+1 Mystic Remora
+1 Samut, Tyrant of Naktamun
+1 Sol Ring
+1 Reflecting Pool
+1 Deflecting Swat
+1 Mana Drain
+1 Cyclonic Rift
+1 Urborg, Tomb of Yawgmoth
+1 Xander's Lounge
+1 Rhystic Study
+1 Hexing Squelcher
+1 Razaketh, the Foulblooded
+1 Swan Song
+1 Watery Grave
+1 Force of Negation
+1 Dark Ritual
+1 Sheoldred's Edict
+1 Dance of the Dead
+1 Jin-Gitaxias, Core Augur
+1 Bloodstained Mire
+1 Polluted Delta
+1 Scalding Tarn
+1 Mystical Tutor

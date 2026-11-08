@@ -1,0 +1,78 @@
+# Archidekt — Barktooth Warbeard - Bearded Tribal - BR1
+# source: archidekt:69012
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Barktooth Warbeard
+
+Deck:
+1 Shackles of Treachery
+1 Faithless Salvaging
+1 Avalanche Riders
+1 Uncle Istvan
+1 Memorial to Folly
+1 Raking Claws
+1 Arguel's Blood Fast // Temple of Aclazotz
+1 Deadeye Tracker
+1 Besmirch
+1 Grenzo, Havoc Raiser
+1 Murderous Compulsion
+1 Feldon of the Third Path
+1 Sarkhan, the Dragonspeaker
+1 King Macar, the Gold-Cursed
+1 Disciple of Griselbrand
+1 Thrill of Possibility
+1 Feed the Swarm
+1 Kazuul, Tyrant of the Cliffs
+1 Choice of Damnations
+1 Cat Burglar
+1 Ogre Arsonist
+1 Fervor
+1 Dwarven Vigilantes
+1 Forsaken Wastes
+1 Builder's Bane
+1 Balduvian Trading Post
+1 Axelrod Gunnarson
+1 Simulacrum
+1 Sigiled Sword of Valeron
+1 Thieving Amalgam
+1 Nightmare Unmaking
+1 Thran Foundry
+1 Bog Witch
+1 Grafted Skullcap
+1 Murder
+1 Angrath, the Flame-Chained
+1 Kumano, Master Yamabushi
+1 Curse of Disturbance
+1 Curse of Opulence
+1 Price of Knowledge
+1 Guiltfeeder
+1 Capital Punishment
+1 Corrupt Official
+1 Quicksilver Amulet
+1 Dismissive Pyromancer
+1 Dark Ritual
+1 Plargg and Nassari
+1 Prosper, Tome-Bound
+1 Ill-Tempered Loner // Howlpack Avenger
+1 Reckless Spite
+1 Hero's Downfall
+1 Blood Reckoning
+1 Inferno Titan
+1 Suffer the Past
+1 Chain Reaction
+1 Boldwyr Intimidator
+1 Graven Cairns
+1 Lim-Dûl the Necromancer
+1 Herald of Leshrac
+1 Pain Magnification
+1 Twinstrike
+1 Inevitable End
+1 Bojuka Bog
+1 Mines of Moria
+16 Swamp
+16 Mountain
+1 Song-Mad Treachery // Song-Mad Ruins
+1 Fiery Emancipation
+1 Royal Assassin

@@ -1,0 +1,99 @@
+# Archidekt — You were Fantastic, and you know what? So Was I.
+# source: archidekt:6902942
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Cyclonic Rift); Bracket 1 allows 0; two-card infinite combo The Tenth Doctor + Rousing Refrain; Bracket 1 allows none
+
+Commander:
+1 Rose Tyler
+1 The Ninth Doctor
+
+Deck:
+1 Raugrin Triome
+1 Clockspinning
+1 Sulfur Falls
+1 Swiftfoot Boots
+1 Arcane Signet
+1 Psychic Paper
+1 Cyclonic Rift
+1 Sonic Screwdriver
+1 Thought Vessel
+1 TARDIS
+1 Heroes Remembered
+1 As Foretold
+1 Nanogene Conversion
+1 The Tenth Doctor
+1 Jhoira of the Ghitu
+1 Hall of Heliod's Generosity
+1 Gallifrey Council Chamber
+1 Command Tower
+1 Paradox Haze
+1 Gallifrey Falls // No More
+1 Court of Embereth
+1 Court of Grace
+1 Inspiring Refrain
+1 Temporal Manipulation
+1 Netherese Puzzle-Ward
+1 The Parting of the Ways
+1 Stitch in Time
+1 Path to Exile
+1 Traverse Eternity
+1 Inevitable Betrayal
+1 Time Wipe
+1 Rogue's Passage
+1 Mox Tantalite
+1 Sol Talisman
+3 Mountain
+1 Trailblazer's Boots
+1 Castle Ardenvale
+1 Clifftop Retreat
+1 Glacial Fortress
+1 Hallowed Fountain
+1 Mana Confluence
+1 Sacred Foundry
+1 Steam Vents
+1 Quicksilver Dagger
+1 Sphinx of the Second Sun
+1 Medomai the Ageless
+1 Charmbreaker Devils
+1 Exalted Flamer of Tzeentch
+1 Court of Vantress
+1 Outlaws' Merriment
+1 Chronozoa
+1 Time Stretch
+1 Reality Strobe
+1 Coward // Killer
+1 Chronomantic Escape
+1 Everybody Lives!
+1 Ancestral Vision
+1 Vanish into Memory
+1 Rousing Refrain
+1 Sand Silos
+1 Paradise Mantle
+1 Maze of Ith
+1 Flooded Strand
+1 Capture of Jingzhou
+1 Scalding Tarn
+1 Arid Mesa
+1 Time Stop
+1 Invert Polarity
+1 Springleaf Drum
+1 Shadow of the Second Sun
+1 Time Warp
+1 Lightning Greaves
+1 Trouble in Pairs
+1 Final Showdown
+1 Icatian Store
+1 Dwarven Hold
+1 Timecrafting
+1 Time Lord Regeneration
+1 Run for Your Life
+1 Reverse the Polarity
+1 Swords to Plowshares
+1 Assemble the Legion
+1 Echo of Eons
+1 Tower of the Magistrate
+1 City of Brass
+3 Plains
+1 Mystic Monastery
+7 Island

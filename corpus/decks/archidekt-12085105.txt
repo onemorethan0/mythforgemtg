@@ -1,0 +1,109 @@
+# Archidekt — !E
+# source: archidekt:12085105
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Omnath, Locus of Creation
+1 Omnath, Locus of All
+
+Deck:
+1 Adult Gold Dragon
+1 Alpha Myr
+1 An-Havva Township
+1 Avacyn's Pilgrim
+1 Badlands
+1 Basalt Monolith
+1 Bayou
+1 Bituminous Blast
+1 Blightning
+1 Blind Phantasm
+1 Blood Crypt
+1 Book of Rass
+1 Brainstorm
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Brushland
+1 Burst Lightning
+1 Canyon Slough
+1 Charcoal Diamond
+1 Compulsion
+1 Corrupt
+1 Cryptic Command
+1 Damnation
+1 Dark Confidant
+1 Dark Ritual
+1 Dragonskull Summit
+1 Fomori Nomad
+1 Horizon Canopy
+1 Hulking Raptor
+1 Inspiration
+1 Irrigation Ditch
+1 Jandor's Ring
+1 Mana Prism
+1 Mass of Ghouls
+1 Mind Twist
+1 Mogg Hollows
+1 Moss Diamond
+1 Rain of Filth
+1 Rootbound Crag
+1 Ruins of Trokair
+1 Savannah
+1 Scrap
+1 Sky Diamond
+1 Sol Talisman
+1 Stomping Ground
+1 Sulfurous Springs
+1 Taiga
+1 Talisman of Conviction
+1 Talisman of Curiosity
+1 Talisman of Unity
+1 Thalakos Lowlands
+1 Tropical Island
+1 Urborg, Tomb of Yawgmoth
+1 Yavimaya Coast
+1 Dryad Arbor
+1 Giant Growth
+1 Gigantosaurus
+1 Harrow
+1 Island
+1 Lightning Bolt
+1 Mortify
+1 Mountain
+1 Plains
+1 Psionic Blast
+1 Pyroclasm
+1 Rampant Growth
+1 Scrubland
+1 Sign in Blood
+1 Animal Sanctuary
+1 Ashnod's Altar
+1 Barbtooth Wurm
+1 Grim Backwoods
+1 Icy Manipulator
+1 Mind Rot
+1 Rod of Ruin
+1 Shock
+1 Unholy Grotto
+1 Mind Spring
+1 Pull from Tomorrow
+1 Ruinous Ultimatum
+1 Archivist
+1 Thrill of Possibility
+1 Totally Lost
+1 Avatar of Will
+1 Iron Will
+1 Goblin King
+1 Dust Bowl
+1 Gavony Township
+1 Witch's Clinic
+1 Wizards' School
+1 Sindbad
+1 Sol Ring
+1 Swamp
+1 Tidings
+1 Tundra
+1 Urza's Saga
+1 Volcanic Fallout
+1 Volcanic Island
+1 Wrath of God
+1 Zombify

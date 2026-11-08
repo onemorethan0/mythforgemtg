@@ -1,0 +1,78 @@
+# Archidekt — MagLite
+# source: archidekt:17350096
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Magda, Brazen Outlaw
+
+Deck:
+1 Nephalia Academy
+1 Maskwood Nexus
+1 Clock of Omens
+1 Battered Golem
+1 Crime Novelist
+1 Unlicensed Hearse
+1 Sol Ring
+1 Peter Parker's Camera
+1 Three Tree Mascot
+1 Barkform Harvester
+1 Bloodline Pretender
+1 Gilded Ghoda
+1 High-Speed Hoverbike
+1 Flywheel Racer
+1 Goldhound
+1 Twinshot Sniper
+1 Smoke Bomb
+1 Damping Sphere
+1 Vexing Bauble
+1 Stone of Erech
+1 Lifecraft Engine
+1 Universal Automaton
+1 Metallic Mimic
+1 Adaptive Automaton
+1 Burner Rocket
+1 Axgard Cavalry
+1 Liquimetal Torque
+1 Electrostatic Bolt
+1 Stoke the Flames
+1 Abrade
+1 Zoyowa's Justice
+1 Clara Oswald
+1 Ricochet Trap
+1 Volatile Fault
+1 Survivors' Encampment
+1 Mishra's Foundry
+1 Reckless Fireweaver
+1 Pithing Needle
+1 Sorcerous Spyglass
+1 Funeral Longboat
+1 Mobile Homestead
+1 Smuggler's Copter
+1 Careening Mine Cart
+1 Arcane Signet
+1 Kavaron, Memorial World
+1 Warmaker Gunship
+1 Bloodfire Dwarf
+1 Holdout Settlement
+1 Mishra's Factory
+1 Tel-Jilad Stylus
+1 Gogo, Mysterious Mime
+1 Bogardan Hellkite
+1 Pyxis of Pandemonium
+1 Weftstalker Ardent
+1 Shock
+1 Cast into the Fire
+1 Dwarven Forge-Chanter
+1 Skewer Slinger
+1 Dwarven Grunt
+1 Dwarven Scorcher
+7 Seven Dwarves
+1 Meteor Sword
+1 Soulless Jailer
+25 Mountain
+1 Flame Slash
+1 Dwarven Trader
+1 Firdoch Core
+1 Spine of Ish Sah
+1 Eriette's Tempting Apple

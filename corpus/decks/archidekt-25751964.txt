@@ -1,7 +1,8 @@
 # Archidekt — Tatyova PDH
 # source: archidekt:25751964
 # fetched: 2026-08-26
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Crop Rotation); Bracket 1 allows 0
 
 Commander:
 1 Tatyova, Benthic Druid

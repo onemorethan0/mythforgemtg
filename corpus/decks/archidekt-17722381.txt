@@ -1,0 +1,107 @@
+# Archidekt — Katara the Fearless
+# source: archidekt:17722381
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Katara, the Fearless
+
+Deck:
+1 Door of Destinies
+1 Metallic Mimic
+1 Beastmaster Ascension
+1 Aang, Airbending Master
+1 Aang and Katara
+1 Aang, Swift Savior // Aang and La, Ocean's Fury
+1 Aang, the Last Airbender
+1 Abandoned Air Temple
+1 Adarkar Wastes
+1 Allied Teamwork
+1 Ally Encampment
+1 Appa, Steadfast Guardian
+1 Avatar's Wrath
+1 Beast Within
+1 Boseiju, Who Endures
+1 Bountiful Promenade
+1 Brainstorm
+1 Breeding Pool
+1 Brushland
+1 Cavern of Souls
+1 Command Tower
+1 Cyclonic Rift
+1 Descendants' Path
+1 Distant Melody
+1 Earth King's Lieutenant
+1 Exotic Orchard
+1 Fellwar Stone
+1 Flooded Strand
+1 Forest
+1 Gavony Township
+1 Glacial Fortress
+1 Great Divide Guide
+1 Hakoda, Selfless Commander
+1 Halimar Excavator
+1 Hallowed Fountain
+1 Harabaz Druid
+1 Herald's Horn
+1 Hermitic Herbalist
+1 Hinterland Harbor
+1 Invasion Reinforcements
+1 Island
+1 Jasmine Dragon Tea Shop
+1 Katara, Water Tribe's Hope
+1 Kindred Discovery
+1 Kindred Summons
+1 Kyoshi Village
+1 Lightning Greaves
+1 Meditation Pools
+1 Misty Rainforest
+1 Heroic Intervention
+1 Nature's Lore
+1 Noble Hierarch
+1 North Pole Gates
+1 Ondu Cleric
+1 Path of Ancestry
+1 Path to Exile
+1 Rejuvenating Springs
+1 Reliquary Tower
+1 Retreat to Emeria
+1 Sea Gate Loremaster
+1 Sea of Clouds
+1 Seaside Citadel
+1 Sokka, Lateral Strategist
+1 Sokka's Charge
+1 Sol Ring
+1 South Pole Voyager
+1 Spara's Headquarters
+1 Suki, Kyoshi Warrior
+1 Sunpetal Grove
+1 Swiftfoot Boots
+1 Swords to Plowshares
+1 Tale of Momo
+1 Talisman of Curiosity
+1 Talisman of Unity
+1 Teferi's Protection
+1 Temple Garden
+1 United Front
+1 White Lotus Reinforcements
+1 White Lotus Tile
+1 Windswept Heath
+1 Yavimaya Coast
+1 Yavimaya, Cradle of Growth
+1 Skullclamp
+1 Nature's Claim
+1 Aang, at the Crossroads // Aang, Destined Savior
+1 Airbending Lesson
+1 Aura Shards
+1 Cloudshift
+1 Eerie Interlude
+1 Ghostway
+1 Kor Bladewhirl
+1 Rhystic Study
+1 Smothering Tithe
+2 Plains
+1 Sun Titan
+1 Arcane Signet
+1 Birds of Paradise
+1 Talisman of Progress

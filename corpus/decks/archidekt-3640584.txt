@@ -1,0 +1,106 @@
+# Archidekt — Oloro Reborn: Gain & Drain
+# source: archidekt:3640584
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Oloro, Ageless Ascetic
+
+Deck:
+1 Bolas's Citadel
+1 Arcane Signet
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Sheoldred, the Apocalypse
+1 Soul Warden
+1 Suture Priest
+1 Arcane Denial
+1 Dovin's Veto
+1 Swords to Plowshares
+1 Heliod's Intervention
+1 Recurring Insight
+1 Sea of Clouds
+1 Godless Shrine
+1 Shattered Sanctum
+1 Shipwreck Marsh
+1 Vault of Champions
+1 Adarkar Wastes
+1 Raffine's Tower
+1 Painful Truths
+1 Watery Grave
+1 Mystic Remora
+1 Rhystic Study
+1 Sensei's Divining Top
+1 Creeping Bloodsucker
+1 Toxic Deluge
+1 Beacon of Immortality
+1 Liesa, Shroud of Dusk
+1 An Offer You Can't Refuse
+1 Sign in Blood
+1 Get Lost
+1 Elenda's Hierophant
+1 Mangara, the Diplomat
+1 Night's Whisper
+1 Authority of the Consuls
+1 Stinging Study
+1 Sol Ring
+1 Talisman of Progress
+1 Angel of Vitality
+1 Kambal, Consul of Allocation
+1 Vito, Thorn of the Dusk Rose
+1 Soul's Attendant
+1 Rhox Faithmender
+1 Swamp
+3 Plains
+1 Command Tower
+1 Exotic Orchard
+1 Reflecting Pool
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Caves of Koilos
+1 Deserted Beach
+1 Morphic Pool
+1 Underground River
+1 Hallowed Fountain
+1 Academy Ruins
+1 Charismatic Conqueror
+1 Archaeomancer's Map
+1 Sanguine Bond
+1 Claim Jumper
+1 Test of Endurance
+1 Anguished Unmaking
+1 Mana Drain
+1 Sorin of House Markov // Sorin, Ravenous Neonate
+1 Auriok Champion
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Fell the Profane // Fell Mire
+1 Season of Weaving
+1 Kambal, Profiteering Mayor
+1 Black Market Connections
+1 Crypt Incursion
+1 Boggart Trawler // Boggart Bog
+1 Blind Obedience
+1 The Meathook Massacre
+1 Azorius Chancery
+1 Dimir Aqueduct
+1 Trouble in Pairs
+1 Orzhov Basilica
+1 Teferi's Protection
+1 Fellwar Stone
+1 City of Brass
+1 Island
+1 Shadowy Backstreet
+1 Undercity Sewers
+1 Meticulous Archive
+1 Everflowing Chalice
+1 Insatiable Avarice
+1 Austere Command
+1 Sink into Stupor // Soporific Springs
+1 Bleachbone Verge
+1 Gloomlake Verge
+1 Turbulent Moor
+1 Floodfarm Verge
+1 Aetherflux Reservoir
+1 Unexplained Absence
+1 Scheming Silvertongue // Sign in Blood
+1 Bloodchief Ascension
+1 Swan Song

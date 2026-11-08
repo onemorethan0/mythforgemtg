@@ -1,0 +1,100 @@
+# Archidekt — Magda CEDH
+# source: archidekt:5009594
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Magda, Brazen Outlaw
+
+Deck:
+1 Mana Vault
+1 Battered Golem
+1 Dwarven Scorcher
+1 Dwarven Bloodboiler
+1 Dwarven Grunt
+1 Damping Sphere
+1 Hammerheim
+1 Sokenzan, Crucible of Defiance
+1 Torpor Orb
+1 Clown Car
+1 Chrome Mox
+1 Abrade
+1 Ancient Tomb
+1 Barbarian Ring
+1 Axgard Cavalry
+1 Bloodfire Dwarf
+1 Deflecting Swat
+1 Professional Face-Breaker
+1 Gemstone Caverns
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Red Elemental Blast
+1 Lightning Bolt
+1 Dwarven Trader
+1 Enslaved Dwarf
+1 Spark Mage
+1 Great Furnace
+1 Pyroblast
+1 Mutavault
+1 Shinka, the Bloodsoaked Keep
+1 God-Pharaoh's Statue
+1 Sculpting Steel
+1 Liquimetal Torque
+1 Maskwood Nexus
+1 Urza's Saga
+1 Unlicensed Hearse
+1 Treasure Vault
+1 Survivors' Encampment
+1 Universal Automaton
+1 Holdout Settlement
+1 Blood Moon
+1 Galvanic Blast
+1 Xorn
+1 Liberated Dwarf
+1 Mox Amber
+1 Springleaf Drum
+1 Cavern of Souls
+1 Command Beacon
+1 Dwarven Armorer
+1 Clock of Omens
+1 Portal to Phyrexia
+1 Sol Ring
+1 The One Ring
+1 Grafdigger's Cage
+1 Smuggler's Copter
+1 Adaptive Automaton
+1 Roaming Throne
+1 Magda, the Hoardmaster
+1 Volatile Fault
+1 Bottle-Cap Blast
+1 Twinshot Sniper
+1 Zoyowa's Justice
+1 Fomori Vault
+1 Return the Favor
+1 Sundering Eruption // Volcanic Fissure
+1 Pinnacle Monk // Mystic Peak
+1 Flare of Duplication
+1 Vexing Bauble
+1 Mox Opal
+1 Barkform Harvester
+1 Magus of the Moon
+1 Untimely Malfunction
+1 Talon Gates of Madara
+1 Lifecraft Engine
+1 Redirect Lightning
+1 Three Tree Mascot
+1 Kavaron, Memorial World
+1 Flywheel Racer
+1 Jeska's Will
+1 Knuckles the Echidna
+1 Relic of Legends
+1 Firdoch Core
+1 Stalactite Dagger
+1 Fogwell's Gym
+1 Fíli and Kíli, Joyous
+1 Dwarven Mauler
+1 Óin the Brave
+1 Dragon-Cursed Halls
+5 Mountain
+1 Lotus Petal
+1 Simian Spirit Guide
+1 Plundering Barbarian

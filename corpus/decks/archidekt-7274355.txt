@@ -1,0 +1,86 @@
+# Archidekt — Cold as Ice
+# source: archidekt:7274355
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Hylda of the Icy Crown
+
+Deck:
+1 Urza's Cave
+1 Icy Manipulator
+1 Sol Ring
+1 Replicating Ring
+1 Icebind Pillar
+1 Court Street Denizen
+1 Curse of Chains
+1 Palliation Accord
+1 Blustersquall
+1 Dreamshackle Geist
+1 Verity Circle
+1 Sharae of Numbing Depths
+1 Rhoda, Geist Avenger
+1 Solitary Sanctuary
+1 Coldsteel Heart
+1 Approach of the Second Sun
+1 Stroke of Midnight
+1 Dark Depths
+1 Expedition Map
+1 Faceless Haven
+1 Elvish Mariner
+1 Githzerai Monk
+1 Arcane Lighthouse
+1 Detection Tower
+1 Gideon's Avenger
+1 Shimmerdrift Vale
+1 Kapsho Kitefins
+1 Mouth of Ronom
+1 Relic of Legends
+1 Marit Lage's Slumber
+1 Azorius Signet
+1 Law-Rune Enforcer
+1 No More Lies
+1 Arcum's Astrolabe
+1 Eligeth, Crossroads Augur
+1 Arcane Signet
+1 Glacial Floodplain
+1 Terramorphic Expanse
+1 Stubborn Denial
+1 Evolving Wilds
+1 Boreal Shelf
+1 On Thin Ice
+1 Victory Chimes
+1 Squall Drifter
+1 Sunblast Angel
+1 Timin, Youthful Geist
+1 Willbreaker
+1 Mjölnir, Storm Hammer
+1 Split Up
+11 Snow-Covered Plains
+13 Snow-Covered Island
+1 Brave the Sands
+1 Frostwalk Bastion
+1 Search for Glory
+1 Azorius Guildmage
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Thespian's Stage
+1 Pacification Array
+1 Angel's Trumpet
+1 Hylda's Crown of Winter
+1 Niblis of the Breath
+1 Scepter of Dominance
+1 Rimewind Taskmage
+1 Sentinel of the Eternal Watch
+1 Cryptic Command
+1 Opposition
+1 Dismantling Wave
+1 Citadel Siege
+1 Cone of Cold
+1 Time of Ice
+1 Evacuation
+1 Ensnare
+1 Teferi, Who Slows the Sunset
+1 Tamiyo, the Moon Sage
+1 An Offer You Can't Refuse
+1 Diversionary Tactics

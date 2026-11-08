@@ -1,0 +1,88 @@
+# Archidekt — Prosper, Tome-Bound
+# source: archidekt:3254538
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Prosper, Tome-Bound
+
+Deck:
+1 Sanctum of Eternity
+1 Mirkwood Bats
+1 Treasure Vault
+1 Kami of Celebration
+1 Nadier's Nightblade
+1 Consuming Vapors
+1 Astarion's Thirst
+1 Opposition Agent
+1 Commander's Sphere
+1 Zhalfirin Void
+1 Loyal Apprentice
+1 Exotic Orchard
+1 Sol Ring
+1 Mortuary Mire
+1 Vandalblast
+1 Rakdos Carnarium
+1 Hurl Through Hell
+1 Bucknard's Everfull Purse
+1 Share the Spoils
+1 Wild-Magic Sorcerer
+1 Shiny Impetus
+1 Hellish Rebuke
+1 Throes of Chaos
+1 Reckless Endeavor
+1 Command Tower
+1 Rain of Riches
+1 Wand of Wonder
+1 Agent of the Iron Throne
+1 Havoc Festival
+1 Mahadi, Emporium Master
+1 Passionate Archaeologist
+1 Din of the Fireherd
+1 Blackcleave Cliffs
+1 Gilded Lotus
+1 Syr Ginger, the Meal Ender
+1 Overwhelming Forces
+1 Marionette Master
+1 Transmutation Font
+1 Braids, Arisen Nightmare
+1 Wound Reflection
+1 Bonehoard Dracosaur
+1 Bloodletter of Aclazotz
+1 Wild Wasteland
+1 Summoning Station
+1 Juri, Master of the Revue
+1 Chaos Warp
+1 Stridehangar Automaton
+1 Gonti's Aether Heart
+1 Ob Nixilis, Captive Kingpin
+1 Coin of Mastery
+11 Swamp
+1 Uba Mask
+1 Rakdos Signet
+1 Sensei's Divining Top
+1 Urabrask, Heretic Praetor
+1 Talisman of Indulgence
+1 Mind Stone
+1 Arcane Signet
+1 Helm of the Host
+1 Xorn
+1 Magus of the Moon
+1 Chimil, the Inner Sun
+1 Plargg and Nassari
+1 Varragoth, Bloodsky Sire
+1 Etali, Primal Storm
+1 Gisa, Glorious Resurrector
+1 Grim Hireling
+1 Academy Manufactor
+1 Smoldering Marsh
+1 Charred Foyer // Warped Space
+1 Descent into Avernus
+1 Vampiric Tutor
+1 Bedevil
+1 Gemstone Caverns
+11 Mountain
+1 Blood Crypt
+1 City of Brass
+1 Bloodstained Mire
+1 Badlands

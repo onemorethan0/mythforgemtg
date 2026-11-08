@@ -1,0 +1,11 @@
+# Archidekt — Blast from the Past
+# source: archidekt:19191275
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Omnath, Locus of Mana
+
+Deck:
+98 Forest
+1 Garruk's Uprising

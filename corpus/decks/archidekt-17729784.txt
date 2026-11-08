@@ -1,0 +1,77 @@
+# Archidekt — $240 Budget cEDH | Trazyn | Deck STATS: 2P/1W | S1W: 0 S2W: 0 S3W: 1 S4W: 0 Draw: 0
+# source: archidekt:17729784
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Trazyn the Infinite
+
+Deck:
+1 Convergence of Dominion
+1 Worn Powerstone
+1 Eviscerator's Insight
+1 Leaden Myr
+1 Unmarked Grave
+1 Perpetual Timepiece
+1 Vault of Whispers
+32 Swamp
+1 Codex Shredder
+1 Staff of Domination
+1 Ebon Stronghold
+1 Charcoal Diamond
+1 Imp's Mischief
+1 Marvin, Murderous Mimic
+1 Mind Stone
+1 Zuko's Exile
+1 Wishclaw Talisman
+1 Arcane Signet
+1 Millikin
+1 Fellwar Stone
+1 Infernal Grasp
+1 Buried Alive
+1 Ornithopter of Paradise
+1 Magistrate's Scepter
+1 Fell Gravship
+1 Buried Ruin
+1 Defile
+1 Fractured Powerstone
+1 Stinkweed Imp
+1 Thought Vessel
+1 Deadly Dispute
+1 Costly Plunder
+1 Go for the Throat
+1 Necron Deathmark
+1 Out of the Tombs
+1 Ripples of Undeath
+1 Patchwork Gnomes
+1 Human Frailty
+1 Darkblast
+1 Fanatical Offering
+1 Lively Dirge
+1 Triarch Praetorian
+1 Susurian Dirgecraft
+1 Argivian Avenger
+1 Temple Bell
+1 Voltaic Construct
+1 Welding Jar
+1 Gilded Lotus
+1 Mirage Mirror
+1 Leyline Dowser
+1 Surgical Extraction
+1 Wand of Vertebrae
+1 Sol Ring
+1 Basalt Monolith
+1 Palladium Myr
+1 Pili-Pala
+1 Walking Ballista
+1 Diamond Lion
+1 Dark Ritual
+1 Keen Duelist
+1 Feed the Swarm
+1 Resentful Revelation
+1 Mutilate
+1 Silent Gravestone
+1 Duress
+1 Entomb
+1 Beseech the Queen
+1 Peat Bog

@@ -1,0 +1,109 @@
+# Archidekt — Hunter x Hunter Greed Island Deck
+# source: archidekt:2758885
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Seedborn Muse); Bracket 1 allows 0
+
+Commander:
+1 Kenrith, the Returned King
+
+Deck:
+1 Darksteel Plate
+1 Crystal Shard
+1 Shielded by Faith
+1 Midnight Clock
+1 Goggles of Night
+1 Jewel Thief
+1 Tome of Legends
+1 Seedborn Muse
+1 Windborn Muse
+1 Theoretical Duplication
+1 Treasure Chest
+1 Seven Dwarves
+1 Writ of Passage
+1 Ghostly Possession
+1 Sunpetal Grove
+1 Indatha Triome
+1 Golden Egg
+1 King Macar, the Gold-Cursed
+1 Wooded Foothills
+1 Axis of Mortality
+1 Urza's Tome
+1 Noble's Purse
+1 Coiling Oracle
+1 Witch's Cottage
+1 Captivating Crew
+1 Witch's Clinic
+1 Simic Growth Chamber
+1 Venser's Journal
+1 Whispersilk Cloak
+1 Severed Strands
+1 Djinn of Wishes
+1 Fact or Fiction
+1 Inside Out
+1 Glasspool Mimic // Glasspool Shore
+1 Volrath, the Shapestealer
+1 Memory Deluge
+1 Blessed Breath
+1 Chandra, Acolyte of Flame
+1 Ludevic's Test Subject // Ludevic's Abomination
+1 Biolume Egg // Biolume Serpent
+1 The Dragon-Kami Reborn // Dragon-Kami's Egg
+1 Buried Ruin
+1 Roc Egg
+1 Dragon Egg
+1 Smoldering Egg // Ashmouth Dragon
+1 Rukh Egg
+1 Blinkmoth Nexus
+1 Scute Swarm
+1 Cunning Rhetoric
+1 Rule of Law
+1 Cabaretti Courtyard
+1 Mind Stone
+1 Extract Brain
+1 Mask of Memory
+1 Seraph of the Scales
+1 Rejuvenating Springs
+1 Conjurer's Closet
+1 Halo Fountain
+1 Summoner's Egg
+1 Utopia Tree
+1 Littjara Mirrorlake
+1 Day of Judgment
+1 Sword of Truth and Justice
+1 Fiendish Panda
+1 Goldhound
+1 Peter Parker's Camera
+1 Thief's Knife
+1 The Book of Exalted Deeds
+1 Forest
+1 Clearwater Goblet
+1 Deserted Beach
+1 Boseiju, Who Endures
+1 Luxurious Libation
+1 Dragon Blood
+1 Inspiring Vantage
+1 Soaring Seacliff
+1 Chromatic Star
+1 Sapphire Medallion
+1 Charcoal Diamond
+1 Fire Diamond
+1 Marble Diamond
+1 Moss Diamond
+1 Sky Diamond
+1 Island
+1 Rankle, Master of Pranks
+1 Profane Tutor
+1 The Deck of Many Things
+1 Luxury Suite
+1 Bloodthirsty Blade
+1 Raptor Hatchling
+1 Seasinger
+1 Dragon Hatchling
+1 Deflecting Palm
+1 Brokers Hideout
+1 Gitaxian Probe
+1 Grafted Identity
+1 Inventors' Fair
+1 Sunforger
+1 Halo Scarab

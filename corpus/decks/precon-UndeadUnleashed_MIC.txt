@@ -1,0 +1,84 @@
+# WotC precon — Undead Unleashed (MIC, 2021-09-24)
+# source: mtgjson:UndeadUnleashed_MIC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Wilhelt, the Rotcleaver
+
+Deck:
+1 Aetherspouts
+1 Arcane Signet
+1 Army of the Damned
+1 Bojuka Bog
+1 Butcher of Malakir
+1 Cemetery Reaper
+1 Charcoal Diamond
+1 Choked Estuary
+1 Cleaver Skaab
+1 Command Tower
+1 Commander's Sphere
+1 Corpse Augur
+1 Crowded Crypt
+1 Curse of Unbinding
+1 Curse of the Restless Dead
+1 Dark Salvation
+1 Darkwater Catacombs
+1 Death Baron
+1 Dimir Aqueduct
+1 Diregraf Captain
+1 Diregraf Colossus
+1 Distant Melody
+1 Dread Summons
+1 Dreadhorde Invasion
+1 Drown in Dreams
+1 Eater of Hope
+1 Eloise, Nephalia Sleuth
+1 Empty the Laboratory
+1 Endless Ranks of the Dead
+1 Eternal Skylord
+1 Exotic Orchard
+1 Feed the Swarm
+1 Fleshbag Marauder
+1 Forgotten Creation
+1 Ghouls' Night Out
+1 Gisa and Geralf
+1 Gleaming Overseer
+1 Go for the Throat
+1 Gorex, the Tombshell
+1 Gravespawn Sovereign
+1 Havengul Runebinder
+1 Hordewing Skaab
+1 Hour of Eternity
+12 Island
+1 Liliana's Devotee
+1 Liliana's Mastery
+1 Liliana, Death's Majesty
+1 Lord of the Accursed
+1 Midnight Reaper
+1 Mortuary Mire
+1 Myriad Landscape
+1 Open the Graves
+1 Overseer of the Damned
+1 Path of Ancestry
+1 Prowling Geistcatcher
+1 Ravenous Rotbelly
+1 Rooftop Storm
+1 Ruthless Deathfang
+1 Shadow Kin
+1 Sky Diamond
+1 Sol Ring
+1 Spark Reaper
+1 Stitcher Geralf
+1 Sunken Hollow
+15 Swamp
+1 Syphon Flesh
+1 Tainted Isle
+1 Talisman of Dominance
+1 Temple of Deceit
+1 Tomb Tyrant
+1 Unclaimed Territory
+1 Undead Alchemist
+1 Undead Augur
+1 Zombie Apocalypse

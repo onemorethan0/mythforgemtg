@@ -1,0 +1,108 @@
+# Archidekt — Musclemania
+# source: archidekt:8130452
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Rakdos, the Muscle
+
+Deck:
+1 Popular Egotist
+1 Necropotence
+1 Into the Pit
+1 Braids, Arisen Nightmare
+1 Treasonous Ogre
+1 Umbral Collar Zealot
+1 Underworld Breach
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Ancient Tomb
+1 Ashnod's Altar
+1 Badlands
+1 Arcane Signet
+1 Blackcleave Cliffs
+1 Burnt Offering
+1 Cabal Ritual
+1 Carrion Feeder
+1 City of Traitors
+1 Command Tower
+1 Dark Ritual
+1 Deflecting Swat
+1 Desperate Ritual
+1 Flamekin Harbinger
+1 Goblin Recruiter
+1 Golgari Thug
+1 Infernal Plunge
+1 Lazotep Quarry
+1 Lion's Eye Diamond
+1 Lotus Petal
+1 Mana Confluence
+1 Mana Vault
+1 Marsh Flats
+1 Master of Dark Rites
+1 Chrome Mox
+1 Patron of the Arts
+1 Blood Pet
+1 Blood Crypt
+1 Gemstone Caverns
+1 Phyrexian Tower
+1 Pinnacle Monk // Mystic Peak
+1 Polluted Delta
+1 Red Elemental Blast
+1 Rite of Flame
+1 Shambling Ghast
+1 Simian Spirit Guide
+1 Skittering Precursor
+1 Spider-Punk
+1 Talisman of Indulgence
+1 Talon Gates of Madara
+1 Swamp
+1 Valki, God of Lies // Tibalt, Cosmic Impostor
+1 Azog, Moria's Ruin
+1 Mayhem Devil
+1 Impulsive Pilferer
+1 Sulfurous Springs
+1 Offalsnout
+1 _____ Goblin
+1 Skirk Prospector
+1 Viscera Seer
+1 Thunderscape Familiar
+1 Ingot Chewer
+1 Fury
+1 Sacrifice
+1 Grief
+1 Flare of Duplication
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Sephiroth, Fabled SOLDIER // Sephiroth, One-Winged Angel
+1 Bloodstained Mire
+1 Boggart Trawler // Boggart Bog
+1 Chthonian Nightmare
+1 City of Brass
+1 Culling the Weak
+1 Dargo, the Shipwrecker
+1 Demonic Tutor
+1 Entomb
+1 Forsaken Miner
+1 Greedy Freebooter
+1 Hexing Squelcher
+1 K'rrik, Son of Yawgmoth
+1 Luxury Suite
+1 Opposition Agent
+1 Orcish Bowmasters
+1 Phyrexian Altar
+1 Priest of Gix
+1 Priest of Urabrask
+1 Ragavan, Nimble Pilferer
+1 Reckless Barbarian
+1 Redirect Lightning
+1 Shriekmaw
+1 Sol Ring
+1 Songs of the Damned
+1 Vampiric Tutor
+1 Warren Soultrader
+1 Worf, Intelligence Contractor
+1 Deadpool, Trading Card
+1 Powerbalance
+1 Mount Doom
+1 Poxwalkers
+1 Saw in Half
+1 Emergence Zone

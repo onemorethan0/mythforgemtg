@@ -1,0 +1,93 @@
+# Archidekt — Very Normal Bracket 2 Commander Deck
+# source: archidekt:17074410
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Obeka, Splitter of Seconds
+
+Deck:
+1 Braid of Fire
+1 Swiftfoot Boots
+1 Command Tower
+6 Swamp
+1 Lightning Greaves
+1 Polluted Delta
+1 Morphic Pool
+1 Scalding Tarn
+1 Sulfurous Springs
+1 Luxury Suite
+1 Shivan Reef
+1 Underground River
+1 Rogue's Passage
+1 Training Center
+1 Watery Grave
+1 Blood Crypt
+1 Steam Vents
+1 Xander's Lounge
+1 Bloodstained Mire
+1 Reliquary Tower
+1 Badlands
+1 Volcanic Island
+1 Underground Sea
+1 Emergence Zone
+1 Braids, Conjurer Adept
+6 Island
+6 Mountain
+1 Mechanized Production
+1 Court of Locthwain
+1 Mithril Coat
+1 Darksteel Plate
+1 Court of Ire
+1 Silent Arbiter
+1 Whispersilk Cloak
+1 Aether Tunnel
+1 Descent into Avernus
+1 Phyrexian Arena
+1 Talisman of Creativity
+1 Midnight Clock
+1 Talisman of Dominance
+1 Talisman of Indulgence
+1 Arcane Signet
+1 Replicating Ring
+1 Mox Tantalite
+1 Lizard Blades
+1 Ring of Valkas
+1 Hatred
+1 Ring of Evos Isle
+1 Ring of Xathrid
+1 K-9, Mark I
+1 Vorrac Battlehorns
+1 Silver Shroud Costume
+1 Trailblazer's Boots
+1 Court of Ambition
+1 Court of Embereth
+1 Court of Vantress
+1 Bonehoard Dracosaur
+1 Leap
+1 As Foretold
+1 Bloodgift Demon
+1 Inspiring Refrain
+1 Blasphemous Act
+1 Terminate
+1 Bitter Triumph
+1 Chaos Warp
+1 Call of the Ring
+1 Toxic Deluge
+1 Borne Upon a Wind
+1 Creeping Bloodsucker
+1 Slip Out the Back
+1 Sin Prodder
+1 Skyline Despot
+1 Jhoira of the Ghitu
+1 Star Whale
+1 Ragavan, Nimble Pilferer
+1 Sol Ring
+1 Sol Talisman
+1 Infernal Grasp
+1 Feed the Swarm
+1 Deflecting Swat
+1 Rousing Refrain
+1 Wheel of Fate
+1 Inevitable Betrayal
+1 Reality Strobe

@@ -1,0 +1,108 @@
+# Archidekt — Return of the King
+# source: archidekt:15896384
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Noctis, Prince of Lucis
+
+Deck:
+1 The Grey Havens
+1 Polluted Delta
+1 Command Tower
+1 Marsh Flats
+1 Watery Grave
+1 Vexing Bauble
+1 Krark-Clan Ironworks
+1 Basalt Monolith
+1 Shuri, Wakandan Inventor
+1 Glimmervoid
+1 The Everflowing Well // The Myriad Pools
+1 Chimil, the Inner Sun
+1 Golbez, Crystal Collector
+1 Repurposing Bay
+1 Tarrian's Journal // The Tomb of Aclazotz
+1 Etherium Sculptor
+1 Spire of Industry
+1 Mox Amber
+1 Sensei's Divining Top
+1 Teferi, Time Raveler
+1 Aether Spellbomb
+1 Ethersworn Canonist
+1 Crystal Skull, Isu Spyglass
+1 Lotho, Corrupt Shirriff
+1 Grinding Station
+1 Lurrus of the Dream-Den
+1 Bolas's Citadel
+1 Oswald Fiddlebender
+1 Phyrexian Metamorph
+1 The Darkhold
+1 Flooded Strand
+1 Relic of Legends
+1 Shadowy Backstreet
+1 Arcane Signet
+1 Phyrexian Tower
+1 Hallowed Fountain
+1 Godless Shrine
+1 Mishra's Workshop
+1 Crucible of Worlds
+1 Chromatic Orrery
+1 Ashiok, Dream Render
+1 Cavern of Souls
+1 Emry, Lurker of the Loch
+1 Sol Ring
+1 Geist of Saint Thalia
+1 Mox Diamond
+1 Mox Opal
+1 Urborg, Tomb of Yawgmoth
+1 Aetherflux Reservoir
+1 Urza, Lord High Artificer
+1 Ensnaring Bridge
+1 Spellskite
+1 Voltaic Key
+1 Mana Vault
+1 Lion's Eye Diamond
+1 Ironheart, Clever Champion
+1 Kappa Cannoneer
+1 Displacer Kitten
+1 Ancient Tomb
+1 The Echoverse Fulcrum
+1 Inventors' Fair
+1 Riddlesmith
+1 Soul-Guide Lantern
+1 Shimmer Myr
+1 Island
+1 Lotus Petal
+1 Grim Monolith
+1 Urza's Saga
+1 Mesmeric Orb
+1 Esper Sentinel
+1 Foundry Inspector
+1 Chrome Mox
+1 Academy Ruins
+1 Lavinia, Azorius Renegade
+1 Urza's Sylex
+1 Mystic Forge
+1 Encroaching Mycosynth
+1 Rings of Brighthearth
+1 Esoteric Duplicator
+1 Plaza of Heroes
+1 Memory Jar
+1 Ancient Den
+1 Drana and Linvala
+1 Clock of Omens
+1 Glaring Fleshraker
+1 Ugin's Nexus
+1 Minamo, School at Water's Edge
+1 Undercity Sewers
+1 Meticulous Archive
+1 Mm'menon, the Right Hand
+1 The Reality Chip
+1 Seat of the Synod
+1 Simulacrum Synthesizer
+1 Basim Ibn Ishaq
+1 Torpor Orb
+1 Spider-Woman, Stunning Savior
+1 Nexus of Fate
+1 Mycosynth Lattice
+1 Path of Ancestry

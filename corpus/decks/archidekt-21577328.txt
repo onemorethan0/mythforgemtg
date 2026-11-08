@@ -1,0 +1,109 @@
+# Archidekt — Yoshi-P's Hometown
+# source: archidekt:21577328
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 7 Game Changers (Ad Nauseam, Crop Rotation, Cyclonic Rift, Field of the Dead, Force of Will...); Bracket 1 allows 0
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Glimpse of Nature
+1 Preordain
+1 Flusterstorm
+1 Force of Will
+1 Jeska's Will
+1 Brotherhood's End
+1 Subterranean Tremors
+1 Baron, Airship Kingdom
+1 Gohn, Town of Ruin
+1 Windurst, Federation Center
+1 Vector, Imperial Capital
+1 Lindblum, Industrial Regency // Mage Siege
+1 Starting Town
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Jidoor, Aristocratic Capital // Overture
+1 Daze
+1 Reprieve
+1 Vampiric Tutor
+1 Hop to It
+1 Akroma's Will
+1 Awaken the Woods
+1 Culling the Weak
+1 Cyclonic Rift
+1 Feed the Swarm
+1 Helping Hand
+1 Repel Calamity
+1 Spell Pierce
+1 Winds of Abandon
+1 Triumph of the Hordes
+1 Stock Up
+1 Gongaga, Reactor Town
+1 Balamb Garden, SeeD Academy // Balamb Garden, Airborne
+1 Rabanastre, Royal City
+1 Insomnia, Crown City
+1 Guadosalam, Farplane Gateway
+1 Sharlayan, Nation of Scholars
+1 Treno, Dark City
+1 Abrade
+1 Forest
+1 Mountain
+1 Island
+1 Dismember
+1 Pongify
+1 Sheoldred's Edict
+1 Smallpox
+1 Return the Favor
+1 Pyretic Ritual
+1 Knockout Maneuver
+1 Fracture
+1 Royal Treatment
+1 Swamp
+1 Shamanic Revelation
+1 Mana Confluence
+1 Vesuva
+1 City of Brass
+1 Bulk Up
+1 Plains
+1 Field of the Dead
+1 Armageddon
+1 Crossroads Village
+1 Command Tower
+1 Sleight of Hand
+1 Culling Ritual
+1 Bring to Light
+1 Pick Your Poison
+1 Disdainful Stroke
+1 Burst Lightning
+1 Stargaze
+1 Monstrous Rage
+1 Locust Spray
+1 Deduce
+1 Deflecting Palm
+1 Giant Growth
+1 Duty Beyond Death
+1 Requisition Raid
+1 Veil of Summer
+1 Berserk
+1 Angel's Grace
+1 Big Score
+1 Crackle with Power
+1 Spinerock Knoll
+1 Windbrisk Heights
+1 Shelldock Isle
+1 Living End
+1 Midgar, City of Mako // Reactor Raid
+1 Zombify
+1 Bitter Triumph
+1 Empty the Warrens
+1 Return to the Ranks
+1 Prismatic Ending
+1 Shared Roots
+1 Capital City
+1 Howltooth Hollow
+1 Brain Freeze
+1 Expressive Iteration
+1 Boseiju, Who Shelters All
+1 Mosswort Bridge
+1 Crop Rotation
+1 Ad Nauseam

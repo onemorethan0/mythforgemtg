@@ -1,0 +1,92 @@
+# Archidekt — The Scarab God (Dank_Rubber_Ducky)
+# source: archidekt:16464419
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Scarab God
+
+Deck:
+1 Lich Lord of Unx
+1 Morphic Pool
+1 Blasphemous Edict
+1 Sunken Hollow
+1 Vengeful Dead
+1 Diregraf Colossus
+1 Sidisi, Undead Vizier
+1 Undercity Sewers
+1 Cabal Coffers
+1 Shipwreck Marsh
+4 Swamp
+4 Swamp
+1 Grave Pact
+1 Gravecrawler
+1 Undead Warchief
+1 Diregraf Captain
+1 Necroduality
+1 Headless Rider
+1 Entomb
+1 Plague Belcher
+1 Noxious Ghoul
+1 Mana Drain
+1 Phyrexian Altar
+1 Ashnod's Altar
+1 Dimir Signet
+1 Talisman of Dominance
+1 Sunken Ruins
+1 Buried Alive
+1 Unholy Grotto
+1 Unstoppable Slasher
+1 The Meathook Massacre
+1 Mikaeus, the Unhallowed
+1 Murderous Rider // Swift End
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Wand of Orcus
+1 Crypt Ghast
+1 Carrion Feeder
+1 Funeral Room // Awakening Hall
+1 Tombstone Stairwell
+1 Cyclonic Rift
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Rhystic Study
+1 Arcane Signet
+1 Grave Titan
+1 Damnation
+1 Clearwater Pathway // Murkwater Pathway
+1 Mystic Remora
+1 Relentless Dead
+1 Undead Augur
+1 Rise of the Dark Realms
+1 Rooftop Storm
+1 Diabolic Intent
+1 Counterspell
+2 Island
+4 Swamp
+4 Swamp
+1 Graveborn Muse
+1 Wilhelt, the Rotcleaver
+1 Endless Ranks of the Dead
+1 Army of the Damned
+1 Death Baron
+1 Zombie Master
+1 Training Grounds
+1 Lord of the Undead
+1 Ghoulcaller Gisa
+1 Toxic Deluge
+1 Sol Ring
+1 Liliana, Dreadhorde General
+2 Island
+2 Island
+2 Island
+1 Midnight Reaper
+1 Command Tower
+1 Champion of the Perished
+1 Cleaver Skaab
+1 Gray Merchant of Asphodel
+1 Zulaport Cutthroat
+1 Zombie Apocalypse
+1 Cryptbreaker
+1 Underground River
+1 Watery Grave
+1 Crowded Crypt

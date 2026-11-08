@@ -1,0 +1,99 @@
+# WotC precon — Miracle Worker (DSC, 2024-09-27)
+# source: mtgjson:MiracleWorker_DSC
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Ondu Spiritdancer + Secret Arcade // Dusty Parlor; Bracket 2 allows none
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Aminatou, Veil Piercer
+
+Deck:
+1 Adarkar Wastes
+1 Aminatou's Augury
+1 Ancient Cellarspawn
+1 Arcane Denial
+1 Arcane Sanctum
+1 Arcane Signet
+1 Archetype of Imagination
+1 Arvinox, the Mind Flail
+1 Ash Barrens
+1 Athreos, Shroud-Veiled
+1 Auramancer
+1 Azorius Chancery
+1 Azorius Signet
+1 Bojuka Bog
+1 Bottomless Pool // Locker Room
+1 Brainstone
+1 Brainstorm
+1 Burnished Hart
+1 Cast Out
+1 Caves of Koilos
+1 Command Tower
+1 Commander's Sphere
+1 Cramped Vents // Access Maze
+1 Demon of Fate's Design
+1 Diabolic Vision
+1 Dimir Aqueduct
+1 Doomwake Giant
+1 Dream Eater
+1 Entreat the Angels
+1 Evolving Wilds
+1 Extravagant Replication
+1 Fear of Sleep Paralysis
+1 Halimar Depths
+1 Hall of Heliod's Generosity
+1 Inkshield
+4 Island
+1 Life Insurance
+1 Mesa Enchantress
+1 Metamorphosis Fanatic
+1 Mind Stone
+1 Mirrormade
+1 Monologue Tax
+1 Moon-Blessed Cleric
+1 Nightmare Shepherd
+1 Obscura Storefront
+1 Ondu Spiritdancer
+1 One with the Multiverse
+1 Orzhov Basilica
+1 Orzhov Signet
+1 Otherworldly Gaze
+1 Phenomenon Investigators
+5 Plains
+1 Ponder
+1 Portent
+1 Prognostic Sphinx
+1 Read the Bones
+1 Redress Fate
+1 Return to Dust
+1 Secret Arcade // Dusty Parlor
+1 Shark Typhoon
+1 Sigil of the Empty Throne
+1 Soaring Lightbringer
+1 Sol Ring
+1 Solemn Simulacrum
+1 Sphere of Safety
+1 Spirit-Sister's Call
+1 Starfield Mystic
+5 Swamp
+1 Swords to Plowshares
+1 Tainted Field
+1 Tainted Isle
+1 Telling Time
+1 Temple of Deceit
+1 Temple of Enlightenment
+1 Temple of Silence
+1 Terminus
+1 Terramorphic Expanse
+1 The Eldest Reborn
+1 The Master of Keys
+1 Thirst for Meaning
+1 Thriving Heath
+1 Thriving Isle
+1 Thriving Moor
+1 Time Wipe
+1 Timely Ward
+1 Underground River
+1 Utter End
+1 Verge Rangers

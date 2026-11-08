@@ -1,0 +1,108 @@
+# Archidekt — Kotis, the Boardwiper
+# source: archidekt:12405550
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kotis, the Fangkeeper
+
+Deck:
+1 Inquisitor's Flail
+1 Shadowspear
+1 Sword of Wealth and Power
+1 Indomitable Might
+1 Rancor
+1 Assassin's Trophy
+1 Damnation
+1 Fell the Profane // Fell Mire
+1 Cyclonic Rift
+1 Forest
+1 Sink into Stupor // Soporific Springs
+1 Genji Glove
+1 Dragonfire Blade
+1 Brotherhood Regalia
+1 Burgeoning
+1 Arcane Signet
+1 Exploration
+1 Demonic Embrace
+1 Aqueous Form
+1 Rishkar's Expertise
+1 Fabricate
+1 Shizo, Death's Storehouse
+1 Urza's Saga
+1 Boseiju, Who Endures
+1 Yavimaya, Cradle of Growth
+1 The Black Gate
+1 Urborg, Tomb of Yawgmoth
+1 Otawara, Soaring City
+1 Breeding Pool
+1 Rejuvenating Springs
+1 Morphic Pool
+1 Watery Grave
+1 Zagoth Triome
+1 Tropical Island
+1 Underground Sea
+1 Llanowar Wastes
+1 Overgrown Tomb
+1 Bayou
+1 Verdant Catacombs
+1 Yavimaya Coast
+1 Misty Rainforest
+1 Polluted Delta
+1 Woodland Cemetery
+1 Command Tower
+1 Fabled Passage
+1 Gemstone Mine
+1 Commander's Plate
+1 Trailblazer's Boots
+1 Death Begets Life
+1 Season of Gathering
+1 Decree of Pain
+1 Blade of the Oni
+1 Power Fist
+1 Swan Song
+1 An Offer You Can't Refuse
+1 Rogue's Passage
+1 Opulent Palace
+1 Dreamroot Cascade
+1 Bontu's Last Reckoning
+1 Nurturing Peatland
+1 Emergent Ultimatum
+1 Waterlogged Grove
+1 Island
+1 Spreading Plague
+1 Return of the Wildspeaker
+1 Lotus Petal
+1 Chrome Mox
+1 Rhystic Study
+1 Vampiric Tutor
+1 Hunter's Insight
+1 Mox Diamond
+1 Hunter's Prowess
+1 Bridgeworks Battle // Tanglespan Bridgeworks
+1 Giggling Skitterspike
+1 Vorpal Sword
+1 Favor of the Overbeing
+1 Swamp
+1 Final Act
+1 Minas Morgul, Dark Fortress
+1 Strionic Resonator
+1 Sword of Truth and Justice
+1 Berserk
+1 Sol Ring
+1 Buster Sword
+1 Conformer Shuriken
+1 Turn Aside
+1 Scale Up
+1 Fertile Ground
+1 Irenicus's Vile Duplication
+1 Spark Double
+1 Tear Asunder
+1 Canopy Cover
+1 Sleeper's Robe
+1 Wrecking Ball Arm
+1 Mystical Tutor
+1 Negate
+1 Winged Boots
+1 Super State
+1 Three Visits

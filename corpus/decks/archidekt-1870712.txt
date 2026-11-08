@@ -1,0 +1,96 @@
+# Archidekt — Chromium - Esper Rampage JMS
+# source: archidekt:1870712
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Chromium
+
+Deck:
+6 Plains
+5 Swamp
+4 Island
+1 Arcane Sanctum
+1 Command Tower
+1 Contaminated Landscape
+1 Esper Panorama
+1 Flooded Strand
+1 Godless Shrine
+1 Hallowed Fountain
+1 Isolated Chapel
+1 Marsh Flats
+1 Mistveil Plains
+1 Path of Ancestry
+1 Polluted Delta
+1 Raffine's Tower
+1 Scrubland
+1 Temple of Deceit
+1 Temple of Enlightenment
+1 Temple of Silence
+1 Tundra
+1 Underground Sea
+1 Urborg, Tomb of Yawgmoth
+1 Volrath's Stronghold
+1 Watery Grave
+1 Archetype of Finality
+1 Drana, Liberator of Malakir
+1 Dread Wight
+1 Thief of Blood
+1 Vampire Hexmage
+1 Aether Snap
+1 Darkness
+1 Eventide's Shadow
+1 Night's Whisper
+1 Sudden Spoiling
+1 Kinscaer Harpoonist
+1 Thundercloud Elemental
+1 Vedalken Humiliator
+1 Walking Sponge
+1 Aetherspouts
+1 Brainstorm
+1 Mirror Match
+1 Mystic Decree
+1 Opt
+1 Abu Ja'far
+1 Archetype of Courage
+1 Brigid, Hero of Kinsbaile
+1 Masako the Humorless
+1 Odric, Master Tactician
+1 Stonehewer Giant
+1 Akroma's Will
+1 Duelist's Heritage
+1 Land Tax
+1 Rapid Fire
+1 Hex Parasite
+1 Horrible Hordes
+1 Sparring Golem
+1 Teeka's Dragon
+1 Arcane Signet
+1 Azorius Signet
+1 Basilisk Collar
+1 Chariot of Victory
+1 Chromatic Lantern
+1 Colossus Hammer
+1 Dimir Signet
+1 Eon Hub
+1 Hammer of Nazahn
+1 Kusari-Gama
+1 Loxodon Warhammer
+1 Magebane Armor
+1 Manascape Refractor
+1 Nemesis Mask
+1 Phyrexian Splicer
+1 Shadowspear
+1 Sol Ring
+1 Sword of Vengeance
+1 Thought Vessel
+1 Chromium, the Mutable
+1 Hunding Gjornersen
+1 Inkshield
+1 Void Rend
+1 Divinity of Pride
+1 Godhead of Awe
+1 Portal Manipulator
+1 Batwing Brume
+1 Infiltration Lens
+1 Fabled Passage

@@ -1,0 +1,111 @@
+# Archidekt — O-Kagachi, The Spirit of EDH
+# source: archidekt:8399589
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Aura Shards); Bracket 1 allows 0
+
+Commander:
+1 O-Kagachi, Vengeful Kami
+
+Deck:
+1 Mirari's Wake
+1 Maelstrom Nexus
+1 Invasion of Alara // Awaken the Maelstrom
+1 Vindicate
+1 Crackling Doom
+1 Growth Spiral
+1 The Ur-Dragon
+1 Maelstrom Archangel
+1 Witch-Maw Nephilim
+1 Yore-Tiller Nephilim
+1 Glint-Eye Nephilim
+1 Dune-Brood Nephilim
+1 Ink-Treader Nephilim
+1 Horizon of Progress
+1 Bring to Light
+1 Genju of the Realm
+1 The World Tree
+1 Planar Genesis
+1 Iridian Maelstrom
+1 Expressive Iteration
+1 Decimate
+1 Jegantha, the Wellspring
+1 Karrthus, Tyrant of Jund
+1 Chromanticore
+1 Temur Ascendancy
+1 Shifting Woodland
+1 Two-Headed Hellkite
+1 Omnath, Locus of All
+1 Fires of Yavimaya
+1 Command Tower
+1 Make Your Own Luck
+1 Progenitus
+1 Glittering Wish
+1 Ureni, the Song Unending
+1 Perennation
+1 Trace of Abundance
+1 Song of Creation
+1 Crystal Quarry
+1 Maelstrom Wanderer
+1 Crosis, the Purger
+1 Rith, the Awakener
+1 Dromar, the Banisher
+1 Darigaaz, the Igniter
+1 Treva, the Renewer
+1 Shadowmage Infiltrator
+1 Hull Breach
+1 Darkwater Catacombs
+1 Coastal Tower
+1 Elfhame Palace
+1 Shivan Oasis
+1 Salt Marsh
+1 Urborg Volcano
+1 Shadowblood Ridge
+1 Sungrass Prairie
+1 Skycloud Expanse
+1 Mossfire Valley
+1 Island
+1 Bloodstone Cameo
+1 Door to Nothingness
+1 Tigereye Cameo
+1 Drake-Skull Cameo
+1 Seashell Cameo
+1 Troll-Horn Cameo
+1 Tiamat
+1 Aura Shards
+1 Rakshasa's Bargain
+1 Uro, Titan of Nature's Wrath
+1 Scion of the Ur-Dragon
+1 Darigaaz's Caldera
+1 Terminate
+1 Forest
+1 Forest
+1 Jungle Shrine
+1 Mountain
+1 Island
+1 Plains
+1 Seaside Citadel
+1 Sandsteppe Citadel
+1 Opulent Palace
+1 Plains
+1 Swamp
+1 Nomad Outpost
+1 Crumbling Necropolis
+1 Maelstrom of the Spirit Dragon
+1 Swamp
+1 Arcane Sanctum
+1 Pernicious Deed
+1 Teneb, the Harvester
+1 Numot, the Devastator
+1 Oros, the Avenger
+1 Intet, the Dreamer
+1 Vorosh, the Hunter
+1 Darksteel Ingot
+1 Frontier Bivouac
+1 Dromar's Cavern
+1 Crosis's Catacombs
+1 Treva's Ruins
+1 Urban Evolution
+1 Wargate
+1 Rith's Grove
+1 Escape to the Wilds

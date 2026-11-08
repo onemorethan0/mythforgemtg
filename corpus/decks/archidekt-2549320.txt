@@ -1,0 +1,88 @@
+# Archidekt — Sometimes They Come Back
+# source: archidekt:2549320
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Shirei, Shizo's Caretaker
+
+Deck:
+1 Nyx Lotus
+1 Culling the Weak
+1 Witch's Cottage
+1 Castle Locthwain
+1 Lightning Greaves
+1 Command Beacon
+1 Cast Down
+1 Sol Ring
+1 Swiftfoot Boots
+1 Urborg, Tomb of Yawgmoth
+1 Dark Ritual
+1 Plumb the Forbidden
+1 Bone Shards
+1 Witch's Oven
+1 Feed the Swarm
+1 The Meathook Massacre
+1 Bojuka Bog
+1 Infernal Grasp
+1 Village Rites
+1 Cut Down
+1 Valgavoth's Faithful
+1 Songs of the Damned
+1 Flare of Malice
+1 Carnival of Souls
+1 Bone Shredder
+1 Crypt Ghast
+1 Serrated Scorpion
+1 Deathgreeter
+1 Soot Imp
+1 Ayara, First of Locthwain
+1 Takenuma, Abandoned Mire
+1 Cauldron Familiar
+1 Marionette Apprentice
+1 Pawn of Ulamog
+1 Necropotence
+1 Reckoner's Bargain
+1 Syr Konrad, the Grim
+1 Exsanguinate
+1 Agent of the Iron Throne
+1 K'rrik, Son of Yawgmoth
+1 Viscera Seer
+1 Attrition
+1 Pitiless Plunderer
+1 Exquisite Blood
+1 Mindless Automaton
+1 Cabal Ritual
+1 Zulaport Cutthroat
+1 Dark Prophecy
+1 Phyrexian Tower
+1 Darkness
+1 Mortuary Mire
+1 War Room
+1 Diabolic Intent
+1 Shizo, Death's Storehouse
+1 Annihilating Glare
+1 Ashnod's Altar
+1 Lifeline
+1 Mithril Coat
+1 Phyrexian Altar
+1 Coretapper
+1 Crypt of Agadeem
+1 Blood Pet
+21 Swamp
+1 Basal Thrull
+1 Cabal Coffers
+1 Sling-Gang Lieutenant
+1 Warlock Class
+1 Vito, Thorn of the Dusk Rose
+1 High Market
+1 Cabal Stronghold
+1 Into the Pit
+1 Body Count
+1 Virus Beetle
+1 Tattered Mummy
+1 Black Market
+1 Sothera, the Supervoid
+1 Magistrate's Scepter
+1 Disciple of Perdition
+1 Blood Pact

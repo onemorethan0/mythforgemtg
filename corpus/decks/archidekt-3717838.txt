@@ -1,0 +1,94 @@
+# Archidekt — Steep Price to Pay
+# source: archidekt:3717838
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Dina, Soul Steeper
+
+Deck:
+1 Exquisite Blood
+1 Pest Infestation
+1 Farseek
+1 Jaddi Offshoot
+1 Valentin, Dean of the Vein // Lisette, Dean of the Root
+1 Basilica Screecher
+1 Llanowar Elves
+1 Marauding Blight-Priest
+1 Sedgemoor Witch
+1 Burnished Hart
+1 Murderous Rider // Swift End
+1 Falkenrath Noble
+1 Ayara, First of Locthwain
+1 Village Rites
+1 Epicure of Blood
+1 Courser of Kruphix
+1 Tivash, Gloom Summoner
+1 Sangromancer
+1 Tend the Pests
+1 Natural End
+1 Putrefy
+1 Mortality Spear
+1 Beast Within
+1 Malicious Affliction
+1 Harmonize
+1 Gaze of Granite
+1 Essence Pulse
+1 Read the Bones
+1 Well of Lost Dreams
+1 Pristine Talisman
+1 Blight Mound
+1 Vraska, Golgari Queen
+1 Bojuka Bog
+1 Grim Backwoods
+1 Command Tower
+1 Ghost Quarter
+1 Evolving Wilds
+1 High Market
+1 Myriad Landscape
+1 Llanowar Wastes
+1 Tainted Wood
+4 Forest
+1 Sapseep Forest
+12 Swamp
+1 Wound Reflection
+1 Vito, Thorn of the Dusk Rose
+1 Cultivate
+1 Kodama's Reach
+1 Sakura-Tribe Elder
+1 Overgrown Tomb
+1 Phyrexian Arena
+1 Reliquary Tower
+1 Cabal Coffers
+1 Bayou
+1 Black Market Connections
+1 Verdant Catacombs
+1 Darkbore Pathway // Slitherbore Pathway
+1 Bloodchief Ascension
+1 Creeping Bloodsucker
+1 Three Visits
+1 Scavenger Grounds
+1 Zulaport Cutthroat
+1 Plumb the Forbidden
+1 Blighted Woodland
+1 Deathcap Glade
+1 Deathsprout
+1 Heroic Intervention
+1 Sheoldred, the Apocalypse
+1 Roots of Life
+1 Gift of Doom
+1 Revenge of Ravens
+1 Casualties of War
+1 Moldervine Reclamation
+1 Kazandu Nectarpot
+1 Vampiric Rites
+1 Polluted Bonds
+1 Witch of the Moors
+1 Oubliette
+1 Bastion of Remembrance
+1 Bontu's Monument
+1 Blood Artist
+1 Sanguine Bond
+1 Essence Warden
+1 Erebos's Intervention
+1 Retreat to Hagra

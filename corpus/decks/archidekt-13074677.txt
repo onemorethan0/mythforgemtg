@@ -1,0 +1,95 @@
+# Archidekt — Cid On My Face
+# source: archidekt:13074677
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Cid, Timeless Artificer
+
+Deck:
+1 Thirst for Knowledge
+1 Swords to Plowshares
+1 Crib Swap
+1 Unsettled Mariner
+1 Path to Exile
+1 Auton Soldier
+1 Liquimetal Torque
+6 Cid, Timeless Artificer
+1 Shields of Velis Vel
+1 Loran of the Third Path
+1 Faerie Artisans
+1 Maskwood Nexus
+1 Myr Battlesphere
+1 Illustrious Wanderglyph
+1 Phyrexian Metamorph
+1 Sink into Stupor // Soporific Springs
+1 Sol Ring
+1 Ornithopter of Paradise
+1 The Indomitable
+1 Winds of Abandon
+1 River's Rebuke
+1 Static Prison
+1 Chart a Course
+1 Razortide Bridge
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Command Tower
+1 Deserted Beach
+1 Azorius Chancery
+1 Skycloud Expanse
+1 Path of Ancestry
+1 Sea of Clouds
+1 Adarkar Wastes
+1 Hallowed Fountain
+1 Ancient Den
+1 Sejiri Shelter // Sejiri Glacier
+1 Suppression Ray // Orderly Plaza
+1 Windbrisk Heights
+1 Mishra's Factory
+1 Guildless Commons
+1 Blinkmoth Nexus
+1 Access Denied
+1 Riptide Gearhulk
+1 White Sun's Twilight
+1 Mutavault
+1 Threefold Thunderhulk
+1 Whirler Rogue
+1 Edgar, King of Figaro
+1 Precursor Golem
+1 Night Scythe
+1 Glasspool Mimic // Glasspool Shore
+1 Glacial Fortress
+1 Arcane Signet
+1 Seat of the Synod
+1 Darksteel Citadel
+1 Mirror Entity
+1 Talisman of Progress
+1 Azorius Signet
+1 Run Away Together
+1 Thirst for Identity
+1 Winternight Stories
+7 Island
+1 Hengegate Pathway // Mistgate Pathway
+1 Otawara, Soaring City
+3 Plains
+1 Stubborn Denial
+1 Gold-Forged Thopteryx
+1 Thopter Fabricator
+1 Champions from Beyond
+1 Arid Archway
+1 Floodfarm Verge
+1 Firdoch Core
+1 Belonging
+1 Silver Myr
+1 Gold Myr
+1 Consult the Star Charts
+1 Scattered Thoughts
+1 Spectacular Spider-Man
+1 Restoration Magic
+1 Fleeting Reflection
+1 Lightning Greaves
+1 Oltec Matterweaver
+1 Iron Lad, Diverging Destiny
+1 Chrome Courier
+1 Omni-Changeling
+1 Wraith, Vicious Vigilante
+1 Shuri, Vibranium Technologist

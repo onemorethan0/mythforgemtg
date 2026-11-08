@@ -1,0 +1,108 @@
+# Archidekt — Tap Dance
+# source: archidekt:8135894
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Stella Lee, Wild Card
+
+Deck:
+1 Shivan Reef
+1 Personal Tutor
+1 Borne Upon a Wind
+1 Hidden Strings
+1 Claim the Firstborn
+1 Magic Damper
+1 Tezzeret, Cruel Captain
+1 Impolite Entrance
+1 Crimson Wisps
+1 Expedite
+1 Twisted Fealty
+1 Ponder
+1 Cerulean Wisps
+1 Snap
+1 Arena of Glory
+1 Command Tower
+1 Mystical Tutor
+1 Arcane Signet
+1 Solve the Equation
+1 Intuition
+1 City of Brass
+1 Deflecting Swat
+1 Steam Vents
+1 Riverglide Pathway // Lavaglide Pathway
+1 Island
+1 Simian Spirit Guide
+1 Fierce Guardianship
+1 Scalding Tarn
+1 Sol Ring
+1 Impulse
+1 Refocus
+1 Cavern of Souls
+1 Pyroblast
+1 Training Center
+1 Cascade Bluffs
+1 Mindbreak Trap
+1 Fiery Islet
+1 Pyretic Ritual
+1 Quicken
+1 Riverpyre Verge
+1 Fellwar Stone
+1 Thundering Falls
+1 Starting Town
+1 Polluted Delta
+1 Forbidden Orchard
+1 Mistrise Village
+1 Force of Negation
+1 Redirect Lightning
+1 Volcanic Island
+1 Stifle
+1 Swan Song
+1 Mox Opal
+1 Seething Song
+1 Talisman of Creativity
+1 Hexing Squelcher
+1 Shore Up
+1 Flashback
+1 Great Hall of the Biblioplex
+1 Mountain
+1 Daze
+1 Mana Vault
+1 Twitch
+1 Brain Freeze
+1 Force of Will
+1 Lightning Bolt
+1 An Offer You Can't Refuse
+1 Marvin, Murderous Mimic
+1 Dramatic Reversal
+1 Hawkeye's Bow
+1 Lion's Eye Diamond
+1 Pact of Negation
+1 Faerie Mastermind
+1 Underworld Breach
+1 Chrome Mox
+1 Jeska's Will
+1 Lotus Petal
+1 Sensei's Divining Top
+1 The One Ring
+1 Mana Drain
+1 Mox Amber
+1 Mystic Remora
+1 Rhystic Study
+1 Ancient Tomb
+1 Gamble
+1 Rite of Flame
+1 Bloodstained Mire
+1 Steal Enchantment
+1 Flusterstorm
+1 Final Fortune
+1 Sewer-veillance Cam
+1 Reckless Handling
+1 Dress Down
+1 Tidal Bore
+1 Twiddle
+1 Dragon's Rage Channeler
+1 Mox Diamond
+1 Gemstone Caverns
+1 City of Traitors
+1 Mana Confluence

@@ -1,7 +1,8 @@
 # Archidekt — abzan lifegain +1/+1 counters
 # source: archidekt:27316063
 # fetched: 2026-10-20
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo Heliod, Sun-Crowned + Walking Ballista; Bracket 2 allows none
 
 Commander:
 1 Betor, Ancestor's Voice

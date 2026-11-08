@@ -1,0 +1,95 @@
+# Archidekt — TMNT
+# source: archidekt:8844749
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Archelos, Lagoon Mystic
+
+Deck:
+1 Bad River
+1 Command Tower
+1 Myriad Landscape
+1 Opulent Palace
+1 Dismal Backwater
+1 Thornwood Falls
+1 Jungle Hollow
+1 Evolving Wilds
+1 Worn Powerstone
+1 Sol Ring
+1 Kappa Cannoneer
+1 Copper Myr
+1 Silver Myr
+1 Nashi, Moon's Legacy
+1 Bedrock Tortoise
+1 The Pride of Hull Clade
+1 Decimator of the Provinces
+1 Silver-Fur Master
+1 Surrak, the Hunt Caller
+1 Bribe Taker
+1 Aberrant Researcher // Perfected Form
+1 Ronin Warclub
+1 Sylvok Lifestaff
+1 Manriki-Gusari
+1 Voidslime
+1 Repulsive Mutation
+1 Smoke Bomb
+1 Ninja's Kunai
+1 Sai of the Shinobi
+1 Captain's Claws
+1 Shuriken
+1 Conspiracy
+1 Ace's Baseball Bat
+1 Thornado
+1 Decisive Denial
+1 Tyrant's Scorn
+1 Overwhelming Forces
+1 No-Dachi
+1 Commandeer
+1 Essence Capture
+1 Foreboding Landscape
+1 Darkwater Catacombs
+1 Holdout Settlement
+4 Swamp
+8 Island
+1 Unknown Shores
+1 Foul Orchard
+1 Temple of Mystery
+1 Flooded Grove
+1 Woodland Stream
+1 Viridescent Bog
+1 Xenograft
+1 Overflowing Basin
+1 Rogue's Passage
+1 Survivors' Encampment
+1 Zagoth Crystal
+1 Springleaf Drum
+1 Eater of Virtue
+1 Teferi's Veil
+1 Arcane Adaptation
+1 Piper Wright, Publick Reporter
+1 Fetid Pools
+1 Thespian's Stage
+4 Forest
+1 Gilded Lotus
+1 Surgehacker Mech
+1 Mind Stone
+1 Unnatural Selection
+1 Leyline of Transformation
+1 Commander's Sphere
+1 Sultai Banner
+1 Bespoke Battlewagon
+1 Dirge Bat
+1 Elder Brain
+1 Quandrix Cultivator
+1 Kappa Tech-Wrecker
+1 Satoru Umezawa
+1 Boneyard Lurker
+1 Archmage's Charm
+1 Plasm Capture
+1 Otrimi, the Ever-Playful
+1 Brokkos, Apex of Forever
+1 Leaden Myr
+1 Vanishing
+1 Cloak of Invisibility
+1 Abrupt Decay

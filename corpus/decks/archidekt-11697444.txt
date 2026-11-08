@@ -1,0 +1,108 @@
+# Archidekt — Based Deck Department's Budget Ur-Dragon B3
+# source: archidekt:11697444
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Amareth, the Lustrous
+1 Dragonlord Ojutai
+1 Dromoka, the Eternal
+1 Haunted Mire
+1 Isolated Chapel
+1 Kolaghan, the Storm's Fury
+1 Kyodai, Soul of Kamigawa
+1 Lim-Dûl's Vault
+1 Llanowar Wastes
+1 Miirym, Sentinel Wyrm
+1 Molten Collapse
+1 Morophon, the Boundless
+1 Niv-Mizzet, Guildpact
+1 Planar Genesis
+1 Primevals' Glorious Rebirth
+1 Ranger's Path
+1 Repulsive Mutation
+1 Rivaz of the Claw
+1 Sivitri, Dragon Master
+1 Talisman of Unity
+1 Tempt with Discovery
+1 Teneb, the Harvester
+1 Thrakkus the Butcher
+1 Two-Headed Hellkite
+1 Up the Beanstalk
+1 Zurgo and Ojutai
+1 Adarkar Wastes
+1 Anguished Unmaking
+1 Arcane Signet
+1 Assassin's Trophy
+1 Atarka, World Render
+1 Battlefield Forge
+1 Beledros Witherbloom
+1 Bring to Light
+1 Brushland
+1 Caves of Koilos
+1 Clifftop Retreat
+1 Command Tower
+1 Countersquall
+1 Crux of Fate
+1 Double Major
+1 Dovin's Veto
+1 Dragonlord's Servant
+1 Dragonskull Summit
+1 Dragonspeaker Shaman
+1 Drowned Catacomb
+1 Exotic Orchard
+1 Farseek
+1 Fellwar Stone
+1 Firkraag, Cunning Instigator
+1 Forest
+1 Frontier Bivouac
+1 Glacial Fortress
+1 Growth Spiral
+1 Hinterland Harbor
+1 Hull Breach
+1 Hunting Wilds
+1 Island
+1 Jungle Shrine
+1 Karplusan Forest
+1 Mountain
+1 Nature's Lore
+1 Niv-Mizzet Reborn
+1 Niv-Mizzet, Supreme
+1 O-Kagachi, Vengeful Kami
+1 Opulent Palace
+1 Plains
+1 Radiant Grove
+1 Ramos, Dragon Engine
+1 Rhythm of the Wild
+1 Rootbound Crag
+1 Sarkhan, Soul Aflame
+1 Savage Lands
+1 Scion of Draco
+1 Seaside Citadel
+1 Shivan Reef
+1 Simic Charm
+1 Skyshroud Claim
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Sunpetal Grove
+1 Swamp
+1 Talisman of Curiosity
+1 Talisman of Impulse
+1 Talisman of Resilience
+1 Tangled Islet
+1 Temur Ascendancy
+1 Terminate
+1 Three Visits
+1 Tiamat
+1 Underground River
+1 Vaevictis Asmadi, the Dire
+1 Velomachus Lorehold
+1 Vindicate
+1 Wooded Ridgeline
+1 Woodland Cemetery
+1 Yavimaya Coast
+1 Path of Ancestry
+1 Scion of the Ur-Dragon

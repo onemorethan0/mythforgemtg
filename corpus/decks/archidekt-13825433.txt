@@ -1,0 +1,97 @@
+# Archidekt — Golbez, Loot Hoarder
+# source: archidekt:13825433
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Golbez, Crystal Collector
+
+Deck:
+1 Sol Ring
+1 Exotic Orchard
+9 Island
+1 Command Tower
+1 Darkslick Shores
+1 Sculpting Steel
+1 Cranial Plating
+1 Death's Shadow
+1 Armix, Filigree Thrasher
+1 Aetherize
+1 Ancient Stone Idol
+1 Efficient Construction
+1 Darkwater Catacombs
+1 Blood Money
+1 Choked Estuary
+1 Drowned Catacomb
+1 Fetid Pools
+1 Filigree Attendant
+1 Matoya, Archon Elder
+1 Infernal Grasp
+1 Kappa Cannoneer
+1 Forensic Gadgeteer
+1 Metalwork Colossus
+1 Tainted Isle
+1 Unshakable Tail
+1 Phyrexian Scriptures
+1 Repurposing Bay
+1 Mirrodin Besieged
+1 Noxious Gearhulk
+1 Mistvault Bridge
+1 Millikin
+1 Temple of Deceit
+1 Thopter Spy Network
+1 Shimmer Dragon
+1 Sunken Hollow
+1 Thought Monitor
+1 Underground River
+1 Master of Etherium
+1 Darksteel Juggernaut
+1 Mystic Forge
+1 Tezzeret, Master of the Bridge
+1 Etherium Sculptor
+1 Darksteel Citadel
+1 Negate
+1 Rook Turret
+1 The Reality Chip
+1 Spellskite
+1 Vedalken Archmage
+1 Emry, Lurker of the Loch
+1 Stoic Rebuttal
+1 Sai, Master Thopterist
+1 Watery Grave
+1 Liberator, Urza's Battlethopter
+1 Phyrexian Metamorph
+1 Polluted Delta
+1 Urza, Lord High Artificer
+1 Duplicant
+1 Meteor Golem
+1 Scrap Trawler
+1 Solemn Simulacrum
+1 Foundry Inspector
+1 Jhoira's Familiar
+1 Phyrexia's Core
+1 Vault of Whispers
+1 Shipwreck Marsh
+1 High Market
+1 Imotekh the Stormlord
+1 Singularity Rupture
+1 The Warring Triad
+1 Collector's Vault
+1 Dauntless Scrapbot
+1 Demonic Junker
+1 Scour for Scrap
+1 Treasure Vault
+1 Mechan Assembler
+1 Baleful Strix
+1 Midgar, City of Mako // Reactor Raid
+1 Cloud Key
+1 Uthros Research Craft
+1 Spire of Industry
+4 Swamp
+1 The Mycosynth Gardens
+1 Cryogen Relic
+1 Counterspell
+1 Cyberdrive Awakener
+1 Tezzeret, Cruel Captain
+1 Seat of the Synod
+1 Buried Ruin

@@ -1,0 +1,88 @@
+# Archidekt — Xantcha, Sleeper Agent - Girlpower
+# source: archidekt:3894884
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Xantcha, Sleeper Agent
+
+Deck:
+1 Temur Battle Rage
+1 Jaya Ballard, Task Mage
+1 Rogue's Passage
+1 Bojuka Bog
+1 Foreboding Ruins
+1 Dragonskull Summit
+1 Shadowblood Ridge
+1 Temple of Malice
+1 Graven Cairns
+1 Typhoid Mary, Fractured
+1 Elektra, Femme Fatale
+1 White Widow, Yelena Belova
+1 Mari, the Killing Quill
+1 Origin of Black Widow
+1 Shinka, the Bloodsoaked Keep
+1 Blightstep Pathway // Searstep Pathway
+1 Tainted Peak
+1 Black Market
+1 Morbid Opportunist
+1 Protection Racket
+1 Blackcleave Cliffs
+1 Luxury Suite
+1 Nettling Nuisance
+1 Incriminating Impetus
+1 Ragged Veins
+1 Maze of Ith
+1 Headliner Scarlett
+1 Dark Confidant
+1 Kamber, the Plunderer
+1 Fumiko the Lowblood
+1 Laurine, the Diversion
+1 Undying Rage
+1 Blessing of Leeches
+1 Victimize
+1 Chef's Kiss
+1 Soul Collector
+1 Jinxed Choker
+1 Tragic Slip
+1 Wreck Hunter
+1 Varchild, Betrayer of Kjeldor
+1 Humble Defector
+1 Exsanguinate
+1 Talisman of Indulgence
+1 Snuff Out
+1 Sleeper Agent
+1 Abrade
+1 Gilded Lotus
+1 Murderous Cut
+1 Vow of Malice
+1 Black Market Connections
+1 Massacre Girl
+1 Screams from Within
+1 Blood Crypt
+1 Rakdos Carnarium
+1 Smoldering Marsh
+1 Sulfurous Mire
+1 Massacre Girl, Known Killer
+1 Vow of Lightning
+1 Fortune Thief
+1 Curse of Stalked Prey
+1 Lightning Bolt
+1 Madame Masque
+1 Dauthi Voidwalker
+1 Chaos Warp
+1 Unnerve
+1 Ashnod's Intervention
+1 Command Tower
+11 Swamp
+11 Mountain
+1 Sanguine Spy
+1 Charming Scoundrel
+1 Elektra, Daughter of the Hand
+1 Thorn of the Black Rose
+1 Silent Assassin
+1 Black Cat, Cunning Thief
+1 Rathi Assassin
+1 Ash Zealot
+1 Stensian Sanguinist // Exsanguinate
+1 Viper, Cruel Conspirator

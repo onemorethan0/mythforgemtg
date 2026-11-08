@@ -1,0 +1,98 @@
+# Archidekt — The End of the World as We Know it - Terra Barren Glory
+# source: archidekt:10039963
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Terra, Magical Adept // Esper Terra
+
+Deck:
+1 Arcane Signet
+1 Ghen, Arcanum Weaver
+1 Sol Ring
+1 Apocalypse
+1 Worldfire
+1 Sythis, Harvest's Hand
+1 Enchantress's Presence
+1 Sterling Grove
+1 Inquisitive Glimmer
+1 Setessan Champion
+1 Farseek
+1 Fellwar Stone
+1 Assassin's Trophy
+1 Imprisoned in the Moon
+1 Kenrith's Transformation
+1 Oblivion Ring
+1 Faith Healer
+1 Leonin Relic-Warder
+1 Spell Pierce
+1 The Pandorica
+1 Detention Sphere
+1 One with Nothing
+1 Decree of Annihilation
+1 Obliterate
+1 Verduran Enchantress
+1 Satyr Enchanter
+1 Kaervek's Spite
+1 Three Visits
+1 Jukai Naturalist
+1 Herald of the Pantheon
+1 Claws of Gix
+1 The Master of Keys
+1 Hall of Heliod's Generosity
+1 Moon-Blessed Cleric
+1 Zuran Orb
+1 Fertile Ground
+1 Cultivate
+1 Greenhouse // Rickety Gazebo
+1 Abundant Growth
+1 Lignify
+1 Rampant Growth
+1 Shared Roots
+1 Skyshroud Claim
+1 Chromatic Lantern
+1 Negate
+1 Sphere of Safety
+1 Auramancer
+1 Demon of Fate's Design
+1 Blasphemous Act
+1 Valgavoth's Lair
+1 Path of Ancestry
+1 Shattered Landscape
+1 Deceptive Landscape
+1 Bountiful Landscape
+1 Foreboding Landscape
+1 Command Tower
+1 Exotic Orchard
+1 Demolition Field
+1 Seething Landscape
+3 Plains
+1 Radiant Summit
+3 Forest
+3 Island
+3 Mountain
+1 Canopy Vista
+1 Smoldering Marsh
+1 Contaminated Landscape
+1 Sunken Hollow
+1 Prairie Stream
+1 Tranquil Landscape
+1 Vernal Fen
+1 Twisted Landscape
+1 Sheltering Landscape
+1 Aang's Iceberg
+1 Eternal Witness
+1 Nature's Lore
+1 Grasp of Fate
+1 Darksteel Mutation
+1 Barren Glory
+1 Hanna, Ship's Navigator
+1 Arcane Denial
+3 Swamp
+1 Cinder Glade
+1 Sheltered by Ghosts
+1 Mesa Enchantress
+1 Entity Tracker
+1 Pia, Aether Ascetic
+1 Perilous Landscape
+1 Banishing Light

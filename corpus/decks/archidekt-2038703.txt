@@ -1,0 +1,105 @@
+# Archidekt — Capital Bunishment (Fringe cEDH)
+# source: archidekt:2038703
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Kwain, Itinerant Meddler
+
+Deck:
+1 Farewell
+1 Supreme Verdict
+1 Isochron Scepter
+1 Dramatic Reversal
+1 Nimbus Maze
+1 Port Town
+1 Prairie Stream
+1 Azorius Signet
+1 Smothering Tithe
+1 Teferi's Ageless Insight
+1 Arcane Signet
+1 Sol Ring
+1 Reliquary Tower
+1 Rhystic Study
+1 Hallowed Fountain
+1 Mind Over Matter
+1 Windfall
+1 Sea of Clouds
+1 Flooded Strand
+1 Mystic Sanctuary
+1 Command Tower
+1 Mystical Tutor
+1 Thought Vessel
+1 Chrome Mox
+1 Mox Amber
+1 Plains
+1 Stroke of Midnight
+1 Mox Diamond
+1 Cyclonic Rift
+1 Adarkar Wastes
+1 Misdirection
+1 Muddle the Mixture
+1 Enlightened Tutor
+1 Narset's Reversal
+1 Narset, Parter of Veils
+1 Swan Song
+1 Mental Misstep
+1 Talisman of Progress
+1 An Offer You Can't Refuse
+1 Swords to Plowshares
+1 Miscast
+1 Fierce Guardianship
+1 Hall of Heliod's Generosity
+1 Eiganjo, Seat of the Empire
+1 Silence
+1 Approach of the Second Sun
+1 Arcane Denial
+1 Idyllic Tutor
+1 Grafdigger's Cage
+1 Path to Exile
+1 Mystic Remora
+1 Glacial Fortress
+1 Force of Negation
+1 Spell Pierce
+1 Lotus Petal
+1 Negate
+1 Hengegate Pathway // Mistgate Pathway
+1 Force of Will
+1 Tundra
+1 The One Ring
+1 Dovin's Veto
+1 Jace, Wielder of Mysteries
+1 Fabricate
+1 City of Brass
+1 Minamo, School at Water's Edge
+1 Reprieve
+1 Forbidden Orchard
+1 Urza's Saga
+1 Dress Down
+1 Polymorph
+1 Deserted Beach
+1 Hullbreaker Horror
+1 Mana Vault
+1 Mystic Gate
+1 Resculpt
+1 Permission Denied
+1 Mox Opal
+1 Tidespout Tyrant
+1 Counterspell
+1 Counterbalance
+1 Flusterstorm
+1 Shorikai, Genesis Engine
+1 Rest in Peace
+1 Gitaxian Probe
+1 Alhammarret's Archive
+1 Mindbreak Trap
+4 Island
+1 Cephalid Coliseum
+1 Chain of Vapor
+1 Mana Drain
+1 Delay
+1 Blind Obedience
+1 Gemstone Caverns
+1 Ancient Tomb
+1 Demolition Field
+1 Sink into Stupor // Soporific Springs

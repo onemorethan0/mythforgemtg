@@ -1,0 +1,100 @@
+# Archidekt — The Master of Keys | Rooms Commander
+# source: archidekt:9752591
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: two-card infinite combo Secret Arcade // Dusty Parlor + Ghostly Dancers; Bracket 1 allows none
+
+Commander:
+1 The Master of Keys
+
+Deck:
+1 Lord of the Forsaken
+4 Swamp
+1 Adarkar Wastes
+1 Valgavoth's Lair
+1 Glacial Fortress
+1 Temple of Enlightenment
+1 Drowned Catacomb
+1 Azorius Chancery
+1 Exotic Orchard
+1 Underground River
+1 Terramorphic Expanse
+1 Isolated Chapel
+1 Prairie Stream
+1 Tainted Isle
+1 Shipwreck Marsh
+1 Tainted Field
+1 Evolving Wilds
+1 Ghostly Dancers
+1 Stillness in Motion
+1 Talisman of Hierarchy
+1 Sadistic Shell Game
+1 Exorcise
+1 Split Up
+1 Fraying Sanity
+1 Secrets of the Dead
+1 Withering Torment
+1 Mirror Room // Fractured Realm
+1 Funeral Room // Awakening Hall
+1 Unholy Annex // Ritual Chamber
+1 Dazzling Theater // Prop Room
+1 Scion of Halaster
+1 Victor, Valgavoth's Seneschal
+1 Keys to the House
+1 Surgical Suite // Hospital Room
+1 Defiled Crypt // Cadaver Lab
+1 Derelict Attic // Widow's Walk
+1 Creeping Peeper
+1 Skullsnap Nuisance
+1 Polluted Cistern // Dim Oubliette
+1 Sage of Mysteries
+1 Don't Make a Sound
+1 Ethereal Armor
+1 Grand Entryway // Elegant Rotunda
+1 Hall of Heliod's Generosity
+1 Secret Arcade // Dusty Parlor
+1 Demon of Fate's Design
+1 Unable to Scream
+1 Vault of Champions
+1 Diresight
+1 Dollmaker's Shop // Porcelain Gallery
+3 Plains
+5 Island
+1 Sunken Hollow
+1 Secret Passage
+1 Study
+1 Ballroom
+1 Dimir Aqueduct
+1 Demonic Counsel
+1 Command Tower
+1 Deserted Beach
+1 Orzhov Basilica
+1 Caves of Koilos
+1 Overlord of the Floodpits
+1 Arcane Signet
+1 Exhume
+1 Gravebreaker Lamia
+1 Azorius Signet
+1 Sol Ring
+1 Inquisitive Glimmer
+1 Doomwake Giant
+1 Entity Tracker
+1 Enduring Curiosity
+1 Stitcher's Supplier
+1 Scrabbling Skullcrab
+1 Fear of Sleep Paralysis
+1 Mesa Enchantress
+1 Fear of Impostors
+1 Ghostly Keybearer
+1 Bottomless Pool // Locker Room
+1 Underwater Tunnel // Slimy Aquarium
+1 Cramped Vents // Access Maze
+1 Central Elevator // Promising Stairs
+1 Meat Locker // Drowned Diner
+1 Restricted Office // Lecture Hall
+1 Shardmage's Rescue
+1 Mirrormade
+1 Talisman of Progress
+1 Talisman of Dominance
+1 Dimir Signet
+1 Orzhov Signet

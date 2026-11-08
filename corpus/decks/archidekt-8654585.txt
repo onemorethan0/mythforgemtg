@@ -1,0 +1,108 @@
+# Archidekt — Tamago with Jeff Goldblum v2.33
+# source: archidekt:8654585
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Atla Palani, Nest Tender
+
+Deck:
+1 Impact Tremors
+1 Drannith Magistrate
+1 Ancient Tomb
+1 Shields of Velis Vel
+1 Imperial Recruiter
+1 Steelshaper's Gift
+1 Lotus Petal
+1 Smothering Tithe
+1 Spectator Seating
+1 Red Elemental Blast
+1 Plateau
+1 Mox Diamond
+1 Windswept Heath
+1 Wheel of Fortune
+1 Idyllic Tutor
+1 Gaea's Cradle
+1 Hexing Squelcher
+1 Sol Ring
+1 Rhythm of the Wild
+1 Seedborn Muse
+1 Phyrexian Altar
+1 Carpet of Flowers
+1 Plains
+1 Altar of Dementia
+1 Shang-Chi, Master of Kung Fu
+1 Cavern of Souls
+1 Talon Gates of Madara
+1 Swiftfoot Boots
+1 Mirror Entity
+1 Arcane Signet
+1 Arid Mesa
+1 High Market
+1 Bountiful Promenade
+1 City of Brass
+1 Command Tower
+1 Deflecting Swat
+1 Enlightened Tutor
+1 Esper Sentinel
+1 Food Chain
+1 Forest
+1 Galadriel's Dismissal
+1 Gemstone Caverns
+1 Mana Confluence
+1 Mountain
+1 Wooded Foothills
+1 Spire Garden
+1 Stomping Ground
+1 Swords to Plowshares
+1 Taiga
+1 Teferi's Protection
+1 Temple Garden
+1 The One Ring
+1 Thornbite Staff
+1 Thousand-Year Elixir
+1 Wooded Bastion
+1 Finale of Devastation
+1 Sacred Foundry
+1 Academy Rector
+1 Stoneforge Mystic
+1 Grand Abolisher
+1 Chrome Mox
+1 Worldly Tutor
+1 Mithril Coat
+1 Worldspine Wurm
+1 Gamble
+1 Ranger-Captain of Eos
+1 Silence
+1 Heroic Intervention
+1 Mana Tithe
+1 Sylvan Library
+1 Sensei's Divining Top
+1 Savannah
+1 Mutavault
+1 Mana Vault
+1 Crop Rotation
+1 Blasting Station
+1 Birthing Pod
+1 Altar of Bone
+1 Mox Opal
+1 Urza's Saga
+1 Thermopod
+1 Lightning Greaves
+1 Jeska's Will
+1 Great Furnace
+1 Ancient Den
+1 Tree of Tales
+1 Leather Armor
+1 Gaea's Blessing
+1 Noxious Revival
+1 Veil of Summer
+1 Deafening Silence
+1 Beast Within
+1 Wandering Archaic // Explore the Vastlands
+1 Ulamog, the Infinite Gyre
+1 Boseiju, Who Endures
+1 Terror of the Peaks
+1 Goblin Bombardment
+1 Ashnod's Altar
+1 Polyraptor

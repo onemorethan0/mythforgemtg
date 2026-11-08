@@ -1,0 +1,97 @@
+# Archidekt — Shelob’s Fight Club Carnival
+# source: archidekt:8337480
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Shelob, Child of Ungoliant
+
+Deck:
+1 Halana, Kessig Ranger
+1 Twilight Mire
+1 Sol Ring
+1 Viridian Longbow
+1 Hunter's Talent
+1 Poison Dart Frog
+1 Farseek
+1 Horrific Assault
+1 Bite Down
+1 Night's Whisper
+1 Deathbloom Gardener
+1 Sign in Blood
+1 Victimize
+1 Spider Spawning
+1 Arasta of the Endless Web
+1 Ettercap // Web Shot
+1 Sporeweb Weaver
+1 Spinnerette, Arachnobat
+1 Spinner of Souls
+1 Ruins Recluse
+1 Doom Weaver
+1 Fell the Profane // Fell Mire
+1 Malakir Rebirth // Malakir Mire
+1 Putrefy
+1 Revitalizing Repast // Old-Growth Grove
+1 Twitching Doll
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Path of Ancestry
+1 Command Tower
+1 Kindred Dominance
+1 Rampant Growth
+1 Strangled Cemetery
+1 Beast Within
+1 Chainweb Aracnir
+1 Shelob, Dread Weaver
+1 Ishkanah, Grafwidow
+1 Rotwidow Pack
+1 Golgari Guildgate
+1 Rogue's Passage
+1 Fabled Passage
+1 Cosmic Hunger
+1 Drider
+1 Lolth, Spider Queen
+1 Haunted Mire
+1 Tainted Wood
+1 Fake Your Own Death
+1 Silklash Spider
+1 Woodland Chasm
+1 Skyshroud Claim
+1 Overwhelming Stampede
+1 Aveline de Grandpré
+1 Llanowar Wastes
+1 Nature's Lore
+1 Cover of Darkness
+1 Woodland Cemetery
+1 Hard-Hitting Question
+1 Infectious Bite
+1 Arcane Signet
+1 Master's Rebuke
+1 Fynn, the Fangbearer
+1 The Most Dangerous Gamer
+1 Rise of the Witch-king
+1 Verdant Catacombs
+1 Deathcap Glade
+1 Hissing Quagmire
+1 Skyfisher Spider
+1 Arena
+1 Overgrown Tomb
+1 Realmwalker
+1 Read the Bones
+1 Evolving Wilds
+1 Temple of Malady
+1 Treetop Snarespinner
+1 Necroblossom Snarl
+1 Gwenom, Remorseless
+1 Bushwhack
+1 Risky Research
+1 Arachnogenesis
+1 Radioactive Spider
+1 Spider-Ham, Peter Porker
+2 Swamp
+11 Forest
+1 Vernal Fen
+1 Chronicle of Victory
+1 Turbulent Fen
+1 Supper for Spiders
+1 Festering Thicket
+1 Secluded Courtyard

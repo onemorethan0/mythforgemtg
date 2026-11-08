@@ -1,0 +1,102 @@
+# Archidekt — (retired)Narset - EDHREC Commander Sealed
+# source: archidekt:7074973
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Narset, Enlightened Exile
+
+Deck:
+1 Fortified Beachhead
+1 Glittering Stockpile
+1 Fists of Flame
+1 Transcendent Message
+1 Imodane's Recruiter // Train Troops
+1 Rootha, Mercurial Artist
+1 Exclude
+1 Make Your Move
+1 Firemind Vessel
+1 Darksteel Ingot
+1 Honored Heirloom
+1 Fire Diamond
+1 Dreamstone Hedron
+1 Sky Diamond
+1 Commander's Sphere
+1 Tavern Brawler
+1 Spellrune Painter // Spellrune Howler
+1 Raise the Alarm
+1 Battle Screech
+1 Whirlwind Denial
+1 Flood of Recollection
+1 Aqueous Form
+1 Feywild Visitor
+1 Endless Evil
+1 Expel
+1 Lantern Flare
+1 Flaming Fist
+1 Benevolent Blessing
+1 Make a Stand
+1 Fireball
+1 Loyal Drake
+1 Love Song of Night and Day
+1 Slice and Dice
+1 Flare of Faith
+1 Revelation of Power
+1 Zhalfirin Shapecraft
+1 Deduce
+1 Ill-Timed Explosion
+1 Knowledge Is Power
+1 Spoils of Adventure
+1 Absorb
+1 Thundering Falls
+1 Faithless Looting
+1 Rain of Riches
+1 Gold-Forged Thopteryx
+1 Electric Revelation
+1 Ephemerate
+1 Multiple Choice
+1 Idyllic Beachfront
+1 Sea of Clouds
+1 Adarkar Wastes
+1 Skybridge Towers
+1 Swiftwater Cliffs
+1 Lightning Helix
+1 Scalding Viper // Steam Clean
+1 Livaan, Cultist of Tiamat
+1 Haughty Djinn
+1 Gale, Waterdeep Prodigy
+1 Thirst for Knowledge
+1 Empty the Warrens
+1 Riverglide Pathway // Lavaglide Pathway
+1 Case the Joint
+1 Obsessive Search
+1 Thirst for Discovery
+1 Tura Kennerüd, Skyknight
+1 Guttersnipe
+1 Deekah, Fractal Theorist
+2 Plains
+1 Mountain
+1 Captain's Call
+1 Electrostatic Infantry
+1 Plains
+1 Melek, Izzet Paragon
+1 Plains
+1 Mountain
+2 Island
+1 Island
+1 Plains
+1 Escape Tunnel
+2 Plains
+1 Mountain
+2 Mountain
+1 Island
+1 Mountain
+1 Mountain
+1 Island
+1 Island
+1 Island
+1 Island
+2 Island
+2 Island
+1 Prismari Campus
+1 Preordain

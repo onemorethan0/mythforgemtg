@@ -1,0 +1,89 @@
+# Archidekt — Chishiro Commander Deck
+# source: archidekt:3148809
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Chishiro, the Shattered Blade
+
+Deck:
+1 Shamanic Revelation
+1 Silkguard
+1 Snake Umbra
+1 Sol Ring
+1 Temple of Abandon
+1 Toggo, Goblin Weaponsmith
+1 Whip Silk
+1 Arcane Signet
+1 Aspect of Mongoose
+1 Avenger of Zendikar
+1 Hydra's Growth
+1 Bloodforged Battle-Axe
+1 Bear Umbra
+1 Beast Within
+1 Blackblade Reforged
+1 Champion of Lambholt
+1 Chaos Warp
+1 Cinder Glade
+1 Command Tower
+1 Crown of Flames
+1 Embercleave
+1 Exotic Orchard
+1 Fertilid
+1 Game Trail
+1 Goblin Anarchomancer
+1 Grumgully, the Generous
+1 Gruul Turf
+1 Halana and Alena, Partners
+1 Hardened Scales
+1 Incubation Druid
+1 Inspiring Call
+1 Iridescent Hornbeetle
+1 Kodama's Reach
+1 Komainu Battle Armor
+1 Krenko, Tin Street Kingpin
+1 Lizard Blades
+1 Loyal Guardian
+1 Opal Palace
+1 Oran-Rief, the Vastwood
+1 Raging Ravine
+1 Rampant Rejuvenator
+1 Rancor
+1 Nissa, Voice of Zendikar
+1 Kodama of the West Tree
+1 Kessig Wolf Run
+1 Overwhelming Stampede
+1 Renata, Called to the Hunt
+1 Rishkar's Expertise
+1 Rishkar, Peema Renegade
+1 Swiftfoot Boots
+1 Myriad Landscape
+1 Return of the Wildspeaker
+1 Blasphemous Act
+1 Sword of Vengeance
+1 Sword of the Animist
+1 Benevolent Hydra
+1 Copperline Gorge
+1 Cultivate
+1 Rhythm of the Wild
+1 Kami of Whispered Hopes
+1 Karlach, Fury of Avernus
+1 Ozolith, the Shattered Spire
+1 All Will Be One
+1 Vorinclex // The Grand Evolution
+1 Bristly Bill, Spine Sower
+1 Arwen, Weaver of Hope
+1 Lost Jitte
+13 Forest
+1 Drannith Ruins
+1 Evolution Witness
+1 Fanatic of Rhonas
+1 Decimate
+1 Ashaya, Soul of the Wild
+8 Mountain
+1 Arena of Glory
+1 Doubling Season
+1 Red XIII, Proud Warrior
+1 Uncivil Unrest
+1 Tribute to the World Tree
+1 Stocking the Pantry

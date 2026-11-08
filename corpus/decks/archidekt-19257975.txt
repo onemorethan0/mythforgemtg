@@ -1,0 +1,95 @@
+# Archidekt — Evershrike Secret Commander
+# source: archidekt:19257975
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Victor, Valgavoth's Seneschal
+
+Deck:
+1 Summon: Primal Odin
+1 Moment of Reckoning
+1 Swift Reconfiguration
+1 Spirited Companion
+1 Land Tax
+1 Caves of Koilos
+1 Katilda, Dawnhart Martyr // Katilda's Rising Dawn
+1 Brilliant Restoration
+1 Entomb
+1 Godless Shrine
+1 Light-Paws, Emperor's Voice
+1 Phyresis
+1 Redress Fate
+1 Silent Clearing
+5 Swamp
+1 Unfinished Business
+1 Ethereal Armor
+1 Soaring Lightbringer
+1 Transcendent Envoy
+1 Overlord of the Balemurk
+1 Evershrike
+1 Marsh Flats
+1 Prismatic Vista
+1 Brilliant Wings
+1 Shardmage's Rescue
+1 Animate Dead
+1 Dog Umbra
+1 Court of Ardenvale
+1 Spirit Loop
+1 Evershrike's Gift
+1 Mesa Enchantress
+1 Felidar Umbra
+1 Kor Spiritdancer
+1 Fetid Heath
+1 All That Glitters
+1 Spirit Mantle
+1 Doomwake Giant
+1 Shielded by Faith
+1 Ripples of Undeath
+1 Benevolent Blessing
+1 Soul Snare
+1 Gravebreaker Lamia
+1 Mantle of the Ancients
+1 Sentinel's Eyes
+1 Retether
+1 Screams from Within
+1 Shattered Sanctum
+1 Daybreak Coronet
+1 Grasp of Fate
+1 Winds of Rath
+1 Rogue's Passage
+1 Hyena Umbra
+1 Flickering Ward
+1 Songbirds' Blessing
+1 Divine Reckoning
+1 Sage's Reverie
+1 Sheltered by Ghosts
+1 Cemetery Tampering
+1 Feather of Flight
+1 Fear of Surveillance
+1 Chains of Custody
+1 Spellbook Vendor
+1 Starfield Mystic
+1 Tenuous Truce
+1 Sram, Senior Edificer
+1 Pearl-Ear, Imperial Advisor
+1 Bleachbone Verge
+1 Fabled Passage
+1 Glasswing Grace // Age-Graced Chapel
+1 Hall of Heliod's Generosity
+1 Inkmoth Nexus
+1 Orzhov Basilica
+1 Shadowy Backstreet
+1 Takenuma, Abandoned Mire
+1 Valgavoth's Lair
+1 Vault of Champions
+1 Command Tower
+1 Brightclimb Pathway // Grimclimb Pathway
+1 Isolated Chapel
+1 Razorgrass Ambush // Razorgrass Field
+1 Troll of Khazad-dûm
+9 Plains
+1 Desolate Mire
+1 Angel of Indemnity
+1 Bloodchief Ascension
+1 Cynical Loner

@@ -1,0 +1,92 @@
+# Archidekt — Orfeo's GRB Bag
+# source: archidekt:11911910
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Mr. Orfeo, the Boulder
+1 Shadow Alley Denizen
+1 Cranial Archive
+1 Morgue Burst
+1 Thrull Parasite
+1 The Cruelty of Gix
+1 Increasing Ambition
+1 Judith, Carnage Connoisseur
+1 Berserkers' Onslaught
+1 Blood for Bones
+1 Trailblazer's Boots
+
+Deck:
+1 Horobi, Death's Wail
+6 Mountain
+1 Gray Merchant of Asphodel
+1 Doom Blade
+1 Grunn, the Lonely King
+1 Journey of Discovery
+1 Quicksilver Amulet
+1 Screams from Within
+1 Curse of Death's Hold
+1 Deathbringer Regent
+1 Minion's Return
+1 Mask of Avacyn
+1 Sol Ring
+1 Mortuary Mire
+1 Invasion of Karsus // Refraction Elemental
+1 Temple of Abandon
+1 Carnage Gladiator
+1 Unhallowed Pact
+1 Barren Moor
+1 Havenwood Battleground
+1 Hostile Negotiations
+1 Indulgent Tormentor
+1 Kuro, Pitlord
+1 Overseer of the Damned
+1 Unholy Indenture
+1 Unnatural Growth
+1 Dark Ritual
+1 Sarulf, Realm Eater
+1 Evolving Wilds
+1 Virulent Plague
+1 Looming Spires
+1 Arcane Signet
+1 Fog
+1 Bloodfell Caves
+1 Ogre Menial
+1 Commander's Sphere
+1 Sakura-Tribe Elder
+1 Opal Palace
+1 Fireshrieker
+1 Erebos, Bleak-Hearted
+1 The Akroan War
+1 Scouring Sands
+1 Scuttling Doom Engine
+1 Krosan Drover
+1 Midnight Reaper
+1 Vito, Thorn of the Dusk Rose
+1 Riveteers Overlook
+1 Venom
+1 Gonti, Lord of Luxury
+1 Fangren Firstborn
+1 Razorjaw Oni
+1 Ebon Stronghold
+1 Boots of Speed
+1 Sifter of Skulls
+1 Aid from the Cowl
+1 Skull Collector
+1 Comet Storm
+1 Crypt Incursion
+1 Desert of the Glorified
+1 Death Pits of Rath
+1 Reclamation Sage
+1 Temur Battle Rage
+1 Pyrrhic Blast
+1 Kethek, Crucible Goliath
+1 Forest
+1 Dictate of the Twin Gods
+5 Forest
+1 Desecration Demon
+1 Nighthowler
+1 Archway Commons
+8 Swamp
+1 The Eldest Reborn
+1 Darksteel Ingot

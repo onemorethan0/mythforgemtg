@@ -1,0 +1,100 @@
+# WotC precon — We Are the Borg (TRC, 2026-11-13)
+# source: mtgjson:WeAreTheBorg_TRC
+# fetched: 2026-11-08
+# bracket: 2
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 The Borg Queen
+
+Deck:
+1 Academy Ruins
+1 Ambulatory Reactor
+1 Anguished Unmaking
+1 Arcane Sanctum
+1 Arcane Signet
+1 Assimilate the Wounded
+1 Assimilation Assessor
+1 Astral Cornucopia
+1 Battle of Wolf 359
+1 Bitter Triumph
+1 Borg Incursion
+1 Borg Scout Sphere
+1 Choked Estuary
+1 Class-4 Tactical Cube
+1 Co-Option Adjutant
+1 Collective Override
+1 Command Subadjunct
+1 Command Tower
+1 Commander's Sphere
+1 Conquest Mission
+1 Contaminated Landscape
+1 Darksteel Plate
+1 Deliver from Chaos
+1 Disallow
+1 Dispatch
+1 Door of Destinies
+1 Drowned Catacomb
+1 Eclipsed Steppe
+1 Emergency Regeneration
+1 Everflowing Chalice
+1 Evolving Wilds
+1 Exotic Orchard
+1 Extraction Integrant
+1 Fetid Pools
+1 Forsaken Monument
+1 Gift of Perfection
+1 Glacial Fortress
+1 Hive Mind Coprocessor
+1 Hugh, First of Many
+1 Irrigated Farmland
+4 Island
+1 Isolated Chapel
+1 Join the Collective
+1 Jurati, Cordial Queen
+1 Korok, Liberated Rage
+1 Locutus of Borg
+1 Locutus, the One Who Speaks
+1 Maturation Chamber
+1 Morphic Pool
+1 One, Borg Evolved
+1 Optimization Annex
+1 Path of Ancestry
+4 Plains
+1 Port Town
+1 Prairie Stream
+1 Queen's Diamond
+1 Reclamation Specialist
+1 Reconnaissance Partition
+1 Return to Dust
+1 Rogue's Passage
+1 Seven of Nine, Tertiary Adjunct
+1 Shineshadow Snarl
+1 Shore Leave Planet
+1 Skullclamp
+1 Skycloud Expanse
+1 Sol Ring
+1 Spire of Industry
+1 Stonespeaker Crystal
+1 Stratagem Emulator
+1 Sunken Hollow
+1 Supplementation Node
+4 Swamp
+1 Swiftfoot Boots
+1 Talisman of Dominance
+1 Talisman of Hierarchy
+1 Talisman of Progress
+1 Tempered Steel
+1 Terramorphic Expanse
+1 The Best of Both Worlds
+1 The Immortal Sun
+1 Thirst for Knowledge
+1 Thoughtcast
+1 Toxic Deluge
+1 Transwarp Hub
+1 Type-03 Borg Vessel
+1 Umbral Expanse
+1 Underground River
+1 Unwinding Clock
+1 Võx, Child of the Collective
+1 Wayfarer's Bauble

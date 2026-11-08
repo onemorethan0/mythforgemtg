@@ -1,0 +1,103 @@
+# Archidekt — GUILDPACT (up to date )
+# source: archidekt:6427597
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Niv-Mizzet Reborn
+
+Deck:
+1 Judith, Carnage Connoisseur
+1 Prime Speaker Zegana
+1 Teysa, Opulent Oligarch
+1 Obzedat, Ghost Council
+1 Sisters of Stone Death
+1 Aurelia, the Warleader
+1 Invasion of Ravnica // Guildpact Paragon
+1 Domri Rade
+1 Hallowed Fountain
+1 Steam Vents
+1 Breeding Pool
+1 Selesnya Guildgate
+1 Blood Crypt
+1 Watery Grave
+1 Godless Shrine
+1 Sacred Foundry
+1 Temple Garden
+1 Stomping Ground
+1 Overgrown Tomb
+1 Case of the Shattered Pact
+1 Jace, the Living Guildpact
+1 Bedevil
+1 Command Tower
+1 Path of Ancestry
+1 Gateway Plaza
+1 Exotic Orchard
+1 Niv-Mizzet, Guildpact
+2 Island
+2 Forest
+1 Kaya's Ghostform
+1 Assassin's Trophy
+1 Azorius Charm
+1 Azorius Guildgate
+1 Azorius Signet
+1 Borborygmos
+1 Boros Charm
+1 Boros Guildgate
+1 Boros Signet
+1 Chromatic Lantern
+1 Circuitous Route
+1 Dimir Charm
+1 Dimir Guildgate
+1 Dimir Signet
+1 Etrata, the Silencer
+1 General Ferrous Rokiric
+1 Glass of the Guildpact
+1 Golgari Charm
+1 Golgari Guildgate
+1 Golgari Signet
+1 Gruul Charm
+1 Gruul Guildgate
+1 Gruul Signet
+1 Guildmages' Forum
+1 Ionize
+1 Isperia, Supreme Judge
+1 Izzet Charm
+1 Izzet Guildgate
+1 Izzet Signet
+1 Growth Spiral
+1 Lavinia, Azorius Renegade
+1 Lazav, Dimir Mastermind
+1 Merciless Eviction
+1 Niv-Mizzet, the Firemind
+1 Orzhov Charm
+1 Orzhov Guildgate
+1 Orzhov Signet
+1 Pillar of the Paruns
+1 Prime Speaker Vannifar
+1 Rakdos Charm
+1 Rakdos Guildgate
+1 Rakdos Signet
+1 Rakdos, Lord of Riots
+1 Rhythm of the Wild
+1 Selesnya Charm
+1 Selesnya Signet
+1 Simic Charm
+1 Simic Guildgate
+1 Simic Signet
+1 Sol Ring
+1 Tome of the Guildpact
+1 Trostani Discordant
+1 Unbreakable Formation
+1 Vandalblast
+1 Vraska, Golgari Queen
+1 Trostani, Selesnya's Voice
+1 Supreme Verdict
+2 Mountain
+2 Plains
+2 Swamp
+1 Lightning Helix
+1 Glimpse the Unthinkable
+1 Reliquary Tower
+1 Trostani, Three Whispers
+1 Ral, Izzet Viceroy

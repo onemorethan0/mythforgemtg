@@ -1,0 +1,108 @@
+# Archidekt — Scion of the Ur-Dragon
+# source: archidekt:78855
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Scion of the Ur-Dragon
+
+Deck:
+1 Ancient Brass Dragon
+1 Entomb
+1 Arcane Signet
+1 Ignoble Hierarch
+1 Old Gnawbone
+1 Karrthus, Tyrant of Jund
+1 Plains
+1 Island
+1 Swamp
+1 Mountain
+1 Forest
+1 Chromatic Lantern
+1 Lightning Greaves
+1 Scroll Rack
+1 Anguished Unmaking
+1 Hallowed Fountain
+1 Stomping Ground
+1 Breeding Pool
+1 Ancient Tomb
+1 Silumgar, the Drifting Death
+1 Bloodstained Mire
+1 Polluted Delta
+1 Wooded Foothills
+1 Farseek
+1 Swords to Plowshares
+1 Command Tower
+1 Rhystic Study
+1 Deathrite Shaman
+1 Noble Hierarch
+1 Reanimate
+1 Birds of Paradise
+1 Marsh Flats
+1 Misty Rainforest
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Exotic Orchard
+1 Path to Exile
+1 Demonic Tutor
+1 Skyshroud Claim
+1 Vampiric Tutor
+1 Counterspell
+1 Volrath's Stronghold
+1 Necromancy
+1 Sylvan Library
+1 Badlands
+1 Bayou
+1 Savannah
+1 Taiga
+1 Tropical Island
+1 Tundra
+1 Volcanic Island
+1 Animate Dead
+1 Regrowth
+1 Chromium, the Mutable
+1 Sarkhan, Fireblood
+1 Assassin's Trophy
+1 Teferi's Protection
+1 Cavern of Souls
+1 Underground Sea
+1 Hellkite Charger
+1 Scrubland
+1 Plateau
+1 Mystical Tutor
+1 Rhythm of the Wild
+1 Plaza of Heroes
+1 Farewell
+1 Boseiju, Who Endures
+1 Fierce Guardianship
+1 Beledros Witherbloom
+1 Goldspan Dragon
+1 Sarkhan, Soul Aflame
+1 Cyclonic Rift
+1 Watery Grave
+1 Overgrown Tomb
+1 Invert Polarity
+1 Hellkite Tyrant
+1 Rivaz of the Claw
+1 Shifting Woodland
+1 Klauth, Unrivaled Ancient
+1 Kodama's Reach
+1 Strip Mine
+1 Mana Drain
+1 Crux of Fate
+1 Flooded Strand
+1 Ureni of the Unwritten
+1 Dragonologist
+1 Colossal Grave-Reaver
+1 The Ur-Dragon
+1 Ancient Silver Dragon
+1 Three Visits
+1 Gifts Ungiven
+1 Ancient Copper Dragon
+1 Scion of Draco
+1 Terror of the Peaks
+1 Smaug the Impenetrable
+1 Twinflame Tyrant
+1 Bladewing the Risen
+1 Draconic Visitor
+1 Firdoch Core

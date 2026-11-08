@@ -1,0 +1,98 @@
+# Archidekt — Edgar Markov (Aggro/Combo) Vampire Tribal
+# source: archidekt:59349
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Edgar Markov
+
+Deck:
+1 Dark Ritual
+1 Vampire Socialite
+1 Haunted Ridge
+4 Plains
+8 Swamp
+1 Isolated Chapel
+1 Swords to Plowshares
+1 Dusk Legion Zealot
+1 Fetid Heath
+1 Forerunner of the Legion
+1 Twilight Prophet
+1 Legion Lieutenant
+1 Shared Animosity
+1 Graven Cairns
+1 Sanctum Seeker
+1 Vanquisher's Banner
+1 Path of Ancestry
+1 Blood Artist
+1 Captivating Vampire
+1 Malakir Bloodwitch
+1 Read the Bones
+1 Stromkirk Captain
+1 Skullclamp
+1 Sword of the Animist
+1 Nomad Outpost
+1 Talisman of Indulgence
+1 Mirror Entity
+1 Yahenni, Undying Partisan
+1 Metallic Mimic
+1 Caves of Koilos
+1 Windbrisk Heights
+1 Aetherflux Reservoir
+1 Vampire Cutthroat
+1 Night's Whisper
+1 Indulgent Aristocrat
+1 Anguished Unmaking
+1 Drana, Liberator of Malakir
+1 Smoldering Marsh
+1 Dark Petition
+1 Impact Tremors
+1 Vampire Hexmage
+1 Jet Medallion
+1 Obelisk of Urd
+1 Athreos, God of Passage
+1 Shadow Alley Denizen
+1 Vampire Nocturnus
+1 Dragonskull Summit
+1 Bloodline Keeper // Lord of Lineage
+1 Blood Seeker
+1 Exsanguinate
+1 Viscera Seer
+1 Mountain
+1 Kalastria Highborn
+1 Sulfurous Springs
+1 Sensei's Divining Top
+1 Cover of Darkness
+1 Necropotence
+1 Terminate
+1 Enlightened Tutor
+1 Fire Covenant
+1 Demonic Tutor
+1 Diabolic Intent
+1 Land Tax
+1 Command Tower
+1 Bojuka Bog
+1 Sol Ring
+1 Blasphemous Act
+1 Return to Dust
+1 Cavern of Souls
+1 Godless Shrine
+1 Bolas's Citadel
+1 Cruel Celebrant
+1 Despark
+1 Prismatic Vista
+1 Talisman of Hierarchy
+1 Talisman of Conviction
+1 Hall of Heliod's Generosity
+1 Cordial Vampire
+1 Vona's Hunger
+1 Idol of Oblivion
+1 Ruinous Ultimatum
+1 Village Rites
+1 Arcane Signet
+1 Tainted Field
+1 Exotic Orchard
+1 Teferi's Protection
+1 Reconnaissance
+1 Patriarch's Bidding
+1 Boros Charm

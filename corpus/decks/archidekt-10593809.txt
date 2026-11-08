@@ -1,0 +1,107 @@
+# Archidekt — Captain America Beatdown
+# source: archidekt:10593809
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Captain America, First Avenger
+
+Deck:
+1 Riverglide Pathway // Lavaglide Pathway
+1 Plains
+1 Counterspell
+1 Excalibur, Sword of Eden
+1 Steam Vents
+1 Needleverge Pathway // Pillarverge Pathway
+1 Fierce Guardianship
+1 Swiftfoot Boots
+1 Flooded Strand
+1 Talisman of Progress
+1 Sacred Foundry
+1 Enlightened Tutor
+1 Spirebluff Canal
+1 Sea of Clouds
+1 Sigarda's Aid
+1 Wear // Tear
+1 Arcane Signet
+1 Open the Armory
+1 Sol Ring
+1 Talisman of Conviction
+1 Legion Leadership // Legion Stronghold
+1 Talisman of Creativity
+1 Steelshaper's Gift
+1 Flawless Maneuver
+1 Stoneforge Mystic
+1 Swords to Plowshares
+1 Colossus Hammer
+1 Basilisk Collar
+1 Hammer of Nazahn
+1 Two-Handed Axe // Sweeping Cleave
+1 Riverpyre Verge
+1 Sunbillow Verge
+1 Puresteel Paladin
+1 Rhystic Study
+1 Spectator Seating
+1 Raugrin Triome
+1 Hengegate Pathway // Mistgate Pathway
+1 Floodfarm Verge
+1 Training Center
+1 Inspiring Vantage
+1 Hallowed Fountain
+1 Plaza of Heroes
+1 Seachrome Coast
+1 Scalding Tarn
+1 Arid Mesa
+1 Simian Spirit Guide
+1 Path to Exile
+1 Lotus Petal
+1 Bolt Bend
+1 Stubborn Denial
+1 Sunforger
+1 Conqueror's Flail
+1 Chrome Mox
+1 Cyclonic Rift
+1 Kediss, Emberclaw Familiar
+1 Leyline Axe
+1 Temur Battle Rage
+1 Dovin's Veto
+1 Unleash Fury
+1 Command Beacon
+1 Inquisitor's Flail
+1 The One Ring
+1 Winged Boots
+1 Mox Amber
+1 Mistrise Village
+1 Dalakos, Crafter of Wonders
+1 Starting Town
+1 Gemstone Caverns
+1 Plateau
+1 Command Tower
+1 Avengers Tower
+1 Super-Soldier Serum
+1 Lightning Greaves
+1 Mjölnir, Hammer of Thor
+1 Sundering Eruption // Volcanic Fissure
+1 Island
+1 Fighter Class
+1 Soul Immolation
+1 Mystic Remora
+1 Tundra
+1 Volcanic Island
+1 Spire of Industry
+1 Bulk Up
+1 Force of Will
+1 Kellan, the Fae-Blooded // Birthright Boon
+1 Stock Up
+1 Grand Abolisher
+1 Silver Shroud Costume
+1 Assault Strobe
+1 Fellwar Stone
+1 Amy Rose
+2 Mountain
+1 Chandra's Ignition
+1 Tony Stark // The Invincible Iron Man
+1 Thor, God of Thunder
+1 Buster Sword
+1 An Offer You Can't Refuse
+1 Wizard's Staff

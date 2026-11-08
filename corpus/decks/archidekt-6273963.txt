@@ -1,0 +1,95 @@
+# Archidekt — Everybody Wins!
+# source: archidekt:6273963
+# fetched: 2026-11-08
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: 1 Game Changers (Teferi's Protection); Bracket 1 allows 0; two-card infinite combo Mind Over Matter + Kwain, Itinerant Meddler; Bracket 1 allows none
+
+Commander:
+1 Kwain, Itinerant Meddler
+
+Deck:
+1 Bronze Walrus
+1 Divine Intervention
+1 Everybody Lives!
+1 Hindering Light
+1 Elixir of Immortality
+1 Anvil of Bogardan
+1 Blazing Archon
+1 Blessed Sanctuary
+1 Clever Conjurer
+1 Command Tower
+1 Coveted Jewel
+1 Cut a Deal
+1 Dawn Charm
+1 Delaying Shield
+1 Dictate of Kruphix
+1 Dream Halls
+1 Drumbellower
+1 Ethereal Haze
+1 Fatestitcher
+1 Flux
+1 Font of Mythos
+1 Ghirapur Orrery
+1 Ghostly Prison
+1 Glacial Floodplain
+1 Glasspool Mimic // Glasspool Shore
+1 Hall of Heliod's Generosity
+1 Holy Day
+1 Homeward Path
+1 Horn of Greed
+1 Howling Mine
+1 Irrigated Farmland
+8 Island
+1 Island Sanctuary
+1 Kami of the Crescent Moon
+1 Keep Safe
+1 Kelpie Guide
+1 Labyrinth of Skophos
+1 Lazotep Plating
+1 Lonely Sandbar
+1 Magus of the Moat
+1 Master of Ceremonies
+1 Maze of Ith
+1 Mind Over Matter
+1 Mizzium Skin
+1 Mother of Runes
+1 Mystifying Maze
+1 Noble Benefactor
+1 Ornithopter of Paradise
+1 Patriar's Seal
+1 Peacekeeper
+8 Plains
+1 Prairie Stream
+1 Propaganda
+1 Rebuff the Wicked
+1 Reliquary Tower
+1 Scholarship Sponsor
+1 Secluded Steppe
+1 Sejiri Shelter // Sejiri Glacier
+1 Selfless Spirit
+1 Skycloud Expanse
+1 Sol Ring
+1 Solitary Confinement
+1 Spectral Searchlight
+1 Sphere of Safety
+1 Statecraft
+1 Teferi's Protection
+1 Temple of Enlightenment
+1 Tempting Contract
+1 Thespian's Stage
+1 Thought Vessel
+1 Tidal Barracuda
+1 Tranquil Cove
+1 Turn Aside
+1 Venser's Journal
+1 Vesuva
+1 Victory Chimes
+1 Vizier of Tumbling Sands
+1 Windborn Muse
+1 The Wanderer
+1 The Second Doctor
+1 Dissipation Field
+1 Collective Restraint
+1 Redirect
+1 Crawlspace
+1 Silent Arbiter

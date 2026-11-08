@@ -1,0 +1,103 @@
+# Archidekt — Falco Spara, Pactweaver
+# source: archidekt:3237378
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Falco Spara, Pactweaver
+
+Deck:
+1 Forbidden Orchard
+1 Crop Rotation
+1 Patrolling Peacemaker
+1 Devoted Druid
+1 Hallowed Fountain
+1 Wall of Roots
+1 Otawara, Soaring City
+1 Eiganjo, Seat of the Empire
+1 Mana Drain
+1 Winds of Abandon
+1 Mana Confluence
+1 Joraga Treespeaker
+1 Noxious Revival
+1 Biophagus
+1 Delighted Halfling
+1 The One Ring
+1 Finale of Devastation
+1 Swan Song
+1 Agatha's Soul Cauldron
+1 Strix Serenade
+1 Enlightened Tutor
+1 Island
+1 Evolution Witness
+1 Thassa's Oracle
+1 Hedge Maze
+1 Pollywog Prodigy
+1 Incubation Druid
+1 Breeding Pool
+1 Command Tower
+1 Cyclonic Rift
+1 Esper Sentinel
+1 Force of Negation
+1 Force of Will
+1 Mystical Tutor
+1 Pact of Negation
+1 Sensei's Divining Top
+1 Walking Ballista
+1 Temple Garden
+1 Noble Hierarch
+1 Exotic Orchard
+1 Fierce Guardianship
+1 Birds of Paradise
+1 Neoform
+1 Boseiju, Who Endures
+1 Chord of Calling
+1 City of Brass
+1 Chrome Mox
+1 Mystic Remora
+1 Elvish Mystic
+1 Worldly Tutor
+1 Spara's Headquarters
+1 Homeward Path
+1 Plains
+1 Heliod, Sun-Crowned
+1 Swift Reconfiguration
+1 Trouble in Pairs
+1 Final Showdown
+1 Eternal Witness
+1 Lush Portico
+1 Meticulous Archive
+1 Gyre Sage
+1 Sol Ring
+1 Wooded Foothills
+1 Verdant Catacombs
+1 Scalding Tarn
+1 Arid Mesa
+1 Lotus Petal
+1 Brightglass Gearhulk
+1 Innkeeper's Talent
+1 Summon: Ixion
+1 Fyndhorn Elves
+1 Llanowar Elves
+1 Polluted Delta
+1 Windswept Heath
+1 Misty Rainforest
+1 Flooded Strand
+1 Marsh Flats
+1 Dreamtide Whale
+1 Rhystic Study
+1 Wan Shi Tong, Librarian
+1 Scholar of New Horizons
+1 Shelinda, Yevon Acolyte
+1 Geier Reach Sanitarium
+2 Forest
+1 Sylvan Library
+1 Arcane Signet
+1 Teferi's Protection
+1 An Offer You Can't Refuse
+1 Glen Elendra Guardian
+1 Spellseeker
+1 Glen Elendra Archmage
+1 Swords to Plowshares
+1 Smothering Tithe
+1 Rishkar, Peema Renegade

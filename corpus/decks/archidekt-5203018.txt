@@ -1,0 +1,105 @@
+# Archidekt — Commondore Guff - Bracket 4: Optimized
+# source: archidekt:5203018
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Commodore Guff
+
+Deck:
+1 Swan Song
+1 Esper Sentinel
+1 Ral Zarek
+1 Flooded Strand
+1 Cyclonic Rift
+1 An Offer You Can't Refuse
+1 Island
+1 Teferi, Who Slows the Sunset
+1 Talisman of Progress
+1 Raugrin Triome
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Tamiyo, the Moon Sage
+1 Chandra, Legacy of Fire
+1 Chandra, Torch of Defiance
+1 Talisman of Creativity
+1 Saheeli, Sublime Artificer
+1 Interplanar Beacon
+1 Tezzeret the Seeker
+1 Search for Glory
+1 Fellwar Stone
+1 Hallowed Fountain
+1 Reflecting Pool
+1 Shivan Reef
+1 Adarkar Wastes
+1 Sea of Clouds
+1 Training Center
+1 Spectator Seating
+1 Fierce Guardianship
+1 Ancient Tomb
+1 The One Ring
+1 Izzet Signet
+1 Talisman of Conviction
+1 Teferi, Master of Time
+1 Force of Will
+1 Force of Negation
+1 Chain of Vapor
+1 Smothering Tithe
+1 Gamble
+1 Arcane Signet
+1 Plaza of Heroes
+1 Sol Ring
+1 Mana Drain
+1 Deflecting Swat
+1 Dack Fayden
+1 The Chain Veil
+1 Rhystic Study
+1 Lae'zel, Vlaakith's Champion
+1 Enlightened Tutor
+1 Great Hall of the Citadel
+1 Oath of Teferi
+1 Spark Double
+1 Dovin's Veto
+1 Teferi, Temporal Archmage
+1 Chandra, Hope's Beacon
+1 Minamo, School at Water's Edge
+1 Call the Gatewatch
+1 Flusterstorm
+1 Gemstone Caverns
+1 City of Brass
+1 Savor the Moment
+1 Mystical Tutor
+1 Mystic Remora
+1 Mox Amber
+1 Mox Opal
+1 Urza's Saga
+1 Lotus Petal
+1 Teferi, Time Raveler
+1 Chrome Mox
+1 Mana Vault
+1 Sacred Foundry
+1 Steam Vents
+1 Jeska's Will
+1 Pact of Negation
+1 Silence
+1 Ichormoon Gauntlet
+1 Displacer Kitten
+1 Final Fortune
+1 Sink into Stupor // Soporific Springs
+1 Volatile Stormdrake
+1 Arid Mesa
+1 Mana Confluence
+1 Narset Transcendent
+1 Narset, Parter of Veils
+1 Scalding Tarn
+1 Pinnacle Monk // Mystic Peak
+1 Mindbreak Trap
+1 Strix Serenade
+1 Imperial Recruiter
+1 Boros Signet
+1 Mental Misstep
+1 Faerie Mastermind
+1 Otawara, Soaring City
+1 Elegant Parlor
+1 Command Tower
+1 Tezzeret, Cruel Captain
+1 Teferi's Protection

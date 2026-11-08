@@ -1,0 +1,96 @@
+# Archidekt — The Most Dangerous Gamer — Death, Dice, and Door Prizes
+# source: archidekt:6214842
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Most Dangerous Gamer
+
+Deck:
+1 Krark's Other Thumb
+1 Line Cutter
+1 Discourtesy Clerk
+1 Conjurer's Closet
+1 Sudden Spoiling
+1 Three Visits
+1 Tainted Wood
+1 Icing Manipulator
+1 Blighted Woodland
+1 Woodland Cemetery
+1 Six-Sided Die
+1 Draconian Gate-Bot
+1 Necropolis Regent
+1 Harvester of Souls
+1 Vegetation Abomination
+1 Scheming Symmetry
+1 Xenosquirrels
+1 Dissatisfied Customer
+1 Command Tower
+1 Assassin's Trophy
+1 Coming Attraction
+1 Journey to Eternity // Atzal, Cave of Eternity
+1 Deadbeat Attendant
+1 Llanowar Wastes
+1 Spelling Bee
+1 Golgari Rot Farm
+1 Sword of Truth and Justice
+1 Evolving Wilds
+1 Return to Nature
+1 Soul Swindler
+1 Spinnerette, Arachnobat
+1 Scooch
+1 Harmonize
+1 Mask of Griselbrand
+1 Fertilid
+1 Talisman of Resilience
+1 Endless Whispers
+1 Animate Graveyard
+1 Hardened Scales
+1 Black Hole
+1 Kogla, the Titan Ape
+1 Snake Umbra
+1 Zof Consumption // Zof Bloodbog
+1 Cultivate
+1 Petting Zookeeper
+1 Vastwood Surge
+1 Attempted Murder
+1 Life's Finale
+1 Exotic Orchard
+1 Quick Fixer
+1 Rampant Growth
+1 Squirrel Squatters
+1 Strength-Testing Hammer
+1 Master Chef
+1 Swiftfoot Boots
+1 Jungle Hollow
+1 Keen Sense
+1 Step Right Up
+1 Map the Wastes
+1 Centaur of Attention
+1 Healing Technique
+1 Night Shift of the Living Dead
+1 Riveteers Overlook
+1 Damnable Pact
+1 Pair o' Dice Lost
+1 Centaur Garden
+1 Contagion Clasp
+1 Thespian's Stage
+1 Temple of Malady
+1 Restless Cottage
+1 Viridescent Bog
+1 Bojuka Bog
+1 Volatile Fault
+1 "Lifetime" Pass Holder
+1 Timmy, Power Gamer
+1 Terramorphic Expanse
+1 Yavimaya, Cradle of Growth
+1 Necroblossom Snarl
+1 Darkbore Pathway // Slitherbore Pathway
+3 Forest
+8 Swamp
+4 Forest
+1 Atomwheel Acrobats
+1 Sazh Katzroy
+1 The Earth Crystal
+1 Strionic Resonator
+1 Putrefy

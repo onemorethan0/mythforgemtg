@@ -1,0 +1,98 @@
+# Archidekt — Pantlaza, Panharmonicon
+# source: archidekt:5719015
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 2 Game Changers (Aura Shards, Farewell); Bracket 2 allows 0; two-card infinite combo Restoration Angel + Felidar Guardian; Bracket 2 allows none
+
+Commander:
+1 Pantlaza, Sun-Favored
+
+Deck:
+1 Curious Altisaur
+1 Bronzebeak Foragers
+1 Trumpeting Carnosaur
+1 Kessig Wolf Run
+1 Clifftop Retreat
+1 Arid Mesa
+1 Ghalta, Primal Hunger
+1 Ravenous Tyrannosaurus
+1 Quartzwood Crasher
+1 Kinjalli's Sunwing
+1 Deathgorge Scavenger
+1 Flaming Tyrannosaurus
+1 Wayward Swordtooth
+1 Topiary Stomper
+1 Regisaur Alpha
+1 Otepec Huntmaster
+1 Path of Ancestry
+1 Path to Exile
+1 Arcane Signet
+1 Felidar Guardian
+1 Sol Ring
+1 Reclamation Sage
+1 Restoration Angel
+1 Charming Prince
+1 Nature's Lore
+1 Eternal Witness
+1 Conjurer's Closet
+1 Farseek
+1 Heroic Intervention
+1 Wood Elves
+1 Aura Shards
+1 Blade of Selves
+1 Flicker of Fate
+1 Terror of the Peaks
+1 Garruk's Uprising
+1 Command Tower
+1 Command Beacon
+5 Plains
+1 Cinder Glade
+1 Canopy Vista
+1 Sacred Foundry
+1 Stomping Ground
+1 Three Visits
+1 Keeper of Secrets
+1 Laelia, the Blade Reforged
+1 Earthshaker Dreadmaw
+1 Warstorm Surge
+1 Farhaven Elf
+1 Generous Gift
+1 Guardian Project
+1 Monster Manual // Zoological Study
+1 Elemental Bond
+1 Curator of Sun's Creation
+1 Fabled Passage
+1 Palani's Hatcher
+1 Sungrass Prairie
+1 Cloudshift
+1 Burning Sun's Avatar
+1 Farewell
+1 Eerie Interlude
+1 Elesh Norn, Mother of Machines
+1 Etali, Primal Conqueror // Etali, Primal Sickness
+1 Blasphemous Act
+1 Kogla and Yidaro
+1 Reliquary Tower
+1 Panharmonicon
+1 Tribute to the World Tree
+1 Temple Garden
+1 Chaos Warp
+1 Swords to Plowshares
+1 Molten Echoes
+1 Teleportation Circle
+1 Jetmir's Garden
+1 Another Round
+1 Ephemerate
+1 Rootbound Crag
+1 Wild-Magic Sorcerer
+1 Sunpetal Grove
+1 The Skullspore Nexus
+1 Titan of Industry
+5 Forest
+1 Disciple of Freyalise // Garden of Freyalise
+1 Mosswort Bridge
+2 Mountain
+3 Mountain
+1 Doc Ock's Tentacles
+1 Mossfire Valley
+1 Spire Garden

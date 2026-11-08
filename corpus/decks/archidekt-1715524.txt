@@ -1,0 +1,108 @@
+# Archidekt — Lord Windgrace - Land Destruction
+# source: archidekt:1715524
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Lord Windgrace
+
+Deck:
+1 Jokulhaups
+1 Sol Ring
+1 Dryad of the Ilysian Grove
+1 Stomping Ground
+1 Overgrown Tomb
+1 Bloodstained Mire
+1 Verdant Catacombs
+1 Wooded Foothills
+1 Splendid Reclamation
+1 Azusa, Lost but Seeking
+1 Ignoble Hierarch
+1 Command Tower
+1 Arcane Signet
+1 Ramunap Excavator
+1 Titania, Protector of Argoth
+1 World Shaper
+1 Abrupt Decay
+1 Polluted Delta
+1 Windswept Heath
+1 Exploration
+1 Realms Uncharted
+1 Reflecting Pool
+1 Damnation
+1 Vesuva
+1 Oracle of Mul Daya
+1 Vampiric Tutor
+1 Squandered Resources
+1 Demonic Tutor
+1 Scapeshift
+1 Assassin's Trophy
+1 Force of Vigor
+1 Lotus Field
+1 Amulet of Vigor
+1 Lotus Cobra
+1 Arid Mesa
+1 Ancient Greenwarden
+1 Jeska's Will
+1 Valakut, the Molten Pinnacle
+1 Boseiju, Who Endures
+1 Soul of Windgrace
+1 Sylvan Library
+1 Braids, Arisen Nightmare
+1 Wildfire
+1 Wrenn and Six
+1 Obliterate
+1 Spelunking
+1 Crucible of Worlds
+1 Eternal Witness
+1 Birds of Paradise
+1 Underground Mortuary
+1 Raucous Theater
+1 Commercial District
+1 Grim Tutor
+1 Wasteland
+1 Toxic Deluge
+1 Life from the Loam
+1 Aftermath Analyst
+1 Lumra, Bellow of the Woods
+1 Ziatora's Proving Ground
+1 The Gitrog Monster
+1 Conduit of Worlds
+1 Blood Crypt
+1 Crop Rotation
+1 Tireless Provisioner
+1 Ob Nixilis, the Fallen
+1 Culling Ritual
+1 Strip Mine
+1 Six
+1 Hearthhull, the Worldseed
+1 Field of the Dead
+1 Icetill Explorer
+1 Null Rod
+1 Burgeoning
+1 Decree of Annihilation
+1 Marsh Flats
+1 Misty Rainforest
+1 Orcish Lumberjack
+1 Constant Mists
+1 Farseek
+1 Nature's Lore
+1 Zuran Orb
+1 Beast Within
+1 Glacial Chasm
+1 Forest
+1 Yavimaya, Cradle of Growth
+1 Urborg, Tomb of Yawgmoth
+1 Bojuka Bog
+1 Ancient Tomb
+1 Swamp
+1 Mountain
+1 Avenger of Zendikar
+1 Elvish Reclaimer
+1 Shifting Woodland
+1 Thespian's Stage
+1 Dark Depths
+1 Undergrowth Stadium
+1 Spire Garden
+1 Mole Man, Moloid Master
+1 Heroic Intervention

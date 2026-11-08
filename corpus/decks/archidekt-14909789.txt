@@ -1,0 +1,85 @@
+# Archidekt — CZ 690 | Aeve, Progenitor Ooze (Updated)
+# source: archidekt:14909789
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Aeve, Progenitor Ooze
+
+Deck:
+1 Elvish Visionary
+1 Multani's Acolyte
+1 Turntimber Symbiosis // Turntimber, Serpentine Wood
+1 Wall of Blossoms
+1 Apex Devastator
+1 Augur of Autumn
+1 Temur Sabertooth
+1 Beast Whisperer
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Evolutionary Leap
+1 Glimpse of Nature
+1 Guardian Project
+1 Outcaster Trailblazer
+1 Sylvan Library
+1 Up the Beanstalk
+1 Concordant Crossroads
+1 Craterhoof Behemoth
+1 Squall Line
+1 Triumph of the Hordes
+1 Acidic Slime
+1 Kenrith's Transformation
+1 Kogla, the Titan Ape
+1 Reclamation Sage
+1 Castle Garenbrig
+1 Evendo, Waking Haven
+24 Forest
+1 Havenwood Battleground
+1 Petrified Field
+1 Sanctum of Eternity
+1 Winding Canyons
+1 Yavimaya, Cradle of Growth
+1 Birds of Paradise
+1 Circle of Dreams Druid
+1 Elvish Mystic
+1 Emerald Medallion
+1 Fyndhorn Elves
+1 Gaea's Touch
+1 Growing Rites of Itlimoc // Itlimoc, Cradle of the Sun
+1 Joraga Treespeaker
+1 Karametra's Acolyte
+1 Llanowar Elves
+1 Llanowar Tribe
+1 Llanowar Visionary
+1 Nykthos, Shrine to Nyx
+1 Oracle of Mul Daya
+1 Quirion Ranger
+1 Sakura-Tribe Elder
+1 Sol Ring
+1 Eternal Witness
+1 Crop Rotation
+1 Fauna Shaman
+1 Finale of Devastation
+1 Green Sun's Zenith
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Nature's Rhythm
+1 Vivien, Monsters' Advocate
+1 Woodland Bellower
+1 Worldly Tutor
+1 Arbor Elf
+1 Benefactor's Draught
+1 Malachite Talisman
+1 Scryb Ranger
+1 Silvanus's Invoker
+1 Archdruid's Charm
+1 Dryad Arbor
+1 World Map
+1 Disciple of Freyalise // Garden of Freyalise
+1 Boseiju, Who Endures
+1 Bala Ged Recovery // Bala Ged Sanctuary
+1 Urza's Cave
+1 Expedition Map
+1 Nylea, Keen-Eyed
+1 Voyaging Satyr
+1 Emerald Charm
+1 Scavenging Ooze
+1 Armored Scrapgorger

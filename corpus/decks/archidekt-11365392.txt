@@ -1,0 +1,108 @@
+# Archidekt — Band Camp
+# source: archidekt:11365392
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Wandering Minstrel
+
+Deck:
+1 Discordant Piper
+1 Inspiring Bard
+1 Instruments of War
+1 Merry Bards
+1 Narci, Fable Singer
+1 Talisman of Impulse
+1 Victory Chimes
+1 Zaffai, Thunder Conductor
+1 Talruum Piper
+1 Horn of Plenty
+1 Maestros Theater
+1 The Twelfth Doctor
+1 One-Clown Band
+1 Elven Lyre
+1 Goblin Lyre
+1 Harmonic Prodigy
+1 Citanul Flute
+1 Goblin War Drums
+1 Arcum's Whistle
+1 Clockwork Percussionist
+1 Hair-Strung Koto
+1 Firbolg Flutist
+1 Bone Flute
+1 Didgeridoo
+1 Druid Lyrist
+1 Sizzling Soloist
+1 Drumbellower
+1 Entrancing Lyre
+1 Conch Horn
+1 Gallia of the Endless Dance
+1 Psemilla, Meletian Poet
+1 Fountainport Bell
+1 Siren Song Lyre
+1 Pulse of Llanowar
+1 Rakdos Trumpeter
+1 Thundersong Trumpeter
+1 Springleaf Drum
+1 Totentanz, Swarm Piper
+1 Wandering Troubadour
+1 Insufferable Balladeer
+1 Weaver of Harmony
+1 Towashi Songshaper
+1 The Second Doctor
+1 Guadosalam, Farplane Gateway
+1 Windurst, Federation Center
+1 Eden, Seat of the Sanctum
+1 Insomnia, Crown City
+1 Rabanastre, Royal City
+1 Treno, Dark City
+1 Sharlayan, Nation of Scholars
+1 Jidoor, Aristocratic Capital // Overture
+1 Cabaretti Courtyard
+1 Crossroads Village
+1 Capital City
+1 Castle Ardenvale
+1 Castle Vantress
+1 Castle Embereth
+1 Zanarkand, Ancient Metropolis // Lasting Fayth
+1 Vector, Imperial Capital
+1 The Gold Saucer
+1 Gongaga, Reactor Town
+1 Gohn, Town of Ruin
+1 Clive's Hideaway
+1 Baron, Airship Kingdom
+1 Adventurer's Inn
+1 Plains
+1 Ballroom
+1 Thespian's Stage
+1 Gateway Plaza
+1 The Shire
+1 Junktown
+1 Gavony Township
+1 Inspiring Refrain
+1 Elvish Piper
+1 Ellywick Tumblestrum
+1 Warbreak Trumpeter
+1 Rousing Refrain
+1 Instrument of the Bards
+1 War Cadence
+1 Devout Harpist
+1 Jukai Naturalist
+1 Songcrafter Mage
+1 Angel's Trumpet
+1 Satyr Piper
+1 Raucous Entertainer
+1 Piper of the Swarm
+1 Reki, the History of Kamigawa
+1 Yisan, the Wanderer Bard
+1 Revelsong Horn
+1 Deepwood Drummer
+1 The Grey Havens
+1 Opulent Palace
+1 Quandrix Campus
+1 Diamond City
+1 Port Town
+1 Opal Palace
+1 City of Brass
+1 Oboro, Palace in the Clouds
+1 Rivendell

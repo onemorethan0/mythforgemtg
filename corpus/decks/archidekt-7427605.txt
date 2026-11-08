@@ -1,0 +1,101 @@
+# Archidekt — The Ur-Dragon: Dragon's Descent
+# source: archidekt:7427605
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 The Ur-Dragon
+
+Deck:
+1 Selvala, Heart of the Wilds
+1 Utvara Hellkite
+1 Steam Vents
+1 Cyclonic Rift
+1 Tiamat
+1 Old Gnawbone
+1 Ancient Silver Dragon
+1 Cavern of Souls
+1 Stomping Ground
+1 Sacred Foundry
+1 Smothering Tithe
+1 Blood Crypt
+1 Haven of the Spirit Dragon
+1 City of Brass
+1 Rhystic Study
+1 Deflecting Swat
+2 Island
+1 Twinflame Tyrant
+1 Terror of the Peaks
+1 Command Tower
+2 Forest
+1 Kodama's Reach
+1 Dragonlord Dromoka
+1 Mox Jasper
+1 Summon: Bahamut
+1 Bloomvine Regent // Claim Territory
+2 Plains
+1 Mana Confluence
+1 Sarkhan, Soul Aflame
+1 Prismatic Vista
+1 Urza's Incubator
+1 Chromatic Orrery
+1 Ancient Gold Dragon
+1 The Great Henge
+1 Balefire Dragon
+1 Dragonlord Kolaghan
+1 Dragonspeaker Shaman
+1 Goldspan Dragon
+1 Scalelord Reckoner
+1 Scion of the Ur-Dragon
+1 Scourge of Valkas
+1 Dracogenesis
+1 Teferi's Protection
+1 Chaos Warp
+1 Heroic Intervention
+1 Crux of Fate
+1 Demonic Tutor
+1 Maelstrom of the Spirit Dragon
+1 Birds of Paradise
+1 Mistrise Village
+1 Taurean Mauler
+1 Roaming Throne
+1 Raise the Palisade
+1 Ancient Tomb
+1 Ancient Brass Dragon
+1 Path to Exile
+1 Fanatic of Rhonas
+1 Arcane Denial
+1 Infernal Grasp
+1 Gemstone Caverns
+1 Lightning Greaves
+1 Cultivate
+1 Dragon Tempest
+1 Temur Ascendancy
+1 Jeska's Will
+1 Mana Drain
+1 Miirym, Sentinel Wyrm
+1 Path of Ancestry
+1 Marang River Regent // Coil and Catch
+1 Scavenger Regent // Exude Toxin
+1 Rivaz of the Claw
+1 Chromatic Lantern
+1 Exploration
+1 Return of the Wildspeaker
+1 Starting Town
+1 Multiversal Passage
+1 Hallowed Fountain
+1 Temple Garden
+1 Watery Grave
+1 Breeding Pool
+1 Overgrown Tomb
+2 Swamp
+4 Mountain
+1 Godless Shrine
+1 Sol Ring
+1 Arcane Signet
+1 Galadriel's Dismissal
+1 Bloom Tender
+1 Reflecting Pool
+1 Kindred Discovery
+1 Lathliss, Dragon Queen
+1 Ureni of the Unwritten

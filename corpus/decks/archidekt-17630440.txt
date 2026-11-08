@@ -1,0 +1,107 @@
+# Archidekt — Zurgo and Ojutai Bracket 4 Combo
+# source: archidekt:17630440
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Zurgo and Ojutai
+
+Deck:
+1 Arcane Signet
+1 Grand Abolisher
+1 Scalding Tarn
+1 Ponder
+1 Battlefield Forge
+1 Archaeomancer
+1 Blasphemous Act
+1 Bloodstained Mire
+1 Boros Charm
+1 City of Brass
+1 Command Tower
+1 Consecrated Sphinx
+1 Consult the Star Charts
+1 Peregrine Drake
+1 Dig Through Time
+1 Displacer Kitten
+1 Cyclonic Rift
+1 Eiganjo, Seat of the Empire
+1 Flusterstorm
+1 Exalted Flamer of Tzeentch
+1 Farewell
+1 Flooded Strand
+1 Generous Gift
+1 Ephemerate
+1 Hallowed Fountain
+1 Hullbreaker Horror
+1 Imperial Recruiter
+2 Island
+1 Long-Term Plans
+1 Mana Confluence
+1 Mana Drain
+1 Mystic Remora
+1 Otawara, Soaring City
+1 Pinnacle Monk // Mystic Peak
+1 Plains
+1 Polluted Delta
+1 Preordain
+1 Raugrin Triome
+1 Reliquary Tower
+1 Rhystic Study
+1 Sacred Foundry
+1 Sea of Clouds
+1 Sink into Stupor // Soporific Springs
+1 Smothering Tithe
+1 Sol Ring
+1 Spellseeker
+1 Mystical Tutor
+1 Pact of Negation
+1 Arid Mesa
+1 Misty Rainforest
+1 Marsh Flats
+1 Steam Vents
+1 Talisman of Conviction
+1 Swan Song
+1 Swords to Plowshares
+1 Talisman of Creativity
+1 Tataru Taru
+1 Time Warp
+1 Training Center
+1 Windswept Heath
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Wooded Foothills
+1 Talisman of Progress
+1 Thought Vessel
+1 Teferi, Time Raveler
+1 Temporal Manipulation
+1 Adarkar Wastes
+1 Ancient Tomb
+1 Shivan Reef
+1 Urza's Saga
+1 Eldrazi Displacer
+1 Starting Town
+1 Fellwar Stone
+1 Mana Vault
+1 The One Ring
+1 Silence
+1 Force of Will
+1 Force of Negation
+1 Vivi Ornitier
+1 Enlightened Tutor
+1 Chrome Mox
+1 Molten Duplication
+1 Dualcaster Mage
+1 Twinflame
+1 Stock Up
+1 Shatterskull Smashing // Shatterskull, the Hammer Pass
+1 Rite of Replication
+1 Thundering Falls
+1 Practiced Scrollsmith
+1 Cavern-Hoard Dragon
+1 Cascade Bluffs
+1 Step Through
+1 Parapet Thrasher
+1 Smaug the Magnificent
+1 Goldspan Dragon
+1 Mystic Gate
+1 The Theorist, Jace Beleren
+1 Gleaming Splendor

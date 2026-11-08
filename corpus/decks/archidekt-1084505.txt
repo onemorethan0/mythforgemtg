@@ -1,0 +1,93 @@
+# Archidekt — Mono Blue
+# source: archidekt:1084505
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Kami of the Crescent Moon
+
+Deck:
+1 Brainstorm
+1 Psychosis Crawler
+1 Dictate of Kruphix
+1 Propaganda
+1 Silent Arbiter
+1 Venser's Journal
+1 Well of Ideas
+1 Windfall
+1 Font of Mythos
+1 Whirlwind Denial
+1 Memory Lapse
+1 Island
+1 Island
+1 Island
+1 Mystical Tutor
+1 Teferi's Ageless Insight
+1 Negate
+1 Mana Drain
+1 Wandering Archaic // Explore the Vastlands
+1 Ivory Tower
+1 Geier Reach Sanitarium
+1 Zur's Weirding
+1 Jin-Gitaxias, Core Augur
+1 Teferi, Temporal Pilgrim
+1 Opt
+1 Howling Mine
+1 Desert of the Mindful
+1 Otawara, Soaring City
+1 Arcane Denial
+1 Remote Isle
+1 Lonely Sandbar
+1 Sol Ring
+1 Unwind
+1 Meekstone
+1 Island
+1 Island
+1 Myriad Landscape
+1 As Foretold
+1 Rhystic Study
+1 Gilded Lotus
+1 Frantic Search
+1 Island
+1 Counterspell
+1 Time Warp
+1 Visions of Beyond
+1 Aetherize
+1 Reliquary Tower
+1 Faerie Mastermind
+1 Proft's Eidetic Memory
+1 Arcane Signet
+1 Thought Vessel
+1 Minn, Wily Illusionist
+1 Eluge, the Shoreless Sea
+1 Omniscience
+1 The Water Crystal
+1 Scrawling Crawler
+1 Rewind
+16 Island
+1 Island
+1 Island
+1 High Tide
+1 Jace, Wielder of Mysteries
+1 The Unagi of Kyoshi Island
+1 Disdainful Stroke
+1 Spell Pierce
+1 Evacuation
+1 The Mindskinner
+1 Drown in Dreams
+1 Emrakul's Messenger
+1 Riddlekeeper
+1 Psychic Corrosion
+1 Maddening Cacophony
+1 Homunculus Horde
+1 Detective of the Month
+1 Cyclonic Rift
+1 Triskaidekaphile
+1 Alandra, Sky Dreamer
+1 Coveted Jewel
+1 Terrain Generator
+1 Solemn Simulacrum
+1 Mystic Sanctuary
+1 Mikokoro, Center of the Sea
+1 Blue Sun's Zenith
+1 Phyrexian Metamorph

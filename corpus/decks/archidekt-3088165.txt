@@ -1,0 +1,102 @@
+# Archidekt — [SOS] Otrimi, the Andalite
+# source: archidekt:3088165
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Otrimi, the Ever-Playful
+
+Deck:
+1 Cold-Eyed Selkie
+1 Command Tower
+1 Crystalline Giant
+1 Curie, Emergent Intelligence
+1 Deadly Rollick
+1 Deathcap Glade
+1 Demolition Field
+1 Dimir Aqueduct
+1 Dirge Bat
+1 Double Major
+1 Dreamroot Cascade
+1 Dreamtail Heron
+1 Dryad Arbor
+1 Elusive Tormentor // Insidious Mist
+1 Essence Symbiote
+1 Exotic Orchard
+1 Farseek
+3 Forest
+1 Gemrazer
+1 Glowstone Recluse
+1 Goldvein Hydra
+1 Golgari Rot Farm
+1 Guardian Augmenter
+1 Guildless Commons
+1 Gwenna, Eyes of Gaea
+1 Hedge Maze
+1 Herd Heirloom
+1 Insatiable Hemophage
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+4 Island
+1 Ivy, Gleeful Spellthief
+1 Kotis, the Fangkeeper
+1 Lifecrafter's Bestiary
+1 Llanowar Wastes
+1 Migratory Greathorn
+1 Mindleecher
+1 Morphic Pool
+1 Mythos of Brokkos
+1 Nature's Lore
+1 Not Dead After All
+1 Nowhere to Run
+1 Opulent Palace
+1 Parcelbeast
+1 Path of Ancestry
+1 Plaza of Heroes
+1 Pollywog Symbiote
+1 Pouncing Shoreshark
+1 Profane Command
+1 Rampant Frogantua
+1 Rejuvenating Springs
+1 Return of the Wildspeaker
+1 Rishkar's Expertise
+1 Saiba Cryptomancer
+1 Sawtusk Demolisher
+1 Sea-Dasher Octopus
+1 Search for Tomorrow
+1 Season of Growth
+1 Shipwreck Marsh
+1 Shizo, Death's Storehouse
+1 Simic Growth Chamber
+1 Slip Out the Back
+1 Slippery Bogle
+1 Sol Ring
+1 Souvenir Snatcher
+1 Spelunking
+1 Studious First-Year // Rampant Growth
+2 Swamp
+1 Tawnos, the Toymaker
+1 Three Visits
+1 Toxic Deluge
+1 Trumpeting Gnarr
+1 Tyvar's Stand
+1 Undercity Sewers
+1 Underground Mortuary
+1 Underground River
+1 Undergrowth Stadium
+1 Urborg Scavengers
+1 Vashta Nerada
+1 Vicious Rivalry
+1 Volo, Guide to Monsters
+1 Yavimaya Coast
+1 Zagoth Triome
+1 Abundant Countryside
+1 Archipelagore
+1 Assassin's Trophy
+1 Auspicious Starrix
+1 Awaken the Honored Dead
+1 Beast Whisperer
+1 Bojuka Bog
+1 Boneyard Lurker
+1 Brokkos, Apex of Forever
+1 Cavern Whisperer
+1 Chittering Harvester

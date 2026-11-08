@@ -1,0 +1,101 @@
+# Archidekt — Sauron the Dark Lord
+# source: archidekt:4777929
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Sauron, the Dark Lord
+
+Deck:
+1 Turbulent Wetlands
+1 Turbulent Crater
+1 Haunted Ridge
+1 Bloodstained Mire
+1 Chaos Warp
+1 Counterspell
+1 Blasphemous Act
+1 Barad-dûr
+1 Command Tower
+1 Crumbling Necropolis
+1 Dragonskull Summit
+1 Drowned Catacomb
+1 Smoldering Marsh
+1 Sulfur Falls
+1 Sulfurous Springs
+1 Sunken Hollow
+1 The Black Gate
+1 Fellwar Stone
+1 Sol Ring
+1 Arcane Signet
+1 Mount Doom
+1 Exotic Orchard
+1 Soul's Fire
+1 Frostboil Snarl
+1 Foreboding Ruins
+1 Shivan Reef
+1 Two-Handed Axe // Sweeping Cleave
+1 Shizo, Death's Storehouse
+1 Luxury Suite
+1 Underground River
+1 Chandra's Ignition
+1 Blackcleave Cliffs
+1 Rakdos Signet
+1 Dark Ritual
+1 Feed the Swarm
+1 No Mercy
+1 Morphic Pool
+1 Shipwreck Marsh
+1 Shadowblood Ridge
+1 Archfiend of Ifnir
+1 Orcish Medicine
+1 The One Ring
+1 Ringsight
+1 Irenicus's Vile Duplication
+3 Island
+1 Watery Grave
+1 Reanimate
+1 Maskwood Nexus
+1 Basilisk Collar
+1 Minas Morgul, Dark Fortress
+1 Call of the Ring
+3 Swamp
+1 An Offer You Can't Refuse
+1 Talisman of Indulgence
+1 Talisman of Creativity
+1 Nazgûl
+1 Terror of the Peaks
+1 Swan Song
+1 Mauhúr, Uruk-hai Captain
+1 Warg Rider
+1 Phyrexian Reclamation
+1 Crippling Fear
+1 Herald of Secret Streams
+1 Animate Dead
+1 Changeling Outcast
+1 Stock Up
+1 Terminate
+1 Mistwalker
+1 Toxic Deluge
+1 The Great Goblin
+1 My Precious // Allure of Power
+1 Witch-king of Angmar
+1 Roaming Throne
+1 Phyrexian Metamorph
+1 Marchesa, the Black Rose
+1 Black Market Connections
+1 Phantasmal Image
+3 Mountain
+1 Rite of Replication
+1 Archetype of Imagination
+1 Saruman, the White Hand
+1 Lord of the Nazgûl
+1 In the Darkness Bind Them
+1 Karlach, Fury of Avernus
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl
+1 Nazgûl

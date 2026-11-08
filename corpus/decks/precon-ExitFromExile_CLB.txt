@@ -1,0 +1,89 @@
+# WotC precon — Exit from Exile (CLB, 2022-06-10)
+# source: mtgjson:ExitFromExile_CLB
+# fetched: 2026-11-08
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: 1 Game Changers (Jeska's Will); Bracket 2 allows 0
+# label_source: Wizards places preconstructed Commander decks at Bracket 2
+
+Commander:
+1 Faldorn, Dread Wolf Herald
+
+Deck:
+1 Arasta of the Endless Web
+1 Arcane Signet
+1 Ash Barrens
+1 Aurora Phoenix
+1 Battle Mammoth
+1 Beanstalk Giant // Fertile Footsteps
+1 Beast Within
+1 Blighted Woodland
+1 Bloodbraid Elf
+1 Bonecrusher Giant // Stomp
+1 Castle Embereth
+1 Chaos Wand
+1 Cinder Glade
+1 Command Tower
+1 Cultivate
+1 Delayed Blast Fireball
+1 Demon Bolt
+1 Dire Fleet Daredevil
+1 Dream Pillager
+1 Durnan of the Yawning Portal
+1 Embereth Shieldbreaker // Battle Display
+1 End-Raze Forerunners
+1 Escape to the Wilds
+1 Etali, Primal Storm
+1 Explore
+1 Ezuri's Predation
+12 Forest
+1 Game Trail
+1 Greater Gargadon
+1 Green Slime
+1 Grumgully, the Generous
+1 Gruul Turf
+1 Highland Forest
+1 Hornet Queen
+1 Ignite the Future
+1 Izzet Chemister
+1 Jeska's Will
+1 Journey to the Lost City
+1 Kessig Wolf Run
+1 Kodama's Reach
+1 Laelia, the Blade Reforged
+1 Light Up the Stage
+1 Lovestruck Beast // Heart's Desire
+1 Managorger Hydra
+1 Mizzium Mortars
+1 Mossfire Valley
+1 Mosswort Bridge
+11 Mountain
+1 Myriad Landscape
+1 Nalfeshnee
+1 Natural Reclamation
+1 Nature's Lore
+1 Outpost Siege
+1 Passionate Archaeologist
+1 Primeval Bounty
+1 Raging Ravine
+1 Return of the Wildspeaker
+1 Sakura-Tribe Elder
+1 Sandwurm Convergence
+1 Sarevok's Tome
+1 Search for Tomorrow
+1 Sol Ring
+1 Spinerock Knoll
+1 Stolen Strategy
+1 Sweet-Gum Recluse
+1 Tectonic Giant
+1 Temple of Abandon
+1 Temple of the False God
+1 Terramorph
+1 Three Visits
+1 Tlincalli Hunter // Retrieve Prey
+1 Urabrask the Hidden
+1 Venture Forth
+1 Vivien, Champion of the Wilds
+1 Volcanic Torrent
+1 Warstorm Surge
+1 Wild-Magic Sorcerer
+1 Xenagos, the Reveler

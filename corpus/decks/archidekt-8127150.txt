@@ -1,0 +1,107 @@
+# Archidekt — Boats & H0es
+# source: archidekt:8127150
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Edward Kenway
+
+Deck:
+1 Watery Grave
+1 Mary Read and Anne Bonny
+1 Path of Ancestry
+1 Drowned Catacomb
+1 Back in Town
+1 Kitesail Larcenist
+1 Crumbling Necropolis
+1 Dragonskull Summit
+1 Fell Flagship
+1 Dire Fleet Ravager
+1 Captain Storm, Cosmium Raider
+1 Siren Stormtamer
+1 Corsair Captain
+1 Malcolm, Keen-Eyed Navigator
+1 Fathom Fleet Swordjack
+1 Zephyr Singer
+1 Malcolm, Alluring Scoundrel
+1 Malcolm, the Eyes
+1 Boosted Sloop
+1 Subterranean Schooner
+1 Black Market Connections
+1 Captain of Umbar
+1 Storm Fleet Negotiator
+1 Unexpected Windfall
+1 Spyglass Siren
+1 Departed Deckhand
+1 Dreamcaller Siren
+1 Breeches, Eager Pillager
+1 Gemcutter Buccaneer
+1 The Belligerent
+1 Kitesail Freebooter
+1 Lookout's Dispersal
+1 Terminate
+1 Bedevil
+1 Lunar Insight
+1 Mechanized Production
+1 Haunted Ridge
+1 Capsize
+1 Coastal Piracy
+1 Breeches, Brazen Plunderer
+1 Command Tower
+1 Arcane Signet
+1 Pact of the Serpent
+1 Restless Reef
+1 Fiery Islet
+1 Warkite Marauder
+1 The Indomitable
+1 Francisco, Fowl Marauder
+1 Impulsive Pilferer
+1 Glittering Stockpile
+1 Storm Fleet Sprinter
+1 Shipwreck Marsh
+1 Pirate Peddlers
+1 Zara, Renegade Recruiter
+1 Fathom Fleet Captain
+1 Revel in Riches
+1 Swamp
+1 Island
+1 Harmonized Crescendo
+1 Raise the Palisade
+1 Steam Vents
+1 Shadowblood Ridge
+1 River of Tears
+1 An Offer You Can't Refuse
+1 Blood Crypt
+2 Mountain
+1 Blightstep Pathway // Searstep Pathway
+1 Riverglide Pathway // Lavaglide Pathway
+1 Sol Ring
+1 Admiral Beckett Brass
+1 Three Tree City
+1 Uthros, Titanic Godcore
+1 Cover of Darkness
+1 Sulfur Falls
+1 Riverpyre Verge
+1 Sunken Hollow
+1 Ragavan, Nimble Pilferer
+1 Clearwater Pathway // Murkwater Pathway
+1 Xander's Lounge
+1 Pirated Copy
+1 Training Center
+1 Big Score
+1 Turbulent Springs
+1 Walk the Plank
+1 Pirate's Pillage
+1 Dargo, the Shipwrecker
+1 Sulfurous Springs
+1 Underground River
+1 Ferrous Lake
+1 Kindred Discovery
+1 Gloomlake Verge
+1 Fiery Cannonade
+1 Island
+1 Shivan Reef
+1 Jackdaw
+1 Stormcarved Coast
+1 Kindred Dominance
+1 Glint-Horn Buccaneer

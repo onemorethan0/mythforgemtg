@@ -1,0 +1,96 @@
+# Archidekt — The Best Girls in Strixhaven | Zimone and Dina
+# source: archidekt:4300688
+# fetched: 2026-11-08
+# bracket: 2
+
+Commander:
+1 Zimone and Dina
+
+Deck:
+1 Command Tower
+1 Opulent Palace
+1 Jolrael, Mwonvuli Recluse
+1 Ethereal Investigator
+1 Ezuri's Predation
+1 Golgari Rot Farm
+1 Zulaport Cutthroat
+5 Island
+1 Ghost Town
+1 Hinterland Harbor
+1 Tragic Lesson
+1 Tear Asunder
+1 Brainstorm
+1 Curse of the Restless Dead
+1 Tiller Engine
+1 Beast Within
+1 Assassin's Trophy
+1 Villainous Wealth
+1 Woodland Cemetery
+1 Zagoth Triome
+1 Tireless Provisioner
+1 Gixian Puppeteer
+1 Yarok, the Desecrated
+1 Intruder Alarm
+1 Bojuka Bog
+1 Myriad Landscape
+4 Swamp
+1 Reliquary Tower
+1 Shipwreck Marsh
+1 Retreat to Coralhelm
+1 Sunken Hollow
+1 Drowned Catacomb
+1 Freestrider Lookout
+1 Counterspell
+1 Mortality Spear
+1 Foreboding Landscape
+1 Topiary Stomper
+1 Avenger of Zendikar
+1 Greensleeves, Maro-Sorcerer
+1 Tatyova, Benthic Druid
+1 Rampaging Baloths
+1 Zimone, Quandrix Prodigy
+1 Minn, Wily Illusionist
+1 Meloku the Clouded Mirror
+1 Sakura-Tribe Scout
+1 Quirion Ranger
+1 Eureka Moment
+1 Spelunking
+1 Scute Swarm
+1 Growth Spiral
+1 Detective of the Month
+1 Planar Genesis
+1 Deprive
+1 Psychosis Crawler
+1 Overwhelming Stampede
+1 Homunculus Horde
+1 Springheart Nantuko
+1 Brainsurge
+1 Simic Growth Chamber
+1 Dimir Aqueduct
+1 Iridescent Vinelasher
+1 Emrakul's Messenger
+1 Dreamroot Cascade
+1 Deathcap Glade
+6 Forest
+1 Morphic Pool
+1 Rejuvenating Springs
+1 Undergrowth Stadium
+1 Murkfiend Liege
+1 Mirkwood Bats
+1 Scryb Ranger
+1 Temple of the False God
+1 Bastion of Remembrance
+1 Retreat to Hagra
+1 Kiora's Follower
+1 Pest Infestation
+1 Negate
+1 Blue Sun's Zenith
+1 Aesi, Tyrant of Gyre Strait
+1 Bloodghast
+1 Elfsworn Giant
+1 Baleful Strix
+1 Tireless Tracker
+1 Mischievous Mystic
+1 Wood Elves
+1 Dina, Essence Brewer
+1 Ob Nixilis, the Fallen

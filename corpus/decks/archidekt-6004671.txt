@@ -1,0 +1,107 @@
+# Archidekt — [cEDH] Yuriko no Jutsu *RETIRED*
+# source: archidekt:6004671
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Yuriko, the Tiger's Shadow
+
+Deck:
+1 Watery Grave
+1 Force of Despair
+1 Thousand-Faced Shadow
+1 Scalding Tarn
+1 Verdant Catacombs
+1 Misty Rainforest
+1 Tainted Pact
+1 Opposition Agent
+1 Fell the Profane // Fell Mire
+1 Sink into Stupor // Soporific Springs
+1 Demonic Tutor
+1 Mental Misstep
+1 Mindbreak Trap
+1 Imperial Seal
+1 Flooded Strand
+1 Wonder
+1 Marsh Flats
+1 Command Tower
+1 Mistblade Shinobi
+1 Tetsuko Umezawa, Fugitive
+1 Lim-Dûl's Vault
+1 Underground River
+1 Mothdust Changeling
+1 Skullsnatcher
+1 Nashi, Moon Sage's Scion
+1 Morphic Pool
+1 Contagion
+1 Snow-Covered Island
+1 Wan Shi Tong, Librarian
+1 Silver-Fur Master
+1 Gitaxian Probe
+1 Universal Automaton
+1 Misdirection
+1 Enter the Infinite
+1 Ingenious Prodigy
+1 An Offer You Can't Refuse
+1 Prosperous Thief
+1 Ingenious Infiltrator
+1 Changeling Outcast
+1 Peer into the Abyss
+1 Sakashima's Student
+1 Mox Amber
+1 Orcish Bowmasters
+1 Mystic Remora
+1 Otawara, Soaring City
+1 Prismatic Vista
+1 Vampiric Tutor
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 City of Brass
+1 Island
+1 Sol Ring
+1 Undercity Sewers
+1 Moon-Circuit Hacker
+1 Underground Sea
+1 Gemstone Caverns
+1 Entomb
+1 Boggart Trawler // Boggart Bog
+1 Splinter's Technique
+1 Mockingbird
+1 Rhystic Study
+1 Wingcrafter
+1 Roaming Throne
+1 Ornithopter
+1 Street Wraith
+1 Shizo, Death's Storehouse
+1 Dark Ritual
+1 Brainstorm
+1 Thassa's Oracle
+1 Memnite
+1 Illvoi Galeblade
+1 Bloodstained Mire
+1 Hydroelectric Specimen // Hydroelectric Laboratory
+1 Kaito, Bane of Nightmares
+1 Polluted Delta
+1 Snuff Out
+1 Flusterstorm
+1 Sea Gate Restoration // Sea Gate, Reborn
+1 Temporal Trespass
+1 Flare of Malice
+1 Force of Negation
+1 Submerge
+1 Deadly Rollick
+1 Flare of Denial
+1 Shadow of Mortality
+1 Force of Will
+1 Commandeer
+1 Gush
+1 Dismember
+1 Subtlety
+1 Cursed Totem
+1 Grafdigger's Cage
+1 Chrome Mox
+1 Demonic Consultation
+1 Mana Confluence
+1 Mystical Tutor
+1 Fierce Guardianship
+1 Lotus Petal
+1 Mox Diamond

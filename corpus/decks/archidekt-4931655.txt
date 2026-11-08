@@ -1,0 +1,92 @@
+# Archidekt — Second Doctor Massive draw
+# source: archidekt:4931655
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 The Second Doctor
+1 Vislor Turlough
+
+Deck:
+1 Expedition Map
+1 Viseling
+1 Mindcrank
+1 Dictate of Kruphix
+1 Hengegate Pathway // Mistgate Pathway
+1 Hallowed Fountain
+1 Gwafa Hazid, Profiteer
+1 Seachrome Coast
+1 Sokrates, Athenian Teacher
+1 Willie Lumpkin, Postman
+1 Restricted Office // Lecture Hall
+1 Blind Obedience
+1 God-Pharaoh's Statue
+1 Price of Knowledge
+1 Font of Mythos
+1 Sunken Hollow
+1 Shineshadow Snarl
+1 Loran of the Third Path
+1 Ivory Tower
+1 Vault of Champions
+1 Lavinia, Azorius Renegade
+1 Black Vise
+1 Fascination
+1 Darkslick Shores
+1 Triskaidekaphile
+1 Your Temple Is Under Attack
+1 Fate Unraveler
+1 Kwain, Itinerant Meddler
+1 Propaganda
+1 Anguished Unmaking
+1 Alandra, Sky Dreamer
+1 Parker Luck
+1 The Master of Lake-town
+1 Nightmarish End
+1 Forced Fruition
+1 Evacuation
+1 Despark
+1 Shattered Sanctum
+1 Ob Nixilis, the Hate-Twisted
+1 Queza, Augur of Agonies
+1 Sol Ring
+1 Lobelia Sackville-Baggins
+1 Prairie Stream
+1 Flumph
+1 Drowned Catacomb
+1 Howling Mine
+1 Vanishing Verse
+1 Iron Maiden
+1 Seizan, Perverter of Truth
+1 Folio of Fancies
+1 Temple Bell
+1 Arcane Signet
+1 Kami of the Crescent Moon
+1 Godless Shrine
+1 Ghostly Prison
+1 Concealed Courtyard
+1 Howling Golem
+1 Aetherize
+1 Void Rend
+1 Fracture
+1 Secret Rendezvous
+1 Solemn Simulacrum
+1 Talisman of Dominance
+1 Crawlspace
+1 Zenith Chronicler
+1 Talisman of Hierarchy
+1 Fumigate
+1 Scrawling Crawler
+1 Dark Deal
+1 Vision Skeins
+1 Norn's Decree
+1 Mai, Scornful Striker
+1 Underworld Dreams
+1 Prosperity
+1 Thought Vessel
+8 Island
+7 Plains
+1 Homunculus Horde
+6 Swamp
+1 Bojuka Bog
+1 Dáin, Lord of the Iron Hills
+1 Gleaming Splendor

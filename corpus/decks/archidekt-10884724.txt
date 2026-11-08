@@ -1,0 +1,108 @@
+# Archidekt — DispatchLegendQueue
+# source: archidekt:10884724
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Captain Sisay
+
+Deck:
+1 Luxior, Giada's Gift
+1 Brightglass Gearhulk
+1 Grand Abolisher
+1 Gemstone Caverns
+1 Archivist of Oghma
+1 Gaea's Cradle
+1 Worldly Tutor
+1 Savannah
+1 Boseiju, Who Endures
+1 Esper Sentinel
+1 Lightning Greaves
+1 Finale of Devastation
+1 Eladamri's Call
+1 Elvish Mystic
+1 Swift Reconfiguration
+1 Walking Ballista
+1 Bountiful Promenade
+1 Delighted Halfling
+1 Brushland
+1 Devoted Druid
+1 Command Tower
+1 Skrelv, Defector Mite
+1 Birds of Paradise
+1 Crop Rotation
+1 Sol Ring
+1 Swords to Plowshares
+1 Branchloft Pathway // Boulderloft Pathway
+1 Silence
+1 Enlightened Tutor
+1 Concordant Crossroads
+1 Cavern of Souls
+1 Avacyn's Pilgrim
+1 Thousand-Year Elixir
+1 Windswept Heath
+1 Recruiter of the Guard
+1 Plains
+1 Marvin, Murderous Mimic
+1 Elvish Spirit Guide
+1 Temple Garden
+1 Nature's Claim
+1 Force of Vigor
+1 Kutzil, Malamet Exemplar
+1 Verdant Catacombs
+1 Mana Confluence
+1 Ancient Tomb
+1 Arid Mesa
+1 Misty Rainforest
+1 Eiganjo, Seat of the Empire
+1 City of Brass
+1 Marsh Flats
+1 Wooded Foothills
+1 Mox Amber
+1 Lotus Petal
+1 Veil of Summer
+1 Fyndhorn Elves
+1 Ranger-Captain of Eos
+1 Flooded Strand
+1 Horizon Canopy
+1 Chord of Calling
+1 Sting, the Glinting Dagger
+1 Legolas's Quick Reflexes
+1 Chrome Mox
+1 Mox Diamond
+1 Green Sun's Zenith
+1 Yavimaya, Cradle of Growth
+1 Quirion Ranger
+1 Archdruid's Charm
+1 Touch the Spirit Realm
+1 Summoner's Pact
+1 Eldritch Evolution
+1 Arbor Elf
+1 Galadriel's Dismissal
+1 Agatha's Soul Cauldron
+1 Mana Vault
+1 Tezzeret, Cruel Captain
+1 Forest
+1 Destiny Spinner
+1 Carpet of Flowers
+1 Sylvan Library
+1 Duskwatch Recruiter // Krallenhorde Howler
+1 Razorverge Thicket
+1 Once Upon a Time
+1 Llanowar Elves
+1 Orim's Chant
+1 Abeyance
+1 Survival of the Fittest
+1 Sylvan Safekeeper
+1 Open the Armory
+1 Vizier of Remedies
+1 Voice of Victory
+1 Kenrith's Transformation
+1 Heliod, Sun-Crowned
+1 Mother of Runes
+1 Talon Gates of Madara
+1 Emerald Charm
+1 Formidable Speaker
+1 Heliod's Pilgrim
+1 Wild Growth
+1 Tataru Taru

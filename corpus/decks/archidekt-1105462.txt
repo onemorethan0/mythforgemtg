@@ -1,0 +1,94 @@
+# Archidekt — Solitaire 2021-26, Six Years and Zero Fun Games Later We're Still Here Oh Why God, Why?
+# source: archidekt:1105462
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Mizzix of the Izmagnus
+
+Deck:
+1 Time Spiral
+1 Mind Stone
+1 Frostboil Snarl
+1 Cascade Bluffs
+1 Opt
+1 Brainstorm
+1 Coastal Breach
+1 Drown in Dreams
+1 Commander's Insight
+1 Merchant Scroll
+1 Flusterstorm
+1 Sea Gate Restoration // Sea Gate, Reborn
+6 Island
+1 Karn's Temporal Sundering
+1 Sulfur Falls
+1 Beacon of Tomorrows
+1 Swan Song
+1 Crush of Tentacles
+1 Thought Vessel
+1 Stroke of Genius
+1 Sol Ring
+1 Cyclonic Rift
+1 Gitaxian Probe
+1 Inkmoth Nexus
+1 Time Stretch
+1 Walk the Aeons
+1 Rhystic Study
+1 Mystical Tutor
+1 Memory Lapse
+1 Invert // Invent
+1 Temporal Manipulation
+1 Mystic Retrieval
+1 Fabled Passage
+1 Faithless Looting
+1 Temporal Mastery
+1 Expropriate
+1 Arcane Signet
+1 Fierce Guardianship
+1 Shivan Reef
+1 Izzet Signet
+1 Command Tower
+1 Riverglide Pathway // Lavaglide Pathway
+1 Scalding Tarn
+1 Ancient Tomb
+1 Fellwar Stone
+1 Reliquary Tower
+1 Finale of Revelation
+1 Force of Will
+1 Delay
+1 Blue Sun's Zenith
+1 Misty Rainforest
+1 Wooded Foothills
+1 Flooded Strand
+1 Arid Mesa
+1 Pull from Tomorrow
+1 Pact of Negation
+1 Frantic Search
+1 Steam Vents
+1 Training Center
+1 Enter the Infinite
+1 Arcane Denial
+1 Jeska's Will
+1 Reiterate
+1 Devastation Tide
+1 Whelming Wave
+1 The One Ring
+1 Deflecting Swat
+1 Mizzix's Mastery
+1 Narset's Reversal
+1 Force of Negation
+1 Mana Drain
+1 Capsize
+1 Counterspell
+1 Fabricate
+1 Capture of Jingzhou
+1 Mindbreak Trap
+1 Talisman of Creativity
+8 Island
+1 Time Warp
+1 Tezzeret's Gambit
+3 Mountain
+1 Fiery Islet
+1 Personal Tutor
+1 Misdirection
+1 Nexus of Fate

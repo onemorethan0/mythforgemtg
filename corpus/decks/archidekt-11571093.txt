@@ -1,0 +1,106 @@
+# Archidekt — Ghyrson Starn but pretty(and powerful)
+# source: archidekt:11571093
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Ghyrson Starn, Kelermorph
+
+Deck:
+1 Arcane Signet
+1 Thermo-Alchemist
+1 Thundering Falls
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Blazing Volley
+1 Bloodstained Mire
+1 Brainstorm
+1 Cerulean Wisps
+1 Chrome Mox
+1 Command Tower
+1 Consider
+1 Coruscation Mage
+1 Culmination of Studies
+1 Curiosity
+1 Deflecting Swat
+1 Emergence Zone
+1 End the Festivities
+1 Erebor Flamesmith
+1 Exotic Orchard
+1 Faithless Looting
+1 Fierce Guardianship
+1 Flusterstorm
+1 Force of Will
+1 Frantic Search
+1 Gemstone Caverns
+1 Gitaxian Probe
+1 Gleeful Arsonist
+1 Grapeshot
+1 Imperial Recruiter
+2 Island
+1 Jeska's Will
+1 Kessig Flamebreather
+1 Lava Dart
+1 Lindblum, Industrial Regency // Mage Siege
+1 Lotus Petal
+1 Mana Confluence
+1 Borne Upon a Wind
+1 Mental Misstep
+1 Mystic Remora
+1 Ophidian Eye
+1 Opt
+1 Otawara, Soaring City
+1 Ponder
+1 Polluted Delta
+1 Razorkin Needlehead
+1 Red Elemental Blast
+1 Reflecting Pool
+1 Reliquary Tower
+1 Rite of Flame
+1 Riverpyre Verge
+1 Roaming Throne
+1 Scalding Viper // Steam Clean
+1 Snap
+1 Sol Ring
+1 Storm-Kiln Artist
+1 Sulfur Falls
+1 Swan Song
+1 Tandem Lookout
+1 Veyran, Voice of Duality
+1 Volcanic Island
+1 Rhystic Study
+1 Mox Diamond
+1 Ancient Tomb
+1 Gamble
+1 Mana Vault
+1 Avalanche of Sector 7
+1 Electrostatic Field
+1 Firebrand Archer
+1 Immolation Shaman
+1 Glint-Horn Buccaneer
+1 Phyrexian Metamorph
+1 Vivi Ornitier
+1 Mox Amber
+1 Underworld Breach
+1 The One Ring
+1 Gut Shot
+1 Mystical Tutor
+1 Pyroblast
+1 Fiery Islet
+2 Mountain
+1 Steam Vents
+1 Minamo, School at Water's Edge
+1 Scalding Tarn
+1 Training Center
+1 Seething Song
+1 City of Brass
+1 Intuition
+1 Wheel of Fortune
+1 Urza's Saga
+1 An Offer You Can't Refuse
+1 Mindbreak Trap
+1 Sigil of Sleep
+1 Faerie Mastermind
+1 Drift of Phantasms
+1 Repercussion
+1 Chandra's Incinerator
+1 Brain Freeze

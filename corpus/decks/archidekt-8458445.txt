@@ -1,0 +1,106 @@
+# Archidekt — Flubs, the Fool - Exile cEDH
+# source: archidekt:8458445
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Flubs, the Fool
+
+Deck:
+1 Earthcraft
+1 Scute Swarm
+1 Sensei's Divining Top
+1 Noxious Revival
+1 Stomping Ground
+1 Steam Vents
+1 Command Tower
+1 Ramunap Excavator
+1 Mystical Tutor
+1 Summer Bloom
+1 Phyrexian Walker
+1 Shield Sphere
+1 Crimson Kobolds
+1 Eruth, Tormented Prophet
+1 Mishra's Bauble
+1 Brain Freeze
+1 Tormod's Crypt
+1 Traveling Chocobo
+1 Party Thrasher
+1 Island
+1 Verdant Catacombs
+1 Agate Instigator
+1 Arid Mesa
+1 Mox Diamond
+1 Mox Amber
+1 Finale of Devastation
+1 Thassa's Oracle
+1 Jeska's Will
+2 Mountain
+1 Lion's Eye Diamond
+1 Underworld Breach
+1 Ornithopter
+1 Chord of Calling
+1 Tireless Provisioner
+1 Lotus Cobra
+1 Mox Opal
+1 Crucible of Worlds
+1 Urza's Bauble
+1 Lotus Petal
+1 Azusa, Lost but Seeking
+1 Rograkh, Son of Rohgahh
+1 Scalding Tarn
+1 Exploration
+1 Kobolds of Kher Keep
+1 Wooded Foothills
+1 Field of the Dead
+1 Breeding Pool
+1 Tropical Island
+1 Time of Need
+1 Gemstone Caverns
+1 Flooded Strand
+1 Polluted Delta
+1 Frantic Search
+1 Taiga
+1 Volcanic Island
+1 Windswept Heath
+1 Personal Tutor
+1 Worldly Tutor
+1 Bloodstained Mire
+1 Invasion of Ikoria // Zilortha, Apex of Ikoria
+1 Abundance
+1 Squee, the Immortal
+1 Mana Vault
+1 Wild Cantor
+1 Delighted Halfling
+1 Memnite
+1 Food Chain
+1 Zuran Orb
+1 Cloud of Faeries
+3 Forest
+1 Shifting Woodland
+1 Wild Growth
+1 Utopia Sprawl
+1 Land Grant
+1 Strike It Rich
+1 Nature's Rhythm
+1 Rite of Flame
+1 Gaea's Cradle
+1 Yavimaya, Cradle of Growth
+1 Crookshank Kobolds
+1 Sylvan Tutor
+1 Mystic Sanctuary
+1 Fabled Passage
+1 Lodestone Bauble
+1 Gustha's Scepter
+1 Salvage
+1 Reclaim
+1 Autumn's Veil
+1 Jeweled Amulet
+1 Birgi, God of Storytelling // Harnfel, Horn of Bounty
+1 Tinder Wall
+1 Icetill Explorer
+1 Birds of Paradise
+1 Crop Rotation
+1 Dragon's Rage Channeler
+1 Springleaf Drum
+1 Weftstalker Ardent

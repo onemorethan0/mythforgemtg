@@ -1,0 +1,96 @@
+# Archidekt — Zombie Deck
+# source: archidekt:2491064
+# fetched: 2026-11-08
+# bracket: 5
+
+Commander:
+1 Acererak the Archlich
+
+Deck:
+1 Tendrils of Agony
+1 Imperial Seal
+1 Blood Artist
+1 Agadeem's Awakening // Agadeem, the Undercrypt
+1 Phyrexian Altar
+1 Sensei's Divining Top
+1 Herald's Horn
+1 Undead Warchief
+1 Grim Tutor
+1 Plague Belcher
+1 Demonic Tutor
+1 Urborg, Tomb of Yawgmoth
+1 Diregraf Colossus
+1 Gravecrawler
+1 Diabolic Tutor
+1 Dark Ritual
+1 Sol Ring
+1 Sudden Spoiling
+1 Damnation
+1 Culling the Weak
+1 Phyrexian Tower
+1 Diabolic Intent
+1 Beseech the Mirror
+1 Nykthos, Shrine to Nyx
+1 Entomb
+1 Vampiric Tutor
+1 Ayara, First of Locthwain
+1 Aetherflux Reservoir
+1 Carrion Feeder
+1 Baleful Mastery
+1 Urza's Saga
+1 Bog Initiate
+1 The Mycosynth Gardens
+1 Urza's Incubator
+1 Opposition Agent
+1 Lotus Petal
+1 Heartless Summoning
+1 Crypt Ghast
+1 Bolas's Citadel
+1 Dark Confidant
+1 Praetor's Grasp
+1 Snuff Out
+1 Emergence Zone
+1 Feed the Swarm
+1 Jet Medallion
+1 K'rrik, Son of Yawgmoth
+1 Toxic Deluge
+1 Thoughtseize
+1 Necropotence
+1 Imp's Mischief
+1 Mana Vault
+1 Yawgmoth, Thran Physician
+1 Ashnod's Altar
+1 Lake of the Dead
+1 Carnival of Souls
+7 Snow-Covered Swamp
+1 Defense Grid
+1 Wishclaw Talisman
+1 Bubbling Muck
+1 Mox Amber
+1 Dismember
+1 Vault of Whispers
+1 Doomsday
+1 Relic of Legends
+1 Marsh Flats
+1 Mox Opal
+1 Command Beacon
+1 Cabal Ritual
+1 Gate to Phyrexia
+1 Rain of Filth
+1 Deadly Rollick
+1 Hope of Ghirapur
+1 Ancient Tomb
+1 Warren Soultrader
+1 Verdant Catacombs
+1 Bontu's Monument
+1 Slaughter Pact
+7 Swamp
+1 Semblance Anvil
+1 Charcoal Diamond
+1 Profane Tutor
+1 Flare of Malice
+1 Peat Bog
+1 The Sibsig Ceremony
+1 Withering Boon
+1 Polluted Delta
+1 Bloodstained Mire

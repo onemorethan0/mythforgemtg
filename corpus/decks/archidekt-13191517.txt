@@ -1,0 +1,73 @@
+# Archidekt — [Rude] Shine Bright For Everyone
+# source: archidekt:13191517
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Reno and Rude
+
+Deck:
+1 Agonizing Remorse
+1 Agonizing Syphon
+1 Cruel Revival
+1 Bloodline Necromancer
+1 Bloodborn Scoundrels
+1 Big Game Hunter
+1 Blackmail
+1 Corrupt
+1 Bojuka Brigand
+1 Brink of Madness
+1 Divest
+1 Cabal Surgeon
+1 Blood on the Snow
+1 Cabal Initiate
+1 Keskit, the Flesh Sculptor
+1 Demon's Disciple
+1 Disfigure
+1 Karfell Kennel-Master
+1 Demonic Vigor
+1 Doomed Necromancer
+1 Moor Fiend
+1 Curtains' Call
+1 Phyrexian Vivisector
+1 Hellish Rebuke
+1 Feebleness
+1 Headhunter
+1 Draugr Necromancer
+1 Fallen Angel
+1 Forbidden Ritual
+1 Launch Party
+1 Minions' Murmurs
+1 Traumatic Revelation
+1 Golgari Thug
+1 Laquatus's Champion
+1 Infernal Caretaker
+1 Mark of the Oni
+1 Mind Rot
+1 Magus of the Will
+1 Paupers' Cage
+1 Ruthless Sniper
+1 One with Nothing
+1 Orzhov Euthanist
+1 Nekrataal
+1 Voyager Staff
+1 Sengir Vampire
+1 Weakness
+36 Swamp
+1 Skullport Merchant
+1 Sol Ring
+1 Stain the Mind
+1 Vengeful Warchief
+1 World-Weary
+1 Endrek Sahr, Master Breeder
+1 Weight of the Underworld
+1 Whisper, Blood Liturgist
+1 Nimana Sell-Sword
+1 Victim of Night
+1 Distress
+1 Vow of Torment
+1 Bloodmist Infiltrator
+1 Tormented Hero
+1 Skulduggery
+1 Sink into Takenuma
+1 Skullclamp

@@ -1,0 +1,89 @@
+# Archidekt — Mishra Bracket 1 Flavor
+# source: archidekt:20999354
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Mishra, Claimed by Gix
+
+Deck:
+1 Phyrexian Fleshgorger
+1 Ashnod's Altar
+1 Skullclamp
+1 Buried Ruin
+1 The Cruelty of Gix
+1 Lightning Greaves
+1 Blasphemous Act
+1 Phyrexian Dragon Engine
+1 Drossforge Bridge
+1 Darksteel Citadel
+1 Oni-Cult Anvil
+1 Loyal Apprentice
+1 Wurmcoil Engine
+1 Marionette Master
+1 Goblin Engineer
+1 Gix's Command
+1 Audacious Reshapers
+1 Idol of Oblivion
+1 Visions of Phyrexia
+1 Phyrexian Arena
+1 Deadly Dispute
+1 Arcane Signet
+1 Rakdos Signet
+1 Painful Quandary
+1 Feldon of the Third Path
+1 Portal to Phyrexia
+1 The Brothers' War
+1 Talisman of Indulgence
+1 Brotherhood's End
+1 Terisiare's Devastation
+1 Go for the Throat
+1 Vandalblast
+1 Terminate
+1 Reanimate
+1 Blood Crypt
+1 Command Tower
+1 Smoldering Marsh
+1 Buried Alive
+1 Skitterbeam Battalion
+1 Foundry Inspector
+1 Urabrask's Forge
+1 Summoning Station
+1 Stridehangar Automaton
+1 Gix, Yawgmoth Praetor
+1 Ashnod, Flesh Mechanist
+1 Retrofitter Foundry
+1 Spawning Pit
+1 Hangarback Walker
+1 Elegy Acolyte
+1 Breya's Apprentice
+1 Farid, Enterprising Salvager
+1 Eviscerator's Insight
+1 Arcbound Ravager
+1 Marionette Apprentice
+1 Disfigure
+1 Great Furnace
+1 Vault of Whispers
+1 Bitter Reunion
+1 Gruesome Realization
+1 Tainted Peak
+1 Bojuka Bog
+1 Rakdos Carnarium
+1 Sulfurous Springs
+12 Swamp
+1 Bloodstained Mire
+1 Phyrexian Tower
+9 Mountain
+1 Ankh of Mishra
+1 Mishra's Research Desk
+1 Mishra, Excavation Prodigy
+1 Mishra's Juggernaut
+1 Mishra, Tamer of Mak Fawa
+1 Mishra's Bauble
+1 Mishra's Command
+1 Mishra's Domination
+1 Mishra's Foundry
+1 Mishra's Factory
+1 Mishra's Self-Replicator
+1 Overwhelming Remorse
+1 Weakstone

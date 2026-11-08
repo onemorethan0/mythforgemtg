@@ -1,0 +1,89 @@
+# Archidekt — Krenko, Mob Boss
+# source: archidekt:4980033
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Krenko, Mob Boss
+
+Deck:
+1 Goblin Burrows
+1 Goblin Chieftain
+1 Den of the Bugbear
+1 Rundvelt Hordemaster
+1 Goblin Bombardment
+1 Goblin Matron
+1 Impact Tremors
+1 Rising of the Day
+1 Goblin Trashmaster
+1 Sting, the Glinting Dagger
+1 Goblin King
+1 Goblin Ringleader
+1 Purphoros, God of the Forge
+1 Goblin Chirurgeon
+1 Siege-Gang Commander
+1 Skullclamp
+1 Warren Instigator
+1 Muxus, Goblin Grandee
+1 Goblin Recruiter
+1 Hobgoblin Bandit Lord
+1 Liquimetal Torque
+1 Dark-Dweller Oracle
+1 Gempalm Incinerator
+1 Ruby Medallion
+1 Goblin Lookout
+1 Goblin Bushwhacker
+1 Hanweir Battlements
+1 Shared Animosity
+1 Castle Embereth
+1 Scavenger Grounds
+1 Skirk Prospector
+1 Roar of Resistance
+1 Quest for the Goblin Lord
+1 Kiki-Jiki, Mirror Breaker
+1 Goro-Goro, Disciple of Ryusei
+1 Battle Cry Goblin
+1 Reckless Bushwhacker
+1 Blood Moon
+1 Chaos Warp
+1 Krenko's Command
+1 Krenko, Tin Street Kingpin
+1 Ogre Battledriver
+1 Conspicuous Snoop
+1 Goblin Lackey
+1 Legion Loyalist
+1 Goblin Instigator
+1 Enduring Courage
+1 Pyrokinesis
+1 Command Beacon
+1 Tectonic Edge
+1 War Room
+1 Mutavault
+1 Sardian Avenger
+1 Patchwork Banner
+1 Grenzo, Havoc Raiser
+1 Howlsquad Heavy
+1 Heraldic Banner
+1 Goblin Surprise
+1 You See a Pair of Goblins
+1 Mogg War Marshal
+1 Marvin, Murderous Mimic
+1 General Kreat, the Boltbringer
+1 Everflowing Chalice
+1 Fellwar Stone
+1 Arena of Glory
+1 Dragon Fodder
+1 Red Elemental Blast
+1 Pyroblast
+1 Broadside Bombardiers
+1 Rings of Brighthearth
+1 Pashalik Mons
+20 Mountain
+1 Ramunap Ruins
+1 Mind Stone
+1 Arcane Signet
+1 Goblin Warchief
+1 Sol Ring
+1 Hexing Squelcher
+1 Three Tree City
+1 Hall of the Bandit Lord

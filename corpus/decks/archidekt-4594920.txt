@@ -1,0 +1,89 @@
+# Archidekt — Mangara, Mono-White Good Stuff
+# source: archidekt:4594920
+# fetched: 2026-11-08
+# bracket: 3
+
+Commander:
+1 Mangara, the Diplomat
+
+Deck:
+1 Angel of the Ruins
+1 Aerial Extortionist
+1 Akroma's Will
+1 Austere Command
+1 Clever Concealment
+1 Esper Sentinel
+1 Karmic Guide
+1 Loyal Warhound
+1 Marshal's Anthem
+1 Mask of Memory
+1 Pearl Medallion
+1 Serra Paragon
+1 Charismatic Conqueror
+1 Serra's Emissary
+1 Moonshaker Cavalry
+1 Cathar Commando
+1 Sevinne's Reclamation
+1 Remorseful Cleric
+1 Serra Ascendant
+1 Avacyn, Angel of Hope
+1 Lion Sash
+1 Boromir, Warden of the Tower
+1 Legion's Landing // Adanto, the First Fort
+1 Knight of the White Orchid
+1 Enlightened Tutor
+1 Path to Exile
+1 Sun Titan
+1 Sword of the Animist
+1 Nykthos, Shrine to Nyx
+1 Lost Jitte
+1 Dowsing Dagger // Lost Vale
+1 Angel of Indemnity
+1 Aven Interrupter
+1 Static Prison
+1 Razorgrass Ambush // Razorgrass Field
+1 Sol Ring
+20 Snow-Covered Plains
+1 Flare of Fortitude
+1 Galadriel's Dismissal
+1 Wasteland
+1 Pip-Boy 3000
+1 Deserted Temple
+1 Castle Ardenvale
+1 Emeria, the Sky Ruin
+1 Emeria's Call // Emeria, Shattered Skyclave
+1 Guildless Commons
+1 Karoo
+1 Minas Tirith
+1 Mistveil Plains
+1 Lotus Field
+1 Witch Enchanter // Witch-Blessed Meadow
+1 Swords to Plowshares
+1 Urza's Saga
+1 Avatar's Wrath
+1 Strip Mine
+1 Archivist of Oghma
+1 Land Tax
+1 Skullclamp
+1 Righteous Aura
+1 Thalia, Heretic Cathar
+1 Teferi's Protection
+1 Solitude
+1 Weathered Wayfarer
+1 Recruiter of the Guard
+1 Sword of Hearth and Home
+1 Sword of Feast and Famine
+1 Elspeth, Sun's Champion
+1 Flagstones of Trokair
+1 Scrying Sheets
+1 Celestine, the Living Saint
+1 Mother of Runes
+1 Stoneforge Mystic
+1 Emeria Shepherd
+1 Skyclave Apparition
+1 Unexpectedly Absent
+1 The Queen of Dale
+1 Erode
+1 Prismatic Strands
+1 Final Showdown
+1 Palace Jailer

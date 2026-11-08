@@ -1,0 +1,98 @@
+# Archidekt — [1] Felothar, the Steadfast
+# source: archidekt:11643281
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Felothar the Steadfast
+
+Deck:
+1 Suspicious Bookcase
+1 Towering Viewpoint
+1 Crystal Barricade
+1 Jeskai Barricade
+1 Crashing Drawbridge
+1 Nyx-Fleece Ram
+1 Archers' Parapet
+1 Wall of Tanglecord
+1 Fortified Rampart
+1 Giant Ox
+1 Soulless Jailer
+1 Armored Armadillo
+1 Turtle-Duck
+1 Tasseled Dromedary
+1 God-Pharaoh's Faithful
+1 Ancient Lumberknot
+1 Verdant Catacombs
+1 Sunpetal Grove
+1 Bleachbone Verge
+1 Godless Shrine
+1 Indatha Triome
+1 Marsh Flats
+1 Murmuring Bosk
+1 Sandsteppe Citadel
+1 Command Tower
+1 Overgrown Tomb
+1 Sol Ring
+1 Talisman of Unity
+1 Karn's Sylex
+1 Talisman of Hierarchy
+1 Arcane Signet
+1 Revitalizing Repast // Old-Growth Grove
+1 Assassin's Trophy
+1 Mythos of Nethroi
+1 Path to Exile
+1 Behind the Scenes
+1 Treefolk Harbinger
+1 Talisman of Resilience
+1 Farseek
+1 Bojuka Bog
+1 Tower Defense
+1 Sapling of Colfenor
+1 Stoneskin
+1 Huatli, the Sun's Heart
+1 Disowned Ancestor
+1 Lagonna-Band Trailblazer
+3 Plains
+1 Damn
+1 Canopy Vista
+1 Isolated Chapel
+7 Forest
+3 Swamp
+1 Woodland Cemetery
+1 Slaughter the Strong
+1 Bedrock Tortoise
+1 Arboreal Grazer
+1 Assault Formation
+1 Expel the Interlopers
+1 MacCready, Lamplight Mayor
+1 Hornet Nest
+1 Swords to Plowshares
+1 Treebeard, Gracious Host
+1 Wastewood Verge
+1 Despark
+1 Nature's Lore
+1 Access Tunnel
+1 Faeburrow Elder
+1 Yoked Ox
+1 Lifecrafter's Bestiary
+1 Rampant Growth
+1 Doran, the Siege Tower
+1 Tapestry Warden
+1 Windswept Heath
+1 Heritage Reclamation
+1 Fabled Passage
+1 Shared Roots
+1 Rasaad yn Bashir
+1 The Walls of Ba Sing Se
+1 Great Forest Druid
+1 Doran, Besieged by Time
+1 Betor, Kin to All
+1 Tree of Perdition
+1 Vernal Fen
+1 Eclipsed Steppe
+1 Temple Garden
+1 Hushwood Verge
+1 Ghalta the Immovable
+1 Sinister Gnarlbark
+1 Eland Umbra

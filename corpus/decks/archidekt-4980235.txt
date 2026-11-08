@@ -1,0 +1,84 @@
+# Archidekt — Thalisse Tokens ($50 budget, Bracket 1)
+# source: archidekt:4980235
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Thalisse, Reverent Medium
+
+Deck:
+1 Makindi Stampede // Makindi Mesas
+1 Benevolent Offering
+1 Arcane Signet
+1 Despark
+1 Clarion Spirit
+1 Dire Tactics
+1 General's Enforcer
+1 Harsh Sustenance
+1 Visions of Glory
+1 Whisper, Blood Liturgist
+1 Victimize
+1 Horn of Valhalla // Ysgard's Call
+1 Emeria Angel
+1 Command Tower
+1 Deploy to the Front
+1 Kabira Takedown // Kabira Plateau
+1 Sejiri Shelter // Sejiri Glacier
+1 Nadier's Nightblade
+1 Myojin of Blooming Dawn
+1 Necrotic Hex
+1 Rabble Rousing
+1 Release to Memory
+1 Ruthless Knave
+1 Springleaf Drum
+1 Szat's Will
+1 Talisman of Hierarchy
+1 Intangible Virtue
+1 Orzhov Signet
+1 Lobelia Sackville-Baggins
+1 Prava of the Steel Legion
+1 Mirkwood Bats
+1 Orzhov Basilica
+1 Sanctuary Warden
+1 The Restoration of Eiganjo // Architect of Restoration
+1 Blot Out the Sky
+1 Great Desert Prospector
+1 Vat of Rebirth
+1 Altar of Bhaal // Bone Offering
+1 Marble Diamond
+1 Nomads' Assembly
+1 Dread Return
+1 By Invitation Only
+1 Debt to the Deathless
+1 Storm Herd
+1 Pile On
+1 Blessed Sanctuary
+1 Retreat to Emeria
+1 Search the Premises
+1 Charcoal Diamond
+1 Fellwar Stone
+1 Commander's Sphere
+1 Mind Stone
+1 Orzhov Cluestone
+1 Orzhov Locket
+1 Evolving Wilds
+1 Nightmare Shepherd
+1 Rumor Gatherer
+1 Ogre Slumlord
+1 Overseer of the Damned
+1 Ria Ivor, Bane of Bladehold
+1 Guildless Commons
+1 Obscura Storefront
+1 Myriad Landscape
+1 Barren Moor
+1 Secluded Steppe
+1 Terramorphic Expanse
+11 Swamp
+1 Increasing Devotion
+1 Rootborn Defenses
+1 Shineshadow Snarl
+1 Sol Ring
+1 Teysa Karlov
+1 Vampiric Rites
+1 Welcoming Vampire
+15 Plains

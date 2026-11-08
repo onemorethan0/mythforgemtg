@@ -1,0 +1,78 @@
+# Archidekt — Shelob, Child of Ungoliant
+# source: archidekt:5848176
+# fetched: 2026-11-08
+# bracket: 1
+
+Commander:
+1 Shelob, Child of Ungoliant
+
+Deck:
+1 Mineshaft Spider
+1 Arasta of the Endless Web
+1 Blightwidow
+1 Evolving Wilds
+1 Obelisk Spider
+1 Explore
+1 Curse of Clinging Webs
+1 Harrow
+1 Many Partings
+1 Shamanic Revelation
+1 Night of the Sweets' Revenge
+1 Roar of Challenge
+1 Infectious Bite
+1 Putrefy
+1 Shelob's Ambush
+1 Prey Upon
+1 Pounce
+1 Sol Ring
+1 Mind Stone
+1 Hitchclaw Recluse
+1 Llanowar Greenwidow
+1 Nyx Weaver
+1 Hatchery Spider
+1 Drider
+1 Greta, Sweettooth Scourge
+1 Mirkwood Spider
+1 Netcaster Spider
+1 Rotwidow Pack
+1 Snarespinner
+1 Sporecap Spider
+1 Twin-Silk Spider
+1 Sporeweb Weaver
+1 Watcher in the Web
+1 Graverobber Spider
+1 Bloodline Pretender
+1 Chainweb Aracnir
+1 Brood Weaver
+1 Penumbra Spider
+1 Skyfisher Spider
+1 Spider Spawning
+1 Thriving Moor
+1 Rampant Growth
+1 Kodama's Reach
+1 Command Tower
+1 Arcane Signet
+1 Deadly Recluse
+1 Canopy Spider
+1 Silklash Spider
+1 Shelob, Dread Weaver
+5 Swamp
+1 Copper Longlegs
+1 Golgari Rot Farm
+27 Forest
+1 Path of Ancestry
+1 Fog
+1 Terrifying Presence
+1 Bite Down
+1 Bushwhack
+1 Tamiyo's Safekeeping
+1 Deathreap Ritual
+1 Prizefight
+1 Blood Pact
+1 Titanic Brawl
+1 Harmonize
+1 Epic Confrontation
+1 Horrific Assault
+1 Gaze of Granite
+1 Crippling Fear
+1 Cosmic Hunger

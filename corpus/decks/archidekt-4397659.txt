@@ -1,0 +1,108 @@
+# Archidekt — Damia's Petrification
+# source: archidekt:4397659
+# fetched: 2026-11-08
+# bracket: 4
+
+Commander:
+1 Damia, Sage of Stone
+
+Deck:
+1 Arcane Signet
+1 Otawara, Soaring City
+1 Forest
+1 Bayou
+1 Tropical Island
+1 Force of Vigor
+1 Llanowar Elves
+1 Muddle the Mixture
+1 Snuff Out
+1 Reanimate
+1 Reliquary Tower
+1 Cyclonic Rift
+1 Verdant Catacombs
+1 Demonic Consultation
+1 Opposition Agent
+1 Carpet of Flowers
+1 Counterspell
+1 Bloom Tender
+1 Witherbloom Apprentice
+1 Windfall
+1 Chain of Smog
+1 Orcish Bowmasters
+1 Spellseeker
+1 Propaganda
+1 Sol Ring
+1 Command Tower
+1 Eternal Witness
+1 Island
+1 Delighted Halfling
+1 Mana Drain
+1 Dark Ritual
+1 Thassa's Oracle
+1 Mystic Remora
+1 Psychic Frog
+1 Sensei's Divining Top
+1 Thrasios, Triton Hero
+1 Notion Thief
+1 Glarb, Calamity's Augur
+1 Faerie Mastermind
+1 Demonic Tutor
+1 Tainted Pact
+1 Vampiric Tutor
+1 Swamp
+1 Breeding Pool
+1 Overgrown Tomb
+1 Watery Grave
+1 Rhystic Study
+1 Polluted Delta
+1 Misty Rainforest
+1 Deathrite Shaman
+1 Boseiju, Who Endures
+1 Mana Vault
+1 Abrupt Decay
+1 Morphic Pool
+1 Rejuvenating Springs
+1 Undergrowth Stadium
+1 Birds of Paradise
+1 Underground Sea
+1 Ramunap Excavator
+1 Chrome Mox
+1 Ancient Tomb
+1 Maze of Ith
+1 Cavern of Souls
+1 Command Beacon
+1 Ghost Quarter
+1 Minamo, School at Water's Edge
+1 Reflecting Pool
+1 Fierce Guardianship
+1 Elvish Mystic
+1 Riptide Laboratory
+1 Swan Song
+1 Vexing Bauble
+1 Elves of Deep Shadow
+1 Imperial Seal
+1 Brainstorm
+1 Isochron Scepter
+1 Dramatic Reversal
+1 Lotus Petal
+1 Flooded Grove
+1 Sylvan Library
+1 Force of Negation
+1 Sunken Ruins
+1 Strix Serenade
+1 Toxic Deluge
+1 Kinnan, Bonder Prodigy
+1 Veil of Summer
+1 Worldly Tutor
+1 Fauna Shaman
+1 Fyndhorn Elves
+1 Priest of Titania
+1 Green Sun's Zenith
+1 Meekstone
+1 Ledger Shredder
+1 Snow-Covered Island
+1 Golgari Signet
+1 Mana Confluence
+1 Dryad of the Ilysian Grove
+1 Dimir Signet
+1 Twilight Mire
