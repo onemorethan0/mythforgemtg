@@ -1,6 +1,6 @@
 # Table brackets: a bracket that predicts whether the game will be fun
 
-Status: design proposal, 2026-11-08; section 6 is the build order. D1-D3 are done (see the table).
+Status: design proposal, 2026-11-08; section 6 is the build order. D1-D4 are done (see the table).
 
 ## 1. The problem, in our own data
 
@@ -133,7 +133,7 @@ Each failed check produces a sentence for the pre-game talk.
 | D1 (**done** 2026-11-08) | Fix the mass-land-denial gate both ways: add tap-down and mana-change effects (Winter Orb, Static Orb, Stasis, Blood Moon, Back to Basics); drop the false positives (Pox, Tectonic Hellion, Magosi, planeswalker ultimates) | none; rerun the bracket accuracy check |
 | D2 (**done** 2026-11-08) | Lock list plus a card tagger for denial roles (counter, stax, lock, theft, extra turn, tap-down), checked against a hand-labelled gold set | none |
 | D3 (**done** 2026-11-08) | Denial and Inevitability dials from what the engine already measures (D2 tags, B32 spread, B33 tutors and combos) | D2 |
-| D4 | Pod fit check over four decks, shown in the strength panel and before `/pod` | D3, B35 |
+| D4 (**done** 2026-11-08) | Pod fit check over four decks, shown in the strength panel and before `/pod` | D3, B35 |
 | D5 | Multiplayer reactions in the pod simulator (counter whichever spell threatens most, not only the 1-on-1 opponent's) so measured Denial and the "counters win low brackets" claim can be tested | none; the largest item |
 | D6 | Validate: in a Bracket 2 field, does a High-Denial deck win far more than its seat share (25%)? If so, the plays-up rule is right. | D5, B35 |
 | D7 | Real fun labels: an optional one-tap after-game note in the app ("fun? who ran away with it?"), stored locally, to fit the pod-fit check against real games | D4 |
@@ -191,4 +191,16 @@ Pace Long B1-4 22-35%. **Known limit:** Pace reads Fast for only 20% of Bracket 
 the goldfish under-times cEDH (median B5 deck ends 7% of games by T6; its combo comes first in a
 median 0% -- no mana colour, no fast-mana sequencing, assumption-carrying combos not counted). The
 thresholds stay tied to the game, not fitted to the labels; a faster clock will move the dial.
+
+**D4 result (2026-11-08).** `ratings/pod_fit.py`, engine `POST /pod-fit` (2-6 seats, each analyzed
+like /analyze without resilience, then checked), Forge `POST /api/deck/{id}/pod-fit` (seat 1 is
+the deck on screen; others are library decks or pasted lists) and a "Pod check" panel next to the
+head-to-head test. Four checks, each ok / warn / fail with a pre-game-talk sentence: power (a gap
+of two brackets fails), pace (Fast with Long fails; a lone Fast deck warns), denial (two steps
+above the pod median fails, one warns; an all-High table is a control mirror, not a mismatch),
+inevitability (two High decks at a Bracket 1-3 table fail, one warns; fine at a Bracket 4-5 table).
+Live: three Bracket 3 library decks (Doran, Smaug, Lathril) plus a pasted Oloro Thassa's Oracle
+list read "Likely a lopsided game: 2 mismatches and 2 things to mention" -- power and denial fail,
+pace and predictability warn, each naming Oloro and why. A prediction, not a played game: D5/D6
+test it against the pod simulator.
 

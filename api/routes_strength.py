@@ -1026,3 +1026,67 @@ def duel_deck(job_id: str, req: DuelRequest):
     if "error" in result:
         raise HTTPException(400, result["error"])
     return result
+
+
+# ── Pod check (D4) ────────────────────────────────────────────────────────────
+
+class PodFitSeatIn(BaseModel):
+    job_id: str | None = None                       # a saved library deck, or ...
+    text: str | None = Field(None, max_length=20000)  # ... a pasted decklist
+    name: str | None = Field(None, max_length=120)
+
+
+class PodFitIn(BaseModel):
+    seats: list[PodFitSeatIn] = Field(min_length=1, max_length=5)   # the OTHER decks
+
+
+def _job_name(job: dict) -> str:
+    cmd = job.get("commander") or {}
+    return cmd.get("themed_name") or cmd.get("original_name") or "Deck"
+
+
+def _job_decklist(job_id: str) -> tuple[str, str]:
+    """(name, decklist text) for a saved deck, as /measure sends it to the engine."""
+    _require_job_id(job_id)
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        job = _load_deck_from_disk(job_id)
+        if not job:
+            raise HTTPException(404, f"Deck {job_id} not found")
+    if not job.get("deck"):
+        raise HTTPException(400, "A single-card build can't sit in a pod.")
+    commander, deck = _job_deck_inputs(job)
+    return _job_name(job), _deck_to_lines(commander, deck, _job_partners(job))
+
+
+@router.post("/api/deck/{job_id}/pod-fit")
+def pod_fit(job_id: str, req: PodFitIn):
+    """Will THIS deck and up to five others have a good game together? (D4)
+
+    Each seat is measured by MythGauntlet (bracket + Denial/Pace/Inevitability dials) and the
+    pod is checked for power, pace, denial and predictability mismatches. Seats are saved
+    library decks (`job_id`) or pasted lists (`text`)."""
+    seats = [_job_decklist(job_id)]
+    for i, s in enumerate(req.seats, 2):
+        if s.job_id:
+            seats.append(_job_decklist(s.job_id))
+        elif (s.text or "").strip():
+            seats.append(((s.name or "").strip() or f"Seat {i}", s.text))
+        else:
+            raise HTTPException(400, f"Seat {i} needs a library deck or a pasted list.")
+    try:
+        resp = requests.post(
+            f"{MYTHGAUNTLET_URL}/pod-fit",
+            json={"decks": [{"name": n, "deck": t} for n, t in seats], "runs": 150},
+            # ~10 s a seat (analysis + Spellbook lookup, cached by decklist)
+            timeout=300,
+        )
+    except Exception as e:
+        print(f"  [pod-fit] MythGauntlet strength API unavailable: {e}")
+        raise HTTPException(503, "MythGauntlet strength API isn't reachable on :8020 -- start "
+                                 "Myth Forge via manage.bat or run 'mythgauntlet serve'.")
+    if resp.status_code == 400:
+        raise HTTPException(400, resp.json().get("detail", "pod check failed"))
+    if resp.status_code != 200:
+        raise HTTPException(502, f"strength API returned HTTP {resp.status_code}")
+    return resp.json()

@@ -307,6 +307,19 @@ def test_analyze_reports_which_brackets_the_rules_allow(client):
     assert rules["by_bracket"]["5"]["allowed"]
 
 
+def test_pod_fit_measures_each_seat_and_checks_the_pod(client):
+    body = client.post("/pod-fit", json={"decks": [{"deck": DECK, "name": "Mine"},
+                                                   {"deck": DECK, "name": "Friend"}],
+                                         "runs": 20, "combos": False}).json()
+    assert [s["name"] for s in body["seats"]] == ["Mine", "Friend"]
+    assert set(body["seats"][0]["dials"]) == {"denial", "pace", "inevitability"}
+    fit = body["fit"]
+    assert [c["key"] for c in fit["checks"]] == ["power", "pace", "denial", "inevitability"]
+    assert fit["fun"] is True               # two copies of one deck cannot mismatch
+    assert "not a simulated pod game" in body["note"]
+    assert client.post("/pod-fit", json={"decks": [{"deck": DECK}]}).status_code == 422
+
+
 def test_analyze_reports_the_dials(client):
     body = client.post("/analyze", json={"deck": DECK, "runs": 20}).json()
     dl = body["dials"]

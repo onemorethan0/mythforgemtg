@@ -10,6 +10,7 @@ import DuelPanel from './DuelPanel'
 import MentorChatPanel from './MentorChatPanel'
 import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
+import PodCheckPanel from './PodCheckPanel'
 import OwnershipBadge from './OwnershipBadge'
 import RegenPanel from './RegenPanel'
 import SetBible from './SetBible'
@@ -1062,6 +1063,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               conversation grounded in the pre-swap decklist must not linger on screen
               looking current after the user applies a swap. */}
           <DuelPanel key={`duel-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+          <PodCheckPanel key={`pod-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
           <MentorChatPanel key={`mentor-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
         </div>
       )}

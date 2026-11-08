@@ -244,6 +244,19 @@ class DuelRequest(BaseModel):
     life: int = Field(default=40, ge=1)
 
 
+class PodFitSeat(BaseModel):
+    deck: str
+    name: str = Field(default="deck", max_length=120)
+
+
+class PodFitRequest(BaseModel):
+    """D4: will these decks have a good game together? Two to six seats."""
+    decks: list[PodFitSeat] = Field(min_length=2, max_length=6)
+    runs: int = Field(default=150, ge=20, le=1_000)
+    seed: int = 42
+    combos: bool = True
+
+
 class PodRequest(BaseModel):
     deck: str
     name: str = "deck"
@@ -850,6 +863,48 @@ def create_app(
                  if name != exclude and (bracket is None or label == bracket)]
         what = "corpus decks" if bracket is None else f"Bracket {bracket} corpus decks"
         return seats, f"a field of {len(seats)} {what}"
+
+    @app.post("/pod-fit")
+    def run_pod_fit(req: PodFitRequest) -> dict:
+        """Measure each seat (bracket + the D3 dials) and check the pod (`ratings.pod_fit`).
+
+        Each deck is analyzed as /analyze would, without resilience (the dials don't read it).
+        Predictions from goldfish measurements and card roles -- not a played pod game."""
+        from mythgauntlet.ratings import denial as _denial, dials as _dials, pod_fit as _fit
+        cfg = SimConfig(turns=DEFAULT_ANALYZE_TURNS, runs=req.runs, seed=req.seed)
+        seats_out, seats = [], []
+        for i, seat in enumerate(req.decks):
+            resolved = _resolve_or_400(seat.deck, seat.name or f"deck {i + 1}", db)
+            report, checked = None, False
+            if req.combos:
+                try:
+                    report = spellbook.find_combos(
+                        [(c.name, n) for c, n in resolved.cards],
+                        [c.name for c in resolved.commanders])
+                    checked = True
+                except requests.RequestException:
+                    report = None
+            a = analyze_deck(resolved, cfg, store, combo_report=report, combos_checked=checked,
+                             run_resilience=False)
+            dd = _denial.deck_denial(list(resolved.cards), list(resolved.commanders))
+            dl = _dials.compute(resolved, a, dd, checked)
+            name = seat.name or (resolved.commanders[0].name if resolved.commanders else f"deck {i + 1}")
+            seats.append(_fit.Seat(
+                name, a.bracket.bracket, dl.denial.band, dl.pace.band, dl.inevitability.band,
+                denial_reasons=dl.denial.reasons, inevitability_reasons=dl.inevitability.reasons,
+                pace_reasons=dl.pace.reasons))
+            seats_out.append({
+                "name": name,
+                "commander": " and ".join(c.name for c in resolved.commanders),
+                "bracket": a.bracket.bracket,
+                "bracket_label": a.bracket.label,
+                "dials": dataclasses.asdict(dl),
+                "unresolved": resolved.missing,
+            })
+        fit = _fit.check(seats)
+        return {"seats": seats_out, "fit": dataclasses.asdict(fit),
+                "note": "a prediction from each deck's goldfish measurements and card roles, "
+                        "not a simulated pod game"}
 
     @app.post("/pod")
     def run_pod(req: PodRequest) -> dict:
