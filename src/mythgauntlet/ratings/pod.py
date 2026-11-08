@@ -50,6 +50,12 @@ class PodRating:
     winrate: float   # wins / games
     baseline: float  # 1 / pod_size — an even, no-skill pod
     lift: float      # winrate - baseline (>0 = wins more than its fair share of the table)
+    # B32 table speed. A pod win is "last player standing" (`eliminated`) or a turn-cap
+    # adjudication; only the first is a kill, so the round figures cover those alone. A
+    # round is one turn for every seat (sim/game.py `_to_next_halfturn`).
+    kill_wins: int = 0
+    adjudicated_wins: int = 0
+    win_rounds: tuple[int, ...] = ()
 
 
 def prepare_seat(
@@ -78,6 +84,8 @@ def pod_winrate(
     keys = _seat_keys(pod_size)
     agents = {k: GreedyAgent() for k in keys}
     wins = 0
+    adjudicated = 0
+    win_rounds: list[int] = []
     for g in range(games):
         field = [rng.choice(opponents) for _ in range(pod_size - 1)]
         seat_pos = g % pod_size  # rotate the deck through every seat
@@ -89,12 +97,18 @@ def pod_winrate(
             else:
                 seats.append(field[oi])
                 oi += 1
-        winner, _turns, _reason = play_table(seats, cfg, rng.spawn(g), agents)
+        winner, turns, reason = play_table(seats, cfg, rng.spawn(g), agents)
         if winner == keys[seat_pos]:
             wins += 1
+            if reason == "adjudicated":
+                adjudicated += 1
+            else:
+                win_rounds.append(turns)
     baseline = 1.0 / pod_size
     winrate = wins / games if games else 0.0
     return PodRating(
         games=games, wins=wins, pod_size=pod_size,
         winrate=winrate, baseline=baseline, lift=winrate - baseline,
+        kill_wins=len(win_rounds), adjudicated_wins=adjudicated,
+        win_rounds=tuple(sorted(win_rounds)),
     )

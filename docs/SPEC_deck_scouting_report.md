@@ -346,3 +346,45 @@ all 16 scenarios.
 through its commander; Kaalia 100% combat from cheated-in dragons. Fidelity limit to state in
 the report: tier0 attacks with every commander and does not model token makers, so Krenko reads
 as his own top damage dealer.
+
+### B32 (2026-11-08): kill speed as a range, one player and the table
+
+`ratings/kill_speed.py`. **One player, unopposed** (always on, from the same goldfish runs as
+`avg_kill_turn`): `kill_speed: {games, horizon, killing_games, kill_rate, mean, p25, median, p75,
+by_turn{6,8,10}, text}`. `by_turn` is a share of ALL games, so a deck that often never kills
+cannot look fast; `mean` equals `report.avg_kill_turn` exactly (pinned by a test, and on all 7
+real decks checked). No kill reads "Unopposed: no kill in N games (12-turn horizon).", never a
+turn.
+
+**The table, measured** (opt-in, `/analyze {"table_speed": true}`; ~2 s per 100 four-seat games
+plus a one-off ~7 s field load): pods against corpus decks labelled `# bracket: N` with the
+deck's estimated bracket (or `table_bracket`), so the wording is "against a field of 176
+Bracket 3 corpus decks". Reports wins of games with a 90% Wilson interval against the 25% even
+seat, then the round it wins when it is last player standing (p25/median/p75). Turn-cap
+adjudications are a win but not a kill, so they are counted apart. The goldfish capacity
+(`pod_close_turn`) follows as the "unopposed" line. `/pod` gains `field_bracket` and returns
+the field's name; `PodRating` gains `kill_wins`, `adjudicated_wins` and `win_rounds`. The field
+is a stand-in until B35 curates one deck per archetype.
+
+**Real decks** (300 goldfish games, 100 pods each):
+
+| Deck | Unopposed median kill (middle half) | Killed by T8 | Pod wins (90% interval) | Median winning round |
+|---|---|---|---|---|
+| Doran (B3) | T8.5 (8-9) | 48% | 51% (43-59%) | 14 |
+| Lathril (B3) | T8 (7-9) | 60% | 32% (25-40%) | 14.5 |
+| Kaalia (B5 field) | T9 (8-10) | 43% | 32% (25-40%) | 17 |
+| Krenko (B3) | T10 (9-10) | 14% | 22% (16-30%) | 14 |
+| Syr Gwyn (B3) | T10 (9-11) | 9% | 22% (16-30%) | 21.5 |
+| Urza (B3) | T11 (10-11) | 1% | 20% (14-27%) | 16 |
+| Tymna (B3) | T11 (10-11) | 2% | 14% (9-21%) | 19.5 |
+| Marchesa (B3) | T11 (10-11) | 1% | 11% (7-17%) | 16 |
+
+Goldfish speed and pod results agree on the ends (Doran and Lathril fast and winning, Tymna and
+Marchesa slow and losing) but not in between. Krenko kills unopposed in 99% of games yet wins
+below an even seat: a goldfish has nobody blocking a go-wide board. That gap is why the table
+headline is the measured pod, not capacity. Pod rounds run 4-10 later than the goldfish kill:
+three opponents, blockers and a 120 life total.
+
+Limits: pod reactions are 1v1-only (`ratings/pod.py`), so counterspells and instant-speed
+removal do nothing at the table. The corpus field mixes archetypes in whatever proportion the
+corpus holds, until B35.

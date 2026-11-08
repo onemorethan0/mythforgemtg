@@ -10,6 +10,7 @@ Requires the [serve] extra: pip install -e .[serve]
 from __future__ import annotations
 
 import dataclasses
+import re
 
 import requests
 from fastapi import FastAPI, HTTPException
@@ -61,6 +62,14 @@ class AnalyzeRequest(BaseModel):
         description="also return per-card goldfish evidence (cast/stranded rate, kill-turn "
         "uplift when seen early, 90% interval) from a dedicated 2,000-game pass (~3 s). B30.",
     )
+    table_speed: bool = Field(
+        default=False,
+        description="also measure table speed (B32): four-seat pods against corpus decks "
+        "labelled with the deck's estimated bracket (or `table_bracket`). ~2 s per 100 games, "
+        "plus a one-off field load.",
+    )
+    table_games: int = Field(default=100, ge=4, le=2_000)
+    table_bracket: int | None = Field(default=None, ge=1, le=5)
 
 
 class CardImpactRequest(BaseModel):
@@ -243,6 +252,29 @@ class PodRequest(BaseModel):
     turns: int = Field(default=30, ge=5, le=100)
     life: int = Field(default=40, ge=1)
     players: int = Field(default=4, ge=2, le=6)
+    field_bracket: int | None = Field(
+        default=None, ge=1, le=5,
+        description="seat only corpus decks labelled `# bracket: N`; default the whole corpus",
+    )
+
+
+_BRACKET_LABEL_RE = re.compile(r"^#\s*bracket:\s*([1-5])\s*$", re.IGNORECASE)
+
+
+def _corpus_bracket_label(path) -> int | None:
+    """The deck builder's own `# bracket: N` header line (scripts/bracket_accuracy.py), if any.
+    Headers only: the label sits in the leading `#` block, never among the cards."""
+    try:
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                if not line.startswith("#"):
+                    break
+                m = _BRACKET_LABEL_RE.match(line.strip())
+                if m:
+                    return int(m.group(1))
+    except OSError:
+        return None
+    return None
 
 
 def _card_verdicts_block(v) -> dict | None:
@@ -420,6 +452,21 @@ def create_app(
             combos_checked=combos_checked, run_resilience=req.resilience,
             card_stats_runs=CARD_STATS_RUNS if req.card_stats else 0,
         )
+        table_speed = None
+        if req.table_speed:
+            from mythgauntlet.ratings import kill_speed as _ks
+            from mythgauntlet.ratings.pod import pod_winrate, prepare_seat
+            bracket = req.table_bracket or a.bracket.bracket
+            opponents, field = _pod_field_for(bracket, exclude=req.name)
+            if opponents:
+                pod = pod_winrate(
+                    prepare_seat(resolved.cards, commander, store), opponents,
+                    DuelConfig(max_turns=30, start_life=40), games=req.table_games,
+                    seed=req.seed, pod_size=4,
+                )
+                table_speed = dataclasses.asdict(_ks.table(
+                    pod, field, a.pod.pod_close_turn, a.pod.pod_close_rate))
+                table_speed["field_bracket"] = bracket
         report, coverage, interaction, ceiling = a.report, a.coverage, a.interaction, a.ceiling
         game_changers = a.game_changers
 
@@ -573,6 +620,10 @@ def create_app(
             # How it kills (B34): method shares over killing games, damage split, top damage
             # dealers. Goldfish: "how it kills when nobody stops it".
             "kill_methods": dataclasses.asdict(a.kill_methods) if a.kill_methods else None,
+            # Kill speed (B32): one player as a range, unopposed; the table as a measured pod
+            # (opt-in, `table_speed`), with the goldfish capacity as its "if unopposed" line.
+            "kill_speed": dataclasses.asdict(a.kill_speed) if a.kill_speed else None,
+            "table_speed": table_speed,
         }
 
     @app.post("/card-impact")
@@ -750,14 +801,22 @@ def create_app(
                 _pod_field.append((
                     path.stem,
                     prepare_seat(res.cards, res.commanders[0] if res.commanders else None, store),
+                    _corpus_bracket_label(path),
                 ))
         return _pod_field
+
+    def _pod_field_for(bracket: int | None, exclude: str) -> tuple[list, str]:
+        """The pod field and how to name it: every corpus deck, or those labelled `bracket`."""
+        seats = [seat for name, seat, label in _pod_opponents()
+                 if name != exclude and (bracket is None or label == bracket)]
+        what = "corpus decks" if bracket is None else f"Bracket {bracket} corpus decks"
+        return seats, f"a field of {len(seats)} {what}"
 
     @app.post("/pod")
     def run_pod(req: PodRequest) -> dict:
         from mythgauntlet.ratings.pod import pod_winrate, prepare_seat
         res = _resolve_or_400(req.deck, req.name, db)
-        opponents = [seat for name, seat in _pod_opponents() if name != req.name]
+        opponents, field = _pod_field_for(req.field_bracket, exclude=req.name)
         if not opponents:
             raise HTTPException(status_code=422, detail="no corpus opponents available for a pod")
         deck_seat = prepare_seat(
@@ -772,6 +831,7 @@ def create_app(
             "tier": "T2-multiplayer",
             "name": req.name,
             "opponents": len(opponents),
+            "field": field,
             "rating": dataclasses.asdict(rating),
         }
 

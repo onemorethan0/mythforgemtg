@@ -268,3 +268,40 @@ def test_analyze_card_stats_are_opt_in(client, monkeypatch):
     assert {"name", "drawn", "cast_rate", "stranded_rate", "early_uplift", "uplift_ci",
             "significant", "is_land"} <= first.keys()
     assert analysis.CARD_STATS_RUNS == 2000
+
+
+def _labelled_corpus(tmp_path, monkeypatch):
+    import mythgauntlet.server as server_mod
+    corpus = tmp_path / "corpus"
+    corpus.mkdir()
+    (corpus / "b3.txt").write_text("# bracket: 3\n\n40 Forest\n59 Grizzly Bears\n", encoding="utf-8")
+    (corpus / "b1.txt").write_text("# bracket: 1\n99 Forest\n", encoding="utf-8")
+    (corpus / "none.txt").write_text("99 Forest\n", encoding="utf-8")
+    monkeypatch.setattr(server_mod, "corpus_dir", lambda: corpus)
+
+
+def test_analyze_reports_kill_speed_and_table_speed_is_opt_in(client, tmp_path, monkeypatch):
+    """B32: the one-player range always; the measured pod only when asked, naming its field."""
+    _labelled_corpus(tmp_path, monkeypatch)
+    body = client.post("/analyze", json={"deck": DECK, "runs": 40}).json()
+    ks = body["kill_speed"]
+    assert ks["games"] == 40 and ks["text"].startswith("Unopposed")
+    if ks["killing_games"]:
+        assert ks["mean"] == pytest.approx(body["report"]["avg_kill_turn"])
+    assert body["table_speed"] is None
+    body = client.post("/analyze", json={"deck": DECK, "runs": 40, "table_speed": True,
+                                         "table_bracket": 3, "table_games": 8}).json()
+    ts = body["table_speed"]
+    assert ts["games"] == 8 and ts["field_bracket"] == 3
+    assert ts["field"] == "a field of 1 Bracket 3 corpus decks"
+    assert ts["text"].startswith("Against a field of 1 Bracket 3 corpus decks")
+    assert ts["kill_wins"] + ts["adjudicated_wins"] == ts["wins"]
+
+
+def test_pod_field_bracket_filters_by_label(client, tmp_path, monkeypatch):
+    _labelled_corpus(tmp_path, monkeypatch)
+    every = client.post("/pod", json={"deck": DECK, "games": 4}).json()
+    assert every["opponents"] == 3 and every["field"] == "a field of 3 corpus decks"
+    b1 = client.post("/pod", json={"deck": DECK, "games": 4, "field_bracket": 1}).json()
+    assert b1["opponents"] == 1 and "win_rounds" in b1["rating"]
+    assert client.post("/pod", json={"deck": DECK, "games": 4, "field_bracket": 5}).status_code == 422

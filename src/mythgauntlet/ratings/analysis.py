@@ -74,6 +74,7 @@ class DeckAnalysis:
     card_stats: list | None = None
     card_verdicts: dict | None = None    # B31: strong/weak cards built on card_stats
     kill_methods: object | None = None   # B34: ratings/kill_methods.KillMethods
+    kill_speed: object | None = None     # B32: ratings/kill_speed.KillSpeed (one player, unopposed)
 
 
 def analyze_deck(
@@ -242,6 +243,8 @@ def analyze_deck(
     analysis.insight = build_insight(resolved, analysis)  # deck-specific narrative from the above
     from mythgauntlet.ratings import kill_methods as _km
     analysis.kill_methods = _km.compute(runs, commander.name if commander else None)
+    from mythgauntlet.ratings import kill_speed as _ks
+    analysis.kill_speed = _ks.compute(runs, cfg.turns)
     if card_stats_runs > 0:
         from mythgauntlet.ratings import card_verdicts
         analysis.card_stats = compute_card_stats(resolved, cfg, card_stats_runs)
