@@ -717,9 +717,9 @@ def tool_get_power_profile(ctx: MentorContext, compare_bracket: int | None = Non
     strengths, weaknesses = list(ins.strengths), list(ins.weaknesses)
     if not counters_apply:
         axes["interaction"]["why"] = _without_counterspells(axes["interaction"]["why"])
-        strengths = [_without_counterspells(t) if t.startswith("Deep interaction") else t
+        strengths = [_without_counterspells(t) if t.startswith(("Interaction:", "Deep interaction")) else t
                      for t in strengths]
-        weaknesses = [_without_counterspells(t) if t.startswith("Thin interaction") else t
+        weaknesses = [_without_counterspells(t) if t.startswith(("Interaction:", "Thin interaction")) else t
                       for t in weaknesses]
     # E2: where the deck sits among corpus decks LABELLED with a bracket (the deck builder's
     # own `# bracket: N`) -- the deck's estimated bracket, or the one the player asked about.

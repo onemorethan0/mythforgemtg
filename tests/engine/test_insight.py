@@ -4,6 +4,10 @@ from __future__ import annotations
 
 from types import SimpleNamespace
 
+import pytest
+
+from mythgauntlet.mentor import verdicts
+from mythgauntlet.ratings import reference
 from mythgauntlet.ratings.insight import build_insight
 
 
@@ -114,10 +118,114 @@ def test_ceiling_why_explains_a_zero(make_card, forest):
     assert "no combo" in why and "combat" in why  # the user's example: explains the 0
 
 
-def test_strengths_and_weaknesses_are_grounded(make_card, forest):
-    ins = build_insight(_resolved([(forest, 40), (_creature(make_card, "X"), 20)]), _analysis())
-    assert any("Consistent" in s for s in ins.strengths)   # consistency 85 -> strength (band >= 80)
-    assert any("ceiling" in w.lower() for w in ins.weaknesses)  # ceiling 0 -> weakness
+def _cell(lo, hi, n=100):
+    """A reference cell whose p0..p100 grid runs linearly from lo to hi."""
+    q = [lo + (hi - lo) * k / 20 for k in range(21)]
+    return {"p25": q[5], "p50": q[10], "p75": q[15], "n": n, "none_count": 0, "thin": False, "q": q}
+
+
+_METRICS = ("consistency", "interaction", "ceiling", "resilience", "pod")
+
+
+@pytest.fixture
+def peers(monkeypatch):
+    """Bracket 2 peers spread 0-100 on every metric (rank == score); Bracket 4 peers 60-100."""
+    table = {2: {m: _cell(0, 100) for m in _METRICS}, 4: {m: _cell(60, 100) for m in _METRICS}}
+    monkeypatch.setattr(reference, "BRACKET_AXIS_REFERENCE", table)
+    return table
+
+
+def test_strengths_and_weaknesses_are_ranked_against_bracket_peers(make_card, forest, peers):
+    deck = [(forest, 40), (_creature(make_card, "X"), 20)]
+    ins = build_insight(_resolved(deck), _analysis())   # bracket 2: cons 85, inter 67, ceiling 0
+    assert ("Consistency: consistent (85/100), better than 85% of Bracket 2 decks -- "
+            "commander lands ~T4") \
+        in ins.strengths
+    assert not any(s.startswith("Interaction") for s in ins.strengths + ins.weaknesses)  # rank 67
+    assert any(w.startswith("Ceiling: below all 100 Bracket 2 decks measured (0/100) -- no fast "
+                            "finish") for w in ins.weaknesses)
+    assert "Wipe resilience: resilient (80/100), higher than 80% of Bracket 2 decks" \
+        in ins.strengths
+    # the same deck measured at Bracket 4: consistency 85 is only better than 62.5% of peers
+    a4 = _analysis(bracket=SimpleNamespace(bracket=4, label="Optimized", plays_up=False))
+    ins4 = build_insight(_resolved(deck), a4)
+    assert not any(s.startswith("Consistency") for s in ins4.strengths)
+    # thin among Bracket 4 peers, yet deep on the absolute band -- both true, both said
+    assert ("Interaction: deep (67/100), thinner than 82% of Bracket 4 decks -- 0 answers, "
+            "light on removal/counters") in ins4.weaknesses
+
+
+def test_no_peer_reference_means_no_ranked_lines_but_facts_stay(make_card, forest, monkeypatch):
+    monkeypatch.setattr(reference, "BRACKET_AXIS_REFERENCE", {})
+    a = _analysis(pod=SimpleNamespace(pod_close_turn=None, pod_close_rate=0.0,
+                                      duel_close_rate=0.5, via_finisher=False, score=0.0))
+    ins = build_insight(_resolved([(forest, 40)]), a)
+    assert ins.strengths == []
+    assert ins.weaknesses == ["No multiplayer closing power -- can't pressure a full table"]
+
+
+def test_a_combo_is_named_only_on_a_peer_ranked_ceiling(make_card, forest, peers):
+    combo = SimpleNamespace(has_game_ending_combo=True, fast_kill_turn=5.0, score=90.0)
+    ins = build_insight(_resolved([(forest, 40)]), _analysis(ceiling=combo))
+    assert "Ceiling: higher than 90% of Bracket 2 decks (90/100) -- a real game-ending combo" \
+        in ins.strengths
+    # among Bracket 4 peers a combo deck at 70 is ordinary: no ceiling line at all
+    combo.score = 70.0
+    a4 = _analysis(ceiling=combo, bracket=SimpleNamespace(bracket=4, label="Optimized",
+                                                          plays_up=False))
+    ins4 = build_insight(_resolved([(forest, 40)]), a4)
+    assert not any(t.startswith("Ceiling") for t in ins4.strengths + ins4.weaknesses)
+
+
+def test_a_peer_line_carries_the_absolute_word_and_never_contradicts_it(make_card, forest, peers):
+    """Peer rank and absolute band are both true and are said together: a deck worse than most
+    Bracket 4 peers at 51/100 resilience is still MODERATE on its own, and the line must say so
+    -- the bare peer rank read to the mentor as "vulnerable to board wipes" (bench 2026-11-08)."""
+    a = _analysis(resilience=SimpleNamespace(resilience_score=51.0),
+                  bracket=SimpleNamespace(bracket=4, label="Optimized", plays_up=False))
+    ins = build_insight(_resolved([(forest, 40)]), a)
+    line = next(w for w in ins.weaknesses if w.startswith("Wipe resilience"))
+    assert line.startswith("Wipe resilience: moderate (51/100), ") \
+        and "vulnerable" not in line
+    for verdict_line in ins.strengths + ins.weaknesses:
+        assert not verdict_line.lower().startswith(
+            ("resilient", "consistent engine", "deep interaction", "shaky", "folds"))
+    top = build_insight(_resolved([(forest, 40)]), _analysis())
+    assert {verdicts.strength_topic(s) for s in top.strengths} == {"consistency", "resilience"}
+
+
+def test_absolute_band_is_the_mentors_band():
+    from mythgauntlet.ratings.insight import absolute_band
+    for axis, band in (("resilience", verdicts.resilience_band),
+                       ("consistency", verdicts.consistency_band),
+                       ("interaction", verdicts.interaction_band)):
+        for score in (0, 29.9, 30, 41.9, 42, 44.9, 45, 54.9, 55, 59.9, 60, 79.9, 80, 100):
+            assert absolute_band(axis, score) == band(score), (axis, score)
+
+
+def test_rank_in_grid_interpolates_and_splits_plateaus():
+    grid = [float(5 * k) for k in range(21)]
+    assert reference.rank_in_grid(grid, 42.5) == 42.5
+    assert reference.rank_in_grid(grid, -1) == 0.0 and reference.rank_in_grid(grid, 101) == 100.0
+    flat = [0.0] * 5 + [10.0] * 11 + [20.0] * 5           # p25..p75 all score 10
+    assert reference.rank_in_grid(flat, 10.0) == 50.0     # a tie is the plateau's middle
+    assert reference.rank_in_grid(flat, 15.0) == 77.5
+
+
+def test_percentile_rank_orients_lower_is_better_and_declines_thin_cells():
+    table = {3: {"avg_kill_turn": _cell(7, 11), "pod": dict(_cell(0, 100), thin=True),
+                 "speed": {"p25": 1, "p50": 2, "p75": 3, "n": 50, "thin": False}}}
+    fast = reference.percentile_rank(3, "avg_kill_turn", 8.0, table)
+    assert fast["rank"] == 25.0 and fast["better_than"] == 75.0
+    assert reference.percentile_rank(3, "pod", 50, table) is None       # thin
+    assert reference.percentile_rank(3, "speed", 2, table) is None      # pre-B37 cell, no grid
+    assert reference.percentile_rank(3, "avg_kill_turn", None, table) is None
+
+
+def test_the_baked_reference_carries_a_grid_for_every_cell():
+    for bracket, cells in reference.BRACKET_AXIS_REFERENCE.items():
+        for metric, cell in cells.items():
+            assert len(cell["q"]) == 21 and cell["q"] == sorted(cell["q"]), (bracket, metric)
 
 
 def test_insight_is_deterministic(make_card, forest):

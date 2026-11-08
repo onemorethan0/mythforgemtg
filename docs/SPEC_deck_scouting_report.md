@@ -444,3 +444,43 @@ combined clock.
 **Limits.** Mana colour is not checked, since tier0 tracks a count of available mana. The pilot
 is unopposed. Summoning sickness is taken from Spellbook's own flags; it flags the creatures
 whose tap the combo uses, not ones like Krenko, whose haste comes from Goblin Warchief.
+
+### B37 (2026-11-08): strengths and weaknesses against bracket peers
+
+A strength is the top quarter of the deck's bracket peers, a weakness the bottom quarter, ranked
+with `reference.percentile_rank` on a p0..p100 grid (5-point steps, ties take the plateau's
+middle) baked per bracket and metric by `scripts/bracket_axis_reference.py`. Peers are the
+labelled corpus decks of the bracket the deck is ESTIMATED at -- the same population as the
+mentor's `vs_bracket`. Each line leads with the ABSOLUTE verdict word and then the peer rank:
+"Wipe resilience: moderate (51/100), lower than 77% of Bracket 2 decks". The absolute word comes
+from `insight.absolute_band`, the one definition `mentor.verdicts` grades against (interaction's
+55/30 bands moved there from the mentor). "No multiplayer closing power" stays a measured fact.
+
+**The corpus it ranks against grew first** (`scripts/grow_labelled_corpus.py`, `data/label_audit.py`):
+624 -> 2,122 labelled decks. 178 distinct WotC precon lists from MTGJSON (Wizards places precons
+at Bracket 2) and 1,508 more Archidekt self-labelled decks, most-viewed first. Every label is
+audited against the two gates the rules state objectively: Game Changers (0 at B1-2, 3 at B3) and
+two-card INFINITE combos at B1-2 (Spellbook's "Near-infinite" is finite and does not count). 188
+labels failed and were demoted to `# bracket_claimed:`; 11% of the original 624 broke their own
+bracket's rules, B1 worst. Mass land denial and extra turns are not audited: the engine's `_scan`
+also fires on Pox, Tectonic Hellion, Magosi and planeswalker ultimates (a live-gate defect,
+open).
+
+**Accept: each strength fires for 15-35% of a bracket's decks.** 2,118 decks, by estimated
+bracket: 22 of 25 strength cells in range (old fixed bars: 12 of 25, worst 56%). Misses: B2
+closing power 40%, B2 consistency 34-38% depending on run, B1 closing power 8% and B1 ceiling 14%.
+The cause is that decks the engine RATES Bracket 2 close tables better than decks builders LABEL
+Bracket 2. Ranking against estimated peers puts every cell at 25% by construction; rejected, so
+the peer population stays the one the mentor quotes and does not move with every model refit.
+
+**Mentor bench** (overview question, 9 decks): first wording (peer rank only) 7/9 then 6/9 and
+6/9 -- the bare "worse than 77% of Bracket 2 decks" read to the model as "vulnerable to board
+wipes" at an absolute "moderate". With the absolute word leading: 7/9 and 8/9. Same-day baseline
+on the pre-B37 lines: 8/9 and 7/9, failing on the same two decks. Unchanged.
+
+**Strength model on the grown corpus** (owed since B31/B34). The live model, fitted on 619 decks,
+scores exact 60.1%, within-one 95.2%, B1-3 exact 59.6% on all 2,116; a refit cross-validates at
+60.8% / 96.2% / 59.8% but trades B1 recall 55% -> 38% for B2 55% -> 70%. Not baked. Finding: the
+live model places 50 of the 140 gate-clean precons at Bracket 1 -- it under-rates precon-level
+decks at the 1/2 boundary.
+

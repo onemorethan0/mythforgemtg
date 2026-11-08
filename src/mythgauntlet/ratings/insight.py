@@ -30,6 +30,21 @@ RESILIENT_MIN = 60.0   # keeps >= 60% of its pressure over the 4 turns after a w
 VULNERABLE_MAX = 42.0  # strictly below
 CONSISTENT_MIN = 80.0  # >= 80% of games go smoothly
 SHAKY_MAX = 45.0       # strictly below
+DEEP_INTERACTION_MIN = 55.0
+THIN_INTERACTION_MAX = 30.0   # strictly below
+
+
+def absolute_band(axis: str, score: float) -> str:
+    """The ABSOLUTE verdict word for an axis score -- the one definition `mentor.verdicts`
+    grades replies against. B37's peer-relative lines carry it beside the peer rank, because a
+    peer weakness alone ("worse than 77% of Bracket 2 decks" at 51/100) read to the mentor as
+    "vulnerable to board wipes" when the absolute band is moderate (bench, 2026-11-08)."""
+    hi, lo, words = {
+        "resilience": (RESILIENT_MIN, VULNERABLE_MAX, ("resilient", "vulnerable")),
+        "consistency": (CONSISTENT_MIN, SHAKY_MAX, ("consistent", "shaky")),
+        "interaction": (DEEP_INTERACTION_MIN, THIN_INTERACTION_MAX, ("deep", "thin")),
+    }[axis]
+    return words[0] if score >= hi else words[1] if score < lo else "moderate"
 
 
 @dataclass
@@ -331,44 +346,105 @@ def _resilience_why(res, wipe_turn) -> str:
             f"T{wipe_turn} board wipe {tail}")
 
 
+# B37: a strength is the top quarter of the deck's bracket peers, a weakness the bottom quarter,
+# ranked against the labelled corpus decks of the bracket the deck is ESTIMATED at
+# (`reference.percentile_rank`). Fixed bars read the same for every bracket: "Consistent engine"
+# fired for most Bracket 3 decks and almost no Bracket 5 ones. The leads are topic nouns
+# ("Wipe resilience: ...", what `mentor.verdicts.strength_topic` keys on), then the ABSOLUTE
+# verdict word, then the peer rank: "moderate (51/100), lower than 77% of Bracket 2 decks".
+# Both are true, and the order matters: with the peer rank alone the mentor turned "lower than
+# most peers" into "vulnerable to board wipes" for a moderate deck (bench 2026-11-08, 6/9).
+STRENGTH_RANK = 75.0   # better than >= 75% of peers
+WEAKNESS_RANK = 25.0   # better than < 25% of peers (worse than > 75%)
+
+
+def _peer_phrase(rank: dict, *, better: bool, word: str = "") -> str:
+    """'better than 82% of Bracket 3 decks' / 'worse than 90% ...'. A value outside the whole
+    reference reads 'above/below all N Bracket 3 decks measured' rather than '100%'."""
+    b, n = rank["bracket"], rank["n"]
+    share = rank["better_than"] if better else 100.0 - rank["better_than"]
+    if share >= 99.5:
+        return f"{'above' if better else 'below'} all {n} Bracket {b} decks measured"
+    cmp = word or ("better" if better else "worse")
+    return f"{cmp} than {share:.0f}% of Bracket {b} decks"
+
+
 def _verdict(a, removal, counters, wipes, ramp, tutors, creatures, has_combo):
+    from mythgauntlet.ratings import reference   # a sibling module; kept local like `a`'s duck type
+
     strengths: list[str] = []
     weaknesses: list[str] = []
     r, cons = a.report, a.report.consistency_score
     breadth_max = getattr(a.interaction, "breadth_max", None)  # None: an older report shape
+    peer = getattr(getattr(a, "bracket", None), "bracket", None)
 
-    if cons >= CONSISTENT_MIN:
-        t = _turn(r.avg_commander_turn)
-        strengths.append(f"Consistent engine ({cons:.0f}/100) -- commander lands ~{t}")
-    elif cons < SHAKY_MAX:
-        weaknesses.append(f"Shaky consistency ({cons:.0f}/100) -- only {cons:.0f}% of games "
-                          "hit their land drops, use their mana and land the commander on time")
+    def ranked(metric: str, value: float | None):
+        """(rank, is_strength, is_weakness); rank None = no usable reference -> no line."""
+        if peer is None or value is None:
+            return None, False, False
+        rk = reference.percentile_rank(peer, metric, value)
+        if rk is None:
+            return None, False, False
+        return rk, rk["better_than"] >= STRENGTH_RANK, rk["better_than"] < WEAKNESS_RANK
+
+    rk, good, bad = ranked("consistency", cons)
+    if good:
+        strengths.append(f"Consistency: {absolute_band('consistency', cons)} ({cons:.0f}/100), "
+                         f"{_peer_phrase(rk, better=True)} -- commander lands "
+                         f"~{_turn(r.avg_commander_turn)}")
+    elif bad:
+        weaknesses.append(f"Consistency: {absolute_band('consistency', cons)} ({cons:.0f}/100), "
+                          f"{_peer_phrase(rk, better=False, word='lower')} -- {cons:.0f}% of "
+                          "games hit their land drops, use their mana and land the commander "
+                          "on time")
 
     answers = removal + counters + wipes
-    if a.interaction.score >= 55:
-        strengths.append(f"Deep interaction ({answers} answers, "
-                         f"{a.interaction.breadth}/{breadth_max or 3} types)")
-    elif a.interaction.score < 30:
-        weaknesses.append(f"Thin interaction (only {answers} answers) -- light on removal"
-                          + ("" if breadth_max == 3 else "/counters"))  # 3: no blue
+    rk, good, bad = ranked("interaction", a.interaction.score)
+    if good:
+        strengths.append(f"Interaction: {absolute_band('interaction', a.interaction.score)} "
+                         f"({a.interaction.score:.0f}/100), "
+                         f"{_peer_phrase(rk, better=True, word='deeper')} -- {answers} answers, "
+                         f"{a.interaction.breadth}/{breadth_max or 3} types")
+    elif bad:
+        weaknesses.append(f"Interaction: {absolute_band('interaction', a.interaction.score)} "
+                          f"({a.interaction.score:.0f}/100), "
+                          f"{_peer_phrase(rk, better=False, word='thinner')} -- {answers} "
+                          "answers, light on "
+                          "removal" + ("" if breadth_max == 3 else "/counters"))  # 3: no blue
 
-    if a.ceiling.score >= 45 or has_combo:
-        strengths.append("High ceiling -- a real fast/combo finish" if has_combo
-                         else f"High ceiling ({a.ceiling.score:.0f}/100)")
-    elif a.ceiling.score <= 5:
-        weaknesses.append("Low ceiling -- no fast finish; wins slowly by combat")
+    rk, good, bad = ranked("ceiling", a.ceiling.score)
+    if good:
+        strengths.append(f"Ceiling: {_peer_phrase(rk, better=True, word='higher')} "
+                         f"({a.ceiling.score:.0f}/100)"
+                         + (" -- a real game-ending combo" if has_combo else ""))
+    elif bad:
+        weaknesses.append(f"Ceiling: {_peer_phrase(rk, better=False, word='lower')} "
+                          f"({a.ceiling.score:.0f}/100)"
+                          + (" -- no fast finish; wins slowly by combat"
+                             if a.ceiling.score <= 5 else ""))
 
-    if a.resilience is not None and a.resilience.resilience_score >= RESILIENT_MIN:
-        strengths.append(f"Resilient to wipes ({a.resilience.resilience_score:.0f}/100)")
-    elif a.resilience is not None and a.resilience.resilience_score < VULNERABLE_MAX:
-        weaknesses.append(f"Folds to board wipes ({a.resilience.resilience_score:.0f}/100)")
+    if a.resilience is not None:
+        score = a.resilience.resilience_score
+        rk, good, bad = ranked("resilience", score)
+        if good:
+            strengths.append(f"Wipe resilience: {absolute_band('resilience', score)} "
+                             f"({score:.0f}/100), {_peer_phrase(rk, better=True, word='higher')}")
+        elif bad:
+            weaknesses.append(f"Wipe resilience: {absolute_band('resilience', score)} "
+                              f"({score:.0f}/100), {_peer_phrase(rk, better=False, word='lower')}")
 
-    if a.pod.pod_close_turn is None:
+    if a.pod.pod_close_turn is None:   # a measured fact, not a ranking
         weaknesses.append("No multiplayer closing power -- can't pressure a full table")
-    elif a.pod.score >= 55:
-        strengths.append(f"Strong multiplayer closing power ({a.pod.score:.0f}/100)")
+    else:
+        rk, good, bad = ranked("pod", a.pod.score)
+        if good:
+            strengths.append(f"Multiplayer closing power: {_peer_phrase(rk, better=True)} "
+                             f"({a.pod.score:.0f}/100)")
+        elif bad:
+            weaknesses.append(f"Multiplayer closing power: {_peer_phrase(rk, better=False)} "
+                              f"({a.pod.score:.0f}/100)")
 
     if ramp >= 12 and creatures < 20 and not has_combo:
         weaknesses.append("Lots of ramp but few payoffs -- may ramp into nothing")
 
-    return strengths[:4], weaknesses[:4]
+    return strengths, weaknesses   # at most five axes each, plus the ramp line

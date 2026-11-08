@@ -22,7 +22,8 @@ Thresholds mirror `ratings/insight.py`'s own strength/weakness cut-offs so the p
 engine itself writes and the verdicts derived here cannot disagree. Resilience and
 consistency are IMPORTED from there (re-cut 2026-10-18 with the models: resilience >= 60
 "Resilient to wipes", < 42 "Folds to board wipes"; consistency >= 80 / < 45, each ~ the top
-third / bottom tenth of the corpus); interaction >= 55 / < 30 is still mirrored by value.
+third / bottom tenth of the corpus); interaction >= 55 / < 30 too (moved there for B37, whose
+peer-relative lines quote the absolute word via `insight.absolute_band`).
 """
 
 from __future__ import annotations
@@ -31,8 +32,10 @@ import re
 
 from mythgauntlet.ratings.insight import (  # noqa: F401 -- re-exported band constants
     CONSISTENT_MIN,
+    DEEP_INTERACTION_MIN,
     RESILIENT_MIN,
     SHAKY_MAX,
+    THIN_INTERACTION_MAX,
     VULNERABLE_MAX,
 )
 
@@ -42,8 +45,6 @@ FAST_KILL_TURN = 6.0     # goldfish kill at or before this turn: a fast clock
 SLOW_KILL_TURN = 9.0     # after this turn: a slow clock
 MIN_KILL_RATE = 0.2      # below this share of games killing at all: no reliable clock
 
-DEEP_INTERACTION_MIN = 55.0
-THIN_INTERACTION_MAX = 30.0
 
 
 def resilience_band(score: float | None) -> str:
@@ -264,9 +265,10 @@ ROUTE_PHRASES: dict[str, re.Pattern] = {
     "control": re.compile(r"\b(?:answers?|counter\w*|grind\w*|control\w*|removal)\b", re.IGNORECASE),
 }
 
-# `insight.strengths` strings begin with a fixed lead ("Consistent engine ...", "Resilient
-# to wipes ...", "Deep interaction ...", "High ceiling ...", "Strong multiplayer closing
-# power ..."). The topic of each -> a regex a reply must hit to count as "mentions it".
+# `insight.strengths` strings begin with a fixed lead ("Consistency: ...", "Wipe resilience:
+# ...", "Interaction: ...", "Ceiling: ...", "Multiplayer closing power: ..."; before B37
+# "Consistent engine", "Resilient to wipes", ...). The topic of each -> a regex a reply must
+# hit to count as "mentions it".
 STRENGTH_TOPICS: dict[str, re.Pattern] = {
     "consistency": re.compile(r"\b(?:consisten\w*|reliab\w*|smooth\w*|commander (?:lands|online))\b", re.IGNORECASE),
     "resilience": re.compile(r"\b(?:resilien\w*|wipes?|sweepers?|wraths?)\b", re.IGNORECASE),
@@ -275,6 +277,13 @@ STRENGTH_TOPICS: dict[str, re.Pattern] = {
     "pod": re.compile(r"\b(?:multiplayer|pod|table|closing power)\b", re.IGNORECASE),
 }
 _STRENGTH_LEADS: tuple[tuple[str, str], ...] = (
+    # B37 peer-relative leads ("Consistency: better than 82% of Bracket 3 decks ...")
+    ("consistency", "consistency"),
+    ("wipe resilience", "resilience"),
+    ("interaction", "interaction"),
+    ("ceiling", "ceiling"),
+    ("multiplayer closing power", "pod"),
+    # pre-B37 leads (cached analyses, older engines)
     ("consistent engine", "consistency"),
     ("resilient to wipes", "resilience"),
     ("deep interaction", "interaction"),

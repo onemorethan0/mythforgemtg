@@ -52,6 +52,9 @@ def compute_row(resolved, cfg, store):
     metrics["table_feel"] = round(float(tf.score), 4) if tf is not None and tf.available else None
     metrics["avg_kill_turn"] = round(float(a.report.avg_kill_turn), 4) if a.report.avg_kill_turn is not None else None
     metrics["avg_commander_turn"] = round(float(a.report.avg_commander_turn), 4) if a.report.avg_commander_turn is not None else None
+    # not aggregated: what the B37 acceptance check (scripts/peer_verdict_rates.py) ranks against
+    metrics["est_bracket"] = int(a.bracket.bracket)
+    metrics["pod_close_turn"] = a.pod.pod_close_turn
     return metrics
 
 def load_cache(path: Path) -> dict[tuple[str, int], dict]:
@@ -115,7 +118,9 @@ def aggregate(rows: list[dict]) -> dict[int, dict[str, dict]]:
                 "p75": p75,
                 "n": n,
                 "none_count": none_count,
-                "thin": thin
+                "thin": thin,
+                # B37: p0, p5, ..., p100 -- what `reference.percentile_rank` reads
+                "q": [percentile(sorted(values), k / 20) for k in range(21)] if n > 0 else None,
             }
     return result
 
