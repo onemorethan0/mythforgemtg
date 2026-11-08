@@ -1,6 +1,8 @@
 """Bracket estimate: the official gate logic (offline, synthetic decks)."""
 
-from mythgauntlet.ratings.bracket import estimate_bracket
+import pytest
+
+from mythgauntlet.ratings.bracket import _scan, estimate_bracket
 
 
 def _gc(make_card, name):
@@ -364,3 +366,89 @@ def test_an_unverified_combo_count_is_not_reported_as_unchecked(forest, bear):
     quiet = [r for r in silent.reasons if r.startswith("note:")]
     assert quiet and "not checked" in quiet[0], "no count -> the plain note is still right"
     assert "DECLARED" not in quiet[0]
+
+
+# --- D1: the official mass-land-denial definition, both halves (real oracle text) ---------
+
+_KEEP_TAPPED_OR_REMAP = [
+    ("Winter Orb", "As long as this artifact is untapped, players can't untap more than one land "
+                   "during their untap steps."),
+    ("Static Orb", "As long as this artifact is untapped, players can't untap more than two "
+                   "permanents during their untap steps."),
+    ("Winter Moon", "Players can't untap more than one nonbasic land during their untap steps."),
+    ("Stasis", "Players skip their untap steps.\nAt the beginning of your upkeep, sacrifice this "
+               "enchantment unless you pay {U}."),
+    ("Rising Waters", "Lands don't untap during their controllers' untap steps.\nAt the beginning "
+                      "of each player's upkeep, that player untaps a land they control."),
+    ("Back to Basics", "Nonbasic lands don't untap during their controllers' untap steps."),
+    ("Blood Moon", "Nonbasic lands are Mountains."),
+    ("Harbinger of the Seas", "Nonbasic lands are Islands."),
+    ("Contamination", "At the beginning of your upkeep, sacrifice this enchantment unless you "
+                      "sacrifice a creature.\nIf a land is tapped for mana, it produces {B} "
+                      "instead of any other type and amount."),
+]
+
+_NOT_LAND_DENIAL = [
+    ("Damping Field", "Players can't untap more than one artifact during their untap steps."),
+    ("Smoke", "Players can't untap more than one creature during their untap steps."),
+    ("Pox", "Each player loses a third of their life, then discards a third of the cards in "
+            "their hand, then sacrifices a third of the creatures they control of their choice, "
+            "then sacrifices a third of the lands they control of their choice. Round up each time."),
+    ("Ajani Vengeant", "+1: Target permanent doesn't untap during its controller's next untap "
+                       "step.\n−2: Ajani deals 3 damage to any target and you gain 3 life.\n"
+                       "−7: Destroy all lands target player controls."),
+    ("Frozen Solid", "Enchant creature\nEnchanted creature doesn't untap during its controller's "
+                     "untap step."),
+    ("Celestial Dawn", "Lands you control are Plains.\nNonland permanents you control are white."),
+]
+
+
+@pytest.mark.parametrize("name,text", _KEEP_TAPPED_OR_REMAP)
+def test_keeping_lands_tapped_or_changing_their_mana_is_mass_land_denial(make_card, name, text):
+    """Wizards: "...keep lands tapped, or change what mana is produced by four or more lands per
+    player" -- Winter Orb and Blood Moon are the named examples. The gate read only the
+    destroy/sacrifice half until 2026-11-08."""
+    card = make_card(name, mana_cost="{2}", type_line="Enchantment", oracle_text=text)
+    assert _scan([(card, 1)]) == (0, 1), name
+
+
+@pytest.mark.parametrize("name,text", _NOT_LAND_DENIAL)
+def test_not_land_denial(make_card, name, text):
+    """Artifact/creature locks, a share of lands (Pox), a planeswalker ultimate, one enchanted
+    permanent and remapping your OWN lands are not mass land denial."""
+    card = make_card(name, mana_cost="{2}", type_line="Enchantment", oracle_text=text)
+    assert _scan([(card, 1)])[1] == 0, name
+
+
+@pytest.mark.parametrize("name,text", [
+    ("Teferi, Timebender", "+2: Untap up to one target artifact or creature.\n−3: You gain 2 "
+                           "life and draw two cards.\n−9: Take an extra turn after this one."),
+    ("Ichormoon Gauntlet", 'Planeswalkers you control have "[0]: Proliferate" and "[−12]: Take '
+                           'an extra turn after this one."'),
+    ("Magosi, the Waterveil", "This land enters tapped.\n{T}: Add {U}.\n{U}, {T}: Put an eon counter "
+                              "on this land. Skip your next turn.\n{T}, Remove an eon counter from "
+                              "this land and return it to its owner's hand: Take an extra turn "
+                              "after this one."),
+])
+def test_ultimates_and_turn_shifts_are_not_extra_turn_cards(make_card, name, text):
+    card = make_card(name, mana_cost="{3}", type_line="Legendary Planeswalker", oracle_text=text)
+    assert _scan([(card, 1)])[0] == 0, name
+
+
+def test_a_real_extra_turn_spell_and_a_small_loyalty_cost_still_count(make_card):
+    warp = make_card("Time Warp", mana_cost="{3}{U}{U}", type_line="Sorcery",
+                     oracle_text="Target player takes an extra turn after this one.")
+    small = make_card("Small Walker", mana_cost="{3}", type_line="Planeswalker",
+                      oracle_text="−3: Take an extra turn after this one.")
+    assert _scan([(warp, 1), (small, 1)])[0] == 2
+
+
+def test_forge_and_engine_gate_patterns_stay_identical():
+    """Forge cannot import the engine (separate process), so the block is duplicated on purpose."""
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[2]
+
+    def block(p):
+        s = p.read_text(encoding="utf-8")
+        return s[s.index("_EXTRA_TURN_RE = re.compile("):s.index("def _is_extra_turn")]
+    assert block(root / "bracket.py") == block(root / "src/mythgauntlet/ratings/bracket.py")

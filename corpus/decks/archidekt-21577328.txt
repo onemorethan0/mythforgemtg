@@ -2,7 +2,7 @@
 # source: archidekt:21577328
 # fetched: 2026-11-08
 # bracket_claimed: 1
-# label_audit: fails the official Bracket 1 gates: 7 Game Changers (Ad Nauseam, Crop Rotation, Cyclonic Rift, Field of the Dead, Force of Will...); Bracket 1 allows 0
+# label_audit: fails the official Bracket 1 gates: 7 Game Changers (Ad Nauseam, Crop Rotation, Cyclonic Rift, Field of the Dead, Force of Will...); Bracket 1 allows 0; mass land denial (Armageddon); Bracket 1 allows none
 
 Commander:
 1 The Wandering Minstrel

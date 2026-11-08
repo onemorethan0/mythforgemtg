@@ -2,7 +2,7 @@
 # source: archidekt:6070190
 # fetched: 2026-11-08
 # bracket_claimed: 1
-# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Gamble, Jeska's Will); Bracket 1 allows 0
+# label_audit: fails the official Bracket 1 gates: 2 Game Changers (Gamble, Jeska's Will); Bracket 1 allows 0; mass land denial (Blood Moon, Magus of the Moon); Bracket 1 allows none
 
 Commander:
 1 Norin the Wary

@@ -18,8 +18,10 @@
       "file": "archidekt-10039963.txt",
       "name": "The End of the World as We Know it - Terra Barren Glory",
       "source": "archidekt:10039963",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "mass land denial (Decree of Annihilation, Obliterate); Bracket 1 allows none"
     },
     {
       "file": "archidekt-10041176.txt",
@@ -130,8 +132,10 @@
       "file": "archidekt-10278271.txt",
       "name": "T5 Ragtime Gals",
       "source": "archidekt:10278271",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "mass land denial (Blood Moon); Bracket 1 allows none"
     },
     {
       "file": "archidekt-10284185.txt",
@@ -230,8 +234,10 @@
       "file": "archidekt-10466666.txt",
       "name": "Exploring the 7 Seas",
       "source": "archidekt:10466666",
-      "bracket": 3,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 3,
+      "label_audit": "4 Game Changers (Ancient Tomb, Cyclonic Rift, Fierce Guardianship, Rhystic Study); Bracket 3 allows 3; mass land denial (Harbinger of the Seas); Bracket 3 allows none"
     },
     {
       "file": "archidekt-10472506.txt",
@@ -2816,8 +2822,10 @@
       "file": "archidekt-14405509.txt",
       "name": "World Shaper Precon Upgrade",
       "source": "archidekt:14405509",
-      "bracket": 2,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 2,
+      "label_audit": "two-card infinite combo The Gitrog Monster + Dakmor Salvage; Bracket 2 allows none; mass land denial (Death Cloud); Bracket 2 allows none"
     },
     {
       "file": "archidekt-14411748.txt",
@@ -3026,8 +3034,10 @@
       "file": "archidekt-14830575.txt",
       "name": "Bears With Swords",
       "source": "archidekt:14830575",
-      "bracket": 3,
-      "fetched": "2026-08-26"
+      "bracket": null,
+      "fetched": "2026-08-26",
+      "bracket_claimed": 3,
+      "label_audit": "mass land denial (Magus of the Moon); Bracket 3 allows none"
     },
     {
       "file": "archidekt-14848117.txt",
@@ -3443,8 +3453,10 @@
       "file": "archidekt-15535139.txt",
       "name": "\"The most fun commander deck ever\"",
       "source": "archidekt:15535139",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "two-card infinite combo Hullbreaker Horror + Sol Ring; Bracket 1 allows none; mass land denial (Bend or Break, Rising Waters, Sunder, Winter Moon, Winter Orb); Bracket 1 allows none"
     },
     {
       "file": "archidekt-15538549.txt",
@@ -5086,8 +5098,10 @@
       "file": "archidekt-19357375.txt",
       "name": "\"I don't get it...\"",
       "source": "archidekt:19357375",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "2 Game Changers (Orcish Bowmasters, Vampiric Tutor); Bracket 1 allows 0; mass land denial (Contamination, Magus of the Moon, Static Orb, Winter Orb); Bracket 1 allows none"
     },
     {
       "file": "archidekt-19393471.txt",
@@ -5746,8 +5760,10 @@
       "file": "archidekt-21577328.txt",
       "name": "Yoshi-P's Hometown",
       "source": "archidekt:21577328",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "7 Game Changers (Ad Nauseam, Crop Rotation, Cyclonic Rift, Field of the Dead, Force of Will...); Bracket 1 allows 0; mass land denial (Armageddon); Bracket 1 allows none"
     },
     {
       "file": "archidekt-21588325.txt",
@@ -5774,8 +5790,10 @@
       "file": "archidekt-21646822.txt",
       "name": "The Deck Stands Alone",
       "source": "archidekt:21646822",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "5 Game Changers (Demonic Tutor, Enlightened Tutor, Farewell, Glacial Chasm, Vampiric Tutor); Bracket 1 allows 0; mass land denial (Armageddon); Bracket 1 allows none"
     },
     {
       "file": "archidekt-21648920.txt",
@@ -8453,7 +8471,7 @@
       "fetched": "2026-08-26",
       "bracket": null,
       "bracket_claimed": 1,
-      "label_audit": "7 Game Changers (Demonic Tutor, Gaea's Cradle, Mana Vault, Mishra's Workshop, Mox Diamond...); Bracket 1 allows 0"
+      "label_audit": "7 Game Changers (Demonic Tutor, Gaea's Cradle, Mana Vault, Mishra's Workshop, Mox Diamond...); Bracket 1 allows 0; mass land denial (Armageddon, Stasis, Winter Orb); Bracket 1 allows none"
     },
     {
       "file": "archidekt-25217253.txt",
@@ -9297,8 +9315,10 @@
       "file": "archidekt-25767324.txt",
       "name": "Skinch Gat Foom",
       "source": "archidekt:25767324",
-      "bracket": 1,
-      "fetched": "2026-08-26"
+      "bracket": null,
+      "fetched": "2026-08-26",
+      "bracket_claimed": 1,
+      "label_audit": "mass land denial (Blood Moon); Bracket 1 allows none"
     },
     {
       "file": "archidekt-25767654.txt",
@@ -10746,8 +10766,10 @@
       "file": "archidekt-2646986.txt",
       "name": "Meteor Tribal",
       "source": "archidekt:2646986",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "mass land denial (From the Ashes); Bracket 1 allows none"
     },
     {
       "file": "archidekt-26473313.txt",
@@ -14512,8 +14534,10 @@
       "file": "archidekt-5007344.txt",
       "name": "The Dead of Winter",
       "source": "archidekt:5007344",
-      "bracket": 1,
-      "fetched": "2026-11-08"
+      "bracket": null,
+      "fetched": "2026-11-08",
+      "bracket_claimed": 1,
+      "label_audit": "mass land denial (Winter Moon); Bracket 1 allows none"
     },
     {
       "file": "archidekt-5009594.txt",
@@ -15829,7 +15853,7 @@
       "bracket": null,
       "fetched": "2026-11-08",
       "bracket_claimed": 1,
-      "label_audit": "2 Game Changers (Gamble, Jeska's Will); Bracket 1 allows 0"
+      "label_audit": "2 Game Changers (Gamble, Jeska's Will); Bracket 1 allows 0; mass land denial (Blood Moon, Magus of the Moon); Bracket 1 allows none"
     },
     {
       "file": "archidekt-6071132.txt",
@@ -16195,7 +16219,7 @@
       "bracket": null,
       "fetched": "2026-11-08",
       "bracket_claimed": 1,
-      "label_audit": "two-card infinite combo Seeker of Skybreak + Illusionist's Bracers; Bracket 1 allows none"
+      "label_audit": "two-card infinite combo Seeker of Skybreak + Illusionist's Bracers; Bracket 1 allows none; mass land denial (Bend or Break, Decree of Annihilation, Devastation, Impending Disaster, Keldon Firebombers, Myojin of Infinite Rage, Ruination, Tectonic Break, Thoughts of Ruin, Winter Orb); Bracket 1 allows none"
     },
     {
       "file": "archidekt-6565176.txt",
@@ -19399,7 +19423,9 @@
       "name": "Guided By Nature",
       "source": "mtgjson:GuidedByNature_C14",
       "fetched": "2026-11-08",
-      "bracket": 2
+      "bracket": null,
+      "bracket_claimed": 2,
+      "label_audit": "mass land denial (Wave of Vitriol); Bracket 2 allows none"
     },
     {
       "file": "precon-HailCaesar_PIP.txt",
@@ -19577,7 +19603,9 @@
       "name": "Mirror Mastery",
       "source": "mtgjson:MirrorMastery_CMD",
       "fetched": "2026-11-08",
-      "bracket": 2
+      "bracket": null,
+      "bracket_claimed": 2,
+      "label_audit": "mass land denial (Ruination); Bracket 2 allows none"
     },
     {
       "file": "precon-MishraSBurnishedBanner_BRC.txt",
@@ -19621,7 +19649,9 @@
       "name": "Nature of the Beast",
       "source": "mtgjson:NatureOfTheBeast_C13",
       "fetched": "2026-11-08",
-      "bracket": 2
+      "bracket": null,
+      "bracket_claimed": 2,
+      "label_audit": "mass land denial (From the Ashes); Bracket 2 allows none"
     },
     {
       "file": "precon-NatureSVengeance_C18.txt",
@@ -19746,7 +19776,9 @@
       "name": "Primal Genesis",
       "source": "mtgjson:PrimalGenesis_C19",
       "fetched": "2026-11-08",
-      "bracket": 2
+      "bracket": null,
+      "bracket_claimed": 2,
+      "label_audit": "mass land denial (Tectonic Hellion); Bracket 2 allows none"
     },
     {
       "file": "precon-PrismariArtistry_SOC.txt",

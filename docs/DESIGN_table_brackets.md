@@ -1,6 +1,6 @@
 # Table brackets: a bracket that predicts whether the game will be fun
 
-Status: design proposal, 2026-11-08. Nothing here is built yet; section 6 is the build order.
+Status: design proposal, 2026-11-08; section 6 is the build order. D1 is done (see the table).
 
 ## 1. The problem, in our own data
 
@@ -130,7 +130,7 @@ Each failed check produces a sentence for the pre-game talk.
 
 | Item | What | Depends on |
 |---|---|---|
-| D1 | Fix the mass-land-denial gate both ways: add tap-down and mana-change effects (Winter Orb, Static Orb, Stasis, Blood Moon, Back to Basics); drop the false positives (Pox, Tectonic Hellion, Magosi, planeswalker ultimates) | none; rerun the bracket accuracy check |
+| D1 (**done** 2026-11-08) | Fix the mass-land-denial gate both ways: add tap-down and mana-change effects (Winter Orb, Static Orb, Stasis, Blood Moon, Back to Basics); drop the false positives (Pox, Tectonic Hellion, Magosi, planeswalker ultimates) | none; rerun the bracket accuracy check |
 | D2 | Lock list plus a card tagger for denial roles (counter, stax, lock, theft, extra turn, tap-down), checked against a hand-labelled gold set | none |
 | D3 | Denial and Inevitability dials from what the engine already measures (D2 tags, B32 spread, B33 tutors and combos) | D2 |
 | D4 | Pod fit check over four decks, shown in the strength panel and before `/pod` | D3, B35 |
@@ -140,3 +140,16 @@ Each failed check produces a sentence for the pre-game talk.
 
 D1 and D2 are small and independent; D5 is what turns this from a card-list proposal into a
 measured one.
+
+**D1 result (2026-11-08).** Rebuilt on Wizards' own wording ("regularly destroy, exile, and bounce
+other lands, keep lands tapped, or change what mana is produced by four or more lands per player
+without replacing them"; examples Armageddon, Ruination, Sunder, Winter Orb, Blood Moon). Over all
+34,733 cards: mass land denial +13 (Winter Orb, Static Orb, Winter Moon, Stasis, Rising Waters,
+Hokori, Back to Basics, Blood Moon, Magus of the Moon, Harbinger of the Seas, Contamination,
+Infernal Darkness, Ritual of Subdual) and -2 (Pox, a share of lands; Ajani Vengeant's -7). Extra
+turns -6 (planeswalker ultimates; Magosi and Wormfang Manta, which skip a turn to take one).
+Tectonic Hellion stays: it takes lands on every attack. On the 76 labelled decks whose gate
+changed, exact agreement with the label went 36 -> 50 and within-one 64 -> 73; five casual decks
+lost a false Bracket 4 floor. The corpus label audit now includes mass land denial (10 more labels
+demoted, 2,112 kept), and so does the stated-bracket check in the UI.
+

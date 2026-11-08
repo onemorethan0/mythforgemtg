@@ -1,7 +1,8 @@
 # WotC precon — Nature of the Beast (C13, 2013-11-01)
 # source: mtgjson:NatureOfTheBeast_C13
 # fetched: 2026-11-08
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: mass land denial (From the Ashes); Bracket 2 allows none
 # label_source: Wizards places preconstructed Commander decks at Bracket 2
 
 Commander:

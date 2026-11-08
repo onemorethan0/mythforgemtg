@@ -1,7 +1,8 @@
 # Archidekt — Bears With Swords
 # source: archidekt:14830575
 # fetched: 2026-08-26
-# bracket: 3
+# bracket_claimed: 3
+# label_audit: fails the official Bracket 3 gates: mass land denial (Magus of the Moon); Bracket 3 allows none
 
 Commander:
 1 Sephiroth, Fallen Hero

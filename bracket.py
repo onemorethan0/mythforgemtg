@@ -106,11 +106,56 @@ MASS_LAND_DESTRUCTION_CARDS: frozenset[str] = frozenset({
 # \b around land/lands stops "nonland" matching, and (?!except) stops a sweeper that
 # explicitly SPARES lands (Scourglass: "destroy all permanents except ... and lands").
 _EXTRA_TURN_RE = re.compile(r"take an extra turn|extra turn after this one", re.IGNORECASE)
+# D1 (docs/DESIGN_table_brackets.md), checked against Wizards' text: mass land denial is
+# cards that "regularly destroy, exile, and bounce other lands, keep lands tapped, or change
+# what mana is produced by four or more lands per player without replacing them" (examples:
+# Armageddon, Ruination, Sunder, Winter Orb, Blood Moon). Diffed old vs new over all 34,733
+# cards: +13 (Winter Orb, Static Orb, Winter Moon, Stasis, Rising Waters, Hokori, Back to
+# Basics, Blood Moon, Magus of the Moon, Harbinger of the Seas, Contamination, Infernal
+# Darkness, Ritual of Subdual), -2 (Pox: a third of your lands, usually under four; Ajani
+# Vengeant: a -7 ultimate). Extra turns -6: planeswalker ultimates (Teferi, Timebender -9, Mu
+# Yanling -10, Ral Zarek -7, Ichormoon Gauntlet's granted -12) and skip-a-turn-then-take-one
+# (Magosi, the Waterveil; Wormfang Manta), which add no turn.
+#
+# A planeswalker ULTIMATE (loyalty -6 or lower, as an ability line or a granted "[-12]: ...")
+# is not something a deck does "regularly", and it is not an extra-turn card a deck chains.
+_ULTIMATE_RE = re.compile(
+    r'(?:^[−-](?:[6-9]|\d{2,}):[^\n]*$|"\[[−-](?:[6-9]|\d{2,})\]:[^"]*")', re.MULTILINE)
+_SKIP_TURN_RE = re.compile(r"\bskip (?:your|their) next turn\b", re.IGNORECASE)
 _MLD_RES = (
+    # "Destroy/Exile all ... lands" -- including the multi-type sweepers.
     re.compile(r"\b(?:destroy|exile) all\b(?:(?!except)[^.])*?\blands\b", re.IGNORECASE),
-    re.compile(r"\beach (?:player|opponent)\b[^.]*?\bsacrifices?\b[^.]*?\blands\b", re.IGNORECASE),
-    re.compile(r"\beach (?:player|opponent)\b[^.]*?\bsacrifices?\b[^.]*?\bland\b[^.]*?\bfor each\b", re.IGNORECASE),
+    # Symmetric or one-sided sacrifice of MULTIPLE lands -- not a share of them ("a third of",
+    # "half"): Pox takes a third, usually under Wizards' four-lands-per-player line.
+    re.compile(r"\beach (?:player|opponent)\b(?:(?!\bthird\b|\bhalf\b)[^.])*?\bsacrifices?\b"
+               r"(?:(?!\bthird\b|\bhalf\b)[^.])*?\blands\b", re.IGNORECASE),
+    # ...or of one land per something, which scales into mass denial (Thoughts of Ruin).
+    re.compile(r"\beach (?:player|opponent)\b[^.]*?\bsacrifices?\b[^.]*?\bland\b[^.]*?\bfor each\b",
+               re.IGNORECASE),
+    # KEEP LANDS TAPPED: Winter Orb, Static Orb ("two permanents"), Winter Moon, Stasis, Rising
+    # Waters, Hokori, Back to Basics. Never an artifact/creature lock (Damping Field, Smoke),
+    # never your own lands, never one enchanted or target land.
+    re.compile(r"\bplayers can'?t untap more than (?:one|two) (?:nonbasic )?(?:lands?|permanents)\b",
+               re.IGNORECASE),
+    re.compile(r"\bplayers skip their untap steps\b", re.IGNORECASE),
+    re.compile(r"(?<!enchanted )(?<!target )\b(?:nonbasic )?lands don'?t untap during their "
+               r"controllers'? untap steps\b", re.IGNORECASE),
+    # CHANGE WHAT MANA IS PRODUCED: Blood Moon, Magus of the Moon, Harbinger of the Seas,
+    # Contamination, Infernal Darkness, Ritual of Subdual.
+    re.compile(r"^nonbasic lands are (?:plains|islands|swamps|mountains|forests)\.",
+               re.IGNORECASE | re.MULTILINE),
+    re.compile(r"\bif a land is tapped for mana, it produces\b", re.IGNORECASE),
 )
+
+
+def _gate_text(oracle: str) -> str:
+    """Oracle text with planeswalker ultimates removed: what the extra-turn and mass-land-denial
+    gates read."""
+    return _ULTIMATE_RE.sub("", oracle or "")
+
+
+def _is_extra_turn(text: str) -> bool:
+    return bool(_EXTRA_TURN_RE.search(text)) and not _SKIP_TURN_RE.search(text)
 
 
 # ── Bracket rules ─────────────────────────────────────────────────────────────
@@ -177,7 +222,7 @@ class BracketFilter:
     def allows(self, card: dict) -> bool:
         """Return True if this card is permitted under the current bracket."""
         name   = card.get("name", "")
-        oracle = card.get("oracle_text") or ""
+        oracle = _gate_text(card.get("oracle_text") or "")
 
         # Game Changers quota. Prefer Scryfall's own live `game_changer` field (present
         # on every card this method has ever been called with in practice — both
@@ -198,7 +243,7 @@ class BracketFilter:
         if not self.rules.allow_extra_turns:
             if name in EXTRA_TURN_CARDS:
                 return False
-            if _EXTRA_TURN_RE.search(oracle):
+            if _is_extra_turn(oracle):
                 return False
 
         # Mass land destruction restriction (Brackets 1–3)

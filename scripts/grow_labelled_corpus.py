@@ -202,7 +202,7 @@ def cmd_audit(args) -> int:
         result = label_audit.audit_resolved(resolved, label, report)
         (kept if result.ok else dropped)[label] += 1
         for r in result.reasons:
-            kind = next((k for k in ("Game Changers", "two-card") if k in r), "other")
+            kind = next((k for k in ("Game Changers", "two-card", "mass land denial") if k in r), "other")
             why[f"B{label}: {kind}"] += 1
         if args.verbose and not result.ok:
             print(f"  {path.name} [B{label}]: " + "; ".join(result.reasons), flush=True)

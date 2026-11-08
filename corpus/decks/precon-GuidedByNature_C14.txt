@@ -1,7 +1,8 @@
 # WotC precon — Guided By Nature (C14, 2014-11-07)
 # source: mtgjson:GuidedByNature_C14
 # fetched: 2026-11-08
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: mass land denial (Wave of Vitriol); Bracket 2 allows none
 # label_source: Wizards places preconstructed Commander decks at Bracket 2
 
 Commander:

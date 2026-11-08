@@ -1,7 +1,8 @@
 # WotC precon — Mirror Mastery (CMD, 2011-06-17)
 # source: mtgjson:MirrorMastery_CMD
 # fetched: 2026-11-08
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: mass land denial (Ruination); Bracket 2 allows none
 # label_source: Wizards places preconstructed Commander decks at Bracket 2
 
 Commander:

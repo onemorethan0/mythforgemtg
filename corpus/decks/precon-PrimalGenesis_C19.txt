@@ -1,7 +1,8 @@
 # WotC precon — Primal Genesis (C19, 2019-08-23)
 # source: mtgjson:PrimalGenesis_C19
 # fetched: 2026-11-08
-# bracket: 2
+# bracket_claimed: 2
+# label_audit: fails the official Bracket 2 gates: mass land denial (Tectonic Hellion); Bracket 2 allows none
 # label_source: Wizards places preconstructed Commander decks at Bracket 2
 
 Commander:

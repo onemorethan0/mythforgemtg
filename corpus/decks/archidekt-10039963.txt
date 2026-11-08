@@ -1,7 +1,8 @@
 # Archidekt — The End of the World as We Know it - Terra Barren Glory
 # source: archidekt:10039963
 # fetched: 2026-11-08
-# bracket: 1
+# bracket_claimed: 1
+# label_audit: fails the official Bracket 1 gates: mass land denial (Decree of Annihilation, Obliterate); Bracket 1 allows none
 
 Commander:
 1 Terra, Magical Adept // Esper Terra

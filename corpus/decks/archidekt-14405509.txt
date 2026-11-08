@@ -2,7 +2,7 @@
 # source: archidekt:14405509
 # fetched: 2026-11-08
 # bracket_claimed: 2
-# label_audit: fails the official Bracket 2 gates: two-card infinite combo The Gitrog Monster + Dakmor Salvage; Bracket 2 allows none
+# label_audit: fails the official Bracket 2 gates: two-card infinite combo The Gitrog Monster + Dakmor Salvage; Bracket 2 allows none; mass land denial (Death Cloud); Bracket 2 allows none
 
 Commander:
 1 Hearthhull, the Worldseed

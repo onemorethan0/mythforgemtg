@@ -18,10 +18,14 @@ gates that can be read without judgement:
     The rules' word "intentional" is something no list can see; two pieces that go infinite
     together in a deck labelled 1 or 2 are taken at their word.
 
-NOT audited: mass land denial and chained extra turns. The rules define them by intent
-("regularly", "chaining"), and the engine's own reader (`ratings.bracket._scan`) also fires on
-Pox, Tectonic Hellion, Magosi, the Waterveil and planeswalker ultimates (Ajani Vengeant -7,
-Ral Zarek -7) -- an under-count is the honest choice here. Brackets 4 and 5 have no
+  * Mass land denial -- Brackets 1-3 allow none. Audited since D1 (2026-11-08), when the
+    engine's reader (`ratings.bracket._scan`) was rebuilt on Wizards' wording ("destroy, exile,
+    and bounce other lands, keep lands tapped, or change what mana is produced by four or more
+    lands per player"; Blood Moon and Winter Orb are their own examples) and stopped firing on
+    Pox and planeswalker ultimates.
+
+NOT audited: extra turns. Brackets 2-3 allow them "in low quantities", "not ... chained in
+succession or looped" -- a judgement about intent no count can make. Brackets 4 and 5 have no
 restriction to violate, so a 4 or 5 label always passes: dropping "Bracket 4 decks without
 Game Changers" would teach the strength model that Bracket 4 means Game Changers.
 
@@ -54,8 +58,10 @@ class LabelAudit:
 
 
 def audit(label: int, game_changers: set[str] | frozenset[str],
-          two_card_infinite: list[tuple[str, ...]]) -> LabelAudit:
-    """Whether `label` is allowed by the Game Changer and two-card-infinite gates."""
+          two_card_infinite: list[tuple[str, ...]],
+          mass_land_denial: list[str] | tuple[str, ...] = ()) -> LabelAudit:
+    """Whether `label` is allowed by the Game Changer, two-card-infinite and mass-land-denial
+    gates."""
     reasons: list[str] = []
     limit = MAX_GAME_CHANGERS.get(label)
     if limit is not None and len(game_changers) > limit:
@@ -65,6 +71,9 @@ def audit(label: int, game_changers: set[str] | frozenset[str],
     if label <= 2 and two_card_infinite:
         reasons.append("two-card infinite combo " + " + ".join(two_card_infinite[0])
                        + f"; Bracket {label} allows none")
+    if label <= 3 and mass_land_denial:
+        reasons.append(f"mass land denial ({', '.join(sorted(mass_land_denial))}); Bracket "
+                       f"{label} allows none")
     return LabelAudit(label, not reasons, reasons)
 
 
@@ -79,9 +88,11 @@ def two_card_infinite(combo_report) -> list[tuple[str, ...]]:
 def audit_resolved(resolved, label: int, combo_report) -> LabelAudit:
     """`audit` for a resolved deck. `combo_report` None (a failed lookup) skips the combo gate:
     never assumed clean OR dirty."""
+    from mythgauntlet.ratings.bracket import _scan
     all_cards = list(resolved.cards) + [(c, 1) for c in resolved.commanders]
     gcs = {c.name for c, _n in all_cards if c.game_changer}
-    return audit(label, gcs, two_card_infinite(combo_report))
+    mld = [c.name for c, _n in all_cards if _scan([(c, 1)])[1]]
+    return audit(label, gcs, two_card_infinite(combo_report), mld)
 
 
 def unmark(text: str) -> str:

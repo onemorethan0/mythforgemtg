@@ -57,3 +57,23 @@ def test_mark_and_unmark_round_trip_keeps_the_layout():
     assert la.LABEL_RE.search(marked) is None       # out of every `# bracket:` reader
     assert la.unmark(marked) == text
     assert la.mark(text, la.audit(2, set(), [])) == text
+
+
+def test_mass_land_denial_is_audited_at_brackets_1_to_3():
+    """Wizards names Blood Moon and Winter Orb as mass land denial; Brackets 1-3 allow none."""
+    assert la.audit(3, set(), [], ["Blood Moon"]).reasons == [
+        "mass land denial (Blood Moon); Bracket 3 allows none"]
+    assert la.audit(4, set(), [], ["Blood Moon", "Winter Orb"]).ok
+
+
+def test_audit_resolved_names_the_land_denial_cards(make_card):
+    moon = make_card("Blood Moon", mana_cost="{2}{R}", type_line="Enchantment",
+                     oracle_text="Nonbasic lands are Mountains.")
+    pox = make_card("Pox", mana_cost="{B}{B}{B}", type_line="Sorcery",
+                    oracle_text="Each player loses a third of their life, then discards a third "
+                                "of the cards in their hand, then sacrifices a third of the "
+                                "creatures they control of their choice, then sacrifices a third "
+                                "of the lands they control of their choice. Round up each time.")
+    deck = SimpleNamespace(cards=[(moon, 1), (pox, 1)], commanders=[])
+    assert la.audit_resolved(deck, 2, None).reasons == [
+        "mass land denial (Blood Moon); Bracket 2 allows none"]
