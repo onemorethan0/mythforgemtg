@@ -31,6 +31,8 @@ export const TERMS = {
   storm_go_off: 'A detected spellslinger/storm engine that can close the game off the combat clock entirely, on a good draw.',
   overrun_alpha: 'A wide board plus a one-shot team pump that can end the game in a single combat step, on a good draw.',
   wincon_redundancy: "How many of a role's cards would need to be answered to fully stop that fast, non-combat kill — a lower number means the plan is more fragile to targeted interaction.",
+  kill_clock: "When the deck kills ONE opponent who never interacts, across all the simulated games: the middle half of its kill turns, and the share of games dead by turns 6, 8 and 10. A real table interacts, so treat it as the deck's own pace, not a promise.",
+  combo_clock: "How often each combo is fully assembled by each turn, from the same simulated draws and mana: tutors count only for cards their text can actually find, and Commander Spellbook's prerequisites are checked where they can be. 'With combos' is the kill clock when the deck may win by damage OR by assembling a game-ending combo, whichever comes first.",
 }
 
 // wincon_redundancy role keys (sim/wincon_redundancy.py — a small, fixed vocabulary).

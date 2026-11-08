@@ -67,6 +67,121 @@ function TableFeel({ pp, detail }) {
   )
 }
 
+// Kill clock (B32) and combo clock (B33): when the deck kills an opponent who never interacts,
+// as a range rather than one average, and how often each combo is assembled by each turn.
+// `by_turn` keys arrive as strings (JSON object keys). Every number shown is the engine's;
+// the component only lays them out, and hides itself when neither block is present (an older
+// cached measurement).
+const DAMAGE_COLOR = '#38bdf8'
+const COMBO_COLOR = '#f97316'
+const CLOCK_TURNS = [6, 8, 10]
+const SPARK_TURNS = [3, 4, 5, 6, 7, 8, 9, 10]
+
+const share = (byTurn, t) => (byTurn ? byTurn[String(t)] ?? byTurn[t] ?? null : null)
+
+function ClockRow({ turn, damage, combined }) {
+  const w = (v) => `${Math.max(0, Math.min(100, (v || 0) * 100))}%`
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '34px 1fr 74px', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+      <span style={{ fontSize: 10.5, color: '#a8a29e' }}>by T{turn}</span>
+      <div style={{ position: 'relative', height: 7, borderRadius: 4, background: '#0c0a09', overflow: 'hidden' }}>
+        {combined != null && (
+          <div style={{ position: 'absolute', inset: 0, width: w(combined), background: COMBO_COLOR, opacity: 0.55 }} />
+        )}
+        <div style={{ position: 'absolute', inset: 0, width: w(damage), background: DAMAGE_COLOR }} />
+      </div>
+      <span style={{ fontSize: 10.5, color: '#e7e5e4', textAlign: 'right', whiteSpace: 'nowrap' }}>
+        {damage == null ? '—' : `${Math.round(damage * 100)}%`}
+        {combined != null && combined > (damage || 0) + 0.005 && (
+          <span style={{ color: '#fdba74' }}> / {Math.round(combined * 100)}%</span>
+        )}
+      </span>
+    </div>
+  )
+}
+
+function ComboSpark({ byTurn }) {
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'flex-end', gap: 1, height: 14 }}
+      title={SPARK_TURNS.map((t) => `T${t}: ${Math.round((share(byTurn, t) || 0) * 100)}%`).join('  ')}>
+      {SPARK_TURNS.map((t) => (
+        <span key={t} style={{ width: 4, height: `${Math.max(1, (share(byTurn, t) || 0) * 14)}px`, background: COMBO_COLOR, borderRadius: 1, opacity: 0.85 }} />
+      ))}
+    </span>
+  )
+}
+
+const COMBO_KIND = {
+  kill: 'kills the turn it assembles',
+  kill_next_turn: 'kills the turn after (tokens without haste)',
+  advantage: 'needs another card to win',
+}
+
+function KillClock({ killSpeed, comboClock }) {
+  if (!killSpeed && !comboClock) return null
+  const combos = comboClock?.combos || []
+  const timed = combos.filter((c) => c.timed)
+    .sort((a, b) => (a.turn_50 ?? 99) - (b.turn_50 ?? 99) || (a.turn_25 ?? 99) - (b.turn_25 ?? 99))
+  const untimed = combos.filter((c) => !c.timed)
+  const showCombined = comboClock && comboClock.combo_first_games > 0
+  return (
+    <div style={{ margin: '6px 0 10px', padding: '8px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #292524' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
+        <span style={{ fontSize: 11.5, color: '#a8a29e' }}>
+          <Term def={TERMS.kill_clock}>How fast it kills (unopposed)</Term>
+        </span>
+        <span style={{ fontSize: 10, color: '#78716c', display: 'flex', gap: 8 }}>
+          <span><span style={{ color: DAMAGE_COLOR }}>■</span> damage</span>
+          {showCombined && <span><span style={{ color: COMBO_COLOR }}>■</span> with combos</span>}
+        </span>
+      </div>
+      {killSpeed && CLOCK_TURNS.filter((t) => t <= killSpeed.horizon).map((t) => (
+        <ClockRow key={t} turn={t} damage={share(killSpeed.by_turn, t)}
+          combined={showCombined ? share(comboClock.by_turn, t) : null} />
+      ))}
+      {killSpeed?.text && (
+        <div style={{ fontSize: 10.5, color: '#a8a29e', lineHeight: 1.45, marginTop: 4 }}>{killSpeed.text}</div>
+      )}
+      {comboClock?.text && (
+        <div style={{ fontSize: 10.5, color: '#fdba74', lineHeight: 1.45, marginTop: 3 }}>{comboClock.text}</div>
+      )}
+      {timed.length > 0 && (
+        <details style={{ marginTop: 6 }}>
+          <summary style={{ fontSize: 10.5, color: '#78716c', cursor: 'pointer', userSelect: 'none' }}>
+            <Term def={TERMS.combo_clock}>Each combo on the clock</Term> ({timed.length} timed{untimed.length ? `, ${untimed.length} not timed` : ''})
+          </summary>
+          <div style={{ marginTop: 5 }}>
+            {timed.slice(0, 6).map((c, i) => (
+              <div key={i} style={{ marginBottom: 6 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, color: '#e7e5e4', lineHeight: 1.4 }}>
+                  <ComboSpark byTurn={c.by_turn} />
+                  <span style={{ flex: 1 }}>{c.cards.join(' + ')}</span>
+                  <span style={{ fontSize: 10, color: '#fdba74', whiteSpace: 'nowrap' }}>
+                    {c.turn_50 ? `half of games by T${c.turn_50}` : c.turn_25 ? `a quarter by T${c.turn_25}` : 'rarely assembled'}
+                  </span>
+                </div>
+                <div style={{ fontSize: 10, color: '#78716c', marginLeft: 46 }}>
+                  {COMBO_KIND[c.kind] || c.kind} · {c.mana_value} mana to go off
+                  {c.tutors?.length ? ` · ${c.tutors.length} tutor${c.tutors.length > 1 ? 's' : ''} can find a piece` : ''}
+                  {c.deterministic === false ? ' · ⚠ not deterministic' : ''}
+                </div>
+                {c.assumes?.length > 0 && (
+                  <div style={{ fontSize: 10, color: '#a8a29e', marginLeft: 46 }}>assumes: {c.assumes.join('; ')}</div>
+                )}
+              </div>
+            ))}
+            {untimed.slice(0, 4).map((c, i) => (
+              <div key={`u${i}`} style={{ fontSize: 10, color: '#78716c', lineHeight: 1.4, marginBottom: 3 }}>
+                {c.cards.join(' + ')} — not timed: {c.not_timed}
+              </div>
+            ))}
+          </div>
+        </details>
+      )}
+    </div>
+  )
+}
+
 // Simulation-grounded strength panel (MythGauntlet, Myth Suite C3) — shared by
 // the import preview (StepCommander) and the result screen's Measure panel
 // (StepDeck), so the two surfaces can't drift. Pure presentation: pass the
@@ -374,6 +489,7 @@ export default function SimStrengthPanel({ simulation }) {
           </span>
         ))}
       </div>
+      <KillClock killSpeed={simulation.kill_speed} comboClock={simulation.combo_clock} />
       {((insight?.strengths?.length || 0) > 0 || (insight?.weaknesses?.length || 0) > 0) && (
         <div style={{
           display: 'flex', flexWrap: 'wrap', gap: 16, marginBottom: 10,

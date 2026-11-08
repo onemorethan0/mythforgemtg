@@ -140,6 +140,11 @@ def _gauntlet_analyze(commander, deck, partners=None):
             # and free (no extra simulation), but previously dropped here: this function
             # reshapes the /analyze response and only ever forwarded the three keys above.
             "insight": data.get("insight"),
+            # B32/B33: the unopposed kill as a range, and each combo timed turn by turn with
+            # the combined damage-or-combo clock -- both already in the /analyze response
+            # (combo_clock needs `combos: true`, sent above), dropped here until now.
+            "kill_speed": data.get("kill_speed"),
+            "combo_clock": data.get("combo_clock"),
             "unresolved": (data.get("deck") or {}).get("unresolved", []),
         }
     except Exception as e:
