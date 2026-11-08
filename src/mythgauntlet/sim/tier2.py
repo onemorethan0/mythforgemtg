@@ -274,6 +274,10 @@ class _Player:
     # _Permanent.is_commander) -- a real partner pair's two counters would need to stay
     # distinct by SOURCE PERMANENT, not just source player, which this dict does not do.
     commander_damage_taken: dict[str, int] = field(default_factory=dict)
+    # Life lost to combat damage vs everything else (drain, burn, life loss), for kill-method
+    # attribution only (B34); nothing in play reads them.
+    combat_damage_taken: int = 0
+    noncombat_damage_taken: int = 0
     # Extra turns this player has banked but not yet taken (CR 505 / "take an extra turn
     # after this one"). Held on the PLAYER rather than the GameState because _apply_resolved
     # only ever sees players; sim/game._to_next_halfturn spends them.
@@ -338,6 +342,10 @@ class DuelResult:
     avg_turns: float
     decked_losses: int
     combo_wins: int = 0  # games decided by an assembled game-ending combo
+    # How each side won (B34): {method: games}; methods are combat / noncombat /
+    # commander_damage / combo / decked / adjudicated (the turn cap was reached).
+    win_methods_a: dict = field(default_factory=dict)
+    win_methods_b: dict = field(default_factory=dict)
 
     @property
     def winrate_a(self) -> float:
@@ -569,6 +577,7 @@ def _kill(
         # Empty in 1v1 -> byte-identical.
         for foe in (opponent, *others):
             foe.life -= death.drain
+            foe.noncombat_damage_taken += death.drain  # B34 attribution
         owner.life += death.gain_life
         if death.tokens:
             _spawn_tokens(owner, death.tokens)
@@ -1233,6 +1242,7 @@ def _apply_resolved(
         if each and to_player:  # "deals N to each opponent"
             for p in each_opp:
                 p.life -= amt
+                p.noncombat_damage_taken += amt  # B34 attribution
         elif each:  # "deals N to each creature" — every pod player's board
             all_players = (me, *each_opp)
             for player, killer in ((me, opp), *((o, me) for o in each_opp)):
@@ -1244,12 +1254,14 @@ def _apply_resolved(
                         _kill(player, c, killer, rest)
         elif to_player:
             opp.life -= amt
+            opp.noncombat_damage_taken += amt  # B34 attribution
         else:
             killable = [c for c in opp.creatures() if c.toughness <= amt]
             if killable:
                 _kill(opp, max(killable, key=lambda c: c.attack_value), me, others)
             else:
                 opp.life -= amt
+                opp.noncombat_damage_taken += amt  # B34 attribution
     elif op == "create_token":
         spec = (max(0, pr.get("count", 1)), pr.get("power", 1), pr.get("toughness", 1))
         who = pr.get("who")
@@ -1276,8 +1288,10 @@ def _apply_resolved(
         if who in ("each_opponent", "each"):
             for p in each_opp:
                 p.life -= amt
+                p.noncombat_damage_taken += amt  # B34 attribution
         elif who == "opponent":
             opp.life -= amt
+            opp.noncombat_damage_taken += amt  # B34 attribution
     elif op == "search_library":
         what = _tgt("what")
         to = str(pr.get("to", "hand")).lower()
@@ -1781,7 +1795,9 @@ def _resolve(
             _kill(opp, max(killable, key=lambda c: c.attack_value), me)
         else:
             opp.life -= dmg
+            opp.noncombat_damage_taken += dmg  # B34 attribution
     opp.life -= p.damage_face
+    opp.noncombat_damage_taken += p.damage_face  # B34 attribution
     me.life += p.gain_life
 
     if p.tokens:
@@ -2049,16 +2065,24 @@ def duel_prepared(a: PreparedDeck, b: PreparedDeck, cfg: DuelConfig) -> DuelResu
     wins = {"a": 0, "b": 0, "draw": 0}
     turns_total = 0
     decked = combo_wins = 0
+    methods_a: dict[str, int] = {}
+    methods_b: dict[str, int] = {}
     for i in range(cfg.games):
         game_rng = root.spawn(i)  # drives the deck shuffle (spawn() below can't disturb it)
         agents = {
             "a": make_agent(cfg.agent_a, cfg, "a", game_rng.spawn(1)),
             "b": make_agent(cfg.agent_b, cfg, "b", game_rng.spawn(2)),
         }
+        outcome: dict = {}
         winner, turns, reason = play_out(
             a.cards, a.commander, b.cards, b.commander, cfg, game_rng,
             a_first=(i % 2 == 0), agents=agents, combos_a=a.combos, combos_b=b.combos,
+            outcome=outcome,
         )
+        if winner in ("a", "b"):
+            bucket = methods_a if winner == "a" else methods_b
+            m = outcome.get("method") or reason
+            bucket[m] = bucket.get(m, 0) + 1
         wins[winner] += 1
         turns_total += turns
         decked += 1 if reason == "decked" else 0
@@ -2066,7 +2090,7 @@ def duel_prepared(a: PreparedDeck, b: PreparedDeck, cfg: DuelConfig) -> DuelResu
     return DuelResult(
         games=cfg.games, wins_a=wins["a"], wins_b=wins["b"], draws=wins["draw"],
         avg_turns=turns_total / cfg.games if cfg.games else 0.0, decked_losses=decked,
-        combo_wins=combo_wins,
+        combo_wins=combo_wins, win_methods_a=methods_a, win_methods_b=methods_b,
     )
 
 

@@ -32,17 +32,20 @@ def apply_nut_kills(runs: list[RunStats], cards: list[tuple[Card, int]], turns: 
     one if either detector fires at all within the horizon.
     """
     for run in runs:
-        candidates = [run.kill_turn] if run.kill_turn is not None else []
+        # (turn, method). The damage kill keeps the method tier0 attributed (B34); a detector
+        # wins only when STRICTLY earlier, so a tie stays the damage kill it already was.
+        candidates = [(run.kill_turn, run.kill_method)] if run.kill_turn is not None else []
 
         go_off = estimate_go_off(cards, run.mana_available_by_turn, turns)
         if go_off.earliest_turn is not None:
-            candidates.append(go_off.earliest_turn)
+            candidates.append((go_off.earliest_turn, "storm"))
 
         alpha_turn = earliest_alpha_strike_turn(
             cards, run.board_power_by_turn, run.board_creatures_by_turn
         )
         if alpha_turn is not None:
-            candidates.append(alpha_turn)
+            candidates.append((alpha_turn, "overrun"))
 
         if candidates:
-            run.kill_turn = min(candidates)
+            best = min(candidates, key=lambda c: c[0])   # stable: the damage kill wins ties
+            run.kill_turn, run.kill_method = best

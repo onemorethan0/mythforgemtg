@@ -5,6 +5,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 20
+    },
+    "win_methods_b": {
+      "combat": 20
+    },
     "wins_a": 20,
     "wins_b": 20
   },
@@ -14,6 +20,10 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 40
+    },
+    "win_methods_b": {},
     "wins_a": 40,
     "wins_b": 0
   },
@@ -23,6 +33,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 39
+    },
+    "win_methods_b": {
+      "combat": 1
+    },
     "wins_a": 39,
     "wins_b": 1
   },
@@ -32,6 +48,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 24
+    },
+    "win_methods_b": {
+      "combat": 16
+    },
     "wins_a": 24,
     "wins_b": 16
   },
@@ -41,6 +63,10 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 40
+    },
+    "win_methods_b": {},
     "wins_a": 40,
     "wins_b": 0
   },
@@ -50,6 +76,10 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "noncombat": 40
+    },
+    "win_methods_b": {},
     "wins_a": 40,
     "wins_b": 0
   },
@@ -59,6 +89,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 36
+    },
+    "win_methods_b": {
+      "combat": 4
+    },
     "wins_a": 36,
     "wins_b": 4
   },
@@ -68,6 +104,10 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "noncombat": 40
+    },
+    "win_methods_b": {},
     "wins_a": 40,
     "wins_b": 0
   },
@@ -77,6 +117,13 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 23,
+      "noncombat": 1
+    },
+    "win_methods_b": {
+      "combat": 16
+    },
     "wins_a": 24,
     "wins_b": 16
   },
@@ -86,6 +133,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combo": 39
+    },
+    "win_methods_b": {
+      "combat": 1
+    },
     "wins_a": 39,
     "wins_b": 1
   },
@@ -95,6 +148,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "commander_damage": 8
+    },
+    "win_methods_b": {
+      "combat": 32
+    },
     "wins_a": 8,
     "wins_b": 32
   },
@@ -104,6 +163,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 18
+    },
+    "win_methods_b": {
+      "combat": 22
+    },
     "wins_a": 18,
     "wins_b": 22
   },
@@ -113,6 +178,10 @@
     "decked_losses": 20,
     "draws": 0,
     "games": 20,
+    "win_methods_a": {},
+    "win_methods_b": {
+      "decked": 20
+    },
     "wins_a": 0,
     "wins_b": 20
   },
@@ -122,6 +191,11 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {},
+    "win_methods_b": {
+      "adjudicated": 11,
+      "combat": 29
+    },
     "wins_a": 0,
     "wins_b": 40
   },
@@ -131,6 +205,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 23
+    },
+    "win_methods_b": {
+      "combat": 17
+    },
     "wins_a": 23,
     "wins_b": 17
   },
@@ -140,6 +220,12 @@
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
+    "win_methods_a": {
+      "combat": 34
+    },
+    "win_methods_b": {
+      "combat": 6
+    },
     "wins_a": 34,
     "wins_b": 6
   }

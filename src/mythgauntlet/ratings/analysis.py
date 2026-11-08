@@ -73,6 +73,7 @@ class DeckAnalysis:
     # (card_stats_runs > 0): it needs its own larger pass (see CARD_STATS_RUNS).
     card_stats: list | None = None
     card_verdicts: dict | None = None    # B31: strong/weak cards built on card_stats
+    kill_methods: object | None = None   # B34: ratings/kill_methods.KillMethods
 
 
 def analyze_deck(
@@ -239,6 +240,8 @@ def analyze_deck(
         lens=lens,
     )
     analysis.insight = build_insight(resolved, analysis)  # deck-specific narrative from the above
+    from mythgauntlet.ratings import kill_methods as _km
+    analysis.kill_methods = _km.compute(runs, commander.name if commander else None)
     if card_stats_runs > 0:
         from mythgauntlet.ratings import card_verdicts
         analysis.card_stats = compute_card_stats(resolved, cfg, card_stats_runs)

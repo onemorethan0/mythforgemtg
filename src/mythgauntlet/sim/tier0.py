@@ -49,6 +49,10 @@ from mythgauntlet.sim.rng import SeededRng
 DEFAULT_ANALYZE_TURNS = 12
 
 
+# CR 704.5a: combat damage from one commander that loses the game.
+COMMANDER_DAMAGE_LETHAL = 21
+
+
 @dataclass(frozen=True)
 class SimConfig:
     turns: int = 8
@@ -180,6 +184,20 @@ class RunStats:
     # in neither set was castable at the end: the greedy policy always had something it ranked
     # higher, which in an unopposed game is where removal and wipes end up.
     stranded_by_cost: set[str] = field(default_factory=set)
+    # Kill-method attribution (B34): every point of goldfish damage credited to the card that
+    # dealt it and to a source class -- "combat" (creatures and the anthems pumping them),
+    # "commander" (the commander's own combat damage), "burn" (scaling burn, magecraft and
+    # cast-damage engines). Recorded only; the parallel bookkeeping is pinned by a test to sum
+    # to the same damage the game counted. `kill_sources` is the class split AT the kill turn;
+    # `kill_method` is set here for a damage kill and overwritten by apply_nut_kills for a
+    # storm or alpha-strike kill.
+    damage_by_card: dict[str, int] = field(default_factory=dict)
+    damage_by_source: dict[str, int] = field(default_factory=dict)
+    kill_sources: dict[str, int] = field(default_factory=dict)
+    kill_method: str | None = None
+    # First turn the commander's own cumulative combat damage reached 21 (CR 704.5a lethal in
+    # a real game). tier0 does not apply that rule; this records how often it would matter.
+    commander_lethal_turn: int | None = None
 
 
 def build_sim_cards(cards: list[tuple[Card, int]]) -> list[SimCard]:
@@ -362,6 +380,18 @@ def _run_one(
     creature_engine = 0
     creature_dmg_engine = 0
     damage = 0
+    # B34 attribution, mirroring every change to the pools above (telemetry only).
+    atk_pending: list[tuple[str, int, int, bool]] = []   # (name, power, power_rule, is_cmdr)
+    atk_board: list[tuple[str, int, int, bool]] = []
+    anthem_src: list[tuple[str, int, bool]] = []          # (name, bonus, source_is_creature)
+    burn_pending: list[tuple[str, int, bool]] = []        # (name, per_spell, is_creature)
+    burn_active: list[tuple[str, int, bool]] = []
+    cmd_name = commander.card.name if commander is not None else None
+
+    def credit(name: str, source: str, amount: int) -> None:
+        if amount:
+            stats.damage_by_card[name] = stats.damage_by_card.get(name, 0) + amount
+            stats.damage_by_source[source] = stats.damage_by_source.get(source, 0) + amount
 
     def draw(n: int) -> None:
         for _ in range(n):
@@ -375,6 +405,7 @@ def _run_one(
         nonlocal creature_engine, creature_dmg_engine, pending_power_rule
         nonlocal anthem_noncreature, anthem_creature, lord_self_pending
         for bonus, others in sc.anthems:
+            anthem_src.append((sc.card.name, bonus, sc.card.is_creature))
             if sc.card.is_creature:
                 anthem_creature += bonus
                 if others:
@@ -385,6 +416,11 @@ def _run_one(
             pending_power += sc.attack_power
             pending_power_rule += sc.attack_power_under(rule)
             pending_creatures += 1
+            atk_pending.append((sc.card.name, sc.attack_power, sc.attack_power_under(rule),
+                                is_commander))
+        if sc.fx.magecraft_damage + sc.fx.cast_damage:
+            burn_pending.append((sc.card.name, sc.fx.magecraft_damage + sc.fx.cast_damage,
+                                 sc.card.is_creature))
         if sc.fx.cheats_creatures:  # active next turn (a creature enabler must untap + attack)
             enabler_pending = True
         engine_pending += sc.fx.engine_draw
@@ -427,6 +463,10 @@ def _run_one(
         engine_pending = 0
         dmg_engine_active += dmg_engine_pending
         dmg_engine_pending = 0
+        atk_board.extend(atk_pending)
+        atk_pending.clear()
+        burn_active.extend(burn_pending)
+        burn_pending.clear()
         enabler_active = enabler_active or enabler_pending
         enabler_pending = False
 
@@ -465,6 +505,10 @@ def _run_one(
             board_creatures = 0
             pending_creatures = 0
             anthem_creature = 0  # creature-sourced anthems die with their source
+            atk_board.clear()
+            atk_pending.clear()
+            anthem_src[:] = [a for a in anthem_src if not a[2]]
+            burn_active[:] = [b for b in burn_active if not b[2]]
             lord_self_active = lord_self_pending = 0
             sources = [s for s in sources
                        if not s.from_creature or (commander_stays and s.from_commander)]
@@ -476,6 +520,12 @@ def _run_one(
                 # exactly what apply_effects(commander) put on the board (see there)
                 board_power = commander.attack_power
                 board_power_rule = commander.attack_power_under(rule)
+                atk_board.append((commander.card.name, commander.attack_power,
+                                  commander.attack_power_under(rule), True))
+                anthem_src.extend((commander.card.name, b, True) for b, _ in commander.anthems)
+                if commander.fx.magecraft_damage + commander.fx.cast_damage:
+                    burn_active.append((commander.card.name, commander.fx.magecraft_damage
+                                        + commander.fx.cast_damage, True))
                 board_creatures = 1
                 for bonus, others in commander.anthems:  # a surviving commander keeps its anthem
                     anthem_creature += bonus
@@ -571,6 +621,7 @@ def _run_one(
             played(sc)
             apply_effects(sc)
             damage += x
+            credit(sc.card.name, "burn", x)
 
         stats.mana_spent_by_turn.append(spent)
 
@@ -582,6 +633,18 @@ def _run_one(
         stats.board_creatures_by_turn.append(board_creatures)
         damage += swing
         damage += dmg_engine_active * instant_sorcery_cast  # magecraft/cast-damage payoffs
+        for name, pw, pw_rule, is_cmd in atk_board:
+            credit(name, "commander" if is_cmd else "combat", pw_rule if rule_live else pw)
+        extra = max(0, (anthem_noncreature + anthem_creature) * board_creatures - lord_self_active)
+        total_bonus = sum(a[1] for a in anthem_src)
+        if extra and total_bonus:
+            given = 0
+            for i, (name, bonus, _) in enumerate(anthem_src):
+                share = extra - given if i == len(anthem_src) - 1 else extra * bonus // total_bonus
+                credit(name, "combat", share)
+                given += share
+        for name, per_spell, _ in burn_active:
+            credit(name, "burn", per_spell * instant_sorcery_cast)
         if enabler_active:  # Kaalia class: cheat the biggest STRANDED creature in, attacking now
             stranded = [c for c in hand if c.card.is_creature]
             if stranded:
@@ -589,12 +652,29 @@ def _run_one(
                 hand.remove(cheated)
                 played(cheated)
                 damage += cheated.attack_power_under(rule) if rule_live else cheated.attack_power
+                credit(cheated.card.name, "combat",
+                       cheated.attack_power_under(rule) if rule_live else cheated.attack_power)
+                atk_pending.append((cheated.card.name, cheated.attack_power,
+                                    cheated.attack_power_under(rule), False))
                 pending_power += cheated.attack_power  # ... and stays on board thereafter
                 pending_power_rule += cheated.attack_power_under(rule)
                 pending_creatures += 1
         stats.damage_by_turn.append(damage)
+        if (stats.commander_lethal_turn is None and cmd_name is not None
+                and stats.damage_by_source.get("commander", 0) >= COMMANDER_DAMAGE_LETHAL):
+            stats.commander_lethal_turn = turn
         if stats.kill_turn is None and damage >= cfg.goldfish_life:
             stats.kill_turn = turn
+            stats.kill_sources = dict(stats.damage_by_source)
+            stats.kill_method = max(stats.kill_sources, key=lambda k: (stats.kill_sources[k], k))
+        elif stats.kill_turn is None and stats.commander_lethal_turn == turn:
+            # CR 704.5a: 21 or more combat damage from a single commander loses the game,
+            # whatever the life total. tier0 counted only life, so a Voltron/commander-beats
+            # deck's goldfish kill came late in the games where its commander got there first
+            # (measured 2026-11-07: Marchesa 21% of games, Syr Gwyn 15%, Doran 10%, Krenko 6%).
+            stats.kill_turn = turn
+            stats.kill_sources = dict(stats.damage_by_source)
+            stats.kill_method = "commander_damage"   # same name as T2's end reason
 
     rule_live = rule is not None and commander is not None and not commander_in_zone
     stats.final_board_power = (board_power_rule if rule_live else board_power) + max(

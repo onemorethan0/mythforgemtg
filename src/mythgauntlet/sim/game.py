@@ -181,6 +181,9 @@ class GameState:
     pending: Decision | None = None
     terminal: bool = False
     result: tuple[str, int, str] | None = None  # (winner, turns, reason)
+    # The `life` reason split by what dealt most of the loser's life loss (B34): "combat" or
+    # "noncombat"; any other reason is copied as is. `result` is unchanged.
+    kill_method: str | None = None
 
     @property
     def multiplayer(self) -> bool:
@@ -245,6 +248,8 @@ def _clone_player(p: _Player) -> _Player:
         combos=p.combos,
         combo_pieces=p.combo_pieces,
         commander_damage_taken=dict(p.commander_damage_taken),
+        combat_damage_taken=p.combat_damage_taken,
+        noncombat_damage_taken=p.noncombat_damage_taken,
     )
 
 
@@ -366,6 +371,11 @@ def score_reward(state: GameState, player: str) -> float:
 def _finish(state: GameState, winner: str, reason: str) -> None:
     state.terminal = True
     state.result = (winner, state.turn, reason)
+    state.kill_method = reason
+    if reason == "life" and len(state.order) == 2 and winner in state.order:
+        loser = state.players[next(k for k in state.order if k != winner)]
+        state.kill_method = ("combat" if loser.combat_damage_taken >= loser.noncombat_damage_taken
+                             else "noncombat")
     state.phase = "terminal"
     state.pending = None
 
@@ -1039,7 +1049,9 @@ def _apply_activation(me: _Player, opp: _Player, perm: _Permanent, eff: object) 
             _kill(opp, max(killable, key=lambda c: c.attack_value), me)
         else:
             opp.life -= eff.damage_any
+            opp.noncombat_damage_taken += eff.damage_any  # B34 attribution
     opp.life -= eff.damage_face
+    opp.noncombat_damage_taken += eff.damage_face  # B34 attribution
     me.life += eff.gain_life
     if eff.tokens:
         _spawn_tokens(me, eff.tokens)
@@ -1150,6 +1162,7 @@ def _deal_to_defender(state: GameState, atk: _Permanent, amount: int, walker, op
                 _kill(opp, walker, me, others)
         return
     opp.life -= amount
+    opp.combat_damage_taken += amount  # B34 attribution
     if atk.is_commander:
         key = state.active
         opp.commander_damage_taken[key] = opp.commander_damage_taken.get(key, 0) + amount
@@ -1253,6 +1266,7 @@ def _resolve_combat_legacy(state: GameState, assignment: dict[int, _Permanent]) 
                     _kill(opp, walker, me, others)
                 continue
             opp.life -= atk.combat_power
+            opp.combat_damage_taken += atk.combat_power  # B34 attribution
             if atk.is_commander:
                 # CR 704.5a: only UNBLOCKED combat damage to a PLAYER counts -- a blocked
                 # commander deals its damage to the blocking creature, tracked nowhere here.
@@ -1278,6 +1292,7 @@ def _resolve_combat_legacy(state: GameState, assignment: dict[int, _Permanent]) 
                             _kill(opp, walker, me, others)
                     elif excess:
                         opp.life -= excess
+                        opp.combat_damage_taken += excess  # B34 attribution
                         if atk.is_commander:
                             # Trampled damage is still combat damage dealt to the player BY
                             # the attacking creature (CR 702.19e) -- counts as commander
@@ -1310,8 +1325,10 @@ def play_out(
     cfg: object, rng: SeededRng, a_first: bool, agents: dict[str, object],
     combos_a: tuple[frozenset[str], ...] = (),
     combos_b: tuple[frozenset[str], ...] = (),
+    outcome: dict | None = None,
 ) -> tuple[str, int, str]:
-    """One full game under `agents` (keyed 'a'/'b'). Reproduces _play_game's setup + structure."""
+    """One full game under `agents` (keyed 'a'/'b'). Reproduces _play_game's setup + structure.
+    `outcome`, when given, receives {"method": ...} (B34 kill-method attribution)."""
     players: dict[str, _Player] = {}
     for key, deck, cmdr, combos in (
         ("a", deck_a, cmdr_a, combos_a), ("b", deck_b, cmdr_b, combos_b)
@@ -1332,6 +1349,8 @@ def play_out(
         if state.terminal:
             break
         _decide_and_apply(state, agents)
+    if outcome is not None:
+        outcome["method"] = state.kill_method or (state.result[2] if state.result else None)
     return state.result
 
 

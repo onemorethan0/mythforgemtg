@@ -313,3 +313,36 @@ not support.
 While fixing (4) a new module-level regex reused the name `_LOYALTY_COST_RE`, which already
 existed in tags.py, and silently broke loyalty-ability classification for every planeswalker;
 the suite caught it (3 tests). Renamed; the invalid guard run was discarded and redone.
+
+### B34 (2026-11-07): kill-method attribution shipped
+
+**Goldfish (tier0).** Every point of damage is credited to the card that dealt it and to a source
+class: `combat` (creatures, and anthems by their share of the bonus), `commander`, `burn`
+(scaling burn, magecraft / cast-damage engines). The bookkeeping mirrors every change to the
+sim's damage pools, wipes included, and a test pins that it sums to exactly the damage the game
+counted. `apply_nut_kills` now records its detector (`storm`, `overrun`; a tie stays the damage
+kill). Cost: 2.13 s -> 2.21 s per 1,500 games (+4%), identical play.
+`/analyze` returns `kill_methods: {games, killing_games, method_share, median_kill_turn_by_method,
+damage_share, top_damage_cards}`, always on (it reads the analysis's existing games).
+
+**Engine fix it forced: commander damage (CR 704.5a) in the goldfish.** tier0 counted only
+life, so a commander-centric deck's kill came late whenever its commander alone had dealt 21
+first. Measured before fixing, on 8 real decks: 21% of Marchesa's games, 15% of Syr Gwyn's, 10%
+of Doran's, 6% of Krenko's. tier0 now ends the game at 21 commander combat damage
+(`kill_method: commander_damage`, the same name as T2's end reason). Marchesa now kills in
+251/300 games (was 213), 26% by commander damage. Guard (624 labelled decks): exact 58.5% ->
+58.2%, within-one 91.8% -> 91.8%, bias -0.08 unchanged; two decks moved up one bracket, both
+sitting on a strength cut line, one of them literally "Kenrith Voltron". Follow-up: the strength
+model's cut lines were fitted on the old clock; re-fit after this and B31
+(`scripts/bracket_strength_fit.py --collect`, then `--bake`).
+
+**Duels (T2).** Each player now counts combat vs noncombat life loss; a `life` loss is split by
+which dealt more, the end reason itself is unchanged. `DuelResult` gains `win_methods_a/_b`
+(combat / noncombat / commander_damage / combo / decked / adjudicated), so `/duel` says how
+games were won. Golden master regenerated after verifying every pre-existing field identical in
+all 16 scenarios.
+
+**Real decks, how they kill unopposed:** Lathril 62% alpha-strike (median T7); Syr Gwyn 39%
+through its commander; Kaalia 100% combat from cheated-in dragons. Fidelity limit to state in
+the report: tier0 attacks with every commander and does not model token makers, so Krenko reads
+as his own top damage dealer.

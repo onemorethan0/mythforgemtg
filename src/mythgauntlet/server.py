@@ -570,6 +570,9 @@ def create_app(
             "combos": _combos_block(combo_report, a.combo_profile, combos_checked),
             "card_stats": _card_stats_block(a.card_stats),
             "card_verdicts": _card_verdicts_block(a.card_verdicts),
+            # How it kills (B34): method shares over killing games, damage split, top damage
+            # dealers. Goldfish: "how it kills when nobody stops it".
+            "kill_methods": dataclasses.asdict(a.kill_methods) if a.kill_methods else None,
         }
 
     @app.post("/card-impact")
