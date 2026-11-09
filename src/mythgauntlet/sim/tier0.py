@@ -39,7 +39,7 @@ import re
 from dataclasses import dataclass, field, replace
 from functools import lru_cache
 
-from mythgauntlet.model.card import Card
+from mythgauntlet.model.card import Card, ManaCost
 from mythgauntlet.semantics import tags
 from mythgauntlet.sim import combat_rules
 from mythgauntlet.semantics.model import EffectVector
@@ -177,6 +177,63 @@ def _cast_matches(sc: "SimCard", kind: str, min_mv: int) -> bool:
     if kind != "any":
         return sc.card.has_type(kind.capitalize())
     return True
+
+
+@dataclass(frozen=True)
+class _Attachment:
+    kind: str               # "equip" | "aura"
+    bonus: int              # +N power to the creature it is on
+    double_strike: bool     # "... has double strike"
+    infect: bool            # "... has infect" (Grafted Exoskeleton)
+    equip_cost: str         # the plain "Equip {..}" cost; "" for an Aura
+    returns_to_hand: bool   # Rancor class
+
+
+@lru_cache(maxsize=4096)
+def _attachment(type_line: str, oracle_text: str) -> _Attachment | None:
+    """A pump Equipment or Aura read strictly: "Equipped/Enchanted creature gets +N/+M" and/or
+    "... has double strike / infect", on a line of its own with FIXED numbers ("for each" never
+    reads). An Equipment needs a plain "Equip {cost}" (a "legendary creature" or other
+    restricted equip is not read). An Aura that steals ("You control enchanted creature"), a
+    negative one, and an infect-only Aura (`_infect_aura`, which goes on the commander) are
+    not attachments here."""
+    tl = (type_line or "").lower()
+    lines = _rules_lines(oracle_text)
+    if "equipment" in tl:
+        kind, subj = "equip", "equipped creature"
+    elif ("aura" in tl and "enchant creature" in lines
+          and "you control enchanted creature." not in lines):
+        kind, subj = "aura", "enchanted creature"
+    else:
+        return None
+    bonus, ds, inf = 0, False, False
+    for ln in lines:
+        m = re.fullmatch(subj + r" gets \+(\d+)/[+-]\d+(?: and has ([a-z ,]+))?\.", ln)
+        if m:
+            bonus += int(m.group(1))
+            kws = m.group(2) or ""
+        else:
+            m2 = re.fullmatch(subj + r" has ([a-z ,]+)\.", ln)
+            kws = m2.group(1) if m2 else ""
+        ds = ds or "double strike" in kws
+        inf = inf or "infect" in kws
+    cost = ""
+    if kind == "equip":
+        for ln in lines:
+            m = re.fullmatch(r"equip ((?:\{[^}]+\})+)", ln)
+            if m:
+                cost = m.group(1)
+                break
+        if not cost:
+            return None
+    if kind == "aura":
+        inf = False                                 # infect Auras: see _infect_aura
+    if not (bonus or ds or inf):
+        return None
+    text = " ".join(lines)
+    back = bool(re.search(r"is put into a graveyard from the battlefield, return [^.]* to its "
+                          r"owner's hand", text))
+    return _Attachment(kind, bonus, ds, inf, cost, back)
 
 
 @lru_cache(maxsize=4096)
@@ -753,6 +810,31 @@ def _run_one(
                 pending_creatures += 1
                 atk_pending.append(entry)
 
+    # Pump Equipment / Auras (_attachment): [sc, info, target name or None].
+    attachments: list[list] = []
+    printed_ds = {sc.card.name for sc in everyone if "double strike" in (sc.card.keywords or ())}
+
+    def best_target() -> str | None:
+        """The commander if it is out (Voltron), else the strongest creature able to attack,
+        else the strongest summoning-sick one."""
+        for pool in (atk_board, atk_pending):
+            if pool:
+                cmd = [a for a in pool if a[3]]
+                return (cmd or [max(pool, key=lambda a: a[1])])[0][0]
+        return None
+
+    def creature_left(dead) -> None:
+        """Creatures named by `dead(name)` left the battlefield: their Equipment stays,
+        unattached; their Auras go to the graveyard (one that says so returns to hand)."""
+        for att in list(attachments):
+            if att[2] is not None and dead(att[2]):
+                if att[1].kind == "equip":
+                    att[2] = None
+                else:
+                    attachments.remove(att)
+                    if att[1].returns_to_hand:
+                        hand.append(att[0])
+
     def fire_cast(cast: SimCard) -> None:
         for src, mk, _ in list(token_engines):
             if mk.trigger == "cast" and _cast_matches(cast, mk.cast_kind, mk.cast_min_mv):
@@ -830,6 +912,9 @@ def _run_one(
         need = _station_threshold(sc.card.type_line or "", sc.card.oracle_text or "")
         if need and sc.attack_power:
             ships.append({"sc": sc, "need": need, "counters": 0, "turn": cur_turn})
+        att = _attachment(sc.card.type_line or "", sc.card.oracle_text or "")
+        if att is not None:
+            attachments.append([sc, att, best_target() if att.kind == "aura" else None])
         for mk in _token_makers(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""):
             eng = (sc.card.name, mk, sc.card.is_creature)
             if mk.trigger == "now":
@@ -997,6 +1082,7 @@ def _run_one(
                 #                         if another enabler is also out)
             sources = [src for src in sources if not src.from_commander]
             drop_engines(lambda e: e[0] != cname)
+            creature_left(lambda n: n == cname)
 
         if board_wipe_turn is not None and turn == board_wipe_turn:
             commander_stays = False
@@ -1027,6 +1113,7 @@ def _run_one(
             dmg_engine_active -= creature_dmg_engine
             creature_engine = creature_dmg_engine = 0
             drop_engines(lambda e: not e[2] or (commander_stays and e[0] == cmd_name))
+            creature_left(lambda n: not (commander_stays and n == cmd_name))
             if commander_stays:
                 # exactly what apply_effects(commander) put on the board (see there)
                 board_power = commander.attack_power
@@ -1087,6 +1174,10 @@ def _run_one(
                 plan_piece = _infect_aura(sc.card.type_line or "", sc.card.oracle_text or "")
                 if plan_piece and not commander_on_board():
                     continue
+                pump_aura = _attachment(sc.card.type_line or "", sc.card.oracle_text or "")
+                if (pump_aura is not None and pump_aura.kind == "aura"
+                        and not (atk_board or atk_pending)):
+                    continue
                 rule_discount = (rule.creature_discount(sc.card)
                                  if rule is not None and commander is not None and not commander_in_zone
                                  else 0)
@@ -1124,6 +1215,20 @@ def _run_one(
                 played(sc)
             fire_cast(sc)
             apply_effects(sc, is_commander)
+
+        for att in sorted(attachments, key=lambda a: ManaCost.parse(a[1].equip_cost).mana_value):
+            if att[1].kind != "equip" or att[2] is not None:
+                continue
+            target = best_target()
+            if target is None:
+                break
+            payment = _can_pay(sources, ManaCost.parse(att[1].equip_cost))
+            if payment is None:
+                continue
+            for idx in payment:
+                sources[idx].ready = False
+            spent += len(payment)
+            att[2] = target
 
         # Scaling-burn finisher: whatever mana is left over this turn is spent as X (mirrors
         # how a player actually plays a Fireball — as a mana sink, not for X=0). Cheapest
@@ -1243,18 +1348,37 @@ def _run_one(
         n_attacking = board_creatures if attackers is atk_board else len(attackers)
         extra = max(0, per_creature * n_attacking - lord_self_active)
         infect_attackers = 0
+        on: dict[str, list] = {}
+        for att in attachments:
+            if att[2] is not None:
+                on.setdefault(att[2], []).append(att)
         for name, pw, pw_rule, is_cmd in attackers:
             p = pw_rule if rule_live else pw
             if is_cmd and cmd_counters:
                 cut = min(cmd_counters, p)
                 p -= cut
                 swing -= cut
-            if has_infect(name, is_cmd):
+            gear = on.pop(name, [])                 # one creature of that name carries it
+            shares: list[tuple[str, int]] = []
+            granted_infect = any(a[1].infect for a in gear)
+            if gear:
+                gains_ds = any(a[1].double_strike for a in gear) and name not in printed_ds
+                mult = 2 if (gains_ds or name in printed_ds) else 1
+                shares = [(a[0].card.name, a[1].bonus * mult) for a in gear]
+                if gains_ds:                        # the creature's own power hits twice too
+                    first_ds = next(a for a in gear if a[1].double_strike)
+                    shares.append((first_ds[0].card.name, p))
+                swing += sum(x for _, x in shares)
+            if has_infect(name, is_cmd) or granted_infect:
                 infect_attackers += 1
-                swing -= p
+                swing -= p + sum(x for _, x in shares)
                 credit_poison(name, p)
+                for src, x in shares:
+                    credit_poison(src, x)
             else:
                 credit(name, "commander" if is_cmd else "combat", p)
+                for src, x in shares:
+                    credit(src, "commander" if is_cmd else "combat", x)
             if toxic_of.get(name) and p + per_creature > 0:
                 credit_poison(name, toxic_of[name])
         infect_bonus = min(extra, per_creature * infect_attackers)
