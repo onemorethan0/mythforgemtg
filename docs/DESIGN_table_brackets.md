@@ -274,3 +274,12 @@ casual pods. What the user has seen at real tables may come from what the sim do
 and it doesn't need to win to sour a game: Denial measures how much a deck stops OTHERS from
 playing, which is the fun question, whatever the win rate.
 
+**Draw-go and the ablation re-run (2026-11-08).** `sim/game.py` gives the next seat in turn order
+an end-of-turn window for instant-speed spells that aren't counterspells (Instants and Flash
+cards, read from the card's own text); greedy holds such spells for it and spends held mana
+there, while rituals still cast in the main phase. The window fires 4-8 times a pod game. Re-run
+with it (12 High-Denial Bracket 1-3 decks, 120 pods each, same seeds and field): 17.9% with
+counters working, 18.1% with them dead -- **-0.2 points**, against +1.2 before draw-go; both
+within noise of zero. Denial-Low decks 27.4%. Across every pilot version, then, counterspells do
+not decide casual four-player games in the simulator.
+
