@@ -313,6 +313,27 @@ def _attachment(type_line: str, oracle_text: str) -> _Attachment | None:
     return _Attachment(kind, bonus, ds, inf, cost, back)
 
 
+_EXTRA_LAND_RE = re.compile(
+    r"you may play (an|one|two|three) additional lands? (on each of your turns|this turn)\.")
+
+
+@lru_cache(maxsize=4096)
+def _extra_land_drops(oracle_text: str) -> tuple[int, int]:
+    """(each turn, this turn only) extra land drops printed as a line of their own (CR 305.2):
+    Azusa / Exploration / Oracle of Mul Daya, and Explore-class spells. A conditional or
+    activated grant is not read."""
+    static = once = 0
+    for ln in _rules_lines(oracle_text):
+        m = _EXTRA_LAND_RE.fullmatch(ln) or _EXTRA_LAND_RE.match(ln)
+        if m and m.start() == 0:
+            n = _NUM_WORDS[m.group(1)]
+            if m.group(2) == "this turn":
+                once += n
+            else:
+                static += n
+    return static, once
+
+
 @lru_cache(maxsize=4096)
 def _crew_cost(type_line: str, oracle_text: str) -> int | None:
     """Crew N of a Vehicle (CR 702.122): tap untapped creatures with total power N or more and it
@@ -909,6 +930,20 @@ def _run_one(
 
     # Pump Equipment / Auras (_attachment): [sc, info, target name or None].
     attachments: list[list] = []
+    # Extra land drops: (source name, n, source is a creature) for each-turn grants.
+    extra_lands: list[tuple[str, int, bool]] = []
+
+    def play_land() -> bool:
+        land = _choose_land(hand, _needed_colors(hand, commander if commander_in_zone else None))
+        if land is None:
+            return False
+        hand.remove(land)
+        played(land)
+        sources.append(_Source(land.produced_colors(), ready=not land.fx.enters_tapped))
+        for src, mk, _ in list(token_engines):
+            if mk.trigger == "land":
+                fire(src, mk)
+        return True
     printed_ds = {sc.card.name for sc in everyone if "double strike" in (sc.card.keywords or ())}
 
     def best_target() -> str | None:
@@ -1009,6 +1044,13 @@ def _run_one(
         need = _station_threshold(sc.card.type_line or "", sc.card.oracle_text or "")
         if need and sc.attack_power:
             ships.append({"sc": sc, "need": need, "counters": 0, "turn": cur_turn})
+        static_lands, once_lands = _extra_land_drops(sc.card.oracle_text or "")
+        if static_lands and not (sc.card.has_type("Instant") or sc.card.has_type("Sorcery")):
+            extra_lands.append((sc.card.name, static_lands, sc.card.is_creature))
+            once_lands += static_lands              # the grant works the turn it arrives
+        for _ in range(once_lands):                 # played at once, mid main phase
+            if not play_land():
+                break
         att = _attachment(sc.card.type_line or "", sc.card.oracle_text or "")
         if att is not None:
             attachments.append([sc, att, best_target() if att.kind == "aura" else None])
@@ -1183,6 +1225,7 @@ def _run_one(
             sources = [src for src in sources if not src.from_commander]
             drop_engines(lambda e: e[0] != cname)
             creature_left(lambda n: n == cname)
+            extra_lands[:] = [e for e in extra_lands if e[0] != cname]
 
         if board_wipe_turn is not None and turn == board_wipe_turn:
             commander_stays = False
@@ -1214,6 +1257,8 @@ def _run_one(
             creature_engine = creature_dmg_engine = 0
             drop_engines(lambda e: not e[2] or (commander_stays and e[0] == cmd_name))
             creature_left(lambda n: not (commander_stays and n == cmd_name))
+            extra_lands[:] = [e for e in extra_lands
+                              if not e[2] or (commander_stays and e[0] == cmd_name)]
             if commander_stays:
                 # exactly what apply_effects(commander) put on the board (see there)
                 board_power = commander.attack_power
@@ -1242,15 +1287,11 @@ def _run_one(
             draw(1)
         draw(engine_active)
 
-        land = _choose_land(hand, _needed_colors(hand, commander if commander_in_zone else None))
-        if land is not None:
-            hand.remove(land)
-            played(land)
-            sources.append(_Source(land.produced_colors(), ready=not land.fx.enters_tapped))
-            for src, mk, _ in list(token_engines):
-                if mk.trigger == "land":
-                    fire(src, mk)
-        stats.land_drops.append(land is not None)
+        land_played = play_land()
+        for _ in range(sum(n for _, n, _ in extra_lands) if land_played else 0):
+            if not play_land():
+                break
+        stats.land_drops.append(land_played)
 
         mana_available = sum(1 for s in sources if s.ready)
         stats.sources_by_turn.append(len(sources))

@@ -101,3 +101,19 @@ def test_treasure_is_mana_once(make_card):
     first = lambda rs: sum(min((t for n, t in r.played_turn.items() if n == "Big Thing"),  # noqa: E731
                                default=99) for r in rs)
     assert first(with_t) < first(without)
+
+
+def test_extra_land_drops(make_card):
+    from mythgauntlet.sim.tier0 import _extra_land_drops
+    assert _extra_land_drops("You may play an additional land on each of your turns.") == (1, 0)
+    assert _extra_land_drops("You may play two additional lands on each of your turns.") == (2, 0)
+    assert _extra_land_drops("You may play an additional land this turn.\nDraw a card.") == (0, 1)
+    assert _extra_land_drops("Landfall — Whenever a land you control enters, you may play an "
+                             "additional land this turn if you control a Cave.") == (0, 0)
+    explo = make_card("Exploration", mana_cost="{B}", type_line="Enchantment",
+                      oracle_text="You may play an additional land on each of your turns.")
+    dud = make_card("Dud", mana_cost="{B}", type_line="Enchantment", oracle_text="You gain 1 life.")
+    lands = lambda rs: sum(len(r.sources_by_turn) and r.sources_by_turn[-1] for r in rs)  # noqa: E731
+    with_x = simulate([(_swamp(make_card), 45), (explo, 54)], None, CFG)
+    without = simulate([(_swamp(make_card), 45), (dud, 54)], None, CFG)
+    assert lands(with_x) > lands(without)
