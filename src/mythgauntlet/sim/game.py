@@ -58,6 +58,7 @@ from mythgauntlet.sim.tier2 import (
     _Player,
     _resolve,
     commander_damage_lost,
+    poison_lost,
 )
 
 # --- actions -----------------------------------------------------------------------------
@@ -418,7 +419,7 @@ def _register_deaths(state: GameState) -> bool:
     zero) remains. Returns True if the game finished. 1v1 keeps its exact win-checks."""
     for k in state.living():
         p = state.players[k]
-        if p.decked or p.life <= 0 or commander_damage_lost(p):
+        if p.decked or p.life <= 0 or commander_damage_lost(p) or poison_lost(p):
             state.eliminated.add(k)
     living = state.living()
     if len(living) <= 1:
@@ -522,6 +523,9 @@ def _do_turn_start(state: GameState) -> None:
         if commander_damage_lost(opp):
             _finish(state, state.active, "commander_damage")
             return
+        if poison_lost(opp):
+            _finish(state, state.active, "poison")
+            return
     state.land_played = False
     state.casts_this_main = 0
     state.combat_begun = False
@@ -547,6 +551,8 @@ def _do_post_main(state: GameState) -> None:
         _finish(state, state.active, "life")
     elif commander_damage_lost(opp):
         _finish(state, state.active, "commander_damage")
+    elif poison_lost(opp):
+        _finish(state, state.active, "poison")
     elif me.combo_ready():
         _finish(state, state.active, "combo")
     else:
@@ -696,6 +702,10 @@ def _do_end_step(state: GameState) -> None:
         _finish(state, state.active, "commander_damage")
     elif commander_damage_lost(me):
         _finish(state, state.other, "commander_damage")
+    elif poison_lost(opp):
+        _finish(state, state.active, "poison")
+    elif poison_lost(me):
+        _finish(state, state.other, "poison")
     else:
         state.phase = "next"
 
@@ -1403,6 +1413,18 @@ def _apply_declare_blocks(state: GameState, assignment: dict) -> None:
     _resolve_combat_steps(state, {i: _blockers_of(v) for i, v in assignment.items()})
 
 
+def _hit_player(atk: _Permanent, opp, amount: int) -> None:
+    """Combat damage from `atk` to the player `opp`: life, or poison counters from an infect
+    source (CR 702.90b); toxic adds its poison on top (CR 702.180)."""
+    if atk.has_infect:
+        opp.poison += amount
+    else:
+        opp.life -= amount
+        opp.combat_damage_taken += amount  # B34 attribution
+    if atk.toxic and amount > 0:
+        opp.poison += atk.toxic
+
+
 def _deal_to_defender(state: GameState, atk: _Permanent, amount: int, walker, opp, me,
                       others, hitters: list) -> None:
     """`amount` combat damage from `atk` to the attacked planeswalker or player (shared by the
@@ -1416,8 +1438,7 @@ def _deal_to_defender(state: GameState, atk: _Permanent, amount: int, walker, op
             if walker.loyalty <= 0:
                 _kill(opp, walker, me, others)
         return
-    opp.life -= amount
-    opp.combat_damage_taken += amount  # B34 attribution
+    _hit_player(atk, opp, amount)
     if atk.is_commander:
         key = state.active
         opp.commander_damage_taken[key] = opp.commander_damage_taken.get(key, 0) + amount
@@ -1520,8 +1541,7 @@ def _resolve_combat_legacy(state: GameState, assignment: dict[int, _Permanent]) 
                 if walker.loyalty <= 0:
                     _kill(opp, walker, me, others)
                 continue
-            opp.life -= atk.combat_power
-            opp.combat_damage_taken += atk.combat_power  # B34 attribution
+            _hit_player(atk, opp, atk.combat_power)
             if atk.is_commander:
                 # CR 704.5a: only UNBLOCKED combat damage to a PLAYER counts -- a blocked
                 # commander deals its damage to the blocking creature, tracked nowhere here.
@@ -1546,8 +1566,7 @@ def _resolve_combat_legacy(state: GameState, assignment: dict[int, _Permanent]) 
                         if walker.loyalty <= 0 and walker in opp.battlefield:
                             _kill(opp, walker, me, others)
                     elif excess:
-                        opp.life -= excess
-                        opp.combat_damage_taken += excess  # B34 attribution
+                        _hit_player(atk, opp, excess)
                         if atk.is_commander:
                             # Trampled damage is still combat damage dealt to the player BY
                             # the attacking creature (CR 702.19e) -- counts as commander

@@ -174,3 +174,14 @@ def test_a_noncreature_payoff_counts_artifacts_and_skips_cheap_spells(make_card)
     assert not _counts_for(c, flt) and not _counts_for(k, flt)
     gutter = (False, 0)
     assert _counts_for(c, gutter) and _counts_for(b, gutter) and not _counts_for(r, gutter)
+
+
+def test_t2_duel_infect_attackers_win_by_poison(make_card, forest):
+    """Tier-2: an infect attacker's combat damage is poison (CR 702.90b); ten is a loss."""
+    from mythgauntlet.sim.tier2 import DuelConfig, duel
+    blight = make_card("Blight Bear", mana_cost="{1}{G}", type_line="Creature — Phyrexian Bear",
+                       colors=("G",), color_identity=("G",), oracle_text="Infect")
+    blight.power, blight.toughness = "2", "2"
+    lands = [(forest, 99)]                 # never blocks: the bears must win
+    res = duel([(forest, 40), (blight, 59)], None, lands, None, DuelConfig(games=20, seed=3))
+    assert res.wins_a == 20 and res.win_methods_a == {"poison": 20}

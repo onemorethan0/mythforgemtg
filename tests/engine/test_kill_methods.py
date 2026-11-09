@@ -98,7 +98,7 @@ def test_duel_reports_how_each_side_won(make_card, forest):
     assert sum(res.win_methods_a.values()) == res.wins_a
     assert sum(res.win_methods_b.values()) == res.wins_b
     assert set(res.win_methods_a) | set(res.win_methods_b) <= {
-        "combat", "noncombat", "commander_damage", "combo", "decked", "adjudicated"}
+        "combat", "noncombat", "commander_damage", "combo", "decked", "adjudicated", "poison"}
     assert "combat" in res.win_methods_a or "combat" in res.win_methods_b
     assert "win_methods_a" in dataclasses.asdict(res)
 

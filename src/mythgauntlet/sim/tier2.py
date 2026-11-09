@@ -77,7 +77,8 @@ from mythgauntlet.semantics.profile import (
 from mythgauntlet.semantics.store import SemanticsStore
 from mythgauntlet.sim import cost_rules
 from mythgauntlet.sim.rng import SeededRng
-from mythgauntlet.sim.tier0 import SimCard, _can_pay, _Source
+from mythgauntlet.sim.tier0 import (POISON_LETHAL, SimCard, _can_pay, _has_own_infect,
+                                    _Source, _toxic_amount)
 
 # Target types the engine treats as "a creature-ish thing" for removal.
 _REMOVAL_TYPES = {"creature", "permanent", "artifact", "enchantment", "any", "planeswalker"}
@@ -92,6 +93,11 @@ _STAT_BASES = {"target_power", "power", "greatest_power", "counters_on_this"}
 
 # CR 704.5a: a player with 21+ combat damage from a single commander loses the game.
 COMMANDER_DAMAGE_LETHAL = 21
+
+
+def poison_lost(player: "_Player") -> bool:
+    """CR 704.5c: ten or more poison counters."""
+    return player.poison >= POISON_LETHAL
 
 
 def commander_damage_lost(player: "_Player") -> bool:
@@ -222,6 +228,21 @@ class _Permanent:
                 or name in self.anthem_keywords)
 
     @property
+    def has_infect(self) -> bool:
+        """Infect PRINTED on the card's own keyword line, or granted by an attachment or
+        anthem (CR 702.90). `keywords` is Scryfall's list of keywords the text MENTIONS (Vector
+        Asp mentions infect it only gains for {B}), so the printed check reads the text."""
+        if "infect" in self.granted_keywords or "infect" in self.anthem_keywords:
+            return True
+        card = getattr(self.source, "card", None)
+        return card is not None and _has_own_infect(card.oracle_text or "")
+
+    @property
+    def toxic(self) -> int:
+        card = getattr(self.source, "card", None)
+        return _toxic_amount(card.oracle_text or "") if card is not None else 0
+
+    @property
     def combat_power(self) -> int:
         """The combat damage this creature assigns (CR 510.1a, or its toughness under a rule)."""
         if self.assigns_toughness or (self.assigns_toughness_if_greater
@@ -278,6 +299,8 @@ class _Player:
     # attribution only (B34); nothing in play reads them.
     combat_damage_taken: int = 0
     noncombat_damage_taken: int = 0
+    # Poison counters (CR 704.5c): combat damage from an infect source, plus toxic.
+    poison: int = 0
     # Extra turns this player has banked but not yet taken (CR 505 / "take an extra turn
     # after this one"). Held on the PLAYER rather than the GameState because _apply_resolved
     # only ever sees players; sim/game._to_next_halfturn spends them.
