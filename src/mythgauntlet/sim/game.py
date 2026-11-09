@@ -12,6 +12,7 @@ Decision points (an agent's `decide` is queried at each):
   - COMBAT_ATTACK   active player: DeclareAttackers
   - COMBAT_BLOCK    defender:      DeclareBlocks
   - INSTANT_WINDOW  reactor:       CastRemoval / PassReaction    (pre-combat, active has a threat)
+  - EOT_WINDOW      next seat:     CastSpell / Pass  (end of turn: instant-speed spells, draw-go)
 
 Reactions are SEARCHED decisions (2026-07-21): when a spell is cast it goes on the stack and
 each player in turn gets a COUNTER_WINDOW decision (LIFO counter-war); before combat the non-
@@ -33,6 +34,7 @@ Determinism: invariant #1 — all RNG via SeededRng.
 from __future__ import annotations
 
 import math
+import re
 from dataclasses import dataclass, field, replace
 
 from mythgauntlet.sim.rng import SeededRng
@@ -63,6 +65,7 @@ from mythgauntlet.sim.tier2 import (
 MAIN = "main"
 ACTIVATION = "activation"
 COUNTER_WINDOW = "counter_window"
+EOT_WINDOW = "eot_window"
 COMBAT_ATTACK = "combat_attack"
 COMBAT_BLOCK = "combat_block"
 INSTANT_WINDOW = "instant_window"
@@ -181,6 +184,10 @@ class GameState:
     # spell resolves (or combat begins) only when every seat with a reason and an answer has
     # passed -- CR 117.4, priority passing in succession. Unused in 1v1 (golden master).
     reaction_passed: frozenset[str] = frozenset()
+    # Draw-go (2026-11-08): the end-of-turn window has run this turn. The NEXT seat in turn
+    # order may cast instant-speed spells in the active player's end step -- the mana it held
+    # up for a counter, spent before it untaps.
+    eot_done: bool = False
     eliminated: set[str] = field(default_factory=set)  # dead players (N-player; empty in 1v1)
     pending: Decision | None = None
     terminal: bool = False
@@ -275,6 +282,7 @@ def clone(state: GameState) -> GameState:
         counters_on_stack=state.counters_on_stack,
         reaction_actor=state.reaction_actor,
         reaction_passed=state.reaction_passed,
+        eot_done=state.eot_done,
         eliminated=set(state.eliminated),
         pending=state.pending,
         terminal=state.terminal,
@@ -517,6 +525,7 @@ def _do_turn_start(state: GameState) -> None:
     state.land_played = False
     state.casts_this_main = 0
     state.combat_begun = False
+    state.eot_done = False
     state.phase = MAIN
 
 
@@ -594,6 +603,50 @@ def _next_counter_actor(state: GameState) -> str | None:
         if k not in state.reaction_passed and _find_counter(state.players[k]) is not None:
             return k
     return None
+
+
+_FLASH_LINE_RE = re.compile(r"^Flash(?:,|$)", re.MULTILINE)
+
+
+def instant_speed(gc: GameCard) -> bool:
+    """Castable at instant speed: an Instant, or a card whose own text gives it Flash (a keyword
+    line "Flash" / "Flash, flying" -- not Flashback, and not Scryfall's keyword list, which names
+    keywords a card merely mentions)."""
+    if gc.card.has_type("Instant"):
+        return True
+    return bool(_FLASH_LINE_RE.search(gc.card.oracle_text or ""))
+
+
+def eot_castable(player: _Player) -> list[GameCard]:
+    """Spells `player` could cast in another player's end step: instant speed, not a
+    counterspell (nothing on the stack to counter), payable from its untapped sources."""
+    from mythgauntlet.sim.tier0 import _can_pay
+
+    out: list[GameCard] = []
+    seen: set[int] = set()
+    for gc in player.hand:
+        if gc.sim.is_land or gc.profile.counter or id(gc) in seen or not instant_speed(gc):
+            continue
+        seen.add(id(gc))
+        if _can_pay(player.sources, cast_cost(player, gc)) is not None:
+            out.append(gc)
+    return out
+
+
+def eot_actor(state: GameState) -> str | None:
+    """The seat that gets the end-of-turn window: the next living seat after the active player
+    -- the one that untaps next, so mana it spends now costs it nothing on another turn."""
+    after = _seats_after(state, state.active)
+    return after[0] if after else None
+
+
+def _primary_of(state: GameState, key: str) -> str:
+    """`key`'s primary opponent (the biggest threat among the other living seats), as `other`
+    is for the active player."""
+    opps = [k for k in state.living() if k != key]
+    if not opps:
+        return key
+    return max(opps, key=lambda k: (state.players[k].score(), -state.order.index(k)))
 
 
 def _next_instant_actor(state: GameState) -> str | None:
@@ -716,7 +769,19 @@ def advance(state: GameState) -> None:
             state.pending = Decision(state.combat_defender_key, COMBAT_BLOCK)
             return
         elif ph == "end_step":
+            if not state.eot_done:
+                state.eot_done = True
+                state.phase = EOT_WINDOW
+                continue
             _do_end_step(state)
+        elif ph == EOT_WINDOW:
+            actor = eot_actor(state)
+            if actor is not None and eot_castable(state.players[actor]):
+                state.reaction_actor = actor
+                state.pending = Decision(actor, EOT_WINDOW)
+                return
+            state.reaction_actor = None
+            state.phase = "end_step"
         elif ph == "next":
             _to_next_halfturn(state)
         else:  # pragma: no cover - guard
@@ -921,6 +986,9 @@ def legal_actions(state: GameState) -> list[object]:
                         continue
                     actions.append(Activate(perm, eff))
         return actions
+    if kind == EOT_WINDOW:
+        actor = state.players[state.pending.player]
+        return [Pass()] + [CastSpell(gc) for gc in eot_castable(actor)]
     if kind == COUNTER_WINDOW:
         actor = state.players[state.pending.player]
         actions = [PassReaction()]
@@ -1006,6 +1074,9 @@ def apply(state: GameState, action: object) -> None:
     from mythgauntlet.sim.tier2 import _card_value, _reactive_reserve
 
     state.pending = None
+    if state.phase == EOT_WINDOW:
+        _apply_eot(state, action)
+        return
     me, opp = state.me_opp()
     kind_phase = state.phase
 
@@ -1093,6 +1164,39 @@ def apply(state: GameState, action: object) -> None:
         return
 
     raise AssertionError(f"unknown action {action!r}")  # pragma: no cover
+
+
+def _apply_eot(state: GameState, action: object) -> None:
+    """End-of-turn window: the next seat casts an instant-speed spell (it resolves at once --
+    no counter window at end of turn at this fidelity) or passes, ending the window."""
+    from mythgauntlet.sim.tier0 import _can_pay
+
+    if not isinstance(action, CastSpell):
+        state.reaction_actor = None
+        state.phase = "end_step"
+        return
+    key = state.reaction_actor
+    caster = state.players[key]
+    gc = action.card
+    payment = _can_pay(caster.sources, cast_cost(caster, gc))
+    assert payment is not None, "apply() got an unpayable end-of-turn cast"
+    for idx in payment:
+        caster.sources[idx].ready = False
+    caster.hand.remove(gc)
+    primary_key = _primary_of(state, key)
+    primary = state.players[primary_key]
+    others = tuple(state.players[k] for k in state.living() if k not in (key, primary_key))
+    _fire_triggers(caster, primary, "cast_spell", others)
+    if gc.card.is_creature:
+        _fire_triggers(caster, primary, "cast_creature", others)
+    for k in state.living():
+        if k != key:
+            _fire_triggers(state.players[k], caster, "opponent_casts_spell")
+    if others:
+        _resolve(gc, caster, primary, False, others)
+    else:
+        _resolve(gc, caster, primary, False)
+    # stay in EOT_WINDOW: advance offers another cast or closes it
 
 
 def _apply_reaction(state: GameState, action: object) -> None:

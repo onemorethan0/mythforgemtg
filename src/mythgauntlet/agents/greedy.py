@@ -23,6 +23,7 @@ from mythgauntlet.sim.game import (
     COMBAT_ATTACK,
     COMBAT_BLOCK,
     COUNTER_WINDOW,
+    EOT_WINDOW,
     INSTANT_WINDOW,
     MAIN,
     Activate,
@@ -37,6 +38,9 @@ from mythgauntlet.sim.game import (
     PlayLand,
     _eligible_attackers,
     _held_answer_cost,
+    _primary_of,
+    eot_castable,
+    instant_speed,
     pay_keeping,
     walker_attack_plan,
 )
@@ -286,6 +290,8 @@ class GreedyAgent:
             return self._activation(state)
         if kind == COUNTER_WINDOW:
             return self._counter_window(state)
+        if kind == EOT_WINDOW:
+            return self._end_of_turn(state)
         if kind == INSTANT_WINDOW:
             return self._instant_window(state)
         if kind == COMBAT_ATTACK:
@@ -293,6 +299,19 @@ class GreedyAgent:
         if kind == COMBAT_BLOCK:
             return self._block(state)
         raise AssertionError(f"greedy: unknown decision {kind!r}")  # pragma: no cover
+
+    def _end_of_turn(self, state) -> object:
+        """Draw-go: spend the mana held up through this turn on the best instant-speed spell
+        (draw, a flash creature, instant removal) before untapping; Pass when none is worth it."""
+        key = state.pending.player
+        me = state.players[key]
+        opp = state.players[_primary_of(state, key)]
+        best: tuple[float, object] | None = None
+        for gc in eot_castable(me):
+            value = _card_value(gc, me, opp, state.turn, state.cfg)
+            if value > 0 and (best is None or value > best[0]):
+                best = (value, CastSpell(gc))
+        return best[1] if best is not None else Pass()
 
     def _counter_window(self, state) -> object:
         """Reproduce _counter_chain's greedy step: fight only over a spell worth >= the
@@ -333,6 +352,12 @@ class GreedyAgent:
                 # a counterspell needs a spell on the stack to target (CR 115.1 / 601.2c): in a
                 # main phase with an empty stack it can't legally be cast, and casting it threw
                 # the counter away -- it waits for a COUNTER_WINDOW
+                continue
+            if (instant_speed(gc) and not _instant_answer(gc)
+                    and "add_mana" not in repr(gc.resolve_abilities or ())):  # rituals: now
+                # draw-go: an instant-speed spell that isn't an answer waits for the end of the
+                # turn before ours (sim.game EOT_WINDOW) -- the mana stays up for a counter
+                # meanwhile, and a flash creature cast then still attacks on our turn
                 continue
             payment = _can_pay(me.sources, cast_cost(me, gc))
             if payment is None:
