@@ -57,8 +57,22 @@ def line_is_read(card, line: str) -> bool:
         return True
     if tier0._anthems_in_text(line) or tier0._has_own_infect(line) or tier0._toxic_amount(line):
         return True
-    if tier0._infect_aura(card.type_line or "", line) or (
-            fx.tutor and tier0._tutor_spec(card.type_line or "", line)):
+    tl = card.type_line or ""
+    if tier0._infect_aura(tl, line) or (fx.tutor and tier0._tutor_spec(tl, line)):
+        return True
+    if (tier0._has_own_haste(line) or tier0._token_makers(card.name, tl, line)
+            or tier0._effect_makers(card.name, tl, line)):
+        return True
+    # whole-card readers: a line that only matters with the rest of the card
+    full = card.oracle_text or ""
+    if tier0._crew_cost(tl, full) and line.startswith("crew"):
+        return True
+    if tier0._station_threshold(tl, full) and (line.startswith("station")
+                                               or re.match(r"\d+\+ \|", line)):
+        return True
+    att = tier0._attachment(tl, full)
+    if att and (line.startswith(("equip", "enchant creature"))
+                or line.startswith(("equipped creature", "enchanted creature"))):
         return True
     return False
 

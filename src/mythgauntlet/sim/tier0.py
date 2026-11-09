@@ -90,6 +90,7 @@ class _TokenMaker:
     attacking: bool     # "tapped and attacking": in this combat already
     cast_kind: str = "any"      # cast trigger: any | noncreature | instant_sorcery
     cast_min_mv: int = 0
+    infect: bool = False        # "... creature token with infect"
 
 
 def _token_trigger(prefix: str, is_spell: bool) -> tuple[str, str, int] | None:
@@ -102,15 +103,18 @@ def _token_trigger(prefix: str, is_spell: bool) -> tuple[str, str, int] | None:
         return None
     if re.fullmatch(r"i(?:, ii)? —", p):
         return ("now", "any", 0)                    # a Saga's chapter I fires as it enters
-    if re.fullmatch(r"whenever you attack,(?: for each opponent,)?", p):
+    if re.fullmatch(r"whenever you attack,(?: for each opponent,)?", p) or re.fullmatch(
+            r"whenever one or more (?:other )?creatures you control deal combat damage to "
+            r"(?:a player|an opponent|one or more players),", p):
         return ("attack_any", "any", 0)
     if not p:
         return ("now", "any", 0) if is_spell else None
     if re.fullmatch(r"when(?:ever)? (?:~|this [a-z]+)(?: enters| enters or attacks)?,", p) and \
             "enters" in p:
         return ("now", "any", 0)
-    if re.fullmatch(r"whenever (?:~|this [a-z]+) attacks,", p):
-        return ("attack", "any", 0)
+    if re.fullmatch(r"whenever (?:~|this [a-z]+) (?:attacks|deals combat damage to a player"
+                    r"|deals combat damage to an opponent),", p):
+        return ("attack", "any", 0)                 # an unblocked goldfish attack connects
     if re.fullmatch(r"at the beginning of (?:your upkeep|each upkeep|combat on your turn),"
                     r"(?: you lose \d+ life and)?", p):
         return ("upkeep", "any", 0)                 # "each upkeep": counted on ours only
@@ -160,10 +164,83 @@ def _token_makers(name: str, type_line: str, oracle_text: str) -> tuple[_TokenMa
             out.append(_TokenMaker(
                 trigger=trig[0], count=_NUM_WORDS[m.group(1)], power=int(m.group(3)),
                 haste="haste" in rest, attacking="tapped and attacking" in rest,
-                cast_kind=trig[1], cast_min_mv=trig[2]))
+                cast_kind=trig[1], cast_min_mv=trig[2], infect="infect" in rest))
             if trig[0] == "now" and "enters or attacks" in sentence[:m.start()]:
                 out.append(_TokenMaker("attack", _NUM_WORDS[m.group(1)], int(m.group(3)),
                                        "haste" in rest, "tapped and attacking" in rest))
+    return tuple(out)
+
+
+@dataclass(frozen=True)
+class _EffectMaker:
+    """A non-token repeatable or one-shot effect, timed like a _TokenMaker."""
+    kind: str           # proliferate | drain | treasure | poison
+    trigger: str
+    amount: int
+    cast_kind: str = "any"
+    cast_min_mv: int = 0
+
+
+_DRAIN_RE = re.compile(
+    r"\b(?:each opponent|target opponent|target player|each player) loses (\d+) life"
+    r"|\bdeals? (\d+) damage to (each opponent|target opponent|target player|any target"
+    r"|each player)")
+_POISON_RE = re.compile(
+    r"\b(?:each opponent|target opponent|target player)\b[^.]*?\bgets? (a|an|one|two|three) "
+    r"poison counters?")
+_TREASURE_RE = re.compile(r"\bcreate (a|an|one|two|three|four|five|six) (?:tapped )?treasure tokens?")
+
+
+@lru_cache(maxsize=4096)
+def _effect_makers(name: str, type_line: str, oracle_text: str) -> tuple[_EffectMaker, ...]:
+    """Proliferate, fixed drains and Treasure, read strictly with the token makers' trigger
+    timing (_token_trigger). A drain on a cast trigger that deals DAMAGE is already read by
+    `tags` (cast_damage / magecraft) and is skipped here, never counted twice; a spell's own
+    "N damage to any target" is not read as face damage (casual pilots point it at creatures);
+    "X", "for each" and "equal to" amounts are not read."""
+    is_spell = any(t in (type_line or "").lower() for t in ("instant", "sorcery"))
+    out: list[_EffectMaker] = []
+    names = sorted({name.lower(), name.lower().split(",")[0]}, key=len, reverse=True)
+    for line in _rules_lines(oracle_text):
+        for n in names:
+            line = line.replace(n, "~")
+        for sentence in re.split(r"(?<=\.)\s+", line):
+            found: list[tuple[str, int, int]] = []          # (kind, amount, start)
+            m = re.search(r"\bproliferate\b", sentence)
+            if m:
+                found.append(("proliferate", 1, m.start()))
+            m = _DRAIN_RE.search(sentence)
+            if m and not re.search(r"for each|equal to|where x", sentence[m.start():]):
+                amt = int(m.group(1) or m.group(2))
+                found.append(("drain", amt, m.start()))
+            m = _POISON_RE.search(sentence)
+            if m:
+                found.append(("poison", _NUM_WORDS[m.group(1)], m.start()))
+            m = _TREASURE_RE.search(sentence)
+            if m and not re.search(r"for each|equal to|where x", sentence):
+                found.append(("treasure", _NUM_WORDS[m.group(1)], m.start()))
+            for kind, amt, start in found:
+                head = sentence[:start]
+                # A trigger opens the sentence ("When ~ enters, ...", "+1: ..."): its clause runs
+                # to the first comma (the colon for a loyalty ability). Anything else in front
+                # of the effect is the spell's own earlier effect ("Draw two cards, then ...").
+                if re.match(r"(?:when|whenever|at the beginning|landfall|i(?:, ii)? —|\+\d+:)",
+                            head):
+                    cut = head.find(":") + 1 if re.match(r"\+\d+:", head) else head.find(",") + 1
+                    if cut <= 0:
+                        continue
+                    prefix = head[:cut]
+                else:
+                    prefix = ""
+                trig = _token_trigger(prefix, is_spell)
+                if trig is None:
+                    continue
+                if kind == "drain":
+                    if trig[0] == "cast" and "damage" in sentence[start:]:
+                        continue                    # tags reads it (cast_damage / magecraft)
+                    if trig[0] == "now" and is_spell and "any target" in sentence[start:]:
+                        continue
+                out.append(_EffectMaker(kind, trig[0], amt, trig[1], trig[2]))
     return tuple(out)
 
 
@@ -512,6 +589,7 @@ class _Source:
     from_creature: bool = False  # mana dork — dies to a board wipe (Tier-1 disruption)
     temp: bool = False  # ritual mana (T2): expires at the controller's next untap step
     from_commander: bool = False  # the commander's own mana ability (survives with it)
+    treasure: bool = False  # a Treasure token: any colour, gone once it has been used
 
 
 @dataclass
@@ -790,6 +868,23 @@ def _run_one(
     turn_engines: list[tuple[str, _TokenMaker, bool]] = []
     turn_engines_pending: list[tuple[str, _TokenMaker, bool]] = []
 
+    def fire(src: str, mk, attacking: bool = False) -> None:
+        """One maker fires: tokens, or a proliferate / drain / Treasure effect."""
+        nonlocal damage
+        if isinstance(mk, _TokenMaker):
+            make_tokens(src, mk, attacking)
+        elif mk.kind == "proliferate":
+            if poison > 0:                          # the opponent's poison counters grow
+                credit_poison(src, 1)
+        elif mk.kind == "poison":
+            credit_poison(src, mk.amount)
+        elif mk.kind == "drain":
+            damage += mk.amount
+            credit(src, "burn", mk.amount)
+        elif mk.kind == "treasure":
+            sources.extend(_Source(frozenset("WUBRG"), ready=True, treasure=True)
+                           for _ in range(mk.amount))
+
     def make_tokens(src: str, mk: _TokenMaker, attacking: bool = False) -> None:
         """Creature tokens join the board summoning-sick (they attack next turn); with haste
         or "tapped and attacking" they are in this combat. Credited to the card that made them."""
@@ -797,6 +892,8 @@ def _run_one(
         nonlocal board_power, board_power_rule, board_creatures
         name = f"{src} token"
         power_of[name] = mk.power
+        if mk.infect:
+            own_infect.add(name)
         for _ in range(mk.count):
             entry = (name, mk.power, mk.power, False)
             if mk.haste or attacking:
@@ -838,7 +935,7 @@ def _run_one(
     def fire_cast(cast: SimCard) -> None:
         for src, mk, _ in list(token_engines):
             if mk.trigger == "cast" and _cast_matches(cast, mk.cast_kind, mk.cast_min_mv):
-                make_tokens(src, mk)
+                fire(src, mk)
 
     def drop_engines(keep) -> None:
         for lst in (token_engines, turn_engines, turn_engines_pending):
@@ -915,13 +1012,15 @@ def _run_one(
         att = _attachment(sc.card.type_line or "", sc.card.oracle_text or "")
         if att is not None:
             attachments.append([sc, att, best_target() if att.kind == "aura" else None])
-        for mk in _token_makers(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""):
+        makers = (_token_makers(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or "")
+                  + _effect_makers(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""))
+        for mk in makers:
             eng = (sc.card.name, mk, sc.card.is_creature)
             if mk.trigger == "now":
-                make_tokens(sc.card.name, mk)
+                fire(sc.card.name, mk)
             elif mk.trigger in ("upkeep", "pw"):
                 if mk.trigger == "pw":
-                    make_tokens(sc.card.name, mk)
+                    fire(sc.card.name, mk)
                 turn_engines_pending.append(eng)
             else:
                 token_engines.append(eng)
@@ -998,7 +1097,8 @@ def _run_one(
 
     for turn in range(1, cfg.turns + 1):
         cur_turn = turn
-        sources = [s for s in sources if not s.temp]  # ritual mana expires at untap
+        # ritual mana expires at untap; a Treasure that was used was sacrificed
+        sources = [s for s in sources if not s.temp and not (s.treasure and not s.ready)]
         for s in sources:
             s.ready = True
         board_power += pending_power
@@ -1136,7 +1236,7 @@ def _run_one(
                 dmg_engine_active += creature_dmg_engine
 
         for src, mk, _ in turn_engines:
-            make_tokens(src, mk)
+            fire(src, mk)
 
         if turn > 1 or cfg.draw_on_first_turn:
             draw(1)
@@ -1149,7 +1249,7 @@ def _run_one(
             sources.append(_Source(land.produced_colors(), ready=not land.fx.enters_tapped))
             for src, mk, _ in list(token_engines):
                 if mk.trigger == "land":
-                    make_tokens(src, mk)
+                    fire(src, mk)
         stats.land_drops.append(land is not None)
 
         mana_available = sum(1 for s in sources if s.ready)
@@ -1330,7 +1430,7 @@ def _run_one(
             for src, mk, _ in list(token_engines):
                 if (mk.trigger == "attack" and src in attacking) or (
                         mk.trigger == "attack_any" and attacking):
-                    make_tokens(src, mk, attacking=mk.attacking)
+                    fire(src, mk, attacking=getattr(mk, "attacking", False))
                     attack_tokens = attack_tokens or mk.attacking
         swing = board_power_rule if rule_live else board_power
         swing += max(0, per_creature * board_creatures - lord_self_active)
@@ -1426,7 +1526,7 @@ def _run_one(
                 pending_creatures += 1
         for src, mk, _ in list(token_engines):
             if mk.trigger == "end":
-                make_tokens(src, mk)
+                fire(src, mk)
         stats.damage_by_turn.append(damage)
         stats.poison_by_turn.append(poison)
         if (stats.commander_lethal_turn is None and cmd_name is not None
