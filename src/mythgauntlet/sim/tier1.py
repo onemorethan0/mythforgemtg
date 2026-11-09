@@ -134,8 +134,9 @@ def compute_resilience(
     # driven) is UNCHANGED by the wipe, correctly: a counterspell-free wipe doesn't stop a
     # combo. An overrun kill_turn CAN move later post-wipe, because it reads the run's own
     # rebuilt board_power_by_turn/board_creatures_by_turn, which the wipe actually reset.
-    apply_nut_kills(clean, nut_kill_cards, cfg.turns)
-    apply_nut_kills(wiped, nut_kill_cards, cfg.turns)
+    nut_cmd = [commander] if commander is not None else []
+    apply_nut_kills(clean, nut_kill_cards, cfg.turns, commanders=nut_cmd)
+    apply_nut_kills(wiped, nut_kill_cards, cfg.turns, commanders=nut_cmd)
 
     window_end = min(cfg.turns, wipe_turn + PRESSURE_WINDOW_AFTER)
     retained = []

@@ -358,8 +358,9 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
 // ── Lineage ───────────────────────────────────────────────────────────────────
 // Retheme / rebuild / duplicate each write a NEW deck under a NEW job id and record
 // where it came from. Without reading that back, a deck you iterated on four times
-// is four unrelated-looking tiles. This folds each family under its oldest ancestor
-// that is still present, so the top level is "decks" rather than "versions".
+// is four unrelated-looking tiles. This groups each family by its oldest ancestor still
+// present and shows it as its NEWEST version, so the top level is "decks" rather than
+// "versions" and the tile opens the version you last worked on.
 const KIND_BADGE = {
   retheme: { icon: '✏️', label: 'retheme', color: '#93c5fd', bg: '#0c1a2e', border: '#1e40af' },
   rebuild: { icon: '🎲', label: 'rebuild', color: '#c4b5fd', bg: '#180f2e', border: '#6d28d9' },
@@ -380,18 +381,26 @@ function buildFamilies(decks) {
     }
     return cur
   }
-  const children = new Map()   // rootId -> descendants, newest first
-  const roots = []
+  // Families keyed by their oldest ancestor, then SHOWN by their newest member: the tile
+  // you click is the version you last worked on, and the older ones (the original import
+  // included) fold under it. Showing the ancestor instead meant generating art for an
+  // imported deck -- which saves a NEW version -- and then reopening it from History
+  // opened the plain import: "my art is gone", while the art version sat folded away.
+  const families = new Map()   // ancestor id -> every member
   for (const d of decks) {
     const root = rootOf(d)
-    if (root.job_id === d.job_id) roots.push(d)
-    else children.set(root.job_id, [...(children.get(root.job_id) || []), d])
+    families.set(root.job_id, [...(families.get(root.job_id) || []), d])
   }
-  // Keep a family at the top while it is being worked on: order by the newest
-  // member's date, not the ancestor's.
-  const newest = r => Math.max(r.built_at || 0,
-    ...(children.get(r.job_id) || []).map(c => c.built_at || 0))
-  roots.sort((a, b) => newest(b) - newest(a))
+  const children = new Map()   // head id -> the family's other versions, newest first
+  const roots = []
+  const age = d => d.built_at || 0
+  for (const members of families.values()) {
+    const sorted = [...members].sort((a, b) => age(b) - age(a))
+    roots.push(sorted[0])
+    if (sorted.length > 1) children.set(sorted[0].job_id, sorted.slice(1))
+  }
+  // Keep a family at the top while it is being worked on: its head IS its newest member.
+  roots.sort((a, b) => age(b) - age(a))
   return { roots, children, byId }
 }
 

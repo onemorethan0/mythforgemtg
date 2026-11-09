@@ -262,6 +262,16 @@ export default function AdvisePanel({ jobId, onApplied }) {
                      worth {s.cut_value >= 0 ? '+' : ''}{s.cut_value} ({result.axis_label})
                    </div>
                  )}
+                 {/* What the swap gives up on OTHER axes. The engine only reports swaps that
+                     leave the deck better overall, but a net gain can still carry a real
+                     cost - say it, so the trade is the user's call. */}
+                 {s.costs && Object.keys(s.costs).length > 0 && (
+                   <div style={{ fontSize: 10.5, color: '#fbbf24', marginTop: 2, paddingLeft: 2 }}>
+                     Trade-off: {Object.entries(s.costs)
+                       .map(([ax, d]) => `${ax[0].toUpperCase()}${ax.slice(1)} ${d}`)
+                       .join(' · ')} — still a net gain for the deck
+                   </div>
+                 )}
                  {s.reason && (
                    <div
                      style={{ fontSize: 11, color: '#a8a29e', marginTop: 3, paddingLeft: 2 }}

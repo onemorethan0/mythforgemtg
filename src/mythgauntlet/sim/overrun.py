@@ -70,21 +70,48 @@ def earliest_alpha_strike_turn(
     cards: list[tuple[Card, int]],
     board_power_by_turn: list[int],
     board_creatures_by_turn: list[int],
+    *,
+    seen_turn: dict[str, int] | None = None,
+    mana_by_turn: list[int] | None = None,
+    always_available: frozenset[str] = frozenset(),
 ) -> int | None:
     """Earliest turn (1-indexed) THIS run's own board trajectory could alpha-strike for
-    lethal, using the deck's best one-shot team pump — the per-run sibling of
-    `estimate_overrun`, which reads one nut-percentile snapshot instead of a real run's
-    board as it develops turn by turn (docs/PLAN_CLOCK.md Phase 1a). Feeds
-    `sim/clock.apply_nut_kills`. Same best-case assumption as `estimate_overrun`: the
-    finisher is treated as castable and connecting the instant the board is wide enough,
-    without checking the finisher's own mana cost against that turn's mana.
+    lethal — the per-run sibling of `estimate_overrun`, which reads one nut-percentile
+    snapshot instead of a real run's board as it develops turn by turn (docs/PLAN_CLOCK.md
+    Phase 1a). Feeds `sim/clock.apply_nut_kills`.
+
+    With `seen_turn` (RunStats.seen_turn: card -> turn first in hand, 0 = opening hand) a
+    finisher only counts on a turn THIS game has drawn it and, with `mana_by_turn`, can pay
+    its mana value that turn. Without them every game was handed the deck's best pump the
+    instant its board was 3 wide, so a single 1-of Overrun moved the kill turn of ~every
+    game: the advisor measured +25 Ceiling for adding one, in decks that would draw it in a
+    small share of games. `always_available` names cards that never need drawing (the
+    commander, in the command zone). Omitting `seen_turn` keeps the old best-case read.
     """
-    flat, scales = _best_finisher(cards)
-    if not (flat or scales):
+    finishers = []
+    for card, _count in cards:
+        fx = tags.analyze(card)
+        if fx.overrun_pump or fx.overrun_scales:
+            finishers.append((card, fx.overrun_pump, bool(fx.overrun_scales)))
+    if not finishers:
         return None
     for i, (power, creatures) in enumerate(zip(board_power_by_turn, board_creatures_by_turn)):
         if creatures < _MIN_WIDTH:
             continue
+        turn = i + 1
+        mana = (mana_by_turn[min(i, len(mana_by_turn) - 1)]
+                if mana_by_turn else None)
+        flat, scales = 0, False
+        for card, pump, sc in finishers:
+            if seen_turn is not None and card.name not in always_available:
+                seen = seen_turn.get(card.name)
+                if seen is None or seen > turn:
+                    continue              # not drawn yet in this game
+            if mana is not None and card.mana_value > mana:
+                continue                  # drawn, but not castable this turn
+            flat, scales = max(flat, pump), scales or sc
+        if not (flat or scales):
+            continue
         if alpha_strike_damage(flat, scales, power, creatures) >= _LETHAL:
-            return i + 1
+            return turn
     return None

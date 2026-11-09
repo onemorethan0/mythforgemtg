@@ -172,9 +172,14 @@ class CeilingReport:
     overrun_alpha: bool = False  # a wide board + one-shot pump kills in one swing (sim/overrun.py)
 
 
+# An alpha strike that wins this share of games is a best-decile event: full Ceiling credit.
+_OVERRUN_FULL_SHARE = 0.10
+
+
 def compute_ceiling(
     runs: list[RunStats], cfg: SimConfig, has_game_ending_combo: bool = False,
     go_off_turn: int | None = None, overrun_alpha: bool = False,
+    overrun_share: float | None = None,
 ) -> CeilingReport:
     n = len(runs)
     kills = sorted(r.kill_turn for r in runs if r.kill_turn is not None)
@@ -213,7 +218,18 @@ def compute_ceiling(
     )
     # a wide board + a one-shot overrun is a nut-draw kill the combat clock can't see (overrun.py).
     # A fair wincon (unlike a storm combo) -> it lifts the Ceiling but does NOT gate the bracket.
-    overrun_component = 25.0 if overrun_alpha else 0.0
+    #
+    # `overrun_share` is the fraction of THIS deck's goldfish games actually won by the alpha
+    # strike (after apply_nut_kills, which needs the finisher drawn and castable). Full credit
+    # once it is a best-decile event, pro rata below. Without it the bonus was a flat +25 for
+    # holding ONE copy of any team pump, whatever the odds of drawing it: the upgrade advisor
+    # measured +25 Ceiling for adding a single Charge the Sanctum, and the result flipped
+    # between +0 and +25 with the seed. None keeps that old binary read for direct callers.
+    if overrun_share is None:
+        overrun_component = 25.0 if overrun_alpha else 0.0
+    else:
+        overrun_component = (25.0 * min(1.0, overrun_share / _OVERRUN_FULL_SHARE)
+                             if overrun_alpha else 0.0)
     return CeilingReport(
         score=min(100.0, speed_component + nut_component + combo_component + go_off_component
                   + overrun_component),

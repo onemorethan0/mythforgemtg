@@ -231,3 +231,21 @@ def test_ceiling_resolution_degrades_honestly_when_there_is_little_data():
     cfg = SimConfig(turns=8, runs=60, seed=1)
     sparse = compute_ceiling(_runs([7] + [None] * 59), cfg)
     assert sparse.fast_kill_turn == 7.0, "one kill -> the decile is that one game"
+
+
+def test_ceiling_overrun_credit_scales_with_how_often_it_actually_wins(make_card, forest):
+    """The flat +25 for owning ONE team pump made the advisor value a single Charge the
+    Sanctum at +25 Ceiling. With `overrun_share` the credit is pro rata up to a best-decile
+    event, so a finisher that wins 2% of games is worth a fifth of one that wins 10%."""
+    slow = make_card("Wall", mana_cost="{G}", type_line="Creature — Wall")
+    slow.power, slow.toughness = "0", "6"
+    cfg = SimConfig(runs=200, seed=9, turns=10)
+    runs = simulate([(forest, 40), (slow, 59)], None, cfg)
+    base = compute_ceiling(runs, cfg).score
+    rare = compute_ceiling(runs, cfg, overrun_alpha=True, overrun_share=0.02).score - base
+    full = compute_ceiling(runs, cfg, overrun_alpha=True, overrun_share=0.10).score - base
+    more = compute_ceiling(runs, cfg, overrun_alpha=True, overrun_share=0.40).score - base
+    never = compute_ceiling(runs, cfg, overrun_alpha=True, overrun_share=0.0).score - base
+    assert never == 0.0
+    assert rare == __import__("pytest").approx(5.0)
+    assert full == __import__("pytest").approx(25.0) == more

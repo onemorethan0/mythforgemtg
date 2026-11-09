@@ -11,8 +11,12 @@ cards and keeps whichever cut it improves the axis most from (an add that wants 
 weak ramp piece no longer has to fight the one globally-weakest creature). `cut_pool=1`
 reproduces the MVP's single-global-cut behaviour exactly.
 
-Honest limits still open: multi-card packages, general (non-owned) candidate pools, and
-cross-axis trade-offs.
+Cross-axis (2026-11-08): a swap must also leave the WHOLE deck better — every measured axis
+is netted in units of its spread among real decks (card_impact's rule), and swaps rank by
+that net. Before, only the target axis was read, so the advisor would cut another axis's best
+card to prop up the weakest one and report the deck as improved.
+
+Honest limits still open: multi-card packages and general (non-owned) candidate pools.
 """
 
 from __future__ import annotations
@@ -374,6 +378,15 @@ class SwapSuggestion:
     # add_value - cut_value == delta. None when not measured.
     add_value: float | None = None
     cut_value: float | None = None
+    # Every measured profile axis's move for this swap ({axis: after - before}), target
+    # included. Resilience is present only when it was simulated for this swap.
+    axis_deltas: dict[str, float] = field(default_factory=dict)
+    # The whole-deck verdict: meaningful moves summed in units of each axis's spread among
+    # real decks (card_impact._score). Always > 0 for a reported swap.
+    net: float | None = None
+    # Off-target axes this swap MEANINGFULLY lowers ({axis: delta < 0}), past each axis's
+    # noise floor — what the user gives up elsewhere to buy the target gain.
+    costs: dict[str, float] = field(default_factory=dict)
 
     @property
     def delta(self) -> float:
@@ -590,6 +603,40 @@ def _land_is_live(card, identity: set[str]) -> bool:
     return bool(named & {_BASIC_FOR_COLOUR[c] for c in identity if c in _BASIC_FOR_COLOUR})
 
 
+def _whole_deck_moves(
+    baseline: DeckAnalysis, after: DeckAnalysis, target: str, runs: int,
+) -> list:
+    """Every measurable axis's move for one swap, as card_impact.AxisMove rows.
+
+    The advisor used to read ONLY the target axis, and picked each add's cut by the biggest
+    target gain. That makes it actively drawn to the cut that contributes LEAST to the target,
+    which is very often the deck's best card on a different axis: a measured case cut The One
+    Ring (consistency) for Kaldra Compleat to raise Ceiling. card_impact already netted the
+    axes after the same failure (Chaos Warp, 2026-10-23); the advisor never got that fix.
+
+    Resilience is included only when BOTH analyses simulated it — an unmeasured axis is left
+    out, never read as zero. Floors are the run-scaled noise floors the target gate uses.
+    """
+    from mythgauntlet.ratings.card_impact import AxisMove  # card_impact imports this module
+
+    axes = [ax for ax in PROFILE_AXES
+            if ax != "resilience" or (baseline.resilience is not None
+                                      and after.resilience is not None)]
+    if target not in axes:
+        axes.append(target)              # the `clock` lens, when it is what was asked for
+    return [
+        AxisMove(axis=ax, label=AXES[ax][1],
+                 before=axis_score(baseline, ax), after=axis_score(after, ax),
+                 floor=_noise_floor(ax, runs))
+        for ax in axes
+    ]
+
+
+def _net(moves: list) -> float:
+    from mythgauntlet.ratings.card_impact import _score
+    return _score(moves)
+
+
 def advise(
     resolved: ResolvedDeck,
     cfg: SimConfig,
@@ -665,10 +712,11 @@ def advise(
         )
     cut_pool = max(1, cut_pool)
 
-    # Resilience is a second (paired) sim pass — only run it when it's the target.
+    # Resilience is a second (paired) sim pass. The baseline always runs it: it is needed to
+    # pick the weakest axis AND to check the final picks don't buy the target with it.
     baseline = analyze_deck(
         resolved, cfg, store, two_card_combos=two_card_combos,
-        combos_checked=combos_checked, run_resilience=axis in (None, "resilience"),
+        combos_checked=combos_checked, run_resilience=True,
     )
     target = axis or weakest_axis(baseline)
     # Never report a gain smaller than the axis's own run-to-run spread, whatever the
@@ -704,7 +752,7 @@ def advise(
         # once. A greedy highest-gain-first assignment yields a set of swaps you could
         # actually make together.
         reasons: dict[str, str] = {}
-        evals: list[tuple[float, Card, Card, float, DeckAnalysis]] = []
+        evals: list[tuple[float, float, Card, Card, float, DeckAnalysis]] = []
         for add in pool:
             evaluated += 1
             reasons[add.name] = _explain(add, target, wants)
@@ -721,8 +769,14 @@ def advise(
                 # advisor feel useless ("5 suggestions, 4 of them +0.1"). `effective_delta`
                 # additionally refuses to go below the target axis's own measured
                 # seed-to-seed spread — see _AXIS_NOISE_FLOOR.
-                if after - base_score >= effective_delta:
-                    evals.append((after - base_score, add, cut, after, a))
+                if after - base_score < effective_delta:
+                    continue
+                # ...AND it must leave the deck better OVERALL. A target gain bought with a
+                # bigger loss elsewhere (in units of each axis's spread among real decks) is
+                # a worse deck, not an upgrade.
+                net = _net(_whole_deck_moves(baseline, a, target, cfg.runs))
+                if net > 0:
+                    evals.append((net, after - base_score, add, cut, after, a))
         # Greedy non-overlapping selection: best gain first, each add + each cut used once.
         #
         # TIES ARE THE NORM HERE, so the tiebreak is load-bearing. The Ceiling axis is
@@ -736,14 +790,35 @@ def advise(
         # an artefact of the alphabet presented as a ranking. Prefer the card the axis prior
         # says is most likely to move this axis, then the more-played card, then the name for
         # determinism. The measured delta is still the verdict; this only orders equals.
+        #
+        # The primary key is the WHOLE-DECK net, not the raw target delta: ranking by target
+        # alone let a +8 Ceiling swap that cost -7 Consistency outrank a clean +6, and chose
+        # each add's cut as the one hurting the target least — i.e. the best card of some
+        # other axis. Target delta is the next key, so equal nets still favour the asked-for
+        # axis, then the existing prior/popularity/name tiebreak.
         _prior = {c.name: _axis_relevance(tags.analyze(c), target) + _commander_affinity(c, wants)
-                  for c in {e[1].name: e[1] for e in evals}.values()}
-        evals.sort(key=lambda e: (-e[0], -_prior.get(e[1].name, 0.0),
-                                  e[1].edhrec_rank or 10**9, e[1].name, e[2].name))
+                  for c in {e[2].name: e[2] for e in evals}.values()}
+        evals.sort(key=lambda e: (-round(e[0], 6), -e[1], -_prior.get(e[2].name, 0.0),
+                                  e[2].edhrec_rank or 10**9, e[2].name, e[3].name))
         used_add: set[str] = set()
         used_cut: set[str] = set()
-        for _delta, add, cut, after, a in evals:
+        for _net_score, _delta, add, cut, after, a in evals:
             if add.name in used_add or cut.name in used_cut:
+                continue
+            if a.resilience is None:
+                # Resilience was not simulated for the sweep (it doubles each run), so a swap
+                # could still be buying the target with it. Check the picks only: one paired
+                # run each, at most `top` survivors plus the few it rejects.
+                a = analyze_deck(
+                    _swap_variant(resolved, cut, add), cfg, store,
+                    two_card_combos=two_card_combos, combos_checked=combos_checked,
+                    run_resilience=True,
+                )
+                analyses += 1
+                after = axis_score(a, target)
+            moves = _whole_deck_moves(baseline, a, target, cfg.runs)
+            net = _net(moves)
+            if net <= 0 or after - base_score < effective_delta:
                 continue
             used_add.add(add.name)
             used_cut.add(cut.name)
@@ -760,6 +835,10 @@ def advise(
                     themes=themes, wants=wants,
                     baseline_report=baseline.report, swap_report=a.report,
                 ),
+                axis_deltas={m.axis: m.delta for m in moves},
+                net=net,
+                costs={m.axis: m.delta for m in moves
+                       if m.axis != target and m.meaningful and m.delta < 0},
             ))
             if len(suggestions) >= top:
                 break

@@ -523,3 +523,75 @@ def test_each_suggestion_splits_into_add_value_and_cut_value(deck, store, make_c
     for s in rep.suggestions:
         assert abs((s.add_value - s.cut_value) - s.delta) < 1e-9
         assert s.add_value > 0           # the removal itself is what moves interaction
+
+
+# --- cross-axis: a target gain must not be bought with a bigger loss elsewhere ------------
+
+
+def _fake_analysis(*, consistency, interaction, resilience=60.0):
+    from types import SimpleNamespace as NS
+    return NS(
+        report=NS(consistency_score=consistency, goldfish_kill_rate=0.5,
+                  avg_kill_turn=9.0, turns=12),
+        resilience=NS(resilience_score=resilience),
+        interaction=NS(score=interaction),
+        ceiling=NS(score=20.0),
+        lens=None,
+    )
+
+
+def test_advise_rejects_a_swap_that_leaves_the_deck_worse_overall(
+    deck, store, make_card, monkeypatch,
+):
+    """The reported bug: the advisor read ONLY the target axis, so it would cut another
+    axis's best card (The One Ring for Kaldra Compleat) to prop up the weakest one.
+
+    `Greedy Removal` buys +6 Interaction at -15 Consistency: the bigger target gain, and a
+    worse deck. `Clean Removal` buys +3 Interaction and costs nothing. Only the clean swap may
+    be reported. Before the fix, Greedy ranked FIRST on its raw target delta.
+    """
+    greedy = make_card("Greedy Removal", mana_cost="{1}{G}", type_line="Instant",
+                       color_identity=("G",), oracle_text="Destroy target creature.")
+    clean = make_card("Clean Removal", mana_cost="{1}{G}", type_line="Instant",
+                      color_identity=("G",), oracle_text="Destroy target artifact.")
+    base = dict(consistency=70.0, interaction=10.0)
+
+    def fake_analyze(resolved, cfg, store, **kw):
+        names = {c.name for c, _ in resolved.cards}
+        if "Greedy Removal" in names:
+            return _fake_analysis(consistency=55.0, interaction=16.0)
+        if "Clean Removal" in names:
+            return _fake_analysis(consistency=70.0, interaction=13.0)
+        return _fake_analysis(**base)              # baseline, and the empty-slot split
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    rep = advisor.advise(deck, SimConfig(runs=150, turns=12, seed=1), store,
+                         [greedy, clean], axis="interaction", cut_pool=1)
+
+    assert [s.add for s in rep.suggestions] == ["Clean Removal"]
+    s = rep.suggestions[0]
+    assert s.net > 0 and s.costs == {}
+    assert s.axis_deltas["interaction"] == pytest.approx(3.0)
+
+
+def test_advise_checks_resilience_on_the_picks_it_did_not_sweep(
+    deck, store, make_card, monkeypatch,
+):
+    """The sweep skips the (expensive) resilience pass unless resilience is the target, so a
+    swap could still be buying the target with it. The final picks are re-run with it, and a
+    pick whose resilience loss outweighs its gain is dropped."""
+    card = make_card("Fragile Removal", mana_cost="{1}{G}", type_line="Instant",
+                     color_identity=("G",), oracle_text="Destroy target creature.")
+
+    def fake_analyze(resolved, cfg, store, run_resilience=False, **kw):
+        swapped = any(c.name == "Fragile Removal" for c, _ in resolved.cards)
+        a = (_fake_analysis(consistency=70.0, interaction=13.0, resilience=40.0) if swapped
+             else _fake_analysis(consistency=70.0, interaction=10.0, resilience=60.0))
+        if not run_resilience:
+            a.resilience = None
+        return a
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    rep = advisor.advise(deck, SimConfig(runs=150, turns=12, seed=1), store, [card],
+                         axis="interaction", cut_pool=1)
+    assert rep.suggestions == []

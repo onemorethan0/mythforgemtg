@@ -88,3 +88,39 @@ def test_scaling_pump_squares_the_board(make_card):
 def test_deterministic(make_card):
     cards = [(_overrun_spell(make_card, "3"), 1)]
     assert estimate_overrun(cards, 16, 8) == estimate_overrun(cards, 16, 8)
+
+
+# --- per-game availability: the finisher must be DRAWN and castable ----------------------
+# A 6-wide board of 2-power creatures from turn 3; a +3/+3 pump makes that 6*2 + 6*3 = 30... so
+# use 8 wide: 16 + 24 = 40, exactly lethal.
+
+_POWER = [0, 0, 16, 16, 16, 16]
+_WIDTH = [0, 0, 8, 8, 8, 8]
+
+
+def test_alpha_strike_waits_for_the_game_to_draw_the_finisher(make_card):
+    """The reported bug: every simulated game was handed the deck's one Overrun the moment
+    its board was wide, so adding a single copy moved ~every game's kill turn."""
+    from mythgauntlet.sim.overrun import earliest_alpha_strike_turn
+    cards = [(_overrun_spell(make_card), 1)]
+    # the old best-case read (no draw info) still fires as soon as the board is wide
+    assert earliest_alpha_strike_turn(cards, _POWER, _WIDTH) == 3
+    # drawn on turn 5 -> no alpha strike before turn 5
+    assert earliest_alpha_strike_turn(cards, _POWER, _WIDTH,
+                                      seen_turn={"Team Charge": 5}) == 5
+    # never drawn this game -> no alpha strike at all
+    assert earliest_alpha_strike_turn(cards, _POWER, _WIDTH, seen_turn={}) is None
+
+
+def test_alpha_strike_needs_the_mana_to_cast_the_finisher(make_card):
+    from mythgauntlet.sim.overrun import earliest_alpha_strike_turn
+    cards = [(_overrun_spell(make_card), 1)]          # mana value 4
+    assert earliest_alpha_strike_turn(cards, _POWER, _WIDTH, seen_turn={"Team Charge": 0},
+                                      mana_by_turn=[1, 2, 3, 3, 4, 5]) == 5
+
+
+def test_a_commander_finisher_never_needs_drawing(make_card):
+    from mythgauntlet.sim.overrun import earliest_alpha_strike_turn
+    cards = [(_overrun_spell(make_card), 1)]
+    assert earliest_alpha_strike_turn(cards, _POWER, _WIDTH, seen_turn={},
+                                      always_available=frozenset({"Team Charge"})) == 3
