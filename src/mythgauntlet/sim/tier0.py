@@ -4,8 +4,14 @@ One player, no opponent. Measures the statistical skeleton of a deck: mulligans,
 drops, color access, mana development, and how efficiently the curve deploys.
 
 Documented simplifications (T0 is built to be fast, deterministic, and honest — not complete):
-  - Haste and activated abilities are ignored. Commander tax only arises after a Tier-1
-    board wipe sends the commander back to the command zone (the clean goldfish casts it once).
+  - Activated abilities are ignored, as is haste a creature only GAINS (printed haste is read).
+    Commander tax only arises after a Tier-1 board wipe sends the commander back to the
+    command zone (the clean goldfish casts it once).
+  - The unmodeled-mechanics sweep (2026-11-09; scripts/unmodeled_inventory.py) added, each
+    read strictly from the card's own text: Station / Spacecraft, crewed Vehicles, creature
+    tokens, pump Equipment and Auras, proliferate, fixed drains, direct poison, Treasure and
+    extra land drops. Anything a reader cannot read exactly does nothing (the honest
+    under-count): variable counts, death triggers, modal choices, activated abilities.
   - Rocks/dorks/fetched lands come in "asleep" and produce from the next untap onward.
   - Land-fetch spells pull a land out of the library (thinning) and add a source next turn.
   - One-shot draws resolve immediately; triggered engines draw a flat engine_draw per turn
@@ -1464,7 +1470,6 @@ def _run_one(
                 if tap_for(_crew_cost(v.card.type_line or "", v.card.oracle_text or ""),
                            v.attack_power + per_creature):
                     crewed.append((v.card.name, v.attack_power, v.attack_power_under(rule), False))
-        attack_tokens = False
         if any(mk.trigger in ("attack", "attack_any") for _, mk, _ in token_engines):
             attacking = {a[0] for i, a in enumerate(atk_board) if i not in tapped}
             attacking |= {c[0] for c in crewed}
@@ -1472,7 +1477,6 @@ def _run_one(
                 if (mk.trigger == "attack" and src in attacking) or (
                         mk.trigger == "attack_any" and attacking):
                     fire(src, mk, attacking=getattr(mk, "attacking", False))
-                    attack_tokens = attack_tokens or mk.attacking
         swing = board_power_rule if rule_live else board_power
         swing += max(0, per_creature * board_creatures - lord_self_active)
         stats.board_power_by_turn.append(swing)

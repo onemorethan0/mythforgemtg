@@ -117,3 +117,18 @@ def test_extra_land_drops(make_card):
     with_x = simulate([(_swamp(make_card), 45), (explo, 54)], None, CFG)
     without = simulate([(_swamp(make_card), 45), (dud, 54)], None, CFG)
     assert lands(with_x) > lands(without)
+
+
+def test_attack_triggered_effects_fire_in_play(make_card):
+    """Regression (2026-11-09 corpus guard: 407 decks crashed): an attack-triggered Treasure /
+    proliferate maker goes through the same attack step as the token makers."""
+    storm = make_card("Captain Lannery Storm", mana_cost="{2}{B}",
+                      type_line="Legendary Creature — Human Pirate",
+                      oracle_text="Haste\nWhenever Captain Lannery Storm attacks, create a "
+                                  "Treasure token.")
+    storm.power, storm.toughness = "2", "2"
+    bird = make_card("Thrummingbird", mana_cost="{1}{B}", type_line="Creature — Phyrexian Bird",
+                     oracle_text="Flying\nWhenever this creature deals combat damage to a "
+                                 "player, proliferate.")
+    bird.power, bird.toughness = "1", "1"
+    _sums(simulate([(_swamp(make_card), 40), (storm, 30), (bird, 29)], None, CFG))
