@@ -8,7 +8,6 @@ from mythgauntlet.agents.greedy import GreedyAgent
 from mythgauntlet.agents.ismcts import ISMCTSAgent
 from mythgauntlet.sim.game import (
     MAIN,
-    CastSpell,
     GameState,
     Pass,
     advance,
@@ -104,9 +103,12 @@ def _mana_holding_state(make_card) -> GameState:
     return st
 
 
-def test_greedy_taps_out_but_ismcts_holds_mana(make_card):
+def test_greedy_and_ismcts_both_hold_mana_for_the_counter(make_card):
+    # Until the 2026-11-08 mana pilot, greedy jammed the Drake here and tapped out (this test
+    # was "greedy taps out but ISMCTS holds mana"). Greedy now keeps the colours for its held
+    # Counterspell open, as the search found on its own.
     greedy_choice = GreedyAgent().decide(_mana_holding_state(make_card))
-    assert isinstance(greedy_choice, CastSpell)  # greedy jams the Drake, tapping out
+    assert isinstance(greedy_choice, Pass)
 
     agent = ISMCTSAgent(iterations=160, rng=SeededRng(42), rollout_depth=16)
     mcts_choice = agent.decide(clone(_mana_holding_state(make_card)))

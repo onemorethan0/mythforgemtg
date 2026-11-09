@@ -158,19 +158,19 @@
     "wins_b": 32
   },
   "counter_control_mirror": {
-    "avg_turns": 9.175,
+    "avg_turns": 12.9,
     "combo_wins": 0,
     "decked_losses": 0,
     "draws": 0,
     "games": 40,
     "win_methods_a": {
-      "combat": 18
+      "combat": 25
     },
     "win_methods_b": {
-      "combat": 22
+      "combat": 15
     },
-    "wins_a": 18,
-    "wins_b": 22
+    "wins_a": 25,
+    "wins_b": 15
   },
   "decking_tiny_deck": {
     "avg_turns": 9.5,
@@ -186,7 +186,7 @@
     "wins_b": 20
   },
   "instant_removal_control_vs_aggro": {
-    "avg_turns": 17.6,
+    "avg_turns": 17.25,
     "combo_wins": 0,
     "decked_losses": 0,
     "draws": 0,

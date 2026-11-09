@@ -135,7 +135,7 @@ Each failed check produces a sentence for the pre-game talk.
 | D3 (**done** 2026-11-08) | Denial and Inevitability dials from what the engine already measures (D2 tags, B32 spread, B33 tutors and combos) | D2 |
 | D4 (**done** 2026-11-08) | Pod fit check over four decks, shown in the strength panel and before `/pod` | D3, B35 |
 | D5 (**done** 2026-11-08) | Multiplayer reactions in the pod simulator (counter whichever spell threatens most, not only the 1-on-1 opponent's) so measured Denial and the "counters win low brackets" claim can be tested | none; the largest item |
-| D6 (**run**, inconclusive) | Validate: in a Bracket 2 field, does a High-Denial deck win far more than its seat share (25%)? If so, the plays-up rule is right. | D5, B35 |
+| D6 (**run** twice; see below) | Validate: in a Bracket 2 field, does a High-Denial deck win far more than its seat share (25%)? If so, the plays-up rule is right. | D5, B35 |
 | D7 | Real fun labels: an optional one-tap after-game note in the app ("fun? who ran away with it?"), stored locally, to fit the pod-fit check against real games | D4 |
 
 D1 and D2 are small and independent; D5 is what turns this from a card-list proposal into a
@@ -226,4 +226,33 @@ win low-bracket games"; it says our greedy control player can't hold up a counte
 colour-aware land/mana pilot, or run D6 with the search (ISMCTS) agents, before reading D6 again.
 The 1v1 pilot has the same tap-out rule (reserve only after the first cast); changing it needs the
 golden master re-captured on purpose.
+
+**Mana pilot fix and D6 re-run (2026-11-08).** Three pilot defects, each measured first:
+1. The greedy main phase CAST counterspells on its own turn with an empty stack (a counter's card
+   value is above zero) -- illegal (a counterspell needs a spell to target) and it threw the
+   counter away, in 1v1 too. Counters are now never main-phase casts, for greedy and for the
+   search agents' legal moves.
+2. Mana held for an answer counted lands, not colours, and only after the first cast of the
+   turn. `sim.game.pay_keeping` now matches BOTH the spell's and the held answer's coloured pips
+   in one augmenting-path pass and pays the spell's generic from sources neither needs; greedy
+   keeps the answer castable from the first cast (near-lethal plays still tap out), and the
+   engine pays casts that way whenever the caster holds an instant answer.
+3. Land drops took the first untapped land; now the land that leaves the most spells in hand
+   castable, colours counted (ties: untapped, then more colours).
+
+Golden master re-captured on purpose: 2 of 16 scenarios moved, both holding instant answers (the
+counter-control mirror 18-22 over 9.2 turns -> 25-15 over 12.9; instant-removal control vs aggro
+17.6 -> 17.25 turns). `test_ismcts`'s "greedy taps out, search holds mana" now has greedy holding
+mana too.
+
+Effect: counters actually cast in 30 pod games by four High-Denial decks went 1 / 3 / 0 / 4 ->
+103 / 82 / 119 / 124; a holder can pay in ~40% of counter-worthy moments (the rest is real colour
+screw or too few lands). **D6 re-run: High-Denial Bracket 1-3 decks win 19.4% of Bracket 2 pods,
+Denial-Low decks 30.3%** (seat share 25%). With counters now working, counter density alone does
+not win casual pods in the simulator -- consistent with the multiplayer rule of thumb that a
+1-for-1 answer helps the two players who didn't spend a card. Caveats: the greedy pilot counters
+any spell above a value bar regardless of whom it threatens, plays no draw-go card advantage, and
+each deck played 60 games. So the observation behind this design may come from something else --
+card advantage, opponents not playing around counters, or the control deck being stronger in
+other ways -- and Denial stays a FUN dial (agency), not a power input.
 

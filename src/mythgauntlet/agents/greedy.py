@@ -4,9 +4,18 @@ Each `decide` reproduces one iteration of the OLD imperative loops (tier2._main_
 _activation_phase / _combat) so that, driven by this agent, sim/game.py mutates state
 bit-for-bit as the pre-Phase-7 engine did. The golden master (tests/test_tier2_golden.py) is
 the guard on that invariant. This agent consumes NO randomness.
+
+The mana pilot (2026-11-08, golden master re-captured on purpose): the land played is the one
+that leaves the most spells in hand castable -- colours counted -- instead of the first untapped
+land; and a player holding an instant answer keeps the COLOURS for its cheapest one open from the
+first cast of the turn, not only after one. Measured first (D6): a seat holding a counterspell
+could pay for it in about 1-5% of the moments a spell worth countering was cast; the causes were
+colour screw, too few lands, and tapping out on the first spell.
 """
 
 from __future__ import annotations
+
+from dataclasses import replace
 
 from mythgauntlet.sim.game import (
     _ACTIVATION_BUDGET,
@@ -27,26 +36,59 @@ from mythgauntlet.sim.game import (
     PassReaction,
     PlayLand,
     _eligible_attackers,
+    _held_answer_cost,
+    pay_keeping,
     walker_attack_plan,
 )
-from mythgauntlet.sim.tier0 import _can_pay
+from mythgauntlet.sim.tier0 import _can_pay, _Source
 from mythgauntlet.sim.tier2 import (
     _COUNTER_MIN_VALUE,
     _TAP_OUT_VALUE,
     _activation_value,
-    loyalty_ready,
     _card_value,
     _commander_cost,
-    cast_cost,
     _find_counter,
     _find_instant_removal,
     _instant_answer,
     _instant_target,
     _Permanent,
     _Player,
-    _reactive_reserve,
-    _ready_count,
+    cast_cost,
+    loyalty_ready,
 )
+
+
+def _keeps_answer_up(me: _Player, cost, exclude=None) -> bool:
+    """Can `cost` be paid while the cheapest held instant answer stays castable -- colours
+    counted, using the same joint payment `sim.game.apply` makes (`pay_keeping`)? No held
+    answer: nothing to keep up."""
+    keep = _held_answer_cost(me, exclude=exclude)
+    return keep is None or pay_keeping(me.sources, cost, keep) is not None
+
+
+def _best_land(me: _Player, lands: list) -> object:
+    """The land that leaves the most nonland cards in hand castable once everything untaps --
+    colours counted, the cheapest held instant answer counted twice (it is what the player is
+    holding mana for). Ties: an untapped land, then the one producing more colours, then hand
+    order (deterministic)."""
+    spells = [gc for gc in me.hand if not gc.sim.is_land]
+    base = [replace(src, ready=True) for src in me.sources if not src.temp]
+    answers = [gc for gc in spells if _instant_answer(gc)]
+    key_answer = min(answers, key=lambda gc: gc.card.mana_value) if answers else None
+
+    def score(land):
+        pool = base + [_Source(land.sim.produced_colors(), ready=True)]
+        castable = sum(1 for gc in spells if _can_pay(pool, cast_cost(me, gc)) is not None)
+        if key_answer is not None and _can_pay(pool, cast_cost(me, key_answer)) is not None:
+            castable += 1
+        return (castable, not land.sim.fx.enters_tapped, len(land.sim.produced_colors()))
+
+    best, best_score = None, None
+    for land in lands:
+        sc = score(land)
+        if best_score is None or sc > best_score:
+            best, best_score = land, sc
+    return best
 
 
 def _can_block(atk: _Permanent, blockers: list[_Permanent]) -> list[_Permanent]:
@@ -243,19 +285,19 @@ class GreedyAgent:
     def _main(self, state) -> object:
         me, opp = state.me_opp()
         turn, cfg = state.turn, state.cfg
-        if not state.land_played:  # land first (as _main_phase did), untapped preferred
-            land = next(
-                (c for c in me.hand if c.sim.is_land and not c.sim.fx.enters_tapped),
-                next((c for c in me.hand if c.sim.is_land), None),
-            )
-            if land is not None:
-                return PlayLand(land)
+        if not state.land_played:  # land first, the one that best fixes the hand's colours
+            lands = [c for c in me.hand if c.sim.is_land]
+            if lands:
+                return PlayLand(_best_land(me, lands))
 
-        reserve = _reactive_reserve(me) if state.casts_this_main else 0
-        ready = _ready_count(me)
         best: tuple[float, object] | None = None
         for gc in me.hand:
             if gc.sim.is_land:
+                continue
+            if gc.profile.counter:
+                # a counterspell needs a spell on the stack to target (CR 115.1 / 601.2c): in a
+                # main phase with an empty stack it can't legally be cast, and casting it threw
+                # the counter away -- it waits for a COUNTER_WINDOW
                 continue
             payment = _can_pay(me.sources, cast_cost(me, gc))
             if payment is None:
@@ -263,21 +305,18 @@ class GreedyAgent:
             value = _card_value(gc, me, opp, turn, cfg)
             if value <= 0:  # do-nothing right now -> keep it in hand
                 continue
-            if (
-                not _instant_answer(gc)
-                and ready - len(payment) < reserve
-                and value < _TAP_OUT_VALUE
-            ):
-                continue  # hold up mana for a reaction rather than tapping out
+            if (not _instant_answer(gc) and value < _TAP_OUT_VALUE
+                    and not _keeps_answer_up(me, cast_cost(me, gc), exclude=gc)):
+                continue  # keep the colours for the held answer open rather than tap out
             if best is None or value > best[0]:
                 best = (value, CastSpell(gc))
         if me.commander_in_zone and me.commander is not None:
             payment = _can_pay(me.sources, _commander_cost(me.commander, me.commander_casts, me))
             if payment is not None:
                 value = _card_value(me.commander, me, opp, turn, cfg) + 1.0
-                if not (ready - len(payment) < reserve and value < _TAP_OUT_VALUE) and (
-                    best is None or value > best[0]
-                ):
+                held = value < _TAP_OUT_VALUE and not _keeps_answer_up(
+                    me, _commander_cost(me.commander, me.commander_casts, me))
+                if not held and (best is None or value > best[0]):
                     best = (value, CastCommander())
         return best[1] if best is not None else Pass()
 

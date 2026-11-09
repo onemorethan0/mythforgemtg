@@ -821,6 +821,56 @@ def _gap_pump(p: _Permanent) -> None:
         p.temp_toughness += x
 
 
+def _held_answer_cost(me: _Player, exclude: GameCard | None = None):
+    """Cost of the cheapest instant answer (counter or removal) in hand, other than `exclude`
+    (the card being cast), or None."""
+    from mythgauntlet.sim.tier2 import _instant_answer
+
+    answers = [gc for gc in me.hand if gc is not exclude and _instant_answer(gc)]
+    if not answers:
+        return None
+    return cast_cost(me, min(answers, key=lambda gc: gc.card.mana_value))
+
+
+def pay_keeping(sources: list, cost, keep) -> list[int] | None:
+    """Indices of ready sources that pay `cost` while leaving `keep` (a held instant answer's
+    cost) payable from what stays untapped -- or None when no such payment exists.
+
+    One augmenting-path matching over BOTH costs' coloured pips (as `tier0._can_pay` does for
+    one), so a flexible source is never stranded on the wrong spell; then `cost`'s generic is
+    paid from sources neither cost's pips claimed, keeping enough back for `keep`'s generic.
+    `_can_pay` alone pays generic from the first ready sources and can tap the Islands a held
+    Counterspell needs (Island, Island, Island, Mountain paying {1}{U} with two Islands)."""
+    ready = [i for i, s in enumerate(sources) if s.ready]
+    if len(ready) < cost.mana_value + keep.mana_value:
+        return None
+    pips = [(True, p) for p in cost.pips] + [(False, p) for p in keep.pips]
+    adjacency = [[i for i in ready if sources[i].colors & pip] for _own, pip in pips]
+    owner: dict[int, int] = {}
+
+    def assign(pip_idx: int, seen: set[int]) -> bool:
+        for src in adjacency[pip_idx]:
+            if src in seen:
+                continue
+            seen.add(src)
+            if src not in owner or assign(owner[src], seen):
+                owner[src] = pip_idx
+                return True
+        return False
+
+    for pip_idx in range(len(pips)):
+        if not assign(pip_idx, set()):
+            return None
+    free = [i for i in ready if i not in owner]
+    if len(free) < cost.generic + keep.generic:
+        return None
+    # generic for the cast: the free sources producing the fewest colours first, so the
+    # flexible ones stay for whatever comes next
+    free.sort(key=lambda i: (len(sources[i].colors), i))
+    paid = [src for src, pip_idx in owner.items() if pips[pip_idx][0]]
+    return paid + free[:cost.generic]
+
+
 def _payable_casts(state: GameState) -> list[GameCard]:
     from mythgauntlet.sim.tier0 import _can_pay
 
@@ -828,7 +878,8 @@ def _payable_casts(state: GameState) -> list[GameCard]:
     seen: set[int] = set()
     out: list[GameCard] = []
     for gc in me.hand:
-        if gc.sim.is_land or id(gc) in seen:
+        # a counterspell needs a spell on the stack to target: never a main-phase cast
+        if gc.sim.is_land or id(gc) in seen or gc.profile.counter:
             continue
         seen.add(id(gc))
         if _can_pay(me.sources, cast_cost(me, gc)) is not None:
@@ -974,7 +1025,10 @@ def apply(state: GameState, action: object) -> None:
         gc = me.commander if is_commander else action.card
         cost = (_commander_cost(me.commander, me.commander_casts, me) if is_commander
                 else cast_cost(me, gc))
-        payment = _can_pay(me.sources, cost)
+        keep = _held_answer_cost(me, exclude=None if is_commander else gc)
+        payment = pay_keeping(me.sources, cost, keep) if keep is not None else None
+        if payment is None:
+            payment = _can_pay(me.sources, cost)
         assert payment is not None, "apply() got an unpayable cast"
         value = _card_value(gc, me, opp, state.turn, state.cfg) + (1.0 if is_commander else 0.0)
         for idx in payment:
