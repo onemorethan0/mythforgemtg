@@ -113,6 +113,88 @@ def _counts_for(sc: "SimCard", flt: tuple[bool, int]) -> bool:
     return sc.card.has_type("Instant") or sc.card.has_type("Sorcery")
 
 
+_CARD_TYPE_WORDS = frozenset({"artifact", "creature", "enchantment", "instant", "sorcery",
+                              "planeswalker", "battle", "aura", "equipment"})
+_TUTOR_RE = re.compile(
+    r"search your library for (?:a|an) ((?:[a-z]+ )*?)card(?P<rest> with [^,.]*?)?(?=,|\.| and |$)")
+_TUTOR_MV_RE = re.compile(r" with mana value (\d+)(?: or (less|greater))?")
+
+
+@dataclass(frozen=True)
+class _TutorSpec:
+    types: tuple[str, ...]      # OR-ed card types / Aura / Equipment; () = any nonland card
+    max_mv: int | None
+    min_mv: int | None
+    dest: str                   # "hand" | "top" | "battlefield"
+
+    def matches(self, sc: "SimCard") -> bool:
+        if sc.is_land:
+            return False
+        if self.types and not any(sc.card.has_type(t) for t in self.types):
+            return False
+        if self.max_mv is not None and sc.mana_value > self.max_mv:
+            return False
+        return self.min_mv is None or sc.mana_value >= self.min_mv
+
+
+@lru_cache(maxsize=4096)
+def _tutor_spec(type_line: str, oracle_text: str) -> _TutorSpec | None:
+    """What a tutor fetches and where it puts it, read strictly from its own text; anything
+    this cannot read exactly fetches NOTHING (the honest under-count, as before tutors ran):
+      - a spell's own effect, or a permanent's "when ... enters" trigger. An activated ability
+        (Planar Bridge) or a repeating trigger is not a one-shot the goldfish can time, and
+        transmute's search lives in reminder text, which is stripped;
+      - ONE card ("a"/"an"), filtered by card types (OR-ed: "artifact or enchantment") and a
+        "with mana value N or less/greater"; a colour, a name, "the same name", X, or two
+        cards (Intuition, Gifts) is not read;
+      - no additional cost (Diabolic Intent's sacrifice), no random discard (Gamble);
+      - lands are never fetched here (land tutors are ramp, read elsewhere)."""
+    is_spell = "instant" in (type_line or "").lower() or "sorcery" in (type_line or "").lower()
+    text_all = " ".join(_rules_lines(oracle_text))
+    if "as an additional cost" in text_all or "at random" in text_all:
+        return None
+    for line in _rules_lines(oracle_text):
+        idx = line.find("search your library for ")
+        if idx < 0:
+            continue
+        prefix = line[:idx]
+        if ":" in prefix:
+            continue                                    # an activated ability
+        if is_spell:
+            if re.search(r"\b(?:whenever|when|at the beginning)\b", prefix):
+                continue
+        elif not re.match(r"when [^,]*\benters\b", prefix):
+            continue                                    # permanents: ETB only
+        m = _TUTOR_RE.match(line, idx)
+        if m is None:
+            return None
+        words = m.group(1).split()
+        types = tuple(w for w in words if w not in ("or", "and"))
+        if any(w not in _CARD_TYPE_WORDS for w in types):
+            return None                                 # a colour, "basic land", a subtype ...
+        max_mv = min_mv = None
+        if m.group("rest"):
+            mv = _TUTOR_MV_RE.fullmatch(m.group("rest"))
+            if mv is None:
+                return None
+            n = int(mv.group(1))
+            if mv.group(2) != "greater":
+                max_mv = n
+            if mv.group(2) != "less":
+                min_mv = n
+        after = line[m.end():]
+        if "into your hand" in after:
+            dest = "hand"
+        elif "onto the battlefield" in after:
+            dest = "battlefield"
+        elif "on top" in after:
+            dest = "top"
+        else:
+            return None
+        return _TutorSpec(types, max_mv, min_mv, dest)
+    return None
+
+
 @dataclass(frozen=True)
 class _InfectAura:
     upkeep_counter: bool    # Glistening Oil: a -1/-1 counter on the creature every upkeep
@@ -582,6 +664,49 @@ def _run_one(
                             from_creature=sc.card.is_creature, from_commander=is_commander)
                 )
         draw(sc.fx.draw_cards)
+        if sc.fx.tutor:
+            spec = _tutor_spec(sc.card.type_line or "", sc.card.oracle_text or "")
+            if spec is not None:
+                fetch(spec)
+
+    def plan_missing() -> bool:
+        """The commander has no infect Aura on it or in hand, and one is still in the library."""
+        return (commander is not None and commander.card.is_creature and not cmd_auras
+                and not any(_infect_aura(c.card.type_line or "", c.card.oracle_text or "")
+                            for c in hand)
+                and any(_infect_aura(c.card.type_line or "", c.card.oracle_text or "")
+                        for c in library))
+
+    def _tutor_finds_plan(sc: SimCard) -> bool:
+        spec = _tutor_spec(sc.card.type_line or "", sc.card.oracle_text or "")
+        return spec is not None and any(
+            spec.matches(c) and _infect_aura(c.card.type_line or "", c.card.oracle_text or "")
+            for c in library)
+
+    def fetch(spec: _TutorSpec) -> None:
+        """A tutor resolves: the deck's plan piece if it is missing (an infect Aura for a
+        commander that has none on it or in hand), else the highest-impact card the tutor may
+        take -- the same value prior Tier-2's `_tutor_pick` falls back to. The real shuffle
+        is not modeled (it draws no randomness, so the rest of the game is unchanged)."""
+        cands = [c for c in library if spec.matches(c)]
+        if not cands:
+            return
+        pick = None
+        if plan_missing():
+            pick = next((c for c in cands
+                         if _infect_aura(c.card.type_line or "", c.card.oracle_text or "")), None)
+        if pick is None:
+            pick = max(cands, key=lambda c: c.fx.impact)
+        library.remove(pick)
+        if spec.dest == "top":
+            library.append(pick)                    # drawn at the next draw (draw pops the end)
+            return
+        stats.seen_turn.setdefault(pick.card.name, cur_turn)
+        if spec.dest == "hand":
+            hand.append(pick)
+        else:                                       # onto the battlefield, uncast
+            played(pick)
+            apply_effects(pick)
 
     for turn in range(1, cfg.turns + 1):
         cur_turn = turn
@@ -741,16 +866,21 @@ def _run_one(
                 if sc.is_land or sc.fx.scaling_burn:
                     continue
                 # An infect Aura is held for the commander (see _infect_aura): cast with no
-                # commander out it would enchant nothing the deck is built around.
-                if (not commander_on_board()
-                        and _infect_aura(sc.card.type_line or "", sc.card.oracle_text or "")):
+                # commander out it would enchant nothing the deck is built around. Once the
+                # commander is out, it goes on first -- it IS the plan, ranked with the
+                # commander itself -- unless one is already on.
+                plan_piece = _infect_aura(sc.card.type_line or "", sc.card.oracle_text or "")
+                if plan_piece and not commander_on_board():
                     continue
                 rule_discount = (rule.creature_discount(sc.card)
                                  if rule is not None and commander is not None and not commander_in_zone
                                  else 0)
                 payment = _can_pay(sources, _effective_cost(sc, board_creatures, rule_discount))
                 if payment is not None:
-                    castable.append((_cast_priority(sc, turn, cfg), sc, payment, False))
+                    prio = ((1, sc.mana_value) if (plan_piece and not cmd_auras)
+                            or (sc.fx.tutor and plan_missing() and _tutor_finds_plan(sc))
+                            else _cast_priority(sc, turn, cfg))
+                    castable.append((prio, sc, payment, False))
             if commander_in_zone and commander is not None:
                 cmd_cost = _effective_cost(commander, board_creatures)
                 if commander_tax:
