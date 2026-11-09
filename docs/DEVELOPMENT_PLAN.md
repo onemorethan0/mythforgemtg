@@ -100,6 +100,29 @@ per-card noise floor (it decides how many cards the report can honestly name).
 | B28 | Hands-on UX pass at desktop and phone widths (P7); replace native `alert()` with the toaster | defects filed here; zero `alert(` in src | todo |
 | B29 | Frontend bundle > 500 kB: code-split the heavy panels | Vite warning gone; first paint unchanged or faster | todo |
 
+### Next run: the unmodeled-mechanics sweep (owner request, 2026-11-09)
+
+Owner: "pour through all the unmodeled things and set up the local LLMs to set up as many as we can
+identify". Trigger: a Borg deck rated wrong because Spacecraft never attack -- tier0 adds an attacker
+only when the type line says Creature, so a stationed Spacecraft ("It's an artifact creature at 9+",
+then "9+ | Flying, first strike") deals nothing (45 Station cards: 40 Spacecraft, 5 Planets).
+Vehicles (crew) are the likely sibling gap.
+
+1. **Inventory (deterministic, no LLM).** For every card in the labelled corpus, split the
+   reminder-stripped rules lines and mark each line read or unread by a tier0 / T2 consumer
+   (the `sim-health` approach: read the sim's own sources, never restate a vocabulary). Rank the
+   unread lines by how many corpus decks play them, weighted toward B1-3.
+2. **Family labelling (local LLM, closed questions).** qwen3:14b sweeps the unread lines in batches of
+   <=4 against a fixed family list (Station, Vehicle/crew, proliferate, equipment grants, landfall
+   payoffs, ...); 32b adjudicates disagreements; a gold set first. Extraction and closed questions
+   only -- the local models do not write rules code.
+3. **Model the top families in Claude** (rules-facing): gold-set tests from printed text, the honest
+   under-count where text can't be read exactly, and a corpus guard (exact-vs-label and moves toward or
+   away from the label) for each family, one commit each.
+
+Known open items to fold in: Station/Spacecraft, Vehicles, proliferate, equipment that grants infect,
+poison in T2 duels, and Y'shtola's two decks re-measured in the app.
+
 ## Order and why
 
 **Updated 2026-11-07:** B19-B21 are done. The scouting report (Phase 2b) is now the priority, at
