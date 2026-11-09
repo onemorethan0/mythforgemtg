@@ -15,13 +15,17 @@ import SimStrengthPanel from './SimStrengthPanel'
 // `cached.stale` (set by GET /api/deck/{id}) means the stored profile came from different
 // engine scoring code. It is never shown as current: the panel re-measures on open and says
 // so. Before this, a Sep 4 "Resilience 88" sat on the deck page beside the import preview's
-// fresh 41 for the same list, with nothing to tell them apart.
+// fresh 41 for the same list, with nothing to tell them apart. `stale` also covers a
+// measurement saved before a panel section existed (GET /api/deck/{id}, MEASURE_BLOCKS).
+//
+// No saved measurement measures on open, as the import preview does, so the deck page shows
+// the same full panel without a click; the button stays for Re-measure and after an error.
 export default function MeasurePanel({ jobId, cached, statedBracket: savedStated = null }) {
   const hasCache = !!cached?.simulation?.power_profile
   const stale = hasCache && !!cached.stale
-  // A stale cache opens straight into "loading" and fetches on mount (below); nothing is
-  // set synchronously inside the effect, and `measure` is declared before it is used.
-  const [state, setState] = useState(hasCache && !stale ? 'done' : stale ? 'loading' : 'idle')
+  // A stale or missing cache opens straight into "loading" and fetches on mount (below);
+  // nothing is set synchronously inside the effect, and `measure` is declared before it is used.
+  const [state, setState] = useState(hasCache && !stale ? 'done' : 'loading')
   const [result, setResult] = useState(hasCache && !stale ? cached.simulation : null)
   const [measuredAt, setMeasuredAt] = useState(hasCache && !stale ? cached.date : null)
   const [errMsg, setErrMsg] = useState('')
@@ -66,8 +70,8 @@ export default function MeasurePanel({ jobId, cached, statedBracket: savedStated
     measure()
   }
 
-  // Mount-only re-measure of a stale cache; the effect event reads the current jobId.
-  const remeasureStale = useEffectEvent(() => { if (stale) measure() })
+  // Mount-only measure of a stale or missing cache; the effect event reads the current jobId.
+  const remeasureStale = useEffectEvent(() => { if (stale || !hasCache) measure() })
   useEffect(() => { remeasureStale() }, [])
 
   const mainBtn = (label, disabled = false) => (
@@ -93,7 +97,7 @@ export default function MeasurePanel({ jobId, cached, statedBracket: savedStated
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           {mainBtn('⏳ Simulating…', true)}
           <span style={{ fontSize: 11, color: '#78716c' }}>
-            {stale ? 'the engine changed since the last measurement - re-simulating' : 'playing a few thousand goldfish + resilience games'}
+            {stale ? 'the saved measurement is older than the current engine or panel - re-simulating' : 'playing a few thousand goldfish + resilience games'}
           </span>
         </div>
       )}

@@ -29,7 +29,7 @@ from api import state
 from api.cards import _download_art_to, _imported_card_to_stored, _is_single_card
 from api.collection_data import _annotate_owned
 from api.models import SearchRequest
-from api.routes_strength import _engine_fingerprint, _gauntlet_analyze
+from api.routes_strength import MEASURE_BLOCKS, _engine_fingerprint, _gauntlet_analyze
 from api.state import (
     _3d_jobs,
     _3d_progress,
@@ -694,10 +694,16 @@ async def get_deck(job_id: str):
     out = _annotate_owned(_serializable_job(job))
     lm = out.get("last_measure")
     if isinstance(lm, dict):
+        sim = lm.get("simulation") or {}
+        # A measurement saved before a panel block existed (the kill/combo clock, denial, the
+        # dials, the bracket-rules check) is stale even when the scoring code is unchanged:
+        # the engine fingerprint didn't move, so it used to show as current with those
+        # sections missing -- the deck page reading thinner than a fresh import preview.
+        missing = any(k not in sim for k in MEASURE_BLOCKS)
         current = await asyncio.to_thread(_engine_fingerprint)
-        if current is not None:
-            fp = (lm.get("simulation") or {}).get("model_fingerprint")
-            out["last_measure"] = {**lm, "stale": fp != current}
+        if current is not None or missing:
+            fp = sim.get("model_fingerprint")
+            out["last_measure"] = {**lm, "stale": missing or fp != current}
     return out
 
 

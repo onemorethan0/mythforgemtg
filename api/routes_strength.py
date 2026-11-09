@@ -110,6 +110,13 @@ def _engine_fingerprint() -> str | None:
     return fp
 
 
+# Every block `_gauntlet_analyze` returns. A saved `last_measure` missing one was measured
+# before that block existed and is re-measured on open (routes_decks.get_deck), so the deck page
+# never shows less than a fresh import preview. Add a key here when adding one below.
+MEASURE_BLOCKS = ("power_profile", "combos", "insight", "kill_speed", "combo_clock",
+                  "bracket_rules", "denial", "dials")
+
+
 def _gauntlet_analyze(commander, deck, partners=None):
     """Simulation-grounded strength from MythGauntlet; None if the service is unavailable."""
     try:

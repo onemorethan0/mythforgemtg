@@ -232,3 +232,34 @@ def test_stated_bracket_rejects_out_of_range_and_unknown_decks(_isolated):
     assert client.post(f"/api/deck/{JOB}/stated-bracket", json={"stated_bracket": 6}).status_code == 422
     assert client.post(f"/api/deck/{JOB2}/stated-bracket", json={"stated_bracket": 3}).status_code == 404
     assert client.post("/api/deck/nope/stated-bracket", json={"stated_bracket": 3}).status_code in (400, 404)
+
+
+# -- saved measurement freshness ------------------------------------------------------------------
+
+def test_a_measurement_missing_a_current_panel_block_is_stale(_isolated):
+    """Measured before the kill clock / denial / dials existed: re-measured on open even though
+    the engine fingerprint is unchanged, so the deck page never shows less than the preview."""
+    from api import routes_decks
+    from api.routes_strength import MEASURE_BLOCKS
+
+    full = {k: {} for k in MEASURE_BLOCKS} | {"model_fingerprint": "fp1"}
+    old = {"power_profile": {}, "combos": {}, "insight": {}, "model_fingerprint": "fp1"}
+    _write(_isolated, last_measure={"simulation": full, "date": "2026-11-08"})
+    _write(_isolated, job=JOB2, last_measure={"simulation": old, "date": "2026-09-04"})
+    with patch.object(routes_decks, "_engine_fingerprint", lambda: "fp1"):
+        assert client.get(f"/api/deck/{JOB}").json()["last_measure"]["stale"] is False
+        assert client.get(f"/api/deck/{JOB2}").json()["last_measure"]["stale"] is True
+    # engine down: a complete measurement is shown as is, an incomplete one still re-measures
+    state._jobs.clear()
+    with patch.object(routes_decks, "_engine_fingerprint", lambda: None):
+        assert "stale" not in client.get(f"/api/deck/{JOB}").json()["last_measure"]
+        assert client.get(f"/api/deck/{JOB2}").json()["last_measure"]["stale"] is True
+
+
+def test_measure_blocks_cover_every_block_the_engine_proxy_returns():
+    import inspect
+    import re
+
+    from api import routes_strength
+    keys = re.findall(r'"([a-z_]+)": data\.get', inspect.getsource(routes_strength._gauntlet_analyze))
+    assert set(keys) - {"engine_version", "model_fingerprint"} == set(routes_strength.MEASURE_BLOCKS)
