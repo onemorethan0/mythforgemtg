@@ -66,6 +66,39 @@ def _keeps_answer_up(me: _Player, cost, exclude=None) -> bool:
     return keep is None or pay_keeping(me.sources, cost, keep) is not None
 
 
+def _hits_the_table(gc) -> bool:
+    """A spell that affects every opponent: a board wipe, or an effect the interpreter applies
+    to `each_opponent` (drains, group discard, each-opponent damage)."""
+    if gc.profile.wipe:
+        return True
+    return "each_opponent" in repr(gc.resolve_abilities or ())
+
+
+def _worth_my_counter(state, me_key: str) -> bool:
+    """Should THIS seat spend a counter on the spell on the stack? (pods; 1v1 always fights)
+
+    A counter is a 1-for-1 with one player; at a 4-player table the two seats that didn't spend
+    a card gain from it for free. So a seat fights only when the spell is its problem:
+      - it is the caster (protecting its own spell -- the counter-back);
+      - it is the caster's primary opponent, the seat combat and single-target effects focus on;
+      - the spell hits the whole table (a wipe, an each-opponent effect);
+      - the caster is the archenemy (the biggest threat at the table already); or
+      - the spell is near-lethal or completes a combo (value >= the tap-out bar).
+    Otherwise it passes, and priority moves on to the seat the spell is aimed at."""
+    gc, _is_cmdr, value, caster = state.pending_spell
+    if me_key == caster:
+        return True
+    if value >= _TAP_OUT_VALUE:
+        return True
+    if me_key == state.other:          # the caster is the active player
+        return True
+    if _hits_the_table(gc):
+        return True
+    living = state.living()
+    top = max(living, key=lambda k: (state.players[k].score(), -state.order.index(k)))
+    return top == caster
+
+
 def _best_land(me: _Player, lands: list) -> object:
     """The land that leaves the most nonland cards in hand castable once everything untaps --
     colours counted, the cheapest held instant answer counted twice (it is what the player is
@@ -268,6 +301,8 @@ class GreedyAgent:
         spell_value = state.pending_spell[2]
         if spell_value < _COUNTER_MIN_VALUE:
             return PassReaction()
+        if state.multiplayer and not _worth_my_counter(state, state.pending.player):
+            return PassReaction()   # aimed at someone else: let them spend the card
         found = _find_counter(actor)
         return CounterSpell(found[0]) if found is not None else PassReaction()
 

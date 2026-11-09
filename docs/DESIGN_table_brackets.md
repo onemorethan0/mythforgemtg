@@ -256,3 +256,21 @@ each deck played 60 games. So the observation behind this design may come from s
 card advantage, opponents not playing around counters, or the control deck being stronger in
 other ways -- and Denial stays a FUN dial (agency), not a power input.
 
+**Smarter counter targeting and the counters ablation (2026-11-08).** In a pod a greedy seat now
+spends a counter only when the spell is its problem: it is the caster's primary opponent, the
+spell hits the whole table (a wipe, an each-opponent effect), the caster is the archenemy, or the
+spell is near-lethal; otherwise it passes and priority reaches the seat the spell is aimed at
+(1v1 unchanged). Decks now pass 260-414 times per 30 games and still counter 79-109 times.
+
+The group comparison was confounded: the High-Denial decks are much weaker closers (median pod
+score 3.7 vs 20.4; kill unopposed in 75% vs 95% of goldfish games), and goldfish closing power
+does not predict pod win rate well enough to adjust for it (R^2 0.03). So `denial_pod_study.py`
+now also runs each High-Denial deck with its counterspells dead -- same cards, same seeds, same
+field. **Over 1,440 games, working counterspells raise those decks' win share from 17.1% to
+18.3% (+1.2 points); they help 8 of 12 decks and hurt 3** (mana held up costs tempo). In the
+simulator, then, counterspells are a small edge for the deck holding them, not what decides
+casual pods. What the user has seen at real tables may come from what the sim doesn't model
+(draw-go card advantage, players not playing around counters, the control player's skill) --
+and it doesn't need to win to sour a game: Denial measures how much a deck stops OTHERS from
+playing, which is the fun question, whatever the win rate.
+

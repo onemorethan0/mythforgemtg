@@ -3,7 +3,10 @@ a casual table?
 
 Takes the labelled Bracket 1-3 corpus decks whose D3 Denial dial reads High AND that run
 counterspells, plus an equal-sized control of Denial-Low decks from the same brackets, and runs
-each in 4-player pods (`ratings.pod.pod_winrate`: the deck rotated through every seat, opponents
+each in 4-player pods. Each High-Denial deck is ALSO run with its counterspells dead (same cards,
+`counter` off, so they rot in hand): the ablation holds deck quality fixed and isolates what the
+counters themselves are worth -- the group comparison alone can't, because the counter decks are
+also weaker closers. Pods are (`ratings.pod.pod_winrate`: the deck rotated through every seat, opponents
 drawn from a Bracket 2 field). Seeds are fixed, so two runs on two engines differ only by the
 engine. Writes one JSON per run.
 
@@ -20,19 +23,21 @@ import json
 import random
 import sys
 import time
+from dataclasses import replace
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 for p in (ROOT, ROOT / "src", ROOT / "scripts"):
     sys.path.insert(0, str(p))
 
-from bracket_accuracy import labelled_decks  # noqa: E402
-from mythgauntlet.data.scryfall import load_card_db  # noqa: E402
-from mythgauntlet.model.deck import Deck, resolve  # noqa: E402
-from mythgauntlet.ratings import denial, dials  # noqa: E402
-from mythgauntlet.ratings.pod import pod_winrate, prepare_seat  # noqa: E402
-from mythgauntlet.semantics.store import load_store  # noqa: E402
-from mythgauntlet.sim.tier2 import DuelConfig  # noqa: E402
+from bracket_accuracy import labelled_decks
+
+from mythgauntlet.data.scryfall import load_card_db
+from mythgauntlet.model.deck import Deck, resolve
+from mythgauntlet.ratings import denial, dials
+from mythgauntlet.ratings.pod import pod_winrate, prepare_seat
+from mythgauntlet.semantics.store import load_store
+from mythgauntlet.sim.tier2 import DuelConfig
 
 
 def main() -> int:
@@ -77,17 +82,28 @@ def main() -> int:
             seat = prepare_seat(r.cards, r.commanders[0] if r.commanders else None, store)
             t = time.time()
             rating = pod_winrate(seat, field, cfg, games=args.games, seed=42)
-            rows.append({"group": group, "deck": path.name, "label": label,
-                         "commander": r.commanders[0].name if r.commanders else "",
-                         "counterspells": d.counterspells, "locks": len(d.locks),
-                         "wins": rating.wins, "games": rating.games,
-                         "winrate": rating.winrate})
+            row = {"group": group, "deck": path.name, "label": label,
+                   "commander": r.commanders[0].name if r.commanders else "",
+                   "counterspells": d.counterspells, "locks": len(d.locks),
+                   "wins": rating.wins, "games": rating.games, "winrate": rating.winrate}
+            if group == "high_denial":
+                deck, cmdr, combos = seat
+                dead = [replace(gc, profile=replace(gc.profile, counter=False))
+                        if gc.profile.counter else gc for gc in deck]
+                off = pod_winrate((dead, cmdr, combos), field, cfg, games=args.games, seed=42)
+                row["wins_counters_off"] = off.wins
+                row["winrate_counters_off"] = off.winrate
+            rows.append(row)
             print(f"  {group:11} {path.name:28} B{label} counters {d.counterspells:2} "
                   f"win {rating.winrate:5.1%} ({time.time() - t:.0f}s)", flush=True)
     for group in groups:
         rs = [r for r in rows if r["group"] == group]
         w, g = sum(r["wins"] for r in rs), sum(r["games"] for r in rs)
         print(f"{group}: {w}/{g} = {w / g:.1%} (seat share 25%)")
+        if group == "high_denial":
+            off = sum(r["wins_counters_off"] for r in rs)
+            print(f"  same decks, counterspells dead: {off}/{g} = {off / g:.1%} "
+                  f"-> counters worth {(w - off) / g:+.1%} of games")
     args.out.write_text(json.dumps(rows, indent=1), encoding="utf-8")
     return 0
 

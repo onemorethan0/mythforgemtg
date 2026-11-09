@@ -132,3 +132,67 @@ def test_the_pod_gets_an_instant_window_in_seat_order(make_card):
     # nothing left to remove: the window closed and the game moved on (with no attackers and
     # empty libraries it runs past combat into the next turn)
     assert s.phase != INSTANT_WINDOW and s.reaction_passed == frozenset()
+
+
+# --- smarter counter targeting (greedy, pods) ----------------------------------------------
+
+
+def _body(power):
+    return _Permanent(name=f"body{power}", power=power, toughness=power, is_creature=True,
+                      sick=False)
+
+
+def _drive(state):
+    """Let greedy seats answer the open window until it closes; return who countered."""
+    who = []
+    agent = GreedyAgent()
+    while state.pending is not None and state.pending.kind == COUNTER_WINDOW:
+        action = agent.decide(state)
+        if isinstance(action, CounterSpell):
+            who.append(state.pending.player)
+        apply(state, action)
+        advance(state)
+    return who
+
+
+def test_a_bystander_passes_and_the_target_counters(make_card):
+    """b holds a counter but the spell is aimed at c (the caster's primary opponent, the
+    biggest board): b lets c spend the card."""
+    c = _player("c", [_counter(make_card, "C1")], mana=2)
+    c.battlefield.append(_body(5))
+    s = _pod({"a": _player("a"), "b": _player("b", [_counter(make_card, "B1")], mana=2),
+              "c": c, "d": _player("d")})
+    _on_stack(s, _bear(make_card))
+    assert _drive(s) == ["c"]
+    assert len(s.players["b"].hand) == 1          # b kept its counter
+
+
+def test_everyone_fights_the_archenemy(make_card):
+    a = _player("a")
+    a.battlefield.append(_body(9))                # the caster is the biggest threat
+    c = _player("c")
+    c.battlefield.append(_body(2))
+    s = _pod({"a": a, "b": _player("b", [_counter(make_card, "B1")], mana=2), "c": c})
+    _on_stack(s, _bear(make_card))
+    assert _drive(s) == ["b"]
+
+
+def test_a_table_wide_spell_is_everyone_s_problem(make_card):
+    wrath = make_game_card(make_card("Wrath", mana_cost="{2}{W}{W}", type_line="Sorcery",
+                                     oracle_text="Destroy all creatures."), None)
+    c = _player("c")
+    c.battlefield.append(_body(5))
+    s = _pod({"a": _player("a"), "b": _player("b", [_counter(make_card, "B1")], mana=2), "c": c})
+    _on_stack(s, wrath)
+    assert _drive(s) == ["b"]
+
+
+def test_one_on_one_still_fights_every_spell_worth_it(make_card):
+    s = GameState(players={"a": _player("a"), "b": _player("b", [_counter(make_card)], mana=2)},
+                  order=["a", "b"], cfg=DuelConfig(max_turns=30), active="a")
+    s.pending_spell = (_bear(make_card), False, 10.0, "a")
+    s.counters_on_stack = 0
+    s.reaction_actor = "b"
+    s.phase = COUNTER_WINDOW
+    advance(s)
+    assert isinstance(GreedyAgent().decide(s), CounterSpell)
