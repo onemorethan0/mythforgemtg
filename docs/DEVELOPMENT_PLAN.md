@@ -100,7 +100,34 @@ per-card noise floor (it decides how many cards the report can honestly name).
 | B28 | Hands-on UX pass at desktop and phone widths (P7); replace native `alert()` with the toaster | defects filed here; zero `alert(` in src | todo |
 | B29 | Frontend bundle > 500 kB: code-split the heavy panels | Vite warning gone; first paint unchanged or faster | todo |
 
-### Next run: the unmodeled-mechanics sweep (owner request, 2026-11-09)
+### The unmodeled-mechanics sweep (owner request, 2026-11-09) -- first pass DONE same day
+
+Shipped (tier0 unless noted), each read strictly from the card's own text with a gold set:
+Station/Spacecraft, crewed Vehicles, printed haste, creature tokens (resolve / ETB / upkeep /
+end step / cast / attack / landfall / +N loyalty), pump Equipment and Auras (incl. double strike,
+infect equipment), proliferate, fixed drains, direct poison, Treasure, extra land drops; poison in
+T2 duels. Tooling: `scripts/unmodeled_inventory.py` (unread rules lines, ranked by deck weight),
+`scripts/unmodeled_label.py` + `scripts/unmodeled_adjudicate.py` (local-model family labels, gold-set
+gated). Model choice measured: qwen3:14b 38/39 gold and 2.5 min per 2,000 shapes; Qwen3.6-35B-A3B
+36/39, 6 min, and it disagreed with 14b on 48% of shapes (several plainly wrong); 32b adjudicated.
+Read lines 4,096 -> 6,042 of ~36k. Remaining goldfish-relevant families by deck weight: +1/+1
+counters, conditional/variable card draw, mana abilities on nonland permanents, free/alternative
+costs, temporary team pumps, death-trigger drains and tokens, "*"-power creatures (lands you control).
+
+Measured on all 2,110 labelled decks, refreshed store both sides (no combos, like-for-like):
+75 bracket moves, 49 toward the player's label, 26 away; exact 61.3% -> 61.9%; 418 decks kill
+sooner, 10 later. With the live pipeline (`bracket_strength_fit.py --collect`), the SHIPPED
+model reads exact 60.1% -> 61.5%, B1-3 exact 59.6% -> 61.8% (B1 55 -> 53%, B2 55 -> 63%). A CV refit
+on the new rows scores lower (60.2% exact, B1-3 58.3%), so nothing was re-baked. The guard also
+caught a crash (attack-triggered Treasure/proliferate, 407 decks) before it reached a user.
+Owner's decks: Y'shtola infect list T11 -> T9 (66% of kills by poison, 35% of games by T8 vs 19% for
+the counters list); Borg Queen T11 -> T10 with its Spacecraft attacking.
+
+Also found: the engine's card store was 17 days stale (Oct 23) -- every newer card was invisible
+(31 of the Borg deck's cards). Refreshed with `mythgauntlet fetch-data --force`; a running engine
+needs a restart to load it.
+
+#### The original plan (kept for the method)
 
 Owner: "pour through all the unmodeled things and set up the local LLMs to set up as many as we can
 identify". Trigger: a Borg deck rated wrong because Spacecraft never attack -- tier0 adds an attacker
