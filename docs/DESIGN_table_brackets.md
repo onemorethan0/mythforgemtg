@@ -1,6 +1,6 @@
 # Table brackets: a bracket that predicts whether the game will be fun
 
-Status: design proposal, 2026-11-08; section 6 is the build order. D1-D4 are done (see the table).
+Status: design proposal, 2026-11-08; section 6 is the build order. D1-D5 are done and D6 has been run (see the table).
 
 ## 1. The problem, in our own data
 
@@ -134,8 +134,8 @@ Each failed check produces a sentence for the pre-game talk.
 | D2 (**done** 2026-11-08) | Lock list plus a card tagger for denial roles (counter, stax, lock, theft, extra turn, tap-down), checked against a hand-labelled gold set | none |
 | D3 (**done** 2026-11-08) | Denial and Inevitability dials from what the engine already measures (D2 tags, B32 spread, B33 tutors and combos) | D2 |
 | D4 (**done** 2026-11-08) | Pod fit check over four decks, shown in the strength panel and before `/pod` | D3, B35 |
-| D5 | Multiplayer reactions in the pod simulator (counter whichever spell threatens most, not only the 1-on-1 opponent's) so measured Denial and the "counters win low brackets" claim can be tested | none; the largest item |
-| D6 | Validate: in a Bracket 2 field, does a High-Denial deck win far more than its seat share (25%)? If so, the plays-up rule is right. | D5, B35 |
+| D5 (**done** 2026-11-08) | Multiplayer reactions in the pod simulator (counter whichever spell threatens most, not only the 1-on-1 opponent's) so measured Denial and the "counters win low brackets" claim can be tested | none; the largest item |
+| D6 (**run**, inconclusive) | Validate: in a Bracket 2 field, does a High-Denial deck win far more than its seat share (25%)? If so, the plays-up rule is right. | D5, B35 |
 | D7 | Real fun labels: an optional one-tap after-game note in the app ("fun? who ran away with it?"), stored locally, to fit the pod-fit check against real games | D4 |
 
 D1 and D2 are small and independent; D5 is what turns this from a card-list proposal into a
@@ -203,4 +203,27 @@ Live: three Bracket 3 library decks (Doran, Smaug, Lathril) plus a pasted Oloro 
 list read "Likely a lopsided game: 2 mismatches and 2 things to mention" -- power and denial fail,
 pace and predictability warn, each naming Oloro and why. A prediction, not a played game: D5/D6
 test it against the pod simulator.
+
+**D5 result (2026-11-08).** Until now a pod game resolved every spell at once and skipped the
+pre-combat instant window: counterspells and instant removal did nothing at a table. `sim/game.py`
+now gives a pod the stack: after a cast, priority goes around the table in seat order (CR 117.4),
+and a seat is asked only when it wants the stack to flip (the caster's opponents while the spell
+would resolve, the caster while it would be countered); a counter resets everyone's pass, and the
+spell resolves when every seat with a reason and a payable counter has passed. Before combat each
+opponent, in seat order, may answer the active player's biggest threat. 1v1 is byte-identical
+(golden master). Six state-machine tests pin it.
+
+**D6 result (2026-11-08): inconclusive -- the pilot, not the rules, is now the bottleneck.**
+`scripts/denial_pod_study.py`: 12 Bracket 1-3 decks with Denial High and 4+ counterspells, 12
+Denial-Low controls, 60 four-player games each against a 60-deck Bracket 2 field, seeds fixed.
+High-Denial decks won 18.6% after D5 (18.3% before), Denial-Low 28.5% (28.2%); seat share 25%.
+Instrumented, the reason is plain: when an opponent cast a spell worth countering, a seat holding a
+counterspell could pay for it in roughly 1-5% of those moments -- colour screw (the greedy pilot
+plays lands without regard to colour: Psychic Barrier held with only red sources up), too few
+lands early, and mana spent on its own turn. A pod-only "keep the answer's colours open" rule was
+tried and dropped: 18.3% / 29.6%, no gain. So the simulator neither confirms nor refutes "counters
+win low-bracket games"; it says our greedy control player can't hold up a counter. Next: a
+colour-aware land/mana pilot, or run D6 with the search (ISMCTS) agents, before reading D6 again.
+The 1v1 pilot has the same tap-out rule (reserve only after the first cast); changing it needs the
+golden master re-captured on purpose.
 

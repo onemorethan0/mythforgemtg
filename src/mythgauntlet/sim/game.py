@@ -177,6 +177,10 @@ class GameState:
     pending_spell: tuple[GameCard, bool, float, str] | None = None
     counters_on_stack: int = 0  # counters played over the pending spell (LIFO parity)
     reaction_actor: str | None = None  # whose reaction priority it is (COUNTER/INSTANT window)
+    # D5: seats that passed in the current reaction window since the stack last changed. A pod
+    # spell resolves (or combat begins) only when every seat with a reason and an answer has
+    # passed -- CR 117.4, priority passing in succession. Unused in 1v1 (golden master).
+    reaction_passed: frozenset[str] = frozenset()
     eliminated: set[str] = field(default_factory=set)  # dead players (N-player; empty in 1v1)
     pending: Decision | None = None
     terminal: bool = False
@@ -270,6 +274,7 @@ def clone(state: GameState) -> GameState:
         pending_spell=state.pending_spell,
         counters_on_stack=state.counters_on_stack,
         reaction_actor=state.reaction_actor,
+        reaction_passed=state.reaction_passed,
         eliminated=set(state.eliminated),
         pending=state.pending,
         terminal=state.terminal,
@@ -523,8 +528,9 @@ def _do_post_main(state: GameState) -> None:
         if me.combo_ready():  # a game-ending combo wins the whole table
             _finish(state, state.active, "combo")
             return
-        # reactions (the instant window) are a 1v1-only feature for now -> straight to combat
-        state.phase = COMBAT_ATTACK
+        # D5: every opponent may answer the active player's biggest threat before combat
+        state.reaction_passed = frozenset()
+        state.phase = INSTANT_WINDOW
         return
     if me.decked:
         _finish(state, state.other, "decked")
@@ -543,20 +549,64 @@ def _resolve_pending_spell(state: GameState) -> None:
     else it resolves. Then hand priority back to the caster's main phase."""
     gc, is_commander, _value, caster_key = state.pending_spell
     caster = state.players[caster_key]
-    opp = state.players[_other_key(state.players, caster_key)]
+    if state.multiplayer:
+        # the caster is the active player (only the active player casts in a main phase), so
+        # its primary opponent and the rest of the table are the same as at cast time
+        opp, others = state.players[state.other], _others(state)
+    else:
+        opp, others = state.players[_other_key(state.players, caster_key)], ()
     if state.counters_on_stack % 2 == 1:  # countered
         if is_commander:
             caster.commander_in_zone = True  # returns to the command zone (tax already counted)
+    elif others:
+        _resolve(gc, caster, opp, is_commander, others)
     else:
         _resolve(gc, caster, opp, is_commander)
     state.pending_spell = None
     state.counters_on_stack = 0
     state.reaction_actor = None
+    state.reaction_passed = frozenset()
     state.phase = MAIN  # the caster keeps casting (the window opened from its MAIN)
 
 
 def _reactor_can_counter(state: GameState) -> bool:
     return _find_counter(state.players[state.reaction_actor]) is not None
+
+
+def _seats_after(state: GameState, key: str) -> list[str]:
+    """The other living seats in turn order, starting with the one after `key`."""
+    living = state.living()
+    i = living.index(key) if key in living else -1
+    return [k for k in living[i + 1:] + living[:i + 1] if k != key]
+
+
+def _next_counter_actor(state: GameState) -> str | None:
+    """D5: the next seat with a reason to respond and a payable counter. A player responds only
+    to move the stack its way: the caster's opponents while the spell would resolve (even
+    parity), the caster while it would be countered (odd). Seats that already passed since the
+    stack last changed are skipped; None means everyone has passed -- the spell resolves."""
+    caster = state.pending_spell[3]
+    if state.counters_on_stack % 2 == 1:
+        wanting = [caster]
+    else:
+        wanting = _seats_after(state, caster)
+    for k in wanting:
+        if k not in state.reaction_passed and _find_counter(state.players[k]) is not None:
+            return k
+    return None
+
+
+def _next_instant_actor(state: GameState) -> str | None:
+    """D5: the next opponent of the active player, in turn order, holding instant removal for
+    its biggest threat and not yet passed in this window."""
+    active = state.players[state.active]
+    biggest = _instant_target(active)
+    if biggest is None:
+        return None
+    for k in _seats_after(state, state.active):
+        if k not in state.reaction_passed and _find_instant_removal(state.players[k], biggest):
+            return k
+    return None
 
 
 def _others(state: GameState) -> tuple[_Player, ...]:
@@ -611,6 +661,22 @@ def advance(state: GameState) -> None:
         elif ph == ACTIVATION:
             state.pending = Decision(state.active, ACTIVATION)
             return
+        elif ph == COUNTER_WINDOW and state.multiplayer:
+            actor = _next_counter_actor(state)
+            if actor is not None:
+                state.reaction_actor = actor
+                state.pending = Decision(actor, COUNTER_WINDOW)
+                return
+            _resolve_pending_spell(state)
+        elif ph == INSTANT_WINDOW and state.multiplayer:
+            actor = _next_instant_actor(state)
+            if actor is not None:
+                state.reaction_actor = actor
+                state.pending = Decision(actor, INSTANT_WINDOW)
+                return
+            state.reaction_actor = None
+            state.reaction_passed = frozenset()
+            state.phase = COMBAT_ATTACK
         elif ph == COUNTER_WINDOW:
             # a spell is on the stack; the reactor decides only if it CAN counter, else resolve
             if _reactor_can_counter(state):
@@ -931,7 +997,12 @@ def apply(state: GameState, action: object) -> None:
             _fire_triggers(opp, me, "opponent_casts_spell")
         state.casts_this_main += 1
         if state.multiplayer:
-            _resolve(gc, me, opp, is_commander, others)  # reactions 1v1-only -> resolve now
+            # D5: on the stack; priority goes around the table (`_next_counter_actor`)
+            state.pending_spell = (gc, is_commander, value, state.active)
+            state.counters_on_stack = 0
+            state.reaction_actor = None
+            state.reaction_passed = frozenset()
+            state.phase = COUNTER_WINDOW
             return
         # 1v1: the spell goes on the stack and the non-active player gets the first
         # COUNTER_WINDOW decision (the counter-war is a searched decision).
@@ -976,6 +1047,32 @@ def _apply_reaction(state: GameState, action: object) -> None:
     INSTANT_WINDOW: CastRemoval kills the biggest threat and offers another; PassReaction moves
     to combat."""
     from mythgauntlet.sim.tier0 import _can_pay
+
+    if state.phase == COUNTER_WINDOW and state.multiplayer:
+        if isinstance(action, CounterSpell):
+            actor = state.players[state.reaction_actor]
+            payment = _can_pay(actor.sources, cast_cost(actor, action.card))
+            assert payment is not None, "apply() got an unpayable counter"
+            actor.hand.remove(action.card)
+            for idx in payment:
+                actor.sources[idx].ready = False
+            state.counters_on_stack += 1
+            state.reaction_passed = frozenset()   # the stack changed: everyone may respond
+        else:
+            state.reaction_passed = state.reaction_passed | {state.reaction_actor}
+        state.reaction_actor = None
+        return  # advance asks the next seat, or resolves
+
+    if state.phase == INSTANT_WINDOW and state.multiplayer:
+        if isinstance(action, CastRemoval):
+            reactor, active = state.players[state.reaction_actor], state.players[state.active]
+            payment = _can_pay(reactor.sources, cast_cost(reactor, action.card))
+            assert payment is not None, "apply() got an unpayable removal"
+            _apply_instant_removal(reactor, active, action.card, payment)
+        else:
+            state.reaction_passed = state.reaction_passed | {state.reaction_actor}
+        state.reaction_actor = None
+        return  # advance offers the next seat, or moves to combat
 
     if state.phase == COUNTER_WINDOW:
         if isinstance(action, CounterSpell):
