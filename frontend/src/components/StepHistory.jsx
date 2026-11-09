@@ -32,7 +32,10 @@ const s = {
   card:       { background: '#1c1917', border: '1px solid #292524', borderRadius: 14, overflow: 'hidden', cursor: 'pointer', transition: 'border-color 0.15s, transform 0.15s', display: 'flex', flexDirection: 'column', position: 'relative' },
   cardHov:    { borderColor: '#ca8a04', transform: 'translateY(-2px)' },
   cardSel:    { borderColor: '#ef4444', background: '#1c0a0a' },
-  thumb:      { width: '100%', aspectRatio: '4/3', objectFit: 'cover', background: '#0c0a09', display: 'block' },
+  // The thumbnail is a whole card (5:7) in a 4:3 tile, so `cover` keeps ~54% of its height.
+  // Centred, that window held the text box and cut the top half of the art; anchored near the
+  // top it shows the name line and the whole art box (on Myth Forge renders and Scryfall cards).
+  thumb:      { width: '100%', aspectRatio: '4/3', objectFit: 'cover', objectPosition: 'center 8%', background: '#0c0a09', display: 'block' },
   thumbFb:    { width: '100%', aspectRatio: '4/3', background: '#0c0a09', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, color: '#292524' },
   body:       { padding: '12px 14px', flex: 1, display: 'flex', flexDirection: 'column', gap: 4 },
   name:       { fontSize: 15, fontWeight: 700, color: '#f5f5f4', lineHeight: 1.3 },

@@ -73,7 +73,7 @@ export default function RecentDecks({ onLoad }) {
                 <img
                   src={entry.thumbnail}
                   alt=""
-                  style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block', background: '#0c0a09' }}
+                  style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', objectPosition: 'center 8%', display: 'block', background: '#0c0a09' }}
                 />
               ) : (
                 <div style={{ width: '100%', aspectRatio: '4/3', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0c0a09' }}>
