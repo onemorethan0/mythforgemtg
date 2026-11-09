@@ -257,6 +257,16 @@ class PodFitRequest(BaseModel):
     combos: bool = True
 
 
+class MatchupsRequest(BaseModel):
+    """B35: duels against the reference field of a bracket (src/mythgauntlet/data/reference_field.json)."""
+    deck: str
+    name: str = Field(default="deck", max_length=120)
+    bracket: int | None = Field(default=None, ge=1, le=5,
+                                description="the field to face; default the deck's own estimate")
+    games: int = Field(default=120, ge=10, le=1_000)
+    seed: int = 42
+
+
 class PodRequest(BaseModel):
     deck: str
     name: str = "deck"
@@ -830,11 +840,10 @@ def create_app(
         cfg = DuelConfig(
             games=req.games, seed=req.seed, max_turns=req.turns, start_life=req.life
         )
-        result = duel(
-            res_a.cards, res_a.commanders[0] if res_a.commanders else None,
-            res_b.cards, res_b.commanders[0] if res_b.commanders else None,
-            cfg, store=store,
-        )
+        from mythgauntlet.ratings.matchups import duel_seat   # partners ride as cards
+        cards_a, cmd_a = duel_seat(res_a)
+        cards_b, cmd_b = duel_seat(res_b)
+        result = duel(cards_a, cmd_a, cards_b, cmd_b, cfg, store=store)
         return {
             "engine_version": __version__,
             "tier": "T2-mvp",
@@ -870,6 +879,29 @@ def create_app(
                  if name != exclude and (bracket is None or label == bracket)]
         what = "corpus decks" if bracket is None else f"Bracket {bracket} corpus decks"
         return seats, f"a field of {len(seats)} {what}"
+
+    @app.post("/matchups")
+    def run_matchups(req: MatchupsRequest) -> dict:
+        """B35: win rate with a 90% interval against each archetype of the bracket's reference
+        field, the weak/favoured verdicts, and how the losses came. Tier-2 two-player duels;
+        directional (the response carries the fidelity note)."""
+        from mythgauntlet.ratings import matchups as _mu
+        res = _resolve_or_400(req.deck, req.name, db)
+        bracket = req.bracket
+        if bracket is None:
+            quick = analyze_deck(res, SimConfig(turns=DEFAULT_ANALYZE_TURNS, runs=60,
+                                                seed=req.seed), store, run_resilience=False)
+            bracket = quick.bracket.bracket
+        field_bracket = min(bracket, 4)      # the field stops at Bracket 4
+        cards, cmd = _mu.duel_seat(res)
+        report = _mu.run(cards, cmd, field_bracket, db=db, store=store, games=req.games,
+                         seed=req.seed, combos=_mu.combos_for(res))
+        if not report.matchups:
+            raise HTTPException(status_code=422,
+                                detail=f"no reference field for Bracket {field_bracket} -- run "
+                                       "scripts/build_reference_field.py")
+        return {"engine_version": __version__, "tier": "T2-mvp", "name": req.name,
+                "deck_bracket": bracket, **dataclasses.asdict(report)}
 
     @app.post("/pod-fit")
     def run_pod_fit(req: PodFitRequest) -> dict:

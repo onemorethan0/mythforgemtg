@@ -1098,3 +1098,61 @@ def pod_fit(job_id: str, req: PodFitIn):
     if resp.status_code != 200:
         raise HTTPException(502, f"strength API returned HTTP {resp.status_code}")
     return resp.json()
+
+
+# ── Matchups against the reference field (B35) ────────────────────────────────
+
+def _decklist_hash(text: str) -> str:
+    import hashlib
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+@router.get("/api/deck/{job_id}/matchups")
+def get_matchups(job_id: str):
+    """The cached matchups for this exact decklist, or {"cached": False}."""
+    _require_job_id(job_id)
+    job = _jobs.get(job_id) or _load_deck_from_disk(job_id)
+    if not job:
+        raise HTTPException(404, "Deck not found")
+    _name, text = _job_decklist(job_id)
+    cached = job.get("matchups_cache") or {}
+    if cached.get("deck_hash") == _decklist_hash(text):
+        return {"cached": True, **cached["result"], "computed_at": cached.get("computed_at")}
+    return {"cached": False}
+
+
+@router.post("/api/deck/{job_id}/matchups")
+def scout_matchups(job_id: str):
+    """B35: duel this deck against its bracket's reference field (one deck per archetype) and
+    cache the result in deck.json for this exact decklist. The bracket is the deck's last
+    measured one when there is one; else the engine estimates it."""
+    name, text = _job_decklist(job_id)
+    job = _jobs.get(job_id) or _load_deck_from_disk(job_id) or {}
+    pp = (((job.get("last_measure") or {}).get("simulation") or {}).get("power_profile") or {})
+    payload = {"deck": text, "name": name, "games": 120}
+    if pp.get("bracket_estimate"):
+        payload["bracket"] = int(pp["bracket_estimate"])
+    try:
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/matchups", json=payload, timeout=300)
+    except Exception as e:
+        print(f"  [matchups] MythGauntlet strength API unavailable: {e}")
+        raise HTTPException(503, "MythGauntlet strength API isn't reachable on :8020 -- start "
+                                 "Myth Forge via manage.bat or run 'mythgauntlet serve'.")
+    if resp.status_code in (400, 422):
+        raise HTTPException(resp.status_code, resp.json().get("detail", "matchups failed"))
+    if resp.status_code != 200:
+        raise HTTPException(502, f"strength API returned HTTP {resp.status_code}")
+    result = resp.json()
+    entry = {"deck_hash": _decklist_hash(text), "result": result,
+             "computed_at": _dt.now().isoformat(timespec="seconds")}
+    try:
+        p = state.RENDER_DIR / job_id / "deck.json"
+        if p.exists():
+            disk = json.loads(p.read_text(encoding="utf-8"))
+            disk["matchups_cache"] = entry
+            p.write_text(json.dumps(disk), encoding="utf-8")
+        if job_id in _jobs:
+            _jobs[job_id]["matchups_cache"] = entry
+    except Exception as e:
+        print(f"  [matchups] could not persist matchups_cache: {e}")
+    return {"cached": False, **result, "computed_at": entry["computed_at"]}

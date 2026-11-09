@@ -151,7 +151,7 @@ Thassa's-Oracle-style alt-win is `alt_win`, not `combo`.
 archetype that a casual pod actually meets: go-wide tokens, Voltron/commander damage, big
 creature midrange, spellslinger, graveyard/reanimator, artifact/combo, control/stax-light.
 Archetype by `deck_themes.detect_deck_themes`; pick the deck closest to its archetype's median
-strength at that bracket. Committed as data (`data/reference_field.json`) so results are
+strength at that bracket. Committed as data (`src/mythgauntlet/data/reference_field.json`) so results are
 comparable over time.
 **Run:** `/duel` (two-player, fast) against each, 120 games, seats alternated; `/pod` against a
 sampled three of them for the table figure (B32).
@@ -503,4 +503,29 @@ Underworld Breach ("...in your graveyard has escape") kept; keyword lines are "R
 form (fixed a capitalisation miss). Live: Greasefang reads graveyard (10-12 cards), commander
 (-2.5 to -2.7 turns) and wipes; a Goblins deck wipes and flyers; Oloro enchantments and flyers, its
 speed row correctly silent once the combo clock counts.
+
+### B35 (2026-11-08): reference field and matchups
+
+**Field** (`scripts/build_reference_field.py` -> `src/mythgauntlet/data/reference_field.json`): 1,667 audited labelled
+decks of Brackets 1-4 analyzed once and given one archetype -- voltron (half or more of goldfish
+kills from the commander: its own damage, or 21 commander damage), graveyard, spellslinger,
+artifact/combo, go-wide, control, midrange -- from the engine's archetype, Forge's theme detector
+and B34's kill methods. Per (bracket, archetype) cell the deck nearest the cell's median strength
+score is the pick: all 7 archetypes at every bracket (cells of 6-213 decks). A first sweep found no
+Voltron at all: B34 splits "commander" from "commander_damage" and only one was read.
+
+**Matchups** (`ratings/matchups.py`, engine `/matchups`, Forge `/api/deck/{id}/matchups` cached per
+decklist hash, a "Scout matchups" panel on the deck page): 120 Tier-2 duels per field deck, seats
+alternated, Spellbook combos for both sides; weak below 40% with the 90% interval under 50%,
+favoured above 60% with it over 50%; WHY from the field deck's win methods; the fidelity note
+printed with every result. ~5-8 s per deck.
+
+**Accept.** Stability: each field deck's win rate against the rest of its field at seeds 42 and 7
+-- largest difference z = 2.5 over 28 cells, under the ~3.0 multiple-comparison bar (three cells
+above 2). Two defects found on the way: partner decks lost their second commander in duels (the
+duel takes one; partners now ride as cards, `/duel` fixed too), and matchup duels ran without the
+decks' combos (an Oloro Thassa's Oracle list read weak against three archetypes; with its combos,
+favoured against two and even against the rest). Hand review: a fast Goblins deck favoured against
+the whole Bracket 2 field by combat; Greasefang mostly even. Open: `/duel` still runs combat-only
+(no combos), as `/pod` does by design.
 

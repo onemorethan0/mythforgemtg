@@ -75,7 +75,7 @@ against decks of the same bracket.
 | B32 | Kill speed as a distribution (p25/median/p75); table speed from the measured four-seat sim, capacity as secondary | speed vs 1 player and the table | **done** |
 | B33 | Combos on the clock: assembly probability by turn (draws + tutors + mana), combined clock | combos, real kill speed | **done** |
 | B34 | Kill-method attribution (combat / commander damage / drain-burn / combo / alt-win) + top damage cards, in tier0 and T2 | methods it relies on | **done** |
-| B35 | Reference field per bracket (one deck per archetype from the corpus) and matchup win rates | weak against (games) | todo |
+| B35 | Reference field per bracket (one deck per archetype from the corpus) and matchup win rates | weak against (games) | **done** |
 | B36 | Exposure to hate: graveyard, commander, artifacts, flyers, single combo, mana base, speed vs peers | weak against (static) | **done** |
 | B37 | Strengths/weaknesses as per-bracket percentiles instead of fixed bars | good at (honestly) | **done** |
 | B38 | `/scout` report: template-first text, optional LLM paragraph behind the swap_narrative-style gate; Forge panel | the description | todo |
@@ -115,6 +115,7 @@ B18 can be taken in slices whenever a file is being edited anyway.
 
 Newest first. One line per change, with the commit.
 
+- 2026-11-08: **B35 done: reference field + matchups.** 7 archetypes x Brackets 1-4 from 1,667 decks; "Scout matchups" duels each, verdicts only when the 90% interval clears 50%; stable across seeds (max z 2.5 of 28). Fixed: partner commanders dropped in duels; matchup duels without combos. History tiles now open the newest version (art was "lost" under the original import). Next: B38 (the scouting report).
 - 2026-11-08: **B36 done: Weak against.** Nine exposure rows past corpus percentiles (graveyard, commander answered twice via a new goldfish option, wipes, artifacts, enchantments, flyers, single combo, mana base, speed vs peers). Next: B35 (reference field + matchups), then B38 (the scouting report).
 - 2026-11-08: **Draw-go tested and measured; History thumbnails.** End-of-turn window pinned by 6 tests (next seat only, no counterspells, flash creature attacks next turn). D6 ablation with draw-go: counters worth -0.2 pts (17.9% vs 18.1% dead) -- within noise of zero, as +1.2 was. History/Recent tiles now frame the card name and whole art. Next: B36 (exposure to hate).
 - 2026-11-08: **Smarter counter targeting; counters ablation.** Pod seats counter only what threatens them (primary target, table-wide spell, archenemy, near-lethal). Group comparison was confounded (counter decks close far worse), so D6 now ablates: the same 12 High-Denial decks win 18.3% with counters, 17.1% with them dead (+1.2 pts over 1,440 games; helps 8, hurts 3). Counters are a small edge in the sim, not table-deciding.

@@ -1,0 +1,212 @@
+{
+ "generated": "2026-11-08",
+ "runs": 120,
+ "min_cell": 3,
+ "note": "B35 reference field: per bracket, the corpus deck nearest its archetype's median strength (scripts/build_reference_field.py)",
+ "brackets": {
+  "1": {
+   "go_wide": {
+    "deck": "archidekt-10741662.txt",
+    "commander": "Voja, Jaws of the Conclave",
+    "strength_score": 2.069,
+    "cell_median": 2.069,
+    "cell_n": 109
+   },
+   "voltron": {
+    "deck": "archidekt-12551149.txt",
+    "commander": "Kellan, the Fae-Blooded // Birthright Boon",
+    "strength_score": 2.073,
+    "cell_median": 2.073,
+    "cell_n": 47
+   },
+   "midrange": {
+    "deck": "archidekt-445804.txt",
+    "commander": "Damia, Sage of Stone",
+    "strength_score": 1.937,
+    "cell_median": 1.937,
+    "cell_n": 189
+   },
+   "spellslinger": {
+    "deck": "archidekt-20665799.txt",
+    "commander": "Jeleva, Nephalia's Scourge",
+    "strength_score": 2.129,
+    "cell_median": 2.157,
+    "cell_n": 6
+   },
+   "graveyard": {
+    "deck": "archidekt-5590813.txt",
+    "commander": "Prava of the Steel Legion",
+    "strength_score": 2.017,
+    "cell_median": 2.002,
+    "cell_n": 38
+   },
+   "artifact_combo": {
+    "deck": "archidekt-24747160.txt",
+    "commander": "Yennett, Cryptic Sovereign",
+    "strength_score": 2.182,
+    "cell_median": 2.168,
+    "cell_n": 8
+   },
+   "control": {
+    "deck": "archidekt-8844749.txt",
+    "commander": "Archelos, Lagoon Mystic",
+    "strength_score": 2.118,
+    "cell_median": 2.118,
+    "cell_n": 11
+   }
+  },
+  "2": {
+   "go_wide": {
+    "deck": "archidekt-25775388.txt",
+    "commander": "Evereth, Viceroy of Plunder",
+    "strength_score": 2.205,
+    "cell_median": 2.205,
+    "cell_n": 126
+   },
+   "voltron": {
+    "deck": "archidekt-25775351.txt",
+    "commander": "Vaevictis Asmadi, the Dire",
+    "strength_score": 2.138,
+    "cell_median": 2.138,
+    "cell_n": 63
+   },
+   "midrange": {
+    "deck": "archidekt-17001993.txt",
+    "commander": "Kadena, Slinking Sorcerer",
+    "strength_score": 2.154,
+    "cell_median": 2.154,
+    "cell_n": 164
+   },
+   "spellslinger": {
+    "deck": "archidekt-24087824.txt",
+    "commander": "Kuja, Genome Sorcerer // Trance Kuja, Fate Defied",
+    "strength_score": 2.178,
+    "cell_median": 2.189,
+    "cell_n": 14
+   },
+   "graveyard": {
+    "deck": "archidekt-25770315.txt",
+    "commander": "Doctor Doom, King of Latveria",
+    "strength_score": 2.077,
+    "cell_median": 2.077,
+    "cell_n": 43
+   },
+   "artifact_combo": {
+    "deck": "archidekt-24691738.txt",
+    "commander": "Thrasios, Triton Hero",
+    "strength_score": 2.373,
+    "cell_median": 2.402,
+    "cell_n": 32
+   },
+   "control": {
+    "deck": "archidekt-5276327.txt",
+    "commander": "Hylda of the Icy Crown",
+    "strength_score": 2.183,
+    "cell_median": 2.201,
+    "cell_n": 12
+   }
+  },
+  "3": {
+   "go_wide": {
+    "deck": "archidekt-14372474.txt",
+    "commander": "Ragost, Deft Gastronaut",
+    "strength_score": 2.445,
+    "cell_median": 2.445,
+    "cell_n": 63
+   },
+   "voltron": {
+    "deck": "archidekt-4491335.txt",
+    "commander": "Zhulodok, Void Gorger",
+    "strength_score": 2.434,
+    "cell_median": 2.431,
+    "cell_n": 52
+   },
+   "midrange": {
+    "deck": "archidekt-25056110.txt",
+    "commander": "Muddle, the Ever-Changing",
+    "strength_score": 2.361,
+    "cell_median": 2.361,
+    "cell_n": 84
+   },
+   "spellslinger": {
+    "deck": "archidekt-23615366.txt",
+    "commander": "Saruman, the White Hand",
+    "strength_score": 2.405,
+    "cell_median": 2.405,
+    "cell_n": 15
+   },
+   "graveyard": {
+    "deck": "archidekt-25769863.txt",
+    "commander": "Grist, the Hunger Tide",
+    "strength_score": 2.398,
+    "cell_median": 2.415,
+    "cell_n": 42
+   },
+   "artifact_combo": {
+    "deck": "archidekt-11599764.txt",
+    "commander": "Teysa Karlov",
+    "strength_score": 2.656,
+    "cell_median": 2.645,
+    "cell_n": 78
+   },
+   "control": {
+    "deck": "archidekt-2659039.txt",
+    "commander": "Rhoda, Geist Avenger",
+    "strength_score": 2.394,
+    "cell_median": 2.394,
+    "cell_n": 9
+   }
+  },
+  "4": {
+   "go_wide": {
+    "deck": "archidekt-10813471.txt",
+    "commander": "Teysa Karlov",
+    "strength_score": 2.856,
+    "cell_median": 2.861,
+    "cell_n": 48
+   },
+   "voltron": {
+    "deck": "archidekt-3049528.txt",
+    "commander": "Sliver Overlord",
+    "strength_score": 3.147,
+    "cell_median": 3.147,
+    "cell_n": 81
+   },
+   "midrange": {
+    "deck": "archidekt-3423446.txt",
+    "commander": "Henzie \"Toolbox\" Torre",
+    "strength_score": 2.726,
+    "cell_median": 2.72,
+    "cell_n": 52
+   },
+   "spellslinger": {
+    "deck": "archidekt-64968.txt",
+    "commander": "Mizzix of the Izmagnus",
+    "strength_score": 3.091,
+    "cell_median": 3.091,
+    "cell_n": 15
+   },
+   "graveyard": {
+    "deck": "archidekt-11321742.txt",
+    "commander": "Glarb, Calamity's Augur",
+    "strength_score": 3.232,
+    "cell_median": 3.232,
+    "cell_n": 35
+   },
+   "artifact_combo": {
+    "deck": "archidekt-77178.txt",
+    "commander": "Karador, Ghost Chieftain",
+    "strength_score": 3.216,
+    "cell_median": 3.216,
+    "cell_n": 213
+   },
+   "control": {
+    "deck": "archidekt-25775315.txt",
+    "commander": "Y'shtola, Night's Blessed",
+    "strength_score": 3.169,
+    "cell_median": 3.157,
+    "cell_n": 18
+   }
+  }
+ }
+}

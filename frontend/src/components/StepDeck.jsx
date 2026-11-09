@@ -11,6 +11,7 @@ import MentorChatPanel from './MentorChatPanel'
 import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
 import PodCheckPanel from './PodCheckPanel'
+import MatchupsPanel from './MatchupsPanel'
 import OwnershipBadge from './OwnershipBadge'
 import RegenPanel from './RegenPanel'
 import SetBible from './SetBible'
@@ -1064,6 +1065,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               looking current after the user applies a swap. */}
           <DuelPanel key={`duel-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
           <PodCheckPanel key={`pod-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+          <MatchupsPanel key={`mu-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
           <MentorChatPanel key={`mentor-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
         </div>
       )}
