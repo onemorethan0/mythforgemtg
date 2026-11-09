@@ -333,6 +333,7 @@ def _run_one(
     board_wipe_turn: int | None = None,
     commander_survives_wipe: bool = False,
     rule: combat_rules.CombatRule | None = None,
+    commander_removals: int = 0,
 ) -> RunStats:
     stats = RunStats()
     hand, library, stats.mulligans = _mulligan(deck, rng, cfg)
@@ -347,6 +348,11 @@ def _run_one(
     sources: list[_Source] = []
     commander_in_zone = commander is not None
     commander_tax = 0  # CR 903.8: {2} more per earlier cast from the command zone
+    # B36: the commander is answered `commander_removals` times -- each time at the start of
+    # the turn after it lands, before it can attack or untap -- and goes back to the command
+    # zone (CR 903.9a) to be recast with {2} more tax. 0 (the default) never reads it.
+    removals_left = commander_removals
+    commander_cast_turn: int | None = None
     board_power = 0  # creatures able to attack (resolved on a previous turn)
     pending_power = 0  # creatures that came down this turn (summoning-sick)
     # The same two pools priced under the commander's combat rule (combat_rules; Doran's
@@ -489,6 +495,36 @@ def _run_one(
         # commander on the battlefield here was cast on an EARLIER turn and every one of its
         # contributions already sits in the active pools; a commander cast this turn is cast
         # after the wipe and is untouched by it either way.
+        if (removals_left > 0 and commander is not None and not commander_in_zone
+                and commander_cast_turn is not None and commander_cast_turn < turn):
+            # take back exactly what apply_effects(commander) put on the board (see there)
+            removals_left -= 1
+            commander_in_zone = True
+            commander_tax += 2
+            cfx, cname = commander.fx, commander.card.name
+            if commander.card.is_creature:
+                board_power -= commander.attack_power
+                board_power_rule -= commander.attack_power_under(rule)
+                board_creatures -= 1
+                atk_board[:] = [a for a in atk_board if not (a[0] == cname and a[3])]
+                creature_engine -= cfx.engine_draw
+                creature_dmg_engine -= cfx.magecraft_damage + cfx.cast_damage
+            for bonus, others in commander.anthems:
+                if commander.card.is_creature:
+                    anthem_creature -= bonus
+                    if others:
+                        lord_self_active -= bonus
+                else:
+                    anthem_noncreature -= bonus
+            anthem_src[:] = [a for a in anthem_src if a[0] != cname]
+            burn_active[:] = [b for b in burn_active if b[0] != cname]
+            engine_active -= cfx.engine_draw
+            dmg_engine_active -= cfx.magecraft_damage + cfx.cast_damage
+            if cfx.cheats_creatures:
+                enabler_active = False  # the commander was the enabler (an honest under-count
+                #                         if another enabler is also out)
+            sources = [src for src in sources if not src.from_commander]
+
         if board_wipe_turn is not None and turn == board_wipe_turn:
             commander_stays = False
             if (commander is not None and not commander_in_zone
@@ -590,6 +626,7 @@ def _run_one(
 
             if is_commander:
                 commander_in_zone = False
+                commander_cast_turn = turn
                 if stats.commander_turn is None:  # first cast only; a recast is not "on time"
                     stats.commander_turn = turn
             else:
@@ -698,6 +735,7 @@ def simulate(
     cards: list[tuple[Card, int]], commander: Card | None, cfg: SimConfig,
     board_wipe_turn: int | None = None,
     commander_survives_wipe: bool = False,
+    commander_removals: int = 0,
 ) -> list[RunStats]:
     """Run cfg.runs seeded goldfish games. Deterministic for a given (deck, cfg).
 
@@ -708,6 +746,10 @@ def simulate(
     commander_survives_wipe: the lead commander survives that wipe (commander lens,
     `CommanderLens.survives_mode("destroy")`); False -- the default -- is byte-identical
     to the pre-lens behaviour, and clean runs (no wipe) never read it.
+
+    commander_removals (B36): the commander is answered that many times, each at the start of
+    the turn after it lands, and recast with tax. 0 -- the default -- is byte-identical; a deck
+    without a commander is unaffected by any value.
     """
     deck = build_sim_cards(cards)
     sim_commander = SimCard(card=commander, fx=tags.analyze(commander)) if commander else None
@@ -715,6 +757,6 @@ def simulate(
     root = SeededRng(cfg.seed)
     return [
         _run_one(deck, sim_commander, cfg, root.spawn(i), board_wipe_turn,
-                 commander_survives_wipe, rule)
+                 commander_survives_wipe, rule, commander_removals)
         for i in range(cfg.runs)
     ]

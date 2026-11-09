@@ -76,6 +76,7 @@ class DeckAnalysis:
     kill_methods: object | None = None   # B34: ratings/kill_methods.KillMethods
     kill_speed: object | None = None     # B32: ratings/kill_speed.KillSpeed (one player, unopposed)
     combo_clock: object | None = None    # B33: ratings/combo_clock.ComboClock (needs graded combos)
+    exposure: list | None = None         # B36: ratings/exposure.Exposure rows past their thresholds
 
 
 def analyze_deck(
@@ -121,7 +122,7 @@ def analyze_deck(
     # Mutates kill_turn on the runs where either detector fires, per that run's own
     # mana/board curve — must run BEFORE metrics.compute so avg_kill_turn/goldfish_kill_rate
     # see it, and before compute_ceiling so fast_kill_turn/nut_kill_rate do too.
-    apply_nut_kills(runs, all_cards, cfg.turns)
+    apply_nut_kills(runs, all_cards, cfg.turns, commanders=resolved.commanders)
     report = metrics.compute(
         runs, cfg, commander_mv=commander.mana_value if commander else None)
     coverage = store.coverage(resolved.cards, resolved.commanders)
@@ -181,6 +182,8 @@ def analyze_deck(
     has_finisher = game_ending_combos > 0 or (combo_profile is not None and combo_profile.total > 0)
     ceiling = compute_ceiling(
         runs, cfg, go_off_turn=go_off.earliest_turn, overrun_alpha=overrun.can_alpha_strike,
+        overrun_share=(sum(1 for r in runs if r.kill_method == "overrun") / len(runs)
+                       if runs else 0.0),
         has_game_ending_combo=has_finisher,
     )
 
@@ -192,7 +195,7 @@ def analyze_deck(
     else:
         pod_cfg = replace(cfg, turns=_POD_HORIZON)
         pod_runs = simulate(sim_cards, commander, pod_cfg)
-        apply_nut_kills(pod_runs, all_cards, pod_cfg.turns)
+        apply_nut_kills(pod_runs, all_cards, pod_cfg.turns, commanders=resolved.commanders)
     pod = compute_pod(pod_runs, pod_cfg, has_finisher=has_finisher)
 
     resilience = None
@@ -251,6 +254,11 @@ def analyze_deck(
         analysis.combo_clock = _cc.compute(
             runs, combo_profile.grades, [c for c, _n in resolved.cards], resolved.commanders,
             cfg.turns)
+    # B36: what common hate punishes (one extra goldfish batch: the commander answered twice)
+    from mythgauntlet.ratings import exposure as _ex
+    removed = (simulate(sim_cards, commander, cfg, commander_removals=2)
+               if commander is not None else None)
+    analysis.exposure = _ex.compute(resolved, analysis, removed, runs, cfg.turns)
     if card_stats_runs > 0:
         from mythgauntlet.ratings import card_verdicts
         analysis.card_stats = compute_card_stats(resolved, cfg, card_stats_runs)
@@ -291,7 +299,7 @@ def compute_card_stats(resolved: ResolvedDeck, cfg: SimConfig, runs: int = CARD_
     big = SimConfig(turns=cfg.turns, runs=runs, seed=cfg.seed)
     stat_runs = simulate(sim_cards, commander, big)
     apply_nut_kills(stat_runs, list(sim_cards) + ([(commander, 1)] if commander else []),
-                    big.turns)
+                    big.turns, commanders=resolved.commanders)
     lands = frozenset(c.name for c, _ in sim_cards if c.has_type("Land"))
     return card_stats.compute(stat_runs, big.turns, lands)
 

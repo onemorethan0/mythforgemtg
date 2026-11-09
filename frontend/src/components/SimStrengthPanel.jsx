@@ -147,6 +147,30 @@ function Denial({ denial }) {
   )
 }
 
+// Weak against (B36): what a common answer punishes in this deck -- each row only past its
+// corpus threshold, so an empty list means nothing stands out, not "no weaknesses".
+const EXPOSURE_ICON = {
+  graveyard: '🪦', commander: '👑', wipes: '🌊', artifacts: '⚙️', enchantments: '✨',
+  flyers: '🪽', single_combo: '🔗', mana_base: '🌋', speed: '⏱',
+}
+
+function WeakAgainst({ exposure }) {
+  if (!exposure?.length) return null
+  return (
+    <div style={{ margin: '6px 0 10px', padding: '8px 10px', borderRadius: 8, background: '#1c1917', border: '1px solid #292524' }}>
+      <div style={{ fontSize: 11.5, color: '#a8a29e', marginBottom: 4 }}>
+        <Term def="What common answers punish in this deck. Each line appears only when the deck leans on something more than about four in five Commander decks do (or, for wipes and speed, sits in the bottom quarter of its bracket), so a short list is a good sign.">Weak against</Term>
+      </div>
+      {exposure.map((e) => (
+        <div key={e.key} title={(e.evidence || []).join(', ')}
+          style={{ fontSize: 11, color: '#fdba74', lineHeight: 1.5, display: 'flex', gap: 6, cursor: e.evidence?.length ? 'help' : 'default' }}>
+          <span>{EXPOSURE_ICON[e.key] || '•'}</span><span>{e.text}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 // Kill clock (B32) and combo clock (B33): when the deck kills an opponent who never interacts,
 // as a range rather than one average, and how often each combo is assembled by each turn.
 // `by_turn` keys arrive as strings (JSON object keys). Every number shown is the engine's;
@@ -620,6 +644,7 @@ export default function SimStrengthPanel({ simulation, statedBracket = null, onS
       {pp.pod != null && bar('Pod (4-player game)', pp.pod, '/100', podDetail, TERMS.pod)}
       <TableFeel pp={pp} detail={why['Table feel']} />
       <Denial denial={simulation.denial} />
+      <WeakAgainst exposure={simulation.exposure} />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, margin: '4px 0 8px' }}>
         <span title={why.Speed ? `${why.Speed}\n\n${TERMS.speed}` : TERMS.speed} style={{ fontSize: 11, padding: '2px 8px', borderRadius: 12, background: '#1c1917', border: '1px solid #44403c', color: '#a8a29e', cursor: 'help' }}>
           Speed: <b style={{ color: '#e7e5e4' }}>{speed}</b>

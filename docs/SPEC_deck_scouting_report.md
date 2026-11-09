@@ -484,3 +484,23 @@ scores exact 60.1%, within-one 95.2%, B1-3 exact 59.6% on all 2,116; a refit cro
 live model places 50 of the 140 gate-clean precons at Bracket 1 -- it under-rates precon-level
 decks at the 1/2 boundary.
 
+### B36 (2026-11-08): exposure to hate
+
+`ratings/exposure.py`, `/analyze` `exposure`, a "Weak against" section in the strength panel.
+Nine rows, each emitted only past a corpus percentile (2,112 audited labelled decks) or, for wipes
+and speed, the bottom quarter of the deck's bracket peers: graveyard (6+ cards whose own text uses
+the graveyard as a resource, p80), commander (1.9+ kill turns lost with it answered twice, p80 of a
+300-deck sample), wipes, artifacts (8+ artifact ramp pieces, p80), enchantments (15%+ of nonland
+cards, p80), flyers (no flying or reach creature), single combo (one card shared by every
+game-ending combo), mana base (27+ nonbasics in a multicolour deck, p80) and speed (slower than
+three quarters of the bracket; the combined damage-or-combo clock when a combo wins first).
+
+The commander row is the one new simulation: `tier0.simulate(commander_removals=N)` answers the
+commander at the start of the turn after it lands, takes back exactly what it added, and recasts it
+with tax; 0 is byte-identical and a commander-less deck is unchanged (both pinned). Reading checks:
+Guardian Project's "a creature card in your graveyard" is a name check, not reliance (dropped);
+Underworld Breach ("...in your graveyard has escape") kept; keyword lines are "Reach, deathtouch"
+form (fixed a capitalisation miss). Live: Greasefang reads graveyard (10-12 cards), commander
+(-2.5 to -2.7 turns) and wipes; a Goblins deck wipes and flyers; Oloro enchantments and flyers, its
+speed row correctly silent once the combo clock counts.
+

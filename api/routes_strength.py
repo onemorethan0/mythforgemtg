@@ -114,7 +114,7 @@ def _engine_fingerprint() -> str | None:
 # before that block existed and is re-measured on open (routes_decks.get_deck), so the deck page
 # never shows less than a fresh import preview. Add a key here when adding one below.
 MEASURE_BLOCKS = ("power_profile", "combos", "insight", "kill_speed", "combo_clock",
-                  "bracket_rules", "denial", "dials")
+                  "bracket_rules", "denial", "dials", "exposure")
 
 
 def _gauntlet_analyze(commander, deck, partners=None):
@@ -156,6 +156,7 @@ def _gauntlet_analyze(commander, deck, partners=None):
             "bracket_rules": data.get("bracket_rules"),
             "denial": data.get("denial"),   # lock pieces, counters, theft (D2)
             "dials": data.get("dials"),     # Denial / Pace / Inevitability (D3)
+            "exposure": data.get("exposure"),  # B36: weak against common hate
             "unresolved": (data.get("deck") or {}).get("unresolved", []),
         }
     except Exception as e:

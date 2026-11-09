@@ -676,6 +676,8 @@ def create_app(
             # D3: the table-contract dials -- Denial, Pace, Inevitability, each Low/Medium/High
             # with its reasons. Beside the bracket, never inside it.
             "dials": dataclasses.asdict(_dials.compute(resolved, a, deck_denial, combos_checked)),
+            # B36: weak against -- each common answer the deck leans past the corpus threshold
+            "exposure": [dataclasses.asdict(e) for e in (a.exposure or [])],
         }
 
     @app.post("/card-impact")
@@ -805,6 +807,11 @@ def create_app(
                     # target-axis split against an empty slot: add_value - cut_value == delta
                     "add_value": None if s.add_value is None else round(s.add_value, 1),
                     "cut_value": None if s.cut_value is None else round(s.cut_value, 1),
+                    # Whole-deck view: every measured axis's move, the scaled net (> 0 for
+                    # every reported swap), and the off-target axes it meaningfully lowers.
+                    "axis_deltas": {k: round(v, 1) for k, v in s.axis_deltas.items()},
+                    "net": None if s.net is None else round(s.net, 3),
+                    "costs": {k: round(v, 1) for k, v in s.costs.items()},
                     "reason": s.reason,
                     # The structured facts behind `reason`. `reason` is the deterministic
                     # template string and stays the fallback; `brief` is what a generated
