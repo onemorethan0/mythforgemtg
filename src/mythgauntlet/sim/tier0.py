@@ -15,7 +15,11 @@ Documented simplifications (T0 is built to be fast, deterministic, and honest â€
     then highest-impact castable spell.
   - The goldfish clock: creatures attack a single non-blocking opponent (goldfish_life,
     default 40) starting the turn after they resolve; kill_turn is when cumulative combat
-    damage crosses that threshold. Noncombat damage isn't modeled at rung 1.
+    damage crosses that threshold. Noncombat damage comes only from scaling burn and the
+    magecraft / cast-damage payoffs, each counting the casts its own trigger names.
+  - Poison (CR 704.5c): a creature that prints infect, or the commander while an infect Aura
+    is on it, deals its damage as poison counters; toxic adds poison on top. Ten kill.
+    Proliferate, equipment that grants infect and one-shot "gains infect" are not modeled.
   - Self-referential cost reduction (`fx.self_reduction_per_creature`, "this spell costs
     {N} less for each creature on the battlefield/you control" â€” Blasphemous Act, Affinity
     for creatures) IS modeled against T0's own live creature count (`_effective_cost`),
@@ -51,6 +55,90 @@ DEFAULT_ANALYZE_TURNS = 12
 
 # CR 704.5a: combat damage from one commander that loses the game.
 COMMANDER_DAMAGE_LETHAL = 21
+# CR 704.5c: ten or more poison counters lose the game.
+POISON_LETHAL = 10
+
+
+def _rules_lines(oracle_text: str) -> list[str]:
+    """The card's own lines, reminder text stripped, lower-cased."""
+    return [re.sub(r"\([^)]*\)", "", ln).strip().lower() for ln in (oracle_text or "").splitlines()]
+
+
+_KEYWORD_LINE_INFECT = re.compile(r"(?:[a-z' ]+, )*infect(?:, [a-z' ]+)*")
+_TOXIC = re.compile(r"(?:^|, )toxic (\d+)(?:,|$)")
+
+
+@lru_cache(maxsize=4096)
+def _has_own_infect(oracle_text: str) -> bool:
+    """Infect PRINTED on a keyword line of the card's own ("Flying, infect"). Scryfall's
+    `keywords` lists every keyword the text MENTIONS, so it is not used: Vector Asp gains
+    infect only for {B}, Viridian Betrayers only while an opponent is poisoned."""
+    return any(_KEYWORD_LINE_INFECT.fullmatch(ln) for ln in _rules_lines(oracle_text))
+
+
+@lru_cache(maxsize=4096)
+def _toxic_amount(oracle_text: str) -> int:
+    """Toxic N on a keyword line (CR 702.180: combat damage to a player also gives N poison)."""
+    total = 0
+    for ln in _rules_lines(oracle_text):
+        for m in _TOXIC.finditer(ln):
+            total += int(m.group(1))
+    return total
+
+
+@lru_cache(maxsize=4096)
+def _cast_filter(oracle_text: str) -> tuple[bool, int]:
+    """Which casts a cast-damage payoff counts: (noncreature, min_mana_value). Magecraft and
+    "whenever you cast an instant or sorcery spell" (Guttersnipe) count instants and sorceries
+    -- the default; "whenever you cast a noncreature spell" (Firebrand Archer) counts every
+    noncreature spell, artifacts and enchantments too, and "with mana value 3 or greater"
+    (Y'shtola, Night's Blessed) drops the cheap ones. Reading every payoff as instant/sorcery
+    missed a third of a Y'shtola deck's triggers and counted cheap instants she ignores."""
+    for sentence in re.split(r"[.\n]", (oracle_text or "").lower()):
+        m = re.search(r"whenever you cast ([^.]{0,60}?)spells?", sentence)
+        if not m or "damage" not in sentence:
+            continue
+        clause = m.group(1)
+        if "noncreature" not in clause:
+            break
+        mv = re.search(r"mana value (\d+) or greater", sentence)
+        return True, int(mv.group(1)) if mv else 0
+    return False, 0
+
+
+def _counts_for(sc: "SimCard", flt: tuple[bool, int]) -> bool:
+    noncreature, min_mv = flt
+    if noncreature:
+        return not sc.card.is_creature and not sc.is_land and sc.mana_value >= min_mv
+    return sc.card.has_type("Instant") or sc.card.has_type("Sorcery")
+
+
+@dataclass(frozen=True)
+class _InfectAura:
+    upkeep_counter: bool    # Glistening Oil: a -1/-1 counter on the creature every upkeep
+    returns_to_hand: bool   # ... and it comes back to hand when it goes to the graveyard
+
+
+@lru_cache(maxsize=4096)
+def _infect_aura(type_line: str, oracle_text: str) -> _InfectAura | None:
+    """An Aura whose whole effect on its creature is "Enchanted creature has infect."
+    (Phyresis, Glistening Oil). tier0 attaches it only to the COMMANDER -- the creature the deck
+    is built to make infect -- so a control-stealing one (Corrupted Conscience: it enchants an
+    opponent's creature) is excluded. Equipment that grants infect (Grafted Exoskeleton) also
+    needs its equip cost paid and is not modeled: the honest under-count."""
+    if "aura" not in (type_line or "").lower():
+        return None
+    lines = _rules_lines(oracle_text)
+    if "enchanted creature has infect." not in lines or "you control enchanted creature." in lines:
+        return None
+    text = " ".join(lines)
+    return _InfectAura(
+        upkeep_counter=bool(re.search(
+            r"at the beginning of your upkeep, put a -1/-1 counter on enchanted creature", text)),
+        returns_to_hand=bool(re.search(
+            r"when (?:this aura|[^.]+) is put into a graveyard from the battlefield, return "
+            r"(?:it|this aura|[^.]+) to its owner's hand", text)),
+    )
 
 
 @dataclass(frozen=True)
@@ -198,6 +286,11 @@ class RunStats:
     # First turn the commander's own cumulative combat damage reached 21 (CR 704.5a lethal in
     # a real game). tier0 does not apply that rule; this records how often it would matter.
     commander_lethal_turn: int | None = None
+    # Poison (CR 704.5c): damage from a source with infect gives poison counters INSTEAD of
+    # life loss (CR 702.90b), toxic adds them on top. Kept apart from the life damage above so
+    # those sums stay exact; a poison kill sets kill_method "poison". Cumulative, per turn.
+    poison_by_turn: list[int] = field(default_factory=list)
+    poison_by_card: dict[str, int] = field(default_factory=dict)
 
 
 def build_sim_cards(cards: list[tuple[Card, int]]) -> list[SimCard]:
@@ -393,11 +486,46 @@ def _run_one(
     burn_pending: list[tuple[str, int, bool]] = []        # (name, per_spell, is_creature)
     burn_active: list[tuple[str, int, bool]] = []
     cmd_name = commander.card.name if commander is not None else None
+    # Infect and toxic (CR 702.90, 702.180). `own_infect`/`toxic_of` are the creatures that
+    # print it; the commander also gains infect while an infect Aura is on it (`cmd_auras`).
+    # A deck with none of these never touches `poison`: every other figure is unchanged.
+    everyone = deck + ([commander] if commander is not None else [])
+    own_infect = {sc.card.name for sc in everyone
+                  if sc.card.is_creature and _has_own_infect(sc.card.oracle_text or "")}
+    toxic_of = {sc.card.name: n for sc in everyone if sc.card.is_creature
+                and (n := _toxic_amount(sc.card.oracle_text or ""))}
+    cast_filter_of = {sc.card.name: _cast_filter(sc.card.oracle_text or "") for sc in everyone
+                      if sc.fx.magecraft_damage + sc.fx.cast_damage}
+    cmd_auras: list[tuple[SimCard, _InfectAura]] = []   # infect Auras attached to the commander
+    cmd_counters = 0                                    # -1/-1 counters on it (Glistening Oil)
+    poison = 0
 
     def credit(name: str, source: str, amount: int) -> None:
         if amount:
             stats.damage_by_card[name] = stats.damage_by_card.get(name, 0) + amount
             stats.damage_by_source[source] = stats.damage_by_source.get(source, 0) + amount
+
+    def credit_poison(name: str, amount: int) -> None:
+        nonlocal poison
+        if amount > 0:
+            poison += amount
+            stats.poison_by_card[name] = stats.poison_by_card.get(name, 0) + amount
+
+    def has_infect(name: str, is_cmd: bool) -> bool:
+        return name in own_infect or (is_cmd and bool(cmd_auras))
+
+    def commander_on_board() -> bool:
+        return commander is not None and commander.card.is_creature and not commander_in_zone
+
+    def auras_fall_off() -> None:
+        """The commander left the battlefield: its Auras go to the graveyard (CR 704.5m),
+        one that says so comes back to hand (Glistening Oil), and its counters are gone."""
+        nonlocal cmd_counters
+        for aura, info in cmd_auras:
+            if info.returns_to_hand:
+                hand.append(aura)
+        cmd_auras.clear()
+        cmd_counters = 0
 
     def draw(n: int) -> None:
         for _ in range(n):
@@ -410,6 +538,9 @@ def _run_one(
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
         nonlocal creature_engine, creature_dmg_engine, pending_power_rule
         nonlocal anthem_noncreature, anthem_creature, lord_self_pending
+        aura = _infect_aura(sc.card.type_line or "", sc.card.oracle_text or "")
+        if aura is not None and commander_on_board():
+            cmd_auras.append((sc, aura))
         for bonus, others in sc.anthems:
             anthem_src.append((sc.card.name, bonus, sc.card.is_creature))
             if sc.card.is_creature:
@@ -495,10 +626,19 @@ def _run_one(
         # commander on the battlefield here was cast on an EARLIER turn and every one of its
         # contributions already sits in the active pools; a commander cast this turn is cast
         # after the wipe and is untouched by it either way.
-        if (removals_left > 0 and commander is not None and not commander_in_zone
-                and commander_cast_turn is not None and commander_cast_turn < turn):
+        # Glistening Oil: a -1/-1 counter on the commander every upkeep. At 0 toughness it dies
+        # (CR 704.5f) and goes to the command zone like any other answer -- for a 2/4 that is
+        # the fourth upkeep -- and the Oil returns to hand to go on the recast commander.
+        if cmd_auras and commander_on_board():
+            cmd_counters += sum(1 for _, a in cmd_auras if a.upkeep_counter)
+        counters_kill = (cmd_counters > 0 and commander_on_board()
+                         and 0 < commander.toughness_value <= cmd_counters)
+        if counters_kill or (removals_left > 0 and commander is not None and not commander_in_zone
+                             and commander_cast_turn is not None and commander_cast_turn < turn):
             # take back exactly what apply_effects(commander) put on the board (see there)
-            removals_left -= 1
+            if not counters_kill:
+                removals_left -= 1
+            auras_fall_off()
             commander_in_zone = True
             commander_tax += 2
             cfx, cname = commander.fx, commander.card.name
@@ -534,6 +674,7 @@ def _run_one(
                 else:
                     commander_in_zone = True
                     commander_tax += 2
+                    auras_fall_off()
             board_power = 0
             pending_power = 0
             board_power_rule = 0
@@ -589,7 +730,7 @@ def _run_one(
         stats.mana_available_by_turn.append(mana_available)
 
         spent = 0
-        instant_sorcery_cast = 0  # feeds the magecraft/cast-damage payoffs below
+        cast_this_turn: list[SimCard] = []  # feeds the magecraft/cast-damage payoffs below
         while True:
             castable: list[tuple[tuple, SimCard, list[int], bool]] = []
             for sc in hand:
@@ -598,6 +739,11 @@ def _run_one(
                 # never get another look. It gets its own pass below, once every OTHER spell
                 # this turn has had first claim on the mana.
                 if sc.is_land or sc.fx.scaling_burn:
+                    continue
+                # An infect Aura is held for the commander (see _infect_aura): cast with no
+                # commander out it would enchant nothing the deck is built around.
+                if (not commander_on_board()
+                        and _infect_aura(sc.card.type_line or "", sc.card.oracle_text or "")):
                     continue
                 rule_discount = (rule.creature_discount(sc.card)
                                  if rule is not None and commander is not None and not commander_in_zone
@@ -621,8 +767,7 @@ def _run_one(
                 sources[idx].ready = False
             spent += len(payment)  # actual sources tapped -- correct even under a discount
             stats.spells_cast += 1
-            if sc.card.has_type("Instant") or sc.card.has_type("Sorcery"):
-                instant_sorcery_cast += 1
+            cast_this_turn.append(sc)
 
             if is_commander:
                 commander_in_zone = False
@@ -652,8 +797,7 @@ def _run_one(
                     s.ready = False
             spent += sc.mana_value + x
             stats.spells_cast += 1
-            if sc.card.has_type("Instant") or sc.card.has_type("Sorcery"):
-                instant_sorcery_cast += 1
+            cast_this_turn.append(sc)
             hand.remove(sc)
             played(sc)
             apply_effects(sc)
@@ -668,35 +812,72 @@ def _run_one(
         swing += max(0, (anthem_noncreature + anthem_creature) * board_creatures - lord_self_active)
         stats.board_power_by_turn.append(swing)
         stats.board_creatures_by_turn.append(board_creatures)
-        damage += swing
-        damage += dmg_engine_active * instant_sorcery_cast  # magecraft/cast-damage payoffs
+        # Infect (CR 702.90b): an infect attacker's damage is poison, not life; toxic (CR
+        # 702.180) adds its poison on top of the damage. The commander's -1/-1 counters
+        # (Glistening Oil) shrink its power. A deck with no infect, toxic or counters takes
+        # none of these branches and deals exactly `swing`.
+        per_creature = anthem_noncreature + anthem_creature
+        extra = max(0, per_creature * board_creatures - lord_self_active)
+        infect_attackers = 0
         for name, pw, pw_rule, is_cmd in atk_board:
-            credit(name, "commander" if is_cmd else "combat", pw_rule if rule_live else pw)
-        extra = max(0, (anthem_noncreature + anthem_creature) * board_creatures - lord_self_active)
+            p = pw_rule if rule_live else pw
+            if is_cmd and cmd_counters:
+                cut = min(cmd_counters, p)
+                p -= cut
+                swing -= cut
+            if has_infect(name, is_cmd):
+                infect_attackers += 1
+                swing -= p
+                credit_poison(name, p)
+            else:
+                credit(name, "commander" if is_cmd else "combat", p)
+            if toxic_of.get(name) and p + per_creature > 0:
+                credit_poison(name, toxic_of[name])
+        infect_bonus = min(extra, per_creature * infect_attackers)
+        swing -= infect_bonus
+        damage += swing
         total_bonus = sum(a[1] for a in anthem_src)
-        if extra and total_bonus:
-            given = 0
-            for i, (name, bonus, _) in enumerate(anthem_src):
-                share = extra - given if i == len(anthem_src) - 1 else extra * bonus // total_bonus
-                credit(name, "combat", share)
-                given += share
+        for amount, to_poison in ((extra - infect_bonus, False), (infect_bonus, True)):
+            if amount and total_bonus:
+                given = 0
+                for i, (name, bonus, _) in enumerate(anthem_src):
+                    share = (amount - given if i == len(anthem_src) - 1
+                             else amount * bonus // total_bonus)
+                    if to_poison:
+                        credit_poison(name, share)
+                    else:
+                        credit(name, "combat", share)
+                    given += share
+        # magecraft / cast-damage payoffs: each counts the casts its own trigger names
         for name, per_spell, _ in burn_active:
-            credit(name, "burn", per_spell * instant_sorcery_cast)
+            flt = cast_filter_of.get(name, (False, 0))
+            hit = per_spell * sum(1 for c in cast_this_turn if _counts_for(c, flt))
+            if has_infect(name, name == cmd_name):
+                credit_poison(name, hit)
+            else:
+                damage += hit
+                credit(name, "burn", hit)
         if enabler_active:  # Kaalia class: cheat the biggest STRANDED creature in, attacking now
             stranded = [c for c in hand if c.card.is_creature]
             if stranded:
                 cheated = max(stranded, key=lambda c: c.attack_power)
                 hand.remove(cheated)
                 played(cheated)
-                damage += cheated.attack_power_under(rule) if rule_live else cheated.attack_power
-                credit(cheated.card.name, "combat",
-                       cheated.attack_power_under(rule) if rule_live else cheated.attack_power)
+                hit = cheated.attack_power_under(rule) if rule_live else cheated.attack_power
+                if has_infect(cheated.card.name, False):
+                    credit_poison(cheated.card.name, hit)
+                else:
+                    damage += hit
+                    credit(cheated.card.name, "combat", hit)
+                if toxic_of.get(cheated.card.name) and hit > 0:
+                    credit_poison(cheated.card.name, toxic_of[cheated.card.name])
                 atk_pending.append((cheated.card.name, cheated.attack_power,
                                     cheated.attack_power_under(rule), False))
                 pending_power += cheated.attack_power  # ... and stays on board thereafter
                 pending_power_rule += cheated.attack_power_under(rule)
                 pending_creatures += 1
         stats.damage_by_turn.append(damage)
+        stats.poison_by_turn.append(poison)
         if (stats.commander_lethal_turn is None and cmd_name is not None
                 and stats.damage_by_source.get("commander", 0) >= COMMANDER_DAMAGE_LETHAL):
             stats.commander_lethal_turn = turn
@@ -712,6 +893,14 @@ def _run_one(
             stats.kill_turn = turn
             stats.kill_sources = dict(stats.damage_by_source)
             stats.kill_method = "commander_damage"   # same name as T2's end reason
+        elif stats.kill_turn is None and poison >= POISON_LETHAL:
+            # CR 704.5c. kill_sources reads the poison in life terms (one counter = a tenth of
+            # the way, as goldfish_life / 10 is of life) so the damage-share split stays a split
+            # of "how the deck got there".
+            stats.kill_turn = turn
+            stats.kill_sources = dict(stats.damage_by_source)
+            stats.kill_sources["poison"] = poison * cfg.goldfish_life // POISON_LETHAL
+            stats.kill_method = "poison"
 
     rule_live = rule is not None and commander is not None and not commander_in_zone
     stats.final_board_power = (board_power_rule if rule_live else board_power) + max(

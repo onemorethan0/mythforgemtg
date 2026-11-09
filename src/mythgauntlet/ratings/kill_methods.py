@@ -4,7 +4,9 @@ From the goldfish runs (after apply_nut_kills), per killing game: which method d
 `combat` (creatures and the anthems pumping them), `commander` (the commander's own combat
 damage was the largest share of a life kill), `commander_damage` (21 combat damage from the
 commander, CR 704.5a), `burn` (scaling burn, magecraft / cast-damage engines), `storm` (the
-go-off detector), `overrun` (the alpha-strike detector) -- and which cards dealt the damage.
+go-off detector), `overrun` (the alpha-strike detector), `poison` (ten poison counters from
+infect or toxic, CR 704.5c) -- and which cards dealt the damage. Poison is put in life terms
+(one counter = LIFE_PER_POISON life, 40 / 10) wherever it is summed with damage.
 
 What it is not: tier0 has no alternate-win or infinite-combo execution (those are B33's
 combo clock), and no opponent, so "relies on combat" means "this is how it kills when nobody
@@ -16,7 +18,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-METHODS = ("combat", "commander", "commander_damage", "burn", "storm", "overrun")
+METHODS = ("combat", "commander", "commander_damage", "burn", "storm", "overrun", "poison")
+LIFE_PER_POISON = 4   # goldfish life 40 / CR 704.5c 10 poison
 TOP_CARDS = 5
 
 
@@ -40,7 +43,7 @@ def compute(runs, commander_name: str | None = None) -> KillMethods:
     killing = [r for r in runs if r.kill_turn is not None]
     counts = {m: 0 for m in METHODS}
     turns_by: dict[str, list[int]] = {m: [] for m in METHODS}
-    dmg = {"combat": 0, "commander": 0, "burn": 0}
+    dmg = {"combat": 0, "commander": 0, "burn": 0, "poison": 0}
     for r in killing:
         m = r.kill_method if r.kill_method in counts else "combat"
         counts[m] += 1
@@ -54,6 +57,8 @@ def compute(runs, commander_name: str | None = None) -> KillMethods:
     for r in runs:
         for name, amt in r.damage_by_card.items():
             per_card[name] = per_card.get(name, 0) + amt
+        for name, amt in (getattr(r, "poison_by_card", None) or {}).items():
+            per_card[name] = per_card.get(name, 0) + amt * LIFE_PER_POISON
     horizon_total = sum(per_card.values())
     top = sorted(per_card.items(), key=lambda kv: (-kv[1], kv[0]))[:TOP_CARDS]
 

@@ -35,7 +35,7 @@ ARCHETYPE_LABEL = {
 }
 _METHOD_WORD = {"combat": "combat", "noncombat": "burn and drain", "commander_damage":
                 "commander damage", "combo": "a combo", "decked": "decking",
-                "adjudicated": "the turn cap"}
+                "adjudicated": "the turn cap", "poison": "poison"}
 
 
 @dataclass
