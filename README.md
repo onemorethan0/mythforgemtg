@@ -125,6 +125,9 @@ separate entries. A card with no set is recorded with its cheapest printing unti
 
 ### Browsing it
 
+<p align="center"><img src="docs/screenshots/collection-grid.jpg" width="720" alt="The collection in grid view, grouped by type and sorted by value, with each card's printing, set and price"></p>
+<p align="center"><sub>Grid view, grouped by type and sorted by value. Every tile is the exact printing owned, with its set and price.</sub></p>
+
 - **Five views:** a list with a column chooser, a dense compact list, a card grid (S/M/L), art tiles,
   and overlapping stacks.
 - **Group by** type, colour, mana value, rarity, set, finish, or *card* (every printing of a card
@@ -136,6 +139,8 @@ separate entries. A card with no set is recorded with its cheapest printing unti
 - **Stats:** colour presence, mana curve (lands excluded), type and rarity breakdown, and your most
   valuable cards.
 
+<p align="center"><img src="docs/screenshots/collection-insights.png" width="640" alt="Collection insights: total value, colour split, colour presence, mana curve, types and rarities"></p>
+
 ### Printings, foils and prices
 
 Every card shows the printing you own: its art, a rarity-coloured set chip, a foil or etched sheen,
@@ -143,7 +148,7 @@ and a flip button for double-faced cards. Foil and nonfoil copies are separate r
 isn't known yet the art is marked *representative*; open the **printing picker** (it shows prices per
 finish) or press **Fill printings**, which never overwrites a printing you already recorded.
 
-**Fetch prices** pulls current Scryfall USD prices for the whole collection in one batch. Set data
+**Refresh prices** pulls current Scryfall USD prices for the whole collection in one batch. Set data
 comes from a local copy of Scryfall's bulk file, refreshed weekly, so browsing needs no network.
 
 ### Keeping it clean
@@ -162,6 +167,8 @@ much of a real deck your on-colour cards can already fill. Each one has two butt
 
 - **Build this →** builds the deck from your cards first and fills any gaps with staples.
 - **🎴 Only cards I own** builds strictly from your collection.
+
+<p align="center"><img src="docs/screenshots/collection-buildable.jpg" width="720" alt="Build from what I own: commanders in the collection ranked by how buildable they are, each with Build this and Only cards I own buttons"></p>
 
 More detail on the build modes: [docs/COLLECTION_MODES.md](docs/COLLECTION_MODES.md).
 
@@ -209,6 +216,9 @@ deck page appears with real card art and everything in the next section works.
 Every deck, built or imported, opens on the same page. Everything you build is saved in **📚 Deck
 History**, and every rebuild or fix writes a *new* deck, so you never lose the original.
 
+![The deck page for an imported deck: commander, ownership, legality, deck value, cost to finish and deck health](docs/screenshots/deck-overview.jpg)
+<p align="center"><sub>An imported Archidekt deck. The badge says every card is owned, so the cost to finish is $0; legality, curve and mana sources sit beside it.</sub></p>
+
 | Tool | What it does |
 |---|---|
 | **Organize by** | Group the 100 by card type, role (ramp, draw, creature removal, other removal, wipes, counterspells, tutors, finishers, lands), colour or mana value. |
@@ -219,6 +229,20 @@ History**, and every rebuild or fix writes a *new* deck, so you never lose the o
 | **Deck value** | What the deck is worth, and what it would **cost to finish** counting only the cards you don't own. Cards you own are badged in the list. |
 | **Archetypes & off-meta read** | Which strategies the 99 actually support (only reported when they're statistically real), and how far the deck sits from what this commander usually plays. |
 | **Export** | A **Decklist** of the real card names that pastes into Moxfield, Archidekt or back into Myth Forge; card images as a ZIP; a print-ready PDF. |
+
+**Organized by role.** Each role shows what the deck runs against what a typical deck runs, so
+"Card draw (7 / 16)" is a gap you can see at a glance:
+
+![The deck organized by role, with ramp and card draw sections and counts against typical decks](docs/screenshots/deck-roles.jpg)
+
+**Deck breakdown.** Role counts against typical, what your removal can actually answer, and how
+often the deck casts its hardest colour demands on curve:
+
+![Deck breakdown: roles versus typical, removal coverage by card type, and colour sources](docs/screenshots/deck-breakdown.png)
+
+**Sample hand.** Draw, mulligan and draw again, with the exact land odds for this list:
+
+![Sample hand panel with seven drawn cards and opening-hand land odds](docs/screenshots/deck-samplehand.jpg)
 
 ---
 
@@ -244,6 +268,13 @@ an answer instead of a guess.
 - **Card impact:** would this one card help or hurt the deck, and why.
 - **🧙 Ask the Mentor:** ask plain questions ("why does my curve feel bad?") and get answers built
   from the deck's measured numbers. Answers the mentor can't back up are marked unverified.
+
+<details open>
+<summary><b>A full strength report</b> (the same deck as above; click to collapse)</summary>
+
+![Simulation-grounded strength: simulated bracket, denial/pace/inevitability dials, power radar, axis scores, table feel, kill speed, strengths and weaknesses](docs/screenshots/deck-strength.png)
+
+</details>
 
 > **One analysis, no fallbacks.** If the engine isn't running, the UI says a number is unavailable
 > rather than showing a second, weaker guess. It takes about 50 seconds to load the first time.
