@@ -65,6 +65,143 @@ def _rules_lines(oracle_text: str) -> list[str]:
 
 
 _KEYWORD_LINE_INFECT = re.compile(r"(?:[a-z' ]+, )*infect(?:, [a-z' ]+)*")
+_KEYWORD_LINE_HASTE = re.compile(r"(?:[a-z' ]+, )*haste(?:, [a-z' ]+)*")
+
+
+@lru_cache(maxsize=4096)
+def _has_own_haste(oracle_text: str) -> bool:
+    """Haste PRINTED on a keyword line of the card's own (CR 702.10). A creature that gains it
+    from elsewhere (a Lightning Greaves, a lord) is not read: the honest under-count."""
+    return any(_KEYWORD_LINE_HASTE.fullmatch(ln) for ln in _rules_lines(oracle_text))
+
+
+_NUM_WORDS = {"a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
+_TOKEN_RE = re.compile(
+    r"\bcreate (a|an|one|two|three|four|five|six) (tapped )?(\d+)/(\d+) ([^.]*?)creature "
+    r"tokens?([^.]*)")
+
+
+@dataclass(frozen=True)
+class _TokenMaker:
+    trigger: str        # now | upkeep | end | cast | attack | attack_any | land | pw
+    count: int
+    power: int
+    haste: bool
+    attacking: bool     # "tapped and attacking": in this combat already
+    cast_kind: str = "any"      # cast trigger: any | noncreature | instant_sorcery
+    cast_min_mv: int = 0
+
+
+def _token_trigger(prefix: str, is_spell: bool) -> tuple[str, str, int] | None:
+    """(trigger, cast_kind, min_mv) for the text in front of "create", or None when it is a
+    trigger tier0 cannot time (a death, another creature attacking, a condition, a cost)."""
+    p = prefix.strip()
+    if re.fullmatch(r"\+\d+:", p):
+        return ("pw", "any", 0)                     # a loyalty ability: once a turn
+    if ":" in p or p.startswith("•") or re.search(r"\bif\b|\bunless\b", p):
+        return None
+    if re.fullmatch(r"i(?:, ii)? —", p):
+        return ("now", "any", 0)                    # a Saga's chapter I fires as it enters
+    if re.fullmatch(r"whenever you attack,(?: for each opponent,)?", p):
+        return ("attack_any", "any", 0)
+    if not p:
+        return ("now", "any", 0) if is_spell else None
+    if re.fullmatch(r"when(?:ever)? (?:~|this [a-z]+)(?: enters| enters or attacks)?,", p) and \
+            "enters" in p:
+        return ("now", "any", 0)
+    if re.fullmatch(r"whenever (?:~|this [a-z]+) attacks,", p):
+        return ("attack", "any", 0)
+    if re.fullmatch(r"at the beginning of (?:your upkeep|each upkeep|combat on your turn),"
+                    r"(?: you lose \d+ life and)?", p):
+        return ("upkeep", "any", 0)                 # "each upkeep": counted on ours only
+    if re.fullmatch(r"at the beginning of your end step,", p):
+        return ("end", "any", 0)
+    if re.fullmatch(r"(?:landfall — )?whenever a land(?: you control)? enters(?: the battlefield)?"
+                    r"(?: under your control)?,", p):
+        return ("land", "any", 0)
+    m = re.fullmatch(r"whenever you cast (?:a|an) ([a-z ]*?)spell( with mana value (\d+) or "
+                     r"greater)?,", p)
+    if m:
+        what = m.group(1).strip()
+        mv = int(m.group(3)) if m.group(3) else 0
+        if what == "":
+            return ("cast", "any", mv)
+        if what == "noncreature":
+            return ("cast", "noncreature", mv)
+        if what in ("instant or sorcery", "instant and sorcery"):
+            return ("cast", "instant_sorcery", mv)
+        if what in ("creature", "artifact", "enchantment", "legendary"):
+            return ("cast", what, mv)
+    return None
+
+
+@lru_cache(maxsize=4096)
+def _token_makers(name: str, type_line: str, oracle_text: str) -> tuple[_TokenMaker, ...]:
+    """Creature tokens this card makes, read strictly (see _token_trigger). Only a fixed count
+    of fixed-size tokens is read: "for each", X, copies ("a token that's a copy"), a second
+    token type in the same sentence and anything after a cost is not. Others' tokens ("each
+    opponent creates", "its controller creates") never match: the verb is "create"."""
+    is_spell = any(t in (type_line or "").lower() for t in ("instant", "sorcery"))
+    out: list[_TokenMaker] = []
+    names = sorted({name.lower(), name.lower().split(",")[0]}, key=len, reverse=True)
+    for line in _rules_lines(oracle_text):
+        for n in names:
+            line = line.replace(n, "~")
+        for sentence in re.split(r"(?<=\.)\s+", line):
+            m = _TOKEN_RE.search(sentence)
+            if not m:
+                continue
+            rest = m.group(6)
+            if re.search(r"for each|where x|equal to|copy", rest + m.group(5)):
+                continue
+            trig = _token_trigger(sentence[:m.start()], is_spell)
+            if trig is None:
+                continue
+            out.append(_TokenMaker(
+                trigger=trig[0], count=_NUM_WORDS[m.group(1)], power=int(m.group(3)),
+                haste="haste" in rest, attacking="tapped and attacking" in rest,
+                cast_kind=trig[1], cast_min_mv=trig[2]))
+            if trig[0] == "now" and "enters or attacks" in sentence[:m.start()]:
+                out.append(_TokenMaker("attack", _NUM_WORDS[m.group(1)], int(m.group(3)),
+                                       "haste" in rest, "tapped and attacking" in rest))
+    return tuple(out)
+
+
+def _cast_matches(sc: "SimCard", kind: str, min_mv: int) -> bool:
+    if sc.mana_value < min_mv:
+        return False
+    if kind == "noncreature":
+        return not sc.card.is_creature
+    if kind == "instant_sorcery":
+        return sc.card.has_type("Instant") or sc.card.has_type("Sorcery")
+    if kind != "any":
+        return sc.card.has_type(kind.capitalize())
+    return True
+
+
+@lru_cache(maxsize=4096)
+def _crew_cost(type_line: str, oracle_text: str) -> int | None:
+    """Crew N of a Vehicle (CR 702.122): tap untapped creatures with total power N or more and it
+    becomes an artifact creature until end of turn."""
+    if "vehicle" not in (type_line or "").lower():
+        return None
+    for ln in _rules_lines(oracle_text):
+        m = re.match(r"crew (\d+)\b", ln)
+        if m:
+            return int(m.group(1))
+    return None
+
+
+@lru_cache(maxsize=4096)
+def _station_threshold(type_line: str, oracle_text: str) -> int | None:
+    """The charge-counter count at which a Spacecraft becomes an artifact creature (CR 702.184:
+    station taps another creature and adds counters equal to its power). Read from the card's
+    own station reminder, "It's an artifact creature at N+"; a Spacecraft without one (The
+    Eternity Elevator) never becomes a creature, nor does a Planet."""
+    if "spacecraft" not in (type_line or "").lower():
+        return None
+    m = re.search(r"it's an artifact creature at (\d+)\+", (oracle_text or "").lower())
+    return int(m.group(1)) if m else None
 _TOXIC = re.compile(r"(?:^|, )toxic (\d+)(?:,|$)")
 
 
@@ -581,6 +718,49 @@ def _run_one(
     cmd_auras: list[tuple[SimCard, _InfectAura]] = []   # infect Auras attached to the commander
     cmd_counters = 0                                    # -1/-1 counters on it (Glistening Oil)
     poison = 0
+    # Vehicles and Spacecraft (CR 702.122, 702.184). Crew and station TAP creatures as a cost
+    # (no {T} symbol), so summoning-sick creatures may pay it -- those are used first, since
+    # they cannot attack anyway. A Vehicle attacks only once on the battlefield since the start
+    # of the turn (CR 302.6); a stationed Spacecraft is an artifact creature for good.
+    power_of = {sc.card.name: _stat_value(sc.card.power) for sc in everyone if sc.card.is_creature}
+    vehicles_pending: list[SimCard] = []
+    vehicles_board: list[SimCard] = []
+    ships: list[dict] = []                              # unbuilt Spacecraft: sc, need, counters, turn
+    # Creature tokens (_token_makers): (source name, maker, source is a creature). "now" makers
+    # fire as the card resolves; upkeep / loyalty makers fire each turn from the next one (a
+    # loyalty maker also on arrival); cast, attack, landfall and end-step makers on their event.
+    token_engines: list[tuple[str, _TokenMaker, bool]] = []
+    turn_engines: list[tuple[str, _TokenMaker, bool]] = []
+    turn_engines_pending: list[tuple[str, _TokenMaker, bool]] = []
+
+    def make_tokens(src: str, mk: _TokenMaker, attacking: bool = False) -> None:
+        """Creature tokens join the board summoning-sick (they attack next turn); with haste
+        or "tapped and attacking" they are in this combat. Credited to the card that made them."""
+        nonlocal pending_power, pending_power_rule, pending_creatures
+        nonlocal board_power, board_power_rule, board_creatures
+        name = f"{src} token"
+        power_of[name] = mk.power
+        for _ in range(mk.count):
+            entry = (name, mk.power, mk.power, False)
+            if mk.haste or attacking:
+                board_power += mk.power
+                board_power_rule += mk.power
+                board_creatures += 1
+                atk_board.append(entry)
+            else:
+                pending_power += mk.power
+                pending_power_rule += mk.power
+                pending_creatures += 1
+                atk_pending.append(entry)
+
+    def fire_cast(cast: SimCard) -> None:
+        for src, mk, _ in list(token_engines):
+            if mk.trigger == "cast" and _cast_matches(cast, mk.cast_kind, mk.cast_min_mv):
+                make_tokens(src, mk)
+
+    def drop_engines(keep) -> None:
+        for lst in (token_engines, turn_engines, turn_engines_pending):
+            lst[:] = [e for e in lst if keep(e)]
 
     def credit(name: str, source: str, amount: int) -> None:
         if amount:
@@ -620,6 +800,7 @@ def _run_one(
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
         nonlocal creature_engine, creature_dmg_engine, pending_power_rule
         nonlocal anthem_noncreature, anthem_creature, lord_self_pending
+        nonlocal board_power, board_power_rule, board_creatures
         aura = _infect_aura(sc.card.type_line or "", sc.card.oracle_text or "")
         if aura is not None and commander_on_board():
             cmd_auras.append((sc, aura))
@@ -631,12 +812,34 @@ def _run_one(
                     lord_self_pending += bonus
             else:
                 anthem_noncreature += bonus
-        if sc.card.is_creature:
+        if sc.card.is_creature and _has_own_haste(sc.card.oracle_text or ""):
+            # haste (CR 702.10): able to attack the turn it arrives
+            board_power += sc.attack_power
+            board_power_rule += sc.attack_power_under(rule)
+            board_creatures += 1
+            atk_board.append((sc.card.name, sc.attack_power, sc.attack_power_under(rule),
+                              is_commander))
+        elif sc.card.is_creature:
             pending_power += sc.attack_power
             pending_power_rule += sc.attack_power_under(rule)
             pending_creatures += 1
             atk_pending.append((sc.card.name, sc.attack_power, sc.attack_power_under(rule),
                                 is_commander))
+        if _crew_cost(sc.card.type_line or "", sc.card.oracle_text or "") and sc.attack_power:
+            vehicles_pending.append(sc)
+        need = _station_threshold(sc.card.type_line or "", sc.card.oracle_text or "")
+        if need and sc.attack_power:
+            ships.append({"sc": sc, "need": need, "counters": 0, "turn": cur_turn})
+        for mk in _token_makers(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""):
+            eng = (sc.card.name, mk, sc.card.is_creature)
+            if mk.trigger == "now":
+                make_tokens(sc.card.name, mk)
+            elif mk.trigger in ("upkeep", "pw"):
+                if mk.trigger == "pw":
+                    make_tokens(sc.card.name, mk)
+                turn_engines_pending.append(eng)
+            else:
+                token_engines.append(eng)
         if sc.fx.magecraft_damage + sc.fx.cast_damage:
             burn_pending.append((sc.card.name, sc.fx.magecraft_damage + sc.fx.cast_damage,
                                  sc.card.is_creature))
@@ -726,6 +929,10 @@ def _run_one(
         dmg_engine_active += dmg_engine_pending
         dmg_engine_pending = 0
         atk_board.extend(atk_pending)
+        vehicles_board.extend(vehicles_pending)
+        vehicles_pending.clear()
+        turn_engines.extend(turn_engines_pending)
+        turn_engines_pending.clear()
         atk_pending.clear()
         burn_active.extend(burn_pending)
         burn_pending.clear()
@@ -789,6 +996,7 @@ def _run_one(
                 enabler_active = False  # the commander was the enabler (an honest under-count
                 #                         if another enabler is also out)
             sources = [src for src in sources if not src.from_commander]
+            drop_engines(lambda e: e[0] != cname)
 
         if board_wipe_turn is not None and turn == board_wipe_turn:
             commander_stays = False
@@ -818,6 +1026,7 @@ def _run_one(
             engine_active -= creature_engine
             dmg_engine_active -= creature_dmg_engine
             creature_engine = creature_dmg_engine = 0
+            drop_engines(lambda e: not e[2] or (commander_stays and e[0] == cmd_name))
             if commander_stays:
                 # exactly what apply_effects(commander) put on the board (see there)
                 board_power = commander.attack_power
@@ -839,6 +1048,9 @@ def _run_one(
                 engine_active += creature_engine
                 dmg_engine_active += creature_dmg_engine
 
+        for src, mk, _ in turn_engines:
+            make_tokens(src, mk)
+
         if turn > 1 or cfg.draw_on_first_turn:
             draw(1)
         draw(engine_active)
@@ -848,6 +1060,9 @@ def _run_one(
             hand.remove(land)
             played(land)
             sources.append(_Source(land.produced_colors(), ready=not land.fx.enters_tapped))
+            for src, mk, _ in list(token_engines):
+                if mk.trigger == "land":
+                    make_tokens(src, mk)
         stats.land_drops.append(land is not None)
 
         mana_available = sum(1 for s in sources if s.ready)
@@ -907,6 +1122,7 @@ def _run_one(
             else:
                 hand.remove(sc)
                 played(sc)
+            fire_cast(sc)
             apply_effects(sc, is_commander)
 
         # Scaling-burn finisher: whatever mana is left over this turn is spent as X (mirrors
@@ -930,6 +1146,7 @@ def _run_one(
             cast_this_turn.append(sc)
             hand.remove(sc)
             played(sc)
+            fire_cast(sc)
             apply_effects(sc)
             damage += x
             credit(sc.card.name, "burn", x)
@@ -938,18 +1155,95 @@ def _run_one(
 
         # combat: everything that was already down swings at the goldfish opponent
         rule_live = rule is not None and commander is not None and not commander_in_zone
+        per_creature = anthem_noncreature + anthem_creature
+        # Station (sorcery speed, so before combat) and crew: tap creatures for their power.
+        # Summoning-sick creatures first (free -- they cannot attack); able attackers only when
+        # what they would have dealt is less than what the Vehicle / Spacecraft adds.
+        tapped: set[int] = set()
+        crewed: list[tuple[str, int, int, bool]] = []
+        if vehicles_board or ships:
+            sick = sorted((power_of.get(a[0], 0) + per_creature for a in atk_pending),
+                          reverse=True)
+            sick = [p for p in sick if p > 0]
+
+            def tap_for(need: int, gain: int) -> bool:
+                got = 0
+                use_sick = 0
+                while got < need and use_sick < len(sick):
+                    got += sick[use_sick]
+                    use_sick += 1
+                use_able: list[int] = []
+                lost = 0
+                if got < need:
+                    able = sorted(
+                        ((a[2] if rule_live else a[1]) + per_creature,
+                         power_of.get(a[0], 0) + per_creature, i)
+                        for i, a in enumerate(atk_board)
+                        if i not in tapped and not a[3] and power_of.get(a[0], 0) + per_creature > 0)
+                    for dmg, pw, i in able:
+                        if got >= need:
+                            break
+                        use_able.append(i)
+                        got += pw
+                        lost += dmg
+                    if got < need or lost >= gain:
+                        return False
+                del sick[:use_sick]
+                tapped.update(use_able)
+                return True
+
+            for ship in sorted(ships, key=lambda s: s["need"] - s["counters"]):
+                sc = ship["sc"]
+                ready_now = ship["turn"] < turn         # on the battlefield since the turn began
+                gain = (sc.attack_power + per_creature) if ready_now else 0
+                if tap_for(ship["need"] - ship["counters"], gain):
+                    ship["counters"] = ship["need"]
+                else:                                   # progress with the free (sick) ones
+                    ship["counters"] += sum(sick)
+                    sick.clear()
+                if ship["counters"] >= ship["need"]:
+                    ships.remove(ship)                  # an artifact creature from now on
+                    entry = (sc.card.name, sc.attack_power, sc.attack_power_under(rule), False)
+                    if ready_now:
+                        board_power += sc.attack_power
+                        board_power_rule += sc.attack_power_under(rule)
+                        board_creatures += 1
+                        atk_board.append(entry)
+                    else:
+                        pending_power += sc.attack_power
+                        pending_power_rule += sc.attack_power_under(rule)
+                        pending_creatures += 1
+                        atk_pending.append(entry)
+            for v in sorted(vehicles_board, key=lambda v: -v.attack_power):
+                if tap_for(_crew_cost(v.card.type_line or "", v.card.oracle_text or ""),
+                           v.attack_power + per_creature):
+                    crewed.append((v.card.name, v.attack_power, v.attack_power_under(rule), False))
+        attack_tokens = False
+        if any(mk.trigger in ("attack", "attack_any") for _, mk, _ in token_engines):
+            attacking = {a[0] for i, a in enumerate(atk_board) if i not in tapped}
+            attacking |= {c[0] for c in crewed}
+            for src, mk, _ in list(token_engines):
+                if (mk.trigger == "attack" and src in attacking) or (
+                        mk.trigger == "attack_any" and attacking):
+                    make_tokens(src, mk, attacking=mk.attacking)
+                    attack_tokens = attack_tokens or mk.attacking
         swing = board_power_rule if rule_live else board_power
-        swing += max(0, (anthem_noncreature + anthem_creature) * board_creatures - lord_self_active)
+        swing += max(0, per_creature * board_creatures - lord_self_active)
         stats.board_power_by_turn.append(swing)
         stats.board_creatures_by_turn.append(board_creatures)
+        attackers = atk_board
+        if tapped or crewed:
+            attackers = [a for i, a in enumerate(atk_board) if i not in tapped] + crewed
+            swing = sum(a[2] if rule_live else a[1] for a in attackers)
+            swing += max(0, per_creature * len(attackers) - lord_self_active)
         # Infect (CR 702.90b): an infect attacker's damage is poison, not life; toxic (CR
         # 702.180) adds its poison on top of the damage. The commander's -1/-1 counters
         # (Glistening Oil) shrink its power. A deck with no infect, toxic or counters takes
         # none of these branches and deals exactly `swing`.
-        per_creature = anthem_noncreature + anthem_creature
-        extra = max(0, per_creature * board_creatures - lord_self_active)
+        n_attacking = board_creatures if attackers is atk_board else len(attackers)
+        extra = max(0, per_creature * n_attacking - lord_self_active)
         infect_attackers = 0
-        for name, pw, pw_rule, is_cmd in atk_board:
+        for name, pw, pw_rule, is_cmd in attackers:
             p = pw_rule if rule_live else pw
             if is_cmd and cmd_counters:
                 cut = min(cmd_counters, p)
@@ -1006,6 +1300,9 @@ def _run_one(
                 pending_power += cheated.attack_power  # ... and stays on board thereafter
                 pending_power_rule += cheated.attack_power_under(rule)
                 pending_creatures += 1
+        for src, mk, _ in list(token_engines):
+            if mk.trigger == "end":
+                make_tokens(src, mk)
         stats.damage_by_turn.append(damage)
         stats.poison_by_turn.append(poison)
         if (stats.commander_lethal_turn is None and cmd_name is not None

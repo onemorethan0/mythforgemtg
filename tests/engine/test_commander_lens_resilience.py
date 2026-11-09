@@ -42,8 +42,12 @@ def test_indestructible_commander_keeps_board_after_wipe(make_card, sol_ring_lik
     for i in early:
         assert survived[i].board_power_by_turn[WIPE_TURN - 1] >= 8
         assert survived[i].board_creatures_by_turn[WIPE_TURN - 1] == 1
-        # Smaug was the only creature: the plain wipe leaves no 8-power board that turn
-        assert wiped[i].board_power_by_turn[WIPE_TURN - 1] < 8
+        # Smaug was the only creature: the plain wipe sends it to the command zone. With haste
+        # (modeled since 2026-11-09) a recast Smaug can swing again that turn when the taxed
+        # mana is there, so surviving is never WORSE -- and costs no recast.
+        assert wiped[i].board_power_by_turn[WIPE_TURN - 1] <= \
+            survived[i].board_power_by_turn[WIPE_TURN - 1]
+        assert wiped[i].damage_by_turn[-1] <= survived[i].damage_by_turn[-1]
 
 
 def test_flag_off_is_byte_identical(make_card, sol_ring_like):
