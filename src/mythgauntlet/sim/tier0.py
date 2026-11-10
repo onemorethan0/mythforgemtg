@@ -110,6 +110,7 @@ class _TokenMaker:
     cast_min_mv: int = 0
     infect: bool = False        # "... creature token with infect"
     artifact: bool = False      # "... artifact creature token" (Borg, Thopter, Servo)
+    desc: str = ""              # the printed words before "creature token": colours, types
 
 
 def _token_trigger(prefix: str, is_spell: bool) -> tuple[str, str, int] | None:
@@ -184,7 +185,7 @@ def _token_makers(name: str, type_line: str, oracle_text: str) -> tuple[_TokenMa
                 trigger=trig[0], count=_NUM_WORDS[m.group(1)], power=int(m.group(3)),
                 haste="haste" in rest, attacking="tapped and attacking" in rest,
                 cast_kind=trig[1], cast_min_mv=trig[2], infect="infect" in rest,
-                artifact="artifact" in m.group(5)))
+                artifact="artifact" in m.group(5), desc=m.group(5).strip()))
             if trig[0] == "now" and "enters or attacks" in sentence[:m.start()]:
                 out.append(_TokenMaker("attack", _NUM_WORDS[m.group(1)], int(m.group(3)),
                                        "haste" in rest, "tapped and attacking" in rest))
@@ -931,6 +932,7 @@ def _run_one(
     # (not summoning-sick) creature the grant covers taps for mana when lands and rocks fall
     # short; it then sits out this turn's combat (`cm_tapped`, indices into atk_board).
     artifact_tokens: set[str] = set()
+    token_desc: dict[str, str] = {}       # token name -> "colorless borg artifact" (typed lords)
     cm_tapped: set[int] = set()
 
     def creature_mana_for(sc: SimCard) -> list[tuple[int, int]]:
@@ -1095,6 +1097,8 @@ def _run_one(
             own_infect.add(name)
         if getattr(mk, "artifact", False):
             artifact_tokens.add(name)
+        if getattr(mk, "desc", ""):
+            token_desc[name] = mk.desc
         hasty = mk.haste or any(e[0] == "team_haste" for e in statics)
         for _ in range(mk.count * 2 ** sum(1 for e in statics if e[0] == "doubler")):
             entry = (name, mk.power, mk.power, False)
@@ -1970,11 +1974,13 @@ def _run_one(
         dyn = []
         for a in attackers:
             b = prowess_of.get(a[0], 0) * n_noncreature + exalt
-            c = card_of.get(a[0])         # typed lords: a token's types are not tracked
-            if c is not None and typed:
+            c = card_of.get(a[0])         # typed lords; a token by its printed words
+            if typed and (c is not None or a[0] in token_desc):
+                tl, kws, colors = ((c.type_line or "", c.keywords or (), c.colors or ())
+                                   if c is not None else R0.token_typing(token_desc[a[0]]))
                 b += sum(ta.power for src, ta in typed
                          if not (ta.others and src == a[0])
-                         and R0.type_matches(ta, c.type_line or "", c.keywords or ()))
+                         and R0.type_matches(ta, tl, kws, colors))
             v = varp_of.get(a[0])
             if v is not None:
                 b += v.per * max(0, var_count(v.kind))
@@ -2172,8 +2178,13 @@ def simulate(
     board_wipe_turn: int | None = None,
     commander_survives_wipe: bool = False,
     commander_removals: int = 0,
+    only=None,
 ) -> list[RunStats]:
     """Run cfg.runs seeded goldfish games. Deterministic for a given (deck, cfg).
+
+    `only`: run just these game indices (each seeded exactly as in the full set -- `spawn` is
+    stateless), returned in that order. Paired ablation (ratings/card_ablation) replays only
+    the games where the ablated card was drawn.
 
     board_wipe_turn injects a Tier-1 disruption (see _run_one). Because run i always
     draws from the same seeded stream, a clean run and a wiped run at the same seed are
@@ -2194,5 +2205,5 @@ def simulate(
     return [
         _run_one(deck, sim_commander, cfg, root.spawn(i), board_wipe_turn,
                  commander_survives_wipe, rule, commander_removals)
-        for i in range(cfg.runs)
+        for i in (range(cfg.runs) if only is None else only)
     ]

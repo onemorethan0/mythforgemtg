@@ -767,11 +767,20 @@ def advise(
     # load-bearing card can be the right cut for a bigger add, but only when idle cards ran out.
     # Off (the default) is the original pool.
     if ablate_cuts:
-        from mythgauntlet.ratings.card_ablation import load_bearing
-        wide = _cut_candidates(resolved, 2 * cut_pool, cut_strategy, themes, lift, lens, protect)
-        busy = load_bearing(resolved, cfg, [c.name for c in wide])
-        cuts = ([c for c in wide if c.name not in busy]
-                + [c for c in wide if c.name in busy])[:cut_pool]
+        # The shared cut ranking (ratings/cut_ranking): the same ordered list the weak-card
+        # verdicts and the mentor's role swaps use. When it offers fewer than cut_pool cards
+        # the old pool tops it up, LAST: each swap is still judged on its own measured net, so
+        # a card the ranking keeps may be the right cut for a bigger add, but only after every
+        # card it calls a cut, and Advise never comes back empty for want of one.
+        from mythgauntlet.ratings.cut_ranking import rank_cuts
+        ranking = rank_cuts(resolved, cfg, lens=lens, themes=themes)
+        by_name = {c.name: c for c, _ in resolved.cards}
+        cuts = [by_name[n] for n in ranking.names() if n not in protect][:cut_pool]
+        if len(cuts) < cut_pool:
+            have = {c.name for c in cuts}
+            extra = _cut_candidates(resolved, 3 * cut_pool, cut_strategy, themes, lift, lens,
+                                    protect)
+            cuts += [c for c in extra if c.name not in have][:cut_pool - len(cuts)]
     else:
         cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes, lift, lens, protect)
     suggestions: list[SwapSuggestion] = []

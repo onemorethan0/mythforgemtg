@@ -29,11 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 for p in (ROOT, ROOT / "src", ROOT / "scripts"):
     sys.path.insert(0, str(p))
 
-# EffectVector fields the goldfish (tier0 + the clock's storm/overrun detectors) spends.
-READ_FIELDS = ("ramp_sources", "fetches_land", "draw_cards", "engine_draw", "tutor",
-               "enters_tapped", "cheats_creatures", "grants_storm", "mana_on_cast",
-               "magecraft_damage", "cast_damage", "scaling_burn", "spell_cost_reduction",
-               "self_reduction_per_creature", "ritual_mana", "overrun_pump", "overrun_scales")
+from mythgauntlet.sim.legibility import READ_FIELDS  # noqa: E402,F401  (one definition)
 
 
 def shape(line: str, card_name: str) -> str:
@@ -49,52 +45,8 @@ def shape(line: str, card_name: str) -> str:
 
 
 def line_is_read(card, line: str) -> bool:
-    from mythgauntlet.semantics import tags
-    from mythgauntlet.sim import tier0
-    one = dataclasses.replace(card, oracle_text=line)
-    fx = tags.analyze(one)
-    if any(getattr(fx, f) for f in READ_FIELDS):
-        return True
-    if tier0._anthems_in_text(line) or tier0._has_own_infect(line) or tier0._toxic_amount(line):
-        return True
-    tl = card.type_line or ""
-    if tier0._infect_aura(tl, line) or (fx.tutor and tier0._tutor_spec(tl, line)):
-        return True
-    if (tier0._has_own_haste(line) or tier0._token_makers(card.name, tl, line)
-            or tier0._effect_makers(card.name, tl, line)):
-        return True
-    from mythgauntlet.sim import tier0_readers as R0
-    n = card.name
-    if (R0.var_power(n, tl, line) or R0.enters_counters(n, line) != (0, 0) or R0.sinks(n, line)
-            or R0.prowess(n, line) or R0.exalted(n, line) or R0.extort(n, line)
-            or R0.convoke(n, line) or R0.cascade(n, line) or R0.token_doubler(n, line)
-            or R0.counter_mod(n, line) or R0.gain_drain(n, line) is not None
-            or R0.death_drain(n, line) or R0.free_sac_outlet(n, line)
-            or R0.is_clone(n, tl, line) or R0.one_shot_mana(n, line)
-            or R0.aura_ramp(n, tl, line)[0] or R0.var_draw(n, tl, line)
-            or R0.affinity_artifacts(n, line) or R0.flashback_cost(n, tl, line)
-            or (R0.lifelink(n, line) and "creature" in tl.lower())
-            or R0.team_haste(n, line) or R0.storm(n, line) or R0.pump_spell(n, tl, line)
-            or R0.fabricate(n, line) or R0.living_weapon(n, line)
-            or R0.combat_counter(n, line)):
-        return True
-    gear = R0.haste_gear(n, tl, card.oracle_text or "")
-    if gear and (line.startswith("equip ") or "haste" in line):
-        return True
-    # whole-card readers: a line that only matters with the rest of the card
-    full = card.oracle_text or ""
-    if R0.extra_combat(n, tl, full) and "additional combat phase" in line:
-        return True
-    if tier0._crew_cost(tl, full) and line.startswith("crew"):
-        return True
-    if tier0._station_threshold(tl, full) and (line.startswith("station")
-                                               or re.match(r"\d+\+ \|", line)):
-        return True
-    att = tier0._attachment(tl, full)
-    if att and (line.startswith(("equip", "enchant creature"))
-                or line.startswith(("equipped creature", "enchanted creature"))):
-        return True
-    return False
+    from mythgauntlet.sim.legibility import line_is_read as _read
+    return _read(card, line)
 
 
 def main() -> int:

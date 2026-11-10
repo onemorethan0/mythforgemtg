@@ -566,7 +566,7 @@ def plan_lords(resolved: ResolvedDeck) -> frozenset[str]:
     for card, _n in resolved.cards:
         for ta in typed_anthems(card.name, card.oracle_text or ""):
             hits = sum(1 for c in bodies if not (ta.others and c.name == card.name)
-                       and type_matches(ta, c.type_line or "", c.keywords or ()))
+                       and type_matches(ta, c.type_line or "", c.keywords or (), c.colors or ()))
             if hits >= need:
                 out.add(card.name)
     return frozenset(out)

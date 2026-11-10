@@ -220,7 +220,7 @@ def role_swap(
     min_delta: float = 1.0,
     lens: CommanderLens | None = None,
     protect: frozenset[str] = frozenset(),
-    ablate_cuts: bool = False,
+    ranking=None,
 ) -> RoleSwapReport:
     """Measure up to `max_eval` x `cut_pool` (add, cut) pairs for `role` and pick one.
 
@@ -244,16 +244,16 @@ def role_swap(
         report.reason = ("no role is over its card target with cards that fill only over-target "
                          "roles, so there is no card the role counts say is spare")
         return report
-    if ablate_cuts and cuts:
-        # never cut a card the paired drawn-games ablation shows the deck killing sooner with
-        # (ratings/card_ablation): "spare by role count" is not "doing nothing"
-        from mythgauntlet.ratings.card_ablation import load_bearing
-        keep = load_bearing(resolved, cfg, [c.card.name for c in cuts[:2 * max(1, cut_pool)]])
-        cuts = [c for c in cuts if c.card.name not in keep]
+    if ranking is not None and cuts:
+        # The shared cut ranking (ratings/cut_ranking) decides: a spare card it protects (the
+        # deck measurably kills sooner with it, it is a plan card, ...) never goes, and the rest
+        # go in ITS order -- the same order the weak-card verdicts and Advise use.
+        pos = {n: i for i, n in enumerate(ranking.names())}
+        cuts = sorted((c for c in cuts if c.card.name in pos), key=lambda c: pos[c.card.name])
         report.cuts_available = len(cuts)
         if not cuts:
-            report.reason = ("every spare card the role counts offer is load-bearing: the deck "
-                             "kills measurably sooner with each of them")
+            report.reason = ("every spare card the role counts offer is one the deck needs: it "
+                             "measurably kills sooner with it, or it is part of the plan")
             return report
     cuts = cuts[:max(1, cut_pool)]
     adds = _order_adds(resolved, adds, axis, cuts[0].card)[:max(1, max_eval)]

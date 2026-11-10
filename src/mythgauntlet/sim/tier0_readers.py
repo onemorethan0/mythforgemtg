@@ -442,7 +442,7 @@ class TypedAnthem:
 
 _NOT_A_TYPE = frozenset({"creatures", "creature", "tokens", "creature tokens", "nontoken",
                          "nontoken creatures", "attacking", "blocking", "tapped", "untapped",
-                         "legendary", "white", "blue", "black", "red", "green", "colorless",
+                         "legendary", "white", "blue", "black", "red", "green",
                          "multicolored", "monocolored", "modified", "equipped", "enchanted"})
 
 
@@ -464,15 +464,34 @@ def typed_anthems(name: str, oracle_text: str) -> tuple[TypedAnthem, ...]:
             continue
         if not ln.split(" you control")[0].endswith("creatures") and not word.endswith("s"):
             continue                            # "Other Elf you control" is not a printed form
-        kind = "artifact" if word == "artifact" else "subtype"
+        kind = ("artifact" if word == "artifact" else "colorless" if word == "colorless"
+                else "subtype")
         out.append(TypedAnthem(kind, word, int(m.group(3)), bool(m.group(1))))
     return tuple(out)
 
 
-def type_matches(anthem: TypedAnthem, type_line: str, keywords=()) -> bool:
-    """Whether a creature with this type line gets the typed anthem (changeling: every type)."""
+def token_typing(desc: str) -> tuple[str, tuple, tuple]:
+    """(type line, keywords, colours) for a token from its printed words ("colorless Borg
+    artifact" -> "Artifact Creature — Borg", (), ()), so typed lords can see it."""
+    words = (desc or "").lower().replace(",", " ").split()
+    colour_words = {"white": "W", "blue": "U", "black": "B", "red": "R", "green": "G"}
+    colors = tuple(colour_words[w] for w in words if w in colour_words)
+    kinds = [w for w in words if w in ("artifact", "enchantment", "legendary", "snow")]
+    subs = [w for w in words if w not in colour_words and w not in kinds
+            and w not in ("colorless", "and", "a", "an", "tapped")]
+    tl = " ".join(k.capitalize() for k in kinds) + (" " if kinds else "") + "Creature"
+    if subs:
+        tl += " — " + " ".join(s.capitalize() for s in subs)
+    return tl, (("Changeling",) if "changeling" in words else ()), colors
+
+
+def type_matches(anthem: TypedAnthem, type_line: str, keywords=(), colors=None) -> bool:
+    """Whether a creature with this type line gets the typed anthem (changeling: every type).
+    "colorless" needs the creature's colours (None = unknown: no match, the under-count)."""
     tl = (type_line or "").lower()
     main, _, subs = tl.partition("—")
+    if anthem.kind == "colorless":
+        return colors is not None and len(colors) == 0
     if anthem.kind == "artifact":
         return "artifact" in main
     if any(k.lower() == "changeling" for k in (keywords or ())):

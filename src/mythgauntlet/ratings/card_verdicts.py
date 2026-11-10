@@ -109,8 +109,13 @@ def _fmt_turns(x: float) -> str:
 
 def build(resolved: ResolvedDeck, stats: list[CardStat], *, lens=None, combo_profile=None,
           targets: dict[str, int] | None = None, card_targets: dict[str, int] | None = None,
-          turns: int = 12) -> dict:
-    """{"strong": [Verdict...], "weak": [Verdict...], "instrument": str}."""
+          turns: int = 12, ranking=None) -> dict:
+    """{"strong": [Verdict...], "weak": [Verdict...], "instrument": str}.
+
+    `ranking` (ratings/cut_ranking.CutRanking, 2026-11-10): when given, "speeds the kill" is the
+    paired drawn-games measurement (not the early-window uplift, which favoured cheap cards) and
+    the weak list after "stranded" is the SAME ordered cut list Advise and the mentor's role
+    swaps use -- one answer to "what should I cut?" everywhere."""
     cards, commanders = resolved.cards, resolved.commanders
     by_name = {c.name: c for c, _ in cards}
     zone = {c.name for c in commanders}
@@ -119,8 +124,19 @@ def build(resolved: ResolvedDeck, stats: list[CardStat], *, lens=None, combo_pro
     weak: list[Verdict] = []
 
     # ── strong ───────────────────────────────────────────────────────────────────────────
-    speeds = [s for s in stats if not s.is_land and s.name not in zone and significant(s)
-              and s.early_uplift >= SPEEDS_MIN]
+    if ranking is not None:
+        helps = sorted((v for v in ranking.values.values() if v.load_bearing),
+                       key=lambda v: (-v.turns_sooner, v.name))
+        for v in helps[:MAX_SPEEDS]:
+            strong.append(Verdict(v.name, "speeds_kill",
+                                  f"{v.name}: the deck kills {_fmt_turns(v.turns_sooner)} sooner "
+                                  f"with it in the {v.games} games it is drawn (paired "
+                                  f"simulation, unopposed)",
+                                  {"turns_sooner": v.turns_sooner, "ci90": list(v.ci90),
+                                   "games_drawn": v.games}))
+    speeds = [] if ranking is not None else [
+        s for s in stats if not s.is_land and s.name not in zone and significant(s)
+        and s.early_uplift >= SPEEDS_MIN]
     for s in sorted(speeds, key=lambda s: -s.early_uplift)[:MAX_SPEEDS]:
         strong.append(Verdict(s.name, "speeds_kill",
                               f"{s.name}: when it shows up by turn 3 the deck kills "
@@ -182,6 +198,23 @@ def build(resolved: ResolvedDeck, stats: list[CardStat], *, lens=None, combo_pro
                             {"stranded_rate": s.stranded_rate, "reason": reason,
                              "colour_share": s.stranded_colour_share,
                              "cost_share": s.stranded_cost_share, "drawn": s.drawn}))
+
+    if ranking is not None:
+        named = {v.name for v in weak} | strong_names
+        for c in [c for c in ranking.cuts if c.name not in named][:MAX_REDUNDANT]:
+            ev = {"kind": c.kind}
+            if c.value is not None:
+                ev.update(turns_sooner=c.value.turns_sooner, ci90=list(c.value.ci90),
+                          games_drawn=c.value.games)
+            if c.role:
+                ev.update(role=c.role, cards=c.role_cards, card_target=c.card_target)
+            weak.append(Verdict(c.name, {"drag": "slows_kill", "surplus": "redundant",
+                                         "idle": "idle"}[c.kind], f"{c.name}: {c.why}", ev))
+        return {"strong": strong, "weak": weak,
+                "instrument": "paired goldfish simulation (no opponent) for speeds/slows/idle; "
+                              "Commander Spellbook for combos; commander lens for synergy; "
+                              "role counts for surplus; interaction is only ever judged by "
+                              "role count"}
 
     # ── weak: slows the kill ─────────────────────────────────────────────────────────────
     named = {v.name for v in weak} | strong_names

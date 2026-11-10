@@ -1162,7 +1162,7 @@ def tool_suggest_role_swap(ctx: MentorContext, role: str | None = None) -> ToolR
         # three owned cards, not one: one add rarely clears a simulated axis's floor
         # (2026-11-10, draw swaps on the owner's decks); 6 paired sims, ~25 s at chat runs
         max_eval=3,
-        ablate_cuts=True,
+        ranking=_ranking_for(ctx),
     )
     axis = report.axis
     data = {**base, "axis": axis, "owned_cards_filling_role": report.adds_available,
@@ -1389,6 +1389,25 @@ def tool_assess_card(ctx: MentorContext, name: str, cut_pool: int = 2) -> ToolRe
 
 _VERDICT_CACHE: dict = {}
 _CARD_STATS_CACHE: dict = {}
+_RANKING_CACHE: dict = {}
+
+
+def _ranking_for(ctx: MentorContext):
+    """The deck's shared cut ranking (ratings/cut_ranking), cached per deck: the weak-card
+    verdicts and the role swap read the SAME ordered list (~30 s cold, paired simulation)."""
+    from mythgauntlet.ratings.cut_ranking import rank_cuts
+    key = _analysis_key(ctx)
+    hit = _RANKING_CACHE.get(key)
+    if hit is None:
+        analysis = _analysis_for(ctx)
+        combo = getattr(analysis, "combo_profile", None)
+        combo_names = {n for g in (combo.grades if combo else ()) for n in g.combo.cards}
+        hit = rank_cuts(ctx.resolved, ctx.cfg, lens=_lens_for(ctx), themes=ctx.themes,
+                        combo_names=combo_names)
+        _RANKING_CACHE[key] = hit
+        while len(_RANKING_CACHE) > _ANALYSIS_CACHE_MAX:
+            _RANKING_CACHE.pop(next(iter(_RANKING_CACHE)))
+    return hit
 
 
 def _card_stats_for(ctx: MentorContext):
@@ -1422,7 +1441,7 @@ def tool_get_card_verdicts(ctx: MentorContext) -> ToolResult:
         hit = card_verdicts.build(
             ctx.resolved, stats, lens=_lens_for(ctx), combo_profile=analysis.combo_profile,
             targets=redundancy_targets(identity), card_targets=redundancy_card_targets(identity),
-            turns=ctx.cfg.turns)
+            turns=ctx.cfg.turns, ranking=_ranking_for(ctx))
         _VERDICT_CACHE[key] = hit
         while len(_VERDICT_CACHE) > _ANALYSIS_CACHE_MAX:
             _VERDICT_CACHE.pop(next(iter(_VERDICT_CACHE)))
@@ -1433,8 +1452,9 @@ def tool_get_card_verdicts(ctx: MentorContext) -> ToolResult:
     data = {"found": True, "strong": rows(hit["strong"]), "weak": rows(hit["weak"]),
             "instrument": hit.get("instrument", ""),
             "note": ("Weak means the measurement shows it underperforming in THIS deck "
-                     "(stranded in hand, slowing an unopposed kill, or the most replaceable "
-                     "card in an over-supplied role); interaction is never called weak, since "
+                     "(stranded in hand, slowing an unopposed kill, doing nothing measurable "
+                     "for the kill, or the most replaceable card in an over-supplied role); "
+                     "interaction is never called weak, since "
                      "an unopposed game cannot show its value. An empty list means nothing "
                      "measured as weak -- say so rather than guessing.")}
     names = {v.name for v in hit["strong"]} | {v.name for v in hit["weak"]}

@@ -185,6 +185,7 @@ def test_the_tool_reports_axis_cost_check_and_licenses_both_cards(monkeypatch, t
     coll.write_text("Count,Name\n1,Swords\n", encoding="utf-8")
     monkeypatch.setattr(tools, "suite_collection_path", lambda: coll)
     monkeypatch.setattr(tools, "_analysis_for", lambda ctx: None)
+    monkeypatch.setattr(tools, "_ranking_for", lambda ctx: None)
     monkeypatch.setattr(tools.advisor, "owned_candidates", lambda *a: [])
     move = role_swap.AxisMove("interaction", 62.0, 70.9, 8.9, 1.0, True)
     cost = role_swap.AxisMove("ceiling", 46.2, 18.9, -27.3, 2.27, True)
