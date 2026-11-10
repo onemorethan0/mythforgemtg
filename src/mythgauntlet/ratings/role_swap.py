@@ -51,6 +51,23 @@ ROLE_AXIS: dict[str, str | None] = {
 # Every axis the cost check reads (the swap's own axis is reported as its gain, not a cost).
 COST_AXES: tuple[str, ...] = tuple(advisor.AXES)
 
+# Every axis a role's swap may show its gain on, the role's own (ROLE_AXIS) first. Card draw
+# finds the plan and shows on the clock or the ceiling as often as on consistency: measured
+# 2026-11-10 on the owner's Y'shtola deck, a draw swap never cleared consistency's floor (2.8
+# at chat runs) while Skullclamp moved ceiling +1.9. The cost check is unchanged: every OTHER
+# axis must not drop beyond its noise floor. Answers stay on interaction alone -- it is the
+# only axis that reads them.
+ROLE_GAIN_AXES: dict[str, tuple[str, ...]] = {
+    "removal": ("interaction",),
+    "wipe": ("interaction",),
+    "counterspell": ("interaction",),
+    "noncreature_removal": (),
+    "draw": ("consistency", "clock", "ceiling"),
+    "tutor": ("consistency", "ceiling", "clock"),
+    "ramp": ("clock", "speed", "consistency"),
+    "finisher": ("ceiling", "clock"),
+}
+
 
 def card_role_set(card: Card, lens: CommanderLens | None = None) -> set[str]:
     return set(redundancy.roles_for(card, lens))
@@ -235,8 +252,14 @@ def role_swap(
             a = analyze_deck(variant, cfg, store, run_resilience=True)
             report.pairs_measured += 1
             moves = _moves(baseline, a, cfg.runs, min_delta)
-            gain = next((m for m in moves if m.axis == axis), None)
-            others = [m for m in moves if m.axis != axis]
+            # The gain: the role's own axis when it cleared its floor, else the gain axis it
+            # cleared by the most floors, else the own axis (reported, not chosen).
+            cands = [m for m in moves if m.axis in ROLE_GAIN_AXES.get(role, (axis,) if axis else ())
+                     and m.beyond_noise and m.delta > 0]
+            gain = (next((m for m in cands if m.axis == axis), None)
+                    or max(cands, key=lambda m: m.delta / max(m.noise_floor, 1e-9), default=None)
+                    or next((m for m in moves if m.axis == axis), None))
+            others = [m for m in moves if gain is None or m.axis != gain.axis]
             costs = [m.axis for m in others if m.beyond_noise and m.delta < 0]
             loss = sum(-m.delta for m in others if m.beyond_noise and m.delta < 0)
             after_counts = redundancy.role_card_counts(variant)
@@ -253,7 +276,9 @@ def role_swap(
     viable = [(s, loss) for s, loss in measured if gained(s)]
     if not viable:
         report.rejected = [s for s, _ in measured]
-        report.reason = (f"no measured pair raised {axis} beyond its noise floor")
+        report.reason = ("no measured pair raised "
+                         + (" or ".join(ROLE_GAIN_AXES.get(role) or (axis,)) if axis else "any axis")
+                         + " beyond its noise floor")
         return report
     viable.sort(key=lambda sl: (sl[1] > 0, sl[1], -(sl[0].gain.delta if sl[0].gain else 0.0),
                                 sl[0].add, sl[0].cut))

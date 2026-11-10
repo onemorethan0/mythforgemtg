@@ -1159,6 +1159,9 @@ def tool_suggest_role_swap(ctx: MentorContext, role: str | None = None) -> ToolR
         baseline=_analysis_for(ctx),
         strength_targets=redundancy.targets_for(ctx.themes, color_identity=identity),
         lens=_lens_for(ctx),
+        # three owned cards, not one: one add rarely clears a simulated axis's floor
+        # (2026-11-10, draw swaps on the owner's decks); 6 paired sims, ~25 s at chat runs
+        max_eval=3,
     )
     axis = report.axis
     data = {**base, "axis": axis, "owned_cards_filling_role": report.adds_available,
@@ -1189,7 +1192,7 @@ def tool_suggest_role_swap(ctx: MentorContext, role: str | None = None) -> ToolR
     data["instruction"] = (
         f"Report this swap as: add {s.add}, cut {s.cut}; {role} goes from "
         f"{s.role_cards_before} to {s.role_cards_after} cards (target {entry['card_target']})"
-        + (f"; measured on {axis}: {s.gain.before} to {s.gain.after}" if s.gain else "")
+        + (f"; measured on {s.gain.axis}: {s.gain.before} to {s.gain.after}" if s.gain else "")
         + ". Every other axis was measured too: "
         + ("it costs " + ", ".join(
             f"{m.axis} {m.before} to {m.after}" for m in s.moves if m.axis in s.costs)

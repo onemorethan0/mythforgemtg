@@ -127,7 +127,35 @@ def test_no_gain_on_the_role_axis_means_no_swap(monkeypatch, deck, make_card):
     assert len(report.rejected) == 2
 
 
+def _run_draw(deck, make_card):
+    pull = _card(make_card, "Divination", DRAW, mv=3)
+    return role_swap.role_swap(deck, SimpleNamespace(runs=150), None, [pull], role="draw",
+                               card_targets={**TARGETS, "draw": 2}, applicable=APPLICABLE,
+                               cut_pool=2)
+
+
+def test_a_draw_swap_may_show_its_gain_on_the_clock(monkeypatch, deck, make_card):
+    """2026-11-10: draw swaps never cleared consistency's floor on the owner's decks, while
+    card draw showed up on clock or ceiling. A gain on any of the role's gain axes counts, the
+    role's own axis preferred, and the cost check still reads every other axis."""
+    _patch_sim(monkeypatch, {"Rock 0": {"clock": 56.0}, "Rock 1": {"consistency": 50.5}})
+    swap = _run_draw(deck, make_card).swap
+    assert swap.cut == "Rock 0" and swap.gain.axis == "clock" and swap.gain.delta == 6.0
+    assert all(m.axis != "clock" for m in swap.moves)
+    # the role's own axis wins when it clears its floor too
+    _patch_sim(monkeypatch, {"Rock 0": {"clock": 56.0, "consistency": 56.0}})
+    assert _run_draw(deck, make_card).swap.gain.axis == "consistency"
+    # a removal swap is still read on interaction alone
+    _patch_sim(monkeypatch, {"Rock 0": {"clock": 56.0}, "Rock 1": {"clock": 56.0}})
+    assert _run(deck, make_card).swap is None
+
+
 def test_every_role_has_an_axis_entry_and_every_axis_is_real():
+    assert set(role_swap.ROLE_GAIN_AXES) == set(role_swap.ROLE_AXIS)
+    for role, axes in role_swap.ROLE_GAIN_AXES.items():
+        assert set(axes) <= set(advisor.AXES)
+        if role_swap.ROLE_AXIS[role]:
+            assert axes[0] == role_swap.ROLE_AXIS[role]
     assert set(role_swap.ROLE_AXIS) == set(redundancy.ROLE_CARD_TARGETS)
     assert {a for a in role_swap.ROLE_AXIS.values() if a} <= set(advisor.AXES)
     assert role_swap.ROLE_AXIS["noncreature_removal"] is None   # interaction ignores it

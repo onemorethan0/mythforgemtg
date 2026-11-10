@@ -1134,7 +1134,8 @@ def ask(
     _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages)
     _prefetch_question_rules(ctx, question, tool_trace, all_results, messages)
     # the question as the role table and gate check 15 read it: "out of gas" is a draw question
-    role_q = (question + " Do I run enough card draw?") if _OUT_OF_GAS_RE.search(question) else question
+    role_q = ((question + " Do I run enough card draw? What should I add?")
+              if _OUT_OF_GAS_RE.search(question) else question)
     _prefetch_role_table(ctx, role_q, tool_trace, all_results, messages)
     _prefetch_castability(ctx, question, tool_trace, all_results, messages)
     _prefetch_card_verdicts(ctx, question, tool_trace, all_results, messages)
