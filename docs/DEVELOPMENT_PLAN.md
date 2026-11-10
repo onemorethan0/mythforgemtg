@@ -123,6 +123,26 @@ caught a crash (attack-triggered Treasure/proliferate, 407 decks) before it reac
 Owner's decks: Y'shtola infect list T11 -> T9 (66% of kills by poison, 35% of games by T8 vs 19% for
 the counters list); Borg Queen T11 -> T10 with its Spacecraft attacking.
 
+**Second and third passes (same day, 4dba820).** Strict readers in `sim/tier0_readers.py`, each
+audited across all ~35k cards for hits and near-misses before wiring: '*' / "for each" power (lands,
+creatures, artifacts, hand), +1/+1 counters on entry (fixed, X, fabricate), Hardened Scales /
+Doubling Season replacements, Hydra X creatures cast from spare mana, mana-only pump and counter
+sinks (incl. monstrosity / adapt), beginning-of-combat counters, prowess, exalted, extort, lifelink
+and fixed life gain into Sanguine Bond class drains, the aristocrats finisher (free outlet + death
+drains, only when lethal), token doublers, extra combat phases, clones, Lotus Petal, land-Aura ramp,
+board-sized draws, affinity for artifacts, convoke, mana flashback, cascade, native storm copies,
+haste Equipment (Greaves/Boots) and team haste, pump spells, living weapon. Labelling the 16k-shape
+tail ran split across both nodes (node 1 qwen3:14b, node 2 qwen3:8b at 35/39 gold once Ollama was
+told `reasoning_effort: none` -- without it 8b spent the whole budget thinking and scored 0/39).
+Read lines 6,042 -> 7,328. Corpus guard (2,110 decks, no combos): exact 61.9 -> 62.4%, B1-3 62.1 ->
+63.3% (B2 68.6 -> 74.0%, B1 54.4 -> 51.5%), 58 moves, 37 toward the label, 316 decks faster, 13 a
+half-to-one turn slower (flashback recasts reorder the greedy casts; checked, not a defect). Live
+pipeline, shipped model: exact 61.5 -> 62.1%, B1-3 61.8 -> 62.7%; a CV refit scores 61.1% / 59.8%,
+not baked. What is left unread is a long tail (no remaining shape above ~0.3% of deck weight): about
+a third is interaction (evasion, removal, protection, counterspells, stax, wipes) that a no-opponent
+goldfish cannot use -- T2's job, not tier0's -- and the rest is one-off wording (kicker riders,
+recursion, conditional triggers, modal spells, typed lords).
+
 Also found: the engine's card store was 17 days stale (Oct 23) -- every newer card was invisible
 (31 of the Borg deck's cards). Refreshed with `mythgauntlet fetch-data --force`; a running engine
 needs a restart to load it.

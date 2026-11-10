@@ -26,7 +26,8 @@ Documented simplifications (T0 is built to be fast, deterministic, and honest â€
   - Land-fetch spells pull a land out of the library (thinning) and add a source next turn.
   - One-shot draws resolve immediately; triggered engines draw a flat engine_draw per turn
     starting the turn after they resolve (trigger conditions not evaluated).
-  - X spells are cast for X=0. Every source produces exactly one mana.
+  - X spells are cast for X=0, except scaling burn and X creatures (cast from spare mana).
+    Every source produces exactly one mana.
   - Casting order is a fixed greedy policy: ramp early, then commander, then draw,
     then highest-impact castable spell.
   - The goldfish clock: creatures attack a single non-blocking opponent (goldfish_life,
