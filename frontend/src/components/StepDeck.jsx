@@ -1053,7 +1053,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             initial={deck.breakdown?.data} onData={setBreakdown} />
           <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure}
             statedBracket={deck.stated_bracket ?? null} />
-          <AdvisePanel key={`adv-${jobId}`} jobId={jobId} onApplied={onDeckChange} />
+          {/* not keyed on swap_count (it keeps its "Applied" badge after a swap), but a new
+              commander makes every suggestion stale */}
+          <AdvisePanel key={`adv-${jobId}-${deck.commander?.original_name || ''}`} jobId={jobId}
+                       onApplied={onDeckChange} />
           {/* Playtest + manual edit: the two everyday tools of every deck site. */}
           <SampleHandPanel key={`hand-${jobId}-${deck.swap_count || 0}`} deck={deck} jobId={jobId} />
           <EditDeckPanel key={`edit-${jobId}`} deck={deck} jobId={jobId} onChanged={onDeckChange} />

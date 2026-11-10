@@ -15,6 +15,48 @@ export default function EditDeckPanel({ deck, jobId, onChanged }) {
   const [hints, setHints] = useState([])
   const [busy, setBusy] = useState(false)
   const [msg, setMsg] = useState(null)        // { ok, text }
+  // Change commander: cards in the 99 that could lead the deck (CR 903.3: a legendary
+  // creature's FRONT face, or text saying it "can be your commander"). The server re-checks.
+  const eligible = useMemo(() => [...new Set((deck?.deck || [])
+    .filter(c => c.original_name && !zone.has(c.original_name.toLowerCase()))
+    .filter(c => {
+      const front = (c.original_type_line || c.type_line || '').split(' // ')[0].toLowerCase()
+      return (front.includes('legendary') && front.includes('creature'))
+        || (c.oracle_text || '').toLowerCase().includes('can be your commander')
+    })
+    .map(c => c.original_name))].sort(), [deck?.deck, zone])
+  const [newCmd, setNewCmd] = useState('')
+  const [cmdBusy, setCmdBusy] = useState(false)
+  const [cmdMsg, setCmdMsg] = useState(null)  // { ok, text }
+
+  async function switchCommander() {
+    if (!newCmd || cmdBusy) return
+    const old = deck?.commander?.original_name || 'the commander'
+    if (!window.confirm(`Make ${newCmd} the commander? ${old} moves into the 99.`)) return
+    setCmdBusy(true); setCmdMsg(null)
+    try {
+      const r = await fetch(`/api/deck/${jobId}/set-commander`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ card: newCmd }),
+      })
+      if (r.ok) {
+        const updated = await r.json()
+        const off = updated.off_identity || []
+        setCmdMsg({ ok: true, text: `${newCmd} is now the commander; ${old} is in the 99.`
+          + (off.length ? ` ${off.length} card${off.length === 1 ? ' is' : 's are'} outside its colour identity: ${off.slice(0, 6).join(', ')}${off.length > 6 ? '…' : ''}.` : '')
+          + ' Re-run Measure and Advise for the new list.' })
+        setNewCmd('')
+        onChanged?.(updated)
+      } else {
+        let d = `HTTP ${r.status}`
+        try { d = (await r.json()).detail || d } catch { /* keep status */ }
+        setCmdMsg({ ok: false, text: d })
+      }
+    } catch {
+      setCmdMsg({ ok: false, text: 'Server unreachable' })
+    }
+    setCmdBusy(false)
+  }
 
   // Scryfall typeahead (debounced); same endpoint the collection add box uses.
   useEffect(() => {
@@ -78,6 +120,40 @@ export default function EditDeckPanel({ deck, jobId, onChanged }) {
         Checked for colour identity, singleton and the ban list. The new card shows its real art until you regenerate it.
       </div>
       {msg && <div style={{ fontSize: 12, marginTop: 6, color: msg.ok ? '#86efac' : '#f87171' }}>{msg.text}</div>}
+
+      <div style={{ borderTop: '1px solid #292524', marginTop: 12, paddingTop: 10 }}>
+        <div style={{ fontSize: 12.5, fontWeight: 700, color: '#d6d3d1', marginBottom: 6 }}>
+          👑 Change commander
+        </div>
+        {zone.size > 0 ? (
+          <div style={{ fontSize: 11.5, color: '#78716c' }}>
+            This deck has partner commanders; switching one of a pair isn't supported yet.
+          </div>
+        ) : eligible.length === 0 ? (
+          <div style={{ fontSize: 11.5, color: '#78716c' }}>
+            No other card in the 99 can be a commander (it needs to be a legendary creature or
+            say it can be your commander).
+          </div>
+        ) : (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+            <span style={{ fontSize: 12, color: '#a8a29e' }}>
+              {deck?.commander?.original_name} →
+            </span>
+            <select value={newCmd} onChange={e => setNewCmd(e.target.value)} style={field}
+                    aria-label="New commander">
+              <option value="">Choose a legend from the 99…</option>
+              {eligible.map(n => <option key={n} value={n}>{n}</option>)}
+            </select>
+            <button onClick={switchCommander} disabled={!newCmd || cmdBusy} style={{
+              padding: '7px 14px', borderRadius: 7, fontSize: 12, fontFamily: 'inherit',
+              cursor: (!newCmd || cmdBusy) ? 'default' : 'pointer',
+              border: '1px solid #ca8a04', background: '#422006', color: '#fde047',
+              opacity: (!newCmd || cmdBusy) ? 0.5 : 1,
+            }}>{cmdBusy ? 'Switching…' : 'Make commander'}</button>
+          </div>
+        )}
+        {cmdMsg && <div style={{ fontSize: 12, marginTop: 6, color: cmdMsg.ok ? '#86efac' : '#f87171' }}>{cmdMsg.text}</div>}
+      </div>
     </div>
   )
 }

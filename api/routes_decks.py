@@ -356,6 +356,96 @@ def set_stated_bracket(job_id: str, req: StatedBracketRequest):
     return {"job_id": job_id, "stated_bracket": req.stated_bracket}
 
 
+class SetCommanderRequest(BaseModel):
+    card: str = Field(min_length=1, max_length=200)   # a card already in the 99
+
+
+@router.post("/api/deck/{job_id}/set-commander")
+def set_commander(job_id: str, req: SetCommanderRequest):
+    """Make a card from the 99 the commander; the old commander takes its slot in the 99.
+
+    Both cards move as they are (themed name, art, render key), so nothing is re-themed or
+    re-rendered. The new commander must be able to lead a deck on its own (CR 903.3,
+    `commander_analysis.is_commander_eligible`: a legendary creature, or a card that says it
+    "can be your commander"). Cards outside its colour identity are NOT removed -- the switch
+    is the player's call -- they come back as `off_identity` and the legality block flags
+    them. Partner decks are refused for now: which half to replace is a choice this route
+    does not guess. Everything measured from the old list is dropped (last measure, cached
+    swap searches); the stats are recomputed."""
+    _require_job_id(job_id)
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        _jobs[job_id] = disk
+        job = disk
+    cards = job.get("deck") or []
+    if not cards or not job.get("commander"):
+        raise HTTPException(400, "This build has no commander and 99 to switch between.")
+    if [n for n in (job.get("partners") or []) if n]:
+        raise HTTPException(400, "This deck has partner commanders; switching one of a pair "
+                                 "isn't supported yet.")
+
+    want = req.card.strip().casefold()
+    idx = next((i for i, c in enumerate(cards)
+                if (c.get("original_name") or "").casefold() == want), None)
+    if idx is None:
+        raise HTTPException(400, f"'{req.card}' is not in this deck's 99.")
+    from api.cards import _stored_card_to_raw
+    new_cmd = cards[idx]
+    if not commander_analysis.is_commander_eligible(_stored_card_to_raw(new_cmd)):
+        raise HTTPException(400, f"'{new_cmd.get('original_name')}' can't be a commander: it "
+                                 "must be a legendary creature or say it can be your commander.")
+
+    old_cmd = job["commander"]
+    entry = dict(new_cmd)
+    if (entry.get("quantity") or 1) > 1:        # never true for a legend; kept honest anyway
+        new_cmd["quantity"] = int(new_cmd["quantity"]) - 1
+        entry["quantity"] = 1
+    else:
+        cards.pop(idx)
+    old_entry = dict(old_cmd)
+    old_entry["quantity"] = 1
+    cards.insert(idx, old_entry)
+    job["commander"] = entry
+
+    identity = set(entry.get("colors") or [])
+    off_identity = sorted({c.get("original_name") for c in cards
+                           if not set(c.get("colors") or []) <= identity
+                           and c.get("original_name")})
+
+    from api.routes_strength import _recompute_stats
+    job["stats"] = _recompute_stats(job, cards)
+    record = {"from": old_cmd.get("original_name"), "to": entry.get("original_name"),
+              "date": time.strftime("%Y-%m-%dT%H:%M:%S")}
+    job.setdefault("commander_switches", []).append(record)
+    # the deck page keys its measured panels on swap_count: an edit is an edit
+    job["swap_count"] = int(job.get("swap_count") or 0) + 1
+    stale = ("last_measure", "advice_cache", "breakdown", "matchups")
+    for key in stale:
+        job.pop(key, None)
+
+    path = state.RENDER_DIR / job_id / "deck.json"
+    try:
+        if path.exists():
+            disk = json.loads(path.read_text(encoding="utf-8"))
+            disk["commander"] = entry
+            disk["deck"] = cards
+            disk["stats"] = job["stats"]
+            disk.setdefault("commander_switches", []).append(record)
+            disk["swap_count"] = job["swap_count"]
+            for key in stale:
+                disk.pop(key, None)
+            path.write_text(json.dumps(disk), encoding="utf-8")
+    except Exception as e:                       # noqa: BLE001
+        print(f"  [set-commander] could not persist: {e}")
+
+    out = _serializable_job(job)
+    out["off_identity"] = off_identity
+    return out
+
+
 @router.post("/api/deck/{job_id}/duplicate")
 async def duplicate_deck(job_id: str):
     """
