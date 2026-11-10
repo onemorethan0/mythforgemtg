@@ -1072,12 +1072,30 @@ def tool_get_measured_swaps(ctx: MentorContext, axis: str) -> ToolResult:
             None,
         )
     if entry is None:
+        # An auto search that fell back to other weak axes (advise(fallback_axes=...)) carries
+        # swaps for several axes, each naming its own: answer from the ones for THIS axis.
+        entry = next(
+            (e for e in advice.values()
+             if isinstance(e, dict) and isinstance(e.get("result"), dict)
+             and any(isinstance(s, dict) and s.get("axis") == axis
+                     for s in e["result"].get("suggestions") or [])),
+            None,
+        )
+    if entry is None:
         return ToolResult(data={
             "available": False, "axis": axis,
             "message": f"No full swap search has been run for {axis} yet -- run Advise ({axis}) "
                        "on the deck page; it takes a few minutes.",
         })
-    result = _swap_result(entry["result"])
+    res = entry["result"]
+    sugg = res.get("suggestions") or []
+    if any(isinstance(s, dict) and s.get("axis") for s in sugg):
+        # mixed-axis result: keep only this axis's swaps, and read its baseline from them
+        mine = [s for s in sugg if isinstance(s, dict) and s.get("axis", res.get("axis")) == axis]
+        res = {**res, "suggestions": mine, "axis": axis,
+               "axis_label": (mine[0].get("axis_label") if mine else res.get("axis_label")),
+               "baseline": (mine[0].get("before") if mine else res.get("baseline"))}
+    result = _swap_result(res)
     data = dict(result.data)
     data["available"] = True
     data["source"] = "full_search"

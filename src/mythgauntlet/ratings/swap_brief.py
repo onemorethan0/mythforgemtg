@@ -120,6 +120,11 @@ class CutBrief:
     within_role: float               # how strongly this card serves the role
     protected: bool                  # roleless: never redundant
     redundancy_backed: bool          # False -> there was no redundancy to find
+    # The same role in CARDS (redundancy.role_card_counts vs card_targets_for): what a
+    # player can count. role_supply/role_target are strength units -- narrated as cards they
+    # read "30.0 counterspell slots against 3" for a deck running 10 (2026-11-10).
+    role_cards: int = 0
+    role_card_target: int = 0
 
 
 @dataclass(frozen=True)
@@ -167,6 +172,7 @@ class SwapBrief:
             round(self.before, 1), round(self.after, 1), round(abs(self.delta), 1),
             float(self.add.mana_value), float(self.cut.mana_value),
             round(self.cut.role_supply, 1), float(self.cut.role_target),
+            float(self.cut.role_cards), float(self.cut.role_card_target),
             round(self.cut.oversupply, 1), round(self.cut.within_role, 1),
         }
         for value in (*self.add.functions.values(), *self.cut.functions.values()):
@@ -222,6 +228,9 @@ def build_swap_brief(
     targets = redundancy.targets_for(themes)
     supply = redundancy.role_supply(resolved)
     score = redundancy.score_card(cut, supply, targets)
+    identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
+    card_counts = redundancy.role_card_counts(resolved)
+    card_targets = redundancy.card_targets_for(themes, color_identity=identity or None)
 
     subs = _subtypes(add)
     tribes = getattr(wants, "tribes", set()) or set()
@@ -249,6 +258,8 @@ def build_swap_brief(
         within_role=round(score.within_role, 2),
         protected=score.protected,
         redundancy_backed=score.oversupply > 0.0,
+        role_cards=int(card_counts.get(score.role, 0)) if score.role else 0,
+        role_card_target=int(card_targets.get(score.role, 0)) if score.role else 0,
     )
     commander = resolved.commanders[0].name if resolved.commanders else None
     return SwapBrief(

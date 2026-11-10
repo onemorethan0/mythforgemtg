@@ -225,8 +225,10 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
             # MEASURED 2026-08-26 at this exact config against a real 99-card deck with
             # ComfyUI + llama-swap warm-but-idle: 583s (96 analyses, ~6s/analysis at
             # runs=300). `_gauntlet_advise` now runs off the request thread (see
-            # `advise_deck`'s docstring), so 900s just needs real margin over that
-            # measurement, not to double as a UI-responsiveness budget.
+            # `advise_deck`'s docstring), so the timeout just needs real margin over that
+            # measurement. Raised 900 -> 1500 s on 2026-11-10: the multi-axis auto search
+            # (fallback_axes, plus the extra-mechanics goldfish) measured 648-704 s on the
+            # owner's decks, too close to 900. It is not a UI-responsiveness budget.
             "max_eval": 16,
             "cut_pool": 6,
         }
@@ -234,10 +236,16 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
             payload["themes"] = list(themes)
         if axis:
             payload["axis"] = axis
+        else:
+            # Auto: the weakest axis first, then the next two. Measured 2026-11-09 on the owner's
+            # Y'shtola deck: its weakest axis (ceiling) is fixed by the commander + Aura plan, so
+            # a ceiling-only search ran 6 minutes and found nothing while resilience swaps cleared
+            # their floor by 3x. Same re-simulations, so the same time budget.
+            payload["fallback_axes"] = 3
         lift = edhrec_lift.lift_map((commander or {}).get("name") or "")
         if lift:
             payload["lift"] = lift
-        resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=900)
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/advise", json=payload, timeout=1500)
         if resp.status_code == 400:
             try:
                 return {"error": resp.json().get("detail", "advise failed")}
@@ -249,8 +257,8 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
     except requests.Timeout:
         # Reachable but slower than the budget — saying "unreachable" here sent the
         # 2026-10-23 investigation after the wrong process (the cause was sim cost).
-        print("  [advise] MythGauntlet /advise timed out after 900s")
-        return {"error": "The upgrade search took longer than 15 minutes and was stopped. "
+        print("  [advise] MythGauntlet /advise timed out after 1500s")
+        return {"error": "The upgrade search took longer than 25 minutes and was stopped. "
                          "The strength engine is running but overloaded — try again, or pick "
                          "a single target axis."}
     except Exception as e:

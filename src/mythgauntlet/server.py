@@ -117,6 +117,14 @@ class AdviseRequest(BaseModel):
     turns: int = Field(default=DEFAULT_ANALYZE_TURNS, ge=1, le=30)
     top: int = Field(default=5, ge=1, le=20)
     max_eval: int = Field(default=8, ge=1, le=40)
+    fallback_axes: int = Field(
+        default=0, ge=0, le=6,
+        description=(
+            "auto mode (axis None) only: also accept swaps on the next-weakest profile axes, up "
+            "to this many axes in all. Every re-simulation measures every axis, so this costs no "
+            "extra sims; each suggestion names its own axis. 0 = the weakest axis alone."
+        ),
+    )
     min_delta: float = Field(
         default=1.0, ge=0.0, le=50.0,
         description=(
@@ -793,6 +801,7 @@ def create_app(
             resolved, cfg, store, candidates,
             axis=req.axis, top=req.top, max_eval=req.max_eval, cut_pool=req.cut_pool,
             min_delta=req.min_delta, themes=req.themes, lift=req.lift or None,
+            fallback_axes=req.fallback_axes,
         )
         return {
             "engine_version": __version__,
@@ -805,12 +814,17 @@ def create_app(
             "cut_pool": report.cut_pool,
             "cut_strategy": report.cut_strategy,
             "min_delta": report.min_delta,
+            "searched_axes": report.searched_axes,
+            "searched_axis_labels": [advisor.AXES[ax][1] for ax in report.searched_axes],
             "candidates_that_fit": len(candidates),
             "collection_source": source,
             "suggestions": [
                 {
                     "add": s.add,
                     "cut": s.cut,
+                    # the axis THIS swap improves (before/after are on it)
+                    "axis": s.axis or report.axis,
+                    "axis_label": s.axis_label or report.axis_label,
                     "before": round(s.before, 1),
                     "after": round(s.after, 1),
                     "delta": round(s.delta, 1),

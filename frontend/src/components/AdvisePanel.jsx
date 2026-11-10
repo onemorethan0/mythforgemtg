@@ -189,7 +189,9 @@ export default function AdvisePanel({ jobId, onApplied }) {
               </span>
             </div>
             <div style={{ fontSize: 11.5, color: '#a8a29e', margin: '6px 0' }}>
-              Target: {result.axis_label} — deck baseline {Math.round(result.baseline)}/100
+              {(result.searched_axis_labels || []).length > 1
+                ? <>Searched your weakest axes: {result.searched_axis_labels.join(', ')} — each swap names the one it improves</>
+                : <>Target: {result.axis_label} — deck baseline {Math.round(result.baseline)}/100</>}
             </div>
             <div style={{ fontSize: 11, color: '#78716c', marginBottom: 8 }}>
               Each row: <span style={{ color: '#fca5a5' }}>cut ✕</span> → <span style={{ color: '#86efac' }}>add ✓</span>, with the measured axis gain.
@@ -221,6 +223,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
                   </span>
                   <span style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
                     <span style={{ fontSize: 11.5, color: '#a8a29e' }}>
+                      {(result.searched_axis_labels || []).length > 1 && s.axis_label ? `${s.axis_label} ` : ''}
                       {Math.round(s.before)} → {Math.round(s.after)}
                     </span>
                     <span style={{
@@ -259,7 +262,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
                  {s.add_value != null && s.cut_value != null && (
                    <div style={{ fontSize: 10.5, color: '#78716c', marginTop: 2, paddingLeft: 2 }}>
                      {s.add} alone: {s.add_value >= 0 ? '+' : ''}{s.add_value} · {s.cut} was
-                     worth {s.cut_value >= 0 ? '+' : ''}{s.cut_value} ({result.axis_label})
+                     worth {s.cut_value >= 0 ? '+' : ''}{s.cut_value} ({s.axis_label || result.axis_label})
                    </div>
                  )}
                  {/* What the swap gives up on OTHER axes. The engine only reports swaps that
@@ -293,7 +296,9 @@ export default function AdvisePanel({ jobId, onApplied }) {
               ))
             ) : (
               <div style={{ fontSize: 12, color: '#a8a29e' }}>
-                No owned card improved {result.axis_label} by at least{' '}
+                No owned card improved {(result.searched_axis_labels || []).length > 1
+                  ? result.searched_axis_labels.join(', ').replace(/, ([^,]*)$/, ' or $1')
+                  : result.axis_label} by at least{' '}
                 {(result.min_delta ?? 1).toFixed(1)} pts — evaluated {result.evaluated} of{' '}
                 {result.candidates_that_fit} that fit this deck's colors.
                 <div style={{ fontSize: 11, color: '#78716c', marginTop: 4 }}>

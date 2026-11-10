@@ -74,3 +74,22 @@ def test_weak_card_question_leads_with_the_measured_list():
     # nothing measured as weak is said, not guessed
     trace = [ToolCallRecord("get_card_verdicts", {}, {"found": True, "strong": [], "weak": []})]
     assert chat._verdict_paragraph(q, trace, "x").startswith("No card in the deck measured as weak.")
+
+
+def test_measured_swaps_reads_only_its_own_axis_from_a_mixed_auto_search():
+    """A fallback auto search carries swaps for several axes; the mentor asked about clock must
+    see only the clock swap, on the clock baseline, never the resilience one."""
+    from mythgauntlet.mentor import tools
+    result = {"axis": "ceiling", "axis_label": "Ceiling", "baseline": 31.0, "evaluated": 16,
+              "min_delta": 1.6, "suggestions": [
+                  {"add": "Flusterstorm", "cut": "Controvert", "axis": "resilience",
+                   "axis_label": "Resilience", "before": 61.0, "after": 67.0, "delta": 6.0,
+                   "brief": None},
+                  {"add": "Skullclamp", "cut": "Rewind", "axis": "clock", "axis_label": "Clock",
+                   "before": 24.4, "after": 26.0, "delta": 1.6, "brief": None}]}
+    ctx = SimpleNamespace(advice={"auto": {"result": result, "computed_at": "now"}})
+    clock = tools.tool_get_measured_swaps(ctx, "clock").data
+    assert clock["available"] and [s["add"] for s in clock["suggestions"]] == ["Skullclamp"]
+    assert clock["axis"] == "clock" and clock["baseline"] == 24.4
+    ceiling = tools.tool_get_measured_swaps(ctx, "ceiling").data
+    assert ceiling["available"] and ceiling["improving_swap_found"] is False

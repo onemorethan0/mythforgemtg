@@ -387,6 +387,10 @@ class SwapSuggestion:
     # Off-target axes this swap MEANINGFULLY lowers ({axis: delta < 0}), past each axis's
     # noise floor — what the user gives up elsewhere to buy the target gain.
     costs: dict[str, float] = field(default_factory=dict)
+    # The axis THIS swap improves (before/after are on it). The report's target unless an auto
+    # search fell back to another weak axis (`advise(fallback_axes=...)`).
+    axis: str | None = None
+    axis_label: str | None = None
 
     @property
     def delta(self) -> float:
@@ -405,6 +409,8 @@ class AdviceReport:
     cut_pool: int = 1          # how many cut candidates each add was tested against
     min_delta: float = 0.0     # gain floor a swap had to clear to be reported
     cut_strategy: str = CUT_REDUNDANT   # how that cut pool was chosen
+    # Every axis the search accepted a swap on, weakest first ([axis] unless fallback_axes).
+    searched_axes: list[str] = field(default_factory=list)
 
 
 def _cut_candidates(
@@ -654,6 +660,7 @@ def advise(
     themes: Sequence[str] = (),
     lift: dict[str, float] | None = None,
     lens: CommanderLens | None = None,
+    fallback_axes: int = 0,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -702,6 +709,15 @@ def advise(
     otherwise fall straight through to least-played. Omit it for the pre-existing ordering;
     like `themes`, this function does not fetch it - a caller builds it from
     `mythgauntlet.data.edhrec` and passes it in.
+
+    `fallback_axes` (auto mode only, axis=None): also accept swaps on the next-weakest
+    profile axes, up to this many axes in all. Every re-simulation measures EVERY axis, so it
+    costs no extra sims; the candidate budget is shared round-robin across the axes' priors.
+    Found 2026-11-09 on the owner's Y'shtola deck: its weakest axis (ceiling) is set by the
+    commander + Aura plan and no owned card moves it past the noise floor, so a 6-minute
+    search returned nothing while resilience swaps measured +5 against a 1.6 floor. Each
+    suggestion names its own axis; the same noise floor and whole-deck net gate apply. 0 (the
+    default) is the original single-axis search, byte-identical.
     """
     if axis is not None and axis not in AXES:
         raise ValueError(f"unknown axis '{axis}'; choose one of: {', '.join(AXES)}")
@@ -722,7 +738,17 @@ def advise(
     # Never report a gain smaller than the axis's own run-to-run spread, whatever the
     # caller asked for. A caller may raise the bar, not lower it below the noise.
     effective_delta = max(min_delta, _noise_floor(target, cfg.runs))
-    need_res = target == "resilience"
+    searched = [target]
+    if axis is None and fallback_axes > 1:
+        # Resilience is never a FALLBACK: reading it needs the paired wipe pass on every
+        # re-simulation, which doubled a Forge search (Borg Queen 287 s -> 682 s; Y'shtola past
+        # the 900 s route timeout, 2026-11-09). It is still searched when it IS the weakest.
+        weak_first = sorted((ax for ax in PROFILE_AXES if ax != "resilience"),
+                            key=lambda ax: axis_score(baseline, ax))
+        searched += [ax for ax in weak_first if ax != target][:fallback_axes - 1]
+    floors = {ax: max(min_delta, _noise_floor(ax, cfg.runs)) for ax in searched}
+    base_scores = {ax: axis_score(baseline, ax) for ax in searched}
+    need_res = "resilience" in searched
     base_score = axis_score(baseline, target)
 
     if lens is None:
@@ -744,18 +770,28 @@ def advise(
         # spending the eval budget, so we re-simulate the cards most likely to move the
         # axis that also fit the deck's plan (e.g. Kaalia's cheatable Angels/Demons/Dragons).
         wants = commander_wants(resolved.commanders)
-        pool = _prioritize(eligible, target, wants)[:max_eval]
+        if len(searched) == 1:
+            pool = _prioritize(eligible, target, wants)[:max_eval]
+        else:                           # round-robin over each searched axis's prior
+            ranked = [_prioritize(eligible, ax, wants) for ax in searched]
+            pool, seen_add = [], set()
+            for i in range(len(eligible)):
+                for lst in ranked:
+                    if i < len(lst) and lst[i].name not in seen_add and len(pool) < max_eval:
+                        seen_add.add(lst[i].name)
+                        pool.append(lst[i])
+                if len(pool) >= max_eval:
+                    break
         # Evaluate every (add, cut) pairing, then choose a NON-OVERLAPPING package:
         # distinct adds AND distinct cuts. Without this, many adds independently pick the
         # same single weakest card as their best cut, so the list becomes "8 different
         # replacements for one slot" — false choice, since you can only swap that slot
         # once. A greedy highest-gain-first assignment yields a set of swaps you could
         # actually make together.
-        reasons: dict[str, str] = {}
-        evals: list[tuple[float, float, Card, Card, float, DeckAnalysis]] = []
+        reasons: dict[tuple[str, str], str] = {}
+        evals: list[tuple[float, float, Card, Card, float, DeckAnalysis, str]] = []
         for add in pool:
             evaluated += 1
-            reasons[add.name] = _explain(add, target, wants)
             for cut in cuts:
                 a = analyze_deck(
                     _swap_variant(resolved, cut, add), cfg, store,
@@ -763,20 +799,23 @@ def advise(
                     run_resilience=need_res,
                 )
                 analyses += 1
-                after = axis_score(a, target)
                 # Require a MEANINGFUL gain, not just a positive one: on a 0-100 axis a
                 # +0.1 swap is sim noise, and padding the list with noise is what made the
-                # advisor feel useless ("5 suggestions, 4 of them +0.1"). `effective_delta`
-                # additionally refuses to go below the target axis's own measured
-                # seed-to-seed spread — see _AXIS_NOISE_FLOOR.
-                if after - base_score < effective_delta:
+                # advisor feel useless ("5 suggestions, 4 of them +0.1"). Each floor
+                # additionally refuses to go below that axis's own measured seed-to-seed
+                # spread — see _AXIS_NOISE_FLOOR. The target axis wins when it qualifies;
+                # otherwise the fallback axis it beats by the most floors.
+                gains = {ax: axis_score(a, ax) - base_scores[ax] for ax in searched}
+                ok = [ax for ax in searched if gains[ax] >= floors[ax]]
+                if not ok:
                     continue
+                ax = target if target in ok else max(ok, key=lambda x: gains[x] / floors[x])
                 # ...AND it must leave the deck better OVERALL. A target gain bought with a
                 # bigger loss elsewhere (in units of each axis's spread among real decks) is
                 # a worse deck, not an upgrade.
-                net = _net(_whole_deck_moves(baseline, a, target, cfg.runs))
+                net = _net(_whole_deck_moves(baseline, a, ax, cfg.runs))
                 if net > 0:
-                    evals.append((net, after - base_score, add, cut, after, a))
+                    evals.append((net, gains[ax], add, cut, axis_score(a, ax), a, ax))
         # Greedy non-overlapping selection: best gain first, each add + each cut used once.
         #
         # TIES ARE THE NORM HERE, so the tiebreak is load-bearing. The Ceiling axis is
@@ -796,13 +835,13 @@ def advise(
         # each add's cut as the one hurting the target least — i.e. the best card of some
         # other axis. Target delta is the next key, so equal nets still favour the asked-for
         # axis, then the existing prior/popularity/name tiebreak.
-        _prior = {c.name: _axis_relevance(tags.analyze(c), target) + _commander_affinity(c, wants)
-                  for c in {e[2].name: e[2] for e in evals}.values()}
-        evals.sort(key=lambda e: (-round(e[0], 6), -e[1], -_prior.get(e[2].name, 0.0),
+        _prior = {(e[2].name, e[6]): _axis_relevance(tags.analyze(e[2]), e[6])
+                  + _commander_affinity(e[2], wants) for e in evals}
+        evals.sort(key=lambda e: (-round(e[0], 6), -e[1], -_prior.get((e[2].name, e[6]), 0.0),
                                   e[2].edhrec_rank or 10**9, e[2].name, e[3].name))
         used_add: set[str] = set()
         used_cut: set[str] = set()
-        for _net_score, _delta, add, cut, after, a in evals:
+        for _net_score, _delta, add, cut, after, a, ax in evals:
             if add.name in used_add or cut.name in used_cut:
                 continue
             if a.resilience is None:
@@ -815,53 +854,54 @@ def advise(
                     run_resilience=True,
                 )
                 analyses += 1
-                after = axis_score(a, target)
-            moves = _whole_deck_moves(baseline, a, target, cfg.runs)
+                after = axis_score(a, ax)
+            moves = _whole_deck_moves(baseline, a, ax, cfg.runs)
             net = _net(moves)
-            if net <= 0 or after - base_score < effective_delta:
+            if net <= 0 or after - base_scores[ax] < floors[ax]:
                 continue
             used_add.add(add.name)
             used_cut.add(cut.name)
-            reason = reasons[add.name]
+            reason = reasons.setdefault((add.name, ax), _explain(add, ax, wants))
             measured = _measured_phrase(baseline, a)
             if measured:
                 reason = f"{reason} Measured: {measured}."
             suggestions.append(SwapSuggestion(
-                add=add.name, cut=cut.name, before=base_score, after=after, reason=reason,
+                add=add.name, cut=cut.name, before=base_scores[ax], after=after, reason=reason,
                 brief=swap_brief.build_swap_brief(
                     resolved, add, cut,
-                    axis=target, axis_label=AXES[target][1],
-                    before=base_score, after=after, noise_floor=effective_delta,
+                    axis=ax, axis_label=AXES[ax][1],
+                    before=base_scores[ax], after=after, noise_floor=floors[ax],
                     themes=themes, wants=wants,
                     baseline_report=baseline.report, swap_report=a.report,
                 ),
                 axis_deltas={m.axis: m.delta for m in moves},
                 net=net,
                 costs={m.axis: m.delta for m in moves
-                       if m.axis != target and m.meaningful and m.delta < 0},
+                       if m.axis != ax and m.meaningful and m.delta < 0},
+                axis=ax, axis_label=AXES[ax][1],
             ))
             if len(suggestions) >= top:
                 break
         # One empty-slot run per DISTINCT cut that made the list (at most `top`), to split
         # each swap into what the add does and what the cut was doing on the target axis.
-        empty_scores: dict[str, float] = {}
+        empty_runs: dict[str, DeckAnalysis] = {}
         cut_cards = {c.name: c for c in cuts}
         for s in suggestions:
-            if s.cut not in empty_scores:
-                e = analyze_deck(
+            if s.cut not in empty_runs:
+                empty_runs[s.cut] = analyze_deck(
                     _swap_variant(resolved, cut_cards[s.cut], EMPTY_SLOT), cfg, store,
                     two_card_combos=two_card_combos, combos_checked=combos_checked,
                     run_resilience=need_res,
                 )
                 analyses += 1
-                empty_scores[s.cut] = axis_score(e, target)
-            s.add_value = s.after - empty_scores[s.cut]
-            s.cut_value = s.before - empty_scores[s.cut]
+            empty = axis_score(empty_runs[s.cut], s.axis or target)
+            s.add_value = s.after - empty
+            s.cut_value = s.before - empty
 
     return AdviceReport(
         axis=target, axis_label=AXES[target][1], baseline=base_score,
         cut=cuts[0].name if (cuts and cut_pool == 1) else None,
         suggestions=suggestions[:top], evaluated=evaluated,
         analyses=analyses, cut_pool=cut_pool, min_delta=effective_delta,
-        cut_strategy=cut_strategy,
+        cut_strategy=cut_strategy, searched_axes=list(searched),
     )

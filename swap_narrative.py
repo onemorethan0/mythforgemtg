@@ -249,6 +249,8 @@ def allowed_numbers(brief: dict) -> set[float]:
         float(cut.get("mana_value", 0)),
         round(float(cut.get("role_supply", 0.0)), 1),
         float(cut.get("role_target", 0)),
+        float(cut.get("role_cards", 0)),
+        float(cut.get("role_card_target", 0)),
         round(float(cut.get("oversupply", 0.0)), 1),
         round(float(cut.get("within_role", 0.0)), 1),
     }
@@ -396,8 +398,12 @@ def check(text: str, brief: dict, *, deck_card_names: set[str] | None = None) ->
     #    19. Narrow on purpose - it fires only when the text attributes the target figure to
     #    the deck, and only when the two actually differ.
     cut_card = brief.get("cut") or {}
-    supply = float(cut_card.get("role_supply") or 0.0)
-    target = float(cut_card.get("role_target") or 0.0)
+    if cut_card.get("role_card_target"):          # the brief speaks in cards
+        supply = float(cut_card.get("role_cards") or 0.0)
+        target = float(cut_card.get("role_card_target") or 0.0)
+    else:
+        supply = float(cut_card.get("role_supply") or 0.0)
+        target = float(cut_card.get("role_target") or 0.0)
     if cut_card.get("role") and abs(supply - target) > _NUMBER_TOLERANCE:
         for match in _NUMBER_RE.finditer(body):
             if abs(float(match.group()) - target) > _NUMBER_TOLERANCE:
@@ -593,12 +599,21 @@ def _facts_block(brief: dict) -> str:
         # that already has 14 ramp sources" and understated the deck's own ramp by 19. Every
         # number was real; one was bound to the wrong quantity. Three labelled rows are much
         # harder to transpose than three numbers in a sentence.
-        lines += [
-            f"  role {cut['role']}:",
-            f"    THIS deck supplies      {cut.get('role_supply')}",
-            f"    decks like it supply    {cut.get('role_target')}",
-            f"    so this deck is over by {cut.get('oversupply')}",
-        ]
+        if cut.get("role_card_target"):
+            # In CARDS when the brief has them: the strength table read as card counts
+            # ("30.0 counterspell slots, only needing 3" for a deck running 10).
+            lines += [
+                f"  role {cut['role']} (count of cards):",
+                f"    THIS deck runs          {cut.get('role_cards')} cards",
+                f"    decks like it run       {cut.get('role_card_target')} cards",
+            ]
+        else:
+            lines += [
+                f"  role {cut['role']}:",
+                f"    THIS deck supplies      {cut.get('role_supply')}",
+                f"    decks like it supply    {cut.get('role_target')}",
+                f"    so this deck is over by {cut.get('oversupply')}",
+            ]
     if cut.get("protected"):
         lines.append("  this card fills no role the engine can read")
     if not cut.get("redundancy_backed"):

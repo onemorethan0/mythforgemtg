@@ -595,3 +595,33 @@ def test_advise_checks_resilience_on_the_picks_it_did_not_sweep(
     rep = advisor.advise(deck, SimConfig(runs=150, turns=12, seed=1), store, [card],
                          axis="interaction", cut_pool=1)
     assert rep.suggestions == []
+
+
+def test_auto_advise_falls_back_to_the_next_weak_axis(deck, store, make_card, monkeypatch):
+    """2026-11-09, the owner's Y'shtola deck: its weakest axis (ceiling) is fixed by the
+    commander's plan, so an auto search found nothing although another weak axis had real
+    swaps. With fallback_axes the same re-simulations are read on the next-weakest axes too,
+    and each swap names the axis it improves; with the default 0 the search is unchanged."""
+    card = make_card("Steady Removal", mana_cost="{1}{G}", type_line="Instant",
+                     color_identity=("G",), oracle_text="Destroy target creature.")
+
+    def fake_analyze(resolved, cfg, store, **kw):
+        swapped = any(c.name == "Steady Removal" for c, _ in resolved.cards)
+        # ceiling (20) is the weakest axis and never moves; interaction (30) gains +6
+        return _fake_analysis(consistency=70.0, interaction=36.0 if swapped else 30.0)
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    cfg = SimConfig(runs=150, turns=12, seed=1)
+    plain = advisor.advise(deck, cfg, store, [card], cut_pool=1)
+    assert plain.axis == "ceiling" and plain.suggestions == []
+    assert plain.searched_axes == ["ceiling"]
+
+    wide = advisor.advise(deck, cfg, store, [card], cut_pool=1, fallback_axes=3)
+    assert wide.axis == "ceiling"                     # the report still names the weakest
+    assert wide.searched_axes[0] == "ceiling" and "interaction" in wide.searched_axes
+    (s,) = wide.suggestions
+    assert (s.add, s.axis, s.axis_label) == ("Steady Removal", "interaction", "Interaction")
+    assert (s.before, s.after) == (30.0, 36.0)        # on ITS axis, not ceiling
+    # an explicit axis never falls back
+    assert advisor.advise(deck, cfg, store, [card], axis="ceiling", cut_pool=1,
+                          fallback_axes=3).suggestions == []
