@@ -527,3 +527,55 @@ def test_creature_mana_grants_replicate_and_charge_engines(make_card):
     runs = simulate([(_land(make_card, "U"), 45), (drone, 44), (chamber, 10)], None, CFG)
     _sums(runs)
     assert _dealt(runs, "Chamber token") > 0
+
+
+def test_owner_deck_engines(make_card):
+    """2026-11-10, from the owner's saved decks: granted combat-damage triggers (Locutus of Borg),
+    'choose a creature type' cards read for the deck's own most common type, every-turn modal
+    engines (Black Market Connections), Helm of the Host, and a bought extra combat."""
+    assert R.granted_hit("Locutus of Borg", 'Lifelink\nArtifact creatures you control have '
+                         '"Whenever this creature deals combat damage to a player, create a 1/1 '
+                         'colorless Borg artifact creature token."') == R.GrantedHit(
+        "artifact_creatures", "token", 1, "colorless borg artifact")
+    assert R.chosen_type("Patchwork Banner", "As this artifact enters, choose a creature type.\n"
+                         "Creatures you control of the chosen type get +1/+1.\n{T}: Add one mana "
+                         "of any color.") == R.ChosenType("anthem", 1)
+    assert R.main_phase_modes("Black Market Connections", "At the beginning of your first main "
+                              "phase, choose one or more —\n• Sell Contraband — Create a Treasure "
+                              "token. You lose 1 life.\n• Buy Information — Draw a card. You lose "
+                              "2 life.\n• Hire a Mercenary — Create a 3/2 colorless Shapeshifter "
+                              "creature token with changeling. You lose 3 life.") == (
+        ("treasure", 1), ("draw", 1), ("token", 1, 3, "colorless shapeshifter"))
+    assert R.bought_combat("Aggravated Assault", "{3}{R}{R}: Untap all creatures you control. "
+                           "After this main phase, there is an additional combat phase followed "
+                           "by an additional main phase. Activate only as a sorcery.") == "{3}{r}{r}"
+
+    drone = make_card("Drone", mana_cost="{2}", type_line="Artifact Creature — Borg")
+    drone.power, drone.toughness = "2", "2"
+    locutus = make_card("Collective", mana_cost="{1}{U}", type_line="Artifact Creature — Borg",
+                        oracle_text='Artifact creatures you control have "Whenever this creature '
+                                    'deals combat damage to a player, create a 1/1 colorless '
+                                    'Borg artifact creature token."')
+    locutus.power, locutus.toughness = "1", "1"
+    w = simulate([(_land(make_card, "U"), 45), (drone, 44), (locutus, 10)], None, CFG)
+    _sums(w)
+    assert _dealt(w, "Collective token") > 0
+
+    elf = _creature(make_card, "Elf", "{1}{G}", 1, tl="Creature — Elf Warrior")
+    banner = make_card("Banner", mana_cost="{3}", type_line="Artifact",
+                       oracle_text="As this artifact enters, choose a creature type.\n"
+                                   "Creatures you control of the chosen type get +1/+1.")
+    dud = make_card("Banner", mana_cost="{3}", type_line="Artifact")
+    w = simulate([(_land(make_card), 45), (elf, 44), (banner, 10)], None, CFG)
+    wo = simulate([(_land(make_card), 45), (elf, 44), (dud, 10)], None, CFG)
+    _sums(w)
+    assert _dealt(w, "Elf") > _dealt(wo, "Elf")
+
+    bmc = make_card("Connections", mana_cost="{2}{B}", type_line="Enchantment",
+                    oracle_text="At the beginning of your first main phase, choose one or more "
+                                "—\n• Sell Contraband — Create a Treasure token. You lose 1 life.\n"
+                                "• Hire a Mercenary — Create a 3/2 colorless Shapeshifter "
+                                "creature token with changeling. You lose 3 life.")
+    runs = simulate([(_land(make_card, "B"), 45), (bmc, 54)], None, CFG)
+    _sums(runs)
+    assert _dealt(runs, "Connections token") > 0

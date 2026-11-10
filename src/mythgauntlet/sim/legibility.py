@@ -53,9 +53,17 @@ def line_is_read(card: Card, line: str) -> bool:
             or R0.team_haste(n, line) or R0.storm(n, line) or R0.pump_spell(n, tl, line)
             or R0.fabricate(n, line) or R0.living_weapon(n, line)
             or R0.combat_counter(n, line) or R0.typed_anthems(n, line)
-            or R0.creature_mana(n, line) or R0.replicate_grant(n, line)):
+            or R0.creature_mana(n, line) or R0.replicate_grant(n, line)
+            or R0.granted_hit(n, line) or R0.bought_combat(n, line)):
         return True
     full = card.oracle_text or ""
+    # whole-card shapes read as a unit: every line of them is read
+    if R0.chosen_type(n, full) and ("chosen type" in line or "choose a creature type" in line):
+        return True
+    if R0.main_phase_modes(n, full) and (line.startswith("•") or "choose one or more" in line):
+        return True
+    if R0.helm_copy(n, tl, full) and (line.startswith("equip ") or "copy of equipped" in line):
+        return True
     gear = R0.haste_gear(n, tl, full)
     if gear and (line.startswith("equip ") or "haste" in line):
         return True

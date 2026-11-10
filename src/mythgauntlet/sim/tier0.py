@@ -75,6 +75,8 @@ DEFAULT_ANALYZE_TURNS = 12
 COMMANDER_DAMAGE_LETHAL = 21
 # CR 704.5c: ten or more poison counters lose the game.
 POISON_LETHAL = 10
+# Creature entries a goldfish board holds at most (see make_tokens): lethal many times over.
+MAX_BODIES = 400
 
 
 def _rules_lines(oracle_text: str) -> list[str]:
@@ -892,6 +894,25 @@ def _run_one(
     # A deck with none of these never touches `poison`: every other figure is unchanged.
     everyone = deck + ([commander] if commander is not None else [])
     card_of = {sc.card.name: sc.card for sc in everyone}
+    _sub_count: dict[str, int] = {}
+    for _sc in everyone:
+        if _sc.card.is_creature:
+            for _w in (_sc.card.type_line or "").lower().partition("—")[2].split():
+                _sub_count[_w] = _sub_count.get(_w, 0) + 1
+    chosen_word = max(sorted(_sub_count), key=lambda w: _sub_count[w]) if _sub_count else None
+    chosen_ta = R0.TypedAnthem("subtype", chosen_word, 0, False) if chosen_word else None
+
+    def of_chosen(name: str) -> bool:
+        """Is this creature (card or token) of the deck's chosen type?"""
+        if chosen_ta is None:
+            return False
+        c = card_of.get(name)
+        if c is not None:
+            return R0.type_matches(chosen_ta, c.type_line or "", c.keywords or (), c.colors or ())
+        if name in token_desc:
+            tl, kws, cols = R0.token_typing(token_desc[name])
+            return R0.type_matches(chosen_ta, tl, kws, cols)
+        return False
     own_infect = {sc.card.name for sc in everyone
                   if sc.card.is_creature and _has_own_infect(sc.card.oracle_text or "")}
     toxic_of = {sc.card.name: n for sc in everyone if sc.card.is_creature
@@ -1100,7 +1121,15 @@ def _run_one(
         if getattr(mk, "desc", ""):
             token_desc[name] = mk.desc
         hasty = mk.haste or any(e[0] == "team_haste" for e in statics)
-        for _ in range(mk.count * 2 ** sum(1 for e in statics if e[0] == "doubler")):
+        n_new = mk.count * 2 ** sum(1 for e in statics if e[0] == "doubler")
+        # Tokens that make tokens (Locutus of Borg) roughly double the board each turn, and the
+        # goldfish plays on to the horizon after the kill -- thousands of entries by turn 12 and
+        # a 13 s test file took 6 minutes. After the kill a token can change no figure that
+        # matters, and past MAX_BODIES the board is lethal many times over: stop there.
+        if stats.kill_turn is not None:
+            n_new = 0
+        n_new = max(0, min(n_new, MAX_BODIES - len(atk_board) - len(atk_pending)))
+        for _ in range(n_new):
             entry = (name, mk.power, mk.power, False)
             if hasty or attacking:
                 board_power += mk.power
@@ -1210,6 +1239,7 @@ def _run_one(
         if sc.card.is_creature:
             fixed, per_x = R0.enters_counters(name, text)
             n = fixed + per_x * x + R0.fabricate(name, text)
+            n += sum(1 for e in statics if e[0] == "mimic" and e[1] != name) if of_chosen(name) else 0
             if n:
                 bonus += counters(n) * (2 if name in printed_ds else 1)
             elif per_x and sc.toughness_value == 0:
@@ -1244,6 +1274,27 @@ def _run_one(
             ce = R0.charge_engine(name, text)          # Maturation Chamber
             if ce is not None:
                 statics.append(("charge", name, sc.card.is_creature, {"eng": ce, "n": 0}))
+            gh = R0.granted_hit(name, text)            # Locutus of Borg class
+            if gh is not None:
+                statics.append(("granted_hit", name, sc.card.is_creature, gh))
+            ct = R0.chosen_type(name, text)            # Banners, Door of Destinies, Mimic
+            if ct is not None and chosen_word:
+                if ct.kind == "anthem":
+                    statics.append(("typed_anthem", name, sc.card.is_creature,
+                                    R0.TypedAnthem("subtype", chosen_word, ct.power, False)))
+                elif ct.kind == "door":
+                    statics.append(("door", name, sc.card.is_creature, {"n": 0}))
+                else:
+                    statics.append(("mimic", name, sc.card.is_creature, 1))
+            modes = R0.main_phase_modes(name, text)    # Black Market Connections
+            if modes:
+                statics.append(("modes", name, sc.card.is_creature, modes))
+            hc = R0.helm_copy(name, tl, text)          # Helm of the Host
+            if hc is not None:
+                statics.append(("helm", name, sc.card.is_creature, {"cost": hc, "on": False}))
+            bc = R0.bought_combat(name, text)          # Aggravated Assault
+            if bc is not None:
+                statics.append(("bought_combat", name, sc.card.is_creature, bc))
             cm = R0.creature_mana(name, text)          # Ambulatory Reactor class
             if cm is not None:
                 statics.append(("cmana", name, sc.card.is_creature, cm))
@@ -1408,8 +1459,11 @@ def _run_one(
         cast_this_turn.append(sc)
         extort_due += sum(e[3] for e in statics if e[0] == "extort")
         is_art = sc.card.has_type("Artifact")
+        chosen_spell = sc.card.is_creature and of_chosen(sc.card.name)
         for e in statics:
             if e[0] == "charge" and (e[3]["eng"].on == "any" or is_art):
+                e[3]["n"] += 1
+            elif e[0] == "door" and chosen_spell:
                 e[3]["n"] += 1
         fire_cast(sc)
         apply_effects(sc, is_commander, x)
@@ -1602,6 +1656,18 @@ def _run_one(
 
         for src, mk, _ in turn_engines:
             fire(src, mk)
+        for kind, src, _, modes in list(statics):
+            if kind != "modes":
+                continue
+            for mode in modes:
+                if mode[0] == "treasure":
+                    sources.extend(_Source(frozenset("WUBRG"), ready=True, treasure=True)
+                                   for _ in range(mode[1]))
+                elif mode[0] == "draw":
+                    draw(mode[1])
+                else:
+                    make_tokens(src, _TokenMaker("now", mode[1], mode[2], False, False,
+                                                 artifact="artifact" in mode[3], desc=mode[3]))
 
         if turn > 1 or cfg.draw_on_first_turn:
             draw(1)
@@ -1816,6 +1882,28 @@ def _run_one(
         # "At the beginning of combat on your turn, put N +1/+1 counters on target creature you
         # control" (R0.combat_counter): the commander if it can attack, else the strongest
         # able attacker, else the strongest summoning-sick creature.
+        for kind, src, _, st in list(statics):
+            if kind != "helm":
+                continue
+            pool = atk_board + atk_pending
+            if not pool:
+                continue
+            if not st["on"]:
+                cost = ManaCost.parse(st["cost"])
+                if not pay_spare(cost):
+                    continue
+                st["on"] = True
+                stats.mana_spent_by_turn[-1] += cost.mana_value
+            target = next((a for a in pool if a[3]), None) or max(pool, key=lambda a: a[1])
+            copy_name = f"{target[0]} (copy)"
+            card_of.setdefault(copy_name, card_of.get(target[0]))
+            if copy_name not in power_of:
+                power_of[copy_name] = power_of.get(target[0], 0)
+            pw = power_of[copy_name]
+            board_power += pw                        # the copy has haste: attacks this turn
+            board_power_rule += pw
+            board_creatures += 1
+            atk_board.append((copy_name, pw, pw, False))
         for kind, _src, _, v in list(statics):
             if kind != "combat_counter":
                 continue
@@ -1971,9 +2059,12 @@ def _run_one(
                     "artifact": n_artifacts(), "hand": len(hand)}[kind]
 
         typed = [(e[1], e[3]) for e in statics if e[0] == "typed_anthem"]
+        doors = sum(e[3]["n"] for e in statics if e[0] == "door")
         dyn = []
         for a in attackers:
             b = prowess_of.get(a[0], 0) * n_noncreature + exalt
+            if doors and of_chosen(a[0]):
+                b += doors
             c = card_of.get(a[0])         # typed lords; a token by its printed words
             if typed and (c is not None or a[0] in token_desc):
                 tl, kws, colors = ((c.type_line or "", c.keywords or (), c.colors or ())
@@ -1999,6 +2090,8 @@ def _run_one(
                 dyn[j] += s.bonus
         dyn = [b * (2 if attackers[j][0] in printed_ds else 1) for j, b in enumerate(dyn)]
         life_gained = 0
+        grants = [(e[1], e[3]) for e in statics if e[0] == "granted_hit"]
+        hits: list = []                 # (attacker index, name, grant source, GrantedHit)
         # Infect (CR 702.90b): an infect attacker's damage is poison, not life; toxic (CR
         # 702.180) adds its poison on top of the damage. The commander's -1/-1 counters
         # (Glistening Oil) shrink its power. A deck with no infect, toxic or counters takes
@@ -2043,6 +2136,12 @@ def _run_one(
                     life_gained += p + sum(x for _, x in shares)
             if toxic_of.get(name) and p + per_creature > 0:
                 credit_poison(name, toxic_of[name])
+            if grants and p + per_creature > 0:
+                c = card_of.get(name)
+                art = name in artifact_tokens or (c is not None and c.has_type("Artifact"))
+                for gsrc, g in grants:
+                    if g.scope == "creatures" or art:
+                        hits.append((j, name, gsrc, g))
         infect_bonus = min(extra, per_creature * infect_attackers)
         swing -= infect_bonus
         damage += swing
@@ -2059,12 +2158,31 @@ def _run_one(
                         credit(name, "combat", share)
                     given += share
         gain_life(life_gained)
+        # Granted "whenever this creature deals combat damage to a player" (Locutus of Borg,
+        # Supplementation Node, Co-Option Adjutant): one trigger per connecting attacker. Applied
+        # after the combat is measured, so an extra combat does not repeat them (an under-count).
+        for _j, name, gsrc, g in hits:
+            if g.effect == "token":
+                make_tokens(gsrc, _TokenMaker("now", 1, g.power, False, False,
+                                              artifact="artifact" in g.desc, desc=g.desc))
+            elif g.effect == "draw":
+                draw(1)
+            elif g.effect == "counter":
+                i = next((k for k, a in enumerate(atk_board) if a[0] == name), None)
+                if i is not None:
+                    grow(atk_board, i, counters(1))
         # Additional combat phases (CR 505.1a, R0.extra_combat): an extra-combat spell cast this
         # turn, or an attack trigger whose source is attacking, untaps the team and it all
         # happens again -- the same damage, poison and credits as the combat just measured
         # (pumps last until end of turn). Attack triggers do not fire again: an under-count.
         attacking_names = {a[0] for a in attackers}
         extra_combats = sum(1 for c in cast_this_turn if xcombat_of.get(c.card.name) == "spell")
+        for kind, _src, _, cost_str in list(statics):
+            if kind == "bought_combat" and attackers:
+                cost = ManaCost.parse(cost_str)
+                if pay_spare(cost):
+                    stats.mana_spent_by_turn[-1] += cost.mana_value
+                    extra_combats += 1
         extra_combats += sum(1 for n, k in xcombat_of.items()
                              if (k == "attack" and n in attacking_names)
                              or (k == "attack_any" and attackers

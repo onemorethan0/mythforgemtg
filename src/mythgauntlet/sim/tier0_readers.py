@@ -601,3 +601,122 @@ def combat_counter(name: str, oracle_text: str) -> int:
         if m:
             return _NUM[m.group(1)]
     return 0
+
+
+# --- the owner's decks, 2026-11-10 ---------------------------------------------------------------
+
+@dataclass(frozen=True)
+class GrantedHit:
+    """'<Scope> you control have "Whenever this creature deals combat damage to a player, ..."'
+    (Locutus of Borg, Supplementation Node, Co-Option Adjutant, Hive Mind Coprocessor)."""
+    scope: str          # creatures | artifact_creatures
+    effect: str         # token | counter | draw
+    power: int = 0      # token power
+    desc: str = ""      # token's printed words ("colorless borg artifact")
+
+
+@lru_cache(maxsize=8192)
+def granted_hit(name: str, oracle_text: str) -> GrantedHit | None:
+    for ln in _lines(name, oracle_text):
+        m = re.fullmatch(r"(creatures|artifact creatures) you control have \"whenever this creature "
+                         r"deals combat damage to a player, (.+?)\"\.?", ln)
+        if not m:
+            continue
+        scope = "creatures" if m.group(1) == "creatures" else "artifact_creatures"
+        eff = m.group(2)
+        t = re.fullmatch(r"create an? (\d+)/\d+ ([^.]*?)creature token\.", eff)
+        if t:
+            return GrantedHit(scope, "token", int(t.group(1)), t.group(2).strip())
+        if re.fullmatch(r"put a \+1/\+1 counter on it\.", eff):
+            return GrantedHit(scope, "counter")
+        if re.fullmatch(r"(?:you may pay \d+ life\. if you do, )?draw a card\.", eff):
+            return GrantedHit(scope, "draw")
+    return None
+
+
+@dataclass(frozen=True)
+class ChosenType:
+    """'As this enters, choose a creature type' cards, read for the deck's own most common type:
+    anthem (+N to that type), door (a charge counter per spell of that type cast, +1/+1 per
+    counter), mimic (each other creature of that type enters with an extra +1/+1 counter)."""
+    kind: str
+    power: int = 0
+
+
+@lru_cache(maxsize=8192)
+def chosen_type(name: str, oracle_text: str) -> ChosenType | None:
+    lines = _lines(name, oracle_text)
+    if not any(re.fullmatch(r"as (?:~|this [a-z]+) enters, choose a creature type\.", ln)
+               for ln in lines):
+        return None
+    for ln in lines:
+        m = re.fullmatch(r"creatures you control of the chosen type get \+(\d+)/\+\d+\.", ln)
+        if m:
+            return ChosenType("anthem", int(m.group(1)))
+        if re.fullmatch(r"creatures you control of the chosen type get \+1/\+1 for each charge "
+                        r"counter on (?:~|this artifact)\.", ln):
+            return ChosenType("door", 1)
+        if re.fullmatch(r"each other creature you control of the chosen type enters with an "
+                        r"additional \+1/\+1 counter on it\.", ln):
+            return ChosenType("mimic", 1)
+    return None
+
+
+@lru_cache(maxsize=8192)
+def main_phase_modes(name: str, oracle_text: str) -> tuple[tuple, ...]:
+    """'At the beginning of your (first main phase|upkeep), choose one or more --' with bullet
+    modes (Black Market Connections): every mode is chosen, every turn (life is no constraint in
+    a goldfish). Each read mode: ("treasure", n) | ("draw", n) | ("token", n, power, desc)."""
+    lines = _lines(name, oracle_text)
+    if not any(re.fullmatch(r"at the beginning of your (?:first main phase|upkeep), choose one or "
+                            r"more —", ln) for ln in lines):
+        return ()
+    out = []
+    for ln in lines:
+        if not ln.startswith("•"):
+            continue
+        body = re.sub(r"^•\s*(?:[a-z' ]+ — )?", "", ln)
+        m = re.fullmatch(r"create (a|an|one|two) treasure tokens?\. you lose \d+ life\.", body)
+        if m:
+            out.append(("treasure", _NUM[m.group(1)]))
+            continue
+        m = re.fullmatch(r"draw (a|one|two) cards?\. you lose \d+ life\.", body)
+        if m:
+            out.append(("draw", _NUM[m.group(1)]))
+            continue
+        m = re.fullmatch(r"create (a|an|one|two) (\d+)/\d+ ([^.]*?)creature tokens?(?: with "
+                         r"[a-z ]+)?\. you lose \d+ life\.", body)
+        if m:
+            out.append(("token", _NUM[m.group(1)], int(m.group(2)), m.group(3).strip()))
+    return tuple(out)
+
+
+@lru_cache(maxsize=8192)
+def helm_copy(name: str, type_line: str, oracle_text: str) -> str | None:
+    """Helm of the Host: 'At the beginning of combat on your turn, create a token that's a copy of
+    equipped creature, except the token isn't legendary. That token gains haste.' -> equip cost."""
+    if "equipment" not in (type_line or "").lower():
+        return None
+    lines = _lines(name, oracle_text)
+    if not any(re.fullmatch(r"at the beginning of combat on your turn, create a token that's a copy "
+                            r"of equipped creature, except the token isn't legendary\. that token "
+                            r"gains haste\.", ln) for ln in lines):
+        return None
+    for ln in lines:
+        m = re.fullmatch(r"equip ((?:\{(?:\d+|[wubrgc])\})+)", ln)
+        if m:
+            return m.group(1)
+    return None
+
+
+@lru_cache(maxsize=8192)
+def bought_combat(name: str, oracle_text: str) -> str | None:
+    """Aggravated Assault: '{cost}: Untap all creatures you control. After this main phase, there
+    is an additional combat phase ... Activate only as a sorcery.' -> the cost (once a turn)."""
+    for ln in _lines(name, oracle_text):
+        m = re.fullmatch(r"((?:\{(?:\d+|[wubrgc])\})+): untap all creatures you control\. after "
+                         r"this main phase, there is an additional combat phase followed by an "
+                         r"additional main phase\. activate only as a sorcery\.", ln)
+        if m:
+            return m.group(1)
+    return None
