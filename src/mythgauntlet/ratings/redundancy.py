@@ -31,7 +31,8 @@ point: under the old popularity rule the pet card was the FIRST cut.
 from __future__ import annotations
 
 from collections.abc import Iterable
-from dataclasses import dataclass
+import math
+from dataclasses import dataclass, replace
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
@@ -545,6 +546,32 @@ def _lift_key(card: Card, lift: dict[str, float] | None) -> float:
     return lift.get(_normalize_lift_name(card.name), 0.0)
 
 
+# A typed lord is on-plan when its type covers at least this many of the deck's creatures (and
+# this share of them). Calibrated on the owner's Borg Queen list (2026-11-09): Tempered Steel and
+# Locutus cover its artifact creatures, and the role model had ranked both as the deck's most
+# replaceable "finishers" -- Advise offered Locutus as the cut and the verdicts called Steel weak.
+PLAN_LORD_MIN = 6
+PLAN_LORD_SHARE = 0.25
+
+
+def plan_lords(resolved: ResolvedDeck) -> frozenset[str]:
+    """Typed lords (sim/tier0_readers.typed_anthems) whose type is a real share of the deck's
+    own creatures: plan cards, never offered as a redundant cut. A lord for a type the deck
+    barely plays is NOT protected -- that one really is a weak card here."""
+    from mythgauntlet.sim.tier0_readers import type_matches, typed_anthems
+    bodies = [c for c, n in resolved.cards for _ in range(n) if c.is_creature]
+    bodies += [c for c in resolved.commanders if c.is_creature]
+    need = max(PLAN_LORD_MIN, math.ceil(PLAN_LORD_SHARE * len(bodies)))
+    out = set()
+    for card, _n in resolved.cards:
+        for ta in typed_anthems(card.name, card.oracle_text or ""):
+            hits = sum(1 for c in bodies if not (ta.others and c.name == card.name)
+                       and type_matches(ta, c.type_line or "", c.keywords or ()))
+            if hits >= need:
+                out.add(card.name)
+    return frozenset(out)
+
+
 def rank_redundant(
     resolved: ResolvedDeck,
     k: int,
@@ -580,6 +607,9 @@ def rank_redundant(
             continue
         seen.add(card.name)
         scored.append(score_card(card, supply, targets, lens))
+    lords = plan_lords(resolved)
+    if lords:
+        scored = [replace(s, protected=True) if s.card.name in lords else s for s in scored]
 
     candidates = [s for s in scored if not s.protected]
     protected = [s for s in scored if s.protected]

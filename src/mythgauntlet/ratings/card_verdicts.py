@@ -205,8 +205,9 @@ def build(resolved: ResolvedDeck, stats: list[CardStat], *, lens=None, combo_pro
     counts = redundancy.role_card_counts(resolved, lens)
     card_targets = card_targets or redundancy.card_targets_for(None)
     scored = []
+    lords = redundancy.plan_lords(resolved)      # on-plan typed lords are never "redundant"
     for card, _ in cards:
-        if card.is_land or card.name in zone or card.name in named:
+        if card.is_land or card.name in zone or card.name in named or card.name in lords:
             continue
         sc = redundancy.score_card(card, supply, targets, lens)
         if (sc.oversupply > 0 and not sc.protected and sc.role

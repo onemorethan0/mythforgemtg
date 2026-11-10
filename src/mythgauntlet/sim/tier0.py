@@ -888,6 +888,7 @@ def _run_one(
     # print it; the commander also gains infect while an infect Aura is on it (`cmd_auras`).
     # A deck with none of these never touches `poison`: every other figure is unchanged.
     everyone = deck + ([commander] if commander is not None else [])
+    card_of = {sc.card.name: sc.card for sc in everyone}
     own_infect = {sc.card.name for sc in everyone
                   if sc.card.is_creature and _has_own_infect(sc.card.oracle_text or "")}
     toxic_of = {sc.card.name: n for sc in everyone if sc.card.is_creature
@@ -1159,6 +1160,8 @@ def _run_one(
                             ("combat_counter", R0.combat_counter(name, text))):
                 if v or (kind == "gain_drain" and v == 0):
                     statics.append((kind, name, sc.card.is_creature, v))
+            for ta in R0.typed_anthems(name, text):    # typed lords (Tempered Steel)
+                statics.append(("typed_anthem", name, sc.card.is_creature, ta))
             sources.extend(_Source(frozenset("WUBRG"), ready=True, treasure=True)
                            for _ in range(R0.one_shot_mana(name, text)))
             n_ramp, cols = R0.aura_ramp(name, tl, text)
@@ -1847,9 +1850,15 @@ def _run_one(
             return {"land": lands_count, "creature": n_bodies, "other_creature": n_bodies - 1,
                     "artifact": n_artifacts(), "hand": len(hand)}[kind]
 
+        typed = [(e[1], e[3]) for e in statics if e[0] == "typed_anthem"]
         dyn = []
         for a in attackers:
             b = prowess_of.get(a[0], 0) * n_noncreature + exalt
+            c = card_of.get(a[0])         # typed lords: a token's types are not tracked
+            if c is not None and typed:
+                b += sum(ta.power for src, ta in typed
+                         if not (ta.others and src == a[0])
+                         and R0.type_matches(ta, c.type_line or "", c.keywords or ()))
             v = varp_of.get(a[0])
             if v is not None:
                 b += v.per * max(0, var_count(v.kind))

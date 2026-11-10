@@ -340,6 +340,63 @@ def flashback_cost(name: str, type_line: str, oracle_text: str) -> str | None:
     return None
 
 
+# --- typed lords (2026-11-09 mentor review) ---------------------------------------------------
+
+@dataclass(frozen=True)
+class TypedAnthem:
+    """"<Type> creatures you control get +N/+M" / "Other <Types> you control get +N/+M": +power
+    to your attackers of that type. `kind` is "artifact" (the card type) or "subtype"."""
+    kind: str
+    word: str           # "artifact", or the subtype as printed, lower-case ("elves", "goblin")
+    power: int
+    others: bool        # "Other ..." -- the source itself is not buffed
+
+
+_NOT_A_TYPE = frozenset({"creatures", "creature", "tokens", "creature tokens", "nontoken",
+                         "nontoken creatures", "attacking", "blocking", "tapped", "untapped",
+                         "legendary", "white", "blue", "black", "red", "green", "colorless",
+                         "multicolored", "monocolored", "modified", "equipped", "enchanted"})
+
+
+@lru_cache(maxsize=8192)
+def typed_anthems(name: str, oracle_text: str) -> tuple[TypedAnthem, ...]:
+    """Type-restricted power anthems on a line of their own, read strictly: one type word, a
+    fixed +N, nothing after but an optional keyword grant. "Artifact creatures you control get
+    +2/+2" (Tempered Steel), "Other Elves you control get +1/+1", "Goblin creatures you control
+    get +1/+1". Two types ("Elves and Goblins"), colours, "for each", conditions and grants with
+    no power are not read. Generic "creatures you control" is parse_anthem's, not this."""
+    out = []
+    for ln in _lines(name, oracle_text):
+        m = re.fullmatch(r"(other )?([a-z'-]+)(?: creatures)? you control get \+(\d+)/[+-]\d+"
+                         r"(?: and have [a-z ,]+)?\.", ln)
+        if not m:
+            continue
+        word = m.group(2)
+        if word in _NOT_A_TYPE or int(m.group(3)) <= 0:
+            continue
+        if not ln.split(" you control")[0].endswith("creatures") and not word.endswith("s"):
+            continue                            # "Other Elf you control" is not a printed form
+        kind = "artifact" if word == "artifact" else "subtype"
+        out.append(TypedAnthem(kind, word, int(m.group(3)), bool(m.group(1))))
+    return tuple(out)
+
+
+def type_matches(anthem: TypedAnthem, type_line: str, keywords=()) -> bool:
+    """Whether a creature with this type line gets the typed anthem (changeling: every type)."""
+    tl = (type_line or "").lower()
+    main, _, subs = tl.partition("—")
+    if anthem.kind == "artifact":
+        return "artifact" in main
+    if any(k.lower() == "changeling" for k in (keywords or ())):
+        return True
+    w = anthem.word
+    negated = w.startswith("non-")              # Mikaeus: "Other non-Human creatures ..."
+    w = w[4:] if negated else w
+    cands = {w, w[:-1], w[:-2], w[:-3] + "f", w[:-3] + "fe"}   # goblins, foxes?, elves, knives
+    has = bool(cands & set(subs.split()))
+    return not has if negated else has
+
+
 # --- third sweep ------------------------------------------------------------------------------
 
 @lru_cache(maxsize=8192)

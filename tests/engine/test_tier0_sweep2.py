@@ -449,3 +449,33 @@ def test_commander_growth_survives_removal_bookkeeping(make_card):
         _sums(runs)
         assert all(r.final_board_power >= 0 for r in runs)
         assert all(min(r.board_power_by_turn) >= 0 for r in runs)
+
+
+def test_typed_lords_gold_and_in_play(make_card):
+    """Type-restricted anthems (2026-11-09 mentor review: Tempered Steel and Locutus read as
+    do-nothing cards in a Borg Queen deck, so Advise cut them and the verdicts called them weak)."""
+    (steel,) = R.typed_anthems("Tempered Steel", "Artifact creatures you control get +2/+2.")
+    assert (steel.kind, steel.power, steel.others) == ("artifact", 2, False)
+    assert R.type_matches(steel, "Artifact Creature — Construct")
+    assert not R.type_matches(steel, "Creature — Bear")
+    (champ,) = R.typed_anthems("Elvish Champion", "Other Elves you control get +1/+1 and have "
+                               "forestwalk.")
+    assert champ.others and R.type_matches(champ, "Creature — Elf Warrior")
+    assert R.type_matches(champ, "Creature — Shapeshifter", keywords=("Changeling",))
+    (mik,) = R.typed_anthems("Mikaeus, the Unhallowed", "Other non-Human creatures you control "
+                             "get +1/+1.")
+    assert R.type_matches(mik, "Creature — Zombie") and not R.type_matches(mik, "Creature — Human")
+    assert R.typed_anthems("Glorious Anthem", "Creatures you control get +1/+1.") == ()
+    assert R.typed_anthems("Balefire Liege", "Other red creatures you control get +1/+1.") == ()
+    assert R.typed_anthems("Wanderglyph", "Other artifact creatures you control get +2/+2 as long "
+                           "as you have the city's blessing.") == ()
+
+    golem = make_card("Golem", mana_cost="{2}", type_line="Artifact Creature — Golem")
+    golem.power, golem.toughness = "2", "2"
+    steel_c = make_card("Steel", mana_cost="{1}{W}{W}", type_line="Enchantment",
+                        oracle_text="Artifact creatures you control get +2/+2.")
+    dud = make_card("Steel", mana_cost="{1}{W}{W}", type_line="Enchantment")
+    w = simulate([(_land(make_card, "W"), 45), (golem, 44), (steel_c, 10)], None, CFG)
+    wo = simulate([(_land(make_card, "W"), 45), (golem, 44), (dud, 10)], None, CFG)
+    _sums(w)
+    assert _total(w) > _total(wo)
