@@ -117,6 +117,13 @@ class AdviseRequest(BaseModel):
     turns: int = Field(default=DEFAULT_ANALYZE_TURNS, ge=1, le=30)
     top: int = Field(default=5, ge=1, le=20)
     max_eval: int = Field(default=8, ge=1, le=40)
+    ablate_cuts: bool = Field(
+        default=True,
+        description=(
+            "never offer as a cut a card the paired drawn-games ablation shows the deck killing "
+            "measurably sooner with (ratings/card_ablation; ~1 s per candidate cut)"
+        ),
+    )
     fallback_axes: int = Field(
         default=0, ge=0, le=6,
         description=(
@@ -802,6 +809,7 @@ def create_app(
             axis=req.axis, top=req.top, max_eval=req.max_eval, cut_pool=req.cut_pool,
             min_delta=req.min_delta, themes=req.themes, lift=req.lift or None,
             fallback_axes=req.fallback_axes,
+            ablate_cuts=req.ablate_cuts,
         )
         return {
             "engine_version": __version__,

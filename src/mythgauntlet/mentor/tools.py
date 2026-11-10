@@ -1162,6 +1162,7 @@ def tool_suggest_role_swap(ctx: MentorContext, role: str | None = None) -> ToolR
         # three owned cards, not one: one add rarely clears a simulated axis's floor
         # (2026-11-10, draw swaps on the owner's decks); 6 paired sims, ~25 s at chat runs
         max_eval=3,
+        ablate_cuts=True,
     )
     axis = report.axis
     data = {**base, "axis": axis, "owned_cards_filling_role": report.adds_available,
@@ -1387,6 +1388,20 @@ def tool_assess_card(ctx: MentorContext, name: str, cut_pool: int = 2) -> ToolRe
 
 
 _VERDICT_CACHE: dict = {}
+_CARD_STATS_CACHE: dict = {}
+
+
+def _card_stats_for(ctx: MentorContext):
+    """Per-card goldfish stats (their own larger pass, ~9 s), cached per deck."""
+    from mythgauntlet.ratings.analysis import CARD_STATS_RUNS, compute_card_stats
+    key = _analysis_key(ctx)
+    hit = _CARD_STATS_CACHE.get(key)
+    if hit is None:
+        hit = compute_card_stats(ctx.resolved, ctx.cfg, CARD_STATS_RUNS)
+        _CARD_STATS_CACHE[key] = hit
+        while len(_CARD_STATS_CACHE) > _ANALYSIS_CACHE_MAX:
+            _CARD_STATS_CACHE.pop(next(iter(_CARD_STATS_CACHE)))
+    return hit
 
 
 def tool_get_card_verdicts(ctx: MentorContext) -> ToolResult:
@@ -1397,13 +1412,12 @@ def tool_get_card_verdicts(ctx: MentorContext) -> ToolResult:
     goldfish pass (`CARD_STATS_RUNS`), so the first call for a deck costs a few seconds;
     the result is cached with the deck's analysis key."""
     from mythgauntlet.ratings import card_verdicts
-    from mythgauntlet.ratings.analysis import (CARD_STATS_RUNS, compute_card_stats,
-                                               redundancy_card_targets, redundancy_targets)
+    from mythgauntlet.ratings.analysis import redundancy_card_targets, redundancy_targets
     key = _analysis_key(ctx)
     hit = _VERDICT_CACHE.get(key)
     if hit is None:
         analysis = _analysis_for(ctx)
-        stats = compute_card_stats(ctx.resolved, ctx.cfg, CARD_STATS_RUNS)
+        stats = _card_stats_for(ctx)
         identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
         hit = card_verdicts.build(
             ctx.resolved, stats, lens=_lens_for(ctx), combo_profile=analysis.combo_profile,

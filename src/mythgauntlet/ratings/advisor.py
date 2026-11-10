@@ -420,8 +420,9 @@ def _cut_candidates(
     themes: Sequence[str] = (),
     lift: dict[str, float] | None = None,
     lens: CommanderLens | None = None,
+    protect: frozenset[str] = frozenset(),
 ) -> list[Card]:
-    """The `k` cards to offer as cuts, per `strategy`.
+    """The `k` cards to offer as cuts, per `strategy`, never one named in `protect`.
 
     `redundant` asks what the deck has too MUCH of; `popularity` asks what is least played.
     They disagree exactly where it matters: a brew's unpopular pet card is `popularity`'s
@@ -437,11 +438,12 @@ def _cut_candidates(
     the pre-existing least-played tiebreak exactly as it was.
     """
     if strategy == CUT_POPULARITY:
-        return _weakest_cuts(resolved, k)
-    return redundancy.rank_redundant(
-        resolved, k, targets=redundancy.targets_for(themes), lift=lift,
+        return [c for c in _weakest_cuts(resolved, k + len(protect))
+                if c.name not in protect][:k]
+    return [c for c in redundancy.rank_redundant(
+        resolved, k + len(protect), targets=redundancy.targets_for(themes), lift=lift,
         lens=lens,
-    )
+    ) if c.name not in protect][:k]
 
 
 def _weakest_cuts(resolved: ResolvedDeck, k: int) -> list[Card]:
@@ -661,6 +663,8 @@ def advise(
     lift: dict[str, float] | None = None,
     lens: CommanderLens | None = None,
     fallback_axes: int = 0,
+    protect: frozenset[str] = frozenset(),
+    ablate_cuts: bool = False,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -755,7 +759,21 @@ def advise(
         # The baseline analysis's lens carries the sim context (X credit), so this agrees
         # with list_deck_cards / Deck Breakdown; the no-context lens is only a fallback.
         lens = getattr(baseline, "lens", None) or build_lens(resolved.commanders)
-    cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes, lift, lens)
+    # `protect`: cards never offered as a cut. `ablate_cuts`: of the top 2 x cut_pool, the cards
+    # the paired drawn-games ablation (ratings/card_ablation) shows the deck killing measurably
+    # sooner with go to the BACK of the pool -- a role count may call such a card spare, the
+    # measurement says it is doing work (2026-11-10: Ambulatory Reactor +0.25 turns, offered as
+    # "spare ramp"). Demoted, not barred: each swap is still judged on its own measured net, so a
+    # load-bearing card can be the right cut for a bigger add, but only when idle cards ran out.
+    # Off (the default) is the original pool.
+    if ablate_cuts:
+        from mythgauntlet.ratings.card_ablation import load_bearing
+        wide = _cut_candidates(resolved, 2 * cut_pool, cut_strategy, themes, lift, lens, protect)
+        busy = load_bearing(resolved, cfg, [c.name for c in wide])
+        cuts = ([c for c in wide if c.name not in busy]
+                + [c for c in wide if c.name in busy])[:cut_pool]
+    else:
+        cuts = _cut_candidates(resolved, cut_pool, cut_strategy, themes, lift, lens, protect)
     suggestions: list[SwapSuggestion] = []
     evaluated = 0
     analyses = 0

@@ -89,6 +89,7 @@ def role_cut_pool(
     applicable: set[str],
     strength_targets: dict[str, int] | None = None,
     lens: CommanderLens | None = None,
+    protect: frozenset[str] = frozenset(),
 ) -> list[CutCandidate]:
     """Nonland deck cards safe to cut for `role`, best first.
 
@@ -107,7 +108,7 @@ def role_cut_pool(
     seen: set[str] = set()
     flagged = lens.flagged(c for c, _ in resolved.cards) if lens is not None else set()
     for card, _qty in resolved.cards:
-        if card.is_land or card.name in seen or card.name in flagged:
+        if card.is_land or card.name in seen or card.name in flagged or card.name in protect:
             continue
         seen.add(card.name)
         roles = card_role_set(card, lens) & applicable
@@ -218,6 +219,8 @@ def role_swap(
     cut_pool: int = 2,
     min_delta: float = 1.0,
     lens: CommanderLens | None = None,
+    protect: frozenset[str] = frozenset(),
+    ablate_cuts: bool = False,
 ) -> RoleSwapReport:
     """Measure up to `max_eval` x `cut_pool` (add, cut) pairs for `role` and pick one.
 
@@ -231,7 +234,8 @@ def role_swap(
                             card_target=card_targets.get(role, 0), adds_available=0,
                             cuts_available=0, pairs_measured=0, swap=None)
     adds = role_add_pool(resolved, role, candidates, lens)
-    cuts = role_cut_pool(resolved, role, counts, card_targets, applicable, strength_targets, lens)
+    cuts = role_cut_pool(resolved, role, counts, card_targets, applicable, strength_targets, lens,
+                         protect)
     report.adds_available, report.cuts_available = len(adds), len(cuts)
     if not adds:
         report.reason = f"no owned, in-colour card outside the deck fills {role}"
@@ -240,6 +244,17 @@ def role_swap(
         report.reason = ("no role is over its card target with cards that fill only over-target "
                          "roles, so there is no card the role counts say is spare")
         return report
+    if ablate_cuts and cuts:
+        # never cut a card the paired drawn-games ablation shows the deck killing sooner with
+        # (ratings/card_ablation): "spare by role count" is not "doing nothing"
+        from mythgauntlet.ratings.card_ablation import load_bearing
+        keep = load_bearing(resolved, cfg, [c.card.name for c in cuts[:2 * max(1, cut_pool)]])
+        cuts = [c for c in cuts if c.card.name not in keep]
+        report.cuts_available = len(cuts)
+        if not cuts:
+            report.reason = ("every spare card the role counts offer is load-bearing: the deck "
+                             "kills measurably sooner with each of them")
+            return report
     cuts = cuts[:max(1, cut_pool)]
     adds = _order_adds(resolved, adds, axis, cuts[0].card)[:max(1, max_eval)]
     if baseline is None:
