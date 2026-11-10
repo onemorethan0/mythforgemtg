@@ -679,8 +679,34 @@ _ROLE_NUDGE_NARROW = (
     "with a target or a typical deck); a role that is not applicable is not a gap. The role table: ")
 
 
+def _prelookup_commanders(ctx, tool_trace, all_results, messages) -> None:
+    """Every turn starts with the deck's commander(s) looked up. Live 2026-11-09: a card question
+    ("does Dauthi Voidwalker synergise with my commander?") ran no deck-wide tool, so the model was
+    never told who the commander was and answered "I don't know who your commander is"; and when
+    it was handed the commander's name, the gate rejected it as a card never looked up. The
+    command zone is context for every question, so it is fetched (offline, a card-DB read)."""
+    cmds = [c.name for c in _commanders(ctx)]
+    if not cmds:
+        return
+    calls = [{"id": f"auto-cmd-lookup-{i}", "type": "function",
+              "function": {"name": "lookup_card", "arguments": json.dumps({"name": n})}}
+             for i, n in enumerate(cmds)]
+    messages.append({"role": "assistant", "content": "", "tool_calls": calls})
+    for call, name in zip(calls, cmds):
+        result = call_tool(ctx, "lookup_card", {"name": name})
+        all_results.append(result)
+        tool_trace.append(ToolCallRecord(name="lookup_card", args={"name": name},
+                                         result_data=result.data))
+        messages.append({"role": "tool", "tool_call_id": call["id"],
+                         "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    messages.append({"role": "user", "content": (
+        "Context: this deck's commander is " + " and ".join(cmds) + " (looked up above). "
+        "\"Your commander\" in the question means that card.")})
+
+
 def _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages):
-    names = _question_card_names(question, known_names)
+    cmds = {c.name for c in _commanders(ctx)}
+    names = [n for n in _question_card_names(question, known_names) if n not in cmds]
     if not names:
         return
     calls = [{"id": f"auto-q-lookup-{i}", "type": "function",
@@ -695,6 +721,135 @@ def _prelookup_question_cards(ctx, question, known_names, tool_trace, all_result
         messages.append({"role": "tool", "tool_call_id": call["id"],
                          "content": json.dumps(result.data, ensure_ascii=False, default=str)})
 
+
+_NO_COMMANDER_INFO_RE = re.compile(
+    r"(?:cannot|can't|can not|unable to|not able to) (?:determine|tell|say|assess)[^.]*"
+    r"(?:synerg|commander)|(?:no|not have|don't have|without) (?:specific )?(?:information|info|"
+    r"details|knowing)[^.]*(?:your commander|who your commander)|provide (?:more )?(?:details|"
+    r"information) about your commander", re.IGNORECASE)
+
+
+def _commanders(ctx) -> list:
+    resolved = getattr(ctx, "resolved", None)
+    return list(getattr(resolved, "commanders", None) or ())
+
+
+def _no_lens_fact_cards(ctx, question: str, tool_trace: list) -> list[dict]:
+    """lookup_card results this turn for cards a SYNERGY question names that carry no commander
+    lens fact (the commander itself excluded)."""
+    if not _SYNERGY_Q_RE.search(question):
+        return []
+    q = question.casefold()
+    cmds = {c.name for c in _commanders(ctx)}
+    out = []
+    for rec in tool_trace:
+        d = rec.result_data
+        if (rec.name == "lookup_card" and isinstance(d, dict) and d.get("found")
+                and d.get("name") not in cmds
+                and not d.get("commander_synergy") and isinstance(d.get("name"), str)
+                and d["name"].casefold() in q and d not in out):
+            out.append(d)
+    return out
+
+
+def _synergy_absence_answer(ctx, cards: list[dict]) -> str:
+    """The licensed answer when the lens found nothing: say so, quote the commander's text so
+    the player can see why, and give each card's own text. Every fact is a tool result."""
+    cmds = _commanders(ctx)
+    who = " and ".join(c.name for c in cmds)
+    quoted = " ".join(f"{c.name} reads: \"{(c.oracle_text or '').strip()}\"" for c in cmds)
+    parts = [f"Not directly. Nothing in {who}'s own text reacts to "
+             f"{', '.join(d['name'] for d in cards)}, so there is no direct synergy with your "
+             f"commander. {quoted}"]
+    for d in cards:
+        parts.append(f"{d['name']} on its own: \"{(d.get('oracle_text') or '').strip()}\"")
+    return "\n\n".join(parts)
+
+
+_VERDICT_Q_RE = re.compile(
+    r"\b(?:weak(?:est)?|worst|under-?perform\w*|strongest|best cards?|mvps?|dead cards?|"
+    r"what (?:should|do|would|can) i cut|cut first|weak links?)\b", re.IGNORECASE)
+# "Running out of gas" is a card-draw question in a player's words (live 2026-11-09: answered with
+# generic "add a finisher" advice and no draw count). Read as one for the role table and check 15.
+_OUT_OF_GAS_RE = re.compile(
+    r"\b(?:out of (?:gas|cards|steam|resources)|runs? (?:out|dry)|running (?:out|dry)|"
+    r"empty[- ]handed|no cards? (?:left )?in (?:my )?hand|flood(?:s|ing|ed)? out|top-?deck\w*)\b",
+    re.IGNORECASE)
+
+
+def _verdict_paragraph(question: str, tool_trace: list, draft: str) -> str:
+    """When a weak/strong-card question's draft names none of the cards get_card_verdicts
+    measured, put the measured list in front (the role table's idiom, `_complete_dual`'s too):
+    every line is the tool's own sentence. Live 2026-11-09 the draft answered "three weakest
+    cards?" with a swap-search result and no card at all."""
+    if not _VERDICT_Q_RE.search(question):
+        return draft
+    data = next((rec.result_data for rec in tool_trace if rec.name == "get_card_verdicts"
+                 and isinstance(rec.result_data, dict)), None)
+    if not data:
+        return draft
+    strong_q = re.search(r"\b(?:strongest|best cards?|mvps?)\b", question, re.IGNORECASE)
+    weak_q = re.search(r"\b(?:weak(?:est)?|worst|under-?perform\w*|dead cards?|cut|weak links?)\b",
+                       question, re.IGNORECASE)
+    blocks = []
+    for key, asked, title in (("weak", weak_q, "Measured weakest cards"),
+                              ("strong", strong_q, "Measured strongest cards")):
+        rows = data.get(key) or []
+        if not asked:
+            continue
+        if any(r["name"] in draft for r in rows):
+            continue
+        if rows:
+            blocks.append(title + ":\n" + "\n".join(f"- {r['why']}" for r in rows))
+        elif key == "weak":
+            blocks.append("No card in the deck measured as weak.")
+    return "\n\n".join(blocks + [draft]) if blocks else draft
+
+
+def _prefetch_card_verdicts(ctx, question, tool_trace, all_results, messages) -> bool:
+    """A weak/strong-card question gets get_card_verdicts before the model writes (qwen3:14b
+    otherwise reaches for the swap search and names no card)."""
+    if not _VERDICT_Q_RE.search(question):
+        return False
+    call = {"id": "auto-verdicts", "type": "function",
+            "function": {"name": "get_card_verdicts", "arguments": "{}"}}
+    messages.append({"role": "assistant", "content": "", "tool_calls": [call]})
+    result = call_tool(ctx, "get_card_verdicts", {})
+    all_results.append(result)
+    tool_trace.append(ToolCallRecord(name="get_card_verdicts", args={}, result_data=result.data))
+    messages.append({"role": "tool", "tool_call_id": call["id"],
+                     "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    note = ("Answer the weak/strong-card part FIRST from get_card_verdicts: name each card it "
+            "lists with its own reason. If its list is empty, say no card measured as weak (or "
+            "strong). Then answer any replacement part from a measured swap.")
+    if _REPLACE_Q_RE.search(question) and any(
+            w.get("kind") == "redundant" for w in result.data.get("weak", [])):
+        # The weak cards are the most replaceable copies of an OVER-supplied role; the natural
+        # replacement fills the most UNDER-supplied one -- exactly suggest_role_swap's search
+        # (owned adds, cuts whose every role is over target, measured with a cost check).
+        rcall = {"id": "auto-verdict-role-swap", "type": "function",
+                 "function": {"name": "suggest_role_swap", "arguments": "{}"}}
+        messages.append({"role": "assistant", "content": "", "tool_calls": [rcall]})
+        swap = call_tool(ctx, "suggest_role_swap", {})
+        all_results.append(swap)
+        tool_trace.append(ToolCallRecord(name="suggest_role_swap", args={},
+                                         result_data=swap.data))
+        messages.append({"role": "tool", "tool_call_id": rcall["id"],
+                         "content": json.dumps(swap.data, ensure_ascii=False, default=str)})
+        note += (" For the replacement, use suggest_role_swap above: it adds an owned card for "
+                 "the deck's most under-supplied role and says what that costs.")
+    messages.append({"role": "user", "content": note})
+    return True
+
+
+_REPLACE_Q_RE = re.compile(
+    r"\b(?:replace\w*|instead|swap\w*|in (?:their|its) place|what (?:should|could|would) "
+    r"(?:i )?(?:add|put in|go in))\b", re.IGNORECASE)
+
+
+_SYNERGY_Q_RE = re.compile(
+    r"\b(?:synerg\w*|combo\w*|work\w* (?:well )?with|good with|pairs? (?:well )?with|"
+    r"interact\w* with|good in (?:this|my) deck)\b", re.IGNORECASE)
 
 _LENS_NUDGE = (
     "Commander lens fact(s) for the card(s) the player asked about -- how THIS deck's commander "
@@ -715,6 +870,7 @@ def _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages
     looked = {rec.args.get("name"): rec.result_data for rec in tool_trace
               if rec.name == "lookup_card" and isinstance(rec.result_data, dict)}
     facts: list[dict] = []
+    no_fact: list[str] = []
     for name in _question_card_names(question, ctx.all_card_names):
         data = looked.get(name)
         if data is None:
@@ -726,8 +882,14 @@ def _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages
         syn = (data or {}).get("commander_synergy") if isinstance(data, dict) else None
         if not syn:
             continue
+        if not syn:
+            if ((data or {}).get("found") and _SYNERGY_Q_RE.search(question)
+                    and name not in {c.name for c in _commanders(ctx)}):
+                no_fact.append(data.get("name", name))
+            continue
         facts.append({"card": data.get("name", name), "kind": syn.get("kind"),
                       "reason": syn.get("reason"), "treasure": syn.get("treasure", 0),
+                      "aimed": syn.get("treasure_if_aimed_at_commander", 0),
                       "in_deck": syn.get("in_deck", True)})
     if facts:
         lines = []
@@ -736,8 +898,23 @@ def _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages
             line = f"- {f['card']} ({f['kind']}{where}): {f['reason']}"
             if f["treasure"]:
                 line += f"; about {f['treasure']} Treasure when it resolves with the commander out"
+            if f["aimed"]:
+                line += (f"; aimed at the commander (instead of at something to remove) it makes "
+                         f"{f['aimed']} Treasure -- a real payoff, so never call it no benefit")
             lines.append(line + ".")
         messages.append({"role": "user", "content": _LENS_NUDGE + "\n" + "\n".join(lines)})
+    if no_fact and _commanders(ctx):
+        # Live 2026-11-09 (Smaug, Dauthi Voidwalker): with no lens fact the model answered "I
+        # cannot determine if it synergizes" although the lens HAD determined it -- nothing in
+        # the commander's text reacts to the card. That absence is the answer.
+        cmds = "; ".join(f"{c.name}: \"{(c.oracle_text or '').strip()}\""
+                         for c in _commanders(ctx))
+        messages.append({"role": "user", "content": (
+            "Commander lens: no interaction found between " + ", ".join(no_fact) + " and the "
+            "commander. Its own text, for reference -- " + cmds + ". Answer the synergy question "
+            "plainly: nothing in the commander's text reacts to that card, so there is no direct "
+            "synergy; then say in one sentence what the card does on its own, from its lookup. "
+            "Do not say you cannot determine it.")})
     return facts
 
 
@@ -952,11 +1129,15 @@ def ask(
     # up before the model writes a word -- live 2026-10-01 a false premise ("Since Sol Ring only
     # costs 2 mana...") went uncorrected because the model never looked Sol Ring up and so had
     # no mana cost to correct it with. Offline and cheap (a card-DB read per name).
+    _prelookup_commanders(ctx, tool_trace, all_results, messages)
     _prelookup_question_cards(ctx, question, known_names, tool_trace, all_results, messages)
     _prefetch_commander_synergy(ctx, question, tool_trace, all_results, messages)
     _prefetch_question_rules(ctx, question, tool_trace, all_results, messages)
-    _prefetch_role_table(ctx, question, tool_trace, all_results, messages)
+    # the question as the role table and gate check 15 read it: "out of gas" is a draw question
+    role_q = (question + " Do I run enough card draw?") if _OUT_OF_GAS_RE.search(question) else question
+    _prefetch_role_table(ctx, role_q, tool_trace, all_results, messages)
     _prefetch_castability(ctx, question, tool_trace, all_results, messages)
+    _prefetch_card_verdicts(ctx, question, tool_trace, all_results, messages)
 
     nudged = False
     swap_nudged = False
@@ -1064,9 +1245,20 @@ def ask(
     budget = _with_card_types(budget, ctx)
     gate_rejections: list[tuple[str, list[str]]] = []
 
+    # A synergy question about a card the lens found nothing for, answered "I cannot determine /
+    # I don't know your commander" although the commander is right there: qwen3:14b ignores the
+    # prefetch's instruction (live 2026-11-09, Dauthi Voidwalker on Smaug, every retry). The
+    # absence IS the measured answer, so ship it from the tool results instead.
+    absent = _no_lens_fact_cards(ctx, question, tool_trace)
+    if absent and _commanders(ctx) and _NO_COMMANDER_INFO_RE.search(draft):
+        draft = _synergy_absence_answer(ctx, absent)
+
     for attempt in range(MAX_GATE_ATTEMPTS):
         draft = _complete_dual(question, tool_trace, draft)
-        reasons = gate_mod.check(draft, budget, question=question, max_chars=chars)
+        draft = _verdict_paragraph(question, tool_trace, draft)
+        if absent and _commanders(ctx) and _NO_COMMANDER_INFO_RE.search(draft):
+            draft = _synergy_absence_answer(ctx, absent)
+        reasons = gate_mod.check(draft, budget, question=role_q, max_chars=chars)
         if not reasons:
             return MentorReply(text=draft, gated=True, tool_trace=tool_trace,
                                gate_rejections=gate_rejections)
@@ -1078,7 +1270,7 @@ def ask(
             # as `_complete_dual`) and is checked again like any other text.
             if budget.role_summary and all(gate_mod.is_role_report_reason(r) for r in reasons):
                 completed = gate_mod.role_table_paragraph(budget.role_summary) + "\n\n" + draft
-                if not gate_mod.check(completed, budget, question=question, max_chars=chars):
+                if not gate_mod.check(completed, budget, question=role_q, max_chars=chars):
                     return MentorReply(text=completed, gated=True, tool_trace=tool_trace,
                                        gate_rejections=gate_rejections)
             # Length is the other rejection with a complete cure in hand: when it is the ONLY
@@ -1088,7 +1280,7 @@ def ask(
             # came back at 2554 chars (cap 2400) three identical times and shipped the fallback.
             if all(gate_mod.is_length_overflow(r) for r in reasons):
                 trimmed = gate_mod.trim_to_fit(draft, chars)
-                if not gate_mod.check(trimmed, budget, question=question, max_chars=chars):
+                if not gate_mod.check(trimmed, budget, question=role_q, max_chars=chars):
                     return MentorReply(text=trimmed, gated=True, tool_trace=tool_trace,
                                        gate_rejections=gate_rejections)
             break

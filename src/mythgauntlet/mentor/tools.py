@@ -363,7 +363,13 @@ def _add_lens_synergy(ctx: MentorContext, card, data: dict) -> None:
     checked first, so a deck whose commander matches no kind (or a card with no fact) never
     pays for the analysis the sim-context lens comes from."""
     resolved = getattr(ctx, "resolved", None)
-    if resolved is None or card.is_land or not resolved.commanders:
+    if resolved is None or not resolved.commanders:
+        return
+    # Always name the command zone (2026-11-09): gate check 16 reads "synergizes with Smaug" as
+    # a commander claim only when a tool result named Smaug as the commander, and a card question
+    # used to run nothing that did -- so "Dauthi Voidwalker can synergize well with Smaug" shipped.
+    data["commanders"] = [{"name": c.name} for c in resolved.commanders]
+    if card.is_land:
         return
     in_deck = any(c.name == card.name for c, _qty in resolved.cards)
     if not in_deck:
@@ -1359,6 +1365,47 @@ def tool_assess_card(ctx: MentorContext, name: str, cut_pool: int = 2) -> ToolRe
     return ToolResult(data=data, card_names=frozenset(names))
 
 
+_VERDICT_CACHE: dict = {}
+
+
+def tool_get_card_verdicts(ctx: MentorContext) -> ToolResult:
+    """The deck's strong and weak cards, each with the measurement behind it (B31,
+    ratings/card_verdicts.py) -- the same verdicts the deck page's scouting report shows.
+    Live 2026-11-09 "what are the three weakest cards?" went down the swap search and never
+    named a card: the mentor had no path to these. Per-card stats need their own larger
+    goldfish pass (`CARD_STATS_RUNS`), so the first call for a deck costs a few seconds;
+    the result is cached with the deck's analysis key."""
+    from mythgauntlet.ratings import card_verdicts
+    from mythgauntlet.ratings.analysis import (CARD_STATS_RUNS, compute_card_stats,
+                                               redundancy_card_targets, redundancy_targets)
+    key = _analysis_key(ctx)
+    hit = _VERDICT_CACHE.get(key)
+    if hit is None:
+        analysis = _analysis_for(ctx)
+        stats = compute_card_stats(ctx.resolved, ctx.cfg, CARD_STATS_RUNS)
+        identity = sorted({ch for c in ctx.resolved.commanders for ch in c.color_identity})
+        hit = card_verdicts.build(
+            ctx.resolved, stats, lens=_lens_for(ctx), combo_profile=analysis.combo_profile,
+            targets=redundancy_targets(identity), card_targets=redundancy_card_targets(identity),
+            turns=ctx.cfg.turns)
+        _VERDICT_CACHE[key] = hit
+        while len(_VERDICT_CACHE) > _ANALYSIS_CACHE_MAX:
+            _VERDICT_CACHE.pop(next(iter(_VERDICT_CACHE)))
+
+    def rows(vs):
+        return [{"name": v.name, "kind": v.kind, "why": v.text} for v in vs]
+
+    data = {"found": True, "strong": rows(hit["strong"]), "weak": rows(hit["weak"]),
+            "instrument": hit.get("instrument", ""),
+            "note": ("Weak means the measurement shows it underperforming in THIS deck "
+                     "(stranded in hand, slowing an unopposed kill, or the most replaceable "
+                     "card in an over-supplied role); interaction is never called weak, since "
+                     "an unopposed game cannot show its value. An empty list means nothing "
+                     "measured as weak -- say so rather than guessing.")}
+    names = {v.name for v in hit["strong"]} | {v.name for v in hit["weak"]}
+    return ToolResult(data=data, card_names=frozenset(names))
+
+
 TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
@@ -1457,6 +1504,16 @@ TOOL_SCHEMAS: list[dict] = [
                 "properties": {"name": {"type": "string"}, "turn": {"type": "integer"}},
                 "required": ["name"],
             },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_card_verdicts",
+            "description": "This deck's measured strong and weak cards, each with the reason and "
+                            "number behind it. Use for 'weakest cards', 'worst cards', 'what "
+                            "should I cut', 'best/strongest cards', 'MVPs'.",
+            "parameters": {"type": "object", "properties": {}},
         },
     },
     {
@@ -1722,6 +1779,7 @@ _TOOL_FUNCS = {
     "suggest_role_swap": tool_suggest_role_swap,
     "check_legality": tool_check_legality,
     "card_castability": tool_card_castability,
+    "get_card_verdicts": tool_get_card_verdicts,
 }
 
 

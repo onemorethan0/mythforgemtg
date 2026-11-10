@@ -262,7 +262,9 @@ def test_no_measured_lookup_when_the_swap_has_no_axis_and_no_auto_search(monkeyp
          {"role": "assistant", "content": "I didn't find a measured improvement from your collection."}],
         lambda name: {"found": True})
     chat.ask(SimpleNamespace(all_card_names=frozenset()), "What should I cut?")
-    assert ran == [("suggest_swap", {})]
+    # "what should I cut" first gets the measured weak cards (2026-11-09); no measured-swap
+    # lookup runs without an axis
+    assert ran == [("get_card_verdicts", {}), ("suggest_swap", {})]
 
 
 # ── /mentor/chat route ───────────────────────────────────────────────────────────────

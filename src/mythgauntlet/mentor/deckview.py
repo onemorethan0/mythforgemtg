@@ -25,12 +25,16 @@ def _synergy(card, lens: CommanderLens | None) -> dict | None:
     facts = lens.facts_for(card)
     if facts.empty:
         return None
-    return {
+    out = {
         "kind": facts.payoff_kind or ("one_sided_wipe" if facts.wipe_one_sided else None),
         "reason": facts.reason,
         "one_sided": facts.wipe_one_sided,
         "treasure": facts.payoff_treasure,
     }
+    if facts.aimed_treasure:
+        # the pilot's option: aim the card's damage at the commander rather than remove something
+        out["treasure_if_aimed_at_commander"] = facts.aimed_treasure
+    return out
 
 
 def deck_card_rows(resolved: ResolvedDeck, lens: CommanderLens | None = None) -> list[dict]:

@@ -27,6 +27,7 @@ const TOOL_LABELS = {
   assess_card: (a) => `Measured impact of: ${a?.name ?? '?'}`,
   check_legality: (a) => `Checked legality: ${a?.name ?? '?'}`,
   card_castability: (a) => `Checked castability: ${a?.name ?? '?'}${a?.turn ? ` on turn ${a.turn}` : ''}`,
+  get_card_verdicts: () => 'Measured strong and weak cards',
   get_bracket_estimate: () => 'Ran a bracket estimate',
   get_power_profile: (a) => (a?.compare_bracket
     ? `Read this deck’s power profile (vs bracket ${a.compare_bracket})`

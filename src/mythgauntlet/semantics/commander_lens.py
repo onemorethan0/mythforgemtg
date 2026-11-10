@@ -42,6 +42,11 @@ class LensFacts:
     payoff_kind: str | None = None
     payoff_treasure: int = 0
     reason: str = ""
+    # Treasure the payoff makes when the pilot AIMS this card's targeted damage at the
+    # commander instead of at something to remove (Lightning Bolt on Smaug: 3). An option, not
+    # a given -- the card stops being removal that turn -- so it never enters payoff_treasure
+    # or any score; the mentor states it as a choice.
+    aimed_treasure: int = 0
 
     @property
     def empty(self) -> bool:
@@ -369,6 +374,7 @@ def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
                 continue
             per_event = amount if info.treasure_scaled else info.treasure_fixed
             treasure = max(treasure, _net_of_activation(text, m.start(), per_event))
+        aimed = 0
         if not hit:
             for m in tags._DAMAGE_TARGET_RE.finditer(text):
                 obj = m.group(1)
@@ -377,6 +383,16 @@ def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
                 if _target_excludes(text, m.start(1), cmd):
                     continue
                 hit = True
+                # Aimed at the commander: a fixed amount the commander survives pays out.
+                amt = _DEALS_AMOUNT_RE.match(text, m.start())
+                if (amt is None or amt.group(1) == "x"
+                        or not (info.treasure_scaled or info.treasure_fixed)
+                        or not _reliable_clause(card, text, m.start())):
+                    continue
+                n = int(amt.group(1))
+                if info.needs_survival and not survives and (toughness is None or n >= toughness):
+                    continue
+                aimed = max(aimed, n if info.treasure_scaled else info.treasure_fixed)
             for m in tags._FIGHT_RE.finditer(text):
                 if tags._hits_creature(m.group(1)):
                     hit = True
@@ -386,6 +402,7 @@ def _damage_payoff_facts(lens: CommanderLens, card: Card) -> LensFacts:
                 payoff_kind=KIND_DAMAGE_TO_SELF,
                 payoff_treasure=treasure,
                 reason=label,
+                aimed_treasure=aimed,
             ))
     return _merge(parts)
 
@@ -551,6 +568,7 @@ def _merge(parts: Iterable[LensFacts]) -> LensFacts:
     one_sided = False
     payoff_kind: str | None = None
     treasure = 0
+    aimed = 0
     reasons: list[str] = []
     for f in parts:
         if f.empty:
@@ -558,9 +576,10 @@ def _merge(parts: Iterable[LensFacts]) -> LensFacts:
         one_sided = one_sided or f.wipe_one_sided
         payoff_kind = payoff_kind or f.payoff_kind
         treasure = max(treasure, f.payoff_treasure)
+        aimed = max(aimed, f.aimed_treasure)
         if f.reason:
             reasons.append(f.reason)
-    return LensFacts(one_sided, payoff_kind, treasure, "; ".join(reasons))
+    return LensFacts(one_sided, payoff_kind, treasure, "; ".join(reasons), aimed)
 
 
 @dataclass(frozen=True)

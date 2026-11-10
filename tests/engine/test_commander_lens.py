@@ -589,3 +589,16 @@ def test_state_gated_death_trigger_is_not_a_death_payoff(make_card, spec):
     # "Max speed —" and a season ("Fall —") gate the trigger on a state the deck may not be
     # in: honest under-count, no kind.
     assert DEATH not in build_lens([make_card(**spec)]).kinds
+
+
+def test_targeted_damage_aimed_at_smaug_is_an_option_not_a_score(make_card, smaug):
+    """Lightning Bolt pointed at Smaug makes 3 Treasure (2026-11-09: the mentor said Bolt "doesn't
+    directly benefit" Smaug because the lens fact carried 0 Treasure). It is the pilot's option --
+    Bolt stops being removal that turn -- so it never enters payoff_treasure."""
+    f = build_lens([smaug]).facts_for(make_card(**BOLT))
+    assert f.payoff_kind == KIND
+    assert f.payoff_treasure == 0
+    assert f.aimed_treasure == 3
+    # a mass-damage payoff is unchanged and carries no aimed figure
+    b = build_lens([smaug]).facts_for(make_card(**BLASPHEMOUS))
+    assert (b.payoff_treasure, b.aimed_treasure) == (13, 0)

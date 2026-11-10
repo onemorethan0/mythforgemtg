@@ -677,7 +677,24 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #     a card. Smaug makes Wrath one-sided; a vanilla legend makes it a plain wipe.
     reasons.extend(commander_synergy_reasons(body, budget))
 
+    # 17. GENERIC CARD-TYPE ADVICE NO TOOL BACKED. The system prompt forbids closing with
+    #     "consider adding cards that provide a faster win condition, such as efficient
+    #     creatures..." -- it names no card and no number, so checks 1-16 pass it, and live
+    #     2026-11-09 it closed every no-swap "make it faster" answer. Narrow on purpose: the
+    #     advisory verb + an unnamed card category + a "that/like/such as" description.
+    if _GENERIC_ADVICE_RE.search(body):
+        reasons.append("closes with generic card-type advice no tool result backs "
+                       "(\"consider adding cards that ...\"); stop after the measured answer")
+
     return reasons
+
+
+_GENERIC_ADVICE_RE = re.compile(
+    r"\b(?:consider|try|you (?:might|may|could) (?:want to )?(?:consider|look (?:for|at)|add)|"
+    r"look for|focus on)\s+(?:adding|looking for|including|running|playing)?\s*"
+    r"(?:a |some |more |a few )?(?:more )?(?:(?!(?:the|these|those|its|your|my|our|their|both|all|each|any|other|such)\s)(?-i:[a-z][a-z-]+) )?(?:cards?|creatures?|spells?|ways?|options|"
+    r"finishers?|win conditions?|payoffs?)\s+(?:that|which|like|such as)\b",
+    re.IGNORECASE)
 
 
 _ROLE_LABEL = {"ramp": "ramp", "draw": "card draw", "removal": "removal",
