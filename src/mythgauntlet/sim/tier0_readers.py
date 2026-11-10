@@ -340,6 +340,94 @@ def flashback_cost(name: str, type_line: str, oracle_text: str) -> str | None:
     return None
 
 
+# --- creature mana grants (2026-11-10, owner's Borg Queen deck) --------------------------------
+
+@dataclass(frozen=True)
+class CreatureMana:
+    """'<Scope> you control have "{T}: Add ..."': every such creature that is not summoning-
+    sick can tap for `amount` mana. A creature tapped for mana does not attack that turn."""
+    scope: str              # creatures | other_creatures | artifact_creatures | creature_tokens
+    amount: int
+    artifact_only: bool     # the mana may only cast artifact spells (Ambulatory Reactor)
+
+
+@lru_cache(maxsize=8192)
+def creature_mana(name: str, oracle_text: str) -> CreatureMana | None:
+    """Ambulatory Reactor, Battery Bearer, Cryptolith Rite, Elven Chorus, Citanul Hierophants,
+    Rok-Tahk, Springleaf Parade... A narrower spend restriction (instants and sorceries, a
+    creature spell, a card not in the starting deck), a typed grant ("Elves you control") and a
+    grant to lands are not read: the honest under-count."""
+    scopes = {"creatures": "creatures", "other creatures": "other_creatures",
+              "artifact creatures": "artifact_creatures", "creature tokens": "creature_tokens",
+              "tokens": "creature_tokens"}
+    for ln in _lines(name, oracle_text):
+        m = re.fullmatch(r"(creatures|other creatures|artifact creatures|creature tokens|tokens) "
+                         r"you control have \"\{t\}: add ((?:\{[wubrgc]\})+|one mana of any color"
+                         r"|\{[wubrg]\} or \{[wubrg]\})\.(.*)\"\.?", ln)
+        if not m:
+            continue
+        what, rest = m.group(2), m.group(3).strip()
+        if " or " in what or what == "one mana of any color":
+            amount = 1
+        else:
+            amount = len(re.findall(r"\{[wubrgc]\}", what))
+        artifact_only = False
+        if rest:
+            if rest in ("spend this mana only to cast an artifact spell or activate an ability "
+                        "of an artifact source.",
+                        "this mana can't be spent to cast a nonartifact spell."):
+                artifact_only = True
+            else:
+                continue
+        return CreatureMana(scopes[m.group(1)], amount, artifact_only)
+    return None
+
+
+@lru_cache(maxsize=8192)
+def replicate_grant(name: str, oracle_text: str) -> str | None:
+    """"Artifact spells you cast have replicate {cost}." (Hugh, First of Many) -> the cost.
+    Each payment copies the spell; a copy of a permanent spell becomes a token."""
+    for ln in _lines(name, oracle_text):
+        m = re.fullmatch(r"artifact spells you cast have replicate ((?:\{(?:\d+|[wubrgc])\})+)\.",
+                         ln)
+        if m:
+            return m.group(1)
+    return None
+
+
+@dataclass(frozen=True)
+class ChargeEngine:
+    """"Whenever you cast an artifact spell / a spell, put a charge counter on this artifact"
+    + "{N}, {T}: Create a P/T ... token for each charge counter on this artifact" (Maturation
+    Chamber). Counters stay; the activation repeats each turn."""
+    on: str                 # artifact | any
+    cost: str
+    power: int
+    artifact: bool
+    sorcery: bool
+
+
+@lru_cache(maxsize=8192)
+def charge_engine(name: str, oracle_text: str) -> ChargeEngine | None:
+    lines = _lines(name, oracle_text)
+    on = None
+    for ln in lines:
+        m = re.fullmatch(r"whenever you cast (an artifact spell|a spell), put a charge counter on "
+                         r"(?:~|this artifact)\.", ln)
+        if m:
+            on = "artifact" if "artifact" in m.group(1) else "any"
+    if on is None:
+        return None
+    for ln in lines:
+        m = re.fullmatch(r"((?:\{(?:\d+|[wubrgc])\})+), \{t\}: create an? (\d+)/\d+ ([^.]*?)creature "
+                         r"token for each charge counter on (?:~|this artifact)\.( activate only as a "
+                         r"sorcery\.)?", ln)
+        if m:
+            return ChargeEngine(on, m.group(1), int(m.group(2)), "artifact" in m.group(3),
+                                bool(m.group(4)))
+    return None
+
+
 # --- typed lords (2026-11-09 mentor review) ---------------------------------------------------
 
 @dataclass(frozen=True)

@@ -479,3 +479,51 @@ def test_typed_lords_gold_and_in_play(make_card):
     wo = simulate([(_land(make_card, "W"), 45), (golem, 44), (dud, 10)], None, CFG)
     _sums(w)
     assert _total(w) > _total(wo)
+
+
+def test_creature_mana_grants_replicate_and_charge_engines(make_card):
+    """2026-11-10 (owner's Borg Queen deck): Ambulatory Reactor-class grants let able artifact
+    creatures tap for mana (and sit out combat), Hugh's replicate copies an artifact spell from
+    spare mana, Maturation Chamber turns its counters into tokens."""
+    assert R.creature_mana("Ambulatory Reactor", 'Artifact creatures you control have "{T}: '
+                           'Add {C}. Spend this mana only to cast an artifact spell or activate '
+                           'an ability of an artifact source."') == R.CreatureMana(
+        "artifact_creatures", 1, True)
+    assert R.creature_mana("Cryptolith Rite", 'Creatures you control have "{T}: Add one mana of '
+                           'any color."') == R.CreatureMana("creatures", 1, False)
+    assert R.creature_mana("Sorcerer Class", 'Creatures you control have "{T}: Add {U} or {R}. '
+                           'Spend this mana only to cast an instant or sorcery spell or to gain '
+                           'a Class level."') is None
+    assert R.replicate_grant("Hugh, First of Many", "Artifact spells you cast have replicate "
+                             "{2}{U}.") == "{2}{u}"
+    assert R.charge_engine("Maturation Chamber", "Whenever you cast an artifact spell, put a "
+                           "charge counter on this artifact.\n{4}, {T}: Create a 1/1 colorless "
+                           "Borg artifact creature token for each charge counter on this "
+                           "artifact. Activate only as a sorcery.") == R.ChargeEngine(
+        "artifact", "{4}", 1, True, True)
+
+    drone = make_card("Drone", mana_cost="{2}", type_line="Artifact Creature — Construct")
+    drone.power, drone.toughness = "1", "1"
+    golem = make_card("Golem", mana_cost="{7}", type_line="Artifact Creature — Golem")
+    golem.power, golem.toughness = "9", "9"
+    reactor = make_card("Reactor", mana_cost="{1}{U}", type_line="Artifact Creature — Borg",
+                        oracle_text='Artifact creatures you control have "{T}: Add {C}. Spend '
+                                    'this mana only to cast an artifact spell or activate an '
+                                    'ability of an artifact source."')
+    reactor.power, reactor.toughness = "1", "1"
+    plain = make_card("Reactor", mana_cost="{1}{U}", type_line="Artifact Creature — Borg")
+    plain.power, plain.toughness = "1", "1"
+    first = lambda rs: sum(r.played_turn.get("Golem", 99) for r in rs)  # noqa: E731
+    w = simulate([(_land(make_card, "U"), 38), (drone, 30), (golem, 20), (reactor, 11)], None, CFG)
+    wo = simulate([(_land(make_card, "U"), 38), (drone, 30), (golem, 20), (plain, 11)], None, CFG)
+    _sums(w)
+    assert first(w) < first(wo)                        # the 7-drop comes down sooner
+
+    chamber = make_card("Chamber", mana_cost="{1}{U}", type_line="Artifact",
+                        oracle_text="Whenever you cast an artifact spell, put a charge counter "
+                                    "on this artifact.\n{4}, {T}: Create a 1/1 colorless Borg "
+                                    "artifact creature token for each charge counter on this "
+                                    "artifact. Activate only as a sorcery.")
+    runs = simulate([(_land(make_card, "U"), 45), (drone, 44), (chamber, 10)], None, CFG)
+    _sums(runs)
+    assert _dealt(runs, "Chamber token") > 0

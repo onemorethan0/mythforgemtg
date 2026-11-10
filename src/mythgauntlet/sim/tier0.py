@@ -109,6 +109,7 @@ class _TokenMaker:
     cast_kind: str = "any"      # cast trigger: any | noncreature | instant_sorcery
     cast_min_mv: int = 0
     infect: bool = False        # "... creature token with infect"
+    artifact: bool = False      # "... artifact creature token" (Borg, Thopter, Servo)
 
 
 def _token_trigger(prefix: str, is_spell: bool) -> tuple[str, str, int] | None:
@@ -182,7 +183,8 @@ def _token_makers(name: str, type_line: str, oracle_text: str) -> tuple[_TokenMa
             out.append(_TokenMaker(
                 trigger=trig[0], count=_NUM_WORDS[m.group(1)], power=int(m.group(3)),
                 haste="haste" in rest, attacking="tapped and attacking" in rest,
-                cast_kind=trig[1], cast_min_mv=trig[2], infect="infect" in rest))
+                cast_kind=trig[1], cast_min_mv=trig[2], infect="infect" in rest,
+                artifact="artifact" in m.group(5)))
             if trig[0] == "now" and "enters or attacks" in sentence[:m.start()]:
                 out.append(_TokenMaker("attack", _NUM_WORDS[m.group(1)], int(m.group(3)),
                                        "haste" in rest, "tapped and attacking" in rest))
@@ -925,6 +927,76 @@ def _run_one(
     cmd_extra = 0                   # +1/+1 counter / copy power on the commander's entry
     graveyard_fb: list[SimCard] = []   # instants / sorceries with a mana flashback cost
     pumps_today: list[tuple[str, int]] = []   # pump spells resolved this turn (R0.pump_spell)
+    # Creature mana grants (R0.creature_mana: Ambulatory Reactor, Cryptolith Rite). An able
+    # (not summoning-sick) creature the grant covers taps for mana when lands and rocks fall
+    # short; it then sits out this turn's combat (`cm_tapped`, indices into atk_board).
+    artifact_tokens: set[str] = set()
+    cm_tapped: set[int] = set()
+
+    def creature_mana_for(sc: SimCard) -> list[tuple[int, int]]:
+        """(atk_board index, mana) for each untapped creature that can pay toward `sc`,
+        weakest first and the commander last."""
+        grants = [(e[1], e[3]) for e in statics if e[0] == "cmana"]
+        if not grants:
+            return []
+        is_art = sc.card.has_type("Artifact")
+        out = []
+        for i, (nm, pw, _pwr, is_cmd) in enumerate(atk_board):
+            if i in cm_tapped:
+                continue
+            c = card_of.get(nm)
+            token = nm.endswith(" token") or nm.endswith(" germ")
+            art = nm in artifact_tokens or (c is not None and c.has_type("Artifact"))
+            amt = 0
+            for src, g in grants:
+                if g.artifact_only and not is_art:
+                    continue
+                if ((g.scope == "creatures")
+                        or (g.scope == "other_creatures" and nm != src)
+                        or (g.scope == "artifact_creatures" and art)
+                        or (g.scope == "creature_tokens" and token)):
+                    amt = max(amt, g.amount)
+            if amt:
+                out.append((is_cmd, pw, i, amt))
+        out.sort()
+        return [(i, amt) for _c, _p, i, amt in out]
+
+    simcard_of = {sc.card.name: sc for sc in everyone}
+
+    def pay_sink(cost, for_card: SimCard) -> bool:
+        """A mana sink after the cast loop: spare lands/rocks (never a Treasure), then creature
+        mana the grant lets `for_card` use. Marks what it taps."""
+        held = [s for s in sources if s.treasure and s.ready]
+        for s in held:
+            s.ready = False
+        paid = pay_with_creatures(for_card, cost)
+        for s in held:
+            s.ready = True
+        if paid is None:
+            return False
+        for i in paid[0]:
+            sources[i].ready = False
+        cm_tapped.update(paid[1])
+        return True
+
+    def pay_with_creatures(sc: SimCard, cost) -> tuple[list[int], list[int]] | None:
+        """Lands and rocks first; when they fall short, the fewest creature taps that make
+        `cost` payable (their mana pays generic only). (source payment, creature indices)."""
+        pay = _can_pay(sources, cost)
+        if pay is not None:
+            return pay, []
+        used, extra = [], 0
+        for i, amt in creature_mana_for(sc):
+            used.append(i)
+            extra += amt
+            k = min(extra, cost.generic)
+            pay = _can_pay(sources, replace(cost, generic=cost.generic - k,
+                                            mana_value=cost.mana_value - k))
+            if pay is not None:
+                return pay, used
+            if k >= cost.generic:
+                break
+        return None
     once_done: set[str] = set()     # creatures that used their monstrosity / adapt
 
     def counters(n: int) -> int:
@@ -1021,6 +1093,8 @@ def _run_one(
         power_of[name] = mk.power
         if mk.infect:
             own_infect.add(name)
+        if getattr(mk, "artifact", False):
+            artifact_tokens.add(name)
         hasty = mk.haste or any(e[0] == "team_haste" for e in statics)
         for _ in range(mk.count * 2 ** sum(1 for e in statics if e[0] == "doubler")):
             entry = (name, mk.power, mk.power, False)
@@ -1160,6 +1234,15 @@ def _run_one(
                             ("combat_counter", R0.combat_counter(name, text))):
                 if v or (kind == "gain_drain" and v == 0):
                     statics.append((kind, name, sc.card.is_creature, v))
+            rg = R0.replicate_grant(name, text)        # Hugh, First of Many
+            if rg is not None:
+                statics.append(("replicate", name, sc.card.is_creature, rg))
+            ce = R0.charge_engine(name, text)          # Maturation Chamber
+            if ce is not None:
+                statics.append(("charge", name, sc.card.is_creature, {"eng": ce, "n": 0}))
+            cm = R0.creature_mana(name, text)          # Ambulatory Reactor class
+            if cm is not None:
+                statics.append(("cmana", name, sc.card.is_creature, cm))
             for ta in R0.typed_anthems(name, text):    # typed lords (Tempered Steel)
                 statics.append(("typed_anthem", name, sc.card.is_creature, ta))
             sources.extend(_Source(frozenset("WUBRG"), ready=True, treasure=True)
@@ -1320,6 +1403,10 @@ def _run_one(
         storm_count = len(cast_this_turn)           # spells cast before it this turn
         cast_this_turn.append(sc)
         extort_due += sum(e[3] for e in statics if e[0] == "extort")
+        is_art = sc.card.has_type("Artifact")
+        for e in statics:
+            if e[0] == "charge" and (e[3]["eng"].on == "any" or is_art):
+                e[3]["n"] += 1
         fire_cast(sc)
         apply_effects(sc, is_commander, x)
         if storm_count and R0.storm(sc.card.name, sc.card.oracle_text or ""):
@@ -1360,6 +1447,7 @@ def _run_one(
         convoke_used = 0
         extort_due = 0
         pumps_today.clear()
+        cm_tapped.clear()
         # ritual mana expires at untap; a Treasure that was used was sacrificed
         sources = [s for s in sources if not s.temp and not (s.treasure and not s.ready)]
         for s in sources:
@@ -1571,34 +1659,36 @@ def _run_one(
                     left = (sc.card.cost.generic - rule_discount
                             - sc.fx.self_reduction_per_creature * board_creatures)
                     conv = max(0, min(pending_creatures - convoke_used, left))
-                payment = _can_pay(sources, _effective_cost(sc, board_creatures,
-                                                            rule_discount + conv))
-                if payment is not None:
+                paid = pay_with_creatures(sc, _effective_cost(sc, board_creatures,
+                                                              rule_discount + conv))
+                if paid is not None:
                     prio = ((1, sc.mana_value) if (plan_piece and not cmd_auras)
                             or (sc.fx.tutor and plan_missing() and _tutor_finds_plan(sc))
                             else _cast_priority(sc, turn, cfg))
-                    castable.append((prio, sc, payment, "hand", conv))
+                    castable.append((prio, sc, paid[0], "hand", conv, paid[1]))
             for sc in graveyard_fb:
                 payment = _can_pay(sources, ManaCost.parse(R0.flashback_cost(
                     sc.card.name, sc.card.type_line or "", sc.card.oracle_text or "")))
                 if payment is not None:
-                    castable.append((_cast_priority(sc, turn, cfg), sc, payment, "fb", 0))
+                    castable.append((_cast_priority(sc, turn, cfg), sc, payment, "fb", 0, []))
             if commander_in_zone and commander is not None:
                 cmd_cost = _effective_cost(commander, board_creatures)
                 if commander_tax:
                     cmd_cost = replace(cmd_cost, generic=cmd_cost.generic + commander_tax,
                                        mana_value=cmd_cost.mana_value + commander_tax)
-                payment = _can_pay(sources, cmd_cost)
-                if payment is not None:
-                    castable.append(((1, commander.mana_value), commander, payment, "cmd", 0))
+                paid = pay_with_creatures(commander, cmd_cost)
+                if paid is not None:
+                    castable.append(((1, commander.mana_value), commander, paid[0], "cmd", 0,
+                                     paid[1]))
             if not castable:
                 break
 
-            _, sc, payment, origin, conv = min(castable, key=lambda t: t[0])
+            _, sc, payment, origin, conv, creature_taps = min(castable, key=lambda t: t[0])
             for idx in payment:
                 sources[idx].ready = False
             spent += len(payment)  # actual sources tapped -- correct even under a discount
             convoke_used += conv
+            cm_tapped.update(creature_taps)
 
             if origin == "cmd":
                 commander_in_zone = False
@@ -1673,6 +1763,32 @@ def _run_one(
             damage += x
             credit(sc.card.name, "burn", x)
 
+        # Replicate (Hugh): an artifact spell cast this turn is copied for each extra payment.
+        # Paid from mana that would otherwise go unspent (a pilot plans the payment at cast
+        # time; the outcome is the same), so it never blocks another spell. A copy of a
+        # permanent is a token (CR 702.56b); a legendary one would die to the legend rule, so
+        # it is never copied. Copies are not cast: no cast triggers, no charge counters.
+        rep_costs = [e[3] for e in statics if e[0] == "replicate"]
+        if rep_costs:
+            arts = [c for c in cast_this_turn if c.card.has_type("Artifact")
+                    and "legendary" not in (c.card.type_line or "").lower()]
+            if arts:
+                best = max(arts, key=lambda c: (c.attack_power, c.fx.impact, c.card.name))
+                cost = ManaCost.parse(min(rep_costs, key=lambda c: ManaCost.parse(c).mana_value))
+                while cost.mana_value > 0 and pay_sink(cost, best):
+                    spent += cost.mana_value
+                    apply_effects(best)
+        # Charge-counter token engines (Maturation Chamber): once a turn, tokens per counter.
+        for kind, src, _, st in list(statics):
+            if kind != "charge" or st["n"] <= 0:
+                continue
+            eng = st["eng"]
+            cost = ManaCost.parse(eng.cost)
+            if src in simcard_of and pay_sink(cost, simcard_of[src]):
+                spent += cost.mana_value
+                make_tokens(src, _TokenMaker("now", st["n"], eng.power, False, False,
+                                             artifact=eng.artifact))
+
         # +1/+1-counter mana sinks ("{2}{G}: put a +1/+1 counter on ~", R0.sinks): spare mana,
         # never a Treasure, goes into the creature it grows -- the counter stays, so this comes
         # before the until-end-of-turn pumps below. Biggest payoff per mana first.
@@ -1712,7 +1828,7 @@ def _run_one(
         # Station (sorcery speed, so before combat) and crew: tap creatures for their power.
         # Summoning-sick creatures first (free -- they cannot attack); able attackers only when
         # what they would have dealt is less than what the Vehicle / Spacecraft adds.
-        tapped: set[int] = set()
+        tapped: set[int] = set(cm_tapped)          # tapped for mana: not attacking
         crewed: list[tuple[str, int, int, bool]] = []
         if vehicles_board or ships:
             sick = sorted((power_of.get(a[0], 0) + per_creature for a in atk_pending),
