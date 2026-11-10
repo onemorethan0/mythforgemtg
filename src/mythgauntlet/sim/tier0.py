@@ -4,7 +4,8 @@ One player, no opponent. Measures the statistical skeleton of a deck: mulligans,
 drops, color access, mana development, and how efficiently the curve deploys.
 
 Documented simplifications (T0 is built to be fast, deterministic, and honest — not complete):
-  - Activated abilities are ignored, as is haste a creature only GAINS (printed haste is read).
+  - Activated abilities are ignored unless a reader below names them; haste is read when
+    printed, granted to the team, or given by a haste Equipment.
     Commander tax only arises after a Tier-1 board wipe sends the commander back to the
     command zone (the clean goldfish casts it once).
   - The unmodeled-mechanics sweep (2026-11-09; scripts/unmodeled_inventory.py) added, each
@@ -12,6 +13,15 @@ Documented simplifications (T0 is built to be fast, deterministic, and honest �
     tokens, pump Equipment and Auras, proliferate, fixed drains, direct poison, Treasure and
     extra land drops. Anything a reader cannot read exactly does nothing (the honest
     under-count): variable counts, death triggers, modal choices, activated abilities.
+  - Second and third sweeps (sim/tier0_readers.py, same strictness): '*' and "for each"
+    power over lands / creatures / artifacts / hand, +1/+1 counters on entry (fixed, X,
+    fabricate) and their replacements (Hardened Scales, Doubling Season), Hydra-class X
+    creatures cast from spare mana, mana-only pump and counter sinks incl. monstrosity /
+    adapt, prowess, exalted, extort, lifelink into "whenever you gain life" drains, the
+    aristocrats finisher (free outlet + death drains, only when lethal), token doublers,
+    additional combat phases, clones, Lotus Petal, land-Aura ramp, board-sized draws,
+    affinity for artifacts, convoke, mana flashback, cascade, native storm copies, haste
+    Equipment and team haste, pump spells, living weapon, beginning-of-combat counters.
   - Rocks/dorks/fetched lands come in "asleep" and produce from the next untap onward.
   - Land-fetch spells pull a land out of the library (thinning) and add a source next turn.
   - One-shot draws resolve immediately; triggered engines draw a flat engine_draw per turn
@@ -48,6 +58,7 @@ from functools import lru_cache
 from mythgauntlet.model.card import Card, ManaCost
 from mythgauntlet.semantics import tags
 from mythgauntlet.sim import combat_rules
+from mythgauntlet.sim import tier0_readers as R0
 from mythgauntlet.semantics.model import EffectVector
 from mythgauntlet.sim.rng import SeededRng
 
@@ -195,6 +206,7 @@ _POISON_RE = re.compile(
     r"\b(?:each opponent|target opponent|target player)\b[^.]*?\bgets? (a|an|one|two|three) "
     r"poison counters?")
 _TREASURE_RE = re.compile(r"\bcreate (a|an|one|two|three|four|five|six) (?:tapped )?treasure tokens?")
+_GAIN_RE = re.compile(r"\byou gain (\d+) life\b")
 
 
 @lru_cache(maxsize=4096)
@@ -225,6 +237,10 @@ def _effect_makers(name: str, type_line: str, oracle_text: str) -> tuple[_Effect
             m = _TREASURE_RE.search(sentence)
             if m and not re.search(r"for each|equal to|where x", sentence):
                 found.append(("treasure", _NUM_WORDS[m.group(1)], m.start()))
+            # life gain: only matters to a "whenever you gain life, ..." payoff (R0.gain_drain)
+            m = _GAIN_RE.search(sentence)
+            if m and not re.search(r"for each|equal to|where x", sentence[m.start():]):
+                found.append(("gain", int(m.group(1)), m.start()))
             for kind, amt, start in found:
                 head = sentence[:start]
                 # A trigger opens the sentence ("When ~ enters, ...", "+1: ..."): its clause runs
@@ -885,6 +901,72 @@ def _run_one(
     # they cannot attack anyway. A Vehicle attacks only once on the battlefield since the start
     # of the turn (CR 302.6); a stationed Spacecraft is an artifact creature for good.
     power_of = {sc.card.name: _stat_value(sc.card.power) for sc in everyone if sc.card.is_creature}
+    # Second sweep (sim/tier0_readers.py). Per-creature properties, by card name:
+    varp_of = {sc.card.name: v for sc in everyone
+               if (v := R0.var_power(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""))}
+    prowess_of = {sc.card.name: n for sc in everyone if sc.card.is_creature
+                  and (n := R0.prowess(sc.card.name, sc.card.oracle_text or ""))}
+    lifelink_of = {sc.card.name for sc in everyone if sc.card.is_creature
+                   and R0.lifelink(sc.card.name, sc.card.oracle_text or "")}
+    sinks_of = {sc.card.name: s for sc in everyone if sc.card.is_creature
+                and (s := R0.sinks(sc.card.name, sc.card.oracle_text or ""))}
+    xcombat_of = {sc.card.name: k for sc in everyone
+                  if (k := R0.extra_combat(sc.card.name, sc.card.type_line or "",
+                                           sc.card.oracle_text or ""))}
+    # ... and board-wide statics of permanents on the battlefield: (kind, source name, source
+    # is a creature, value). kinds: artifact, exalted, doubler, counter_mod, gain_drain,
+    # death_drain, outlet, extort. A wipe / an answered commander takes its own entries out.
+    statics: list[tuple[str, str, bool, object]] = []
+    lands_count = 0                 # lands on the battlefield (a '*' creature's count)
+    convoke_used = 0                # summoning-sick creatures tapped for convoke this turn
+    extort_due = 0                  # extort triggers this turn, paid from spare mana
+    cmd_extra = 0                   # +1/+1 counter / copy power on the commander's entry
+    graveyard_fb: list[SimCard] = []   # instants / sorceries with a mana flashback cost
+    pumps_today: list[tuple[str, int]] = []   # pump spells resolved this turn (R0.pump_spell)
+    once_done: set[str] = set()     # creatures that used their monstrosity / adapt
+
+    def counters(n: int) -> int:
+        """n +1/+1 counters after the battlefield's replacements: "plus one" first, then
+        each "twice" (CR 616.1: the affected player orders them; this is the larger order)."""
+        if n <= 0:
+            return 0
+        mods = [e[3] for e in statics if e[0] == "counter_mod"]
+        n += sum(1 for m in mods if m == "plus")
+        return n * 2 ** sum(1 for m in mods if m == "twice")
+
+    def grow(pool: list, i: int, k: int) -> None:
+        """+k +1/+1 counters on pool[i] (atk_board or atk_pending), double strike counted."""
+        nonlocal board_power, board_power_rule, pending_power, pending_power_rule, cmd_extra
+        name, pw, pwr, is_cmd = pool[i]
+        k *= 2 if name in printed_ds else 1
+        pool[i] = (name, pw + k, pwr + k, is_cmd)
+        if pool is atk_board:
+            board_power += k
+            board_power_rule += k
+        else:
+            pending_power += k
+            pending_power_rule += k
+        if is_cmd:
+            cmd_extra += k
+
+    def n_artifacts() -> int:
+        return (sum(1 for e in statics if e[0] == "artifact")
+                + sum(1 for s in sources if s.treasure and s.ready))
+
+    def pay_spare(cost) -> bool:
+        """Pay a sink from untapped sources, never a Treasure (it keeps for a later turn)."""
+        held = [s for s in sources if s.treasure and s.ready]
+        for s in held:
+            s.ready = False
+        idx = _can_pay(sources, cost)
+        for s in held:
+            s.ready = True
+        if idx is None:
+            return False
+        for i in idx:
+            sources[i].ready = False
+        return True
+
     vehicles_pending: list[SimCard] = []
     vehicles_board: list[SimCard] = []
     ships: list[dict] = []                              # unbuilt Spacecraft: sc, need, counters, turn
@@ -909,21 +991,38 @@ def _run_one(
             damage += mk.amount
             credit(src, "burn", mk.amount)
         elif mk.kind == "treasure":
+            n = mk.amount * 2 ** sum(1 for e in statics if e[0] == "doubler" and e[3] == "all")
             sources.extend(_Source(frozenset("WUBRG"), ready=True, treasure=True)
-                           for _ in range(mk.amount))
+                           for _ in range(n))
+        elif mk.kind == "gain":
+            gain_life(mk.amount)
+
+    def gain_life(amount: int) -> None:
+        """You gain life: each "whenever you gain life, <opponent> loses ..." payoff on the
+        battlefield drains (that much, or its fixed amount). Nothing else reads life gain."""
+        nonlocal damage
+        if amount <= 0:
+            return
+        for kind, name, _, v in list(statics):
+            if kind == "gain_drain":
+                hit = amount if v == 0 else v
+                damage += hit
+                credit(name, "burn", hit)
 
     def make_tokens(src: str, mk: _TokenMaker, attacking: bool = False) -> None:
         """Creature tokens join the board summoning-sick (they attack next turn); with haste
-        or "tapped and attacking" they are in this combat. Credited to the card that made them."""
+        or "tapped and attacking" they are in this combat. Credited to the card that made them.
+        A token doubler on the battlefield (R0.token_doubler) doubles the count, each one."""
         nonlocal pending_power, pending_power_rule, pending_creatures
         nonlocal board_power, board_power_rule, board_creatures
         name = f"{src} token"
         power_of[name] = mk.power
         if mk.infect:
             own_infect.add(name)
-        for _ in range(mk.count):
+        hasty = mk.haste or any(e[0] == "team_haste" for e in statics)
+        for _ in range(mk.count * 2 ** sum(1 for e in statics if e[0] == "doubler")):
             entry = (name, mk.power, mk.power, False)
-            if mk.haste or attacking:
+            if hasty or attacking:
                 board_power += mk.power
                 board_power_rule += mk.power
                 board_creatures += 1
@@ -940,9 +1039,11 @@ def _run_one(
     extra_lands: list[tuple[str, int, bool]] = []
 
     def play_land() -> bool:
+        nonlocal lands_count
         land = _choose_land(hand, _needed_colors(hand, commander if commander_in_zone else None))
         if land is None:
             return False
+        lands_count += 1
         hand.remove(land)
         played(land)
         sources.append(_Source(land.produced_colors(), ready=not land.fx.enters_tapped))
@@ -1016,11 +1117,59 @@ def _run_one(
                 stats.cards_drawn += 1
                 stats.seen_turn.setdefault(hand[-1].card.name, cur_turn)
 
-    def apply_effects(sc: SimCard, is_commander: bool = False) -> None:
+    def apply_effects(sc: SimCard, is_commander: bool = False, x: int = 0) -> None:
         nonlocal pending_power, pending_creatures, engine_pending, enabler_pending, dmg_engine_pending
         nonlocal creature_engine, creature_dmg_engine, pending_power_rule
         nonlocal anthem_noncreature, anthem_creature, lord_self_pending
-        nonlocal board_power, board_power_rule, board_creatures
+        nonlocal board_power, board_power_rule, board_creatures, cmd_extra, lands_count
+        name, tl, text = sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""
+        permanent = not (sc.card.has_type("Instant") or sc.card.has_type("Sorcery"))
+        # Second sweep: what the permanent puts on the board (see tier0_readers).
+        bonus = 0                   # +1/+1 counters it enters with, or the power it copies
+        alive = True
+        if sc.card.is_creature:
+            fixed, per_x = R0.enters_counters(name, text)
+            n = fixed + per_x * x + R0.fabricate(name, text)
+            if n:
+                bonus += counters(n) * (2 if name in printed_ds else 1)
+            elif per_x and sc.toughness_value == 0:
+                alive = False       # a 0/0 cast for X=0 dies at once (CR 704.5f)
+            if R0.is_clone(name, tl, text):
+                pool = [a for a in atk_board + atk_pending]
+                if pool:            # the strongest creature you control (its printed power)
+                    bonus += max(power_of.get(a[0], 0) for a in pool)
+                else:
+                    alive = False   # nothing to copy: a 0/0
+            if is_commander:
+                cmd_extra = bonus
+        if permanent:
+            if sc.card.has_type("Artifact"):
+                statics.append(("artifact", name, sc.card.is_creature, 1))
+            for kind, v in (("exalted", R0.exalted(name, text)),
+                            ("doubler", R0.token_doubler(name, text)),
+                            ("counter_mod", R0.counter_mod(name, text)),
+                            ("gain_drain", R0.gain_drain(name, text)),
+                            ("death_drain", R0.death_drain(name, text)),
+                            ("outlet", R0.free_sac_outlet(name, text)),
+                            ("extort", R0.extort(name, text)),
+                            ("xcombat", xcombat_of.get(name) == "attack_any"),
+                            ("haste_gear", R0.haste_gear(name, tl, text)),
+                            ("team_haste", R0.team_haste(name, text)),
+                            ("combat_counter", R0.combat_counter(name, text))):
+                if v or (kind == "gain_drain" and v == 0):
+                    statics.append((kind, name, sc.card.is_creature, v))
+            sources.extend(_Source(frozenset("WUBRG"), ready=True, treasure=True)
+                           for _ in range(R0.one_shot_mana(name, text)))
+            n_ramp, cols = R0.aura_ramp(name, tl, text)
+            sources.extend(_Source(cols, ready=False) for _ in range(n_ramp))
+        if R0.pump_spell(name, tl, text):
+            pumps_today.append((name, R0.pump_spell(name, tl, text)))
+        vd = R0.var_draw(name, tl, text)
+        if vd == "creature":
+            draw(board_creatures + pending_creatures)
+        elif vd == "power":
+            pool = atk_board + atk_pending
+            draw(max((power_of.get(a[0], 0) for a in pool), default=0))
         aura = _infect_aura(sc.card.type_line or "", sc.card.oracle_text or "")
         if aura is not None and commander_on_board():
             cmd_auras.append((sc, aura))
@@ -1032,19 +1181,24 @@ def _run_one(
                     lord_self_pending += bonus
             else:
                 anthem_noncreature += bonus
-        if sc.card.is_creature and _has_own_haste(sc.card.oracle_text or ""):
+        team_hasty = any(e[0] == "team_haste" and (e[3] == "all" or (e[3] == "other"
+                                                                    and e[1] != name))
+                         for e in statics)
+        if not alive:
+            pass
+        elif sc.card.is_creature and (_has_own_haste(sc.card.oracle_text or "") or team_hasty):
             # haste (CR 702.10): able to attack the turn it arrives
-            board_power += sc.attack_power
-            board_power_rule += sc.attack_power_under(rule)
+            board_power += sc.attack_power + bonus
+            board_power_rule += sc.attack_power_under(rule) + bonus
             board_creatures += 1
-            atk_board.append((sc.card.name, sc.attack_power, sc.attack_power_under(rule),
-                              is_commander))
+            atk_board.append((sc.card.name, sc.attack_power + bonus,
+                              sc.attack_power_under(rule) + bonus, is_commander))
         elif sc.card.is_creature:
-            pending_power += sc.attack_power
-            pending_power_rule += sc.attack_power_under(rule)
+            pending_power += sc.attack_power + bonus
+            pending_power_rule += sc.attack_power_under(rule) + bonus
             pending_creatures += 1
-            atk_pending.append((sc.card.name, sc.attack_power, sc.attack_power_under(rule),
-                                is_commander))
+            atk_pending.append((sc.card.name, sc.attack_power + bonus,
+                                sc.attack_power_under(rule) + bonus, is_commander))
         if _crew_cost(sc.card.type_line or "", sc.card.oracle_text or "") and sc.attack_power:
             vehicles_pending.append(sc)
         need = _station_threshold(sc.card.type_line or "", sc.card.oracle_text or "")
@@ -1059,7 +1213,15 @@ def _run_one(
                 break
         att = _attachment(sc.card.type_line or "", sc.card.oracle_text or "")
         if att is not None:
-            attachments.append([sc, att, best_target() if att.kind == "aura" else None])
+            target = best_target() if att.kind == "aura" else None
+            if att.kind == "equip" and R0.living_weapon(name, text):
+                # living weapon (CR 702.92): a 0/0 Germ enters and this attaches to it
+                germ = f"{name} germ"
+                power_of[germ] = 0
+                pending_creatures += 1
+                atk_pending.append((germ, 0, 0, False))
+                target = germ
+            attachments.append([sc, att, target])
         makers = (_token_makers(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or "")
                   + _effect_makers(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""))
         for mk in makers:
@@ -1090,6 +1252,7 @@ def _run_one(
         if sc.fx.fetches_land:
             fetched = next((c for c in library if c.is_land), None)
             if fetched is not None:
+                lands_count += 1
                 library.remove(fetched)
                 sources.append(_Source(fetched.produced_colors(), ready=False))
         elif sc.fx.ramp_sources > 0:
@@ -1143,8 +1306,56 @@ def _run_one(
             played(pick)
             apply_effects(pick)
 
+    def cast_one(sc: SimCard, is_commander: bool = False, x: int = 0,
+                 flashback: bool = False) -> None:
+        """A spell resolves (after its mana is paid): extort and cast triggers see it, then
+        its effects, then cascade (CR 702.85) and the graveyard for a flashback card (one cast
+        with flashback is exiled instead, CR 702.34a)."""
+        nonlocal extort_due, damage
+        stats.spells_cast += 1
+        storm_count = len(cast_this_turn)           # spells cast before it this turn
+        cast_this_turn.append(sc)
+        extort_due += sum(e[3] for e in statics if e[0] == "extort")
+        fire_cast(sc)
+        apply_effects(sc, is_commander, x)
+        if storm_count and R0.storm(sc.card.name, sc.card.oracle_text or ""):
+            # Storm (CR 702.40): a copy per earlier spell. Each copy does what the reader reads
+            # of the spell: its "now" tokens / drains / poison, and its own "N damage to any
+            # target" at the face (R0.storm_damage). Copies are not cast: no cast triggers.
+            nm, tl_, tx = sc.card.name, sc.card.type_line or "", sc.card.oracle_text or ""
+            now = [mk for mk in _token_makers(nm, tl_, tx) + _effect_makers(nm, tl_, tx)
+                   if mk.trigger == "now"]
+            per = R0.storm_damage(nm, tx)
+            for _ in range(storm_count):
+                for mk in now:
+                    fire(nm, mk)
+                if per:
+                    damage += per
+                    credit(nm, "burn", per)
+        if not flashback and R0.flashback_cost(sc.card.name, sc.card.type_line or "",
+                                               sc.card.oracle_text or ""):
+            graveyard_fb.append(sc)
+        for _ in range(R0.cascade(sc.card.name, sc.card.oracle_text or "")):
+            exiled: list[SimCard] = []
+            hit = None
+            while library:
+                c = library.pop()
+                if not c.is_land and c.mana_value < sc.mana_value:
+                    hit = c
+                    break
+                exiled.append(c)
+            library[0:0] = exiled                   # to the bottom (draw pops the end)
+            if hit is not None:
+                stats.seen_turn.setdefault(hit.card.name, cur_turn)
+                played(hit)
+                cast_one(hit)
+
+    cast_this_turn: list[SimCard] = []
     for turn in range(1, cfg.turns + 1):
         cur_turn = turn
+        convoke_used = 0
+        extort_due = 0
+        pumps_today.clear()
         # ritual mana expires at untap; a Treasure that was used was sacrificed
         sources = [s for s in sources if not s.temp and not (s.treasure and not s.ready)]
         for s in sources:
@@ -1208,8 +1419,8 @@ def _run_one(
             commander_tax += 2
             cfx, cname = commander.fx, commander.card.name
             if commander.card.is_creature:
-                board_power -= commander.attack_power
-                board_power_rule -= commander.attack_power_under(rule)
+                board_power -= commander.attack_power + cmd_extra
+                board_power_rule -= commander.attack_power_under(rule) + cmd_extra
                 board_creatures -= 1
                 atk_board[:] = [a for a in atk_board if not (a[0] == cname and a[3])]
                 creature_engine -= cfx.engine_draw
@@ -1232,6 +1443,8 @@ def _run_one(
             drop_engines(lambda e: e[0] != cname)
             creature_left(lambda n: n == cname)
             extra_lands[:] = [e for e in extra_lands if e[0] != cname]
+            statics[:] = [e for e in statics if e[1] != cname]
+            cmd_extra = 0
 
         if board_wipe_turn is not None and turn == board_wipe_turn:
             commander_stays = False
@@ -1265,12 +1478,17 @@ def _run_one(
             creature_left(lambda n: not (commander_stays and n == cmd_name))
             extra_lands[:] = [e for e in extra_lands
                               if not e[2] or (commander_stays and e[0] == cmd_name)]
+            statics[:] = [e for e in statics
+                          if not e[2] or (commander_stays and e[1] == cmd_name)]
+            if not commander_stays:
+                cmd_extra = 0
             if commander_stays:
-                # exactly what apply_effects(commander) put on the board (see there)
-                board_power = commander.attack_power
-                board_power_rule = commander.attack_power_under(rule)
-                atk_board.append((commander.card.name, commander.attack_power,
-                                  commander.attack_power_under(rule), True))
+                # exactly what apply_effects(commander) put on the board (see there), plus
+                # the +1/+1 counters it has gained since (they stay with it)
+                board_power = commander.attack_power + cmd_extra
+                board_power_rule = commander.attack_power_under(rule) + cmd_extra
+                atk_board.append((commander.card.name, commander.attack_power + cmd_extra,
+                                  commander.attack_power_under(rule) + cmd_extra, True))
                 anthem_src.extend((commander.card.name, b, True) for b, _ in commander.anthems)
                 if commander.fx.magecraft_damage + commander.fx.cast_damage:
                     burn_active.append((commander.card.name, commander.fx.magecraft_damage
@@ -1325,15 +1543,42 @@ def _run_one(
                 if (pump_aura is not None and pump_aura.kind == "aura"
                         and not (atk_board or atk_pending)):
                     continue
+                # An X creature that enters with X counters waits for the X pass below (cast
+                # here for X=0 it would be a 0/0); a clone with nothing to copy is not cast.
+                if sc.card.is_creature and R0.enters_counters(
+                        sc.card.name, sc.card.oracle_text or "")[1]:
+                    continue
+                if (R0.is_clone(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or "")
+                        and not (atk_board or atk_pending)):
+                    continue
+                # a pump spell is held until something can attack with it
+                if (R0.pump_spell(sc.card.name, sc.card.type_line or "", sc.card.oracle_text or "")
+                        and not atk_board):
+                    continue
                 rule_discount = (rule.creature_discount(sc.card)
                                  if rule is not None and commander is not None and not commander_in_zone
                                  else 0)
-                payment = _can_pay(sources, _effective_cost(sc, board_creatures, rule_discount))
+                # Affinity for artifacts (CR 702.41) and convoke (CR 702.51, generic mana only,
+                # tapping creatures that are summoning-sick -- they cannot attack this turn).
+                if R0.affinity_artifacts(sc.card.name, sc.card.oracle_text or ""):
+                    rule_discount += n_artifacts()
+                conv = 0
+                if R0.convoke(sc.card.name, sc.card.oracle_text or ""):
+                    left = (sc.card.cost.generic - rule_discount
+                            - sc.fx.self_reduction_per_creature * board_creatures)
+                    conv = max(0, min(pending_creatures - convoke_used, left))
+                payment = _can_pay(sources, _effective_cost(sc, board_creatures,
+                                                            rule_discount + conv))
                 if payment is not None:
                     prio = ((1, sc.mana_value) if (plan_piece and not cmd_auras)
                             or (sc.fx.tutor and plan_missing() and _tutor_finds_plan(sc))
                             else _cast_priority(sc, turn, cfg))
-                    castable.append((prio, sc, payment, False))
+                    castable.append((prio, sc, payment, "hand", conv))
+            for sc in graveyard_fb:
+                payment = _can_pay(sources, ManaCost.parse(R0.flashback_cost(
+                    sc.card.name, sc.card.type_line or "", sc.card.oracle_text or "")))
+                if payment is not None:
+                    castable.append((_cast_priority(sc, turn, cfg), sc, payment, "fb", 0))
             if commander_in_zone and commander is not None:
                 cmd_cost = _effective_cost(commander, board_creatures)
                 if commander_tax:
@@ -1341,27 +1586,27 @@ def _run_one(
                                        mana_value=cmd_cost.mana_value + commander_tax)
                 payment = _can_pay(sources, cmd_cost)
                 if payment is not None:
-                    castable.append(((1, commander.mana_value), commander, payment, True))
+                    castable.append(((1, commander.mana_value), commander, payment, "cmd", 0))
             if not castable:
                 break
 
-            _, sc, payment, is_commander = min(castable, key=lambda t: t[0])
+            _, sc, payment, origin, conv = min(castable, key=lambda t: t[0])
             for idx in payment:
                 sources[idx].ready = False
             spent += len(payment)  # actual sources tapped -- correct even under a discount
-            stats.spells_cast += 1
-            cast_this_turn.append(sc)
+            convoke_used += conv
 
-            if is_commander:
+            if origin == "cmd":
                 commander_in_zone = False
                 commander_cast_turn = turn
                 if stats.commander_turn is None:  # first cast only; a recast is not "on time"
                     stats.commander_turn = turn
+            elif origin == "fb":
+                graveyard_fb.remove(sc)
             else:
                 hand.remove(sc)
                 played(sc)
-            fire_cast(sc)
-            apply_effects(sc, is_commander)
+            cast_one(sc, origin == "cmd", flashback=origin == "fb")
 
         for att in sorted(attachments, key=lambda a: ManaCost.parse(a[1].equip_cost).mana_value):
             if att[1].kind != "equip" or att[2] is not None:
@@ -1376,6 +1621,30 @@ def _run_one(
                 sources[idx].ready = False
             spent += len(payment)
             att[2] = target
+
+        # X creatures that enter with X +1/+1 counters (Hydra class, R0.enters_counters): the
+        # mana left after every other spell is X, cast once X is at least 2 (a 0/0 or a 1/1
+        # for the cost is what a pilot holds it back from). {X}{X} halves it.
+        for sc in sorted((c for c in hand if c.card.is_creature and R0.enters_counters(
+                c.card.name, c.card.oracle_text or "")[1]), key=lambda c: c.mana_value):
+            payment = _can_pay(sources, sc.card.cost)
+            if payment is None:
+                continue
+            left = sum(1 for s in sources if s.ready) - len(payment)
+            x = left // max(1, sc.card.cost.x_count)
+            if x < 2:
+                continue
+            for idx in payment:
+                sources[idx].ready = False
+            paid = 0
+            for s in sources:
+                if s.ready and paid < x * max(1, sc.card.cost.x_count):
+                    s.ready = False
+                    paid += 1
+            spent += len(payment) + paid
+            hand.remove(sc)
+            played(sc)
+            cast_one(sc, x=x)
 
         # Scaling-burn finisher: whatever mana is left over this turn is spent as X (mirrors
         # how a player actually plays a Fireball — as a mana sink, not for X=0). Cheapest
@@ -1394,16 +1663,44 @@ def _run_one(
                 if s.ready:
                     s.ready = False
             spent += sc.mana_value + x
-            stats.spells_cast += 1
-            cast_this_turn.append(sc)
             hand.remove(sc)
             played(sc)
-            fire_cast(sc)
-            apply_effects(sc)
+            cast_one(sc)
             damage += x
             credit(sc.card.name, "burn", x)
 
+        # +1/+1-counter mana sinks ("{2}{G}: put a +1/+1 counter on ~", R0.sinks): spare mana,
+        # never a Treasure, goes into the creature it grows -- the counter stays, so this comes
+        # before the until-end-of-turn pumps below. Biggest payoff per mana first.
+        growers = [(pool, i, s) for pool in (atk_board, atk_pending)
+                   for i, a in enumerate(pool) for s in sinks_of.get(a[0], ()) if s.counter]
+        growers.sort(key=lambda g: ManaCost.parse(g[2].cost).mana_value)
+        for pool, i, s in growers:
+            cost = ManaCost.parse(s.cost)
+            if s.once:                              # monstrosity / adapt: once per creature
+                if pool[i][0] not in once_done and cost.mana_value > 0 and pay_spare(cost):
+                    spent += cost.mana_value
+                    once_done.add(pool[i][0])
+                    grow(pool, i, counters(s.bonus))
+                continue
+            while cost.mana_value > 0 and pay_spare(cost):
+                spent += cost.mana_value
+                grow(pool, i, counters(1))
+
         stats.mana_spent_by_turn.append(spent)
+
+        # "At the beginning of combat on your turn, put N +1/+1 counters on target creature you
+        # control" (R0.combat_counter): the commander if it can attack, else the strongest
+        # able attacker, else the strongest summoning-sick creature.
+        for kind, _src, _, v in list(statics):
+            if kind != "combat_counter":
+                continue
+            for pool in (atk_board, atk_pending):
+                if pool:
+                    i = next((k for k, a in enumerate(pool) if a[3]),
+                             max(range(len(pool)), key=lambda k: pool[k][1]))
+                    grow(pool, i, counters(v))
+                    break
 
         # combat: everything that was already down swings at the goldfish opponent
         rule_live = rule is not None and commander is not None and not commander_in_zone
@@ -1417,6 +1714,9 @@ def _run_one(
             sick = sorted((power_of.get(a[0], 0) + per_creature for a in atk_pending),
                           reverse=True)
             sick = [p for p in sick if p > 0]
+            if convoke_used:                        # tapped for convoke: weakest ones
+                sick = sick[:max(0, len(sick) - convoke_used)]
+            n_sick0 = len(sick)
 
             def tap_for(need: int, gain: int) -> bool:
                 got = 0
@@ -1470,6 +1770,9 @@ def _run_one(
                 if tap_for(_crew_cost(v.card.type_line or "", v.card.oracle_text or ""),
                            v.attack_power + per_creature):
                     crewed.append((v.card.name, v.attack_power, v.attack_power_under(rule), False))
+            crew_sick = n_sick0 - len(sick)         # summoning-sick creatures tapped above
+        else:
+            crew_sick = 0
         if any(mk.trigger in ("attack", "attack_any") for _, mk, _ in token_engines):
             attacking = {a[0] for i, a in enumerate(atk_board) if i not in tapped}
             attacking |= {c[0] for c in crewed}
@@ -1486,6 +1789,84 @@ def _run_one(
             attackers = [a for i, a in enumerate(atk_board) if i not in tapped] + crewed
             swing = sum(a[2] if rule_live else a[1] for a in attackers)
             swing += max(0, per_creature * len(attackers) - lord_self_active)
+        # Haste from elsewhere (R0.team_haste / R0.haste_gear): a team grant lets every
+        # summoning-sick creature attack (a "tokens" grant, the tokens); each haste Equipment
+        # moves, for its equip cost from spare mana, onto the best summoning-sick creature (the
+        # commander first). Creatures tapped for convoke or crew stay home.
+        scope = {e[3] for e in statics if e[0] == "team_haste"}
+        gear = [e[3] for e in statics if e[0] == "haste_gear"]
+        if (scope or gear) and atk_pending:
+            free_sick = list(atk_pending)
+            busy = convoke_used + crew_sick
+            if busy > 0:                            # the weakest were tapped
+                free_sick = sorted(free_sick, key=lambda a: a[1])[busy:]
+            joining = []
+            if scope & {"all", "other"}:
+                joining = free_sick
+            elif "tokens" in scope:
+                joining = [a for a in free_sick if a[0].endswith(" token")]
+            rest = [a for a in free_sick if a not in joining]
+            for cost in sorted(gear, key=lambda c: ManaCost.parse(c).mana_value):
+                if not rest:
+                    break
+                pick = next((a for a in rest if a[3]), max(rest, key=lambda a: a[1]))
+                if ManaCost.parse(cost).mana_value and not pay_spare(ManaCost.parse(cost)):
+                    continue
+                stats.mana_spent_by_turn[-1] += ManaCost.parse(cost).mana_value
+                rest.remove(pick)
+                joining.append(pick)
+            if joining:
+                attackers = list(attackers) + joining
+                swing = sum(a[2] if rule_live else a[1] for a in attackers)
+                swing += max(0, per_creature * len(attackers) - lord_self_active)
+        # Second sweep (tier0_readers). Extort (CR 702.101): each trigger this turn paid {W/B}
+        # from spare mana drains one and gains one -- noncombat, so before the combat snapshot.
+        payers = [e[1] for e in statics if e[0] == "extort"]
+        paid_ext = 0
+        if extort_due and payers:
+            wb = ManaCost.parse("{W/B}")
+            while paid_ext < extort_due and pay_spare(wb):
+                stats.mana_spent_by_turn[-1] += 1
+                damage += 1
+                credit(payers[paid_ext % len(payers)], "burn", 1)
+                paid_ext += 1
+                gain_life(1)
+        # The combat below is measured from here, so an additional combat phase (R0.extra_combat)
+        # can repeat exactly what it dealt.
+        snap = (damage, dict(stats.damage_by_card), dict(stats.damage_by_source),
+                dict(stats.poison_by_card))
+        # Per-attacker power this combat beyond its entry: prowess (CR 702.108, noncreature
+        # spells cast this turn -- all precombat in tier0), exalted (CR 702.83, an attacker
+        # alone), '*' / "for each" power (R0.var_power), and spare mana into firebreathing.
+        n_noncreature = sum(1 for c in cast_this_turn if not c.card.is_creature)
+        exalt = (sum(e[3] for e in statics if e[0] == "exalted") if len(attackers) == 1 else 0)
+        n_bodies = board_creatures + pending_creatures
+
+        def var_count(kind: str) -> int:
+            return {"land": lands_count, "creature": n_bodies, "other_creature": n_bodies - 1,
+                    "artifact": n_artifacts(), "hand": len(hand)}[kind]
+
+        dyn = []
+        for a in attackers:
+            b = prowess_of.get(a[0], 0) * n_noncreature + exalt
+            v = varp_of.get(a[0])
+            if v is not None:
+                b += v.per * max(0, var_count(v.kind))
+            dyn.append(b)
+        if pumps_today and attackers:               # pump spells: on the commander, else the
+            best = next((j for j, a in enumerate(attackers) if a[3]),   # strongest attacker
+                        max(range(len(attackers)), key=lambda j: attackers[j][1]))
+            dyn[best] += sum(n for _, n in pumps_today)
+        pumps = sorted(((j, s) for j, a in enumerate(attackers)
+                        for s in sinks_of.get(a[0], ()) if not s.counter),
+                       key=lambda t: ManaCost.parse(t[1].cost).mana_value / t[1].bonus)
+        for j, s in pumps:
+            cost = ManaCost.parse(s.cost)
+            while cost.mana_value > 0 and pay_spare(cost):
+                stats.mana_spent_by_turn[-1] += cost.mana_value
+                dyn[j] += s.bonus
+        dyn = [b * (2 if attackers[j][0] in printed_ds else 1) for j, b in enumerate(dyn)]
+        life_gained = 0
         # Infect (CR 702.90b): an infect attacker's damage is poison, not life; toxic (CR
         # 702.180) adds its poison on top of the damage. The commander's -1/-1 counters
         # (Glistening Oil) shrink its power. A deck with no infect, toxic or counters takes
@@ -1497,12 +1878,14 @@ def _run_one(
         for att in attachments:
             if att[2] is not None:
                 on.setdefault(att[2], []).append(att)
-        for name, pw, pw_rule, is_cmd in attackers:
+        for j, (name, pw, pw_rule, is_cmd) in enumerate(attackers):
             p = pw_rule if rule_live else pw
             if is_cmd and cmd_counters:
                 cut = min(cmd_counters, p)
                 p -= cut
                 swing -= cut
+            p += dyn[j]
+            swing += dyn[j]
             gear = on.pop(name, [])                 # one creature of that name carries it
             shares: list[tuple[str, int]] = []
             granted_infect = any(a[1].infect for a in gear)
@@ -1524,6 +1907,8 @@ def _run_one(
                 credit(name, "commander" if is_cmd else "combat", p)
                 for src, x in shares:
                     credit(src, "commander" if is_cmd else "combat", x)
+                if name in lifelink_of:             # CR 702.15b (anthem share not counted)
+                    life_gained += p + sum(x for _, x in shares)
             if toxic_of.get(name) and p + per_creature > 0:
                 credit_poison(name, toxic_of[name])
         infect_bonus = min(extra, per_creature * infect_attackers)
@@ -1541,6 +1926,33 @@ def _run_one(
                     else:
                         credit(name, "combat", share)
                     given += share
+        gain_life(life_gained)
+        # Additional combat phases (CR 505.1a, R0.extra_combat): an extra-combat spell cast this
+        # turn, or an attack trigger whose source is attacking, untaps the team and it all
+        # happens again -- the same damage, poison and credits as the combat just measured
+        # (pumps last until end of turn). Attack triggers do not fire again: an under-count.
+        attacking_names = {a[0] for a in attackers}
+        extra_combats = sum(1 for c in cast_this_turn if xcombat_of.get(c.card.name) == "spell")
+        extra_combats += sum(1 for n, k in xcombat_of.items()
+                             if (k == "attack" and n in attacking_names)
+                             or (k == "attack_any" and attackers
+                                 and any(e[1] == n for e in statics if e[0] == "xcombat")))
+        if extra_combats and attackers:
+            d_dmg = damage - snap[0]
+            d_card = {k: v - snap[1].get(k, 0) for k, v in stats.damage_by_card.items()
+                      if v != snap[1].get(k, 0)}
+            d_src = {k: v - snap[2].get(k, 0) for k, v in stats.damage_by_source.items()
+                     if v != snap[2].get(k, 0)}
+            d_poison = {k: v - snap[3].get(k, 0) for k, v in stats.poison_by_card.items()
+                        if v != snap[3].get(k, 0)}
+            for _ in range(extra_combats):
+                damage += d_dmg
+                for k, v in d_card.items():
+                    stats.damage_by_card[k] += v
+                for k, v in d_src.items():
+                    stats.damage_by_source[k] += v
+                for k, v in d_poison.items():
+                    credit_poison(k, v)
         # magecraft / cast-damage payoffs: each counts the casts its own trigger names
         for name, per_spell, _ in burn_active:
             flt = cast_filter_of.get(name, (False, 0))
@@ -1569,6 +1981,19 @@ def _run_one(
                 pending_power += cheated.attack_power  # ... and stays on board thereafter
                 pending_power_rule += cheated.attack_power_under(rule)
                 pending_creatures += 1
+        # Aristocrats finisher: with a free sacrifice outlet (R0.free_sac_outlet) and death
+        # drains (R0.death_drain) out, sacrificing every creature drains per_death each. Done
+        # only when it is lethal -- before that a body is worth more attacking every turn. A
+        # creature outlet is left standing (some only sacrifice "another"): an under-count.
+        per_death = sum(e[3] for e in statics if e[0] == "death_drain")
+        outlets = [e for e in statics if e[0] == "outlet"]
+        if per_death and outlets and stats.kill_turn is None:
+            bodies = board_creatures + pending_creatures - (1 if any(e[2] for e in outlets) else 0)
+            if bodies > 0 and damage + per_death * bodies >= cfg.goldfish_life:
+                for kind, src, _, v in list(statics):
+                    if kind == "death_drain":
+                        damage += v * bodies
+                        credit(src, "burn", v * bodies)
         for src, mk, _ in list(token_engines):
             if mk.trigger == "end":
                 fire(src, mk)

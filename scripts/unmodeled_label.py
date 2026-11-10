@@ -22,9 +22,9 @@ from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
-INV = ROOT / ".cache" / "unmodeled_inventory.json"
+INV = ROOT / ".cache" / os.environ.get("UNMODELED_INV", "unmodeled_inventory.json")
 CACHE = ROOT / ".cache" / os.environ.get("UNMODELED_CACHE", "unmodeled_labels.jsonl")
-URL = "http://127.0.0.1:8010/v1/chat/completions"
+URL = os.environ.get("UNMODELED_URL", "http://127.0.0.1:8010/v1/chat/completions")
 MODEL = os.environ.get("UNMODELED_MODEL", "qwen3:14b")
 BATCH = 4
 GOLD_MIN = 0.85
@@ -106,7 +106,9 @@ def label(shapes: list[str]) -> list[str]:
     for _attempt in range(3):
         r = requests.post(URL, json={"model": MODEL, "messages": _prompt(shapes),
                                      "temperature": 0.1, "max_tokens": 200,
-                                     "chat_template_kwargs": {"enable_thinking": False}},
+                                     "chat_template_kwargs": {"enable_thinking": False},
+                                     # Ollama (node 2) ignores the kwarg and /no_think
+                                     "reasoning_effort": "none"},
                           timeout=600)
         r.raise_for_status()
         text = r.json()["choices"][0]["message"]["content"]
@@ -141,13 +143,14 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gold", action="store_true")
     ap.add_argument("--top", type=int, default=2000)
+    ap.add_argument("--start", type=int, default=0, help="slice start, to split a sweep across nodes")
     args = ap.parse_args()
     if gold() < GOLD_MIN:
         print("gold set below threshold; not sweeping")
         return 1
     if args.gold:
         return 0
-    shapes = json.loads(INV.read_text(encoding="utf-8"))["shapes"][:args.top]
+    shapes = json.loads(INV.read_text(encoding="utf-8"))["shapes"][args.start:args.top]
     done = {}
     if CACHE.exists():
         for ln in CACHE.read_text(encoding="utf-8").splitlines():
