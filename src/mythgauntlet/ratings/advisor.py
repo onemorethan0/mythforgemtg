@@ -552,6 +552,14 @@ def _noise_floor(axis: str, runs: int) -> float:
     return base * math.sqrt(NOISE_REFERENCE_RUNS / runs)
 
 
+# Interaction is a COUNT of the answers a deck holds (closed-form), so the same number comes back on
+# every seed and fresh-seed confirmation proves nothing. A four-player pod test of a package of four
+# such swaps on a real Bracket 3 deck (scripts/swap_podcheck.py, 9,600 paired games, 2026-11-11)
+# measured no win-rate change (-0.4pp, se 0.6). So the swap is honest about what it is.
+INTERACTION_NOTE = ("Interaction is a count of the answers the deck holds, not a simulated result: "
+                    "this swap adds an answer, and a pod test of such swaps found no measured "
+                    "change in how often the deck wins.")
+
 CONFIRM_SEED_STEP = 7919        # fresh seeds: cfg.seed + step * (i + 1), never the search seed
 CONFIRM_MIN_FRACTION = 1.0      # a confirmed gain must reach the axis noise floor, as the search's
                                 # own bar always did (0.5 let a +1.8 swap through that pooled to +1.0)
@@ -962,12 +970,16 @@ def advise(
                 after = base_scores[ax] + mean      # claim the unbiased estimate, not the max
                 confirmation = {"seeds": len(diffs), "mean": round(mean, 2),
                                 "se": round(se, 2), "search_delta": round(search_delta, 2)}
+            if ax == "interaction":
+                confirmation = {"closed_form": True, "note": INTERACTION_NOTE}
             used_add.add(add.name)
             used_cut.add(cut.name)
             reason = reasons.setdefault((add.name, ax), _explain(add, ax, wants))
+            if ax == "interaction":
+                reason = f"{reason} {INTERACTION_NOTE}"
             # the kill-turn phrase reads the SEARCH seed's games, the very numbers that did not
             # repeat -- never state it for a swap whose gain was re-measured
-            measured = "" if confirmation else _measured_phrase(baseline, a)
+            measured = "" if (confirmation and not confirmation.get("closed_form")) else _measured_phrase(baseline, a)
             if measured:
                 reason = f"{reason} Measured: {measured}."
             suggestions.append(SwapSuggestion(
@@ -978,8 +990,8 @@ def advise(
                     before=base_scores[ax], after=after, noise_floor=floors[ax],
                     themes=themes, wants=wants,
                     # search-seed kill turns are the numbers that did not repeat: not cited
-                    baseline_report=None if confirmation else baseline.report,
-                    swap_report=None if confirmation else a.report,
+                    baseline_report=None if (confirmation and not confirmation.get("closed_form")) else baseline.report,
+                    swap_report=None if (confirmation and not confirmation.get("closed_form")) else a.report,
                 ),
                 axis_deltas={m.axis: m.delta for m in moves},
                 net=net, confirmation=confirmation,

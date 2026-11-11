@@ -686,3 +686,28 @@ def test_a_swap_that_passes_the_three_seed_screen_by_chance_fails_the_eight_seed
     rep = advisor.advise(deck, cfg, store, [chancy], axis="consistency", cut_pool=1,
                          confirm_seeds=3)
     assert rep.suggestions == []
+
+
+def test_an_interaction_swap_says_it_is_a_count_not_a_win_rate(deck, store, make_card, monkeypatch):
+    """Interaction is closed-form, so it repeats on any seed and proves nothing about winning; a
+    pod test (scripts/swap_podcheck.py) found no win-rate change from such swaps. The suggestion
+    must say what it is, in the engine's reason and in what the mentor is handed."""
+    from mythgauntlet.mentor.tools import _swap_result
+    removal = make_card("Clean Removal", mana_cost="{1}{G}", type_line="Instant",
+                        color_identity=("G",), oracle_text="Destroy target artifact.")
+
+    def fake_analyze(resolved, cfg, store, **kw):
+        has = "Clean Removal" in {c.name for c, _ in resolved.cards}
+        return _fake_analysis(consistency=70.0, interaction=13.0 if has else 10.0)
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    rep = advisor.advise(deck, SimConfig(runs=150, turns=12, seed=1), store, [removal],
+                         axis="interaction", cut_pool=1, confirm_seeds=3)
+    s = rep.suggestions[0]
+    assert advisor.INTERACTION_NOTE in s.reason
+    assert s.confirmation == {"closed_form": True, "note": advisor.INTERACTION_NOTE}
+    data = {"axis": "interaction", "axis_label": "Interaction", "baseline": 10.0,
+            "evaluated": 1, "suggestions": [{"add": s.add, "cut": s.cut, "axis": "interaction",
+                                            "brief": None}]}
+    out = _swap_result(data).data["suggestions"][0]
+    assert "do NOT claim the deck will win more" in out["measurement_note"]
