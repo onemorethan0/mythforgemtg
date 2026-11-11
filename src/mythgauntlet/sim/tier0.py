@@ -1124,10 +1124,9 @@ def _run_one(
         n_new = mk.count * 2 ** sum(1 for e in statics if e[0] == "doubler")
         # Tokens that make tokens (Locutus of Borg) roughly double the board each turn, and the
         # goldfish plays on to the horizon after the kill -- thousands of entries by turn 12 and
-        # a 13 s test file took 6 minutes. After the kill a token can change no figure that
-        # matters, and past MAX_BODIES the board is lethal many times over: stop there.
-        if stats.kill_turn is not None:
-            n_new = 0
+        # a 13 s test file took 6 minutes. Past MAX_BODIES the board is lethal many times over:
+        # stop there. (Not "stop at the kill": the post-kill board feeds the strength features,
+        # and cutting it moved 7 corpus decks away from their label, 2026-11-10.)
         n_new = max(0, min(n_new, MAX_BODIES - len(atk_board) - len(atk_pending)))
         for _ in range(n_new):
             entry = (name, mk.power, mk.power, False)
