@@ -230,6 +230,12 @@ class MentorChatRequest(BaseModel):
         "(Forge verifies deck hash + collection mtime before sending). Passed through to "
         "MentorContext.advice for the get_measured_swaps tool; None = none run.",
     )
+    scout: dict | None = Field(
+        default=None,
+        description="{'report': <scout.build>, 'text': <scout.render>} -- Forge's cached scouting "
+        "report for THIS exact decklist (Forge verifies decklist + engine before sending). "
+        "Passed through to MentorContext.scout for get_scouting_report; None = not run.",
+    )
 
 
 class BreakdownRequest(BaseModel):
@@ -1081,7 +1087,7 @@ def create_app(
         ctx = MentorContext(
             card_db=db, cr=mentor_cr, rulings_db=mentor_rulings_db, resolved=resolved,
             cfg=cfg, store=store, themes=tuple(req.themes), offmeta=req.offmeta,
-            advice=req.advice,
+            advice=req.advice, scout=req.scout,
         )
         try:
             reply = mentor_chat.ask(ctx, req.question, history=req.history, model=req.model)

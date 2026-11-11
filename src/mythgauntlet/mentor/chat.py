@@ -850,6 +850,34 @@ def _prefetch_card_verdicts(ctx, question, tool_trace, all_results, messages) ->
     return True
 
 
+_SCOUT_Q_RE = re.compile(
+    r"\b(?:scout\w*|scouting report|how (?:does|do) (?:my|this) deck (?:stack up|measure up|compare|do)|"
+    r"what(?:'s| is| are) (?:my|this) deck(?:'s)? (?:weak|vulnerable) (?:to|against)|"
+    r"weak (?:to|against)|matchups?)\b", re.IGNORECASE)
+
+
+def _prefetch_scouting_report(ctx, question, tool_trace, all_results, messages) -> bool:
+    """A scouting-report / weak-against / matchup question gets Forge's cached scouting report
+    before the model writes, so it is answered from the measured lines (qwen3:14b otherwise
+    improvises from general Magic knowledge). Nothing cached: no prefetch -- the tool stays
+    callable and says so honestly."""
+    if not _SCOUT_Q_RE.search(question) or not getattr(ctx, "scout", None):
+        return False
+    call = {"id": "auto-scout", "type": "function",
+            "function": {"name": "get_scouting_report", "arguments": "{}"}}
+    messages.append({"role": "assistant", "content": "", "tool_calls": [call]})
+    result = call_tool(ctx, "get_scouting_report", {})
+    all_results.append(result)
+    tool_trace.append(ToolCallRecord(name="get_scouting_report", args={}, result_data=result.data))
+    messages.append({"role": "tool", "tool_call_id": call["id"],
+                     "content": json.dumps(result.data, ensure_ascii=False, default=str)})
+    messages.append({"role": "user", "content": (
+        "Answer from get_scouting_report: use its own lines for what the deck is weak against, "
+        "how it wins and how fast, and say what its caveats list as NOT measured (for example "
+        "matchups not run). Do not add weaknesses or matchups it does not list.")})
+    return True
+
+
 _REPLACE_Q_RE = re.compile(
     r"\b(?:replace\w*|instead|swap\w*|in (?:their|its) place|what (?:should|could|would) "
     r"(?:i )?(?:add|put in|go in))\b", re.IGNORECASE)
@@ -1147,6 +1175,7 @@ def ask(
     _prefetch_role_table(ctx, role_q, tool_trace, all_results, messages)
     _prefetch_castability(ctx, question, tool_trace, all_results, messages)
     _prefetch_card_verdicts(ctx, question, tool_trace, all_results, messages)
+    _prefetch_scouting_report(ctx, question, tool_trace, all_results, messages)
 
     nudged = False
     swap_nudged = False

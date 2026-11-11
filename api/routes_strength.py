@@ -312,7 +312,7 @@ def _gauntlet_card_impact(commander, deck, card_name, themes=None, partners=None
 
 
 def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, themes=None,
-                           partners=None, offmeta=None, advice=None):
+                           partners=None, offmeta=None, advice=None, scout=None):
     """Deck Mentor chat turn from MythGauntlet's tool-calling loop + claim-budget gate
     (docs/SPEC_deck_mentor.md Phase 2). Same shape as `_gauntlet_advise`/
     `_gauntlet_card_impact`: JSON on success, {"error": detail} for a meaningful 400/503
@@ -346,6 +346,8 @@ def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, t
             payload["offmeta"] = offmeta
         if advice:
             payload["advice"] = advice
+        if scout:
+            payload["scout"] = scout
         # 300 s, not 120: a cold "weakest cards / what should replace them" turn runs the per-card
         # cut ranking (~30 s, ratings/cut_ranking) and a role swap (~30 s) before the model writes;
         # under load (a Measure or Advise running) that doubled. Warm turns stay seconds.
@@ -394,7 +396,7 @@ def mentor_chat_deck(job_id: str, req: MentorChatDeckRequest, request: Request):
         commander, deck, req.question.strip(), history=req.history, model=req.model,
         themes=_deck_archetypes(job), partners=_job_partners(job),
         offmeta=(job.get("stats") or {}).get("offmeta") or None,
-        advice=_valid_advice(job) or None,
+        advice=_valid_advice(job) or None, scout=_valid_scout(job),
     )
     if result is None:
         raise HTTPException(
@@ -1134,6 +1136,23 @@ def get_matchups(job_id: str):
 
 def _scout_key(text: str) -> str:
     return f"{_decklist_hash(text)}:{_engine_fingerprint() or ''}"
+
+
+def _valid_scout(job: dict):
+    """The deck's cached scouting report if it still describes THIS decklist on THIS engine, as
+    the `{"report", "text"}` the mentor's get_scouting_report reads; else None. Never raises."""
+    try:
+        cached = job.get("scout_cache") or {}
+        commander, deck = _job_deck_inputs(job)
+        text = _deck_to_lines(commander, deck, _job_partners(job))
+        if cached.get("key") != _scout_key(text):
+            return None
+        res = cached.get("result") or {}
+        if not res.get("report"):
+            return None
+        return {"report": res["report"], "text": res.get("text") or ""}
+    except Exception:                       # noqa: BLE001 - the mentor must never fail on this
+        return None
 
 
 @router.get("/api/deck/{job_id}/scout")

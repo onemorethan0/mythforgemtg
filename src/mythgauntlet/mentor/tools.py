@@ -25,6 +25,7 @@ higher latency cost per call. Worth adding once the loop is proven, not before.
 
 from __future__ import annotations
 
+import json
 import re
 import threading
 from collections import OrderedDict
@@ -236,6 +237,10 @@ class MentorContext:
     # collection mtime verified by Forge before it sends them, so every entry here is current).
     # Pass-through like `offmeta`; `get_measured_swaps` reads it. None/empty = no search run.
     advice: dict | None = None
+    # B38: Forge's cached scouting report for THIS exact decklist ({"report": <scout.build>,
+    # "text": <scout.render>}); Forge verifies the decklist + engine fingerprint before sending.
+    # Pass-through like `advice`; `get_scouting_report` reads it and never simulates. None = not run.
+    scout: dict | None = None
 
     @property
     def deck_card_names(self) -> frozenset[str]:
@@ -1461,6 +1466,28 @@ def tool_get_card_verdicts(ctx: MentorContext) -> ToolResult:
     return ToolResult(data=data, card_names=frozenset(names))
 
 
+def tool_get_scouting_report(ctx: MentorContext) -> ToolResult:
+    """B38: the deck's scouting report (ratings/scout.py) that Forge already measured and cached
+    for this exact decklist: gameplan, bracket, clock, how it wins, strengths, what it is weak
+    against, strong/weak cards, combos, caveats. Every line is a measured field the report
+    template copied, so the numbers and names are licensed from it. `{"available": False}` when
+    no report is cached -- it never runs the (minutes-long) measurement itself."""
+    sc = ctx.scout
+    report = sc.get("report") if isinstance(sc, dict) else None
+    if not isinstance(report, dict) or not report:
+        return ToolResult(data={
+            "found": True, "available": False,
+            "message": "No scouting report has been run for this deck. Tell the player to press "
+                       "\"Scout\" on the deck page; do not guess what it would say."})
+    text = sc.get("text") or ""
+    blob = text + " " + json.dumps(report, ensure_ascii=False, default=str)
+    names = frozenset(n for n in ctx.deck_card_names if n and n in blob)
+    return ToolResult(data={"found": True, "available": True, "report": report,
+                            "note": "Every line is a measured result; repeat it, do not embellish. "
+                                    "Caveats say what was NOT measured -- pass those on."},
+                      card_names=names)
+
+
 TOOL_SCHEMAS: list[dict] = [
     {
         "type": "function",
@@ -1559,6 +1586,18 @@ TOOL_SCHEMAS: list[dict] = [
                 "properties": {"name": {"type": "string"}, "turn": {"type": "integer"}},
                 "required": ["name"],
             },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_scouting_report",
+            "description": "The deck's full measured scouting report (gameplan, bracket, how fast "
+                            "and how it wins, strengths, what it is weak against, strong/weak "
+                            "cards, combos, caveats). Use for 'scouting report', 'scout my deck', "
+                            "'how does my deck stack up', 'what is it weak against'. Says when none "
+                            "has been run.",
+            "parameters": {"type": "object", "properties": {}},
         },
     },
     {
@@ -1835,6 +1874,7 @@ _TOOL_FUNCS = {
     "check_legality": tool_check_legality,
     "card_castability": tool_card_castability,
     "get_card_verdicts": tool_get_card_verdicts,
+    "get_scouting_report": tool_get_scouting_report,
 }
 
 
