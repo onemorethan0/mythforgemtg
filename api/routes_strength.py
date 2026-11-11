@@ -1132,6 +1132,62 @@ def get_matchups(job_id: str):
     return {"cached": False}
 
 
+def _scout_key(text: str) -> str:
+    return f"{_decklist_hash(text)}:{_engine_fingerprint() or ''}"
+
+
+@router.get("/api/deck/{job_id}/scout")
+def get_scout(job_id: str):
+    """The cached scouting report (B38) for this exact decklist and engine, or {"cached": False}."""
+    _require_job_id(job_id)
+    job = _jobs.get(job_id) or _load_deck_from_disk(job_id)
+    if not job:
+        raise HTTPException(404, "Deck not found")
+    _name, text = _job_decklist(job_id)
+    cached = job.get("scout_cache") or {}
+    if cached.get("key") == _scout_key(text):
+        return {"cached": True, **cached["result"], "computed_at": cached.get("computed_at")}
+    return {"cached": False}
+
+
+@router.post("/api/deck/{job_id}/scout")
+def run_scout(job_id: str):
+    """B38: the deck scouting report -- one page of what the deck is, how fast and how it kills,
+    what it is good at and weak against, its strong and weak cards and combos, every line a
+    measured field (engine `/scout`). Folds in this list's cached matchups when there are any;
+    cached in deck.json per decklist + engine fingerprint."""
+    name, text = _job_decklist(job_id)
+    job = _jobs.get(job_id) or _load_deck_from_disk(job_id) or {}
+    payload = {"deck": text, "name": name, "runs": 300, "combos": True, "table_speed": True}
+    mu = job.get("matchups_cache") or {}
+    if mu.get("deck_hash") == _decklist_hash(text):
+        payload["matchups"] = mu.get("result")
+    try:
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/scout", json=payload, timeout=600)
+    except Exception as e:
+        print(f"  [scout] MythGauntlet strength API unavailable: {e}")
+        raise HTTPException(503, "MythGauntlet strength API isn't reachable on :8020 -- start "
+                                 "Myth Forge via manage.bat or run 'mythgauntlet serve'.")
+    if resp.status_code == 400:
+        raise HTTPException(400, resp.json().get("detail", "scouting report failed"))
+    if resp.status_code != 200:
+        raise HTTPException(502, f"strength API returned HTTP {resp.status_code}")
+    result = resp.json()
+    entry = {"key": _scout_key(text), "result": result,
+             "computed_at": _dt.now().isoformat(timespec="seconds")}
+    try:
+        p = state.RENDER_DIR / job_id / "deck.json"
+        if p.exists():
+            disk = json.loads(p.read_text(encoding="utf-8"))
+            disk["scout_cache"] = entry
+            p.write_text(json.dumps(disk), encoding="utf-8")
+        if job_id in _jobs:
+            _jobs[job_id]["scout_cache"] = entry
+    except Exception as e:
+        print(f"  [scout] could not persist scout_cache: {e}")
+    return {"cached": False, **result, "computed_at": entry["computed_at"]}
+
+
 @router.post("/api/deck/{job_id}/matchups")
 def scout_matchups(job_id: str):
     """B35: duel this deck against its bracket's reference field (one deck per archetype) and

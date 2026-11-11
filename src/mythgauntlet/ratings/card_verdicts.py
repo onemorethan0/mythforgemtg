@@ -171,8 +171,12 @@ def build(resolved: ResolvedDeck, stats: list[CardStat], *, lens=None, combo_pro
     strong_names = {v.name for v in strong}
 
     # ── weak: stranded ───────────────────────────────────────────────────────────────────
+    # A card the shared cut ranking protects (the deck measurably kills sooner with it, or it is
+    # a plan card) is never named weak: the scouting report listed Ambulatory Reactor as
+    # "stranded, always a better play" beside a ranking that keeps it (2026-11-10).
+    kept = set(ranking.protected) if ranking is not None else set()
     stranded = [s for s in stats if not s.is_land and s.name not in zone
-                and s.name not in strong_names and s.name in by_name
+                and s.name not in strong_names and s.name not in kept and s.name in by_name
                 and s.drawn >= STRANDED_MIN_DRAWN and s.stranded_rate >= STRANDED_MIN]
     for s in sorted(stranded, key=lambda s: -s.stranded_rate):
         if sum(v.kind == "stranded" for v in weak) >= MAX_STRANDED:

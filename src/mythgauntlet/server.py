@@ -106,6 +106,18 @@ class CardImpactRequest(BaseModel):
     )
 
 
+class ScoutRequest(BaseModel):
+    deck: str = Field(description="decklist text (plain/Moxfield-ish, Commander: section)")
+    name: str = "deck"
+    runs: int = Field(default=300, ge=1, le=5_000)
+    seed: int = 42
+    turns: int = Field(default=DEFAULT_ANALYZE_TURNS, ge=1, le=30)
+    combos: bool = True
+    table_speed: bool = True
+    matchups: dict | None = Field(
+        default=None, description="a cached /matchups response to fold in (optional)")
+
+
 class AdviseRequest(BaseModel):
     deck: str = Field(description="decklist text (plain/Moxfield-ish, Commander: section)")
     name: str = "deck"
@@ -989,6 +1001,21 @@ def create_app(
             "field": field,
             "rating": dataclasses.asdict(rating),
         }
+
+    @app.post("/scout")
+    def run_scout(req: ScoutRequest) -> dict:
+        """B38: the deck scouting report (ratings/scout.py) -- the /analyze measurement with
+        card stats, combos and table speed, assembled into one template-rendered report where
+        every line is a measured field. `matchups` passes a cached /matchups result through
+        (the engine does not run the reference field here: that is the slow, on-demand part)."""
+        body = analyze(AnalyzeRequest(
+            deck=req.deck, name=req.name, runs=req.runs, seed=req.seed, turns=req.turns,
+            combos=req.combos, card_stats=True, table_speed=req.table_speed,
+            use_suite_collection=False))
+        from mythgauntlet.ratings import scout as _scout
+        report = _scout.build(body, req.matchups)
+        return {"engine_version": __version__, "model_fingerprint": body.get("model_fingerprint"),
+                "report": report, "text": _scout.render(report)}
 
     @app.post("/breakdown")
     def run_breakdown(req: BreakdownRequest) -> dict:

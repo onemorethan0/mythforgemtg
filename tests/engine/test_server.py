@@ -342,3 +342,14 @@ def test_pod_field_bracket_filters_by_label(client, tmp_path, monkeypatch):
     b1 = client.post("/pod", json={"deck": DECK, "games": 4, "field_bracket": 1}).json()
     assert b1["opponents"] == 1 and "win_rounds" in b1["rating"]
     assert client.post("/pod", json={"deck": DECK, "games": 4, "field_bracket": 5}).status_code == 422
+
+
+def test_scout_assembles_the_measured_report(client):
+    """B38: /scout = the /analyze measurement (card stats on) rendered by ratings/scout."""
+    resp = client.post("/scout", json={"deck": DECK, "runs": 40, "combos": False,
+                                       "table_speed": False})
+    assert resp.status_code == 200, resp.text
+    body = resp.json()
+    assert body["report"]["bracket"]["bracket"] in (1, 2, 3, 4, 5)
+    assert "**How fast**" in body["text"]
+    assert any("not checked" in c for c in body["report"]["caveats"])

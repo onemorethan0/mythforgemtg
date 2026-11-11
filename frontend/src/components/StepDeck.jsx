@@ -12,6 +12,7 @@ import ManaCost from './ManaCost'
 import MeasurePanel from './MeasurePanel'
 import PodCheckPanel from './PodCheckPanel'
 import MatchupsPanel from './MatchupsPanel'
+import ScoutingReportPanel from './ScoutingReportPanel'
 import OwnershipBadge from './OwnershipBadge'
 import RegenPanel from './RegenPanel'
 import SetBible from './SetBible'
@@ -1069,6 +1070,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           <DuelPanel key={`duel-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
           <PodCheckPanel key={`pod-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
           <MatchupsPanel key={`mu-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+          <ScoutingReportPanel key={`scout-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
           <MentorChatPanel key={`mentor-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
         </div>
       )}
