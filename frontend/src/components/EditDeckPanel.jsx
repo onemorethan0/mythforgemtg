@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 
-// Manual edit: cut any card from the 99, add any card. The one edit every deck site is built
+// Manual edit: cut any card from the 99, add any card, or do either alone. The one edit every deck site is built
 // around; until now Myth Forge only let you apply an advisor suggestion. Uses the same
 // /apply-swap endpoint, which enforces singleton, colour identity and the ban list and
 // recomputes the deck's stats, so a manual edit is held to the same rules as an advised one.
@@ -72,18 +72,25 @@ export default function EditDeckPanel({ deck, jobId, onChanged }) {
     return () => { live = false; clearTimeout(t) }
   }, [add])
 
-  async function apply() {
-    if (!cut || !add.trim() || busy) return
+  // mode: 'swap' (cut + add), 'remove' (cut only) or 'add' (add only). A card that snuck in has to be
+  // removable without inventing a replacement, and a short list has to be addable to.
+  async function apply(mode = 'swap') {
+    const doCut = mode !== 'add' ? cut : ''
+    const doAdd = mode !== 'remove' ? add.trim() : ''
+    if (busy || (mode === 'swap' && (!doCut || !doAdd)) || (mode === 'remove' && !doCut) || (mode === 'add' && !doAdd)) return
     setBusy(true); setMsg(null)
     try {
       const r = await fetch(`/api/deck/${jobId}/apply-swap`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cut, add: add.trim() }),
+        body: JSON.stringify({ ...(doCut ? { cut: doCut } : {}), ...(doAdd ? { add: doAdd } : {}) }),
       })
       if (r.ok) {
         const updated = await r.json()
-        setMsg({ ok: true, text: `Cut ${cut}, added ${add.trim()}.` })
-        setCut(''); setAdd(''); setHints([])
+        const n = (updated.deck || []).reduce((t, c) => t + (c.quantity || 1), 0)
+        const what = mode === 'remove' ? `Removed ${doCut}.` : mode === 'add' ? `Added ${doAdd}.` : `Cut ${doCut}, added ${doAdd}.`
+        setMsg({ ok: true, text: `${what} The list now has ${n} cards.` })
+        if (mode !== 'add') setCut('')
+        if (mode !== 'remove') { setAdd(''); setHints([]) }
         onChanged?.(updated)
       } else {
         let d = `HTTP ${r.status}`
@@ -109,12 +116,24 @@ export default function EditDeckPanel({ deck, jobId, onChanged }) {
         <input value={add} onChange={e => setAdd(e.target.value)} list={`add-hints-${jobId}`}
                placeholder="Add a card…" style={{ ...field, flex: 1, minWidth: 160 }} aria-label="Card to add" />
         <datalist id={`add-hints-${jobId}`}>{(add.trim().length >= 2 ? hints : []).map(h => <option key={h} value={h} />)}</datalist>
-        <button onClick={apply} disabled={!cut || !add.trim() || busy} style={{
+        <button onClick={() => apply('swap')} disabled={!cut || !add.trim() || busy} style={{
           padding: '7px 14px', borderRadius: 7, fontSize: 12, fontFamily: 'inherit',
           cursor: (!cut || !add.trim() || busy) ? 'default' : 'pointer',
           border: '1px solid #ca8a04', background: '#422006', color: '#fde047',
           opacity: (!cut || !add.trim() || busy) ? 0.5 : 1,
-        }}>{busy ? 'Swapping…' : 'Swap'}</button>
+        }}>{busy ? 'Working…' : 'Swap'}</button>
+      </div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+        <button onClick={() => apply('remove')} disabled={!cut || busy} title="Remove the chosen card without adding anything"
+                style={{ ...smallBtn, borderColor: '#b91c1c', background: '#450a0a', color: '#fca5a5',
+                         opacity: (!cut || busy) ? 0.5 : 1, cursor: (!cut || busy) ? 'default' : 'pointer' }}>
+          ✕ Remove only
+        </button>
+        <button onClick={() => apply('add')} disabled={!add.trim() || busy} title="Add the card without cutting anything"
+                style={{ ...smallBtn, borderColor: '#15803d', background: '#052e16', color: '#86efac',
+                         opacity: (!add.trim() || busy) ? 0.5 : 1, cursor: (!add.trim() || busy) ? 'default' : 'pointer' }}>
+          ＋ Add only
+        </button>
       </div>
       <div style={{ fontSize: 11, color: '#78716c', marginTop: 6 }}>
         Checked for colour identity, singleton and the ban list. The new card shows its real art until you regenerate it.
@@ -156,6 +175,10 @@ export default function EditDeckPanel({ deck, jobId, onChanged }) {
       </div>
     </div>
   )
+}
+
+const smallBtn = {
+  padding: '6px 12px', borderRadius: 7, fontSize: 12, fontFamily: 'inherit', border: '1px solid',
 }
 
 const field = {

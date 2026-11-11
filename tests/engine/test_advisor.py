@@ -731,3 +731,17 @@ def test_the_baseline_is_averaged_over_extra_seeds(deck, store, make_card, monke
     avg = advisor.advise(deck, cfg, store, [], axis="consistency", cut_pool=1, baseline_seeds=3)
     assert avg.baseline == pytest.approx(67.5)               # (60 + 3 x 70) / 4
     assert len({s for s in seen if s != 1}) == 3             # three other seeds were simulated
+
+
+def test_an_interaction_only_result_leads_with_the_honest_headline():
+    from mythgauntlet.mentor.tools import _swap_result
+    assert advisor.interaction_only_headline([]) is None
+    assert advisor.interaction_only_headline(["interaction", "ceiling"]) is None
+    head = advisor.interaction_only_headline(["interaction", "interaction"])
+    assert head == advisor.INTERACTION_ONLY_HEADLINE and "No swap was measured" in head
+    data = {"axis": "interaction", "axis_label": "Interaction", "baseline": 10.0, "evaluated": 2,
+            "suggestions": [{"add": "A", "cut": "B", "axis": "interaction", "brief": None}]}
+    assert _swap_result(data).data["headline"] == head
+    mixed = {**data, "suggestions": data["suggestions"] + [
+        {"add": "C", "cut": "D", "axis": "ceiling", "brief": None}]}
+    assert "headline" not in _swap_result(mixed).data

@@ -196,6 +196,13 @@ export default function AdvisePanel({ jobId, onApplied }) {
             <div style={{ fontSize: 11, color: '#78716c', marginBottom: 8 }}>
               Each row: <span style={{ color: '#fca5a5' }}>cut ✕</span> → <span style={{ color: '#86efac' }}>add ✓</span>, with the measured axis gain.
             </div>
+            {result.suggestions.length > 0 && result.headline && (
+              <div style={{ fontSize: 12, color: '#fcd34d', background: 'rgba(120,53,15,0.25)',
+                            border: '1px solid rgba(252,211,77,0.35)', borderRadius: 6,
+                            padding: '8px 10px', marginBottom: 8 }}>
+                {result.headline}
+              </div>
+            )}
             {result.suggestions.length > 0 ? (
               result.suggestions.map((s, i) => (
                 <div

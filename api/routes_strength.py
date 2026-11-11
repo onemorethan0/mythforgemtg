@@ -843,8 +843,11 @@ def _recompute_stats(job: dict, cards: list[dict]) -> dict:
 
 
 class ApplySwapRequest(BaseModel):
-    add: str
-    cut: str
+    """A swap (both), a plain removal (`cut` only) or a plain addition (`add` only): a card that
+    snuck in has to be removable without inventing a replacement, and a short list has to be
+    addable to without cutting something (2026-11-11)."""
+    add: str | None = None
+    cut: str | None = None
 
 
 @router.post("/api/deck/{job_id}/apply-swap")
@@ -868,61 +871,70 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
     cards = job.get("deck") or []
     if not cards:
         raise HTTPException(400, "A single-card build has no deck to modify.")
+    req_cut = (req.cut or "").strip() or None
+    req_add = (req.add or "").strip() or None
+    if not req_cut and not req_add:
+        raise HTTPException(400, "Name a card to cut, a card to add, or both.")
 
-    cut_norm = req.cut.strip().casefold()
-    idx = next(
-        (i for i, c in enumerate(cards)
-         if (c.get("original_name") or "").casefold() == cut_norm),
-        None,
-    )
-    if idx is None:
-        raise HTTPException(400, f"'{req.cut}' is not in this deck (already swapped out?)")
+    cut_norm = (req_cut or "").casefold()
+    idx = None
+    if req_cut:
+        idx = next(
+            (i for i, c in enumerate(cards)
+             if (c.get("original_name") or "").casefold() == cut_norm),
+            None,
+        )
+        if idx is None:
+            raise HTTPException(400, f"'{req_cut}' is not in this deck (already swapped out?)")
     # Partners are stored inside `deck` (they render as cards) but they are the COMMAND
     # ZONE, not the 99: cutting one turned a Tymna + Thrasios deck into a Tymna deck whose
     # identity no longer covered half its cards.
     zone_names = {n.casefold() for n in (job.get("partners") or []) if n}
-    if cut_norm in zone_names:
-        raise HTTPException(400, f"'{req.cut}' is a commander, not a card in the 99.")
+    if req_cut and cut_norm in zone_names:
+        raise HTTPException(400, f"'{req_cut}' is a commander, not a card in the 99.")
 
-    card = _scryfall.get_card_by_name(req.add, fuzzy=True)
-    if not card:
-        raise HTTPException(400, f"Card not found on Scryfall: {req.add}")
-    name = card.get("_front_name") or card.get("name") or req.add
-    # Judge the RESOLVED card, never what was typed: the lookup is fuzzy, so "arcane signt"
-    # resolves to "Arcane Signet", which may already be here.
-    import deck_legality
-    resolved_norm = name.strip().casefold()
-    existing = next((c for c in cards
-                     if (c.get("original_name") or "").casefold() == resolved_norm), None)
-    if existing is not None and deck_legality.copy_limit(card) == 1:
-        raise HTTPException(400, f"'{name}' is already in this deck.")
-    # The same rules the advisor already applies to its own suggestions, enforced here
-    # because this endpoint takes ANY name: an off-colour or banned card used to go
-    # straight in.
-    status = (card.get("legalities") or {}).get("commander")
-    if status in ("banned", "not_legal"):
-        raise HTTPException(400, f"'{name}' is not legal in Commander ({status.replace('_', ' ')}).")
-    cmd_stored = job.get("commander") or {}
-    zone_identity = set(cmd_stored.get("colors") or [])
-    for c in cards:
-        if (c.get("original_name") or "").casefold() in zone_names:
-            zone_identity |= set(c.get("colors") or [])
-    # Only when the stored commander SAYS its identity ("colors" holds color_identity in
-    # deck.json); an empty list is a real colourless commander, a missing key is unknown.
-    off = (set(card.get("color_identity") or []) - zone_identity) if "colors" in cmd_stored else set()
-    if off:
-        raise HTTPException(400, f"'{name}' is outside this deck's colour identity "
-                                 f"({'/'.join(sorted(off))} not allowed).")
+    card = name = status = existing = None
+    if req_add:
+        card = _scryfall.get_card_by_name(req_add, fuzzy=True)
+        if not card:
+            raise HTTPException(400, f"Card not found on Scryfall: {req_add}")
+        name = card.get("_front_name") or card.get("name") or req_add
+        # Judge the RESOLVED card, never what was typed: the lookup is fuzzy, so "arcane signt"
+        # resolves to "Arcane Signet", which may already be here.
+        import deck_legality
+        resolved_norm = name.strip().casefold()
+        existing = next((c for c in cards
+                         if (c.get("original_name") or "").casefold() == resolved_norm), None)
+        if existing is not None and deck_legality.copy_limit(card) == 1:
+            raise HTTPException(400, f"'{name}' is already in this deck.")
+        # The same rules the advisor already applies to its own suggestions, enforced here
+        # because this endpoint takes ANY name: an off-colour or banned card used to go
+        # straight in.
+        status = (card.get("legalities") or {}).get("commander")
+        if status in ("banned", "not_legal"):
+            raise HTTPException(400, f"'{name}' is not legal in Commander ({status.replace('_', ' ')}).")
+        cmd_stored = job.get("commander") or {}
+        zone_identity = set(cmd_stored.get("colors") or [])
+        for c in cards:
+            if (c.get("original_name") or "").casefold() in zone_names:
+                zone_identity |= set(c.get("colors") or [])
+        # Only when the stored commander SAYS its identity ("colors" holds color_identity in
+        # deck.json); an empty list is a real colourless commander, a missing key is unknown.
+        off = (set(card.get("color_identity") or []) - zone_identity) if "colors" in cmd_stored else set()
+        if off:
+            raise HTTPException(400, f"'{name}' is outside this deck's colour identity "
+                                     f"({'/'.join(sorted(off))} not allowed).")
 
     # cut: decrement a stack (imported duplicate basics), else remove the entry
-    if (cards[idx].get("quantity") or 1) > 1:
-        cards[idx]["quantity"] = cards[idx]["quantity"] - 1
-    else:
-        cards.pop(idx)
+    if req_cut:
+        if (cards[idx].get("quantity") or 1) > 1:
+            cards[idx]["quantity"] = cards[idx]["quantity"] - 1
+        else:
+            cards.pop(idx)
 
     swap_no = int(job.get("swap_count") or 0) + 1
     job["swap_count"] = swap_no
-    new_entry = {
+    new_entry = None if not req_add else {
         "original_name": name,
         "themed_name":   name,               # unthemed — shows the real card
         "art_prompt":    "",
@@ -946,17 +958,19 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
         "render_key":    f"{_safe_name(name)}_swap{swap_no:02d}",
         "swapped_in":    True,               # UI badge: an applied upgrade
     }
-    if existing is not None:
+    if not req_add:
+        pass                                 # a plain removal: nothing goes in
+    elif existing is not None:
         # A basic land (or a "any number of cards named" card): add a copy to the stack.
         existing["quantity"] = int(existing.get("quantity") or 1) + 1
     else:
-        cards.insert(min(idx, len(cards)), new_entry)
+        cards.insert(len(cards) if idx is None else min(idx, len(cards)), new_entry)
     # The list changed, so the curve, colour-source, type and legality figures shown
     # beside it must too. They were left as built, so a swap that fixed a colour shortfall
     # still read "short on sources".
     job["stats"] = _recompute_stats(job, cards)
 
-    swap_record = {"add": name, "cut": req.cut,
+    swap_record = {"add": name, "cut": req_cut,
                    "date": _dt.now().isoformat(timespec="seconds")}
     job.setdefault("applied_swaps", []).append(swap_record)
     job.pop("last_measure", None)            # the measurement no longer matches the list

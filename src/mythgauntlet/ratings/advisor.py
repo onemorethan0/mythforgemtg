@@ -561,6 +561,20 @@ INTERACTION_NOTE = ("Interaction is a count of the answers the deck holds, not a
                     "change in how often the deck wins.")
 
 BASELINE_SEED_STEP = 104729      # extra baseline seeds: cfg.seed + step * (i + 1)
+INTERACTION_ONLY_HEADLINE = (
+    "No swap was measured to improve how this deck plays. Every suggestion below only adds an "
+    "answer (interaction is a count, not a simulated result), and a pod test of such swaps found "
+    "no change in how often the deck wins. Treat them as optional.")
+
+
+def interaction_only_headline(axes) -> str | None:
+    """The line that leads an Advise result whose every suggestion is an interaction swap, else
+    None. A result with nothing, or with any simulated swap that survived confirmation, needs no
+    such line: it is the simulated, re-measured swaps that say a deck plays better."""
+    axes = list(axes)
+    return INTERACTION_ONLY_HEADLINE if axes and all(a == "interaction" for a in axes) else None
+
+
 CONFIRM_SEED_STEP = 7919        # fresh seeds: cfg.seed + step * (i + 1), never the search seed
 CONFIRM_MIN_FRACTION = 1.0      # a confirmed gain must reach the axis noise floor, as the search's
                                 # own bar always did (0.5 let a +1.8 swap through that pooled to +1.0)

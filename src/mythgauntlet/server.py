@@ -859,6 +859,8 @@ def create_app(
             "cut_strategy": report.cut_strategy,
             "min_delta": report.min_delta,
             "searched_axes": report.searched_axes,
+            "headline": advisor.interaction_only_headline(
+                s.axis or report.axis for s in report.suggestions),
             "searched_axis_labels": [advisor.AXES[ax][1] for ax in report.searched_axes],
             "candidates_that_fit": len(candidates),
             "collection_source": source,

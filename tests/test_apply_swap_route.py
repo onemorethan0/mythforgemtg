@@ -149,3 +149,51 @@ def test_unknown_deck_and_single_card_decks(deck, tmp_path):
     assert client.post("/api/deck/short/apply-swap", json={"cut": "a", "add": "b"}).status_code == 404
     state._jobs[JOB] = {"status": "done", "commander": {"original_name": "X"}, "deck": []}
     assert client.post(f"/api/deck/{JOB}/apply-swap", json={"cut": "a", "add": "b"}).status_code == 400
+
+
+# ── removing or adding a card on its own (2026-11-11) ────────────────────────────────────────
+
+def _post(body, scry=None):
+    with patch.object(routes_strength, "_scryfall", scry or _FakeScryfall([])):
+        return client.post(f"/api/deck/{JOB}/apply-swap", json=body)
+
+
+def test_a_card_can_be_removed_without_a_replacement(deck):
+    r = _post({"cut": "Sol Ring"})
+    assert r.status_code == 200
+    assert _names(r) == ["Island", "Arcane Signet"]
+    saved = json.loads((deck / "deck.json").read_text(encoding="utf-8"))
+    assert [c["original_name"] for c in saved["deck"]] == ["Island", "Arcane Signet"]
+    assert "last_measure" not in saved                       # the measurement is stale now
+    assert saved["applied_swaps"][-1]["cut"] == "Sol Ring" and saved["applied_swaps"][-1]["add"] is None
+
+
+def test_removing_one_of_a_stack_keeps_the_rest(deck):
+    r = _post({"cut": "Island"})
+    assert r.status_code == 200
+    assert next(c for c in r.json()["deck"] if c["original_name"] == "Island")["quantity"] == 4
+
+
+def test_a_card_can_be_added_without_a_cut(deck):
+    r = _post({"add": "Mana Vault"}, _FakeScryfall([_scry("Mana Vault")]))
+    assert r.status_code == 200
+    assert _names(r) == ["Sol Ring", "Island", "Arcane Signet", "Mana Vault"]
+    assert r.json()["deck"][-1]["swapped_in"] is True
+
+
+def test_a_plain_add_is_still_held_to_singleton(deck):
+    r = _post({"add": "Sol Ring"}, _FakeScryfall([_scry("Sol Ring")]))
+    assert r.status_code == 400 and "already in this deck" in r.json()["detail"]
+
+
+def test_naming_neither_card_is_refused(deck):
+    assert _post({}).status_code == 400
+    assert _post({"cut": "  ", "add": ""}).status_code == 400
+
+
+def test_a_commander_cannot_be_removed_on_its_own(deck):
+    data = json.loads((deck / "deck.json").read_text(encoding="utf-8"))
+    data["partners"] = ["Sol Ring"]
+    (deck / "deck.json").write_text(json.dumps(data), encoding="utf-8")
+    r = _post({"cut": "Sol Ring"})
+    assert r.status_code == 400 and "commander" in r.json()["detail"]

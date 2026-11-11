@@ -960,6 +960,10 @@ def _swap_result(data: dict) -> ToolResult:
     data.pop("cut", None)   # the pool head is not advice; each suggestion carries its own cut
     data["found"] = True
     data["improving_swap_found"] = True
+    headline = advisor.interaction_only_headline(
+        (s.get("axis") or axis) for s in suggestions)
+    if headline:
+        data["headline"] = headline     # lead with it: nothing simulated says the deck plays better
     data["current"] = _axis_current_of(axis, baseline)
     # D0b: a cut whose brief says `redundancy_backed: false` was the pool's DEFAULT (the deck
     # over-supplies no role, so `rank_redundant` fell through to least-played), not evidence
