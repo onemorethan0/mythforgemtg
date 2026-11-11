@@ -560,6 +560,7 @@ INTERACTION_NOTE = ("Interaction is a count of the answers the deck holds, not a
                     "this swap adds an answer, and a pod test of such swaps found no measured "
                     "change in how often the deck wins.")
 
+BASELINE_SEED_STEP = 104729      # extra baseline seeds: cfg.seed + step * (i + 1)
 CONFIRM_SEED_STEP = 7919        # fresh seeds: cfg.seed + step * (i + 1), never the search seed
 CONFIRM_MIN_FRACTION = 1.0      # a confirmed gain must reach the axis noise floor, as the search's
                                 # own bar always did (0.5 let a +1.8 swap through that pooled to +1.0)
@@ -727,6 +728,7 @@ def advise(
     protect: frozenset[str] = frozenset(),
     ablate_cuts: bool = False,
     confirm_seeds: int = 0,
+    baseline_seeds: int = 0,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -800,7 +802,23 @@ def advise(
         resolved, cfg, store, two_card_combos=two_card_combos,
         combos_checked=combos_checked, run_resilience=True,
     )
-    target = axis or weakest_axis(baseline)
+    # The baseline is ONE seed's games, and every candidate is measured against it, so its luck is
+    # a bias shared by all of them: the Mycotyrant's seed-42 consistency read 4.6 points below its
+    # average over other seeds (2.7 sd), which is most of the +5..+7 every consistency swap
+    # claimed there (2026-11-11). `baseline_seeds` extra seeds give the average the swaps are
+    # compared against and the axis ranking is read from. (Paired seeds do NOT cancel it: the
+    # paired difference is as noisy as two independent games.)
+    base_avg = {ax: axis_score(baseline, ax) for ax in AXES if ax != "resilience" or baseline.resilience is not None}
+    if baseline_seeds > 0:
+        extra = [analyze_deck(
+            resolved, SimConfig(turns=cfg.turns, runs=cfg.runs,
+                                seed=cfg.seed + BASELINE_SEED_STEP * (i + 1)), store,
+            two_card_combos=two_card_combos, combos_checked=combos_checked, run_resilience=True,
+        ) for i in range(baseline_seeds)]
+        base_avg = {ax: (base_avg[ax] + sum(axis_score(e, ax) for e in extra))
+                    / (1 + len(extra)) for ax in base_avg}
+    target = axis or min((ax for ax in PROFILE_AXES if ax != "resilience"
+                          or baseline.resilience is not None), key=lambda ax: base_avg[ax])
     # Never report a gain smaller than the axis's own run-to-run spread, whatever the
     # caller asked for. A caller may raise the bar, not lower it below the noise.
     effective_delta = max(min_delta, _noise_floor(target, cfg.runs))
@@ -810,12 +828,12 @@ def advise(
         # re-simulation, which doubled a Forge search (Borg Queen 287 s -> 682 s; Y'shtola past
         # the 900 s route timeout, 2026-11-09). It is still searched when it IS the weakest.
         weak_first = sorted((ax for ax in PROFILE_AXES if ax != "resilience"),
-                            key=lambda ax: axis_score(baseline, ax))
+                            key=lambda ax: base_avg[ax])
         searched += [ax for ax in weak_first if ax != target][:fallback_axes - 1]
     floors = {ax: max(min_delta, _noise_floor(ax, cfg.runs)) for ax in searched}
-    base_scores = {ax: axis_score(baseline, ax) for ax in searched}
+    base_scores = {ax: base_avg[ax] for ax in searched}
     need_res = "resilience" in searched
-    base_score = axis_score(baseline, target)
+    base_score = base_avg[target]
 
     if lens is None:
         # The baseline analysis's lens carries the sim context (X credit), so this agrees

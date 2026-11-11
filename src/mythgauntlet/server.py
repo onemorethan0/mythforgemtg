@@ -145,6 +145,14 @@ class AdviseRequest(BaseModel):
             "gain does not repeat is dropped. 0 = report the search-seed gain as before."
         ),
     )
+    baseline_seeds: int = Field(
+        default=3, ge=0, le=8,
+        description=(
+            "extra seeds the deck's BASELINE is averaged over (and the weakest axis read from). "
+            "Every candidate is compared with the baseline, so one seed's luck biases them all "
+            "the same way. 0 = the single search seed, as before."
+        ),
+    )
     fallback_axes: int = Field(
         default=0, ge=0, le=6,
         description=(
@@ -837,6 +845,7 @@ def create_app(
             min_delta=req.min_delta, themes=req.themes, lift=req.lift or None,
             fallback_axes=req.fallback_axes,
             ablate_cuts=req.ablate_cuts, confirm_seeds=req.confirm_seeds,
+            baseline_seeds=req.baseline_seeds,
         )
         return {
             "engine_version": __version__,

@@ -711,3 +711,23 @@ def test_an_interaction_swap_says_it_is_a_count_not_a_win_rate(deck, store, make
                                             "brief": None}]}
     out = _swap_result(data).data["suggestions"][0]
     assert "do NOT claim the deck will win more" in out["measurement_note"]
+
+
+def test_the_baseline_is_averaged_over_extra_seeds(deck, store, make_card, monkeypatch):
+    """Every candidate is compared with the baseline, so one seed's luck biases them all the same
+    way (Mycotyrant, 2026-11-11: seed-42 consistency 4.6 below its average over other seeds).
+    With `baseline_seeds` the baseline the swaps are measured against is the average."""
+    seen = []
+
+    def fake_analyze(resolved, cfg, store, **kw):
+        seen.append(cfg.seed)
+        return _fake_analysis(consistency=60.0 if cfg.seed == 1 else 70.0, interaction=66.0)
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    cfg = SimConfig(runs=150, turns=12, seed=1)
+    one = advisor.advise(deck, cfg, store, [], axis="consistency", cut_pool=1)
+    assert one.baseline == pytest.approx(60.0)
+    seen.clear()
+    avg = advisor.advise(deck, cfg, store, [], axis="consistency", cut_pool=1, baseline_seeds=3)
+    assert avg.baseline == pytest.approx(67.5)               # (60 + 3 x 70) / 4
+    assert len({s for s in seen if s != 1}) == 3             # three other seeds were simulated
