@@ -625,3 +625,39 @@ def test_auto_advise_falls_back_to_the_next_weak_axis(deck, store, make_card, mo
     # an explicit axis never falls back
     assert advisor.advise(deck, cfg, store, [card], axis="ceiling", cut_pool=1,
                           fallback_axes=3).suggestions == []
+
+
+def test_a_gain_that_only_the_search_seed_saw_is_dropped_and_a_real_one_is_re_measured(
+    deck, store, make_card, monkeypatch,
+):
+    """The winner's curse (measured 2026-11-11, scripts/advise_holdout.py): the search keeps the
+    best of many noisy pairings, so its gain overstates. `confirm_seeds` re-measures each pick on
+    fresh seeds: "Lucky" gains +8 only on the search seed (1) and is dropped; "Real" gains +6 on
+    every seed and is reported at its re-measured value, with no search-seed kill-turn claim."""
+    lucky = make_card("Lucky Card", mana_cost="{1}{G}", type_line="Instant", color_identity=("G",))
+    real = make_card("Real Card", mana_cost="{1}{G}", type_line="Instant", color_identity=("G",))
+    calls = []
+
+    def fake_analyze(resolved, cfg, store, **kw):
+        names = {c.name for c, _ in resolved.cards}
+        calls.append(cfg.seed)
+        if "Real Card" in names:
+            return _fake_analysis(consistency=76.0, interaction=10.0)
+        if "Lucky Card" in names:
+            return _fake_analysis(consistency=78.0 if cfg.seed == 1 else 70.0, interaction=10.0)
+        return _fake_analysis(consistency=70.0, interaction=10.0)
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    cfg = SimConfig(runs=150, turns=12, seed=1)
+    off = advisor.advise(deck, cfg, store, [lucky, real], axis="consistency", cut_pool=1)
+    # the old behaviour: one cut slot, and the lucky +8 takes it from the real +6
+    assert [s.add for s in off.suggestions] == ["Lucky Card"]
+
+    rep = advisor.advise(deck, cfg, store, [lucky, real], axis="consistency", cut_pool=1,
+                         confirm_seeds=3)
+    assert [s.add for s in rep.suggestions] == ["Real Card"]
+    s = rep.suggestions[0]
+    assert s.confirmation["seeds"] == 3 and s.confirmation["mean"] == pytest.approx(6.0)
+    assert s.delta == pytest.approx(6.0)
+    assert any(seed != 1 for seed in calls)                  # fresh seeds really were used
+    assert s.brief.kill_turn_before is None                  # search-seed kill turns not cited

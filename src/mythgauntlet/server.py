@@ -136,6 +136,15 @@ class AdviseRequest(BaseModel):
             "measurably sooner with (ratings/card_ablation; ~1 s per candidate cut)"
         ),
     )
+    confirm_seeds: int = Field(
+        default=3, ge=0, le=8,
+        description=(
+            "re-measure every simulated swap on this many FRESH seeds (paired) before reporting "
+            "it, and report that unbiased gain: the search keeps the best of many noisy "
+            "pairings, so its own number overstates (ratings/advisor._confirm_swap). A swap whose "
+            "gain does not repeat is dropped. 0 = report the search-seed gain as before."
+        ),
+    )
     fallback_axes: int = Field(
         default=0, ge=0, le=6,
         description=(
@@ -827,7 +836,7 @@ def create_app(
             axis=req.axis, top=req.top, max_eval=req.max_eval, cut_pool=req.cut_pool,
             min_delta=req.min_delta, themes=req.themes, lift=req.lift or None,
             fallback_axes=req.fallback_axes,
-            ablate_cuts=req.ablate_cuts,
+            ablate_cuts=req.ablate_cuts, confirm_seeds=req.confirm_seeds,
         )
         return {
             "engine_version": __version__,
@@ -868,6 +877,8 @@ def create_app(
                     # narrative is written FROM and gated AGAINST, so the engine never has to
                     # call a model and Forge never has to guess what a claim rests on.
                     "brief": s.brief.as_dict() if s.brief else None,
+                    # fresh-seed re-measurement behind before/after (None: closed-form axis or off)
+                    "confirmation": s.confirmation,
                 }
                 for s in report.suggestions
             ],

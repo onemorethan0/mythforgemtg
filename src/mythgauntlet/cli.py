@@ -604,6 +604,7 @@ def _cmd_advise(args: argparse.Namespace) -> int:
     report = advisor.advise(
         resolved, cfg, _semantics_store(), candidates,
         axis=args.axis, top=args.top, max_eval=args.max_eval, cut_pool=args.cut_pool,
+        confirm_seeds=3,
     )
     console.print(
         f"\n[bold]Upgrade advisor[/bold] - target axis: [bold]{report.axis_label}[/bold] "

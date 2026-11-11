@@ -381,6 +381,9 @@ class SwapSuggestion:
     # Every measured profile axis's move for this swap ({axis: after - before}), target
     # included. Resilience is present only when it was simulated for this swap.
     axis_deltas: dict[str, float] = field(default_factory=dict)
+    # The fresh-seed re-measurement behind `after` (see `_confirm_swap`): {"seeds", "mean", "se",
+    # "search_delta"}. None when confirmation was off or the axis is closed-form (interaction).
+    confirmation: dict | None = None
     # The whole-deck verdict: meaningful moves summed in units of each axis's spread among
     # real decks (card_impact._score). Always > 0 for a reported swap.
     net: float | None = None
@@ -549,6 +552,42 @@ def _noise_floor(axis: str, runs: int) -> float:
     return base * math.sqrt(NOISE_REFERENCE_RUNS / runs)
 
 
+CONFIRM_SEED_STEP = 7919        # fresh seeds: cfg.seed + step * (i + 1), never the search seed
+CONFIRM_MIN_FRACTION = 0.5      # a confirmed gain must reach this share of the axis noise floor
+CONFIRM_Z = 1.28                # ...and its 90% lower bound must clear zero
+
+
+def _confirm_swap(resolved: ResolvedDeck, cut: Card, add: Card, axis: str, cfg: SimConfig,
+                  store: SemanticsStore, seeds: int, base_cache: dict, *,
+                  two_card_combos: int = 0, combos_checked: bool = False) -> tuple[float, float]:
+    """(mean gain, standard error) of one swap on `seeds` FRESH seeds, paired (the same seed for
+    the unswapped and swapped deck).
+
+    The search tries ~16 adds x ~6 cuts on ONE seed and keeps the best, so its reported gain is a
+    maximum over many noisy measurements -- a winner's curse. Measured 2026-11-11 on real decks
+    (scripts/advise_holdout.py): consistency swaps reported +7.3/+7.0/+4.7 re-measured at
+    +1.1/+0.6/+0.1; a ceiling swap reported +2.6 re-measured at -0.4. Games the choice never saw
+    give an unbiased estimate, so THAT is what a suggestion is allowed to claim.
+
+    `base_cache` holds the unswapped deck's score per (seed, axis) so it is paid for once."""
+    res = axis == "resilience"
+    diffs = []
+    swapped = _swap_variant(resolved, cut, add)
+    for i in range(seeds):
+        c2 = SimConfig(turns=cfg.turns, runs=cfg.runs, seed=cfg.seed + CONFIRM_SEED_STEP * (i + 1))
+        key = (c2.seed, axis)
+        if key not in base_cache:
+            base_cache[key] = axis_score(analyze_deck(
+                resolved, c2, store, two_card_combos=two_card_combos,
+                combos_checked=combos_checked, run_resilience=res), axis)
+        a = analyze_deck(swapped, c2, store, two_card_combos=two_card_combos,
+                         combos_checked=combos_checked, run_resilience=res)
+        diffs.append(axis_score(a, axis) - base_cache[key])
+    mean = sum(diffs) / len(diffs)
+    var = sum((d - mean) ** 2 for d in diffs) / (len(diffs) - 1) if len(diffs) > 1 else 0.0
+    return mean, math.sqrt(var / len(diffs))
+
+
 def _commander_identity(resolved: ResolvedDeck) -> frozenset[str]:
     """The deck's legal colour identity: the union across its commander(s)."""
     identity: set[str] = set()
@@ -665,6 +704,7 @@ def advise(
     fallback_axes: int = 0,
     protect: frozenset[str] = frozenset(),
     ablate_cuts: bool = False,
+    confirm_seeds: int = 0,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -868,6 +908,8 @@ def advise(
                                   e[2].edhrec_rank or 10**9, e[2].name, e[3].name))
         used_add: set[str] = set()
         used_cut: set[str] = set()
+        confirm_base: dict = {}
+        confirm_tried = 0
         for _net_score, _delta, add, cut, after, a, ax in evals:
             if add.name in used_add or cut.name in used_cut:
                 continue
@@ -886,10 +928,26 @@ def advise(
             net = _net(moves)
             if net <= 0 or after - base_scores[ax] < floors[ax]:
                 continue
+            confirmation = None
+            if confirm_seeds > 0 and ax != "interaction":     # interaction is closed-form
+                if confirm_tried >= 3 * top:
+                    break                   # budget spent: report what survived, no more tries
+                confirm_tried += 1
+                search_delta = after - base_scores[ax]
+                mean, se = _confirm_swap(resolved, cut, add, ax, cfg, store, confirm_seeds,
+                                         confirm_base, two_card_combos=two_card_combos,
+                                         combos_checked=combos_checked)
+                if mean < CONFIRM_MIN_FRACTION * floors[ax] or mean - CONFIRM_Z * se <= 0:
+                    continue                # the search-seed gain did not repeat: luck
+                after = base_scores[ax] + mean      # claim the unbiased estimate, not the max
+                confirmation = {"seeds": confirm_seeds, "mean": round(mean, 2),
+                                "se": round(se, 2), "search_delta": round(search_delta, 2)}
             used_add.add(add.name)
             used_cut.add(cut.name)
             reason = reasons.setdefault((add.name, ax), _explain(add, ax, wants))
-            measured = _measured_phrase(baseline, a)
+            # the kill-turn phrase reads the SEARCH seed's games, the very numbers that did not
+            # repeat -- never state it for a swap whose gain was re-measured
+            measured = "" if confirmation else _measured_phrase(baseline, a)
             if measured:
                 reason = f"{reason} Measured: {measured}."
             suggestions.append(SwapSuggestion(
@@ -899,10 +957,12 @@ def advise(
                     axis=ax, axis_label=AXES[ax][1],
                     before=base_scores[ax], after=after, noise_floor=floors[ax],
                     themes=themes, wants=wants,
-                    baseline_report=baseline.report, swap_report=a.report,
+                    # search-seed kill turns are the numbers that did not repeat: not cited
+                    baseline_report=None if confirmation else baseline.report,
+                    swap_report=None if confirmation else a.report,
                 ),
                 axis_deltas={m.axis: m.delta for m in moves},
-                net=net,
+                net=net, confirmation=confirmation,
                 costs={m.axis: m.delta for m in moves
                        if m.axis != ax and m.meaningful and m.delta < 0},
                 axis=ax, axis_label=AXES[ax][1],

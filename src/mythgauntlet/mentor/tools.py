@@ -1053,7 +1053,7 @@ def tool_suggest_swap(ctx: MentorContext, axis: str | None = None) -> ToolResult
         })
     report = advisor.advise(
         ctx.resolved, ctx.cfg, ctx.store, candidates,
-        axis=axis, top=3, max_eval=4, cut_pool=1, themes=ctx.themes,
+        axis=axis, top=3, max_eval=4, cut_pool=1, themes=ctx.themes, confirm_seeds=3,
     )
     return _swap_result(_to_jsonable(report))
 
