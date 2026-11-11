@@ -299,6 +299,9 @@ class ClaimBudget:
     # `commander`, or get_deck_stats' `commanders`): check 16 reads "triggers Smaug" as a claim
     # about the commander. Empty still reads "your commander".
     commander_names: frozenset[str] = frozenset()
+    # Colour identity (WUBRG letters) of every card a lookup_card result gave one for: check 18
+    # holds a stated COMMANDER identity to it.
+    identities: tuple = ()
 
     @classmethod
     def from_tool_results(
@@ -319,6 +322,7 @@ class ClaimBudget:
         role_summary: dict = {}
         synergy_cards: set[str] = set()
         commander_names: set[str] = set()
+        identities: dict[str, frozenset] = {}
         for r in results:
             names |= r.card_names
             nums |= r.numbers
@@ -373,12 +377,16 @@ class ClaimBudget:
                             and isinstance(hit.get("ref"), str) and isinstance(hit.get("text"), str)):
                         rule_texts.setdefault(hit["ref"], hit["text"])
             _collect_lens_rows(data, synergy_cards, commander_names)
+            if (isinstance(data, dict) and isinstance(data.get("name"), str)
+                    and isinstance(data.get("color_identity"), list)):
+                identities[data["name"]] = frozenset(data["color_identity"])
         return cls(frozenset(names), frozenset(nums), frozenset(rules), known_card_names,
                     frozenset(texts), frozenset(verdicts), profile, frozenset(swap_axes),
                     tuple(clock_swaps), tuple(card_types.items()), frozenset(copy_exceptions),
                     counterspell_na, tuple(rule_texts.items()), role_summary,
                     synergy_cards=frozenset(synergy_cards),
-                    commander_names=frozenset(commander_names))
+                    commander_names=frozenset(commander_names),
+                    identities=tuple(sorted(identities.items())))
 
 
 def _collect_lens_rows(data, synergy_cards: set[str], commander_names: set[str]) -> None:
@@ -414,6 +422,37 @@ def _synergy_backed(name: str, synergy_cards: frozenset[str]) -> bool:
                 or re.search(rf"(?<![\w'-]){re.escape(c)}(?![\w'-])", n):
             return True
     return False
+
+
+_COLOUR_WORD = {"white": "W", "blue": "U", "black": "B", "red": "R", "green": "G"}
+_IDENTITY_CLAIM_RE = re.compile(
+    r"colou?r identit(?:y|ies)\b[^.]*?\b(?:is|are|of|which is)\s+(?:mono-?)?"
+    r"((?:white|blue|black|red|green|colou?rless)(?:(?:\s*,\s*|\s+and\s+|-|\s*/\s*)"
+    r"(?:white|blue|black|red|green))*)\b", re.IGNORECASE)
+
+
+def identity_reasons(body: str, budget: "ClaimBudget") -> list[str]:
+    """Check 18 (see `check`)."""
+    ids = dict(budget.identities)
+    cmds = [n for n in budget.commander_names if n in ids]
+    if len(cmds) != 1:                    # no commander identity in hand, or a partner pair
+        return []
+    cmd = cmds[0]
+    aliases = verdicts_mod.commander_aliases([cmd])
+    out = []
+    for sent in re.split(r"(?<=[.!?])\s+", body):
+        m = _IDENTITY_CLAIM_RE.search(sent)
+        if not m:
+            continue
+        low = sent.lower()
+        if not (any(a.lower() in low for a in aliases) or "your commander" in low):
+            continue
+        claimed = frozenset(_COLOUR_WORD[w] for w in re.findall(
+            r"white|blue|black|red|green", m.group(1).lower()))
+        if claimed != ids[cmd]:
+            real = "/".join(sorted(ids[cmd])) or "colourless"
+            out.append(f"states {cmd}'s colour identity as {m.group(1)!r}; it is {real}")
+    return out
 
 
 def commander_synergy_reasons(body: str, budget: "ClaimBudget") -> list[str]:
@@ -676,6 +715,13 @@ def check(text: str, budget: ClaimBudget, question: str = "",
     #     commander lens (list_deck_cards' `commander_synergy`) measures how the commander changes
     #     a card. Smaug makes Wrath one-sided; a vanilla legend makes it a plain wipe.
     reasons.extend(commander_synergy_reasons(body, budget))
+
+    # 18. A STATED COMMANDER COLOUR IDENTITY THAT IS NOT ITS IDENTITY. Live 2026-11-09: "Dauthi
+    #     Voidwalker and Smaug ... share the same color identity, which is black" -- Smaug is
+    #     black-red. Narrow on purpose: only a sentence that names the commander (or "your
+    #     commander") and STATES an identity ("identity is / of / which is <colours>"); a partial
+    #     true statement ("red is part of your commander's identity") is not one.
+    reasons.extend(identity_reasons(body, budget))
 
     # 17. GENERIC CARD-TYPE ADVICE NO TOOL BACKED. The system prompt forbids closing with
     #     "consider adding cards that provide a faster win condition, such as efficient

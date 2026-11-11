@@ -403,7 +403,7 @@ def _dual_goal_nudge(missing: list[str]) -> str:
 def _has_swap_answer(tool_trace: list) -> bool:
     """A measured swap answer exists: suggest_swap ran, or get_measured_swaps found a cached
     full search. An unavailable get_measured_swaps is NOT an answer -- the model must fall back."""
-    return _role_swap_found(tool_trace) or any(
+    return _role_swap_found(tool_trace) or _role_swap_measured(tool_trace) or any(
         t.name == "suggest_swap"
         or (t.name == "get_measured_swaps" and (t.result_data or {}).get("available"))
         for t in tool_trace
@@ -413,7 +413,7 @@ def _has_swap_answer(tool_trace: list) -> bool:
 def _owed_fallback_axes(question: str, tool_trace: list) -> list[str]:
     """Axes whose cached full search was UNAVAILABLE and that have no swap answer since: the
     suggest_swap quick search is still owed for each (swap questions only)."""
-    if not _wants_a_swap(question) or _role_swap_found(tool_trace):
+    if not _wants_a_swap(question) or _role_swap_measured(tool_trace):
         return []
     answered = _axes_answered(tool_trace)
     out: list[str] = []
@@ -665,6 +665,14 @@ _ROLE_SWAP_NUDGE = (
 
 def _role_swap_found(tool_trace: list) -> bool:
     return any(t.name == "suggest_role_swap" and (t.result_data or {}).get("role_swap_found")
+               for t in tool_trace)
+
+
+def _role_swap_measured(tool_trace: list) -> bool:
+    """A role swap ran and measured pairs, found or not: that IS the turn's swap answer. Live
+    2026-11-10 a "no measured role swap for draw" turn was then nudged into a second quick
+    search on an axis the model picked, and the reply reported "no improvement for speed"."""
+    return any(t.name == "suggest_role_swap" and (t.result_data or {}).get("pairs_measured")
                for t in tool_trace)
 
 

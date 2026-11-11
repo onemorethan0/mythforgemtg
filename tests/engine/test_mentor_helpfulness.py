@@ -93,3 +93,23 @@ def test_measured_swaps_reads_only_its_own_axis_from_a_mixed_auto_search():
     assert clock["axis"] == "clock" and clock["baseline"] == 24.4
     ceiling = tools.tool_get_measured_swaps(ctx, "ceiling").data
     assert ceiling["available"] and ceiling["improving_swap_found"] is False
+
+
+def test_a_stated_commander_identity_must_be_its_identity():
+    b = gate.ClaimBudget(commander_names=frozenset({"Smaug the Impenetrable"}),
+                         identities=(("Smaug the Impenetrable", frozenset("BR")),))
+    wrong = ("Both Dauthi Voidwalker and Smaug the Impenetrable are legal and share the same "
+             "color identity, which is black.")
+    assert gate.identity_reasons(wrong, b)
+    for ok in ("Your commander, Smaug the Impenetrable, has a color identity of black and red.",
+               "Red is part of your commander's color identity, so Lightning Bolt is legal.",
+               "Lightning Bolt has a color identity of red."):
+        assert gate.identity_reasons(ok, b) == []
+
+
+def test_a_measured_role_swap_is_the_swap_answer_even_when_none_cleared():
+    """2026-11-10: 'no measured role swap for draw' was followed by a second quick search on an
+    axis the model picked, and the reply reported 'no improvement for speed'."""
+    rec = ToolCallRecord("suggest_role_swap", {}, {"role_swap_found": False, "pairs_measured": 6})
+    assert chat._has_swap_answer([rec])
+    assert chat._owed_fallback_axes("what should I cut?", [rec]) == []

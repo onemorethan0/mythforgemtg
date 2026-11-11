@@ -346,7 +346,10 @@ def _gauntlet_mentor_chat(commander, deck, question, history=None, model=None, t
             payload["offmeta"] = offmeta
         if advice:
             payload["advice"] = advice
-        resp = requests.post(f"{MYTHGAUNTLET_URL}/mentor/chat", json=payload, timeout=120)
+        # 300 s, not 120: a cold "weakest cards / what should replace them" turn runs the per-card
+        # cut ranking (~30 s, ratings/cut_ranking) and a role swap (~30 s) before the model writes;
+        # under load (a Measure or Advise running) that doubled. Warm turns stay seconds.
+        resp = requests.post(f"{MYTHGAUNTLET_URL}/mentor/chat", json=payload, timeout=300)
         if resp.status_code in (400, 503):
             try:
                 return {"error": resp.json().get("detail", "mentor chat failed")}

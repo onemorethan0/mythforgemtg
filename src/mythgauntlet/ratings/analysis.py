@@ -263,10 +263,15 @@ def analyze_deck(
         from mythgauntlet.ratings import card_verdicts
         analysis.card_stats = compute_card_stats(resolved, cfg, card_stats_runs)
         identity = sorted({ch for c in resolved.commanders for ch in c.color_identity})
+        # the same cut ranking the mentor and Advise read (ratings/cut_ranking): one answer
+        from mythgauntlet.ratings.cut_ranking import rank_cuts
+        combo_names = {n for g in (combo_profile.grades if combo_profile else ())
+                       for n in g.combo.cards}
+        ranking = rank_cuts(resolved, cfg, lens=lens, combo_names=combo_names)
         analysis.card_verdicts = card_verdicts.build(
             resolved, analysis.card_stats, lens=lens, combo_profile=combo_profile,
             targets=redundancy_targets(identity),
-            card_targets=redundancy_card_targets(identity), turns=cfg.turns)
+            card_targets=redundancy_card_targets(identity), turns=cfg.turns, ranking=ranking)
     return analysis
 
 
