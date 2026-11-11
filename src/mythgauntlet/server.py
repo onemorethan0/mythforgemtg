@@ -139,8 +139,8 @@ class AdviseRequest(BaseModel):
     confirm_seeds: int = Field(
         default=3, ge=0, le=8,
         description=(
-            "re-measure every simulated swap on this many FRESH seeds (paired) before reporting "
-            "it, and report that unbiased gain: the search keeps the best of many noisy "
+            "screen every simulated swap on this many FRESH seeds (paired), then re-measure survivors "
+            "on 8 in all, before reporting it, and report that unbiased gain: the search keeps the best of many noisy "
             "pairings, so its own number overstates (ratings/advisor._confirm_swap). A swap whose "
             "gain does not repeat is dropped. 0 = report the search-seed gain as before."
         ),

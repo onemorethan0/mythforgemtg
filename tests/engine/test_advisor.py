@@ -657,7 +657,32 @@ def test_a_gain_that_only_the_search_seed_saw_is_dropped_and_a_real_one_is_re_me
                          confirm_seeds=3)
     assert [s.add for s in rep.suggestions] == ["Real Card"]
     s = rep.suggestions[0]
-    assert s.confirmation["seeds"] == 3 and s.confirmation["mean"] == pytest.approx(6.0)
+    assert s.confirmation["seeds"] == advisor.CONFIRM_FINAL_SEEDS and s.confirmation["mean"] == pytest.approx(6.0)
     assert s.delta == pytest.approx(6.0)
     assert any(seed != 1 for seed in calls)                  # fresh seeds really were used
     assert s.brief.kill_turn_before is None                  # search-seed kill turns not cited
+
+
+def test_a_swap_that_passes_the_three_seed_screen_by_chance_fails_the_eight_seed_check(
+    deck, store, make_card, monkeypatch,
+):
+    """Measured live (Syr Konrad, Infiltration Lens): +2.4 on three confirmation seeds, -0.1 on
+    five more. "Chancy" gains +6 on the first three fresh seeds and -2 on the rest, so the cheap
+    screen passes it and only the longer re-measure can tell."""
+    chancy = make_card("Chancy Card", mana_cost="{1}{G}", type_line="Instant",
+                       color_identity=("G",))
+    cfg = SimConfig(runs=150, turns=12, seed=1)
+    first_three = {cfg.seed + advisor.CONFIRM_SEED_STEP * (i + 1) for i in range(3)}
+
+    def fake_analyze(resolved, cfg2, store, **kw):
+        if "Chancy Card" not in {c.name for c, _ in resolved.cards}:
+            return _fake_analysis(consistency=70.0, interaction=10.0)
+        if cfg2.seed == cfg.seed:                       # the search seed: it looks great
+            return _fake_analysis(consistency=78.0, interaction=10.0)
+        gain = 6.0 if cfg2.seed in first_three else -2.0
+        return _fake_analysis(consistency=70.0 + gain, interaction=10.0)
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    rep = advisor.advise(deck, cfg, store, [chancy], axis="consistency", cut_pool=1,
+                         confirm_seeds=3)
+    assert rep.suggestions == []

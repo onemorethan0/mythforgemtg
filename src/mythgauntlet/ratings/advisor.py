@@ -553,15 +553,20 @@ def _noise_floor(axis: str, runs: int) -> float:
 
 
 CONFIRM_SEED_STEP = 7919        # fresh seeds: cfg.seed + step * (i + 1), never the search seed
-CONFIRM_MIN_FRACTION = 0.5      # a confirmed gain must reach this share of the axis noise floor
-CONFIRM_Z = 1.28                # ...and its 90% lower bound must clear zero
+CONFIRM_MIN_FRACTION = 1.0      # a confirmed gain must reach the axis noise floor, as the search's
+                                # own bar always did (0.5 let a +1.8 swap through that pooled to +1.0)
+CONFIRM_SCREEN_Z = 1.28         # cheap screen on `confirm_seeds` seeds: 90% lower bound > 0
+CONFIRM_FINAL_SEEDS = 8         # survivors of the screen are re-measured on this many in all
+CONFIRM_FINAL_Z = 1.64          # ...and must clear a 95% lower bound > 0 (a screen alone let
+                                # chance through: ~15 candidates are tried, and one consistency
+                                # swap that passed 3 seeds at +2.4 re-measured at -0.1)
 
 
-def _confirm_swap(resolved: ResolvedDeck, cut: Card, add: Card, axis: str, cfg: SimConfig,
-                  store: SemanticsStore, seeds: int, base_cache: dict, *,
-                  two_card_combos: int = 0, combos_checked: bool = False) -> tuple[float, float]:
-    """(mean gain, standard error) of one swap on `seeds` FRESH seeds, paired (the same seed for
-    the unswapped and swapped deck).
+def _confirm_diffs(resolved: ResolvedDeck, cut: Card, add: Card, axis: str, cfg: SimConfig,
+                   store: SemanticsStore, start: int, count: int, base_cache: dict, *,
+                   two_card_combos: int = 0, combos_checked: bool = False) -> list[float]:
+    """The swap's gain on FRESH seeds number `start` .. `start + count - 1`, paired (the same seed
+    for the unswapped and the swapped deck).
 
     The search tries ~16 adds x ~6 cuts on ONE seed and keeps the best, so its reported gain is a
     maximum over many noisy measurements -- a winner's curse. Measured 2026-11-11 on real decks
@@ -573,7 +578,7 @@ def _confirm_swap(resolved: ResolvedDeck, cut: Card, add: Card, axis: str, cfg: 
     res = axis == "resilience"
     diffs = []
     swapped = _swap_variant(resolved, cut, add)
-    for i in range(seeds):
+    for i in range(start, start + count):
         c2 = SimConfig(turns=cfg.turns, runs=cfg.runs, seed=cfg.seed + CONFIRM_SEED_STEP * (i + 1))
         key = (c2.seed, axis)
         if key not in base_cache:
@@ -583,9 +588,18 @@ def _confirm_swap(resolved: ResolvedDeck, cut: Card, add: Card, axis: str, cfg: 
         a = analyze_deck(swapped, c2, store, two_card_combos=two_card_combos,
                          combos_checked=combos_checked, run_resilience=res)
         diffs.append(axis_score(a, axis) - base_cache[key])
+    return diffs
+
+
+def _mean_se(diffs: list[float]) -> tuple[float, float]:
     mean = sum(diffs) / len(diffs)
     var = sum((d - mean) ** 2 for d in diffs) / (len(diffs) - 1) if len(diffs) > 1 else 0.0
     return mean, math.sqrt(var / len(diffs))
+
+
+def _passes(diffs: list[float], floor: float, z: float) -> bool:
+    mean, se = _mean_se(diffs)
+    return mean >= CONFIRM_MIN_FRACTION * floor and mean - z * se > 0
 
 
 def _commander_identity(resolved: ResolvedDeck) -> frozenset[str]:
@@ -934,13 +948,19 @@ def advise(
                     break                   # budget spent: report what survived, no more tries
                 confirm_tried += 1
                 search_delta = after - base_scores[ax]
-                mean, se = _confirm_swap(resolved, cut, add, ax, cfg, store, confirm_seeds,
-                                         confirm_base, two_card_combos=two_card_combos,
-                                         combos_checked=combos_checked)
-                if mean < CONFIRM_MIN_FRACTION * floors[ax] or mean - CONFIRM_Z * se <= 0:
+                kw = dict(two_card_combos=two_card_combos, combos_checked=combos_checked)
+                diffs = _confirm_diffs(resolved, cut, add, ax, cfg, store, 0, confirm_seeds,
+                                       confirm_base, **kw)
+                if not _passes(diffs, floors[ax], CONFIRM_SCREEN_Z):
                     continue                # the search-seed gain did not repeat: luck
+                final = max(CONFIRM_FINAL_SEEDS, confirm_seeds)
+                diffs += _confirm_diffs(resolved, cut, add, ax, cfg, store, confirm_seeds,
+                                        final - confirm_seeds, confirm_base, **kw)
+                if not _passes(diffs, floors[ax], CONFIRM_FINAL_Z):
+                    continue                # passed the screen by chance
+                mean, se = _mean_se(diffs)
                 after = base_scores[ax] + mean      # claim the unbiased estimate, not the max
-                confirmation = {"seeds": confirm_seeds, "mean": round(mean, 2),
+                confirmation = {"seeds": len(diffs), "mean": round(mean, 2),
                                 "se": round(se, 2), "search_delta": round(search_delta, 2)}
             used_add.add(add.name)
             used_cut.add(cut.name)
