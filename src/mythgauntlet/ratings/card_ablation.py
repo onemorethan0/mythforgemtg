@@ -97,7 +97,73 @@ def _kill_turns(resolved: ResolvedDeck, cfg: SimConfig, only=None):
 def baseline(resolved: ResolvedDeck, cfg: SimConfig):
     """The shared baseline every card in a batch is compared against (ABLATION_RUNS games)."""
     big = SimConfig(turns=cfg.turns, runs=max(cfg.runs, ABLATION_RUNS), seed=cfg.seed)
-    return big, _kill_turns(resolved, big)
+    runs = runs_parallel(resolved, big)
+    return big, (runs, [r.kill_turn if r.kill_turn is not None else big.turns + 1 for r in runs])
+
+
+def _value(resolved: ResolvedDeck, big: SimConfig, name: str, drawn: list[int],
+           base_kills: list[int]) -> CardValue:
+    """One card's paired value: replay its drawn games with it blanked (a worker entry point --
+    module level and picklable, so the batch below can run it in other processes)."""
+    if not drawn:
+        return CardValue(name, 0.0, (0.0, 0.0), 0)
+    _r, without = _kill_turns(_blanked(resolved, name), big, only=drawn)
+    diffs = [w - k for k, w in zip(base_kills, without)]
+    n = len(diffs)
+    mean = sum(diffs) / n
+    var = sum((d - mean) ** 2 for d in diffs) / (n - 1) if n > 1 else 0.0
+    half = Z90 * math.sqrt(var / n) if n > 1 else 0.0
+    return CardValue(name, round(mean, 2), (round(mean - half, 2), round(mean + half, 2)),
+                     n, round(mean * n / (n + SHRINK_GAMES), 3))
+
+
+# The cards of a batch are independent and every game is seeded by its own index, so they run in
+# worker processes with byte-identical results (2026-11-11: the scouting report spent 127 of its
+# ~160 s here, one card after another on one core). MYTHGAUNTLET_ABLATION_WORKERS=0 runs serially.
+PARALLEL_MIN_CARDS = 6
+_POOL = None
+
+
+def _workers() -> int:
+    import os
+    env = os.environ.get("MYTHGAUNTLET_ABLATION_WORKERS")
+    if env is not None:
+        try:
+            return max(0, int(env))
+        except ValueError:
+            return 0
+    return max(0, min(8, (os.cpu_count() or 2) - 2))
+
+
+def _pool():
+    """A process pool kept for the life of the process (spawning one costs seconds)."""
+    global _POOL
+    if _POOL is None:
+        from concurrent.futures import ProcessPoolExecutor
+        _POOL = ProcessPoolExecutor(max_workers=_workers())
+    return _POOL
+
+
+def _chunk_runs(resolved: ResolvedDeck, big: SimConfig, idx: list[int]):
+    return _kill_turns(resolved, big, only=idx)[0]
+
+
+def runs_parallel(resolved: ResolvedDeck, big: SimConfig, chunks: int = 8):
+    """All `big.runs` games of the analyze deck model (nut kills applied), in index order, split
+    across the worker pool. Identical to `_kill_turns(resolved, big)[0]`: every game is seeded by
+    its own index and the nut-kill pass reads each run alone."""
+    n = big.runs
+    if n < 200 or _workers() == 0:
+        return _kill_turns(resolved, big)[0]
+    size = -(-n // chunks)
+    parts = [list(range(s, min(n, s + size))) for s in range(0, n, size)]
+    try:
+        futs = [_pool().submit(_chunk_runs, resolved, big, p) for p in parts]
+        return [r for f in futs for r in f.result()]
+    except Exception:                # noqa: BLE001 - a broken pool falls back to serial
+        global _POOL
+        _POOL = None
+        return _kill_turns(resolved, big)[0]
 
 
 def drawn_value(resolved: ResolvedDeck, cfg: SimConfig, names, *, base=None) -> dict[str, CardValue]:
@@ -107,23 +173,21 @@ def drawn_value(resolved: ResolvedDeck, cfg: SimConfig, names, *, base=None) -> 
         big, (runs, kills) = cfg, _kill_turns(resolved, cfg)
     else:
         big, (runs, kills) = base
-    out: dict[str, CardValue] = {}
+    in_deck = {c.name for c, _ in resolved.cards}
+    jobs = []
     for name in names:
-        if not any(c.name == name for c, _ in resolved.cards):
+        if name not in in_deck:
             continue
         drawn = [i for i, r in enumerate(runs) if name in r.seen_turn]
-        if not drawn:
-            out[name] = CardValue(name, 0.0, (0.0, 0.0), 0)
-            continue
-        _r, without = _kill_turns(_blanked(resolved, name), big, only=drawn)
-        diffs = [w - kills[i] for i, w in zip(drawn, without)]
-        n = len(diffs)
-        mean = sum(diffs) / n
-        var = sum((d - mean) ** 2 for d in diffs) / (n - 1) if n > 1 else 0.0
-        half = Z90 * math.sqrt(var / n) if n > 1 else 0.0
-        out[name] = CardValue(name, round(mean, 2), (round(mean - half, 2), round(mean + half, 2)),
-                              n, round(mean * n / (n + SHRINK_GAMES), 3))
-    return out
+        jobs.append((name, drawn, [kills[i] for i in drawn]))
+    if len(jobs) >= PARALLEL_MIN_CARDS and _workers() > 0:
+        try:
+            futs = [_pool().submit(_value, resolved, big, n, d, k) for n, d, k in jobs]
+            return {n: f.result() for (n, _d, _k), f in zip(jobs, futs)}
+        except Exception:            # noqa: BLE001 - a broken pool falls back to serial
+            global _POOL
+            _POOL = None
+    return {n: _value(resolved, big, n, d, k) for n, d, k in jobs}
 
 
 def load_bearing(resolved: ResolvedDeck, cfg: SimConfig, names) -> frozenset[str]:

@@ -48,3 +48,26 @@ def test_a_late_finisher_is_measured_too(make_card):
     titan.power, titan.toughness = "12", "12"
     vals = CA.drawn_value(_deck(make_card, [titan], bears=6), CFG, ["Titan"])
     assert vals["Titan"].load_bearing
+
+
+def test_parallel_workers_match_serial_exactly(make_card, monkeypatch):
+    """The worker pool must change only the wall clock: same games, same values (2026-11-11)."""
+    names = []
+    extra = []
+    for i in range(CA.PARALLEL_MIN_CARDS + 1):
+        c = make_card(f"Spell{i}", mana_cost="{2}{G}", type_line="Creature — Giant")
+        c.power, c.toughness = str(3 + i), str(3 + i)
+        extra.append(c)
+        names.append(c.name)
+    deck = _deck(make_card, extra)
+    big = SimConfig(turns=12, runs=240, seed=5)
+
+    monkeypatch.setenv("MYTHGAUNTLET_ABLATION_WORKERS", "0")
+    serial_runs = CA.runs_parallel(deck, big)
+    serial = CA.drawn_value(deck, big, names)
+    monkeypatch.setenv("MYTHGAUNTLET_ABLATION_WORKERS", "2")
+    par_runs = CA.runs_parallel(deck, big)
+    par = CA.drawn_value(deck, big, names)
+
+    assert [r.kill_turn for r in par_runs] == [r.kill_turn for r in serial_runs]
+    assert par == serial

@@ -78,7 +78,7 @@ against decks of the same bracket.
 | B35 | Reference field per bracket (one deck per archetype from the corpus) and matchup win rates | weak against (games) | **done** |
 | B36 | Exposure to hate: graveyard, commander, artifacts, flyers, single combo, mana base, speed vs peers | weak against (static) | **done** |
 | B37 | Strengths/weaknesses as per-bracket percentiles instead of fixed bars | good at (honestly) | **done** |
-| B38 | `/scout` report: template-first text, optional LLM paragraph behind the swap_narrative-style gate; Forge panel | the description | **done** (e53394a; first run ~3 min, cached -- the 30 s target is open; mentor citing it is open) |
+| B38 | `/scout` report: template-first text, optional LLM paragraph behind the swap_narrative-style gate; Forge panel | the description | **done** (e53394a; first run ~3 min, cached; 2026-11-11 ablation + card stats run in worker processes, byte-identical, Y'shtola scout 40 s -> 18 s without table speed; mentor citing it is open) |
 
 Follow-up owed by B31 + B34 (both changed what the sim counts): re-fit the strength model's
 bracket cut lines (`scripts/bracket_strength_fit.py --collect`, then `--bake`).

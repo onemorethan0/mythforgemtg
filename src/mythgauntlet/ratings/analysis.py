@@ -302,9 +302,9 @@ def compute_card_stats(resolved: ResolvedDeck, cfg: SimConfig, runs: int = CARD_
     commander = resolved.commanders[0] if resolved.commanders else None
     sim_cards = resolved.cards + [(c, 1) for c in resolved.commanders[1:]]
     big = SimConfig(turns=cfg.turns, runs=runs, seed=cfg.seed)
-    stat_runs = simulate(sim_cards, commander, big)
-    apply_nut_kills(stat_runs, list(sim_cards) + ([(commander, 1)] if commander else []),
-                    big.turns, commanders=resolved.commanders)
+    # the same games (simulate + nut kills, seeded per game), split across worker processes
+    from mythgauntlet.ratings.card_ablation import runs_parallel
+    stat_runs = runs_parallel(resolved, big)
     lands = frozenset(c.name for c, _ in sim_cards if c.has_type("Land"))
     return card_stats.compute(stat_runs, big.turns, lands)
 
