@@ -404,6 +404,7 @@ def _parse_text(text: str) -> RawDeck:
     leading: list[str] = []
     paragraph = 0
     blank_run = False
+    cmdr_in_section = False     # a card was read under the CURRENT commander header
 
     for raw_line in (text or "").splitlines():
         line = raw_line.strip()
@@ -411,6 +412,13 @@ def _parse_text(text: str) -> RawDeck:
             if not blank_run:
                 paragraph += 1
                 blank_run = True
+            # "// COMMANDER", the commander, a blank line, then the whole maindeck with no header
+            # (Archidekt / Moxfield text): the blank line ends the commander section. Left open,
+            # every card in the deck was read as a partner commander (2026-11-11, Locutus of Borg:
+            # 100 partners, so no card could be removed or edited).
+            if section == "commander" and cmdr_in_section:
+                section = "deck"
+                cmdr_in_section = False
             continue
         blank_run = False
 
@@ -418,6 +426,7 @@ def _parse_text(text: str) -> RawDeck:
         if m_zone:
             zone = m_zone.group("zone").lower()
             section = "commander" if zone.startswith("commander") else zone
+            cmdr_in_section = False
             if section == "commander":
                 tagged_commander = True
             continue
@@ -438,6 +447,7 @@ def _parse_text(text: str) -> RawDeck:
         # read every creature in the deck as a commander.
         if _CATEGORY_HEADER.match(line) or _COMMENT_CATEGORY.match(line):
             section = "deck"
+            cmdr_in_section = False
             continue
         if line.startswith("#"):
             continue
@@ -451,6 +461,7 @@ def _parse_text(text: str) -> RawDeck:
                 name, _, printing = _strip_line_metadata(line)
                 if name:
                     commander_names.append(name)
+                    cmdr_in_section = True
                     if printing:
                         printings[name.strip().lower()] = printing
             continue
@@ -471,6 +482,8 @@ def _parse_text(text: str) -> RawDeck:
                 or any(t.startswith(("cmdr", "commander")) for t in tags)):
             commander_names.append(name)
             tagged_commander = True
+            if section == "commander":
+                cmdr_in_section = True
         else:
             card_entries.append((name, qty))
             if paragraph == 0 and qty == 1:
