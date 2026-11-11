@@ -396,6 +396,46 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   }
   function clearSelection() { setSelectedKeys(new Set()); lastClickedKey.current = null }
 
+  // Remove the selected cards from the deck (a card that snuck in, or just does not belong). One
+  // apply-swap call per card with only `cut` set: the server removes one copy per call and
+  // re-checks the list, so a commander or partner is refused rather than dropped.
+  const [removing, setRemoving] = useState(false)
+  async function removeSelected() {
+    const byKey = new Map((deck.deck || []).map(c => [c.render_key, c]))
+    const chosen = [...selectedKeys].map(k => byKey.get(k)).filter(Boolean)
+    if (!chosen.length || removing) return
+    const names = chosen.map(c => c.original_name)
+    const label = names.length === 1 ? names[0] : `${names.length} cards`
+    if (!window.confirm(`Remove ${label} from this deck?`)) return
+    setRemoving(true)
+    let updated = null
+    const failed = []
+    for (const name of names) {
+      try {
+        const r = await fetch(`/api/deck/${jobId}/apply-swap`, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ cut: name }),
+        })
+        if (r.ok) updated = await r.json()
+        else {
+          let d = `HTTP ${r.status}`
+          try { d = (await r.json()).detail || d } catch { /* keep status */ }
+          failed.push(`${name}: ${d}`)
+        }
+      } catch {
+        failed.push(`${name}: server unreachable`)
+      }
+    }
+    setRemoving(false)
+    if (updated) {
+      onDeckChange?.(updated)
+      clearSelection()
+      const n = (updated.deck || []).reduce((t, c) => t + (c.quantity || 1), 0)
+      notify('success', `Removed ${names.length - failed.length} card${names.length - failed.length === 1 ? '' : 's'}. The list now has ${n} cards.`)
+    }
+    if (failed.length) notify('error', `Could not remove: ${failed.join('; ')}`)
+  }
+
   // ── Regen handlers ────────────────────────────────────────────────────────
   async function handleStartRegen(payload) {
     setShowRegenPanel(false)
@@ -1432,6 +1472,16 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             onClick={clearSelection}
             style={{ ...btnBase, background: 'none', color: '#78716c', fontSize: 11 }}
           >✕ Clear</button>
+          {!single && (
+            <button
+              onClick={removeSelected} disabled={removing}
+              title="Remove the selected cards from this deck"
+              style={{ ...btnBase, background: '#450a0a', color: '#fca5a5', border: '1px solid #b91c1c',
+                fontWeight: 700, fontSize: 13, padding: '8px 18px', opacity: removing ? 0.6 : 1 }}
+            >
+              {removing ? 'Removing…' : `🗑 Remove ${selectedKeys.size} from deck`}
+            </button>
+          )}
           <button
             onClick={() => setShowAnimatePanel(true)}
             title={videoHealth?.ok ? 'Animate the selected cards (art motion and/or foil sheen)'
