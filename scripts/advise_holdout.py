@@ -42,6 +42,7 @@ def main() -> None:
     ap.add_argument("--out", default="advise_holdout.json")
     ap.add_argument("--confirm", type=int, default=0, help="advise(confirm_seeds=...); 0 = the original search-seed gains")
     ap.add_argument("--baseline", type=int, default=0, help="advise(baseline_seeds=...)")
+    ap.add_argument("--workers", type=int, default=0, help="advise(workers=...): processes for the sweep")
     ap.add_argument("--only", default="", help="substring of the deck name to run (skips others)")
     args = ap.parse_args()
 
@@ -78,7 +79,7 @@ def main() -> None:
         cands = advisor.owned_candidates(db, resolved, col)
         rep = advisor.advise(resolved, cfg, store, cands, axis=None, top=5, max_eval=16,
                              cut_pool=6, fallback_axes=3, ablate_cuts=True,
-                             confirm_seeds=args.confirm, baseline_seeds=args.baseline)
+                             confirm_seeds=args.confirm, baseline_seeds=args.baseline, workers=args.workers)
         print(f"[{used}] {name}: {len(rep.suggestions)} suggestions ({time.time()-t0:.0f}s)", flush=True)
         for s in rep.suggestions:
             ax = s.axis or rep.axis

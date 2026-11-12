@@ -118,6 +118,12 @@ class ScoutRequest(BaseModel):
         default=None, description="a cached /matchups response to fold in (optional)")
 
 
+def _advise_workers() -> int:
+    """Worker processes for an Advise search (the ablation pool's size; 0 = serial)."""
+    from mythgauntlet.ratings import card_ablation
+    return card_ablation._workers()
+
+
 class AdviseRequest(BaseModel):
     deck: str = Field(description="decklist text (plain/Moxfield-ish, Commander: section)")
     name: str = "deck"
@@ -490,6 +496,7 @@ def create_app(
 ) -> FastAPI:
     app = FastAPI(title="MythGauntlet strength API", version=__version__)
     db = db if db is not None else scryfall.load_card_db()
+    default_store = store is None     # worker processes can only reload the DEFAULT store
     store = store if store is not None else load_store()  # cached; ~35s cold, else instant
 
     # Deck Mentor's ground-truth corpus (docs/SPEC_deck_mentor.md Phase 0/2). Loaded once
@@ -846,6 +853,7 @@ def create_app(
             fallback_axes=req.fallback_axes,
             ablate_cuts=req.ablate_cuts, confirm_seeds=req.confirm_seeds,
             baseline_seeds=req.baseline_seeds,
+            workers=_advise_workers() if default_store else 0,
         )
         return {
             "engine_version": __version__,

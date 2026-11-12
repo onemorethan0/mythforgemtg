@@ -745,3 +745,36 @@ def test_an_interaction_only_result_leads_with_the_honest_headline():
     mixed = {**data, "suggestions": data["suggestions"] + [
         {"add": "C", "cut": "D", "axis": "ceiling", "brief": None}]}
     assert "headline" not in _swap_result(mixed).data
+
+
+def test_a_worker_pool_gives_the_same_advice_as_the_serial_loop(deck, store, make_card, monkeypatch):
+    """`workers` only changes the wall clock: the analyses are batched, run in the shared pool and
+    read back in the original order, so the report is identical. The pool is faked with an
+    in-process executor that runs each job on submit (a real one needs the on-disk store)."""
+    from concurrent.futures import Future
+    from mythgauntlet.ratings import card_ablation
+
+    class _InProc:
+        def submit(self, fn, *a):
+            f = Future()
+            try:
+                f.set_result(fn(*a))
+            except Exception as e:           # noqa: BLE001
+                f.set_exception(e)
+            return f
+
+    def fake_job(resolved, cfg, two_card_combos, combos_checked, run_resilience):
+        return advisor.analyze_deck(resolved, cfg, store, two_card_combos=two_card_combos,
+                                    combos_checked=combos_checked, run_resilience=run_resilience)
+
+    cands = [_creature(make_card, f"Owned {i}", "{1}{G}", 3000 + i * 50) for i in range(5)]
+    cfg = SimConfig(runs=60, turns=5, seed=1)
+    serial = advisor.advise(deck, cfg, store, cands, axis="consistency", top=3, max_eval=5,
+                            cut_pool=2, baseline_seeds=1)
+    monkeypatch.setattr(card_ablation, "_pool", lambda: _InProc())
+    monkeypatch.setattr(advisor, "_analyze_job", fake_job)
+    pooled = advisor.advise(deck, cfg, store, cands, axis="consistency", top=3, max_eval=5,
+                            cut_pool=2, baseline_seeds=1, workers=4)
+    key = lambda r: [(s.add, s.cut, round(s.after, 6)) for s in r.suggestions]  # noqa: E731
+    assert key(pooled) == key(serial) and pooled.analyses == serial.analyses
+    assert pooled.baseline == serial.baseline

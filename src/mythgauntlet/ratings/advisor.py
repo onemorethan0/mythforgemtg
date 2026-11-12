@@ -575,6 +575,33 @@ def interaction_only_headline(axes) -> str | None:
     return INTERACTION_ONLY_HEADLINE if axes and all(a == "interaction" for a in axes) else None
 
 
+def _analyze_job(resolved, cfg, two_card_combos, combos_checked, run_resilience):
+    """One analysis in a worker process (module level so it pickles). The worker loads the default
+    semantics store itself (cached on disk, ~2.5 s); `advise(workers=...)` is only used when the
+    caller's `store` IS that default store."""
+    from mythgauntlet.semantics.store import load_store
+    return analyze_deck(resolved, cfg, load_store(), two_card_combos=two_card_combos,
+                        combos_checked=combos_checked, run_resilience=run_resilience)
+
+
+def _run_analyses(jobs, store, workers):
+    """Run `jobs` = [(resolved, cfg, two_card_combos, combos_checked, run_resilience)] and return the
+    DeckAnalyses in order. With `workers > 0` they run in the shared process pool (every game is
+    seeded by its own index, so the results are identical to the serial loop); a broken pool falls
+    back to running serially. This is the whole cost of an Advise search: ~100 analyses of 10-19 s."""
+    if workers > 0 and len(jobs) > 1:
+        try:
+            from mythgauntlet.ratings import card_ablation
+            pool = card_ablation._pool()
+            futs = [pool.submit(_analyze_job, *j) for j in jobs]
+            return [f.result() for f in futs]
+        except Exception:                # noqa: BLE001 - a broken pool falls back to serial
+            from mythgauntlet.ratings import card_ablation
+            card_ablation._POOL = None
+    return [analyze_deck(r, c, store, two_card_combos=t, combos_checked=cc, run_resilience=rr)
+            for r, c, t, cc, rr in jobs]
+
+
 CONFIRM_SEED_STEP = 7919        # fresh seeds: cfg.seed + step * (i + 1), never the search seed
 CONFIRM_MIN_FRACTION = 1.0      # a confirmed gain must reach the axis noise floor, as the search's
                                 # own bar always did (0.5 let a +1.8 swap through that pooled to +1.0)
@@ -587,7 +614,8 @@ CONFIRM_FINAL_Z = 1.64          # ...and must clear a 95% lower bound > 0 (a scr
 
 def _confirm_diffs(resolved: ResolvedDeck, cut: Card, add: Card, axis: str, cfg: SimConfig,
                    store: SemanticsStore, start: int, count: int, base_cache: dict, *,
-                   two_card_combos: int = 0, combos_checked: bool = False) -> list[float]:
+                   two_card_combos: int = 0, combos_checked: bool = False,
+                   workers: int = 0) -> list[float]:
     """The swap's gain on FRESH seeds number `start` .. `start + count - 1`, paired (the same seed
     for the unswapped and the swapped deck).
 
@@ -599,19 +627,18 @@ def _confirm_diffs(resolved: ResolvedDeck, cut: Card, add: Card, axis: str, cfg:
 
     `base_cache` holds the unswapped deck's score per (seed, axis) so it is paid for once."""
     res = axis == "resilience"
-    diffs = []
     swapped = _swap_variant(resolved, cut, add)
-    for i in range(start, start + count):
-        c2 = SimConfig(turns=cfg.turns, runs=cfg.runs, seed=cfg.seed + CONFIRM_SEED_STEP * (i + 1))
-        key = (c2.seed, axis)
-        if key not in base_cache:
-            base_cache[key] = axis_score(analyze_deck(
-                resolved, c2, store, two_card_combos=two_card_combos,
-                combos_checked=combos_checked, run_resilience=res), axis)
-        a = analyze_deck(swapped, c2, store, two_card_combos=two_card_combos,
-                         combos_checked=combos_checked, run_resilience=res)
-        diffs.append(axis_score(a, axis) - base_cache[key])
-    return diffs
+    cfgs = [SimConfig(turns=cfg.turns, runs=cfg.runs, seed=cfg.seed + CONFIRM_SEED_STEP * (i + 1))
+            for i in range(start, start + count)]
+    todo = [c2 for c2 in cfgs if (c2.seed, axis) not in base_cache]
+    # the unswapped deck's missing seeds and every swapped seed are independent: one batch
+    jobs = ([(resolved, c2, two_card_combos, combos_checked, res) for c2 in todo]
+            + [(swapped, c2, two_card_combos, combos_checked, res) for c2 in cfgs])
+    out = _run_analyses(jobs, store, workers)
+    for c2, a in zip(todo, out[:len(todo)]):
+        base_cache[(c2.seed, axis)] = axis_score(a, axis)
+    return [axis_score(a, axis) - base_cache[(c2.seed, axis)]
+            for c2, a in zip(cfgs, out[len(todo):])]
 
 
 def _mean_se(diffs: list[float]) -> tuple[float, float]:
@@ -743,6 +770,7 @@ def advise(
     ablate_cuts: bool = False,
     confirm_seeds: int = 0,
     baseline_seeds: int = 0,
+    workers: int = 0,
 ) -> AdviceReport:
     """Rank candidate swaps by their measured improvement to the target axis.
 
@@ -824,11 +852,11 @@ def advise(
     # paired difference is as noisy as two independent games.)
     base_avg = {ax: axis_score(baseline, ax) for ax in AXES if ax != "resilience" or baseline.resilience is not None}
     if baseline_seeds > 0:
-        extra = [analyze_deck(
-            resolved, SimConfig(turns=cfg.turns, runs=cfg.runs,
-                                seed=cfg.seed + BASELINE_SEED_STEP * (i + 1)), store,
-            two_card_combos=two_card_combos, combos_checked=combos_checked, run_resilience=True,
-        ) for i in range(baseline_seeds)]
+        extra = _run_analyses(
+            [(resolved, SimConfig(turns=cfg.turns, runs=cfg.runs,
+                                  seed=cfg.seed + BASELINE_SEED_STEP * (i + 1)),
+              two_card_combos, combos_checked, True) for i in range(baseline_seeds)],
+            store, workers)
         base_avg = {ax: (base_avg[ax] + sum(axis_score(e, ax) for e in extra))
                     / (1 + len(extra)) for ax in base_avg}
     target = axis or min((ax for ax in PROFILE_AXES if ax != "resilience"
@@ -911,32 +939,32 @@ def advise(
         # actually make together.
         reasons: dict[tuple[str, str], str] = {}
         evals: list[tuple[float, float, Card, Card, float, DeckAnalysis, str]] = []
-        for add in pool:
-            evaluated += 1
-            for cut in cuts:
-                a = analyze_deck(
-                    _swap_variant(resolved, cut, add), cfg, store,
-                    two_card_combos=two_card_combos, combos_checked=combos_checked,
-                    run_resilience=need_res,
-                )
-                analyses += 1
-                # Require a MEANINGFUL gain, not just a positive one: on a 0-100 axis a
-                # +0.1 swap is sim noise, and padding the list with noise is what made the
-                # advisor feel useless ("5 suggestions, 4 of them +0.1"). Each floor
-                # additionally refuses to go below that axis's own measured seed-to-seed
-                # spread — see _AXIS_NOISE_FLOOR. The target axis wins when it qualifies;
-                # otherwise the fallback axis it beats by the most floors.
-                gains = {ax: axis_score(a, ax) - base_scores[ax] for ax in searched}
-                ok = [ax for ax in searched if gains[ax] >= floors[ax]]
-                if not ok:
-                    continue
-                ax = target if target in ok else max(ok, key=lambda x: gains[x] / floors[x])
-                # ...AND it must leave the deck better OVERALL. A target gain bought with a
-                # bigger loss elsewhere (in units of each axis's spread among real decks) is
-                # a worse deck, not an upgrade.
-                net = _net(_whole_deck_moves(baseline, a, ax, cfg.runs))
-                if net > 0:
-                    evals.append((net, gains[ax], add, cut, axis_score(a, ax), a, ax))
+        # every (add, cut) pairing is an independent analysis: run them all as one batch
+        # (across worker processes when `workers`), then read the results in the original order
+        pairs = [(add, cut) for add in pool for cut in cuts]
+        evaluated += len(pool)
+        sweep = _run_analyses(
+            [(_swap_variant(resolved, cut, add), cfg, two_card_combos, combos_checked, need_res)
+             for add, cut in pairs], store, workers)
+        for (add, cut), a in zip(pairs, sweep):
+            analyses += 1
+            # Require a MEANINGFUL gain, not just a positive one: on a 0-100 axis a
+            # +0.1 swap is sim noise, and padding the list with noise is what made the
+            # advisor feel useless ("5 suggestions, 4 of them +0.1"). Each floor
+            # additionally refuses to go below that axis's own measured seed-to-seed
+            # spread — see _AXIS_NOISE_FLOOR. The target axis wins when it qualifies;
+            # otherwise the fallback axis it beats by the most floors.
+            gains = {ax: axis_score(a, ax) - base_scores[ax] for ax in searched}
+            ok = [ax for ax in searched if gains[ax] >= floors[ax]]
+            if not ok:
+                continue
+            ax = target if target in ok else max(ok, key=lambda x: gains[x] / floors[x])
+            # ...AND it must leave the deck better OVERALL. A target gain bought with a
+            # bigger loss elsewhere (in units of each axis's spread among real decks) is
+            # a worse deck, not an upgrade.
+            net = _net(_whole_deck_moves(baseline, a, ax, cfg.runs))
+            if net > 0:
+                evals.append((net, gains[ax], add, cut, axis_score(a, ax), a, ax))
         # Greedy non-overlapping selection: best gain first, each add + each cut used once.
         #
         # TIES ARE THE NORM HERE, so the tiebreak is load-bearing. The Ceiling axis is
@@ -988,7 +1016,8 @@ def advise(
                     break                   # budget spent: report what survived, no more tries
                 confirm_tried += 1
                 search_delta = after - base_scores[ax]
-                kw = dict(two_card_combos=two_card_combos, combos_checked=combos_checked)
+                kw = dict(two_card_combos=two_card_combos, combos_checked=combos_checked,
+                          workers=workers)
                 diffs = _confirm_diffs(resolved, cut, add, ax, cfg, store, 0, confirm_seeds,
                                        confirm_base, **kw)
                 if not _passes(diffs, floors[ax], CONFIRM_SCREEN_Z):
