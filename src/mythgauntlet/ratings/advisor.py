@@ -561,6 +561,15 @@ INTERACTION_NOTE = ("Interaction is a count of the answers the deck holds, not a
                     "change in how often the deck wins.")
 
 BASELINE_SEED_STEP = 104729      # extra baseline seeds: cfg.seed + step * (i + 1)
+# Ceiling is how soon the deck CAN kill in solo games (a fast alpha), so a team-pump card scores
+# enormous gains on it. Paired four-player pod tests of confirmed Ceiling swaps (scripts/swap_podcheck.py,
+# 9,600 games each, 2026-11-11): Korok, Liberated Rage +27 Ceiling -> -0.3pp win rate (se 0.3);
+# Prismabasher +24 -> +0.9pp (se 0.5); Infiltration Lens +2 -> -0.6pp (se 0.6). The Ceiling number
+# is real, but it is not a share of the win rate.
+CEILING_NOTE = ("Ceiling measures how soon the deck can set up a kill in solo games, not how often it "
+                "wins a pod: pod tests of Ceiling swaps with large gains changed win rate by about a "
+                "point at most.")
+
 INTERACTION_ONLY_HEADLINE = (
     "No swap was measured to improve how this deck plays. Every suggestion below only adds an "
     "answer (interaction is a count, not a simulated result), and a pod test of such swaps found "
@@ -1094,6 +1103,8 @@ def advise(
             reason = reasons.setdefault((add.name, ax), _explain(add, ax, wants))
             if ax == "interaction":
                 reason = f"{reason} {INTERACTION_NOTE}"
+            elif ax == "ceiling":
+                reason = f"{reason} {CEILING_NOTE}"
             # the kill-turn phrase reads the SEARCH seed's games, the very numbers that did not
             # repeat -- never state it for a swap whose gain was re-measured
             measured = "" if (confirmation and not confirmation.get("closed_form")) else _measured_phrase(baseline, a)

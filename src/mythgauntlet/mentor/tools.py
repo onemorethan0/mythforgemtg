@@ -990,6 +990,11 @@ def _swap_result(data: dict) -> ToolResult:
                 "Interaction is a count of the answers the deck holds, not a simulated result. "
                 "This swap adds an answer; say that, and do NOT claim the deck will win more or "
                 "play better -- a pod test of such swaps found no measured change in winning.")
+        if (sug.get("axis") or axis) == "ceiling":
+            sug["measurement_note"] = (
+                "Ceiling is how soon the deck can set up a kill in solo games. Report the Ceiling "
+                "gain as that, and do NOT convert it into winning more games: pod tests of large "
+                "Ceiling swaps changed the win rate by about a point at most.")
         if axis == "clock":
             # The clock axis is a 0-100 SCORE, not turns (+1.7 points is ~0.2 turns), and the
             # model reported the score delta as "1.7 turns" (live, 2026-10-01). Give the turn

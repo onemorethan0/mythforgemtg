@@ -789,3 +789,22 @@ def test_a_worker_pool_gives_the_same_advice_as_the_serial_loop(deck, store, mak
                      for s in r.suggestions]
     assert key(pooled) == key(serial)
     assert pooled.baseline == serial.baseline and pooled.analyses == serial.analyses
+
+
+def test_a_ceiling_swap_does_not_promise_wins(deck, store, make_card, monkeypatch):
+    from mythgauntlet.mentor.tools import _swap_result
+    pump = make_card("Pump Card", mana_cost="{1}{G}", type_line="Instant", color_identity=("G",))
+
+    def fake_analyze(resolved, cfg, store, **kw):
+        has = "Pump Card" in {c.name for c, _ in resolved.cards}
+        a = _fake_analysis(consistency=70.0, interaction=10.0)
+        a.ceiling.score = 40.0 if has else 20.0
+        return a
+
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    rep = advisor.advise(deck, SimConfig(runs=150, turns=12, seed=1), store, [pump],
+                         axis="ceiling", cut_pool=1)
+    assert rep.suggestions and advisor.CEILING_NOTE in rep.suggestions[0].reason
+    out = _swap_result({"axis": "ceiling", "axis_label": "Ceiling", "baseline": 20.0, "evaluated": 1,
+                        "suggestions": [{"add": "A", "cut": "B", "axis": "ceiling", "brief": None}]})
+    assert "do NOT convert it into winning more games" in out.data["suggestions"][0]["measurement_note"]
