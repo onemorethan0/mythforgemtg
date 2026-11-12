@@ -1,0 +1,49 @@
+/* Design tokens: every colour, spacing step, radius and font size the shared UI components use.
+   The values are the literals the screens already use (dark surfaces, gold accent), so adopting
+   a variable never changes how something looks. tokens.test.js pins them. */
+:root {
+  /* surfaces, borders, text */
+  --surface-0: #0c0a09;
+  --surface-1: #1c1917;
+  --surface-2: #292524;
+  --border: #44403c;
+  --text: #f5f5f4;
+  --text-muted: #a8a29e;
+  --text-faint: #78716c;
+
+  /* accent (gold) */
+  --accent: #eab308;
+  --accent-strong: #ca8a04;
+  --accent-bg: #422006;
+  --accent-text: #fde047;
+
+  /* status */
+  --ok: #86efac;
+  --ok-strong: #15803d;
+  --ok-bg: #052e16;
+  --bad: #fca5a5;
+  --bad-strong: #b91c1c;
+  --bad-bg: #450a0a;
+  --info: #93c5fd;
+  --info-strong: #1d4ed8;
+  --info-bg: #1e3a5f;
+  --warn: #fcd34d;
+
+  /* spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+
+  /* radii */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+
+  /* type scale */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-lg: 16px;
+}
