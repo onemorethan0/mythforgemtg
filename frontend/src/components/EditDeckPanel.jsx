@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import Button from './ui/Button'
 
 // Manual edit: cut any card from the 99, add any card, or do either alone. The one edit every deck site is built
 // around; until now Myth Forge only let you apply an advisor suggestion. Uses the same
@@ -116,24 +117,19 @@ export default function EditDeckPanel({ deck, jobId, onChanged }) {
         <input value={add} onChange={e => setAdd(e.target.value)} list={`add-hints-${jobId}`}
                placeholder="Add a card…" style={{ ...field, flex: 1, minWidth: 160 }} aria-label="Card to add" />
         <datalist id={`add-hints-${jobId}`}>{(add.trim().length >= 2 ? hints : []).map(h => <option key={h} value={h} />)}</datalist>
-        <button onClick={() => apply('swap')} disabled={!cut || !add.trim() || busy} style={{
-          padding: '7px 14px', borderRadius: 7, fontSize: 12, fontFamily: 'inherit',
-          cursor: (!cut || !add.trim() || busy) ? 'default' : 'pointer',
-          border: '1px solid #ca8a04', background: '#422006', color: '#fde047',
-          opacity: (!cut || !add.trim() || busy) ? 0.5 : 1,
-        }}>{busy ? 'Working…' : 'Swap'}</button>
+        <Button variant="primary" onClick={() => apply('swap')} disabled={!cut || !add.trim() || busy}>
+          {busy ? 'Working…' : 'Swap'}
+        </Button>
       </div>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
-        <button onClick={() => apply('remove')} disabled={!cut || busy} title="Remove the chosen card without adding anything"
-                style={{ ...smallBtn, borderColor: '#b91c1c', background: '#450a0a', color: '#fca5a5',
-                         opacity: (!cut || busy) ? 0.5 : 1, cursor: (!cut || busy) ? 'default' : 'pointer' }}>
+        <Button variant="danger" size="sm" onClick={() => apply('remove')} disabled={!cut || busy}
+                title="Remove the chosen card without adding anything">
           ✕ Remove only
-        </button>
-        <button onClick={() => apply('add')} disabled={!add.trim() || busy} title="Add the card without cutting anything"
-                style={{ ...smallBtn, borderColor: '#15803d', background: '#052e16', color: '#86efac',
-                         opacity: (!add.trim() || busy) ? 0.5 : 1, cursor: (!add.trim() || busy) ? 'default' : 'pointer' }}>
+        </Button>
+        <Button variant="ok" size="sm" onClick={() => apply('add')} disabled={!add.trim() || busy}
+                title="Add the card without cutting anything">
           ＋ Add only
-        </button>
+        </Button>
       </div>
       <div style={{ fontSize: 11, color: '#78716c', marginTop: 6 }}>
         Checked for colour identity, singleton and the ban list. The new card shows its real art until you regenerate it.
@@ -175,10 +171,6 @@ export default function EditDeckPanel({ deck, jobId, onChanged }) {
       </div>
     </div>
   )
-}
-
-const smallBtn = {
-  padding: '6px 12px', borderRadius: 7, fontSize: 12, fontFamily: 'inherit', border: '1px solid',
 }
 
 const field = {

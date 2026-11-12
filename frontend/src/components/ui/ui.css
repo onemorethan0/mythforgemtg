@@ -1,0 +1,79 @@
+/* Shared UI components. Every colour, size and radius reads a token from styles/tokens.css, and the
+   variants map onto the colours the screens already use, so swapping a hand-styled button for
+   <Button> does not change how it looks. */
+
+/* Button */
+.ui-btn {
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  line-height: 1.25;
+}
+.ui-btn:disabled { cursor: default; opacity: 0.5; }
+.ui-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ui-btn--xs { padding: 3px 9px; font-size: var(--text-xs); border-radius: var(--radius-sm); }
+.ui-btn--sm { padding: 5px 14px; }
+.ui-btn--md { padding: 7px 14px; }
+.ui-btn--ghost   { background: none; }
+.ui-btn--primary { background: var(--accent-bg); border-color: var(--accent-strong); color: var(--accent-text); }
+.ui-btn--danger  { background: var(--bad-bg);    border-color: var(--bad-strong);    color: var(--bad); }
+.ui-btn--ok      { background: var(--ok-bg);     border-color: var(--ok-strong);     color: var(--ok); }
+.ui-btn--info    { background: var(--info-bg);   border-color: var(--info-strong);   color: var(--info); }
+
+/* Chip */
+.ui-chip {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: var(--text-xs);
+  border: 1px solid var(--border);
+  background: var(--surface-0);
+  color: var(--text-muted);
+}
+.ui-chip--ok   { border-color: var(--ok-strong);   color: var(--ok); }
+.ui-chip--warn { border-color: var(--accent-strong); color: var(--warn); }
+.ui-chip--bad  { border-color: var(--bad-strong);  color: var(--bad); }
+.ui-chip--info { border-color: var(--info-strong); color: var(--info); }
+
+/* Panel */
+.ui-panel {
+  background: var(--surface-0);
+  border: 1px solid var(--surface-2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+}
+.ui-panel__head {
+  display: flex; align-items: center; gap: var(--space-2); width: 100%;
+  background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; text-align: left;
+  color: var(--text);
+}
+.ui-panel__title { font-size: var(--text-md); font-weight: 700; }
+.ui-panel__summary { font-size: var(--text-sm); color: var(--text-faint); flex: 1; }
+.ui-panel__chev { color: var(--text-faint); font-size: var(--text-sm); margin-left: auto; }
+.ui-panel__body { margin-top: var(--space-3); }
+
+/* Menu */
+.ui-menu { position: relative; display: inline-block; }
+.ui-menu__pop {
+  position: absolute; top: 110%; z-index: 60; min-width: 330px;
+  background: var(--surface-0); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: var(--space-2);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.6);
+}
+.ui-menu__pop--left  { left: 0; }
+.ui-menu__pop--right { right: 0; }
+
+/* Tabs */
+.ui-tabs { display: flex; gap: var(--space-1); border-bottom: 1px solid var(--surface-2); }
+.ui-tab {
+  font-family: inherit; font-size: var(--text-md); cursor: pointer;
+  background: none; border: 0; border-bottom: 2px solid transparent;
+  color: var(--text-faint); padding: var(--space-2) var(--space-3);
+}
+.ui-tab:hover { color: var(--text-muted); }
+.ui-tab[aria-selected='true'] { color: var(--accent); border-bottom-color: var(--accent); }
+.ui-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
