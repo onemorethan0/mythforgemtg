@@ -175,8 +175,8 @@ Measured on the same Locutus deck at 1024x768 with the browser pane, before and 
   2 one day, 3 one day, 4 and 5 a day each.
 
 ## 9. Decisions I need from you
-1. **Dock on the right (recommended) or along the bottom?** Right keeps the list tall and the analysis
-   beside it; bottom suits narrow windows but squeezes the list.
+1. **Dock position -- DECIDED 2026-11-12: right.** Keeps the list tall and the analysis beside it; under
+   1100 px it becomes a bottom sheet (phase 5).
 2. **Styling:** use the Tailwind already installed (utility classes, fastest to write) or plain CSS
    files with the tokens (fewer concepts, no build coupling)? I lean Tailwind since it is already
    there and unused.
