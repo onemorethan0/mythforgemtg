@@ -138,7 +138,7 @@ for "it runs forever": the wait is visible and bounded from anywhere in the work
 
 | Phase | Work | Visible result |
 |---|---|---|
-| 0 | Tokens, shared components, hash routing. Existing screens keep their look. | None, except Back button and deep links |
+| 0 | **DONE 2026-11-12.** Tokens, shared components, hash routing. Existing screens keep their look. | None, except Back button and deep links |
 | 1 | Workspace shell: sticky strip, dock with four tabs, existing panels moved in unchanged | Cards appear on the first screen; no more five-screen scroll |
 | 2 | Add-a-card bar, hover remove, swap-in-place, undo; Edit deck panel retired | Add and remove with no scrolling, with the count in view |
 | 3 | Legality chip and popover; stats sidebar becomes the strip; panel summaries; job tray | Walls of text gone; waits visible |

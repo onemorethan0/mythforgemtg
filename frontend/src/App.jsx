@@ -12,6 +12,7 @@ import HealthIndicator from './components/HealthIndicator'
 import LogViewer from './components/LogViewer'
 import Toaster from './components/Toaster'
 import { notify } from './utils/toast'
+import { parseHash, formatRoute } from './utils/router'
 import { useGenSettings } from './hooks/useGenSettings'
 import { toGenSettingsPayload } from './config/genSettings'
 
@@ -162,11 +163,89 @@ export default function App() {
   const editDeckInFlightRef = useRef(false)
   const [editingDeck, setEditingDeck] = useState(false)
 
+  // ── Hash routing (utils/router.js) ───────────────────────────────────────────────────────
+  // The URL follows the screen (#/deck/<id>, #/history, #/collection, #/), and the Back button or a
+  // pasted link moves the screen. The step state machine stays the source of truth; routes only
+  // reach the screens that have a URL, are ignored mid-build (Back must not drop a running build),
+  // and a route that is still being applied is never overwritten by the state it is replacing.
+  const routeState = useRef({ step, mode, jobId })
+  const applyRouteRef = useRef(null)
+  // The hash the page was opened with, read during the FIRST render, before any effect can rewrite
+  // it: the state -> URL effect below runs before the mount effect and would otherwise replace a
+  // pasted #/deck/<id> with #/ before it is read. Pending until that route has been applied.
+  const initialHash = useRef(parseHash(location.hash)).current
+  const routePending = useRef(initialHash.name !== 'home')
+
+  async function applyRoute(r) {
+    const s = routeState.current
+    if (s.step === STEP.BUILDING) return
+    if (r.name === 'deck') {
+      if (s.step === STEP.DECK && s.jobId === r.id) return
+      routePending.current = true
+      try {
+        const res = await fetch(`/api/deck/${r.id}`)
+        if (res.status === 409) { handleResumeBuilding(r.id); return }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        handleLoadHistoricDeck(r.id, await res.json())
+      } catch {
+        notify('error', 'That deck could not be opened. It may have been deleted.')
+        reset('home')
+        // already on the landing hub, so no state change will rewrite the URL: replace the dead link
+        history.replaceState(null, '', `${location.pathname}${location.search}${formatRoute('home')}`)
+      } finally {
+        routePending.current = false
+      }
+    } else if (r.name === 'history') {
+      if (s.step !== STEP.HISTORY) setStep(STEP.HISTORY)
+    } else if (r.name === 'collection') {
+      if (!(s.step === STEP.COMMANDER && s.mode === 'collection')) { setMode('collection'); setStep(STEP.COMMANDER) }
+    } else if (s.step === STEP.DECK || s.step === STEP.HISTORY
+               || (s.step === STEP.COMMANDER && s.mode === 'collection')) {
+      reset('home')     // the landing hub; a half-finished wizard is left alone
+    }
+  }
+
+  useEffect(() => {
+    routeState.current = { step, mode, jobId }
+    applyRouteRef.current = applyRoute
+  })
+
+  useEffect(() => {
+    const onHash = () => applyRouteRef.current?.(parseHash(location.hash))
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
+  // state -> URL, only when it differs (our own write fires hashchange, which then finds the state
+  // already matching and does nothing)
+  useEffect(() => {
+    if (routePending.current) return
+    let target = null
+    try {
+      if (step === STEP.DECK && jobId && deck) target = formatRoute('deck', jobId)
+      else if (step === STEP.HISTORY) target = formatRoute('history')
+      else if (step === STEP.COMMANDER && mode === 'collection') target = formatRoute('collection')
+      else if (step === STEP.COMMANDER && mode === 'home') target = formatRoute('home')
+    } catch { return }       // a job id that is not a routable shape: leave the URL alone
+    if (!target) return
+    const cur = location.hash
+    if (cur === target || (target === '#/' && (cur === '' || cur === '#'))) return
+    location.hash = target
+  }, [step, mode, jobId, deck])
+
   // On mount: reconnect to an in-progress or recently-completed build.
   // Primary: sessionStorage (survives refresh but not new tab).
   // Fallback: /api/deck/active (survives anything — asks the server directly).
   useEffect(() => {
     let cancelled = false
+
+    // A link to a screen (#/deck/<id>, #/history, #/collection) wins over the saved active job; an
+    // empty or home hash keeps the reconnect behaviour below.
+    if (initialHash.name !== 'home') {
+      applyRouteRef.current?.(initialHash)   // set by an effect above, which runs first
+      if (initialHash.name !== 'deck') routePending.current = false   // screen routes apply at once
+      return () => { cancelled = true }
+    }
 
     // Ask the server what is actually running. This is the resilient path: it survives a
     // new tab, a cleared session, and a browser restart.
@@ -220,7 +299,7 @@ export default function App() {
     askServer()
 
     return () => { cancelled = true }
-  }, [])
+  }, [initialHash])
 
   // Persist active job ID so a page refresh can reconnect
   function _setJobId(id) {
