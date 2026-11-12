@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { notify } from '../utils/toast'
+import { EXPORT_FORMATS } from '../utils/exportFormats'
 
 const BRACKET_COLORS = {
   1: '#4ade80',
@@ -346,7 +347,7 @@ function DeckCard({ entry, onLoad, onResume, onDuplicated, onDeleted, selectMode
 
           {selectMode && (
             <div style={{ marginTop: 10, fontSize: 12, color: selected ? '#f87171' : '#57534e', textAlign: 'center' }}>
-              {selected ? '✓ Selected for deletion' : 'Click to select'}
+              {selected ? '✓ Selected' : 'Click to select'}
             </div>
           )}
         </div>
@@ -412,6 +413,8 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
   const [selected, setSelected]   = useState(new Set())
   const [batchConfirm, setBatchConfirm] = useState(false)
   const [batchDeleting, setBatchDeleting] = useState(false)
+  const [exportFmt, setExportFmt] = useState('moxfield')
+  const [exporting, setExporting] = useState(false)
   const [grouped, setGrouped]     = useState(true)          // fold versions under their origin
   const [expanded, setExpanded]   = useState(new Set())     // rootIds showing their versions
 
@@ -450,6 +453,35 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
     } else {
       setSelected(new Set(nonBuilding))
     }
+  }
+
+  // The selected decks as one ZIP, one list file each, in the chosen format.
+  async function handleBatchExport() {
+    if (!selected.size || exporting) return
+    setExporting(true)
+    try {
+      const r = await fetch('/api/decks/export-batch', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ job_ids: [...selected], format: exportFmt }),
+      })
+      if (!r.ok) {
+        let d = `HTTP ${r.status}`
+        try { d = (await r.json()).detail || d } catch { /* keep status */ }
+        notify('error', `Could not export: ${d}`)
+      } else {
+        const url = URL.createObjectURL(await r.blob())
+        const a = document.createElement('a')
+        a.href = url; a.download = 'myth_forge_decks.zip'; a.click()
+        setTimeout(() => URL.revokeObjectURL(url), 5000)
+        const skipped = (r.headers.get('X-Skipped') || '').split(',').filter(Boolean)
+        notify(skipped.length ? 'error' : 'success',
+          skipped.length ? `Exported ${selected.size - skipped.length}; ${skipped.length} could not be exported.`
+                         : `Exported ${selected.size} deck${selected.size !== 1 ? 's' : ''}.`)
+      }
+    } catch {
+      notify('error', 'Server unreachable')
+    }
+    setExporting(false)
   }
 
   function exitSelectMode() {
@@ -510,7 +542,7 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
         </div>
         <div style={s.sub}>
           {selectMode
-            ? 'Select decks to delete, then click Delete Selected.'
+            ? 'Select decks to export or delete.'
             : 'Browse and re-export previously generated decks.'}
         </div>
       </div>
@@ -524,6 +556,18 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
           <span style={s.selCount}>
             {selected.size} of {nonBuildingCount} selected
           </span>
+          {selected.size > 0 && (
+            <>
+              <select value={exportFmt} onChange={e => setExportFmt(e.target.value)} aria-label="Export format"
+                      style={{ padding: '7px 8px', borderRadius: 8, border: '1px solid #44403c', background: '#1c1917', color: '#e7e5e4', fontFamily: 'inherit', fontSize: 12 }}>
+                {EXPORT_FORMATS.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
+              </select>
+              <button onClick={handleBatchExport} disabled={exporting}
+                      style={{ padding: '7px 16px', background: '#1e3a5f', border: '1px solid #1d4ed8', borderRadius: 8, color: '#93c5fd', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, opacity: exporting ? 0.6 : 1 }}>
+                {exporting ? 'Exporting…' : `⬇ Export ${selected.size}`}
+              </button>
+            </>
+          )}
           {selected.size > 0 && (
             <button
               style={{ ...s.batchDelBtn, opacity: batchDeleting ? 0.6 : 1 }}

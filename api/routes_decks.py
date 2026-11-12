@@ -972,42 +972,76 @@ def export_decklist(job_id: str):
     themed build still contains exactly the cards that went in. Quantities are the
     physical counts, so aggregated duplicate basics expand correctly.
     """
+    return export_deck_list(job_id, "text", True)
+
+
+def _prints_lookup():
+    """The local Scryfall printings store as a `deck_export` lookup (offline)."""
+    import scryfall_prints
+    return scryfall_prints.prints_of_many
+
+
+@router.get("/api/deck/{job_id}/export-list")
+def export_deck_list(job_id: str, format: str = "text", download: bool = True):
+    """The deck as text for another site or tool (`deck_export.FORMATS`): original names with
+    real quantities, set codes for Moxfield / Archidekt / Arena, MTGO's sideboard-style command
+    zone, a CSV, or the whole saved deck as a JSON backup. `download=false` returns the text for
+    the page's Copy button instead of an attachment."""
+    import deck_export
     _require_job_id(job_id)
-    job  = _load_job_for_export(job_id)
-    cmd  = job.get("commander") or {}
-    deck = job.get("deck") or []
-    lines: list[str] = []
-    zone: set[str] = set()
-    if cmd.get("original_name"):
-        # Only a real Commander deck gets a Commander header — an auto-elected
-        # display face is just a maindeck card and must re-import as one.
-        if job.get("is_commander_deck", True) and not job.get("import_auto_face"):
-            # The WHOLE command zone. Partners live inside `deck` (they render as cards);
-            # written there they re-imported as an ordinary 99th card, so a Tymna +
-            # Thrasios export came back as a Tymna deck with an off-identity Thrasios.
-            heads = [cmd["original_name"]] + [n for n in (job.get("partners") or []) if n]
-            zone = {n.casefold() for n in heads}
-            lines += [f"Commander: {n}" for n in heads] + [""]
-        else:
-            deck = [cmd] + list(deck)
-    for c in deck:
-        name = c.get("original_name") or ""
-        if name and name.casefold() not in zone:
-            lines.append(f"{int(c.get('quantity', 1) or 1)} {name}")
-    unresolved = job.get("import_unresolved") or []
-    if unresolved:
-        # Recorded as comments (the importer skips '#' lines) so the export is an
-        # honest account of the source deck rather than a silently shorter one.
-        lines += ["", f"# {len(unresolved)} card(s) from the source could not be "
-                      "matched on Scryfall and are NOT in this deck:"]
-        lines += [f"# {n}" for n in unresolved]
-    body = "\n".join(lines) + "\n"
-    safe = "".join(c if c.isalnum() else "_" for c in (cmd.get("original_name") or "deck"))[:30]
-    return Response(
-        content=body.encode("utf-8"),
-        media_type="text/plain; charset=utf-8",
-        headers={"Content-Disposition": f'attachment; filename="{safe}_decklist.txt"'},
-    )
+    if format not in deck_export.FORMATS:
+        raise HTTPException(400, f"Unknown format '{format}'; choose one of: "
+                                 f"{', '.join(deck_export.FORMATS)}")
+    job = _load_job_for_export(job_id)
+    body = deck_export.render(job, format, _prints_lookup())
+    headers = {}
+    if download:
+        suffix = {"text": "decklist", "backup": "backup"}.get(format, format)
+        headers["Content-Disposition"] = (
+            f'attachment; filename="{deck_export.safe_name(job)}_{suffix}.{deck_export.extension(format)}"')
+    return Response(content=body.encode("utf-8"), media_type=deck_export.media_type(format),
+                    headers=headers)
+
+
+class BatchExportRequest(BaseModel):
+    job_ids: List[str]
+    format: str = "text"
+
+
+@router.post("/api/decks/export-batch")
+def export_decks_batch(req: BatchExportRequest):
+    """Several decks at once as one ZIP, one file each, in the chosen format. Skips a deck that
+    is building or cannot be loaded and says which (`X-Skipped` header)."""
+    import io
+    import zipfile
+    import deck_export
+    if req.format not in deck_export.FORMATS:
+        raise HTTPException(400, f"Unknown format '{req.format}'; choose one of: "
+                                 f"{', '.join(deck_export.FORMATS)}")
+    if not req.job_ids:
+        raise HTTPException(400, "Choose at least one deck to export.")
+    lookup = _prints_lookup()
+    buf = io.BytesIO()
+    skipped, used = [], set()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+        for job_id in req.job_ids:
+            try:
+                _require_job_id(job_id)
+                job = _load_job_for_export(job_id)
+                body = deck_export.render(job, req.format, lookup)
+            except HTTPException:
+                skipped.append(job_id)
+                continue
+            base = f"{deck_export.safe_name(job)}_{job_id[:8]}"
+            while base in used:
+                base += "_"
+            used.add(base)
+            zf.writestr(f"{base}.{deck_export.extension(req.format)}", body)
+    if not used:
+        raise HTTPException(400, "None of those decks could be exported.")
+    return Response(content=buf.getvalue(), media_type="application/zip",
+                    headers={"Content-Disposition": 'attachment; filename="myth_forge_decks.zip"',
+                             "X-Skipped": ",".join(skipped)})
 
 
 @router.get("/api/deck/{job_id}/price")

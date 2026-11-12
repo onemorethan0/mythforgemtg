@@ -27,6 +27,7 @@ import LegalityBlock from './LegalityBlock'
 import DeckPrice from './DeckPrice'
 import SampleHandPanel from './SampleHandPanel'
 import EditDeckPanel from './EditDeckPanel'
+import ExportMenu from './ExportMenu'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Helpers
@@ -1230,11 +1231,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/videos`)} title="ZIP of the animated cards"
                   style={{ ...btnBase, background: '#0c2a4d', color: '#7dd3fc', border: '1px solid #0ea5e9', fontWeight: 600 }}>↓ Animations ({videoKeys.size})</button>
               )}
-              {!single && (
-                <button onClick={() => triggerDownload(`/api/deck/${jobId}/export/decklist`)}
-                  title="Decklist of the ORIGINAL card names with real quantities — paste into Moxfield/Archidekt, or back into Import to verify the deck is unchanged"
-                  style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Decklist</button>
-              )}
+              {!single && <ExportMenu jobId={jobId} />}
               {!single && (
                 <button onClick={() => exportThemed(deck)} title="Decklist showing the themed names next to the real ones"
                   style={{ ...btnBase, background: 'none', color: '#a8a29e' }}>Themed list</button>
