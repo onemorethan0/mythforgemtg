@@ -140,7 +140,7 @@ for "it runs forever": the wait is visible and bounded from anywhere in the work
 |---|---|---|
 | 0 | **DONE 2026-11-12.** Tokens, shared components, hash routing. Existing screens keep their look. | None, except Back button and deep links |
 | 1 | **DONE 2026-11-12.** Workspace shell: header strip, dock with tabs, existing panels moved in unchanged | Cards appear on the first screen; no more five-screen scroll |
-| 2 | Add-a-card bar, hover remove, swap-in-place, undo; Edit deck panel retired | Add and remove with no scrolling, with the count in view |
+| 2 | **DONE 2026-11-12.** Add-a-card bar, hover remove, swap-in-place, undo; Edit deck panel retired | Add and remove with no scrolling, with the count in view |
 | 3 | Legality chip and popover; stats sidebar becomes the strip; panel summaries; job tray | Walls of text gone; waits visible |
 | 4 | Home "continue", History search / sort | Smaller wins |
 | 5 | Narrow screens: dock becomes a bottom sheet under 1100 px | Usable on a small window |
@@ -218,3 +218,23 @@ Deviations from section 5.2, on purpose:
   (the spec's 1100 px would have hidden it at the 1024 px reference size).
 - The Analyze tab is still long (about 4,800 px of panels, scrolling inside the dock). Collapsing it to
   one-line summaries is phase 3.
+
+
+## 12. Phase 2 as built (2026-11-12)
+
+- **Add-a-card bar** (`AddCardBar.jsx`), pinned under the header: type a name, Enter adds; the header's card
+  count updates in view. Typeahead from the same Scryfall suggest endpoint as the collection page.
+- **Remove / replace on the card.** Hovering a tile shows two buttons: x removes it, the swap arrow puts the bar in
+  "Replacing <card>" mode (focused; the next name typed takes that slot; Esc cancels). List view rows have the
+  same two buttons, always visible.
+- **Undo.** `POST /api/deck/{id}/undo` reverses the last add / remove / swap (up to 30, kept in the deck file, so
+  it survives a reload). It rebuilds the list on a copy and swaps it in only if every step found its card, otherwise
+  409 and nothing changes. The page gets a `undo: {count, last}` summary, never the log itself. A commander
+  switch or a duplicate clears the log.
+- The **Edit tab is gone**. Change commander moved to the Make tab (`ChangeCommanderPanel.jsx`).
+- The toolbar's two filter rows scroll sideways instead of wrapping to three lines, which roughly doubled the
+  list's visible height at 1024x768 (317 px, first card at 493 px).
+
+Verified in the browser pane on a duplicate deck: remove from a tile (100 -> 99 cards, Undo armed), Undo
+(card back in its first slot, 100), add by typing "Mana Vault" (101), replace Command Subadjunct with Mind Stone,
+reload (Undo still offers the swap), three undos back to the original list. 0 scrolls for any of it.

@@ -9,10 +9,11 @@ import './workspace.css'
 // they survived sitting in one long column before.
 //
 //   header   the always-visible strip above the list
+//   bar      the add-a-card bar, pinned under the header
 //   toolbar  the always-visible Organize / search / view row
 //   tabs     [{ key, label, content }]   the dock; the last one used is remembered
 //   padBottom  leave room under the list for the fixed selection bar
-export default function DeckWorkspace({ header, toolbar, tabs, children, padBottom = false }) {
+export default function DeckWorkspace({ header, bar, toolbar, tabs, children, padBottom = false }) {
   const [tab, setTab] = useState(() => {
     try {
       const saved = localStorage.getItem('mtg_dock_tab')
@@ -29,7 +30,7 @@ export default function DeckWorkspace({ header, toolbar, tabs, children, padBott
   return (
     <div className="ws">
       <div className="ws__main">
-        <div className="ws__fixed">{header}{toolbar}</div>
+        <div className="ws__fixed">{header}{bar}{toolbar}</div>
         <div className="ws__list" style={padBottom ? { paddingBottom: 90 } : undefined}>{children}</div>
       </div>
       <aside className="ws__dock" aria-label="Deck tools">

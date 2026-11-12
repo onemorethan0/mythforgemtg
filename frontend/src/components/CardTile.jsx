@@ -3,7 +3,7 @@ import CardFace, { SetChip } from './CardFace'
 import ManaCost from './ManaCost'
 
 // ── Card tile ─────────────────────────────────────────────────────────────────
-export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true, showOwnership = true, artSource = 'ai' }) {
+export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true, showOwnership = true, artSource = 'ai', onRemove = null, onReplace = null }) {
   const [hover, setHover] = useState(false)
   const [failedVideoSrc, setFailedVideoSrc] = useState(null)
 
@@ -76,6 +76,21 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
           </div>
         )
       }
+
+      {/* Edit actions: remove from the deck, or replace this card (the add bar takes over) */}
+      {hover && (onRemove || onReplace) && (
+        <div style={{ position: 'absolute', top: 28, right: 5, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 4 }}
+             onClick={e => e.stopPropagation()}>
+          {onReplace && (
+            <button type="button" className="tile-act" title="Replace this card…" aria-label={`Replace ${card.original_name}`}
+                    onClick={() => onReplace(card)}>⇄</button>
+          )}
+          {onRemove && (
+            <button type="button" className="tile-act tile-act--danger" title="Remove from the deck"
+                    aria-label={`Remove ${card.original_name}`} onClick={() => onRemove(card)}>✕</button>
+          )}
+        </div>
+      )}
 
       {/* Selection checkbox */}
       {selectable && (hover || selected) && (

@@ -3,6 +3,7 @@ advise, card impact, mentor, breakdown, duel) and the helpers that feed it.
 """
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import os
@@ -842,6 +843,9 @@ def _recompute_stats(job: dict, cards: list[dict]) -> dict:
         return job.get("stats") or {}
 
 
+EDIT_LOG_MAX = 30
+
+
 class ApplySwapRequest(BaseModel):
     """A swap (both), a plain removal (`cut` only) or a plain addition (`add` only): a card that
     snuck in has to be removable without inventing a replacement, and a short list has to be
@@ -925,11 +929,17 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
             raise HTTPException(400, f"'{name}' is outside this deck's colour identity "
                                      f"({'/'.join(sorted(off))} not allowed).")
 
+    # What undo needs to put the list back (see undo_edit): a cut card's whole entry, since it is
+    # gone from the list once cut.
+    undo: dict = {"cut": None, "add": None}
+
     # cut: decrement a stack (imported duplicate basics), else remove the entry
     if req_cut:
         if (cards[idx].get("quantity") or 1) > 1:
+            undo["cut"] = {"mode": "decrement", "name": cards[idx]["original_name"]}
             cards[idx]["quantity"] = cards[idx]["quantity"] - 1
         else:
+            undo["cut"] = {"mode": "pop", "idx": idx, "entry": copy.deepcopy(cards[idx])}
             cards.pop(idx)
 
     swap_no = int(job.get("swap_count") or 0) + 1
@@ -963,8 +973,10 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
     elif existing is not None:
         # A basic land (or a "any number of cards named" card): add a copy to the stack.
         existing["quantity"] = int(existing.get("quantity") or 1) + 1
+        undo["add"] = {"mode": "stack", "name": name}
     else:
         cards.insert(len(cards) if idx is None else min(idx, len(cards)), new_entry)
+        undo["add"] = {"mode": "insert", "name": name, "render_key": new_entry["render_key"]}
     # The list changed, so the curve, colour-source, type and legality figures shown
     # beside it must too. They were left as built, so a swap that fixed a colour shortfall
     # still read "short on sources".
@@ -974,6 +986,11 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
                    "date": _dt.now().isoformat(timespec="seconds")}
     job.setdefault("applied_swaps", []).append(swap_record)
     job.pop("last_measure", None)            # the measurement no longer matches the list
+    undo["label"] = (f"Replaced {req_cut} with {name}" if req_cut and req_add
+                     else f"Removed {req_cut}" if req_cut else f"Added {name}")
+    log = job.setdefault("edit_log", [])
+    log.append(undo)
+    del log[:-EDIT_LOG_MAX]                  # keep the latest few; older edits cannot be undone
 
     try:
         p = state.RENDER_DIR / job_id / "deck.json"
@@ -982,12 +999,89 @@ def apply_swap(job_id: str, req: ApplySwapRequest):
             disk_data["deck"] = cards
             disk_data["stats"] = job["stats"]
             disk_data["swap_count"] = swap_no
+            disk_data["edit_log"] = job["edit_log"]
             disk_data.setdefault("applied_swaps", []).append(swap_record)
             disk_data.pop("last_measure", None)
             p.write_text(json.dumps(disk_data), encoding="utf-8")
     except Exception as e:
         print(f"  [apply-swap] could not persist swap: {e}")
 
+    return _serializable_job(job)
+
+
+@router.post("/api/deck/{job_id}/undo")
+def undo_edit(job_id: str):
+    """Reverse the most recent add / remove / swap on a finished deck.
+
+    The list is rebuilt on a COPY and only swapped in when every step found what it expected, so an
+    undo either happens completely or not at all (409: the list was changed another way since)."""
+    _require_job_id(job_id)
+    job = _jobs.get(job_id)
+    if not job or "commander" not in job:
+        disk = _load_deck_from_disk(job_id)
+        if not disk:
+            raise HTTPException(404, "Deck not found")
+        _jobs[job_id] = disk
+        job = disk
+    log = job.get("edit_log") or []
+    if not log:
+        raise HTTPException(400, "Nothing to undo.")
+    last = log[-1]
+    cards = copy.deepcopy(job.get("deck") or [])
+
+    def find(name=None, render_key=None):
+        for i, c in enumerate(cards):
+            if render_key is not None and c.get("render_key") == render_key:
+                return i
+            if render_key is None and (c.get("original_name") or "").casefold() == (name or "").casefold():
+                return i
+        return None
+
+    conflict = HTTPException(
+        409, "The list was changed another way since that edit, so it cannot be undone.")
+    add = last.get("add")
+    if add:                                   # take back what went in first
+        if add["mode"] == "stack":
+            i = find(name=add["name"])
+            if i is None or int(cards[i].get("quantity") or 1) < 2:
+                raise conflict
+            cards[i]["quantity"] = int(cards[i]["quantity"]) - 1
+        else:
+            i = find(render_key=add["render_key"])
+            if i is None:
+                raise conflict
+            cards.pop(i)
+    cut = last.get("cut")
+    if cut:                                   # then put back what came out
+        if cut["mode"] == "decrement":
+            i = find(name=cut["name"])
+            if i is None:
+                raise conflict
+            cards[i]["quantity"] = int(cards[i].get("quantity") or 1) + 1
+        else:
+            cards.insert(min(int(cut["idx"]), len(cards)), copy.deepcopy(cut["entry"]))
+
+    log.pop()
+    job["deck"] = cards
+    swap_no = int(job.get("swap_count") or 0) + 1
+    job["swap_count"] = swap_no
+    job["stats"] = _recompute_stats(job, cards)
+    record = {"undone": last.get("label"), "date": _dt.now().isoformat(timespec="seconds")}
+    job.setdefault("applied_swaps", []).append(record)
+    job.pop("last_measure", None)
+    try:
+        p = state.RENDER_DIR / job_id / "deck.json"
+        if p.exists():
+            disk_data = json.loads(p.read_text(encoding="utf-8"))
+            disk_data["deck"] = cards
+            disk_data["stats"] = job["stats"]
+            disk_data["swap_count"] = swap_no
+            disk_data["edit_log"] = log
+            disk_data.setdefault("applied_swaps", []).append(record)
+            disk_data.pop("last_measure", None)
+            p.write_text(json.dumps(disk_data), encoding="utf-8")
+    except Exception as e:
+        print(f"  [undo] could not persist undo: {e}")
     return _serializable_job(job)
 
 

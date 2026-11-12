@@ -248,11 +248,17 @@ def _trim_in_memory_jobs():
 # Keys on _jobs[job_id] that are internal-only and must NEVER appear in a
 # JSON response — they're not serializable (threading primitives) or they're
 # implementation detail the client has no business seeing.
-_INTERNAL_JOB_KEYS = {"cancel_event"}
+_INTERNAL_JOB_KEYS = {"cancel_event", "edit_log"}
 
 def _serializable_job(job: dict) -> dict:
     """Return a JSON-safe shallow copy of a job dict (strips threading.Event etc.)."""
-    return {k: v for k, v in job.items() if k not in _INTERNAL_JOB_KEYS}
+    out = {k: v for k, v in job.items() if k not in _INTERNAL_JOB_KEYS}
+    log = job.get("edit_log") or []
+    # the log holds whole card entries (to restore a cut card); the page only needs to know whether
+    # there is something to undo and what it was
+    if log:                      # absent when there is nothing to undo
+        out["undo"] = {"count": len(log), "last": log[-1].get("label")}
+    return out
 
 
 # The keys `deck_quality_block` produces. Adding one here is what makes an

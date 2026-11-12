@@ -422,7 +422,7 @@ def set_commander(job_id: str, req: SetCommanderRequest):
     job.setdefault("commander_switches", []).append(record)
     # the deck page keys its measured panels on swap_count: an edit is an edit
     job["swap_count"] = int(job.get("swap_count") or 0) + 1
-    stale = ("last_measure", "advice_cache", "breakdown", "matchups")
+    stale = ("last_measure", "advice_cache", "breakdown", "matchups", "edit_log")
     for key in stale:
         job.pop(key, None)
 
@@ -639,7 +639,7 @@ def fix_legality(job_id: str, req: FixLegalityRequest):
     data["deck"] = new_deck
     data["stats"] = _recompute_stats(data, new_deck)
     data["stats"]["legality"] = deck_legality.check(*state._legality_inputs(data))
-    for stale in ("last_measure", "advice_cache", "breakdown", "applied_swaps", "swap_count"):
+    for stale in ("last_measure", "advice_cache", "breakdown", "applied_swaps", "swap_count", "edit_log"):
         data.pop(stale, None)
     data.update({
         "status": "done", "built_at": time.time(), "fixed_from": job_id,

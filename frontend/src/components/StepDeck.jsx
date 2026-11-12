@@ -26,7 +26,8 @@ import { BRACKET_TERMS } from '../glossary'
 import LegalityBlock from './LegalityBlock'
 import DeckPrice from './DeckPrice'
 import SampleHandPanel from './SampleHandPanel'
-import EditDeckPanel from './EditDeckPanel'
+import AddCardBar from './AddCardBar'
+import ChangeCommanderPanel from './ChangeCommanderPanel'
 import DeckWorkspace from './DeckWorkspace'
 import Chip from './ui/Chip'
 import ExportMenu from './ExportMenu'
@@ -152,6 +153,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
   // ── Selection state ───────────────────────────────────────────────────────
   const [selectedKeys, setSelectedKeys]   = useState(new Set())
+  // Editing the list from the page itself (the add bar, a card's hover buttons, Undo). One shared
+  // busy flag and message so every way of editing reports in the same place.
+  const [editBusy, setEditBusy] = useState(false)
+  const [editMsg, setEditMsg]   = useState(null)      // { ok, text }
+  const [replacing, setReplacing] = useState(null)    // original name of the card being replaced
   const [showRegenPanel, setShowRegenPanel] = useState(false)
 
   // ── Per-card regen state ──────────────────────────────────────────────────
@@ -602,6 +608,42 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     if (regenDone.has(key))    return 'done'
     return 'idle'
   }
+
+  // One edit against the server (apply-swap or undo). Resolves true when it went through.
+  async function runEdit(path, body, doneText) {
+    setEditBusy(true); setEditMsg(null)
+    try {
+      const r = await fetch(`/api/deck/${jobId}/${path}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: body ? JSON.stringify(body) : undefined,
+      })
+      if (r.ok) {
+        const updated = await r.json()
+        const n = updated.stats?.total_cards
+        setEditMsg({ ok: true, text: `${doneText}${n ? ` The list now has ${n} cards.` : ''}` })
+        onDeckChange?.(updated)
+        setEditBusy(false)
+        return true
+      }
+      let d = `HTTP ${r.status}`
+      try { d = (await r.json()).detail || d } catch { /* keep status */ }
+      setEditMsg({ ok: false, text: d })
+    } catch {
+      setEditMsg({ ok: false, text: 'Server unreachable' })
+    }
+    setEditBusy(false)
+    return false
+  }
+  async function addCard(name) {
+    if (replacing) {
+      const ok = await runEdit('apply-swap', { cut: replacing, add: name }, `Replaced ${replacing} with ${name}.`)
+      if (ok) setReplacing(null)
+      return ok
+    }
+    return runEdit('apply-swap', { add: name }, `Added ${name}.`)
+  }
+  const removeCard = card => runEdit('apply-swap', { cut: card.original_name }, `Removed ${card.original_name}.`)
+  const undoEdit = () => runEdit('undo', null, `Undid: ${deck.undo?.last || 'the last edit'}.`)
 
   const btnBase = { padding: '5px 14px', borderRadius: 8, fontFamily: 'inherit', fontSize: 12, cursor: 'pointer', border: '1px solid #44403c' }
   // Labelled action clusters (Download / Regenerate / Deck) so related controls read
@@ -1113,8 +1155,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     <>
         {/* Organize by + group filter tabs */}
         {!single && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: 260 }}>
-            <div style={{ display: 'flex', gap: 4, alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: workspace ? 0 : 260 }}>
+            <div className={workspace ? 'tb-scroll' : undefined} style={{ display: 'flex', gap: 4, alignItems: 'center', flexWrap: workspace ? 'nowrap' : 'wrap' }}>
               <span style={{ fontSize: 11, color: '#78716c', marginRight: 4 }}>Organize by</span>
               {GROUP_BYS.map(g => (
                 <button key={g} onClick={() => chooseGroupBy(g)} style={{
@@ -1125,7 +1167,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                 }}>{GROUP_BY_LABELS[g]}</button>
               ))}
             </div>
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+            <div className={workspace ? 'tb-scroll' : undefined} style={{ display: 'flex', gap: 6, flexWrap: workspace ? 'nowrap' : 'wrap' }}>
               {[{ key: 'All', label: 'All', count: deck.deck.reduce((n, c) => n + qty(c), 0) }, ...grouped]
                 .filter(g => groupBy !== 'none' || g.key === 'All')
                 .map(g => {
@@ -1400,6 +1442,8 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               videoFmt={videoFmts[card.render_key]}
               showOwnership={ownershipMixed}
               artSource={effectiveArtSource}
+              onRemove={workspace ? removeCard : null}
+              onReplace={workspace ? (c => setReplacing(c.original_name)) : null}
             />
           ))}
         </div>
@@ -1438,6 +1482,14 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                     {c.power && <span style={{ fontSize: 11, color: '#78716c', minWidth: 30, textAlign: 'right' }}>{c.power}/{c.toughness}</span>}
                     {regenStatusFor(c.render_key) === 'pending' && <span style={{ fontSize: 10, color: '#eab308' }}>⚙️</span>}
                     {regenStatusFor(c.render_key) === 'done'    && <span style={{ fontSize: 10, padding: '1px 6px', borderRadius: 4, background: '#14532d', color: '#86efac', fontWeight: 700 }}>NEW</span>}
+                    {workspace && (
+                      <span style={{ display: 'flex', gap: 4, marginLeft: 6 }} onClick={e => e.stopPropagation()}>
+                        <button type="button" className="tile-act" title="Replace this card…"
+                                aria-label={`Replace ${c.original_name}`} onClick={() => setReplacing(c.original_name)}>⇄</button>
+                        <button type="button" className="tile-act tile-act--danger" title="Remove from the deck"
+                                aria-label={`Remove ${c.original_name}`} onClick={() => removeCard(c)}>✕</button>
+                      </span>
+                    )}
                   </div>
                 ))}
               </div>
@@ -1489,10 +1541,13 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     </div>
   )
 
+  const addCardBar = (
+    <AddCardBar replacing={replacing} busy={editBusy} message={editMsg}
+                undoLabel={deck.undo?.count ? `Undo: ${deck.undo.last}` : null}
+                onAdd={addCard} onUndo={undoEdit} onCancelReplace={() => setReplacing(null)} />
+  )
+
   const dockTabs = [
-    { key: 'edit', label: 'Edit', content: (
-      <EditDeckPanel key={`edit-${jobId}`} deck={deck} jobId={jobId} onChanged={onDeckChange} />
-    ) },
     { key: 'analyze', label: 'Analyze', content: (
       <>
         {textStory}
@@ -1529,6 +1584,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     { key: 'make', label: 'Make', content: (
       <>
         {actionsBlock}
+        <ChangeCommanderPanel key={`cmd-${jobId}`} deck={deck} jobId={jobId} onChanged={onDeckChange} />
         {printPanel}
         {dupBanners}
       </>
@@ -1542,6 +1598,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       {workspace ? (
         <DeckWorkspace
           header={workspaceHeader}
+          bar={addCardBar}
           toolbar={<div style={{ display: 'flex', gap: 12, marginBottom: 12, flexWrap: 'wrap', alignItems: 'center' }}>{toolbarFilters}</div>}
           tabs={dockTabs}
           padBottom={selectedKeys.size > 0 || !!regenProgress}>

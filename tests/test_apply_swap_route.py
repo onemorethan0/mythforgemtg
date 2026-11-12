@@ -197,3 +197,82 @@ def test_a_commander_cannot_be_removed_on_its_own(deck):
     (deck / "deck.json").write_text(json.dumps(data), encoding="utf-8")
     r = _post({"cut": "Sol Ring"})
     assert r.status_code == 400 and "commander" in r.json()["detail"]
+
+
+# ── undo (2026-11-12) ────────────────────────────────────────────────────────────────────────
+
+def _undo():
+    return client.post(f"/api/deck/{JOB}/undo")
+
+
+def _saved(deck):
+    return json.loads((deck / "deck.json").read_text(encoding="utf-8"))
+
+
+def test_undoing_a_removal_puts_the_card_back_in_its_slot(deck):
+    before = _names(_post({"cut": "Sol Ring"}))
+    assert before == ["Island", "Arcane Signet"]
+    r = _undo()
+    assert r.status_code == 200
+    assert _names(r) == ["Sol Ring", "Island", "Arcane Signet"]
+    entry = r.json()["deck"][0]
+    assert entry["themed_name"] == "Themed Sol Ring"          # the original entry, not a rebuilt one
+    assert "undo" not in r.json()                              # nothing left to undo
+    assert _saved(deck)["deck"][0]["original_name"] == "Sol Ring"
+
+
+def test_undoing_an_addition_takes_it_out(deck):
+    added = _post({"add": "Mana Vault"}, _FakeScryfall([_scry("Mana Vault")]))
+    assert _names(added)[-1] == "Mana Vault" and added.json()["undo"]["last"] == "Added Mana Vault"
+    r = _undo()
+    assert _names(r) == ["Sol Ring", "Island", "Arcane Signet"]
+
+
+def test_undoing_a_swap_restores_both_halves(deck):
+    r = _swap("Sol Ring", "Mana Vault", _FakeScryfall([_scry("Mana Vault")]))
+    assert _names(r)[0] == "Mana Vault" and r.json()["undo"]["last"] == "Replaced Sol Ring with Mana Vault"
+    assert _names(_undo()) == ["Sol Ring", "Island", "Arcane Signet"]
+
+
+def test_undo_handles_a_stack_of_basics(deck):
+    r = _post({"cut": "Island"})
+    assert next(c for c in r.json()["deck"] if c["original_name"] == "Island")["quantity"] == 4
+    r = _undo()
+    assert next(c for c in r.json()["deck"] if c["original_name"] == "Island")["quantity"] == 5
+    isl = _scry("Island", type_line="Basic Land — Island")
+    r = _post({"add": "Island"}, _FakeScryfall([isl]))
+    assert next(c for c in r.json()["deck"] if c["original_name"] == "Island")["quantity"] == 6
+    r = _undo()
+    assert next(c for c in r.json()["deck"] if c["original_name"] == "Island")["quantity"] == 5
+
+
+def test_undo_runs_last_in_first_out_and_bumps_the_swap_count(deck):
+    _post({"cut": "Sol Ring"})
+    _post({"cut": "Arcane Signet"})
+    r1 = _undo()
+    assert _names(r1) == ["Island", "Arcane Signet"] and r1.json()["undo"]["count"] == 1
+    r2 = _undo()
+    assert _names(r2) == ["Sol Ring", "Island", "Arcane Signet"]
+    assert r2.json()["swap_count"] == 4                       # two edits + two undos, each an edit
+    assert _saved(deck)["edit_log"] == []
+
+
+def test_nothing_to_undo_is_refused(deck):
+    r = _undo()
+    assert r.status_code == 400 and "Nothing to undo" in r.json()["detail"]
+
+
+def test_an_undo_that_cannot_find_its_card_changes_nothing(deck):
+    _post({"add": "Mana Vault"}, _FakeScryfall([_scry("Mana Vault")]))
+    job = state._jobs[JOB]
+    job["deck"] = [c for c in job["deck"] if c["original_name"] != "Mana Vault"]   # changed another way
+    r = _undo()
+    assert r.status_code == 409 and "another way" in r.json()["detail"]
+    assert [c["original_name"] for c in state._jobs[JOB]["deck"]] == ["Sol Ring", "Island", "Arcane Signet"]
+    assert len(state._jobs[JOB]["edit_log"]) == 1                # the entry stays; nothing was consumed
+
+
+def test_the_edit_log_is_not_sent_to_the_page_but_a_summary_is(deck):
+    r = _post({"cut": "Sol Ring"})
+    body = r.json()
+    assert "edit_log" not in body and body["undo"] == {"count": 1, "last": "Removed Sol Ring"}

@@ -43,6 +43,39 @@
 .ws-head__chips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 .ws-head__end { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; }
 
+/* the add-a-card bar, pinned above the list */
+.addbar {
+  background: var(--surface-1); border: 1px solid var(--surface-2); border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-3); margin-bottom: var(--space-3);
+}
+.addbar__row { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+.addbar__input {
+  flex: 1 1 200px; min-width: 0; padding: 7px 10px; border-radius: var(--radius-md);
+  border: 1px solid var(--border); background: var(--surface-0); color: var(--text);
+  font-family: inherit; font-size: var(--text-md);
+}
+.addbar__input:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+.addbar__x { background: none; border: 0; color: inherit; cursor: pointer; padding: 0 0 0 4px; font-family: inherit; }
+.addbar__msg { margin-top: var(--space-1); font-size: var(--text-sm); }
+.addbar__msg--ok { color: var(--ok); }
+.addbar__msg--bad { color: #f87171; }
+
+/* hover actions on a card tile, and the always-visible ones on a list row */
+.tile-act {
+  width: 22px; height: 22px; border-radius: 50%; padding: 0; line-height: 1; cursor: pointer;
+  font-size: 12px; font-family: inherit; border: 1px solid var(--text-faint);
+  background: rgba(12, 10, 9, 0.88); color: var(--text);
+}
+.tile-act:hover { border-color: var(--accent); color: var(--accent); }
+.tile-act--danger { border-color: var(--bad-strong); color: var(--bad); }
+.tile-act--danger:hover { border-color: var(--bad); color: #fff; background: var(--bad-strong); }
+.tile-act:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* a toolbar row that scrolls sideways instead of wrapping onto more lines */
+.ws, .ws * { scrollbar-width: thin; scrollbar-color: #57534e transparent; }
+.tb-scroll { overflow-x: auto; padding-bottom: 2px; }
+.tb-scroll > * { flex-shrink: 0; white-space: nowrap; }
+
 /* the dock narrows on a ~1024px window so the list keeps its room */
 @media (max-width: 1200px) {
   .ws { grid-template-columns: minmax(0, 1fr) 340px; }
