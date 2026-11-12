@@ -142,7 +142,7 @@ for "it runs forever": the wait is visible and bounded from anywhere in the work
 | 1 | **DONE 2026-11-12.** Workspace shell: header strip, dock with tabs, existing panels moved in unchanged | Cards appear on the first screen; no more five-screen scroll |
 | 2 | **DONE 2026-11-12.** Add-a-card bar, hover remove, swap-in-place, undo; Edit deck panel retired | Add and remove with no scrolling, with the count in view |
 | 3 | **DONE 2026-11-12.** Legality chip and popover; stats sidebar becomes the strip; panel summaries; job tray | Walls of text gone; waits visible |
-| 4 | Home "continue", History search / sort | Smaller wins |
+| 4 | **DONE 2026-11-12.** Home "continue", History search / sort | Smaller wins |
 | 5 | Narrow screens: dock becomes a bottom sheet under 1100 px | Usable on a small window |
 
 Phase 1 alone fixes the complaint you raised; phases 2 and 3 make it pleasant.
@@ -261,3 +261,18 @@ reload (Undo still offers the swap), three undos back to the original list. 0 sc
 
 Verified in the browser pane at 1024x768 with the real Locutus deck: the popover and its fix button, the collapsed
 rows and their summaries, and the tray (two jobs listed with live timers on the Mentor tab, empty after 16 s).
+
+
+## 14. Phase 4 as built (2026-11-12)
+
+- **Home: Continue.** A banner above the four choices, "Continue where you left off - <deck> - 2 hours ago",
+  one click to `#/deck/<id>`. The last deck is remembered per browser (`utils/lastDeck.js`, localStorage, validated
+  so a bad entry can never build a route). It is checked against the server (`/api/deck/<id>/status`) and hidden
+  and forgotten if the deck has been deleted. Recent decks stays as it was.
+- **History: search and sort.** A search box (every word must match somewhere in the name, theme or bracket words;
+  "b3" and "bracket 2" work) and a sort (Recent, Name, Bracket; remembered). Families stay together: a family shows
+  when its head or any version matches, and its versions open by themselves while searching. "2 of 162 decks" with a
+  Clear link, and a "no decks match" state.
+- **Select All only takes what the search shows**, so a bulk delete or export cannot reach a deck you cannot see
+  (verified: searching "borg" and Select All gives "2 of 2 selected", "Delete 2 Decks").
+- 18 new vitest tests (`historyView`, `lastDeck`); 151 front-end tests in all.

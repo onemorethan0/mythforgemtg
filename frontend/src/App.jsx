@@ -13,6 +13,7 @@ import LogViewer from './components/LogViewer'
 import Toaster from './components/Toaster'
 import { notify } from './utils/toast'
 import { parseHash, formatRoute } from './utils/router'
+import { rememberLastDeck } from './utils/lastDeck'
 import { useGenSettings } from './hooks/useGenSettings'
 import { toGenSettingsPayload } from './config/genSettings'
 
@@ -232,6 +233,14 @@ export default function App() {
     if (cur === target || (target === '#/' && (cur === '' || cur === '#'))) return
     location.hash = target
   }, [step, mode, jobId, deck])
+
+  // The deck last open on the deck page, for the Home screen's "Continue".
+  useEffect(() => {
+    if (step !== STEP.DECK || !jobId || !deck?.commander) return
+    let store = null
+    try { store = window.localStorage } catch { /* storage blocked: nothing to remember */ }
+    rememberLastDeck(store, jobId, deck.commander.themed_name || deck.commander.original_name)
+  }, [step, jobId, deck])
 
   // On mount: reconnect to an in-progress or recently-completed build.
   // Primary: sessionStorage (survives refresh but not new tab).

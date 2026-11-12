@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { notify } from '../utils/toast'
 import { EXPORT_FORMATS } from '../utils/exportFormats'
+import { SORT_MODES, matchesQuery, sortEntries, selectableIds } from '../utils/historyView'
 
 const BRACKET_COLORS = {
   1: '#4ade80',
@@ -417,6 +418,17 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
   const [exporting, setExporting] = useState(false)
   const [grouped, setGrouped]     = useState(true)          // fold versions under their origin
   const [expanded, setExpanded]   = useState(new Set())     // rootIds showing their versions
+  const [query, setQuery]         = useState('')
+  const [sortMode, setSortMode]   = useState(() => {
+    try {
+      const v = localStorage.getItem('mtg_history_sort')
+      return SORT_MODES.some(m => m.key === v) ? v : 'recent'
+    } catch { return 'recent' }
+  })
+  function chooseSort(key) {
+    setSortMode(key)
+    try { localStorage.setItem('mtg_history_sort', key) } catch { /* the choice just will not persist */ }
+  }
 
   function fetchDecks() {
     return fetch('/api/decks')
@@ -447,8 +459,9 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
   }
 
   function toggleSelectAll() {
-    const nonBuilding = decks.filter(d => d.status !== 'building').map(d => d.job_id)
-    if (selected.size === nonBuilding.length) {
+    // only what the search shows: a bulk delete or export must never reach a deck you cannot see
+    const nonBuilding = selectableIds(decks, query)
+    if (selected.size === nonBuilding.length && nonBuilding.length > 0) {
       setSelected(new Set())
     } else {
       setSelected(new Set(nonBuilding))
@@ -514,7 +527,8 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
     }
   }
 
-  const nonBuildingCount = decks.filter(d => d.status !== 'building').length
+  const nonBuildingCount = selectableIds(decks, query).length
+  const matchCount = decks.filter(d => matchesQuery(d, query)).length
 
   return (
     <div style={s.wrap}>
@@ -546,6 +560,32 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
             : 'Browse and re-export previously generated decks.'}
         </div>
       </div>
+
+      {/* Search and sort */}
+      {state === 'ready' && decks.length > 0 && (
+        <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: 14 }}>
+          <input type="search" value={query} onChange={e => setQuery(e.target.value)} aria-label="Search decks"
+                 placeholder="Search decks: name, theme, bracket…"
+                 style={{ flex: '1 1 240px', maxWidth: 420, padding: '8px 12px', borderRadius: 8, border: '1px solid #44403c',
+                          background: '#1c1917', color: '#e7e5e4', fontFamily: 'inherit', fontSize: 13 }} />
+          <label style={{ fontSize: 12, color: '#78716c', display: 'flex', alignItems: 'center', gap: 6 }}>
+            Sort
+            <select value={sortMode} onChange={e => chooseSort(e.target.value)} aria-label="Sort decks"
+                    style={{ padding: '7px 8px', borderRadius: 8, border: '1px solid #44403c', background: '#1c1917',
+                             color: '#e7e5e4', fontFamily: 'inherit', fontSize: 12 }}>
+              {SORT_MODES.map(m => <option key={m.key} value={m.key}>{m.label}</option>)}
+            </select>
+          </label>
+          {query.trim() && (
+            <span style={{ fontSize: 12, color: '#78716c' }}>
+              {matchCount} of {decks.length} deck{decks.length === 1 ? '' : 's'}{' '}
+              <button onClick={() => setQuery('')} style={{ background: 'none', border: 0, color: '#eab308', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12 }}>
+                ✕ Clear
+              </button>
+            </span>
+          )}
+        </div>
+      )}
 
       {/* Batch action toolbar */}
       {selectMode && (
@@ -592,16 +632,31 @@ export default function StepHistory({ onLoad, onResume, onBack }) {
         // Grouped = roots, each followed by its versions when expanded, so a family
         // stays adjacent in the grid without restructuring the layout.
         const visible = []
+        const searching = query.trim() !== ''
+        const hit = d => matchesQuery(d, query)
         if (!grouped) {
-          visible.push(...decks.map(d => ({ entry: d, child: !!d.derived_from })))
+          visible.push(...sortEntries(decks.filter(hit), sortMode).map(d => ({ entry: d, child: !!d.derived_from })))
         } else {
-          for (const r of roots) {
-            const kids = children.get(r.job_id) || []
+          // a family stays when its head or any version matches; its versions open by themselves while searching
+          const kept = roots.filter(r => hit(r) || (children.get(r.job_id) || []).some(hit))
+          for (const r of sortEntries(kept, sortMode)) {
+            const allKids = children.get(r.job_id) || []
+            const kids = searching ? allKids.filter(hit) : allKids
             visible.push({ entry: r, child: false, kids: kids.length })
-            if (expanded.has(r.job_id)) {
+            if (expanded.has(r.job_id) || (searching && kids.length)) {
               visible.push(...kids.map(k => ({ entry: k, child: true })))
             }
           }
+        }
+        if (searching && visible.length === 0) {
+          return (
+            <div style={{ textAlign: 'center', color: '#78716c', fontSize: 13, padding: '40px 0' }}>
+              No decks match “{query.trim()}”.{' '}
+              <button onClick={() => setQuery('')} style={{ background: 'none', border: 0, color: '#eab308', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13 }}>
+                Clear the search
+              </button>
+            </div>
+          )
         }
         return (
           <>

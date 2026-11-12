@@ -1,4 +1,49 @@
+import { useEffect, useState } from 'react'
 import RecentDecks from './RecentDecks'
+import { readLastDeck, forgetLastDeck, timeAgo } from '../utils/lastDeck'
+import { formatRoute } from '../utils/router'
+
+function safeStorage() {
+  try { return window.localStorage } catch { return null }
+}
+
+// One click back to the deck you last had open. Hidden when there is none, or when it has since been
+// deleted (checked with the cheap status call, so a dead link is never offered).
+function ContinueBanner() {
+  const [last, setLast] = useState(() => readLastDeck(safeStorage()))
+  useEffect(() => {
+    if (!last) return undefined
+    let live = true
+    fetch(`/api/deck/${last.id}/status`)
+      .then(r => { if (live && r.status === 404) { forgetLastDeck(safeStorage()); setLast(null) } })
+      .catch(() => { /* server down: keep offering it; the route reports the failure */ })
+    return () => { live = false }
+  }, [last])
+  if (!last) return null
+  return (
+    <button
+      onClick={() => { window.location.hash = formatRoute('deck', last.id) }}
+      style={{
+        display: 'flex', alignItems: 'center', gap: 12, width: '100%', maxWidth: 620, margin: '0 auto 26px',
+        padding: '12px 18px', borderRadius: 12, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left',
+        background: 'var(--accent-bg)', border: '1px solid var(--accent-strong)', color: 'var(--accent-text)',
+      }}
+      title="Open the deck you last had open"
+    >
+      <span style={{ fontSize: 18 }} aria-hidden="true">↩</span>
+      <span style={{ flex: 1, minWidth: 0 }}>
+        <span style={{ display: 'block', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)' }}>
+          Continue where you left off
+        </span>
+        <span style={{ display: 'block', fontSize: 16, fontWeight: 700, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          {last.name}
+        </span>
+      </span>
+      <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>{timeAgo(last.at)}</span>
+      <span style={{ fontWeight: 700 }}>→</span>
+    </button>
+  )
+}
 
 // The landing hub: the three things Myth Forge can do, chosen up front so each is
 // a first-class entry (Build a deck / Analyze an existing deck / Design one card).
@@ -39,6 +84,7 @@ export default function StepHome({ onChoose, onLoadDeck }) {
           Build a deck, measure one you already have, make a single card, or manage your collection.
         </p>
       </div>
+      <ContinueBanner />
       <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', justifyContent: 'center' }}>
         {CHOICES.map(c => (
           <button
