@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { tracked } from '../utils/jobs'
 
 // Matchups (B35): this deck against its bracket's reference field -- one corpus deck per
 // archetype a casual pod meets -- in two-player Tier-2 duels. Weak / favoured only when the
@@ -50,8 +51,12 @@ export default function MatchupsPanel({ jobId }) {
     return () => { cancelled = true }
   }, [jobId])
 
-  async function run() {
-    if (phase === 'loading') return
+  function run() {
+    if (phase === 'loading') return undefined
+    return tracked('Scout matchups', null, runInner)
+  }
+
+  async function runInner() {
     setOpen(true); setPhase('loading'); setErrMsg('')
     try {
       const r = await fetch(`/api/deck/${jobId}/matchups`, { method: 'POST' })

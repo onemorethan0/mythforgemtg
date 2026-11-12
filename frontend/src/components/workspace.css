@@ -28,6 +28,15 @@
 .ws__pane[hidden] { display: none; }
 .ws__pane > * + * { margin-top: var(--space-3); }
 
+/* running jobs, pinned to the bottom of the dock whichever tab is open */
+.ws__tray { position: sticky; bottom: calc(var(--space-4) * -1); margin: var(--space-3) calc(var(--space-3) * -1) calc(var(--space-4) * -1); }
+.jobtray { background: var(--surface-0); border-top: 1px solid var(--border); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
+.jobtray__title { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 2px; }
+.jobtray__row { display: flex; align-items: baseline; gap: var(--space-2); padding: 2px 0; }
+.jobtray__label { color: var(--text); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jobtray__time { color: var(--accent); font-variant-numeric: tabular-nums; }
+.jobtray__typ { color: var(--text-faint); font-size: var(--text-xs); }
+
 /* the always-visible strip above the list */
 .ws-head {
   display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;

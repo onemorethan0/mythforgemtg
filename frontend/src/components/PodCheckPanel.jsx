@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { tracked } from '../utils/jobs'
 
 // Pod check (D4, docs/DESIGN_table_brackets.md): will THIS deck and up to three others have a
 // good game together? Each seat is a library deck or a pasted list; MythGauntlet measures each
@@ -82,8 +83,12 @@ export default function PodCheckPanel({ jobId }) {
 
   const filled = seats.filter((s) => (s.mode === 'library' ? s.jobId : s.text.trim()))
 
-  async function run() {
-    if (phase === 'loading' || !filled.length) return
+  function run() {
+    if (phase === 'loading' || !filled.length) return undefined
+    return tracked('Pod check', null, runInner)
+  }
+
+  async function runInner() {
     setPhase('loading'); setErrMsg('')
     try {
       const response = await fetch(`/api/deck/${jobId}/pod-fit`, {

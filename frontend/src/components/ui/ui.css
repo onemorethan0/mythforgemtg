@@ -52,9 +52,15 @@
   color: var(--text);
 }
 .ui-panel__title { font-size: var(--text-md); font-weight: 700; }
-.ui-panel__summary { font-size: var(--text-sm); color: var(--text-faint); flex: 1; }
-.ui-panel__chev { color: var(--text-faint); font-size: var(--text-sm); margin-left: auto; }
+.ui-panel__summary { font-size: var(--text-sm); color: var(--text-faint); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ui-panel__chev { color: var(--text-faint); font-size: var(--text-sm); width: 1em; }
 .ui-panel__body { margin-top: var(--space-3); }
+.ui-panel__body[hidden] { display: none; }
+
+/* a slim list row: the content inside brings its own box */
+.ui-panel--row { background: none; border: 0; border-bottom: 1px solid var(--surface-2); border-radius: 0; padding: 0; }
+.ui-panel--row .ui-panel__head { padding: var(--space-2) 2px; }
+.ui-panel--row .ui-panel__body { margin-top: 0; padding-bottom: var(--space-3); }
 
 /* Menu */
 .ui-menu { position: relative; display: inline-block; }

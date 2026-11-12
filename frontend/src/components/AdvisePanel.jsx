@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import CardHover from './CardHover'
+import { tracked } from '../utils/jobs'
 
 // "Suggest upgrades from my collection" (Myth Suite C4 advisor): asks MythGauntlet
 // which OWNED cards measurably improve the deck — every suggestion is an ablation
@@ -58,8 +59,12 @@ export default function AdvisePanel({ jobId, onApplied }) {
   // (server.py's `advise_deck`/`advise_status`), because the real ablation pass can run
   // several minutes past what any synchronous HTTP request should hold open. Poll every
   // 3s; `elapsedS` drives the honest "how much longer" readout below.
-  async function run() {
-    if (phase === 'loading') return
+  function run() {
+    if (phase === 'loading') return undefined
+    return tracked('Upgrade search', { typical: 'about 6 minutes' }, runInner)
+  }
+
+  async function runInner() {
     setPhase('loading')
     setElapsedS(0)
     const startedAt = Date.now()

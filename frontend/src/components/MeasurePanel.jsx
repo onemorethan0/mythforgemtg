@@ -1,5 +1,7 @@
 import { useEffect, useEffectEvent, useState } from 'react'
 import SimStrengthPanel from './SimStrengthPanel'
+import { tracked } from '../utils/jobs'
+import { bracketSummary } from '../utils/deckSummaries'
 
 // "Measure strength" on the result screen: runs the finished deck through the
 // MythGauntlet simulation engine (POST /api/deck/{id}/measure) and renders the
@@ -20,7 +22,7 @@ import SimStrengthPanel from './SimStrengthPanel'
 //
 // No saved measurement measures on open, as the import preview does, so the deck page shows
 // the same full panel without a click; the button stays for Re-measure and after an error.
-export default function MeasurePanel({ jobId, cached, statedBracket: savedStated = null }) {
+export default function MeasurePanel({ jobId, cached, statedBracket: savedStated = null, onSummary }) {
   const hasCache = !!cached?.simulation?.power_profile
   const stale = hasCache && !!cached.stale
   // A stale or missing cache opens straight into "loading" and fetches on mount (below);
@@ -30,6 +32,10 @@ export default function MeasurePanel({ jobId, cached, statedBracket: savedStated
   const [measuredAt, setMeasuredAt] = useState(hasCache && !stale ? cached.date : null)
   const [errMsg, setErrMsg] = useState('')
   const refreshedStale = stale
+  // the Analyze tab's one-line summary of this section
+  useEffect(() => {
+    onSummary?.(state === 'loading' ? 'measuring…' : bracketSummary(result))
+  }, [state, result, onSummary])
   // The player's own bracket for this deck, saved on change (POST /api/deck/{id}/stated-bracket).
   // A label only: changing it never re-measures. The previous value comes back on a failed save.
   const [statedBracket, setStatedBracket] = useState(savedStated)
@@ -45,7 +51,7 @@ export default function MeasurePanel({ jobId, cached, statedBracket: savedStated
 
   // A promise chain rather than async/await so every state update visibly sits behind the
   // fetch: it is called from a mount effect, and nothing here may set state synchronously.
-  const measure = () =>
+  const measure = () => tracked('Measure strength', null, () =>
     fetch(`/api/deck/${jobId}/measure`, { method: 'POST' })
       .then(async response => {
         if (response.ok) {
@@ -62,7 +68,7 @@ export default function MeasurePanel({ jobId, cached, statedBracket: savedStated
       .catch(() => {
         setErrMsg('Strength API unreachable')
         setState('error')
-      })
+      }))
 
   const run = () => {
     if (state === 'loading') return

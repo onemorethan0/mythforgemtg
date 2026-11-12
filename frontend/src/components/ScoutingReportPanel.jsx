@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { tracked } from '../utils/jobs'
 
 // Scouting report (B38): one page of what this deck is, its bracket, how fast and how it kills,
 // what it is good at and weak against, its strongest and weakest cards (the same cut ranking the
@@ -39,8 +40,12 @@ export default function ScoutingReportPanel({ jobId }) {
     return () => { cancelled = true }
   }, [jobId])
 
-  async function run() {
-    if (phase === 'loading') return
+  function run() {
+    if (phase === 'loading') return undefined
+    return tracked('Scouting report', { typical: 'about a minute' }, runInner)
+  }
+
+  async function runInner() {
     setOpen(true); setPhase('loading'); setErrMsg('')
     try {
       const r = await fetch(`/api/deck/${jobId}/scout`, { method: 'POST' })

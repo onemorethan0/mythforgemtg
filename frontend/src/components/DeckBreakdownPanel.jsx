@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { synergyRows } from '../utils/deckBreakdown'
+import { tracked } from '../utils/jobs'
 
 // Charts for the Deck Mentor's own measurements (engine /breakdown via Forge's
 // /api/deck/{id}/breakdown): role cards vs a typical card target, what the deck's
@@ -176,15 +177,17 @@ function SynergyList({ rows }) {
   )
 }
 
-async function fetchBreakdown(jobId, refresh) {
-  try {
-    const res = await fetch(`/api/deck/${jobId}/breakdown${refresh ? '?refresh=true' : ''}`, { method: 'POST' })
-    let body = null
-    try { body = await res.json() } catch { /* non-JSON error page */ }
-    return res.ok ? { data: body } : { error: body?.detail || res.statusText }
-  } catch (e) {
-    return { error: String(e.message || e) }
-  }
+function fetchBreakdown(jobId, refresh) {
+  return tracked('Deck breakdown', null, async () => {
+    try {
+      const res = await fetch(`/api/deck/${jobId}/breakdown${refresh ? '?refresh=true' : ''}`, { method: 'POST' })
+      let body = null
+      try { body = await res.json() } catch { /* non-JSON error page */ }
+      return res.ok ? { data: body } : { error: body?.detail || res.statusText }
+    } catch (e) {
+      return { error: String(e.message || e) }
+    }
+  })
 }
 
 export default function DeckBreakdownPanel({ jobId, initial, onData }) {

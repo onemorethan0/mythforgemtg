@@ -3,7 +3,7 @@ import Button from './Button'
 
 // A button that opens a popover. Closes on an outside click and on Esc. `children` is the popover
 // content, or a function `(close) => content` when an item should close the menu itself.
-export default function Menu({ label, title, children, align = 'left' }) {
+export default function Menu({ label, title, children, align = 'left', variant = 'ghost', popStyle }) {
   const [open, setOpen] = useState(false)
   const box = useRef(null)
 
@@ -21,12 +21,12 @@ export default function Menu({ label, title, children, align = 'left' }) {
 
   return (
     <div ref={box} className="ui-menu">
-      <Button variant="ghost" size="sm" title={title} aria-haspopup="menu" aria-expanded={open}
+      <Button variant={variant} size="sm" title={title} aria-haspopup="menu" aria-expanded={open}
               onClick={() => setOpen(o => !o)}>
         {label}
       </Button>
       {open && (
-        <div role="menu" className={`ui-menu__pop ui-menu__pop--${align}`}>
+        <div role="menu" className={`ui-menu__pop ui-menu__pop--${align}`} style={popStyle}>
           {typeof children === 'function' ? children(() => setOpen(false)) : children}
         </div>
       )}

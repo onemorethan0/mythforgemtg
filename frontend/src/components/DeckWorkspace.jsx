@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Tabs from './ui/Tabs'
+import JobTray from './JobTray'
 import './workspace.css'
 
 // The deck page as a workspace: the card list is the main column (a header and toolbar that stay
@@ -38,6 +39,7 @@ export default function DeckWorkspace({ header, bar, toolbar, tabs, children, pa
         {tabs.map(t => (
           <div key={t.key} role="tabpanel" className="ws__pane" hidden={t.key !== active}>{t.content}</div>
         ))}
+        <div className="ws__tray"><JobTray /></div>
       </aside>
     </div>
   )

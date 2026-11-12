@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { tracked } from '../utils/jobs'
 
 // A win rate from N simulated games is a sampled proportion, not a fact about the
 // matchup — the standard closed-form Wilson score interval for a binomial proportion
@@ -33,8 +34,12 @@ export default function DuelPanel({ jobId }) {
   const cancelledRef = useRef(false)
   useEffect(() => () => { cancelledRef.current = true }, [])
 
-  async function run() {
-    if (phase === 'loading' || !opponent.trim()) return
+  function run() {
+    if (phase === 'loading' || !opponent.trim()) return undefined
+    return tracked('Duel', null, runInner)
+  }
+
+  async function runInner() {
     setPhase('loading'); setErrMsg('')
     try {
       const response = await fetch(`/api/deck/${jobId}/duel`, {

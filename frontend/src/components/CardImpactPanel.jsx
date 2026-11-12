@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import CardHover from './CardHover'
+import { tracked } from '../utils/jobs'
 
 // "Would this card help my deck?" — ask about ONE named card and get a measured answer.
 //
@@ -33,10 +34,14 @@ export default function CardImpactPanel({ jobId }) {
   const cancelledRef = useRef(false)
   useEffect(() => () => { cancelledRef.current = true }, [])
 
-  async function ask(e) {
+  function ask(e) {
     e?.preventDefault?.()
+    if (!name.trim() || busy) return undefined
+    return tracked('Card impact', null, askInner)
+  }
+
+  async function askInner() {
     const card = name.trim()
-    if (!card || busy) return
     setBusy(true); setErrMsg(''); setResult(null)
     try {
       const r = await fetch(`/api/deck/${jobId}/card-impact`, {

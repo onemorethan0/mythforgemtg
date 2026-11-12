@@ -29,7 +29,9 @@ import SampleHandPanel from './SampleHandPanel'
 import AddCardBar from './AddCardBar'
 import ChangeCommanderPanel from './ChangeCommanderPanel'
 import DeckWorkspace from './DeckWorkspace'
-import Chip from './ui/Chip'
+import Menu from './ui/Menu'
+import Panel from './ui/Panel'
+import { measureSummary, breakdownSummary, statsSummary } from '../utils/deckSummaries'
 import ExportMenu from './ExportMenu'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -158,6 +160,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const [editBusy, setEditBusy] = useState(false)
   const [editMsg, setEditMsg]   = useState(null)      // { ok, text }
   const [replacing, setReplacing] = useState(null)    // original name of the card being replaced
+  const [measureNote, setMeasureNote] = useState(null) // MeasurePanel's one-line result, for its section header
   const [showRegenPanel, setShowRegenPanel] = useState(false)
 
   // ── Per-card regen state ──────────────────────────────────────────────────
@@ -848,7 +851,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {/* Commander legality (deck_legality.py): 100 cards, singleton, colour identity,
                 ban list, commander/pairing. Only for a real Commander deck: an imported
                 60-card list with an auto-elected face has no command zone to judge. */}
-            {stats.legality?.issues && deck.is_commander_deck !== false && !deck.import_auto_face && (
+            {!workspace && stats.legality?.issues && deck.is_commander_deck !== false && !deck.import_auto_face && (
               <LegalityBlock legality={stats.legality} jobId={jobId} onFixed={onDuplicate} />
             )}
             {/* Deck value + cost to finish (B20). Keyed on swap_count: an edit changes the list. */}
@@ -1512,6 +1515,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
 
   // ── workspace (full decks) ──
   const legalityList = stats?.legality?.issues
+  const hasProvenance = !!(deck.rethemed_from || deck.rebuilt_from || deck.copied_from || deck.world_bible || deck.imported)
   const hasLegality = Array.isArray(legalityList) && deck.is_commander_deck !== false && !deck.import_auto_face
   const thumbTs = refreshTs[commander.render_key]
   const thumbSrc = (commander.has_render || thumbTs)
@@ -1532,9 +1536,12 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
       <div className="ws-head__chips">{textChips}</div>
       <div className="ws-head__end">
         {hasLegality && (
-          <Chip tone={legalityList.length ? 'warn' : 'ok'}>
-            {legalityList.length ? `${legalityList.length} legality issue${legalityList.length === 1 ? '' : 's'}` : 'Legal'}
-          </Chip>
+          <Menu align="right" variant={legalityList.length ? 'primary' : 'ok'}
+                label={legalityList.length ? `⚖ ${legalityList.length} legality issue${legalityList.length === 1 ? '' : 's'} ▾` : '⚖ Legal ▾'}
+                title="Commander legality: 100 cards, singleton, colour identity, ban list"
+                popStyle={{ minWidth: 340, maxWidth: 440, maxHeight: '60vh', overflowY: 'auto', padding: 12 }}>
+            <LegalityBlock legality={stats.legality} compact jobId={jobId} onFixed={onDuplicate} />
+          </Menu>
         )}
         <ExportMenu jobId={jobId} />
       </div>
@@ -1550,17 +1557,31 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
   const dockTabs = [
     { key: 'analyze', label: 'Analyze', content: (
       <>
-        {textStory}
-        {textNotes}
-        {statsCol}
+        <Panel variant="row" title="Bracket & power" summary={measureNote || measureSummary(deck.last_measure)}>
+          <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure}
+            statedBracket={deck.stated_bracket ?? null} onSummary={setMeasureNote} />
+        </Panel>
         {/* keyed on swap_count so an applied swap resets the cached measurement
             (the old profile no longer matches the modified list) */}
-        <DeckBreakdownPanel key={`bd-${jobId}-${deck.swap_count || 0}`} jobId={jobId}
-          initial={deck.breakdown?.data} onData={setBreakdown} />
-        <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure}
-          statedBracket={deck.stated_bracket ?? null} />
-        <SampleHandPanel key={`hand-${jobId}-${deck.swap_count || 0}`} deck={deck} jobId={jobId} />
-        {provenance}
+        <Panel variant="row" title="Deck breakdown" summary={breakdownSummary(breakdown)} defaultOpen={false}>
+          <DeckBreakdownPanel key={`bd-${jobId}-${deck.swap_count || 0}`} jobId={jobId}
+            initial={deck.breakdown?.data} onData={setBreakdown} />
+        </Panel>
+        <Panel variant="row" title="Deck stats" summary={statsSummary(stats)} defaultOpen={false}>
+          {statsCol}
+        </Panel>
+        <Panel variant="row" title="Commander" summary={commander.type_line} defaultOpen={false}>
+          {textStory}
+          {textNotes}
+        </Panel>
+        <Panel variant="row" title="Sample hand" summary="draw seven and see how it plays" defaultOpen={false}>
+          <SampleHandPanel key={`hand-${jobId}-${deck.swap_count || 0}`} deck={deck} jobId={jobId} />
+        </Panel>
+        {hasProvenance && (
+          <Panel variant="row" title="Where this deck came from" defaultOpen={false}>
+            {provenance}
+          </Panel>
+        )}
       </>
     ) },
     { key: 'upgrade', label: 'Upgrade', content: (

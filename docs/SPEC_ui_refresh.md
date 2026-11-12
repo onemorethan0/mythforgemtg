@@ -141,7 +141,7 @@ for "it runs forever": the wait is visible and bounded from anywhere in the work
 | 0 | **DONE 2026-11-12.** Tokens, shared components, hash routing. Existing screens keep their look. | None, except Back button and deep links |
 | 1 | **DONE 2026-11-12.** Workspace shell: header strip, dock with tabs, existing panels moved in unchanged | Cards appear on the first screen; no more five-screen scroll |
 | 2 | **DONE 2026-11-12.** Add-a-card bar, hover remove, swap-in-place, undo; Edit deck panel retired | Add and remove with no scrolling, with the count in view |
-| 3 | Legality chip and popover; stats sidebar becomes the strip; panel summaries; job tray | Walls of text gone; waits visible |
+| 3 | **DONE 2026-11-12.** Legality chip and popover; stats sidebar becomes the strip; panel summaries; job tray | Walls of text gone; waits visible |
 | 4 | Home "continue", History search / sort | Smaller wins |
 | 5 | Narrow screens: dock becomes a bottom sheet under 1100 px | Usable on a small window |
 
@@ -238,3 +238,26 @@ Deviations from section 5.2, on purpose:
 Verified in the browser pane on a duplicate deck: remove from a tile (100 -> 99 cards, Undo armed), Undo
 (card back in its first slot, 100), add by typing "Mana Vault" (101), replace Command Subadjunct with Mind Stone,
 reload (Undo still offers the swap), three undos back to the original list. 0 scrolls for any of it.
+
+
+## 13. Phase 3 as built (2026-11-12)
+
+- **Legality chip + popover.** The header's chip is now a button ("legality issue" count, amber, or "Legal", green).
+  It opens the full report with the one-click fix, scrolling inside the popover. The wall of red text is gone from
+  the dock.
+- **Analyze as a table of contents.** Each section is a slim row with a one-line summary, collapsed except the
+  measurement: *Bracket & power* ("Bracket 2 (Core)"), *Deck breakdown* ("3 roles under target: removal,
+  noncreature removal, draw"), *Deck stats* ("Avg MV 3.5 - 37 lands"), *Commander*, *Sample hand*, *Where this deck
+  came from*. The panel body stays mounted when collapsed, so nothing re-measures or loses its result by being
+  closed. The summaries come from pure helpers (`utils/deckSummaries.js`, tested); the measurement's summary
+  updates live ("measuring..." then the bracket). Analyze tab height: 4,815 px -> 2,269 px with only the measurement open.
+- **Job tray** (`utils/jobs.js`, `JobTray.jsx`), pinned to the bottom of the dock on every tab. Measure, Deck
+  breakdown, Upgrade search, Scouting report, Scout matchups, Pod check, Duel and Card impact register while their
+  request is in flight and show their elapsed time. "usually about 6 minutes" is shown for Upgrade (measured:
+  341-359 s) and "about a minute" for the scouting report (the button's own estimate); no duration is shown where none
+  was measured.
+- **No cancel button, on purpose.** The spec asked for one, but the engine cannot stop a run once begun: a button
+  would only stop WAITING while the CPU kept working. It needs server-side cancellation first (open).
+
+Verified in the browser pane at 1024x768 with the real Locutus deck: the popover and its fix button, the collapsed
+rows and their summaries, and the tray (two jobs listed with live timers on the Mentor tab, empty after 16 s).
