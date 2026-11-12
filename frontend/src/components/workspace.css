@@ -90,9 +90,37 @@
   .ws { grid-template-columns: minmax(0, 1fr) 340px; }
 }
 
-/* below ~900px the dock stacks under the list; phase 5 turns it into a bottom sheet */
+/* A narrow window (900px and under): the dock becomes a bottom sheet. The tab strip is a launcher
+   along the bottom edge; tapping a tab opens the sheet on it, tapping it again folds it away. The
+   whole main column scrolls as one (header, bar and toolbar scroll away with the list), so the cards
+   get the screen. */
 @media (max-width: 900px) {
-  .ws { display: block; height: auto; min-height: 0; }
-  .ws__list { overflow: visible; }
-  .ws__dock { margin-top: var(--space-4); }
+  .ws { display: block; height: calc(100vh - 130px); min-height: 0; }
+  .ws__main { height: 100%; overflow-y: auto; display: block; }
+  .ws__list { overflow: visible; padding-bottom: 72px; }
+  .ws-head__end { margin-left: 0; width: 100%; }
+  /* the filter rows take a full line, then the search box and the view toggle share the next one */
+  .tb-filters { flex: 1 1 100% !important; }
+}
+
+.ws__dock--sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+  max-height: 72vh; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-width: 1px 0 0 0; padding: 0 var(--space-3) var(--space-3);
+  box-shadow: 0 -10px 32px rgba(0, 0, 0, 0.65);
+}
+.ws__dock--sheet .ui-tabs { margin-bottom: var(--space-2); padding-right: 96px; }   /* clear of the floating Status pill */
+.ws__dock--sheet .ui-tab { flex: 1; padding: 12px 4px; }   /* a thumb-sized launcher */
+.ws__dock--sheet.is-collapsed { overflow: visible; padding-bottom: 0; }
+.ws__dock--sheet.is-collapsed .ws__pane,
+.ws__dock--sheet.is-collapsed .ws__tray { display: none; }
+.ws__badge {
+  position: absolute; right: var(--space-3); top: -22px; font-size: var(--text-xs);
+  background: var(--surface-0); border: 1px solid var(--border); border-radius: 999px;
+  padding: 2px 9px; color: var(--accent);
+}
+.ws__sheet-close {
+  position: absolute; top: 6px; right: 8px; z-index: 6; width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--surface-0); color: var(--text-muted); cursor: pointer;
+  font-family: inherit;
 }

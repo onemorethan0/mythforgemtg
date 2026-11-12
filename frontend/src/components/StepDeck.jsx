@@ -1158,7 +1158,7 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
     <>
         {/* Organize by + group filter tabs */}
         {!single && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: workspace ? 0 : 260 }}>
+          <div className="tb-filters" style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: workspace ? 0 : 260 }}>
             <div className={workspace ? 'tb-scroll' : undefined} style={{ display: 'flex', gap: 4, alignItems: 'center', flexWrap: workspace ? 'nowrap' : 'wrap' }}>
               <span style={{ fontSize: 11, color: '#78716c', marginRight: 4 }}>Organize by</span>
               {GROUP_BYS.map(g => (

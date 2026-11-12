@@ -143,7 +143,7 @@ for "it runs forever": the wait is visible and bounded from anywhere in the work
 | 2 | **DONE 2026-11-12.** Add-a-card bar, hover remove, swap-in-place, undo; Edit deck panel retired | Add and remove with no scrolling, with the count in view |
 | 3 | **DONE 2026-11-12.** Legality chip and popover; stats sidebar becomes the strip; panel summaries; job tray | Walls of text gone; waits visible |
 | 4 | **DONE 2026-11-12.** Home "continue", History search / sort | Smaller wins |
-| 5 | Narrow screens: dock becomes a bottom sheet under 1100 px | Usable on a small window |
+| 5 | **DONE 2026-11-12.** Narrow screens: dock becomes a bottom sheet under 900 px | Usable on a small window |
 
 Phase 1 alone fixes the complaint you raised; phases 2 and 3 make it pleasant.
 
@@ -276,3 +276,39 @@ rows and their summaries, and the tray (two jobs listed with live timers on the 
 - **Select All only takes what the search shows**, so a bulk delete or export cannot reach a deck you cannot see
   (verified: searching "borg" and Select All gives "2 of 2 selected", "Delete 2 Decks").
 - 18 new vitest tests (`historyView`, `lastDeck`); 151 front-end tests in all.
+
+
+## 15. Phase 5 as built (2026-11-12) - the refresh is complete
+
+At 900 px and under the dock becomes a **bottom sheet**: the tab strip is a launcher along the bottom edge,
+tapping a tab opens the sheet (up to 72% of the height) on it, tapping the open tab or pressing Esc folds it away,
+and a running-jobs badge shows on the launcher while it is closed. All panes stay mounted. The whole main column
+scrolls as one on a narrow window (header, add bar and toolbar scroll away with the list), so the cards get the
+screen; the filter rows take a line of their own. On a device with no hover (touch) the card's replace and remove
+buttons are always shown. Launcher tabs keep clear of the floating Status pill.
+
+Measured with the real Locutus deck:
+
+| Window | Before phase 5 | After |
+|---|---|---|
+| 800 x 900 | the tools were 5,800 px down the page, below every card (page 6,119 px tall) | launcher on the bottom edge, page 907 px (does not scroll) |
+| 375 x 812 (phone) | not checked | no sideways scroll, page 860 px, 2 cards per row, sheet opens to 33% for Upgrade |
+| 1024 x 768 | dock on the right | unchanged |
+
+3 new tests (`sheetNav`); 154 front-end tests in all.
+
+### Where the refresh ended up, against section 7's acceptance list
+1. First card on the first screen: **yes** (537 px, was 4,544).
+2. Remove with 0 scrolls, count in view: **yes**; add by typing and Enter: **yes**.
+3. Any panel within two clicks: **yes** (tab, then a row).
+4. The page does not scroll: **yes** at 1024x768, 800x900 and 375x812.
+5. No horizontal scroll: **yes** at all three sizes.
+6. Parity checklist of every control: **not done as a written table**; checked by clicking through every tab and the
+   single-card page instead. Worth doing before any further removal of controls.
+7. Back button and deep links: **yes** (phase 0).
+8. Keyboard: Tabs arrow keys, Esc on menus and the sheet, Enter in the add bar; the per-card hover buttons are
+   mouse and touch only (list view has always-visible buttons).
+9. Tests: 154 front-end and 3,954 backend pass.
+
+Not done: the cancel button (needs engine-side cancellation); a written parity table; the Status pill still floats
+over the bottom-right corner on every screen.

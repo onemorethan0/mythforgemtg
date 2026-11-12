@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import CardFace, { SetChip } from './CardFace'
 import ManaCost from './ManaCost'
+import { useMediaQuery } from '../hooks/useMediaQuery'
 
 // ── Card tile ─────────────────────────────────────────────────────────────────
 export default function CardTile({ card, jobId, selected, onSelect, regenStatus, refreshTs, hasVideo, videoTs, videoFmt, showMotion = true, showOwnership = true, artSource = 'ai', onRemove = null, onReplace = null }) {
   const [hover, setHover] = useState(false)
+  const noHover = useMediaQuery('(hover: none)')   // touch: there is no hover, so show the edit buttons
   const [failedVideoSrc, setFailedVideoSrc] = useState(null)
 
   // Use cache-busting timestamp when the card was freshly regenerated
@@ -78,7 +80,7 @@ export default function CardTile({ card, jobId, selected, onSelect, regenStatus,
       }
 
       {/* Edit actions: remove from the deck, or replace this card (the add bar takes over) */}
-      {hover && (onRemove || onReplace) && (
+      {(hover || noHover) && (onRemove || onReplace) && (
         <div style={{ position: 'absolute', top: 28, right: 5, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 4 }}
              onClick={e => e.stopPropagation()}>
           {onReplace && (
