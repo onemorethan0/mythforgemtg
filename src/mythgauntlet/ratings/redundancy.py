@@ -32,6 +32,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 import math
+import re
 from dataclasses import dataclass, replace
 
 from mythgauntlet.model.card import Card
@@ -570,6 +571,62 @@ def plan_lords(resolved: ResolvedDeck) -> frozenset[str]:
             if hits >= need:
                 out.add(card.name)
     return frozenset(out)
+
+
+_WIN_THE_GAME_RE = re.compile(r"\byou win the game\b", re.IGNORECASE)
+# The two selective-wipe shapes whose exemption we can check against the deck itself. Each is a wipe
+# that spares exactly what the deck is built from, so it is a plan card, not an interchangeable
+# "board wipe" in a role-count (Locutus of Borg, 2026-11-11: Kindred Judgment and Battle of Wolf 359
+# were offered as cuts for being the 4th and 5th wipe, in a deck of Borg artifact creatures where
+# both wipe only the opponents'). Anything else stays an ordinary wipe.
+_SPARES_CHOSEN_TYPE_RE = re.compile(r"creatures that aren'?t of the chosen type", re.IGNORECASE)
+_SPARES_ARTIFACTS_RE = re.compile(r"\b(?:all|each) nonartifact creatures?\b", re.IGNORECASE)
+_WIPE_VERB_RE = re.compile(r"\b(?:destroy all|exile all|get -|gets -|deals? \d+ damage to each|"
+                           r"deals? x damage to each)", re.IGNORECASE)
+
+
+def _creature_subtypes(card: Card) -> set[str]:
+    front = (card.type_line or "").split("//")[0]
+    if "—" not in front and " - " not in front:
+        return set()
+    return {w for w in re.split(r"[—\-]", front, maxsplit=1)[1].split() if w}
+
+
+def plan_protected(resolved: ResolvedDeck) -> dict[str, str]:
+    """Cards that are the deck's PLAN even though a role count calls them spare: {name: why}.
+
+    - a card that wins the game by its own text ("you win the game"): an alternate win condition
+      the goldfish cannot play out, so no measurement will ever defend it and a "surplus finisher"
+      count would cut it (Mechanized Production in a deck whose Borg tokens share one name).
+    - a selective wipe that spares the deck's own bodies: "creatures that aren't of the chosen type"
+      when one creature type is a real share of the deck, "nonartifact creatures" when artifact
+      creatures are."""
+    bodies = [c for c, n in resolved.cards for _ in range(n) if c.is_creature]
+    bodies += [c for c in resolved.commanders if c.is_creature]
+    need = max(PLAN_LORD_MIN, math.ceil(PLAN_LORD_SHARE * len(bodies)))
+    types: dict[str, int] = {}
+    for c in bodies:
+        for t in _creature_subtypes(c):
+            types[t] = types.get(t, 0) + 1
+    top_type, top_n = max(types.items(), key=lambda kv: kv[1], default=("", 0))
+    artifact_bodies = sum(1 for c in bodies if c.has_type("Artifact"))
+    zone = {c.name for c in resolved.commanders}
+    out: dict[str, str] = {}
+    for card, _n in resolved.cards:
+        if card.name in zone:
+            continue
+        text = card.oracle_text or ""
+        if _WIN_THE_GAME_RE.search(text):
+            out[card.name] = "it can win the game by its own text (an alternate win condition)"
+        elif (not card.is_creature and _WIPE_VERB_RE.search(text)
+              and _SPARES_CHOSEN_TYPE_RE.search(text) and top_n >= need):
+            out[card.name] = (f"a wipe that spares the deck's own {top_type} creatures "
+                              f"({top_n} of its {len(bodies)})")
+        elif (not card.is_creature and _WIPE_VERB_RE.search(text)
+              and _SPARES_ARTIFACTS_RE.search(text) and artifact_bodies >= need):
+            out[card.name] = (f"a wipe that spares the deck's own artifact creatures "
+                              f"({artifact_bodies} of its {len(bodies)})")
+    return out
 
 
 def rank_redundant(

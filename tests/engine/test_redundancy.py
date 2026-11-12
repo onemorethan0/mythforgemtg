@@ -636,3 +636,50 @@ def test_color_aware_targets_do_not_mutate_the_baseline():
     before = dict(redundancy.ROLE_TARGETS)
     redundancy.targets_for(["spellslinger"], color_identity="G")
     assert redundancy.ROLE_TARGETS == before
+
+
+# ── plan cards a role count would call spare (Locutus of Borg, 2026-11-11) ───────────────────
+
+def _borg_deck(make_card, borgs=8):
+    from mythgauntlet.model.deck import Deck, ResolvedDeck
+    wipes = [
+        make_card("Kindred Judgment", mana_cost="{5}{W}{W}", type_line="Sorcery",
+                  oracle_text="Choose a creature type. Destroy all creatures that aren't of the "
+                              "chosen type."),
+        make_card("Battle of Wolf 359", mana_cost="{3}{B}{B}", type_line="Sorcery",
+                  oracle_text="All nonartifact creatures get -X/-X until end of turn, where X is "
+                              "the number of artifact creatures you control."),
+        make_card("Join the Collective", mana_cost="{5}{W}{W}", type_line="Sorcery",
+                  oracle_text="Destroy all creatures. Create X 1/1 colorless Borg artifact "
+                              "creature tokens, where X is the number of nonartifact creatures "
+                              "destroyed this way."),
+        make_card("Mechanized Production", mana_cost="{2}{U}{U}", type_line="Enchantment — Aura",
+                  oracle_text="Enchant artifact you control\nAt the beginning of your upkeep, "
+                              "create a token that's a copy of enchanted artifact. Then if you "
+                              "control eight or more artifacts with the same name as one another, "
+                              "you win the game."),
+    ]
+    bodies = []
+    for i in range(borgs):
+        c = make_card(f"Drone {i}", mana_cost="{2}", type_line="Artifact Creature — Borg")
+        c.power, c.toughness = "2", "2"
+        bodies.append(c)
+    return ResolvedDeck(deck=Deck(commanders=[], entries=[]), commanders=[],
+                        cards=[(c, 1) for c in wipes + bodies], missing=[])
+
+
+def test_selective_wipes_and_alt_wins_are_plan_cards_in_the_deck_they_fit(make_card):
+    from mythgauntlet.ratings.redundancy import plan_protected
+    prot = plan_protected(_borg_deck(make_card))
+    assert "spares the deck's own Borg creatures" in prot["Kindred Judgment"]
+    assert "artifact creatures" in prot["Battle of Wolf 359"]
+    assert "win the game" in prot["Mechanized Production"]
+    assert "Join the Collective" not in prot       # a symmetric wipe stays an ordinary wipe
+    assert not any(n.startswith("Drone") for n in prot)
+
+
+def test_a_selective_wipe_is_not_protected_in_a_deck_that_is_not_built_on_what_it_spares(make_card):
+    from mythgauntlet.ratings.redundancy import plan_protected
+    prot = plan_protected(_borg_deck(make_card, borgs=2))      # two Borg bodies: no plan to spare
+    assert "Kindred Judgment" not in prot and "Battle of Wolf 359" not in prot
+    assert "Mechanized Production" in prot                      # an alt win is a wincon regardless

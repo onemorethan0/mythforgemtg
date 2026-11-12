@@ -13,6 +13,8 @@ PROTECTED, never offered as a cut
   commander synergy   the commander lens shows the commander changing what the card does
   combo piece         a card in a graded game-ending combo the deck holds
   plan lord           a typed lord whose type covers a real share of the deck's creatures
+  plan card           an alternate win condition ("you win the game"), or a wipe that spares the
+                      deck's own bodies (redundancy.plan_protected)
   role floor          it fills a core role the deck is at or under its card target in --
                       cutting it opens a gap (draw, ramp, removal ...)
   load-bearing        paired drawn-games ablation (ratings/card_ablation): the deck kills
@@ -86,6 +88,7 @@ def rank_cuts(
     zone = {c.name for c in resolved.commanders}
     flagged = set(lens.flagged(c for c, _ in resolved.cards)) if lens is not None else set()
     lords = redundancy.plan_lords(resolved)
+    plan = redundancy.plan_protected(resolved)
     combos = set(combo_names or ())
     out = CutRanking()
 
@@ -107,6 +110,8 @@ def rank_cuts(
             why = "a piece of a game-ending combo the deck holds"
         elif card.name in lords:
             why = "a lord for a type the deck is built around"
+        elif card.name in plan:
+            why = plan[card.name]
         else:
             floor = sorted(r for r in roles_of[card.name]
                            if counts.get(r, 0) <= card_targets.get(r, 0))
