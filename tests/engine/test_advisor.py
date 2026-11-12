@@ -748,9 +748,11 @@ def test_an_interaction_only_result_leads_with_the_honest_headline():
 
 
 def test_a_worker_pool_gives_the_same_advice_as_the_serial_loop(deck, store, make_card, monkeypatch):
-    """`workers` only changes the wall clock: the analyses are batched, run in the shared pool and
-    read back in the original order, so the report is identical. The pool is faked with an
-    in-process executor that runs each job on submit (a real one needs the on-disk store)."""
+    """`workers` only changes the wall clock: the sweep, the per-pick resilience check, the
+    screening seeds and the empty-slot runs are batched, run in the shared pool and read back in
+    order, so the report is identical. The pool is faked with an in-process executor (a real one
+    needs the on-disk store). Deterministic fake analyses: "Real Card" gains +6 on every seed,
+    "Lucky Card" +8 on the search seed only, so the confirmation path is really exercised."""
     from concurrent.futures import Future
     from mythgauntlet.ratings import card_ablation
 
@@ -763,18 +765,27 @@ def test_a_worker_pool_gives_the_same_advice_as_the_serial_loop(deck, store, mak
                 f.set_exception(e)
             return f
 
-    def fake_job(resolved, cfg, two_card_combos, combos_checked, run_resilience):
-        return advisor.analyze_deck(resolved, cfg, store, two_card_combos=two_card_combos,
-                                    combos_checked=combos_checked, run_resilience=run_resilience)
+    def fake_analyze(resolved, cfg, store, **kw):
+        names = {c.name for c, _ in resolved.cards}
+        if "Real Card" in names:
+            return _fake_analysis(consistency=76.0, interaction=10.0)
+        if "Lucky Card" in names:
+            return _fake_analysis(consistency=78.0 if cfg.seed == 1 else 70.0, interaction=10.0)
+        return _fake_analysis(consistency=70.0, interaction=10.0)
 
-    cands = [_creature(make_card, f"Owned {i}", "{1}{G}", 3000 + i * 50) for i in range(5)]
-    cfg = SimConfig(runs=60, turns=5, seed=1)
-    serial = advisor.advise(deck, cfg, store, cands, axis="consistency", top=3, max_eval=5,
-                            cut_pool=2, baseline_seeds=1)
+    monkeypatch.setattr(advisor, "analyze_deck", fake_analyze)
+    monkeypatch.setattr(advisor, "_analyze_job",
+                        lambda r, c, t, cc, rr: fake_analyze(r, c, store, two_card_combos=t,
+                                                             combos_checked=cc, run_resilience=rr))
     monkeypatch.setattr(card_ablation, "_pool", lambda: _InProc())
-    monkeypatch.setattr(advisor, "_analyze_job", fake_job)
-    pooled = advisor.advise(deck, cfg, store, cands, axis="consistency", top=3, max_eval=5,
-                            cut_pool=2, baseline_seeds=1, workers=4)
-    key = lambda r: [(s.add, s.cut, round(s.after, 6)) for s in r.suggestions]  # noqa: E731
-    assert key(pooled) == key(serial) and pooled.analyses == serial.analyses
-    assert pooled.baseline == serial.baseline
+    lucky = make_card("Lucky Card", mana_cost="{1}{G}", type_line="Instant", color_identity=("G",))
+    real = make_card("Real Card", mana_cost="{1}{G}", type_line="Instant", color_identity=("G",))
+    cfg = SimConfig(runs=150, turns=12, seed=1)
+    kw = dict(axis="consistency", top=3, max_eval=2, cut_pool=2, baseline_seeds=1, confirm_seeds=3)
+    serial = advisor.advise(deck, cfg, store, [lucky, real], **kw)
+    pooled = advisor.advise(deck, cfg, store, [lucky, real], workers=4, **kw)
+    assert [s.add for s in serial.suggestions] == ["Real Card"]      # not vacuous: one survivor
+    key = lambda r: [(s.add, s.cut, round(s.after, 6), s.confirmation, s.add_value, s.cut_value)  # noqa: E731
+                     for s in r.suggestions]
+    assert key(pooled) == key(serial)
+    assert pooled.baseline == serial.baseline and pooled.analyses == serial.analyses

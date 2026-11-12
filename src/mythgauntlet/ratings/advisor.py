@@ -602,6 +602,7 @@ def _run_analyses(jobs, store, workers):
             for r, c, t, cc, rr in jobs]
 
 
+PREFETCH_WAVE = 8               # candidates whose checks run as one batch (see advise's _prefetch)
 CONFIRM_SEED_STEP = 7919        # fresh seeds: cfg.seed + step * (i + 1), never the search seed
 CONFIRM_MIN_FRACTION = 1.0      # a confirmed gain must reach the axis noise floor, as the search's
                                 # own bar always did (0.5 let a +1.8 swap through that pooled to +1.0)
@@ -992,14 +993,69 @@ def advise(
         used_cut: set[str] = set()
         confirm_base: dict = {}
         confirm_tried = 0
-        for _net_score, _delta, add, cut, after, a, ax in evals:
+        prefetched: dict = {}      # (add, cut) -> {"a": resilient analysis, "screen": diffs}
+
+        def _prefetch(start: int) -> None:
+            """The picks below are checked one after another (a resilience run, then the screening
+            seeds, each waiting on the last), which kept an 8-worker search at ~13 minutes. The next
+            few candidates have DISTINCT adds and cuts, so none can change another's check: run all
+            their analyses as one batch and let the loop below read the results. A candidate the
+            loop never reaches (the list filled first) is wasted work, never a wrong answer."""
+            wave, seen_a, seen_c = [], set(), set()
+            for item in evals[start:]:
+                _n, _d, add_, cut_, _af, _a, _ax = item
+                if (add_.name in used_add or cut_.name in used_cut
+                        or (add_.name, cut_.name) in prefetched
+                        or add_.name in seen_a or cut_.name in seen_c):
+                    continue
+                seen_a.add(add_.name)
+                seen_c.add(cut_.name)
+                wave.append(item)
+                if len(wave) >= PREFETCH_WAVE:
+                    break
+            jobs: list = []
+            tags: list = []
+            for _n, _d, add_, cut_, _af, a_, ax_ in wave:
+                variant = _swap_variant(resolved, cut_, add_)
+                if a_.resilience is None:
+                    jobs.append((variant, cfg, two_card_combos, combos_checked, True))
+                    tags.append(("res", add_.name, cut_.name))
+                if confirm_seeds > 0 and ax_ != "interaction":
+                    res_ = ax_ == "resilience"
+                    for i in range(confirm_seeds):
+                        c2 = SimConfig(turns=cfg.turns, runs=cfg.runs,
+                                       seed=cfg.seed + CONFIRM_SEED_STEP * (i + 1))
+                        if (c2.seed, ax_) not in confirm_base and ("base", c2.seed, ax_) not in tags:
+                            jobs.append((resolved, c2, two_card_combos, combos_checked, res_))
+                            tags.append(("base", c2.seed, ax_))
+                        jobs.append((variant, c2, two_card_combos, combos_checked, res_))
+                        tags.append(("swap", add_.name, cut_.name, c2.seed, ax_))
+            if not jobs:
+                return
+            out = _run_analyses(jobs, store, workers)
+            for tag, an in zip(tags, out):
+                if tag[0] == "base":
+                    confirm_base[(tag[1], tag[2])] = axis_score(an, tag[2])
+            for tag, an in zip(tags, out):
+                if tag[0] == "res":
+                    prefetched.setdefault((tag[1], tag[2]), {})["a"] = an
+                elif tag[0] == "swap":
+                    d = axis_score(an, tag[4]) - confirm_base[(tag[3], tag[4])]
+                    prefetched.setdefault((tag[1], tag[2]), {}).setdefault("screen", []).append(d)
+            for _n, _d, add_, cut_, _af, _a, _ax in wave:
+                prefetched.setdefault((add_.name, cut_.name), {})
+
+        for idx, (_net_score, _delta, add, cut, after, a, ax) in enumerate(evals):
             if add.name in used_add or cut.name in used_cut:
                 continue
+            if workers > 0 and (add.name, cut.name) not in prefetched:
+                _prefetch(idx)
+            pre = prefetched.get((add.name, cut.name), {})
             if a.resilience is None:
                 # Resilience was not simulated for the sweep (it doubles each run), so a swap
                 # could still be buying the target with it. Check the picks only: one paired
                 # run each, at most `top` survivors plus the few it rejects.
-                a = analyze_deck(
+                a = pre.get("a") or analyze_deck(
                     _swap_variant(resolved, cut, add), cfg, store,
                     two_card_combos=two_card_combos, combos_checked=combos_checked,
                     run_resilience=True,
@@ -1018,8 +1074,8 @@ def advise(
                 search_delta = after - base_scores[ax]
                 kw = dict(two_card_combos=two_card_combos, combos_checked=combos_checked,
                           workers=workers)
-                diffs = _confirm_diffs(resolved, cut, add, ax, cfg, store, 0, confirm_seeds,
-                                       confirm_base, **kw)
+                diffs = pre.get("screen") or _confirm_diffs(
+                    resolved, cut, add, ax, cfg, store, 0, confirm_seeds, confirm_base, **kw)
                 if not _passes(diffs, floors[ax], CONFIRM_SCREEN_Z):
                     continue                # the search-seed gain did not repeat: luck
                 final = max(CONFIRM_FINAL_SEEDS, confirm_seeds)
@@ -1064,16 +1120,13 @@ def advise(
                 break
         # One empty-slot run per DISTINCT cut that made the list (at most `top`), to split
         # each swap into what the add does and what the cut was doing on the target axis.
-        empty_runs: dict[str, DeckAnalysis] = {}
         cut_cards = {c.name: c for c in cuts}
+        needed = list(dict.fromkeys(s.cut for s in suggestions))
+        empty_runs: dict[str, DeckAnalysis] = dict(zip(needed, _run_analyses(
+            [(_swap_variant(resolved, cut_cards[n], EMPTY_SLOT), cfg, two_card_combos,
+              combos_checked, need_res) for n in needed], store, workers)))
+        analyses += len(needed)
         for s in suggestions:
-            if s.cut not in empty_runs:
-                empty_runs[s.cut] = analyze_deck(
-                    _swap_variant(resolved, cut_cards[s.cut], EMPTY_SLOT), cfg, store,
-                    two_card_combos=two_card_combos, combos_checked=combos_checked,
-                    run_resilience=need_res,
-                )
-                analyses += 1
             empty = axis_score(empty_runs[s.cut], s.axis or target)
             s.add_value = s.after - empty
             s.cut_value = s.before - empty
