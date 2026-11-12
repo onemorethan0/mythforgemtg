@@ -27,6 +27,8 @@ import LegalityBlock from './LegalityBlock'
 import DeckPrice from './DeckPrice'
 import SampleHandPanel from './SampleHandPanel'
 import EditDeckPanel from './EditDeckPanel'
+import DeckWorkspace from './DeckWorkspace'
+import Chip from './ui/Chip'
 import ExportMenu from './ExportMenu'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -608,12 +610,12 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
                           letterSpacing: '0.1em', fontWeight: 700, marginBottom: 5 }
   const actGroupRow   = { display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }
 
-  return (
-    <div style={{ width: '100%', maxWidth: 1200, marginTop: 24, paddingBottom: selectedKeys.size > 0 || regenProgress ? 80 : 0 }}>
+  // ── The page's pieces, defined once and composed two ways below ──
+  // Full decks render as a workspace (list left, tool dock right); a single card keeps the
+  // original one-column page, composed from the very same pieces.
+  const workspace = !single
 
-      {/* Commander banner */}
-      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#1c1917', border: '1px solid #292524', borderRadius: 16, padding: 24, marginBottom: 24, alignItems: 'flex-start' }}>
-        {/* Commander image — clickable for selection */}
+  const imageBlock = (
         <div
           style={{ position: 'relative', flexShrink: 0, cursor: 'pointer' }}
           onClick={() => toggleSelect(commander.render_key)}
@@ -670,8 +672,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             {single ? 'click to re-roll art' : 'click to select'}
           </div>
         </div>
+  )
 
-        <div style={{ flex: '1 1 320px', minWidth: 0 }}>
+  const textHead = (
+    <>
           <div style={{ fontSize: 11, color: '#78716c', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: 6 }}>{single ? 'Custom Card' : 'Commander'}</div>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fde047', margin: '0 0 4px', lineHeight: 1.2, overflowWrap: 'anywhere' }}>{commander.themed_name}</h1>
           {commander.themed_name !== commander.original_name && (
@@ -681,10 +685,19 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             <ManaCost cost={commander.mana_cost} size={20} />
           </div>
           <div style={{ fontSize: 13, color: '#a8a29e', marginBottom: 6 }}>{commander.type_line}</div>
+    </>
+  )
+
+  const textStory = (
+    <>
           <div style={{ fontSize: 12, color: '#d6d3d1', lineHeight: 1.6, marginBottom: 16, maxWidth: 440 }}>{commander.oracle_text}</div>
           {commander.flavor_text && (
             <div style={{ fontSize: 12, color: '#78716c', fontStyle: 'italic', marginBottom: 16, maxWidth: 440 }}>{commander.flavor_text}</div>
           )}
+    </>
+  )
+
+  const textChips = (
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {/* An import has no playstyle and bracket 0: `deck.bracket && …` rendered a bare
                 "0" beside an empty pill. Gate both on a real value. */}
@@ -712,7 +725,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               </span>
             )}
           </div>
+  )
 
+  const textNotes = (
+    <>
           {/* Playstyle strategy summary */}
           {deck.playstyle_description && (
             <div style={{ fontSize: 12.5, color: '#a8a29e', lineHeight: 1.55, marginTop: 12, maxWidth: 460 }}>
@@ -734,7 +750,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               {stats.average_cmc != null && ` · avg MV ${stats.average_cmc.toFixed(1)}`}
             </div>
           )}
+    </>
+  )
 
+  const printPanel = (
           <ThreeDPrintPanel
             single={single}
             hasRender={commander.has_render}
@@ -745,11 +764,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             onGenerate={handleGenerate3D}
             onReset={resetGen3d}
           />
-        </div>
+  )
 
-        {/* Stats panel */}
-        {!single && stats && (
-          <div style={{ width: 200, flexShrink: 0 }}>
+  const statsCol = (
+        !single && stats && (
+          <div style={{ width: workspace ? '100%' : 200, flexShrink: 0 }}>
             <div style={{ fontSize: 12, color: '#78716c', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Deck Stats</div>
             <div style={{ fontSize: 13, color: '#a8a29e', marginBottom: 4 }}>Avg CMC: <span style={{ color: '#fde047', fontWeight: 700 }}>{(stats.average_cmc ?? stats.avg_cmc)?.toFixed?.(2) ?? '—'}</span></div>
             <div style={{ height: 1, background: '#292524', margin: '10px 0' }} />
@@ -1027,9 +1046,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
               </>
             )}
           </div>
-        )}
-      </div>
+        )
+  )
 
+  const provenance = (
+    <>
       {/* Where this deck came from. Retheme/rebuild/duplicate each leave the source
           intact and write a NEW deck — this is the only place that says so. */}
       {(deck.rethemed_from || deck.rebuilt_from || deck.copied_from) && (
@@ -1085,39 +1106,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           )}
         </div>
       )}
+    </>
+  )
 
-      {/* Simulation-grounded strength + upgrade advisor (Myth Suite C3/C4) — full decks only */}
-      {!single && (
-        <div style={{ marginBottom: 20 }}>
-          {/* keyed on swap_count so an applied swap resets the cached measurement
-              (the old profile no longer matches the modified list) */}
-          <DeckBreakdownPanel key={`bd-${jobId}-${deck.swap_count || 0}`} jobId={jobId}
-            initial={deck.breakdown?.data} onData={setBreakdown} />
-          <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure}
-            statedBracket={deck.stated_bracket ?? null} />
-          {/* not keyed on swap_count (it keeps its "Applied" badge after a swap), but a new
-              commander makes every suggestion stale */}
-          <AdvisePanel key={`adv-${jobId}-${deck.commander?.original_name || ''}`} jobId={jobId}
-                       onApplied={onDeckChange} />
-          {/* Playtest + manual edit: the two everyday tools of every deck site. */}
-          <SampleHandPanel key={`hand-${jobId}-${deck.swap_count || 0}`} deck={deck} jobId={jobId} />
-          <EditDeckPanel key={`edit-${jobId}`} deck={deck} jobId={jobId} onChanged={onDeckChange} />
-          {/* Ask about ONE named card. Keyed on swap_count like MeasurePanel:
-              an applied swap changes the list, so a cached verdict is stale. */}
-          <CardImpactPanel key={`imp-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
-          {/* Keyed on swap_count too, like the panels above: a duel result or mentor
-              conversation grounded in the pre-swap decklist must not linger on screen
-              looking current after the user applies a swap. */}
-          <DuelPanel key={`duel-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
-          <PodCheckPanel key={`pod-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
-          <MatchupsPanel key={`mu-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
-          <ScoutingReportPanel key={`scout-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
-          <MentorChatPanel key={`mentor-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
-        </div>
-      )}
-
-      {/* Toolbar */}
-      <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
+  const toolbarFilters = (
+    <>
         {/* Organize by + group filter tabs */}
         {!single && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, flex: 1, minWidth: 260 }}>
@@ -1204,12 +1197,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             </button>
           ))}
         </div>}
+    </>
+  )
 
-        {/* Actions, grouped by INTENT. Previously one flat row of ten buttons mixed
-            downloads, a view toggle and three different regeneration actions whose
-            names didn't say what they did ("Rebuild All" only re-rolled art while
-            "Retheme" regenerated everything). Each group is labelled, and every
-            regenerate button now states its scope. */}
+  // Actions, grouped by INTENT (Download / Regenerate / Deck): see the original comment history.
+  const actionsBlock = (
         <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', alignItems: 'flex-start' }}>
 
           {/* — Download — */}
@@ -1329,6 +1321,10 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             </div>
           </div>
         </div>
+  )
+
+  const dupBanners = (
+    <>
         {/* Duplicate feedback banner */}
         {dupMsg && dupMsg !== 'error' && (
           <div style={{ marginTop: 8, padding: '8px 14px', background: '#0c1a2e', border: '1px solid #1e40af', borderRadius: 8, fontSize: 12, color: '#7dd3fc', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -1341,8 +1337,11 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
             ⚠ Duplicate failed. Check that the deck has finished building.
           </div>
         )}
-      </div>
+    </>
+  )
 
+  const listArea = (
+    <>
       {/* Selection hint */}
       {/* Discoverability: per-card regen/animate is only reachable by clicking a card,
           and this hint used to be #44403c (near-invisible on the dark background) and
@@ -1446,6 +1445,121 @@ export default function StepDeck({ deck, jobId, onReset, onRebuild, onRetheme, o
           })}
         </div>
       )}
+    </>
+  )
+
+  const legacyBanner = (
+    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#1c1917', border: '1px solid #292524', borderRadius: 16, padding: 24, marginBottom: 24, alignItems: 'flex-start' }}>
+      {imageBlock}
+      <div style={{ flex: '1 1 320px', minWidth: 0 }}>
+        {textHead}{textStory}{textChips}{textNotes}{printPanel}
+      </div>
+      {statsCol}
+    </div>
+  )
+
+  // ── workspace (full decks) ──
+  const legalityList = stats?.legality?.issues
+  const hasLegality = Array.isArray(legalityList) && deck.is_commander_deck !== false && !deck.import_auto_face
+  const thumbTs = refreshTs[commander.render_key]
+  const thumbSrc = (commander.has_render || thumbTs)
+    ? `/api/deck/${jobId}/card-image/${commander.render_key}${thumbTs ? `?t=${thumbTs}` : ''}`
+    : commander.scryfall_img || null
+  const workspaceHeader = (
+    <div className="ws-head">
+      <div className="ws-head__thumb" onClick={() => toggleSelect(commander.render_key)}
+           title="Click to select the commander for regen"
+           style={{ outline: selectedKeys.has(commander.render_key) ? '3px solid #eab308' : 'none' }}>
+        {thumbSrc ? <img src={thumbSrc} alt={commander.themed_name} /> : null}
+      </div>
+      <div className="ws-head__id">
+        <div className="ws-head__label">Commander</div>
+        <h1 className="ws-head__name">{commander.themed_name}</h1>
+        <div className="ws-head__sub"><ManaCost cost={commander.mana_cost} size={16} /><span>{commander.type_line}</span></div>
+      </div>
+      <div className="ws-head__chips">{textChips}</div>
+      <div className="ws-head__end">
+        {hasLegality && (
+          <Chip tone={legalityList.length ? 'warn' : 'ok'}>
+            {legalityList.length ? `${legalityList.length} legality issue${legalityList.length === 1 ? '' : 's'}` : 'Legal'}
+          </Chip>
+        )}
+        <ExportMenu jobId={jobId} />
+      </div>
+    </div>
+  )
+
+  const dockTabs = [
+    { key: 'edit', label: 'Edit', content: (
+      <EditDeckPanel key={`edit-${jobId}`} deck={deck} jobId={jobId} onChanged={onDeckChange} />
+    ) },
+    { key: 'analyze', label: 'Analyze', content: (
+      <>
+        {textStory}
+        {textNotes}
+        {statsCol}
+        {/* keyed on swap_count so an applied swap resets the cached measurement
+            (the old profile no longer matches the modified list) */}
+        <DeckBreakdownPanel key={`bd-${jobId}-${deck.swap_count || 0}`} jobId={jobId}
+          initial={deck.breakdown?.data} onData={setBreakdown} />
+        <MeasurePanel key={`${jobId}-${deck.swap_count || 0}`} jobId={jobId} cached={deck.last_measure}
+          statedBracket={deck.stated_bracket ?? null} />
+        <SampleHandPanel key={`hand-${jobId}-${deck.swap_count || 0}`} deck={deck} jobId={jobId} />
+        {provenance}
+      </>
+    ) },
+    { key: 'upgrade', label: 'Upgrade', content: (
+      <>
+        {/* not keyed on swap_count (it keeps its "Applied" badge after a swap), but a new
+            commander makes every suggestion stale */}
+        <AdvisePanel key={`adv-${jobId}-${deck.commander?.original_name || ''}`} jobId={jobId}
+                     onApplied={onDeckChange} />
+        {/* Keyed on swap_count like MeasurePanel: an applied swap changes the list, so a cached
+            verdict, duel result or scouting report grounded in the old list would look current. */}
+        <CardImpactPanel key={`imp-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+        <DuelPanel key={`duel-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+        <PodCheckPanel key={`pod-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+        <MatchupsPanel key={`mu-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+        <ScoutingReportPanel key={`scout-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+      </>
+    ) },
+    { key: 'mentor', label: 'Mentor', content: (
+      <MentorChatPanel key={`mentor-${jobId}-${deck.swap_count || 0}`} jobId={jobId} />
+    ) },
+    { key: 'make', label: 'Make', content: (
+      <>
+        {actionsBlock}
+        {printPanel}
+        {dupBanners}
+      </>
+    ) },
+  ]
+
+
+  return (
+    <div style={{ width: '100%', maxWidth: workspace ? 1500 : 1200, marginTop: workspace ? 12 : 24, paddingBottom: workspace ? 0 : (selectedKeys.size > 0 || regenProgress ? 80 : 0) }}>
+
+      {workspace ? (
+        <DeckWorkspace
+          header={workspaceHeader}
+          toolbar={<div style={{ display: 'flex', gap: 12, marginBottom: 12, flexWrap: 'wrap', alignItems: 'center' }}>{toolbarFilters}</div>}
+          tabs={dockTabs}
+          padBottom={selectedKeys.size > 0 || !!regenProgress}>
+          {listArea}
+        </DeckWorkspace>
+      ) : (
+        <>
+          {legacyBanner}
+          {provenance}
+          <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap', alignItems: 'center' }}>
+            {toolbarFilters}
+            {actionsBlock}
+            {dupBanners}
+          </div>
+          {listArea}
+        </>
+      )}
+
 
       {/* ── Fixed bottom bar: selection actions ── */}
       {selectedKeys.size > 0 && !regenProgress && (

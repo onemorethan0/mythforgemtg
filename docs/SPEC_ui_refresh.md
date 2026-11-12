@@ -139,7 +139,7 @@ for "it runs forever": the wait is visible and bounded from anywhere in the work
 | Phase | Work | Visible result |
 |---|---|---|
 | 0 | **DONE 2026-11-12.** Tokens, shared components, hash routing. Existing screens keep their look. | None, except Back button and deep links |
-| 1 | Workspace shell: sticky strip, dock with four tabs, existing panels moved in unchanged | Cards appear on the first screen; no more five-screen scroll |
+| 1 | **DONE 2026-11-12.** Workspace shell: header strip, dock with tabs, existing panels moved in unchanged | Cards appear on the first screen; no more five-screen scroll |
 | 2 | Add-a-card bar, hover remove, swap-in-place, undo; Edit deck panel retired | Add and remove with no scrolling, with the count in view |
 | 3 | Legality chip and popover; stats sidebar becomes the strip; panel summaries; job tray | Walls of text gone; waits visible |
 | 4 | Home "continue", History search / sort | Smaller wins |
@@ -192,3 +192,29 @@ Measured on the same Locutus deck at 1024x768 with the browser pane, before and 
 ## 10. Out of scope
 The collection manager, the build wizard's internals, card-render art and any GPU work, a mobile app,
 and anything that changes what the engine or Mentor calculate.
+
+
+## 11. Phase 1 as built (2026-11-12)
+
+Measured on the same Locutus of Borg deck at 1024x768, before and after:
+
+| | Before | After |
+|---|---|---|
+| Height of the deck page | 9,896 px (12.9 screens) | 768 px (the page does not scroll) |
+| First card | 4,544 px down (5.9 screens) | 537 px: on the first screen |
+| Edit deck (add / remove / swap) | 5.1 screens down | one click away, beside the list; 0 scrolls to remove a card and see the count change |
+| Controls on screen at once | 78 | 33 |
+| Horizontal scroll | n/a | none in any tab |
+
+What it is: `DeckWorkspace.jsx` (list left, dock right, each scrolling inside its own area), a compact
+header strip (commander thumbnail, name, type, chips, a legality chip, the Export menu) and five tabs.
+Every tab stays mounted, so a Mentor conversation or a measurement survives switching tabs. The last tab used is
+remembered. A single card keeps the original one-column page, composed from the same pieces.
+
+Deviations from section 5.2, on purpose:
+- **An "Edit" tab** (the Edit deck panel, first and the default) was added so editing is beside the list
+  already in phase 1. Phase 2 replaces it with the pinned add-a-card bar; the tab then goes.
+- The dock is 340 px at 1200 px and below, 400 px above, and stacks under the list only below 900 px
+  (the spec's 1100 px would have hidden it at the 1024 px reference size).
+- The Analyze tab is still long (about 4,800 px of panels, scrolling inside the dock). Collapsing it to
+  one-line summaries is phase 3.

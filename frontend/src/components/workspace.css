@@ -1,0 +1,56 @@
+/* Deck workspace (phase 1 of docs/SPEC_ui_refresh.md): the list on the left, a tool dock on the
+   right, each scrolling inside its own area so the page itself does not scroll. */
+.ws {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: var(--space-4);
+  width: 100%;
+  height: calc(100vh - 150px);
+  min-height: 560px;
+}
+.ws__main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.ws__fixed { flex: none; }
+.ws__list { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: var(--space-2); }
+
+.ws__dock {
+  min-height: 0;
+  overflow-y: auto;
+  background: var(--surface-1);
+  border: 1px solid var(--surface-2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-3) var(--space-4);
+}
+.ws__dock .ui-tabs { position: sticky; top: 0; z-index: 5; background: var(--surface-1); margin-bottom: var(--space-3); }
+.ws__dock { overflow-x: hidden; }
+.ws__dock .ui-tabs { gap: 0; }
+.ws__dock .ui-tab { padding: var(--space-2) 9px; font-size: var(--text-sm); }
+.ws__pane { min-width: 0; }
+.ws__pane[hidden] { display: none; }
+.ws__pane > * + * { margin-top: var(--space-3); }
+
+/* the always-visible strip above the list */
+.ws-head {
+  display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;
+  background: var(--surface-1); border: 1px solid var(--surface-2); border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-3); margin-bottom: var(--space-3);
+}
+.ws-head__thumb { width: 52px; flex: none; cursor: pointer; border-radius: 6px; overflow: hidden; line-height: 0; }
+.ws-head__thumb img { width: 100%; display: block; }
+.ws-head__id { min-width: 0; flex: 1 1 220px; }
+.ws-head__label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); }
+.ws-head__name { margin: 0; font-size: 18px; line-height: 1.2; color: #fde047; overflow-wrap: anywhere; }
+.ws-head__sub { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-muted); flex-wrap: wrap; }
+.ws-head__chips { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.ws-head__end { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; }
+
+/* the dock narrows on a ~1024px window so the list keeps its room */
+@media (max-width: 1200px) {
+  .ws { grid-template-columns: minmax(0, 1fr) 340px; }
+}
+
+/* below ~900px the dock stacks under the list; phase 5 turns it into a bottom sheet */
+@media (max-width: 900px) {
+  .ws { display: block; height: auto; min-height: 0; }
+  .ws__list { overflow: visible; }
+  .ws__dock { margin-top: var(--space-4); }
+}
