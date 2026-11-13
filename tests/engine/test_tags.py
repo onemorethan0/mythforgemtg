@@ -600,3 +600,25 @@ def test_punisher_and_pile_edicts(make_card):
              "That player sacrifices all permanents in the pile of their choice.",
              "Legendary Planeswalker — Liliana")
     assert fx.removal and not fx.board_wipe
+
+
+def test_a_mana_doubler_is_ramp(make_card):
+    """Forsaken Monument adds mana with no 'Add ...' ability of its own; it read as zero ramp
+    (found against the owner's Archidekt tags, 2026-11-12). Credited as one source: an under-count."""
+    monument = make_card(
+        "Forsaken Monument", mana_cost="{5}", type_line="Artifact",
+        oracle_text="Colorless creatures you control get +2/+2.\n"
+                    "Whenever you tap a permanent for {C}, add an additional {C}.\n"
+                    "Whenever you cast a colorless spell, you gain 2 life.")
+    assert tags.analyze(monument).ramp_sources == 1
+
+
+def test_other_text_about_tapping_or_adding_is_not_a_doubler(make_card):
+    for name, text in (
+        ("Mana Echoes-like", "Whenever a creature enters, you may draw a card."),
+        ("Tap Payoff", "Whenever you tap an artifact for mana, you gain 1 life."),
+        ("Extra Land", "You may play an additional land on each of your turns."),
+        ("Surge", "Whenever you tap a creature, add {G} for each opponent."),
+    ):
+        card = make_card(name, mana_cost="{3}", type_line="Artifact", oracle_text=text)
+        assert tags.analyze(card).ramp_sources == 0, name

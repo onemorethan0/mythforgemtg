@@ -304,11 +304,15 @@ def _stored_for_legality(d: dict) -> dict:
 
 
 def _with_bulk_legality(cards: list[dict]) -> list[dict]:
-    """Fill a missing ban status from the LOCAL Scryfall bulk store (offline, one indexed
+    """Set each card's ban status from the LOCAL Scryfall bulk store (offline, one indexed
     query). Decks saved before `commander_legality` was stored otherwise report every card as
-    `unverified`, and a fix-it could not see their banned cards. Never overwrites a stored
-    value; a card the store doesn't know stays unverified."""
-    need = [c for c in cards if not c.get("commander_legality") and c.get("name")]
+    `unverified`, and a fix-it could not see their banned cards.
+
+    The CURRENT store wins over what was saved at build time: a status is a fact about today's
+    ban list and set releases, and a saved one only ever gets older (a deck imported the week
+    before the Star Trek Commander set released kept calling its legal cards `not_legal` forever).
+    A card the store doesn't know keeps its saved status, or stays unverified."""
+    need = [c for c in cards if c.get("name")]
     if not need:
         return cards
     try:
@@ -329,7 +333,9 @@ def _backfill_legality(data: dict) -> None:
     `_backfill_quality`: in memory only, never written back. Ban status is not stored on
     those decks, so it reports as `unverified` rather than legal."""
     stats = data.get("stats")
-    if not isinstance(stats, dict) or "legality" in stats or not data.get("deck"):
+    # Recomputed on EVERY load, not only when missing: it is pure and costs one indexed lookup, and
+    # a stored report goes stale the day the ban list or a set's legality changes.
+    if not isinstance(stats, dict) or not data.get("deck"):
         return
     try:
         import deck_legality

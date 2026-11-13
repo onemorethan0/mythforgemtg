@@ -303,3 +303,48 @@ def test_key_cards_name_what_the_commander_rewards(make_card):
 def test_no_synergy_group_without_a_commander_rule(make_card):
     ins = build_insight(_resolved([(_creature(make_card, "Bear", 2), 1)]), _analysis())
     assert all(k.role != "Commander synergy" for k in ins.key_cards)
+
+
+# --- the Borg-deck comparison with Archidekt (2026-11-12) -----------------------------------
+
+
+def test_the_gameplan_counts_ramp_the_way_the_role_table_does(make_card, forest):
+    """A cost reducer is ramp as a player counts it (the Breakdown's ramp role) but the old
+    sentence count skipped it, so the page said 10 ramp in one place and 14 in another."""
+    reducer = make_card("Cost Cutter", mana_cost="{3}", type_line="Artifact",
+                        oracle_text="Artifact spells you cast cost {1} less to cast.")
+    deck = [(forest, 30), (_creature(make_card, "Body"), 20),
+            (_rock(make_card, "Rock A"), 1), (_rock(make_card, "Rock B"), 1), (reducer, 1)]
+    ins = build_insight(_resolved(deck), _analysis())
+    assert "3 ramp" in ins.gameplan
+
+
+def _artifact_creature(make_card, name):
+    c = make_card(name, mana_cost="{2}", type_line="Artifact Creature - Borg")
+    c.power, c.toughness = "2", "2"
+    return c
+
+
+def test_wipes_that_spare_the_decks_own_creatures_do_not_make_it_a_control_deck(make_card):
+    spare_type = make_card("Kindred Judgment", mana_cost="{5}{W}{W}", type_line="Sorcery",
+                           oracle_text="Choose a creature type. Destroy all creatures that aren't of the chosen type.")
+    spare_art = make_card("Battle of Wolf 359", mana_cost="{3}{B}{B}", type_line="Sorcery",
+                          oracle_text="All nonartifact creatures get -X/-X until end of turn, "
+                                      "where X is the number of artifact creatures you control.")
+    deck = [(_island(make_card), 30)]
+    deck += [(_artifact_creature(make_card, f"Drone {i}"), 1) for i in range(8)]
+    deck += [(_counter(make_card, f"Deny{i}"), 1) for i in range(4)]
+    deck += [(spare_type, 1), (spare_art, 1), (_wipe(make_card, "Sweep"), 1)]
+    ins = build_insight(_resolved(deck), _analysis())
+    assert ins.archetype != "Control"          # 4 counters + 3 wipes was 7; 2 of those wipes spare the Borg
+
+
+def test_the_same_wipes_still_make_control_in_a_deck_not_built_on_what_they_spare(make_card):
+    spare_art = make_card("Battle of Wolf 359", mana_cost="{3}{B}{B}", type_line="Sorcery",
+                          oracle_text="All nonartifact creatures get -X/-X until end of turn, "
+                                      "where X is the number of artifact creatures you control.")
+    deck = [(_island(make_card), 30)]
+    deck += [(_counter(make_card, f"Deny{i}"), 1) for i in range(4)]
+    deck += [(spare_art, 1), (_wipe(make_card, "Sweep A"), 1), (_wipe(make_card, "Sweep B"), 1)]
+    ins = build_insight(_resolved(deck), _analysis())
+    assert ins.archetype == "Control"          # no artifact creatures: nothing here is spared

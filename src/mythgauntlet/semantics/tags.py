@@ -647,6 +647,16 @@ def _activation_mana_cost(text: str) -> int:
     return total
 
 
+# A mana DOUBLER: "Whenever you tap a permanent for {C}, add an additional {C}" (Forsaken Monument).
+# It adds mana without an "Add ..." ability of its own, so the add-clause readers saw nothing and a
+# 5-mana doubler read as zero ramp (found comparing a Borg deck with the owner's Archidekt tags,
+# 2026-11-12). Credited as ONE source: the real gain is one per tap of the named kind, which a flat
+# per-turn figure can only approximate; the honest under-count, not a guess at the deck's own taps.
+_MANA_DOUBLER_RE = re.compile(
+    r"\bwhenever you tap [^.,]{0,60}\bfor (?:mana|\{[wubrgc]\}), add (?:an |one )?additional \{[wubrgc]\}"
+)
+
+
 def _ramp_from_add_clause(text: str) -> int:
     """NET mana added per activation of an 'Add ...' ability (rocks/dorks), crudely.
 
@@ -1304,6 +1314,8 @@ def _analyze_uncached(card: Card) -> EffectVector:
         )
         if not one_shot:
             ramp_sources = _ramp_from_add_clause(text)
+            if ramp_sources == 0 and _MANA_DOUBLER_RE.search(text):
+                ramp_sources = 1
         # The LAND has to reach the battlefield, so "battlefield" is read in the search's own
         # sentence. Anywhere in the text let Archaeomancer's Map (search to HAND; a separate
         # ability says "onto the battlefield") read as land-fetch ramp.

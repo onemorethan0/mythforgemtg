@@ -629,6 +629,13 @@ def plan_protected(resolved: ResolvedDeck) -> dict[str, str]:
     return out
 
 
+def selective_wipes(resolved: ResolvedDeck) -> frozenset[str]:
+    """Names of the deck's wipes that spare what the deck is built from (see `plan_protected`):
+    a plan card, not a sign the deck wants to sweep the board."""
+    return frozenset(n for n, why in plan_protected(resolved).items()
+                     if why.startswith("a wipe that spares"))
+
+
 def rank_redundant(
     resolved: ResolvedDeck,
     k: int,

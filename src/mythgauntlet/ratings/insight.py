@@ -13,6 +13,7 @@ from dataclasses import dataclass, field
 
 from mythgauntlet.model.card import Card
 from mythgauntlet.model.deck import ResolvedDeck
+from mythgauntlet.ratings import redundancy
 from mythgauntlet.semantics import tags
 from mythgauntlet.sim import combat_rules
 from mythgauntlet.semantics.model import EffectVector
@@ -104,6 +105,15 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
     wipes = count(lambda fx, c: fx.board_wipe)
     counters = count(lambda fx, c: fx.counterspell)
     ramp = count(lambda fx, c: fx.ramp_sources > 0 or fx.fetches_land)
+    # What the page SHOWS as the ramp count is the Breakdown's own: the ramp ROLE, which a player
+    # counts to include cost reducers and Treasure engines (a Borg deck read "10 ramp" in this
+    # sentence and 14 in the role table). `ramp` above keeps deciding the archetype, so no deck
+    # changes class because of the wording.
+    ramp_shown = redundancy.role_card_counts(resolved, getattr(a, "lens", None)).get("ramp", ramp)
+    # A wipe that spares the deck's own creatures (Kindred Judgment in a deck of Borg) is a plan
+    # card, not evidence the deck wants to control the board.
+    spared = redundancy.selective_wipes(resolved)
+    control_wipes = wipes - count(lambda fx, c: fx.board_wipe and c.name in spared)
     tutors = count(lambda fx, c: fx.tutor)
 
     has_combo = bool(getattr(a.ceiling, "has_game_ending_combo", False)) or bool(
@@ -119,7 +129,7 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
         archetype = "Spellslinger / storm"
     elif gowide:
         archetype = "Go-wide / tokens"
-    elif (counters + wipes) >= 6 and creatures <= 22:
+    elif (counters + control_wipes) >= 6 and creatures <= 22:
         archetype = "Control"
     elif creatures >= 30:
         archetype = "Creature aggro"
@@ -144,7 +154,7 @@ def build_insight(resolved: ResolvedDeck, a) -> DeckInsight:
     else:
         wins = f"grinds value into a midrange finish (goldfish kill ~{_turn(kill)})"
     gameplan = (
-        f"{cmd}: {archetype.lower()} deck with {creatures} creatures, {ramp} ramp, "
+        f"{cmd}: {archetype.lower()} deck with {creatures} creatures, {ramp_shown} ramp, "
         f"{removal + wipes + counters} interaction pieces. It {wins}."
     )
 

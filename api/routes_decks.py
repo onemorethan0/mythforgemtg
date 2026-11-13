@@ -103,10 +103,34 @@ def import_preview(req: ImportPreviewRequest):
     }
 
 
+def _with_current_legality(cards: list[dict]) -> list[dict]:
+    """Copies of resolved import cards whose Commander status is the CURRENT one from the local
+    card store. An import is cached on disk with the card data it resolved to, and a status in it
+    only gets older: a cached preview of the Star Trek Commander deck kept calling every one of
+    its (by then legal) cards `not_legal`. A card the store doesn't know keeps what it carried."""
+    named = [c for c in cards if c and c.get("name")]
+    try:
+        import scryfall_bulk
+        found = scryfall_bulk.lookup_many([c["name"] for c in named])
+    except Exception:      # noqa: BLE001 - best effort: the carried status is the fallback
+        return cards
+    out = []
+    for c in cards:
+        hit = found.get(((c or {}).get("name") or "").lower()) if c else None
+        status = ((hit or {}).get("legalities") or {}).get("commander")
+        if status:
+            c = {**c, "legalities": {**(c.get("legalities") or {}), "commander": status}}
+        out.append(c)
+    return out
+
+
 def _import_legality(imp) -> dict:
     try:
         import deck_legality
-        return deck_legality.check(imp.commander, imp.deck, imp.partners)
+        deck = _with_current_legality(list(imp.deck))
+        commander = _with_current_legality([imp.commander])[0] if imp.commander else imp.commander
+        partners = _with_current_legality(list(imp.partners or []))
+        return deck_legality.check(commander, deck, partners)
     except Exception as e:      # noqa: BLE001 - a report must never fail the preview
         logger.warning("legality check failed: %s", e)
         return {}

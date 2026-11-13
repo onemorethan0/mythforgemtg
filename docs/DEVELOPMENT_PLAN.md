@@ -245,3 +245,4 @@ Newest first. One line per change, with the commit.
   they also move with the classifier fix): ramp 17.35 -> 17.85, finisher 3.25 -> 4.25, others flat.
   Ramp still counts ~18 against a plan of 10: the B25 target. Promoted to `docs/bench/current.json`.
 - 2026-11-07: plan written.
+- 2026-11-12: **Archidekt comparison (Borg deck).** MythForge matched Archidekt on bracket facts (0 Game Changers, Bracket 2), lands, avg MV, curve. Fixed: (1) a legal deck read "illegal" because the Scryfall copy predated the Star Trek Commander release -- the store now refreshes daily within 7 days of a release, saved decks and cached import previews re-derive legality from the current store; (2) Forsaken Monument (mana doubler) is ramp; (3) gameplan ramp count equals the role table (10 -> 15); (4) wipes that spare the deck's own creatures no longer make it a Control archetype. Open: "finisher" role is broad (7 vs the owner's 1); price basis differs (cheapest nonfoil vs TCG market).

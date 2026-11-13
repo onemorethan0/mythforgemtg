@@ -33,6 +33,7 @@ import zlib
 from pathlib import Path
 from typing import Iterable, Iterator, Optional
 
+import datetime
 import requests
 
 from app_paths import app_path
@@ -40,6 +41,12 @@ from app_paths import app_path
 BULK_INDEX_URL = "https://api.scryfall.com/bulk-data"
 HEADERS = {"User-Agent": "MythForge/1.0 (personal project)", "Accept": "application/json"}
 MAX_AGE_DAYS = 7.0
+# A set that is about to release (or just did) flips its cards from `not_legal` to `legal` in
+# Scryfall's data days before the release date, so a week-old copy calls a legal deck illegal
+# (2026-11-12: the Star Trek Commander cards, released_at 2026-11-13, were `not_legal` in a copy
+# fetched on 11-07). Within this many days of the next release in the store, it is refreshed daily.
+NEAR_RELEASE_DAYS = 7
+NEAR_RELEASE_MAX_AGE_DAYS = 1.0
 SKIP_LAYOUTS = frozenset({"token", "double_faced_token", "emblem", "art_series", "vanguard",
                           "scheme", "planar", "reversible_card"})
 DROP_FIELDS = frozenset({"all_parts", "purchase_uris", "related_uris", "multiverse_ids",
@@ -121,9 +128,14 @@ def _build_db(records: Iterable[dict], out: Path) -> int:
     conn.execute("CREATE TABLE meta (k TEXT PRIMARY KEY, v TEXT)")
     count = 0
     faces: dict[str, tuple[tuple, bytes]] = {}
+    today = time.strftime("%Y-%m-%d")
+    next_release = None          # the earliest release date still in the future when this was built
     for record in records:
         if not record.get("name") or record.get("layout") in SKIP_LAYOUTS:
             continue
+        rel = str(record.get("released_at") or "")
+        if rel > today and (next_release is None or rel < next_release):
+            next_release = rel
         stripped = {k: v for k, v in record.items() if k not in DROP_FIELDS}
         blob = _encode(stripped)
         full, *face_keys = _keys(stripped)
@@ -138,9 +150,35 @@ def _build_db(records: Iterable[dict], out: Path) -> int:
         conn.execute("INSERT OR IGNORE INTO cards VALUES (?, ?)", (key, blob))
     conn.execute("INSERT INTO meta (k, v) VALUES (?, ?)", ("fetched_at", str(time.time())))
     conn.execute("INSERT INTO meta (k, v) VALUES (?, ?)", ("count", str(count)))
+    conn.execute("INSERT INTO meta (k, v) VALUES (?, ?)", ("next_release", next_release or ""))
     conn.commit()
     conn.close()
     return count
+
+
+def next_release() -> Optional[datetime.date]:
+    """The earliest release date that was still in the future when the store was built, or None."""
+    path = db_path()
+    if not path.exists():
+        return None
+    try:
+        conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+        try:
+            row = conn.execute("SELECT v FROM meta WHERE k = 'next_release'").fetchone()
+        finally:
+            conn.close()
+        return datetime.date.fromisoformat(row[0]) if row and row[0] else None
+    except (sqlite3.Error, ValueError):
+        return None
+
+
+def effective_max_age(today: Optional[datetime.date] = None) -> float:
+    """How old the store may be before it is refreshed: daily while a set release is near (or has
+    passed since the store was built), else MAX_AGE_DAYS."""
+    nr = next_release()
+    if nr is not None and (nr - (today or datetime.date.today())).days <= NEAR_RELEASE_DAYS:
+        return NEAR_RELEASE_MAX_AGE_DAYS
+    return MAX_AGE_DAYS
 
 
 def refresh(force: bool = False, max_age_days: Optional[float] = MAX_AGE_DAYS) -> Optional[Path]:
@@ -148,6 +186,8 @@ def refresh(force: bool = False, max_age_days: Optional[float] = MAX_AGE_DAYS) -
     (None = accept any existing store), or `force`. Raises on failure; never replaces a good
     store with an empty one."""
     path = db_path()
+    if max_age_days == MAX_AGE_DAYS:         # the default: tighten it when a release is near
+        max_age_days = effective_max_age()
     if not force and path.exists():
         age = age_days()
         if max_age_days is None or (age is not None and age <= max_age_days):
