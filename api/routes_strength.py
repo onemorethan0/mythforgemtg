@@ -203,7 +203,7 @@ def _deck_archetypes(job: dict) -> list[str]:
         return []
 
 
-def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
+def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None, run_id=None):
     """Owned-card upgrade suggestions from MythGauntlet's ablation advisor.
 
     Returns the advise JSON, {"error": detail} for a meaningful 400 (no collection
@@ -233,6 +233,8 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
             "max_eval": 16,
             "cut_pool": 6,
         }
+        if run_id:
+            payload["run_id"] = run_id          # lets POST /advise/cancel stop this search
         if themes:
             payload["themes"] = list(themes)
         if axis:
@@ -252,6 +254,8 @@ def _gauntlet_advise(commander, deck, axis=None, themes=None, partners=None):
                 return {"error": resp.json().get("detail", "advise failed")}
             except Exception:
                 return {"error": "advise failed"}
+        if resp.status_code == 499:
+            return {"cancelled": True}
         if resp.status_code != 200:
             return None
         return resp.json()
@@ -700,7 +704,11 @@ def _run_advise_job(advise_job_id: str, commander, deck, axis, themes, partners,
     job = _jobs[advise_job_id]
     mtime = _suite_collection_mtime()
     try:
-        result = _gauntlet_advise(commander, deck, axis=axis, themes=themes, partners=partners)
+        result = _gauntlet_advise(commander, deck, axis=axis, themes=themes, partners=partners,
+                                  run_id=advise_job_id)
+        if job.get("status") == "cancelled" or (result or {}).get("cancelled"):
+            job.update(status="cancelled")
+            return
         if result is not None and "error" not in result and narrate:
             result = _narrate_suggestions(result, deck_job)
         if result is None:
@@ -777,7 +785,26 @@ async def advise_status(advise_job_id: str):
         return {"status": "done", "result": j.get("result")}
     if j.get("status") == "error":
         return {"status": "error", "detail": j.get("error")}
+    if j.get("status") == "cancelled":
+        return {"status": "cancelled"}
     return {"status": "running"}
+
+
+@router.post("/api/deck/advise/{advise_job_id}/cancel")
+async def advise_cancel(advise_job_id: str):
+    """Stop a running upgrade search. The job reads `cancelled` at once; the engine drops its
+    queued work (analyses already running in workers finish, 10-19 s, and are discarded)."""
+    j = _jobs.get(advise_job_id)
+    if not j or j.get("kind") != "advise":
+        raise HTTPException(404, "Advise job not found")
+    if j.get("status") != "running":
+        return {"status": j.get("status")}
+    j["status"] = "cancelled"
+    try:
+        requests.post(f"{MYTHGAUNTLET_URL}/advise/cancel", params={"run_id": advise_job_id}, timeout=5)
+    except Exception as e:                     # engine down: the job is cancelled on our side anyway
+        print(f"  [advise] engine cancel not delivered: {e}")
+    return {"status": "cancelled"}
 
 
 @router.post("/api/deck/{job_id}/measure")

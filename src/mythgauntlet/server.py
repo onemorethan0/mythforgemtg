@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import dataclasses
 import re
+import threading
 
 import requests
 from fastapi import FastAPI, HTTPException
@@ -150,6 +151,10 @@ class AdviseRequest(BaseModel):
             "pairings, so its own number overstates (ratings/advisor._confirm_swap). A swap whose "
             "gain does not repeat is dropped. 0 = report the search-seed gain as before."
         ),
+    )
+    run_id: str | None = Field(
+        default=None, max_length=64,
+        description="names this search so POST /advise/cancel can stop it",
     )
     baseline_seeds: int = Field(
         default=3, ge=0, le=8,
@@ -803,6 +808,18 @@ def create_app(
             ],
         }
 
+    advise_cancels: dict[str, threading.Event] = {}
+
+    @app.post("/advise/cancel")
+    def cancel_advise(run_id: str) -> dict:
+        """Stop the running /advise search named `run_id`. Queued analyses are dropped at once;
+        ones already running in a worker process finish (10-19 s) and are discarded."""
+        ev = advise_cancels.get(run_id)
+        if ev is None:
+            return {"cancelled": False}
+        ev.set()
+        return {"cancelled": True}
+
     @app.post("/advise")
     def run_advise(req: AdviseRequest) -> dict:
         """Owned-card swaps that measurably improve an axis (upgrade advisor, ablation).
@@ -846,15 +863,25 @@ def create_app(
         candidates = advisor.owned_candidates(db, resolved, col)
 
         cfg = SimConfig(turns=req.turns, runs=req.runs, seed=req.seed)
-        report = advisor.advise(
-            resolved, cfg, store, candidates,
-            axis=req.axis, top=req.top, max_eval=req.max_eval, cut_pool=req.cut_pool,
-            min_delta=req.min_delta, themes=req.themes, lift=req.lift or None,
-            fallback_axes=req.fallback_axes,
-            ablate_cuts=req.ablate_cuts, confirm_seeds=req.confirm_seeds,
-            baseline_seeds=req.baseline_seeds,
-            workers=_advise_workers() if default_store else 0,
-        )
+        cancel = threading.Event()
+        if req.run_id:
+            advise_cancels[req.run_id] = cancel
+        try:
+            report = advisor.advise(
+                resolved, cfg, store, candidates,
+                axis=req.axis, top=req.top, max_eval=req.max_eval, cut_pool=req.cut_pool,
+                min_delta=req.min_delta, themes=req.themes, lift=req.lift or None,
+                fallback_axes=req.fallback_axes,
+                ablate_cuts=req.ablate_cuts, confirm_seeds=req.confirm_seeds,
+                baseline_seeds=req.baseline_seeds,
+                workers=_advise_workers() if default_store else 0,
+                cancel=cancel,
+            )
+        except advisor.AdviseCancelled:
+            raise HTTPException(status_code=499, detail="cancelled")
+        finally:
+            if req.run_id:
+                advise_cancels.pop(req.run_id, None)
         return {
             "engine_version": __version__,
             "axis": report.axis,

@@ -24,6 +24,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
   // take several MINUTES, not seconds — see the elapsed-time readout below), long
   // enough to outlive the panel if the user navigates away mid-run.
   const cancelledRef = useRef(false)
+  const searchRef = useRef({ id: null, stopped: false })   // the running search, for Cancel
   useEffect(() => () => { cancelledRef.current = true }, [])
 
   async function applySwap(s) {
@@ -67,6 +68,7 @@ export default function AdvisePanel({ jobId, onApplied }) {
   async function runInner() {
     setPhase('loading')
     setElapsedS(0)
+    searchRef.current = { id: null, stopped: false }
     const startedAt = Date.now()
     try {
       const response = await fetch(`/api/deck/${jobId}/advise`, {
@@ -83,8 +85,9 @@ export default function AdvisePanel({ jobId, onApplied }) {
         return
       }
       const { job_id: adviseJobId } = await response.json()
+      searchRef.current.id = adviseJobId
       while (true) {
-        if (cancelledRef.current) return
+        if (cancelledRef.current || searchRef.current.stopped) return
         setElapsedS(Math.round((Date.now() - startedAt) / 1000))
         await new Promise(r => setTimeout(r, 3000))
         if (cancelledRef.current) return
@@ -102,6 +105,10 @@ export default function AdvisePanel({ jobId, onApplied }) {
           setPhase('done')
           return
         }
+        if (data.status === 'cancelled') {
+          setPhase('idle')
+          return
+        }
         if (data.status === 'error') {
           setErrMsg(data.detail || 'Advisor failed')
           setPhase('error')
@@ -113,6 +120,17 @@ export default function AdvisePanel({ jobId, onApplied }) {
       if (cancelledRef.current) return
       setErrMsg('Strength API unreachable')
       setPhase('error')
+    }
+  }
+
+  // Stops the search for real: the engine drops its queued work (see POST .../cancel), so the
+  // machine is free again within one analysis rather than when the whole search finishes.
+  async function stop() {
+    const cur = searchRef.current
+    cur.stopped = true
+    setPhase('idle')
+    if (cur.id) {
+      try { await fetch(`/api/deck/advise/${cur.id}/cancel`, { method: 'POST' }) } catch { /* engine down: nothing left to stop */ }
     }
   }
 
@@ -151,6 +169,19 @@ export default function AdvisePanel({ jobId, onApplied }) {
       >
         {busy ? '⏳ Testing owned cards…' : '🧭 Suggest upgrades'}
       </button>
+      {busy && (
+        <button
+          onClick={stop}
+          title="Stop the search now and free the engine"
+          style={{
+            padding: '7px 12px', borderRadius: 8, border: '1px solid #44403c',
+            background: 'transparent', color: '#d6d3d1', fontSize: 12.5,
+            cursor: 'pointer', fontFamily: 'inherit',
+          }}
+        >
+          Cancel
+        </button>
+      )}
       {busy && (
         <span style={{ fontSize: 11, color: '#78716c' }}>
           {/* Measured 2026-10-23 after the tags.analyze memo: 75-90 s for a real 99-card

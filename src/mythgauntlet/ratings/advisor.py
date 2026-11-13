@@ -21,6 +21,11 @@ Honest limits still open: multi-card packages and general (non-owned) candidate 
 
 from __future__ import annotations
 
+import concurrent.futures
+import contextvars
+import functools
+import threading
+
 import dataclasses
 import math
 import re
@@ -593,22 +598,56 @@ def _analyze_job(resolved, cfg, two_card_combos, combos_checked, run_resilience)
                         combos_checked=combos_checked, run_resilience=run_resilience)
 
 
+class AdviseCancelled(Exception):
+    """The caller asked a running search to stop (see `advise(cancel=...)`)."""
+
+
+_CANCEL: "contextvars.ContextVar[threading.Event | None]" = contextvars.ContextVar(
+    "advise_cancel", default=None)
+
+
+def _check_cancel() -> None:
+    ev = _CANCEL.get()
+    if ev is not None and ev.is_set():
+        raise AdviseCancelled()
+
+
 def _run_analyses(jobs, store, workers):
     """Run `jobs` = [(resolved, cfg, two_card_combos, combos_checked, run_resilience)] and return the
     DeckAnalyses in order. With `workers > 0` they run in the shared process pool (every game is
     seeded by its own index, so the results are identical to the serial loop); a broken pool falls
-    back to running serially. This is the whole cost of an Advise search: ~100 analyses of 10-19 s."""
+    back to running serially. This is the whole cost of an Advise search: ~100 analyses of 10-19 s.
+
+    A cancel (`advise(cancel=...)`) stops within one analysis: queued jobs are dropped and the
+    jobs already running in workers finish (10-19 s) but are not waited for beyond that."""
+    _check_cancel()
     if workers > 0 and len(jobs) > 1:
+        futs = []
         try:
             from mythgauntlet.ratings import card_ablation
             pool = card_ablation._pool()
             futs = [pool.submit(_analyze_job, *j) for j in jobs]
+            ev = _CANCEL.get()
+            if ev is not None:
+                pending = set(futs)
+                while pending:
+                    if ev.is_set():
+                        raise AdviseCancelled()
+                    done, pending = concurrent.futures.wait(
+                        pending, timeout=0.5, return_when=concurrent.futures.FIRST_COMPLETED)
             return [f.result() for f in futs]
+        except AdviseCancelled:
+            for f in futs:
+                f.cancel()
+            raise
         except Exception:                # noqa: BLE001 - a broken pool falls back to serial
             from mythgauntlet.ratings import card_ablation
             card_ablation._POOL = None
-    return [analyze_deck(r, c, store, two_card_combos=t, combos_checked=cc, run_resilience=rr)
-            for r, c, t, cc, rr in jobs]
+    out = []
+    for r, c, t, cc, rr in jobs:
+        _check_cancel()
+        out.append(analyze_deck(r, c, store, two_card_combos=t, combos_checked=cc, run_resilience=rr))
+    return out
 
 
 PREFETCH_WAVE = 8               # candidates whose checks run as one batch (see advise's _prefetch)
@@ -758,7 +797,7 @@ def _net(moves: list) -> float:
     return _score(moves)
 
 
-def advise(
+def _advise(
     resolved: ResolvedDeck,
     cfg: SimConfig,
     store: SemanticsStore,
@@ -1149,3 +1188,15 @@ def advise(
         analyses=analyses, cut_pool=cut_pool, min_delta=effective_delta,
         cut_strategy=cut_strategy, searched_axes=list(searched),
     )
+
+
+@functools.wraps(_advise)
+def advise(*args, cancel: "threading.Event | None" = None, **kwargs) -> AdviceReport:
+    """`_advise`, stoppable. Set `cancel` from another thread to make a running search raise
+    `AdviseCancelled` at the next analysis boundary (queued work is dropped; analyses already
+    running in worker processes finish, 10-19 s, and are discarded)."""
+    token = _CANCEL.set(cancel)
+    try:
+        return _advise(*args, **kwargs)
+    finally:
+        _CANCEL.reset(token)
